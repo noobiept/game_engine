@@ -6,7 +6,10 @@ grunt.initConfig({
         typescript: {
             base: {
                 src: [ '../source/**/*.ts' ],
-                dest: '../build/output/game_engine.js'
+                dest: '../build/output/game_engine.js',
+                options: {
+                    declaration: true
+                }
             }
         },
 
@@ -29,16 +32,27 @@ grunt.initConfig({
                     'output/game_engine.min.js': [ 'output/game_engine.js' ]
                 }
             }
-        }
+        },
 
+        typedoc: {
+            build: {
+                src: [ '../source/**/*.ts' ],
+                options: {
+                    out: 'documentation/',
+                    name: 'game_engine'
+                }
+            }
+        }
     });
     
     // load the plug-ins
 grunt.loadNpmTasks( 'grunt-typescript' );
 grunt.loadNpmTasks( 'grunt-contrib-copy' );
 grunt.loadNpmTasks( 'grunt-contrib-uglify' );
+grunt.loadNpmTasks( 'grunt-typedoc' );
 
     // tasks
 grunt.registerTask( 'default', [ 'typescript', 'copy' ] );
-grunt.registerTask( 'release', [ 'default', 'uglify' ] );
+grunt.registerTask( 'docs', [ 'typedoc' ] );
+grunt.registerTask( 'release', [ 'default', 'uglify', 'docs' ] );
 };

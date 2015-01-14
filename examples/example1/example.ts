@@ -1,4 +1,4 @@
-/// <reference path="../../source/game.ts" />
+/// <reference path="../../build/output/game_engine.d.ts" />
 
 window.onload = function()
 {
