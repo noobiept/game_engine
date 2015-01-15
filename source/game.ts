@@ -1,3 +1,4 @@
+/// <reference path="preload.ts" />
 /// <reference path="element.ts" />
 /// <reference path="rectangle.ts" />
 /// <reference path="circle.ts" />

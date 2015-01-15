@@ -13,7 +13,7 @@ export class Element
 
     draw( ctx )
         {
-            // implement this
+        throw new Error( 'Implement this.' );
         }
     }
 }
