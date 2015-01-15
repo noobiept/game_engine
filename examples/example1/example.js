@@ -1,9 +1,11 @@
-/// <reference path="../../source/game.ts" />
+/// <reference path="../../build/output/game_engine.d.ts" />
 window.onload = function () {
     Game.init(document.body, 400, 400);
-    var rect = new Game.Rectangle(0, 0, 10, 10);
+    var rect = new Game.Rectangle(0, 0, 10, 10, 'green');
+    var circle = new Game.Circle(50, 50, 30, 'red');
     var right = true;
     Game.addElement(rect);
+    Game.addElement(circle);
     Game.addToGameLoop(function () {
         if (right) {
             rect.x++;

@@ -1,4 +1,6 @@
+/// <reference path="element.ts" />
 /// <reference path="rectangle.ts" />
+/// <reference path="circle.ts" />
 /// <reference path="utilities/utilities-1.5.d.ts" />
 
 module Game
@@ -8,7 +10,7 @@ var CTX;
 var WIDTH: number;
 var HEIGHT: number;
 
-var ELEMENTS = [];
+var ELEMENTS: Element[] = [];
 var CALLBACKS = [];
 
 export function init( htmlContainer: HTMLElement, canvasWidth: number, canvasHeight: number )
@@ -27,7 +29,7 @@ export function init( htmlContainer: HTMLElement, canvasWidth: number, canvasHei
     }
 
 
-export function addElement( element )
+export function addElement( element: Element )
     {
     ELEMENTS.push( element );
     }

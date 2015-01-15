@@ -2,18 +2,16 @@
 
 module Game
 {
-export class Rectangle extends Element
+export class Circle extends Element
     {
-    width: number;
-    height: number;
+    radius: number;
     color: string;
 
-    constructor( x, y, width, height, color )
+    constructor( x, y, radius, color )
         {
         super( x, y );
 
-        this.width = width;
-        this.height = height;
+        this.radius = radius;
         this.color = color;
         }
 
@@ -21,7 +19,8 @@ export class Rectangle extends Element
         {
         ctx.beginPath();
         ctx.fillStyle = this.color;
-        ctx.fillRect( this.x, this.y, this.width, this.height );
+        ctx.arc( this.x, this.y, this.radius, 0, 2 * Math.PI );
+        ctx.fill();
         }
     }
 }
