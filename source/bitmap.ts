@@ -18,5 +18,22 @@ export class Bitmap extends Element
         ctx.beginPath();
         ctx.drawImage( this.image, this.x, this.y );
         }
+
+    intersect( x, y )
+        {
+        if ( Utilities.pointBoxCollision(
+                    x,
+                    y,
+                    this.x,
+                    this.y,
+                    this.image.width,
+                    this.image.height
+                ))
+            {
+            return true;
+            }
+
+        return false;
+        }
     }
 }

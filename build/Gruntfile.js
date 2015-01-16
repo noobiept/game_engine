@@ -18,7 +18,7 @@ grunt.initConfig({
                 files: [
                     {
                         cwd: '../source/utilities/',
-                        src: [ 'utilities-1.5-min.js' ],
+                        src: [ 'utilities-1.6-min.js', 'utilities-1.6.d.ts' ],
                         dest: 'output/',
                         expand: true
                     }

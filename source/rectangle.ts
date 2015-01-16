@@ -23,5 +23,22 @@ export class Rectangle extends Element
         ctx.fillStyle = this.color;
         ctx.fillRect( this.x, this.y, this.width, this.height );
         }
+
+    intersect( x, y )
+        {
+        if ( Utilities.pointBoxCollision(
+                    x,
+                    y,
+                    this.x,
+                    this.y,
+                    this.width,
+                    this.height
+                ))
+            {
+            return true;
+            }
+
+        return false;
+        }
     }
 }

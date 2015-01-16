@@ -1,8 +1,9 @@
+/// <reference path="event_dispatcher.ts" />
 /// <reference path="preload.ts" />
 /// <reference path="element.ts" />
 /// <reference path="rectangle.ts" />
 /// <reference path="circle.ts" />
-/// <reference path="utilities/utilities-1.5.d.ts" />
+/// <reference path="utilities/utilities-1.6.d.ts" />
 
 module Game
 {
@@ -25,6 +26,8 @@ export function init( htmlContainer: HTMLElement, canvasWidth: number, canvasHei
     HEIGHT = canvasHeight;
 
     htmlContainer.appendChild( CANVAS );
+
+    EventDispatcher.init( CANVAS );
 
     loop();
     }
@@ -76,5 +79,17 @@ function draw()
         {
         ELEMENTS[ a ].draw( CTX );
         }
+    }
+
+
+export function getElements()
+    {
+    return ELEMENTS;
+    }
+
+
+export function getCanvas()
+    {
+    return CANVAS;
     }
 }

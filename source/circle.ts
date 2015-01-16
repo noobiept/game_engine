@@ -22,5 +22,21 @@ export class Circle extends Element
         ctx.arc( this.x, this.y, this.radius, 0, 2 * Math.PI );
         ctx.fill();
         }
+
+    intersect( x, y )
+        {
+        if ( Utilities.circlePointCollision(
+                    this.x,
+                    this.y,
+                    this.radius,
+                    x,
+                    y
+                ))
+            {
+            return true;
+            }
+
+        return false;
+        }
     }
 }
