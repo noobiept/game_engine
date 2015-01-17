@@ -4,10 +4,17 @@ window.onload = function()
 {
 Game.init( document.body, 400, 400 );
 
-var rect = new Game.Rectangle( 0, 0, 20, 20, 'green' );
-var circle = new Game.Circle( 50, 50, 30, 'red' );
-var right = true;
+var canvas = Game.getCanvas();
 
+var container = new Game.Container( 0, 10 );
+
+var rect = new Game.Rectangle( 0, 0, 20, 20, 'green' );
+var circle = new Game.Circle( 20, 0, 10, 'red' );
+
+container.addEventListener( 'click', function()
+    {
+    console.log( 'container' );
+    });
 rect.addEventListener( 'click', function()
     {
     console.log( 'rectangle' );
@@ -16,6 +23,12 @@ circle.addEventListener( 'click', function()
     {
     console.log( 'circle' );
     });
+
+container.addChild( rect );
+container.addChild( circle );
+
+Game.addElement( container );
+
 
 Game.Preload.load( 'mystery_ship.png', function( element )
     {
@@ -29,26 +42,27 @@ Game.Preload.load( 'mystery_ship.png', function( element )
     Game.addElement( image );
     });
 
-Game.addElement( rect );
-Game.addElement( circle );
+
+var right = true;
+
 Game.addToGameLoop( function()
     {
     if ( right )
         {
-        rect.x++;
+        container.x++;
         }
 
     else
         {
-        rect.x--;
+        container.x--;
         }
 
-    if ( rect.x > 400 )
+    if ( container.x > canvas.width )
         {
         right = false;
         }
 
-    else if ( rect.x < 0 )
+    else if ( container.x < 0 )
         {
         right = true;
         }

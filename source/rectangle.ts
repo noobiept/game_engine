@@ -17,24 +17,34 @@ export class Rectangle extends Element
         this.color = color;
         }
 
-    draw( ctx )
+    drawElement( ctx, refX, refY )
         {
         ctx.beginPath();
         ctx.fillStyle = this.color;
-        ctx.fillRect( this.x, this.y, this.width, this.height );
+        ctx.fillRect( refX + this.x, refY + this.y, this.width, this.height );
         }
 
-    intersect( x, y )
+    intersect( x, y, event )
         {
+        var refX = 0;
+        var refY = 0;
+
+        if ( this.container !== null )
+            {
+            refX = this.container.x;
+            refY = this.container.y;
+            }
+
         if ( Utilities.pointBoxCollision(
                     x,
                     y,
-                    this.x,
-                    this.y,
+                    refX + this.x,
+                    refY + this.y,
                     this.width,
                     this.height
                 ))
             {
+            this.dispatchEvent( event )
             return true;
             }
 

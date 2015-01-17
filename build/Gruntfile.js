@@ -8,7 +8,8 @@ grunt.initConfig({
                 src: [ '../source/**/*.ts' ],
                 dest: '../build/output/game_engine.js',
                 options: {
-                    declaration: true
+                    declaration: true,
+                    target: 'es5'
                 }
             }
         },

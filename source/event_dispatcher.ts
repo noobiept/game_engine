@@ -22,9 +22,8 @@ export module EventDispatcher
             {
             var element = elements[ a ];
 
-            if ( element.intersect( x, y ) )
+            if ( element.intersect( x, y, event ) )
                 {
-                element.dispatchEvent( event );
                 break;
                 }
             }

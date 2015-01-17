@@ -15,24 +15,34 @@ export class Circle extends Element
         this.color = color;
         }
 
-    draw( ctx )
+    drawElement( ctx, refX, refY )
         {
         ctx.beginPath();
         ctx.fillStyle = this.color;
-        ctx.arc( this.x, this.y, this.radius, 0, 2 * Math.PI );
+        ctx.arc( refX + this.x, refY + this.y, this.radius, 0, 2 * Math.PI );
         ctx.fill();
         }
 
-    intersect( x, y )
+    intersect( x, y, event )
         {
+        var refX = 0;
+        var refY = 0;
+
+        if ( this.container !== null )
+            {
+            refX = this.container.x;
+            refY = this.container.y;
+            }
+
         if ( Utilities.circlePointCollision(
-                    this.x,
-                    this.y,
+                    refX + this.x,
+                    refY + this.y,
                     this.radius,
                     x,
                     y
                 ))
             {
+            this.dispatchEvent( event );
             return true;
             }
 

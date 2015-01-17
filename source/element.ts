@@ -5,24 +5,44 @@ export class Element
     x: number;
     y: number;
     listeners;
+    container: Container;
+
 
     constructor( x, y )
         {
         this.x = x;
         this.y = y;
         this.listeners = {};
+        this.container = null;
         }
 
+
+    /**
+        Draws just this element
+
+        @param ctx - canvas context
+        @param refX - reference x position, from where to draw the element
+        @param refY - reference y position
+     */
+
+    drawElement( ctx, refX: number, refY: number )
+        {
+        throw new Error( 'Implement .drawElement().' );
+        }
+
+    /*
+        Draws this element, and all of its children
+     */
 
     draw( ctx )
         {
-        throw new Error( 'Implement this.' );
+        this.drawElement( ctx, 0, 0 );
         }
 
 
-    intersect( x, y )
+    intersect( x: number, y: number, event: Event )
         {
-        throw new Error( 'Implement this.' );
+        throw new Error( 'Implement .intersect().' );
         }
 
 

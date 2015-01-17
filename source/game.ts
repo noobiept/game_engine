@@ -1,3 +1,4 @@
+/// <reference path="container.ts" />
 /// <reference path="event_dispatcher.ts" />
 /// <reference path="preload.ts" />
 /// <reference path="element.ts" />
