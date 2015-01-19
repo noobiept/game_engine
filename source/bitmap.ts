@@ -8,7 +8,10 @@ export class Bitmap extends Element
 
     constructor( x, y, image )
         {
-        super( x, y );
+        super();
+
+        this.x = x;
+        this.y = y;
 
         this.image = image;
         }

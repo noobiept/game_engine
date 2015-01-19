@@ -9,8 +9,10 @@ export class Circle extends Element
 
     constructor( x, y, radius, color )
         {
-        super( x, y );
+        super();
 
+        this.x = x;
+        this.y = y;
         this.radius = radius;
         this.color = color;
         }

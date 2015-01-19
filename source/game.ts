@@ -13,6 +13,8 @@ var CTX;
 var WIDTH: number;
 var HEIGHT: number;
 
+var TIME: number;
+
 var ELEMENTS: Element[] = [];
 var CALLBACKS = [];
 
@@ -30,6 +32,7 @@ export function init( htmlContainer: HTMLElement, canvasWidth: number, canvasHei
 
     EventDispatcher.init( CANVAS );
 
+    TIME = new Date().getTime();
     loop();
     }
 
@@ -61,14 +64,41 @@ export function addToGameLoop( callback )
 
 function loop()
     {
+        // find the delta time
+    var now = new Date().getTime();
+
+        // time since the last update (in seconds)
+    var delta = (now - TIME) / 1000;
+
+    TIME = now;
+
+        // call any function added to the game loop
     for (var a = CALLBACKS.length - 1 ; a >= 0 ; a--)
         {
         CALLBACKS[ a ]();
         }
 
+        // call any game logic (from units/etc)
+    logic( delta );
+
+        // draw all the elements to the canvas
     draw();
 
     window.requestAnimationFrame( loop );
+    }
+
+
+function logic( deltaTime )
+    {
+    for (var a = ELEMENTS.length - 1 ; a >= 0 ; a--)
+        {
+        var element = ELEMENTS[ a ];
+
+        if ( element.has_logic === true )
+            {
+            element.logic( deltaTime );
+            }
+        }
     }
 
 

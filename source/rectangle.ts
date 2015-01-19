@@ -10,8 +10,10 @@ export class Rectangle extends Element
 
     constructor( x, y, width, height, color )
         {
-        super( x, y );
+        super();
 
+        this.x = x;
+        this.y = y;
         this.width = width;
         this.height = height;
         this.color = color;
@@ -44,7 +46,7 @@ export class Rectangle extends Element
                     this.height
                 ))
             {
-            this.dispatchEvent( event )
+            this.dispatchEvent( event );
             return true;
             }
 

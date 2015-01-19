@@ -6,14 +6,16 @@ export class Element
     y: number;
     listeners;
     container: Container;
+    has_logic: boolean; // to know if we need to run the .logic() method or not
 
 
-    constructor( x, y )
+    constructor()
         {
-        this.x = x;
-        this.y = y;
+        this.x = 0;
+        this.y = 0;
         this.listeners = {};
         this.container = null;
+        this.has_logic = false;
         }
 
 
@@ -30,6 +32,7 @@ export class Element
         throw new Error( 'Implement .drawElement().' );
         }
 
+
     /*
         Draws this element, and all of its children
      */
@@ -37,6 +40,16 @@ export class Element
     draw( ctx )
         {
         this.drawElement( ctx, 0, 0 );
+        }
+
+
+    /*
+        Logic code here (runs every tick)
+     */
+
+    logic( deltaTime )
+        {
+            // optional
         }
 
 

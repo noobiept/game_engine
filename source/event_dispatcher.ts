@@ -12,6 +12,7 @@ export module EventDispatcher
         {
         var elements = getElements();
         var canvas = getCanvas();
+        var type = event.type;
 
         var rect = canvas.getBoundingClientRect();
         var x = event.x - rect.left;
@@ -22,9 +23,13 @@ export module EventDispatcher
             {
             var element = elements[ a ];
 
-            if ( element.intersect( x, y, event ) )
+                // check if there's listeners on this element
+            if ( element.listeners[ type ] && element.listeners[ type ].length > 0 )
                 {
-                break;
+                if ( element.intersect( x, y, event ) )
+                    {
+                    break;
+                    }                
                 }
             }
         }

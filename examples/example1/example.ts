@@ -6,10 +6,14 @@ Game.init( document.body, 400, 400 );
 
 var canvas = Game.getCanvas();
 
-var container = new Game.Container( 0, 10 );
+var container = new Game.Container();
+
+container.x = 0;
+container.y = 10;
 
 var rect = new Game.Rectangle( 0, 0, 20, 20, 'green' );
 var circle = new Game.Circle( 20, 0, 10, 'red' );
+
 
 container.addEventListener( 'click', function()
     {
@@ -28,6 +32,20 @@ container.addChild( rect );
 container.addChild( circle );
 
 Game.addElement( container );
+
+
+var unit = new Game.Unit({
+        movement_speed: 100
+    });
+
+var unitRect = new Game.Rectangle( 0, 0, 10, 10, 'blue' );
+
+unit.addChild( unitRect );
+Game.addElement( unit );
+
+unit.x = 10;
+unit.y = 50;
+unit.moveTo( 200, 50 );
 
 
 Game.Preload.load( 'mystery_ship.png', function( element )

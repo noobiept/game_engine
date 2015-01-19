@@ -6,9 +6,9 @@ export class Container extends Element
     {
     children: Element[];
 
-    constructor( x, y )
+    constructor()
         {
-        super( x, y );
+        super();
 
         this.children = [];
         }
