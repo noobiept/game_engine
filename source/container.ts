@@ -39,7 +39,7 @@ export class Container extends Element
         {
         for (var a = this.children.length - 1 ; a >= 0 ; a--)
             {
-            this.children[ a ].drawElement( ctx, this.x, this.y );
+            this.children[ a ].drawElement( ctx );
             }
         }
 

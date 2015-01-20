@@ -6,7 +6,8 @@ window.onload = function () {
     container.x = 0;
     container.y = 10;
     var rect = new Game.Rectangle(0, 0, 20, 20, 'green');
-    var circle = new Game.Circle(20, 0, 10, 'red');
+    var circle = new Game.Circle(0, 0, 10, 'red');
+    container.rotate(45, true);
     container.addEventListener('click', function () {
         console.log('container');
     });
@@ -30,6 +31,7 @@ window.onload = function () {
     unit.moveTo(200, 50);
     Game.Preload.load('mystery_ship.png', function (element) {
         var image = new Game.Bitmap(200, 200, element);
+        image.rotate(10, true);
         image.addEventListener('click', function (event) {
             console.log('bitmap');
         });

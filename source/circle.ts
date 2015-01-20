@@ -17,12 +17,24 @@ export class Circle extends Element
         this.color = color;
         }
 
-    drawElement( ctx, refX, refY )
+    drawElement( ctx )
         {
+        var refX = 0;
+        var refY = 0;
+
+        if ( this.container !== null )
+            {
+            refX = this.container.x;
+            refY = this.container.y;
+            }
+
+        ctx.save();
         ctx.beginPath();
         ctx.fillStyle = this.color;
-        ctx.arc( refX + this.x, refY + this.y, this.radius, 0, 2 * Math.PI );
+        ctx.translate( refX + this.x, refY + this.y );
+        ctx.arc( 0, 0, this.radius, 0, 2 * Math.PI );
         ctx.fill();
+        ctx.restore();
         }
 
     intersect( x, y, event )

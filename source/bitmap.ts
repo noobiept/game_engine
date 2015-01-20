@@ -16,10 +16,25 @@ export class Bitmap extends Element
         this.image = image;
         }
 
-    drawElement( ctx, refX, refY )
+    drawElement( ctx )
         {
+        var refX = 0;
+        var refY = 0;
+        var refRotation = 0;
+
+        if ( this.container !== null )
+            {
+            refX = this.container.x;
+            refY = this.container.y;
+            refRotation = this.container.rotation;
+            }
+
+        ctx.save();
         ctx.beginPath();
-        ctx.drawImage( this.image, refX + this.x, refY + this.y );
+        ctx.translate( refX + this.x, refY + this.y );
+        ctx.rotate( refRotation + this.rotation );
+        ctx.drawImage( this.image, 0, 0 );
+        ctx.restore();
         }
 
     intersect( x, y, event )

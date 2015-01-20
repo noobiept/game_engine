@@ -4,6 +4,7 @@ export class Element
     {
     x: number;
     y: number;
+    rotation: number;   // in radians (clockwise)
     listeners;
     container: Container;
     has_logic: boolean; // to know if we need to run the .logic() method or not
@@ -13,6 +14,7 @@ export class Element
         {
         this.x = 0;
         this.y = 0;
+        this.rotation = 0;
         this.listeners = {};
         this.container = null;
         this.has_logic = false;
@@ -27,7 +29,7 @@ export class Element
         @param refY - reference y position
      */
 
-    drawElement( ctx, refX: number, refY: number )
+    drawElement( ctx )
         {
         throw new Error( 'Implement .drawElement().' );
         }
@@ -39,7 +41,7 @@ export class Element
 
     draw( ctx )
         {
-        this.drawElement( ctx, 0, 0 );
+        this.drawElement( ctx );
         }
 
 
@@ -131,6 +133,20 @@ export class Element
                 {
                 listeners[ a ]( event );
                 }
+            }
+        }
+
+
+    rotate( angle: number, degrees?: boolean )
+        {
+        if ( degrees === true )
+            {
+            this.rotation = Math.PI / 180 * angle;
+            }
+
+        else
+            {
+            this.rotation = angle;
             }
         }
     }

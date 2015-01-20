@@ -19,11 +19,26 @@ export class Rectangle extends Element
         this.color = color;
         }
 
-    drawElement( ctx, refX, refY )
+    drawElement( ctx )
         {
+        var refX = 0;
+        var refY = 0;
+        var refRotation = 0;
+
+        if ( this.container !== null )
+            {
+            refX = this.container.x;
+            refY = this.container.y;
+            refRotation = this.container.rotation;
+            }
+
+        ctx.save();
         ctx.beginPath();
         ctx.fillStyle = this.color;
-        ctx.fillRect( refX + this.x, refY + this.y, this.width, this.height );
+        ctx.translate( refX + this.x, refY + this.y );
+        ctx.rotate( refRotation + this.rotation );
+        ctx.fillRect( 0, 0, this.width, this.height );
+        ctx.restore();
         }
 
     intersect( x, y, event )
