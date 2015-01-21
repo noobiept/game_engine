@@ -26,9 +26,11 @@ window.onload = function () {
     var unitRect = new Game.Rectangle(0, 0, 10, 10, 'blue');
     unit.addChild(unitRect);
     Game.addElement(unit);
-    unit.x = 10;
+    unit.x = 0;
     unit.y = 50;
     unit.moveTo(200, 50);
+    unit.queueMoveTo(100, 200);
+    unit.queueMoveTo(0, 50);
     Game.Preload.load('mystery_ship.png', function (element) {
         var image = new Game.Bitmap(200, 200, element);
         image.rotate(10, true);
