@@ -23,11 +23,11 @@ export class Rectangle extends Element
         var refY = 0;
         var refRotation = 0;
 
-        if ( this.container !== null )
+        if ( this._container !== null )
             {
-            refX = this.container.x;
-            refY = this.container.y;
-            refRotation = this.container.rotation;
+            refX = this._container.x;
+            refY = this._container.y;
+            refRotation = this._container.rotation;
             }
 
         ctx.save();
@@ -44,10 +44,10 @@ export class Rectangle extends Element
         var refX = 0;
         var refY = 0;
 
-        if ( this.container !== null )
+        if ( this._container !== null )
             {
-            refX = this.container.x;
-            refY = this.container.y;
+            refX = this._container.x;
+            refY = this._container.y;
             }
 
         if ( Utilities.pointBoxCollision(

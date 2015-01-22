@@ -4,22 +4,22 @@ module Game
 {
 export class Container extends Element
     {
-    children: Element[];
+    _children: Element[];
 
 
     constructor()
         {
         super();
 
-        this.children = [];
+        this._children = [];
         }
 
 
     addChild( element: Element )
         {
-        this.children.push( element );
+        this._children.push( element );
 
-        element.container = this;
+        element._container = this;
 
         this.calculateDimensions();
         }
@@ -27,11 +27,11 @@ export class Container extends Element
 
     removeChild( element )
         {
-        var index = this.children.indexOf( element );
+        var index = this._children.indexOf( element );
 
         if ( index >= 0 )
             {
-            this.children.splice( index, 1 );
+            this._children.splice( index, 1 );
             }
 
         element.container = null;
@@ -40,9 +40,9 @@ export class Container extends Element
 
     draw( ctx )
         {
-        for (var a = this.children.length - 1 ; a >= 0 ; a--)
+        for (var a = this._children.length - 1 ; a >= 0 ; a--)
             {
-            this.children[ a ].drawElement( ctx );
+            this._children[ a ].drawElement( ctx );
             }
         }
 
@@ -51,9 +51,9 @@ export class Container extends Element
         {
         var found = false;
 
-        for (var a = this.children.length - 1 ; a >= 0 ; a--)
+        for (var a = this._children.length - 1 ; a >= 0 ; a--)
             {
-            var element = this.children[ a ];
+            var element = this._children[ a ];
 
             if ( element.intersect( x, y, event ) )
                 {
@@ -76,21 +76,21 @@ export class Container extends Element
 
     calculateDimensions()
         {
-        if ( this.children.length === 0 )
+        if ( this._children.length === 0 )
             {
             this.width = this.height = 0;
             }
 
-        var firstChild = this.children[ 0 ];
+        var firstChild = this._children[ 0 ];
         var leftMost = firstChild.x;
         var rightMost = firstChild.x + firstChild.width;
         var topMost = firstChild.y;
         var bottomMost = firstChild.y + firstChild.height;
-        var length = this.children.length;
+        var length = this._children.length;
 
         for (var a = 1 ; a < length ; a++)
             {
-            var element = this.children[ a ];
+            var element = this._children[ a ];
 
             if ( element.x < leftMost )
                 {

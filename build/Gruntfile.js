@@ -40,7 +40,8 @@ grunt.initConfig({
                 src: [ '../source/**/*.ts' ],
                 options: {
                     out: 'documentation/',
-                    name: 'game_engine'
+                    name: 'game_engine',
+                    target: 'es5'
                 }
             }
         }

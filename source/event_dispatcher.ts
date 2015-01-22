@@ -24,7 +24,7 @@ export module EventDispatcher
             var element = elements[ a ];
 
                 // check if there's listeners on this element
-            if ( element.listeners[ type ] && element.listeners[ type ].length > 0 )
+            if ( element._listeners[ type ] && element._listeners[ type ].length > 0 )
                 {
                 if ( element.intersect( x, y, event ) )
                     {

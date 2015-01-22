@@ -94,7 +94,7 @@ function logic( deltaTime )
         {
         var element = ELEMENTS[ a ];
 
-        if ( element.has_logic === true )
+        if ( element._has_logic === true )
             {
             element.logic( deltaTime );
             }

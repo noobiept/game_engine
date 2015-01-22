@@ -6,10 +6,11 @@ export class Element
     y: number;
     width: number;
     height: number;
-    rotation: number;   // in radians (clockwise)
-    listeners;
-    container: Container;
-    has_logic: boolean; // to know if we need to run the .logic() method or not
+
+    _rotation: number;   // in radians (clockwise)
+    _container: Container;
+    _listeners;
+    _has_logic: boolean; // to know if we need to run the .logic() method or not
 
 
     constructor()
@@ -18,10 +19,10 @@ export class Element
         this.y = 0;
         this.width = 0;
         this.height = 0;
-        this.rotation = 0;
-        this.listeners = {};
-        this.container = null;
-        this.has_logic = false;
+        this._container = null;
+        this._rotation = 0;
+        this._listeners = {};
+        this._has_logic = false;
         }
 
 
@@ -29,21 +30,20 @@ export class Element
         Draws just this element
 
         @param ctx - canvas context
-        @param refX - reference x position, from where to draw the element
-        @param refY - reference y position
+        @abstract
      */
 
-    drawElement( ctx )
+    drawElement( ctx: CanvasRenderingContext2D )
         {
         throw new Error( 'Implement .drawElement().' );
         }
 
 
     /*
-        Draws this element, and all of its children
+        Draws this element, and all of its _children
      */
 
-    draw( ctx )
+    draw( ctx: CanvasRenderingContext2D )
         {
         this.drawElement( ctx );
         }
@@ -59,6 +59,9 @@ export class Element
         }
 
 
+    /**
+        @abstract
+     */
     intersect( x: number, y: number, event: Event )
         {
         throw new Error( 'Implement .intersect().' );
@@ -67,16 +70,16 @@ export class Element
 
     addEventListener( type: string, listener )
         {
-        if ( !this.listeners[ type ] )
+        if ( !this._listeners[ type ] )
             {
-            this.listeners[ type ] = [];
+            this._listeners[ type ] = [];
             }
 
         if ( Utilities.isFunction( listener ) )
             {
-            if ( this.listeners[ type ].indexOf( listener ) < 0 )
+            if ( this._listeners[ type ].indexOf( listener ) < 0 )
                 {
-                this.listeners[ type ].push( listener );
+                this._listeners[ type ].push( listener );
 
                 return true;
                 }
@@ -92,22 +95,22 @@ export class Element
 
     removeEventListener( type: string, listener? )
         {
-        if ( this.listeners[ type ] )
+        if ( this._listeners[ type ] )
             {
             if ( typeof listener !== 'undefined' )
                 {
-                var index = this.listeners[ type ].indexOf( listener );
+                var index = this._listeners[ type ].indexOf( listener );
 
                 if ( index >= 0 )
                     {
-                    this.listeners.splice( index, 1 );
+                    this._listeners.splice( index, 1 );
                     return true;
                     }
                 }
 
             else
                 {
-                this.listeners[ type ] = [];
+                this._listeners[ type ] = [];
                 return true;
                 }
             }
@@ -118,18 +121,19 @@ export class Element
 
     removeAllEventListeners()
         {
-        this.listeners = {};
+        this._listeners = {};
         }
 
 
-    /*
+    /**
         Dispatches an event, which will trigger the listeners of that event
-     */
 
+        @param event - event to dispatch
+     */
     dispatchEvent( event )
         {
         var type = event.type;
-        var listeners = this.listeners[ type ];
+        var listeners = this._listeners[ type ];
 
         if ( listeners )
             {
@@ -140,17 +144,36 @@ export class Element
             }
         }
 
+    /**
+        @returns - Rotation in radians
+     */
+    get rotation()
+        {
+        return this._rotation;
+        }
 
+    /**
+        @param angle - Rotate by a certain angle (in radians)
+     */
+    set rotation( angle: number )
+        {
+        this.rotate( angle, false );
+        }
+
+    /**
+        @param angle - angle of rotation
+        @param degrees - whether the angle provided is in degrees or radians
+     */
     rotate( angle: number, degrees?: boolean )
         {
         if ( degrees === true )
             {
-            this.rotation = Math.PI / 180 * angle;
+            this._rotation = Math.PI / 180 * angle;
             }
 
         else
             {
-            this.rotation = angle;
+            this._rotation = angle;
             }
         }
     }
