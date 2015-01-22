@@ -4,8 +4,6 @@ module Game
 {
 export class Rectangle extends Element
     {
-    width: number;
-    height: number;
     color: string;
 
     constructor( x, y, width, height, color )

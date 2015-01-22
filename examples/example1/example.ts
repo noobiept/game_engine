@@ -12,13 +12,13 @@ container.x = 0;
 container.y = 10;
 
 var rect = new Game.Rectangle( 0, 0, 20, 20, 'green' );
-var circle = new Game.Circle( 0, 0, 10, 'red' );
+var circle = new Game.Circle( 10, 5, 10, 'red' );
 
-container.rotate( 45, true );
+//container.rotate( 45, true );
 
 container.addEventListener( 'click', function()
     {
-    console.log( 'container' );
+    console.log( 'container! width:' + container.width, ' height: ' + container.height );
     });
 rect.addEventListener( 'click', function()
     {
@@ -29,8 +29,8 @@ circle.addEventListener( 'click', function()
     console.log( 'circle' );
     });
 
-container.addChild( rect );
 container.addChild( circle );
+container.addChild( rect );
 
 Game.addElement( container );
 
@@ -51,7 +51,6 @@ unit.queueMoveTo( 100, 200 );
 unit.queueMoveTo( 0, 50 );
 
 
-
 Game.Preload.load( 'mystery_ship.png', function( element )
     {
     var image = new Game.Bitmap( 200, 200, element );
@@ -67,7 +66,7 @@ Game.Preload.load( 'mystery_ship.png', function( element )
 
 
 var right = true;
-
+/*
 Game.addToGameLoop( function()
     {
     if ( right )
@@ -89,5 +88,5 @@ Game.addToGameLoop( function()
         {
         right = true;
         }
-    });
+    });*/
 };

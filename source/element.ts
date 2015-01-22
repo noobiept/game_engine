@@ -4,6 +4,8 @@ export class Element
     {
     x: number;
     y: number;
+    width: number;
+    height: number;
     rotation: number;   // in radians (clockwise)
     listeners;
     container: Container;
@@ -14,6 +16,8 @@ export class Element
         {
         this.x = 0;
         this.y = 0;
+        this.width = 0;
+        this.height = 0;
         this.rotation = 0;
         this.listeners = {};
         this.container = null;

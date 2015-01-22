@@ -6,6 +6,7 @@ export class Container extends Element
     {
     children: Element[];
 
+
     constructor()
         {
         super();
@@ -19,6 +20,8 @@ export class Container extends Element
         this.children.push( element );
 
         element.container = this;
+
+        this.calculateDimensions();
         }
 
 
@@ -64,6 +67,55 @@ export class Container extends Element
             }
 
         return found;
+        }
+
+
+    /*
+        calculate the width/height of the container
+     */
+
+    calculateDimensions()
+        {
+        if ( this.children.length === 0 )
+            {
+            this.width = this.height = 0;
+            }
+
+        var firstChild = this.children[ 0 ];
+        var leftMost = firstChild.x;
+        var rightMost = firstChild.x + firstChild.width;
+        var topMost = firstChild.y;
+        var bottomMost = firstChild.y + firstChild.height;
+        var length = this.children.length;
+
+        for (var a = 1 ; a < length ; a++)
+            {
+            var element = this.children[ a ];
+
+            if ( element.x < leftMost )
+                {
+                leftMost = element.x;
+                }
+
+            else if ( element.x + element.width > rightMost )
+                {
+                rightMost = element.x + element.width;
+                }
+
+
+            if ( element.y < topMost )
+                {
+                topMost = element.y;
+                }
+
+            else if ( element.y + element.height > bottomMost )
+                {
+                bottomMost = element.y + element.height;
+                }
+            }
+
+        this.width = rightMost - leftMost;
+        this.height = bottomMost - topMost;
         }
     }
 }

@@ -6,10 +6,10 @@ window.onload = function () {
     container.x = 0;
     container.y = 10;
     var rect = new Game.Rectangle(0, 0, 20, 20, 'green');
-    var circle = new Game.Circle(0, 0, 10, 'red');
-    container.rotate(45, true);
+    var circle = new Game.Circle(10, 5, 10, 'red');
+    //container.rotate( 45, true );
     container.addEventListener('click', function () {
-        console.log('container');
+        console.log('container! width:' + container.width, ' height: ' + container.height);
     });
     rect.addEventListener('click', function () {
         console.log('rectangle');
@@ -17,8 +17,8 @@ window.onload = function () {
     circle.addEventListener('click', function () {
         console.log('circle');
     });
-    container.addChild(rect);
     container.addChild(circle);
+    container.addChild(rect);
     Game.addElement(container);
     var unit = new Game.Unit({
         movement_speed: 100
@@ -40,18 +40,27 @@ window.onload = function () {
         Game.addElement(image);
     });
     var right = true;
-    Game.addToGameLoop(function () {
-        if (right) {
+    /*
+    Game.addToGameLoop( function()
+        {
+        if ( right )
+            {
             container.x++;
-        }
-        else {
+            }
+    
+        else
+            {
             container.x--;
-        }
-        if (container.x > canvas.width) {
+            }
+    
+        if ( container.x > canvas.width )
+            {
             right = false;
-        }
-        else if (container.x < 0) {
+            }
+    
+        else if ( container.x < 0 )
+            {
             right = true;
-        }
-    });
+            }
+        });*/
 };

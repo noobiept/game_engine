@@ -4,7 +4,7 @@ module Game
 {
 export class Circle extends Element
     {
-    radius: number;
+    _radius: number;
     color: string;
 
     constructor( x, y, radius, color )
@@ -13,8 +13,20 @@ export class Circle extends Element
 
         this.x = x;
         this.y = y;
-        this.radius = radius;
+        this._radius = radius;
+        this.width = this.height = radius * 2;
         this.color = color;
+        }
+
+    set radius( value: number )
+        {
+        this._radius = value;
+        this.width = this.height = value * 2;
+        }
+
+    get radius()
+        {
+        return this._radius;
         }
 
     drawElement( ctx )
@@ -31,8 +43,8 @@ export class Circle extends Element
         ctx.save();
         ctx.beginPath();
         ctx.fillStyle = this.color;
-        ctx.translate( refX + this.x, refY + this.y );
-        ctx.arc( 0, 0, this.radius, 0, 2 * Math.PI );
+        ctx.translate( refX + this.x + this._radius, refY + this.y + this._radius );
+        ctx.arc( 0, 0, this._radius, 0, 2 * Math.PI );
         ctx.fill();
         ctx.restore();
         }
@@ -51,7 +63,7 @@ export class Circle extends Element
         if ( Utilities.circlePointCollision(
                     refX + this.x,
                     refY + this.y,
-                    this.radius,
+                    this._radius,
                     x,
                     y
                 ))
