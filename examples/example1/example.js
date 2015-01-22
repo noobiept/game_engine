@@ -24,13 +24,27 @@ window.onload = function () {
         movement_speed: 100
     });
     var unitRect = new Game.Rectangle(0, 0, 10, 10, 'blue');
+    var unitRect2 = new Game.Rectangle(5, 5, 10, 10, 'black');
     unit.addChild(unitRect);
+    unit.addChild(unitRect2);
     Game.addElement(unit);
     unit.x = 0;
     unit.y = 50;
     unit.moveTo(200, 50);
     unit.queueMoveTo(100, 200);
     unit.queueMoveTo(0, 50);
+    var unit2 = new Game.Unit({
+        movement_speed: 50
+    });
+    var unit2circle = new Game.Circle(0, 0, 10, 'green');
+    unit2.addChild(unit2circle);
+    unit2.x = 10;
+    unit2.y = 200;
+    unit2.moveLoop([
+        { x: 200, y: 200 },
+        { x: 10, y: 200 }
+    ]);
+    Game.addElement(unit2);
     Game.Preload.load('mystery_ship.png', function (element) {
         var image = new Game.Bitmap(200, 200, element);
         image.rotate(10, true);

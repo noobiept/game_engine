@@ -9,6 +9,8 @@ export class Unit extends Container
     destination_x: number;
     destination_y: number;
     path: { x: number; y: number; }[];
+    loop_movement: boolean;
+    loop_path_position: number; // when looping a path, to know what is the current position the unit is going for (the path array position)
 
     constructor( args )
         {
@@ -18,6 +20,8 @@ export class Unit extends Container
         this.is_moving = false;
         this.has_logic = true;
         this.path = [];
+        this.loop_movement = false;
+        this.loop_path_position = 0;
         }
 
     /*
@@ -26,6 +30,7 @@ export class Unit extends Container
 
     moveTo( x, y )
         {
+        this.loop_movement = false;
         this.path.length = 0;
         this.path.push({
                 x: x,
@@ -41,7 +46,25 @@ export class Unit extends Container
 
     moveToNext()
         {
-        var next = this.path.shift();
+        var next;
+
+        if ( this.loop_movement )
+            {
+            this.loop_path_position++;
+
+            if ( this.loop_path_position >= this.path.length )
+                {
+                this.loop_path_position = 0;
+                }
+
+            next = this.path[ this.loop_path_position ];
+            }
+
+        else
+            {
+            next = this.path.shift();
+            }
+
 
         if ( next )
             {
@@ -72,6 +95,7 @@ export class Unit extends Container
         {
         this.path.length = 0;
         this.is_moving = false;
+        this.loop_movement = false;
         }
 
 
@@ -85,7 +109,11 @@ export class Unit extends Container
 
     moveLoop( path: { x: number; y: number }[] )
         {
-            //HERE
+        this.loop_movement = true;
+        this.path = path;
+        this.loop_path_position = -1;   // will be added in .moveToNext() and so will start at the 0 position
+
+        this.moveToNext();
         }
 
     logic( delta )
@@ -95,7 +123,7 @@ export class Unit extends Container
             this.x += this.move_x * delta;
             this.y += this.move_y * delta;
 
-            if ( Utilities.boxBoxCollision( this.destination_x, this.destination_y, 20, 20, this.x, this.y, 20, 20 ) )    //HERE
+            if ( Utilities.boxBoxCollision( this.destination_x, this.destination_y, 20, 20, this.x, this.y, this.width, this.height ) )
                 {
                 this.x += this.move_x * delta;
                 this.y += this.move_y * delta;
