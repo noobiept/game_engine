@@ -32,7 +32,9 @@ window.onload = function () {
     unit.y = 50;
     unit.moveTo(200, 50);
     unit.queueMoveTo(100, 200);
-    unit.queueMoveTo(0, 50);
+    unit.queueMoveTo(0, 50, function () {
+        console.log('End movement!');
+    });
     var unit2 = new Game.Unit({
         movement_speed: 50
     });
@@ -41,7 +43,9 @@ window.onload = function () {
     unit2.x = 10;
     unit2.y = 200;
     unit2.moveLoop([
-        { x: 200, y: 200 },
+        { x: 200, y: 200, callback: function () {
+            console.log('Right!');
+        } },
         { x: 10, y: 200 }
     ]);
     Game.addElement(unit2);

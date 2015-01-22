@@ -62,7 +62,7 @@ export class Element
     /**
         @abstract
      */
-    intersect( x: number, y: number, event: Event )
+    intersect( x: number, y: number, event: Event ): boolean
         {
         throw new Error( 'Implement .intersect().' );
         }

@@ -7,9 +7,10 @@ export class Unit extends Container
     _is_moving: boolean;
     _move_x: number;
     _move_y: number;
+    _move_callback: () => any;
     _destination_x: number;
     _destination_y: number;
-    _path: { x: number; y: number; }[];
+    _path: { x: number; y: number; callback?: () => any }[];
     _loop_movement: boolean;
     _loop_path_position: number; // when looping a path, to know what is the current position the unit is going for (the path array position)
 
@@ -17,34 +18,45 @@ export class Unit extends Container
         {
         super();
 
+        this._has_logic = true;
+
         this.movement_speed = args.movement_speed;
         this._is_moving = false;
-        this._has_logic = true;
+        this._move_x = 0;
+        this._move_y = 0;
+        this._move_callback = null;
+        this._destination_x = 0;
+        this._destination_y = 0;
         this._path = [];
         this._loop_movement = false;
         this._loop_path_position = 0;
         }
 
-    /*
+
+    /**
         Clears any previous path, and forces the unit to move to the specified position.
      */
-
-    moveTo( x, y )
+    moveTo( x: number, y: number, callback?: () => any )
         {
+        if ( !Utilities.isFunction( callback ) )
+            {
+            callback = null;
+            }
+
         this._loop_movement = false;
         this._path.length = 0;
         this._path.push({
                 x: x,
-                y: y
+                y: y,
+                callback: callback
             });
 
         this.moveToNext();
         }
 
-    /*
+    /**
         Move the next position in the path
      */
-
     moveToNext()
         {
         var next;
@@ -75,6 +87,7 @@ export class Unit extends Container
             this._is_moving = true;
             this._destination_x = x;
             this._destination_y = y;
+            this._move_callback = next.callback;
 
             var angleRads = Utilities.calculateAngle( this.x, this.y * -1, x, y * -1 );
 
@@ -100,15 +113,21 @@ export class Unit extends Container
         }
 
 
-    queueMoveTo( x, y )
+    queueMoveTo( x: number, y: number, callback?: () => any )
         {
+        if ( !Utilities.isFunction( callback ) )
+            {
+            callback = null;
+            }
+
         this._path.push({
                 x: x,
-                y: y
+                y: y,
+                callback: callback
             });
         }
 
-    moveLoop( path: { x: number; y: number }[] )
+    moveLoop( path: { x: number; y: number; callback?: () => any }[] )
         {
         this._loop_movement = true;
         this._path = path;
@@ -128,6 +147,11 @@ export class Unit extends Container
                 {
                 this.x += this._move_x * delta;
                 this.y += this._move_y * delta;
+
+                if ( this._move_callback )
+                    {
+                    this._move_callback();
+                    }
 
                 this.moveToNext();
                 }
