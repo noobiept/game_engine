@@ -8,13 +8,13 @@ var canvas = Game.getCanvas();
 
 var container = new Game.Container();
 
-container.x = 0;
-container.y = 10;
+container.x = 10;
+container.y = 100;
 
 var rect = new Game.Rectangle( 0, 0, 20, 20, 'green' );
 var circle = new Game.Circle( 10, 5, 10, 'red' );
 
-//container.rotate( 45, true );
+container.rotate( 45, true );
 
 container.addEventListener( 'click', function()
     {
@@ -66,7 +66,7 @@ Game.Preload.load( 'mystery_ship.png', function( element )
 
 
 var right = true;
-/*
+
 Game.addToGameLoop( function()
     {
     if ( right )
@@ -79,6 +79,7 @@ Game.addToGameLoop( function()
         container.x--;
         }
 
+
     if ( container.x > canvas.width )
         {
         right = false;
@@ -88,5 +89,5 @@ Game.addToGameLoop( function()
         {
         right = true;
         }
-    });*/
+    });
 };

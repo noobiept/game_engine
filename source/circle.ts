@@ -33,18 +33,21 @@ export class Circle extends Element
         {
         var refX = 0;
         var refY = 0;
+        var refRotation = 0;
 
         if ( this.container !== null )
             {
             refX = this.container.x;
             refY = this.container.y;
+            refRotation = this.container.rotation;
             }
 
         ctx.save();
         ctx.beginPath();
         ctx.fillStyle = this.color;
-        ctx.translate( refX + this.x + this._radius, refY + this.y + this._radius );
-        ctx.arc( 0, 0, this._radius, 0, 2 * Math.PI );
+        ctx.translate( refX + this.x, refY + this.y );
+        ctx.rotate( refRotation + this.rotation );
+        ctx.arc( this._radius, this._radius, this._radius, 0, 2 * Math.PI );
         ctx.fill();
         ctx.restore();
         }
