@@ -40,10 +40,16 @@ export class Container extends Element
 
     draw( ctx )
         {
+        ctx.save();
+        ctx.translate( this.x, this.y );
+        ctx.rotate( this.rotation );
+
         for (var a = this._children.length - 1 ; a >= 0 ; a--)
             {
             this._children[ a ].drawElement( ctx );
             }
+
+        ctx.restore();
         }
 
 

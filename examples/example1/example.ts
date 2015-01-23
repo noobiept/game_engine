@@ -2,19 +2,29 @@
 
 window.onload = function()
 {
-Game.init( document.body, 400, 400 );
-
-var canvas = Game.getCanvas();
+Game.init( document.body, 300, 300 );
 
 var container = new Game.Container();
 
-container.x = 10;
-container.y = 100;
+var rectSize = 20;
+var circleRadius = 4;
+var offset = circleRadius;
 
-var rect = new Game.Rectangle( 0, 0, 20, 20, 'green' );
-var circle = new Game.Circle( 10, 5, 10, 'red' );
+var rect = new Game.Rectangle( 0, 0, rectSize, rectSize, 'gray' );
+var circle1 = new Game.Circle( -offset, -offset, circleRadius, 'black' );
+var circle2 = new Game.Circle( -offset + rectSize, -offset + rectSize, circleRadius, 'black' );
+var circle3 = new Game.Circle( -offset + rectSize, -offset, circleRadius, 'black' );
+var circle4 = new Game.Circle( -offset, -offset + rectSize, circleRadius, 'black' );
 
+container.x = 150 - rectSize / 2;
+container.y = 150 - rectSize / 2;
+container.addChild( circle1 );
+container.addChild( circle2 );
+container.addChild( circle3 );
+container.addChild( circle4 );
+container.addChild( rect );
 container.rotate( 45, true );
+
 
 container.addEventListener( 'click', function()
     {
@@ -24,13 +34,6 @@ rect.addEventListener( 'click', function()
     {
     console.log( 'rectangle' );
     });
-circle.addEventListener( 'click', function()
-    {
-    console.log( 'circle' );
-    });
-
-container.addChild( circle );
-container.addChild( rect );
 
 Game.addElement( container );
 
@@ -48,8 +51,8 @@ Game.addElement( unit );
 
 unit.x = 0;
 unit.y = 50;
-unit.moveTo( 200, 50 );
-unit.queueMoveTo( 100, 200 );
+unit.moveTo( 300, 50 );
+unit.queueMoveTo( 150, 290 );
 unit.queueMoveTo( 0, 50, function()
     {
     console.log( 'End movement!' );
@@ -64,52 +67,11 @@ var unit2circle = new Game.Circle( 0, 0, 10, 'green' );
 
 unit2.addChild( unit2circle );
 unit2.x = 10;
-unit2.y = 200;
+unit2.y = 230;
 unit2.moveLoop([
-        { x: 200, y: 200, callback: function() { console.log( 'Right!' ); } },
-        { x: 10, y: 200 }
+        { x: 280, y: 230, callback: function() { console.log( 'Right!' ); } },
+        { x: 10, y: 230 }
     ]);
 
 Game.addElement( unit2 );
-
-
-Game.Preload.load( 'mystery_ship.png', function( element )
-    {
-    var image = new Game.Bitmap( 200, 200, element );
-
-    image.rotate( 10, true );
-    image.addEventListener( 'click', function( event )
-        {
-        console.log( 'bitmap' );
-        });
-
-    Game.addElement( image );
-    });
-
-
-var right = true;
-
-Game.addToGameLoop( function()
-    {
-    if ( right )
-        {
-        container.x++;
-        }
-
-    else
-        {
-        container.x--;
-        }
-
-
-    if ( container.x > canvas.width )
-        {
-        right = false;
-        }
-
-    else if ( container.x < 0 )
-        {
-        right = true;
-        }
-    });
 };

@@ -6,10 +6,13 @@ module Game
 export module Preload
     {
     var EXTENSIONS = {
-        image: [ 'png', 'jpg', 'jpeg' ]
+        image: [ 'png', 'jpg', 'jpeg' ],
+        json: [ 'json' ],
+        text: [ 'txt' ],
+        audio: [ 'ogg', 'mp3' ]
     };
 
-    export function load( url, callback )
+    export function load( url: string, id: string, callback?: (response: any) => any )
         {
         var request = new XMLHttpRequest();
 

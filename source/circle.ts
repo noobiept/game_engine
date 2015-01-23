@@ -31,22 +31,11 @@ export class Circle extends Element
 
     drawElement( ctx )
         {
-        var refX = 0;
-        var refY = 0;
-        var refRotation = 0;
-
-        if ( this._container !== null )
-            {
-            refX = this._container.x;
-            refY = this._container.y;
-            refRotation = this._container.rotation;
-            }
-
         ctx.save();
         ctx.beginPath();
         ctx.fillStyle = this.color;
-        ctx.translate( refX + this.x, refY + this.y );
-        ctx.rotate( refRotation + this.rotation );
+        ctx.translate( this.x, this.y );
+        ctx.rotate( this.rotation );
         ctx.arc( this._radius, this._radius, this._radius, 0, 2 * Math.PI );
         ctx.fill();
         ctx.restore();
