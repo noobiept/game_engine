@@ -2,16 +2,22 @@ window.onload = function()
 {
 Game.init( document.body, 400, 400 );
 
-Game.Preload.load( 'mystery_ship.png', function( element )
+Game.Preload.load( 'mystery_ship', 'mystery_ship.png', function( image )
     {
-    var image = new Game.Bitmap( 200, 200, element );
+    var bitmap = new Game.Bitmap( 200, 200, image );
 
-    image.rotate( 10, true );
-    image.addEventListener( 'click', function( event )
+    bitmap.rotate( 10, true );
+    bitmap.addEventListener( 'click', function( event )
         {
         console.log( 'bitmap' );
         });
 
-    Game.addElement( image );
+    Game.addElement( bitmap );
+    });
+
+
+Game.Preload.load( 'scumm_bar', 'scumm_bar.ogg', function( audioBuffer )
+    {
+    Game.Sound.play( audioBuffer );
     });
 };

@@ -1,3 +1,4 @@
+/// <reference path="sound.ts" />
 /// <reference path="container.ts" />
 /// <reference path="event_dispatcher.ts" />
 /// <reference path="preload.ts" />
@@ -5,6 +6,7 @@
 /// <reference path="rectangle.ts" />
 /// <reference path="circle.ts" />
 /// <reference path="utilities/utilities-1.6.d.ts" />
+/// <reference path="typings/tsd.d.ts" />
 
 module Game
 {
@@ -31,6 +33,7 @@ export function init( htmlContainer: HTMLElement, canvasWidth: number, canvasHei
     htmlContainer.appendChild( CANVAS );
 
     EventDispatcher.init( CANVAS );
+    Sound.init();
 
     TIME = new Date().getTime();
     loop();
