@@ -91,9 +91,33 @@ export module Preload
         }
 
 
-    export function loadManifest( manifest, callback )
+    export function loadManifest( manifest: { id: string; path: string; }[], basePath?: string, callback?: () => any )
         {
+        var length = manifest.length;
+        var count = 0;
 
+        if ( typeof basePath === 'undefined' )
+            {
+            basePath = '';
+            }
+
+        for (var a = 0 ; a < length ; a++)
+            {
+            var file = manifest[ a ];
+
+            load( file.id, basePath + file.path, function()
+                {
+                count++;
+
+                if ( count >= length )
+                    {
+                    if ( Utilities.isFunction( callback ) )
+                        {
+                        callback();
+                        }
+                    }
+                });
+            }
         }
 
 
