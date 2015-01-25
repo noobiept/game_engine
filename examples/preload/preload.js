@@ -20,4 +20,15 @@ Game.Preload.load( 'scumm_bar', 'scumm_bar.ogg', function( audioBuffer )
     {
     Game.Sound.play( audioBuffer );
     });
+
+
+Game.Preload.load( 'json_test', 'test.json', function( obj )
+    {
+    console.log( obj );
+    });
+
+Game.Preload.load( 'text_test', 'test.txt', function( text )
+    {
+    console.log( text );
+    });
 };

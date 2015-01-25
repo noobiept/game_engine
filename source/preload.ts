@@ -49,26 +49,24 @@ export module Preload
             // events: progress / load / error / abort  //HERE
         request.addEventListener( 'load', function( event )
             {
-            var data;
+            var response = this.response;
 
             if ( type === 'image' )
                 {
-                data = new Image();
-                data.src = window.URL.createObjectURL( this.response );
+                var image = new Image();
+                image.src = window.URL.createObjectURL( response );
 
-                loaded( data );
+                loaded( image );
                 }
 
             else if ( type === 'json' )
                 {
-                data = JSON.parse( data );
-
-                loaded( data );
+                loaded( response );
                 }
 
             else if ( type === 'audio' )
                 {
-                Sound.decodeAudio( this.response, function( audioBuffer )
+                Sound.decodeAudio( response, function( audioBuffer )
                     {
                     if ( !audioBuffer )
                         {
@@ -84,7 +82,7 @@ export module Preload
 
             else
                 {
-                loaded( this.response );
+                loaded( response );
                 }
             }, false );
 
