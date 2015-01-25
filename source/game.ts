@@ -1,3 +1,4 @@
+/// <reference path="text.ts" />
 /// <reference path="sound.ts" />
 /// <reference path="container.ts" />
 /// <reference path="event_dispatcher.ts" />
@@ -125,5 +126,11 @@ export function getElements()
 export function getCanvas()
     {
     return CANVAS;
+    }
+
+
+export function getCanvasContext()
+    {
+    return CTX;
     }
 }

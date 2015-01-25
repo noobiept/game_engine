@@ -1,2 +1,1 @@
-A test file.
-Useful for testing.
+A test file. Useful for testing.
