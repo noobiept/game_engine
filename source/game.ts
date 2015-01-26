@@ -1,3 +1,4 @@
+/// <reference path="sprite.ts" />
 /// <reference path="text.ts" />
 /// <reference path="sound.ts" />
 /// <reference path="container.ts" />

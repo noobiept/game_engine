@@ -27,9 +27,9 @@ export module Preload
     var DATA = {};
 
 
-    export function load( id: string, url: string, callback?: (data: any) => any )
+    export function load( id: string, path: string, callback?: (data: any) => any )
         {
-        var type = getType( url );
+        var type = getType( path );
 
         var loaded = function( data )
             {
@@ -70,7 +70,7 @@ export module Preload
                     {
                     if ( !audioBuffer )
                         {
-                        console.log( 'Error decoding audio file:', id, url );
+                        console.log( 'Error decoding audio file:', id, path );
                         return;
                         }
 
@@ -86,7 +86,7 @@ export module Preload
                 }
             }, false );
 
-        request.open( 'get', url, true );
+        request.open( 'get', path, true );
         request.send();
         }
 

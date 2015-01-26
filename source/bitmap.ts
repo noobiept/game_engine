@@ -5,6 +5,8 @@ module Game
 export class Bitmap extends Element
     {
     image;
+    _source_x: number;
+    _source_y: number;
 
     constructor( x, y, image )
         {
@@ -14,6 +16,8 @@ export class Bitmap extends Element
         this.y = y;
         this.width = image.width;
         this.height = image.height;
+        this._source_x = 0;
+        this._source_y = 0;
 
         this.image = image;
         }
@@ -24,7 +28,7 @@ export class Bitmap extends Element
         ctx.beginPath();
         ctx.translate( this.x, this.y );
         ctx.rotate( this.rotation );
-        ctx.drawImage( this.image, 0, 0 );
+        ctx.drawImage( this.image, this._source_x, this._source_y, this.width, this.height, 0, 0, this.width, this.height );
         ctx.restore();
         }
 
@@ -44,8 +48,8 @@ export class Bitmap extends Element
                     y,
                     refX + this.x,
                     refY + this.y,
-                    this.image.width,
-                    this.image.height
+                    this.width,
+                    this.height
                 ))
             {
             this.dispatchEvent( event );

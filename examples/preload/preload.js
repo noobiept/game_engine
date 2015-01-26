@@ -51,7 +51,7 @@ Game.Preload.loadManifest( manifest, 'a/', function()
     var one = Game.Preload.get( 'one' );
     var two = Game.Preload.get( 'two' );
     var three = Game.Preload.get( 'three' );
-        
+
     var oneBitmap = new Game.Bitmap( 50, 350, one );
     var twoBitmap = new Game.Bitmap( 200 - 11, 350, two );
     var threeBitmap = new Game.Bitmap( 350 - 24, 350, three );
