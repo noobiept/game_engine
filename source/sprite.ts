@@ -19,6 +19,8 @@ export class Sprite extends Bitmap
     interval: number;           // time between each frame
     _count_interval: number;    // count time to compare with the set interval
 
+    _frames_per_line: number;
+
     _animations: { [id: string]: number[] };
     _current_animation: number[];
     _current_animation_position: number;    // position in the array in '_current_animation'
@@ -29,6 +31,8 @@ export class Sprite extends Bitmap
 
         this.width = args.frameWidth;
         this.height = args.frameHeight;
+
+        this._frames_per_line = Math.floor( args.image.width / args.frameWidth );
 
         this._current_animation_position = 0;
         this._count_interval = 0;
@@ -50,8 +54,11 @@ export class Sprite extends Bitmap
 
     setFrame( frame )
         {
-        this._source_x = frame * this.width;
-        this._source_y = 0; //HERE -- work with not just frames in a single horizontal line, but with several vertical lines (4x1/2x2/etc)
+        var line = Math.floor( frame / this._frames_per_line );
+        var column = frame - line * this._frames_per_line;
+
+        this._source_x = column * this.width;
+        this._source_y = line * this.height;
         }
 
 

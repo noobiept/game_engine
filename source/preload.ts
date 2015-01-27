@@ -55,8 +55,10 @@ export module Preload
                 {
                 var image = new Image();
                 image.src = window.URL.createObjectURL( response );
-
-                loaded( image );
+                image.onload = function()
+                    {
+                    loaded( image );
+                    }
                 }
 
             else if ( type === 'json' )

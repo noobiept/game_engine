@@ -3,7 +3,8 @@ window.onload = function()
 Game.init( document.body, 400, 400 );
 
 var manifest = [
-        { id: 'sprite', path: 'sprite_example.png' }
+        { id: 'sprite', path: 'sprite_example.png' },
+        { id: 'sprite2', path: 'sprite_example2.png' }
     ];
 Game.Preload.loadManifest( manifest, '', start );
 };
@@ -52,7 +53,22 @@ var sprite3 = new Game.Sprite({
     });
 sprite3.play( 'half' );
 
+
+var sprite4 = new Game.Sprite({
+        x: 180,
+        y: 100,
+        image: Game.Preload.get( 'sprite2' ),
+        frameWidth: 40,
+        frameHeight: 40,
+        interval: 0.1,
+        animations: {
+            main: [ 0, 1, 2, 3, 4, 5 ]
+        }
+    });
+sprite4.play( 'main' );
+
 Game.addElement( sprite );
 Game.addElement( sprite2 );
 Game.addElement( sprite3 );
+Game.addElement( sprite4 );
 }
