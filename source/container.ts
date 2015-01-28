@@ -52,6 +52,10 @@ export class Container extends Element
         ctx.restore();
         }
 
+    drawElement( ctx )
+        {
+        this.draw( ctx );   // to allow containers to be inside containers
+        }
 
     intersect( x, y, event )
         {
@@ -122,6 +126,20 @@ export class Container extends Element
 
         this.width = rightMost - leftMost;
         this.height = bottomMost - topMost;
+        }
+
+
+    logic( deltaTime )
+        {
+        for (var a = this._children.length - 1 ; a >= 0 ; a--)
+            {
+            var element = this._children[ a ];
+
+            if ( element._has_logic === true )
+                {
+                element.logic( deltaTime );
+                }
+            }
         }
     }
 }

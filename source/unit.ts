@@ -1,5 +1,11 @@
 module Game
 {
+export interface UnitArgs
+    {
+        movement_speed: number;
+    }
+
+
 export class Unit extends Container
     {
     movement_speed: number;
@@ -14,7 +20,7 @@ export class Unit extends Container
     _loop_movement: boolean;
     _loop_path_position: number; // when looping a path, to know what is the current position the unit is going for (the path array position)
 
-    constructor( args )
+    constructor( args: UnitArgs )
         {
         super();
 
@@ -135,6 +141,29 @@ export class Unit extends Container
 
         this.moveToNext();
         }
+
+
+    /**
+        @param rotation - if not given, then the bullet will have the unit's current rotation angle
+     */
+    fireBullet( rotation?: number )
+        {
+        if ( typeof rotation === 'undefined' )
+            {
+            rotation = this.rotation;
+            }
+
+        var shape = new Game.Rectangle( 0, 0, 10, 2, 'blue' );
+
+        var bullet = new Game.Bullet({
+                x: this.x + this.width / 2,
+                y: this.y + this.height / 2,
+                angle: rotation,
+                movement_speed: 100
+            });
+        bullet.addChild( shape );
+        }
+
 
     logic( delta )
         {

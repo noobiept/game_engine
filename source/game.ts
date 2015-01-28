@@ -1,3 +1,4 @@
+/// <reference path="bullet.ts" />
 /// <reference path="sprite.ts" />
 /// <reference path="text.ts" />
 /// <reference path="sound.ts" />
@@ -36,6 +37,7 @@ export function init( htmlContainer: HTMLElement, canvasWidth: number, canvasHei
 
     EventDispatcher.init( CANVAS );
     Sound.init();
+    Bullet.init();
 
     TIME = new Date().getTime();
     loop();
@@ -46,6 +48,18 @@ export function addElement( element: Element )
     {
     ELEMENTS.push( element );
     }
+
+
+export function removeElement( element: Element )
+    {
+    var index = ELEMENTS.indexOf( element );
+
+    if ( index >= 0 )
+        {
+        ELEMENTS.splice( index, 1 );
+        }
+    }
+
 
 /**
     Adds a callback function to called every tick in the game loop (before the draw phase)
@@ -133,5 +147,22 @@ export function getCanvas()
 export function getCanvasContext()
     {
     return CTX;
+    }
+
+
+/*
+    Check if a position is located in the canvas
+ */
+export function isInCanvas( x, y ): boolean
+    {
+    if ( x < 0 ||
+         x > WIDTH ||
+         y < 0 ||
+         y > HEIGHT )
+        {
+        return false;
+        }
+
+    return true;
     }
 }
