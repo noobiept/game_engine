@@ -176,5 +176,16 @@ export class Element
             this._rotation = angle;
             }
         }
+
+
+    centerX()
+        {
+        return this.x + this.width / 2;
+        }
+
+    centerY()
+        {
+        return this.y + this.height / 2;
+        }
     }
 }

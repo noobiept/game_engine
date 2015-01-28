@@ -144,21 +144,22 @@ export class Unit extends Container
 
 
     /**
-        @param rotation - if not given, then the bullet will have the unit's current rotation angle
+        @param angleOrTarget {Number|Element} - The angle of the bullet movement. If not given, then the bullet will have the unit's current rotation angle. Can be passed an Element which will work as the target of the bullet (it will follow the target until it hits it).
      */
-    fireBullet( rotation?: number )
+    fireBullet( angleOrTarget?: any )
         {
-        if ( typeof rotation === 'undefined' )
+        if ( typeof angleOrTarget === 'undefined' )
             {
-            rotation = this.rotation;
+            angleOrTarget = this.rotation;
             }
+
 
         var shape = new Game.Rectangle( 0, 0, 10, 2, 'blue' );
 
         var bullet = new Game.Bullet({
                 x: this.x + this.width / 2,
                 y: this.y + this.height / 2,
-                angle: rotation,
+                angleOrTarget: angleOrTarget,
                 movement_speed: 100
             });
         bullet.addChild( shape );

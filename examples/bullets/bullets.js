@@ -1,7 +1,11 @@
 window.onload = function()
 {
-Game.init( document.body, 400, 400 );
+var width = 400;
+var height = 400;
 
+Game.init( document.body, width, height );
+
+    // add a unit
 var size = 10;
 var unitShape = new Game.Rectangle( 0, 0, size, size, 'green' );
 
@@ -11,11 +15,21 @@ var unit = new Game.Unit({
 unit.addChild( unitShape );
 
 
-unit.x = 200 - size / 2;
-unit.y = 200 - size / 2;
+unit.x = width / 2 - size / 2;
+unit.y = height / 2 - size / 2;
 
 Game.addElement( unit );
 
+    // add a target
+var targetRect = new Game.Rectangle( 20, 20, 10, 10, 'red' );
+var target = new Game.Unit({
+        movement_speed: 50
+    });
+target.addChild( targetRect );
+
+Game.addElement( target );
+
+target.moveTo( 10, 50 );
 
     // fire in whatever direction the unit is facing
 unit.fireBullet();
@@ -24,4 +38,8 @@ unit.fireBullet();
 unit.fireBullet( Math.PI );
 unit.fireBullet( Math.PI / 2 );
 unit.fireBullet( -Math.PI / 2 );
+
+
+    // specify a target
+unit.fireBullet( target );
 };
