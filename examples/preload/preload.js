@@ -4,9 +4,9 @@ Game.init( document.body, 400, 400 );
 
 Game.Preload.load( 'mystery_ship', 'mystery_ship.png', function( image )
     {
-    var bitmap = new Game.Bitmap( 240, 240, image );
+    var bitmap = new Game.Bitmap( 200, 200, image );
 
-    bitmap.rotate( 10, true );
+    bitmap.rotate( 90, true );
     bitmap.addEventListener( 'click', function( event )
         {
         console.log( 'bitmap' );
@@ -53,8 +53,8 @@ Game.Preload.loadManifest( manifest, 'a/', function()
     var three = Game.Preload.get( 'three' );
 
     var oneBitmap = new Game.Bitmap( 50, 350, one );
-    var twoBitmap = new Game.Bitmap( 200 - 11, 350, two );
-    var threeBitmap = new Game.Bitmap( 350 - 24, 350, three );
+    var twoBitmap = new Game.Bitmap( 200, 350, two );
+    var threeBitmap = new Game.Bitmap( 350, 350, three );
 
     Game.addElement( oneBitmap );
     Game.addElement( twoBitmap );

@@ -173,7 +173,16 @@ export class Unit extends Container
             this.x += this._move_x * delta;
             this.y += this._move_y * delta;
 
-            if ( Utilities.boxBoxCollision( this._destination_x, this._destination_y, 20, 20, this.x, this.y, this.width, this.height ) )
+            if ( Utilities.boxBoxCollision(
+                    this._destination_x,
+                    this._destination_y,
+                    20,
+                    20,
+                    this.x - this.width / 2,
+                    this.y - this.height / 2,
+                    this.width,
+                    this.height
+                    ))
                 {
                 this.x += this._move_x * delta;
                 this.y += this._move_y * delta;

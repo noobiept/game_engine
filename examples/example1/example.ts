@@ -8,7 +8,7 @@ var container = new Game.Container();
 
 var rectSize = 20;
 var circleRadius = 4;
-var offset = circleRadius;
+var offset = rectSize / 2;
 
 var rect = new Game.Rectangle( 0, 0, rectSize, rectSize, 'gray' );
 var circle1 = new Game.Circle( -offset, -offset, circleRadius, 'black' );

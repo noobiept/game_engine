@@ -31,6 +31,8 @@ export class Sprite extends Bitmap
 
         this.width = args.frameWidth;
         this.height = args.frameHeight;
+        this._half_width = args.frameWidth / 2;
+        this._half_height = args.frameHeight / 2;
 
         this._frames_per_line = Math.floor( args.image.width / args.frameWidth );
 

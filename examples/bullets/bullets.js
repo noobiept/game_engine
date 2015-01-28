@@ -21,15 +21,17 @@ unit.y = height / 2 - size / 2;
 Game.addElement( unit );
 
     // add a target
-var targetRect = new Game.Rectangle( 20, 20, 10, 10, 'red' );
+var targetRect = new Game.Rectangle( 0, 0, 10, 10, 'red' );
 var target = new Game.Unit({
         movement_speed: 50
     });
+target.x = 10;
+target.y = 10;
 target.addChild( targetRect );
 
 Game.addElement( target );
 
-target.moveTo( 10, 50 );
+target.moveTo( 10, 100 );
 
     // fire in whatever direction the unit is facing
 unit.fireBullet();

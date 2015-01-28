@@ -36,7 +36,7 @@ export class Circle extends Element
         ctx.fillStyle = this.color;
         ctx.translate( this.x, this.y );
         ctx.rotate( this.rotation );
-        ctx.arc( this._radius, this._radius, this._radius, 0, 2 * Math.PI );
+        ctx.arc( 0, 0, this._radius, 0, 2 * Math.PI );
         ctx.fill();
         ctx.restore();
         }

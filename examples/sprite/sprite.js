@@ -15,8 +15,8 @@ function start()
 var image = Game.Preload.get( 'sprite' );
 
 var sprite = new Game.Sprite({
-        x: 10,
-        y: 10,
+        x: 20,
+        y: 20,
         image: image,
         frameWidth: 40,
         frameHeight: 40
@@ -26,8 +26,8 @@ sprite.setFrame( 1 );
 
 
 var sprite2 = new Game.Sprite({
-        x: 180,
-        y: 180,
+        x: 150,
+        y: 150,
         image: image,
         frameWidth: 40,
         frameHeight: 40,
@@ -41,8 +41,8 @@ sprite2.play( 'main' );
 
 
 var sprite3 = new Game.Sprite({
-        x: 350,
-        y: 350,
+        x: 380,
+        y: 380,
         image: image,
         frameWidth: 40,
         frameHeight: 40,
@@ -55,8 +55,8 @@ sprite3.play( 'half' );
 
 
 var sprite4 = new Game.Sprite({
-        x: 180,
-        y: 100,
+        x: 250,
+        y: 250,
         image: Game.Preload.get( 'sprite2' ),
         frameWidth: 40,
         frameHeight: 40,

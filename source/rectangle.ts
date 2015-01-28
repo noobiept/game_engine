@@ -5,6 +5,8 @@ module Game
 export class Rectangle extends Element
     {
     color: string;
+    half_width: number;
+    half_height: number;
 
     constructor( x, y, width, height, color )
         {
@@ -14,6 +16,8 @@ export class Rectangle extends Element
         this.y = y;
         this.width = width;
         this.height = height;
+        this.half_width = width / 2;
+        this.half_height = height / 2;
         this.color = color;
         }
 
@@ -24,7 +28,7 @@ export class Rectangle extends Element
         ctx.fillStyle = this.color;
         ctx.translate( this.x, this.y );
         ctx.rotate( this.rotation );
-        ctx.fillRect( 0, 0, this.width, this.height );
+        ctx.fillRect( -this.half_width, -this.half_height, this.width, this.height );
         ctx.restore();
         }
 
@@ -42,8 +46,8 @@ export class Rectangle extends Element
         if ( Utilities.pointBoxCollision(
                     x,
                     y,
-                    refX + this.x,
-                    refY + this.y,
+                    refX + this.x - this.half_width,
+                    refY + this.y - this.half_height,
                     this.width,
                     this.height
                 ))

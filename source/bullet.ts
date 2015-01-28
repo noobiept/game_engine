@@ -95,19 +95,24 @@ export class Bullet extends Container
     targetLogic( deltaTime )
         {
         var target = this._target;
-        var targetX = target.centerX();
-        var targetY = target.centerY();
 
-
-        var angle = Utilities.calculateAngle( this.x, this.y * -1, targetX, targetY * -1 );
+        var angle = Utilities.calculateAngle( this.x, this.y * -1, target.x, target.y * -1 );
 
         this.x += Math.cos( angle ) * this.movement_speed * deltaTime;
         this.y += Math.sin( angle ) * this.movement_speed * deltaTime;
 
         this.rotation = angle;
 
-
-        if ( Utilities.boxBoxCollision( this.x, this.y, this.width, this.height, targetX, targetY, target.width, target.height ) )
+        if ( Utilities.boxBoxCollision(
+                this.x - this.width / 2,
+                this.y - this.height / 2,
+                this.width,
+                this.height,
+                target.x - target.width / 2,
+                target.y - target.height / 2,
+                target.width,
+                target.height
+                ))
             {
             this.clear();
             }
