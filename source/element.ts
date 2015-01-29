@@ -11,6 +11,7 @@ export class Element
     _container: Container;
     _listeners;
     _has_logic: boolean; // to know if we need to run the .logic() method or not
+    _removed: boolean;  // a reference to this element may be saved in several places, so we need a way to know if its ok to work on the element or not
 
 
     constructor()
@@ -23,6 +24,7 @@ export class Element
         this._rotation = 0;
         this._listeners = {};
         this._has_logic = false;
+        this._removed = false;
         }
 
 
@@ -175,6 +177,11 @@ export class Element
             {
             this._rotation = angle;
             }
+        }
+
+    remove()
+        {
+        this._removed = true;
         }
     }
 }

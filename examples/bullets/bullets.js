@@ -39,8 +39,7 @@ unit.fireBullet();
     // specify an angle
 unit.fireBullet( Math.PI );
 unit.fireBullet( Math.PI / 2 );
-unit.fireBullet( -Math.PI / 2 );
-
+unit.fireBullet( -Math.PI / 2, 1 );
 
     // specify a target
 unit.fireBullet( target );

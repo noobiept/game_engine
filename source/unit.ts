@@ -2,14 +2,19 @@ module Game
 {
 export interface UnitArgs
     {
-        movement_speed: number;
+        movement_speed?: number;
+        bullet_movement_speed?: number;
+        health?: number;
     }
 
 
 export class Unit extends Container
     {
     movement_speed: number;
+    bullet_movement_speed: number;
+    health: number;
 
+        // :: movement related :: //
     _is_moving: boolean;
     _move_x: number;
     _move_y: number;
@@ -20,13 +25,36 @@ export class Unit extends Container
     _loop_movement: boolean;
     _loop_path_position: number; // when looping a path, to know what is the current position the unit is going for (the path array position)
 
+        // :: bullet related :: //
+    _bullet_interval: number;   // time between firing bullets (<0 if its not active)
+    _bullet_interval_count: number;
+    _angle_or_target: any;
+
     constructor( args: UnitArgs )
         {
         super();
 
+        if ( typeof args.movement_speed === 'undefined' )
+            {
+            args.movement_speed = 50;
+            }
+
+        if ( typeof args.health === 'undefined' )
+            {
+            args.health = 1;
+            }
+
+        if ( typeof args.bullet_movement_speed === 'undefined' )
+            {
+            args.bullet_movement_speed = 100;
+            }
+
         this._has_logic = true;
 
         this.movement_speed = args.movement_speed;
+        this.bullet_movement_speed = args.bullet_movement_speed;
+        this.health = args.health;
+
         this._is_moving = false;
         this._move_x = 0;
         this._move_y = 0;
@@ -36,6 +64,10 @@ export class Unit extends Container
         this._path = [];
         this._loop_movement = false;
         this._loop_path_position = 0;
+
+        this._bullet_interval = -1;
+        this._bullet_interval_count = 0;
+        this._angle_or_target = null;
         }
 
 
@@ -145,26 +177,60 @@ export class Unit extends Container
 
     /**
         @param angleOrTarget {Number|Element} - The angle of the bullet movement. If not given, then the bullet will have the unit's current rotation angle. Can be passed an Element which will work as the target of the bullet (it will follow the target until it hits it).
+        @param interval - If you want to keep firing bullets at the same angle (or same target). Pass a positive number for that.
      */
-    fireBullet( angleOrTarget?: any )
+    fireBullet( angleOrTarget?: any, interval?: number )
         {
         if ( typeof angleOrTarget === 'undefined' )
             {
             angleOrTarget = this.rotation;
             }
 
+        if ( Utilities.isNumber( interval ) && interval > 0 )
+            {
+            this._bullet_interval = interval;
+            this._bullet_interval_count = 0;
+            this._angle_or_target = angleOrTarget;  // only save the target reference if we're going to continue firing at it
+            }
+
+        this._fire( angleOrTarget );
+        }
+
+
+    stopFiring()
+        {
+        this._bullet_interval = -1;
+        this._bullet_interval_count = 0;
+        this._angle_or_target = null;
+        }
+
+    _fire( angleOrTarget? )
+        {
+        if ( typeof angleOrTarget === 'undefined' )
+            {
+            angleOrTarget = this._angle_or_target;
+            }
+
+            // if it happens to be a target, need to make sure it hasn't been removed yet
+        if ( typeof angleOrTarget !== 'number' )
+            {
+            if ( angleOrTarget._removed === true )
+                {
+                this.stopFiring();
+                return;
+                }
+            }
 
         var shape = new Game.Rectangle( 0, 0, 10, 2, 'blue' );
 
         var bullet = new Game.Bullet({
-                x: this.x + this.width / 2,
-                y: this.y + this.height / 2,
+                x: this.x,
+                y: this.y,
                 angleOrTarget: angleOrTarget,
-                movement_speed: 100
+                movement_speed: this.bullet_movement_speed
             });
         bullet.addChild( shape );
         }
-
 
     logic( delta )
         {
@@ -193,6 +259,18 @@ export class Unit extends Container
                     }
 
                 this.moveToNext();
+                }
+            }
+
+
+        if ( this._bullet_interval > 0 )
+            {
+            this._bullet_interval_count += delta;
+
+            if ( this._bullet_interval_count >= this._bullet_interval )
+                {
+                this._fire();
+                this._bullet_interval_count = 0;
                 }
             }
         }

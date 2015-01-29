@@ -66,8 +66,10 @@ export class Bullet extends Container
         }
 
 
-    clear()
+    remove()
         {
+        super.remove();
+
         var index = Bullet._all.indexOf( this );
 
         Bullet._all.splice( index, 1 );
@@ -85,7 +87,7 @@ export class Bullet extends Container
 
         if ( !Game.isInCanvas( this.x, this.y ) )
             {
-            this.clear();
+            this.remove();
             }
         }
 
@@ -114,7 +116,7 @@ export class Bullet extends Container
                 target.height
                 ))
             {
-            this.clear();
+            this.remove();
             }
         }
 
