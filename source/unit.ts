@@ -1,6 +1,6 @@
 module Game
 {
-export interface UnitArgs
+export interface UnitArgs extends ContainerArgs
     {
         movement_speed?: number;
         bullet_movement_speed?: number;
@@ -32,7 +32,7 @@ export class Unit extends Container
 
     constructor( args: UnitArgs )
         {
-        super();
+        super( args );
 
         if ( typeof args.movement_speed === 'undefined' )
             {

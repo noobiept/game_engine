@@ -44,19 +44,55 @@ export function init( htmlContainer: HTMLElement, canvasWidth: number, canvasHei
     }
 
 
-export function addElement( element: Element )
+/*
+    addElement( element );
+    addElement( element1, element2 );
+    addElement( [ element1, element2 ] );
+ */
+export function addElement( args: any )
     {
-    ELEMENTS.push( element );
+    var elements = arguments;
+
+    if ( args instanceof Array )
+        {
+        elements = args;
+        }
+
+    var length = elements.length;
+
+    for (var a = 0 ; a < length ; a++)
+        {
+        ELEMENTS.push( elements[ a ] );
+        }
     }
 
 
-export function removeElement( element: Element )
+/*
+    removeElement( element );
+    removeElement( element1, element2 );
+    removeElement( [ element1, element2 ] );
+ */
+export function removeElement( args: any )
     {
-    var index = ELEMENTS.indexOf( element );
+    var elements = arguments;
 
-    if ( index >= 0 )
+    if ( args instanceof Array )
         {
-        ELEMENTS.splice( index, 1 );
+        elements = args;
+        }
+
+    var length = elements.length;
+
+    for (var a = 0 ; a < length ; a++)
+        {
+        var element = elements[ a ];
+
+        var index = ELEMENTS.indexOf( element );
+
+        if ( index >= 0 )
+            {
+            ELEMENTS.splice( index, 1 );
+            }
         }
     }
 

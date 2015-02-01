@@ -67,8 +67,5 @@ var sprite4 = new Game.Sprite({
     });
 sprite4.play( 'main' );
 
-Game.addElement( sprite );
-Game.addElement( sprite2 );
-Game.addElement( sprite3 );
-Game.addElement( sprite4 );
+Game.addElement( sprite, sprite2, sprite3, sprite4 );
 }

@@ -2,24 +2,56 @@
 
 module Game
 {
+export interface ContainerArgs
+    {
+        children?: any; // Element or Element[]
+    }
+
+
 export class Container extends Element
     {
     _children: Element[];
 
 
-    constructor()
+    constructor( args?: ContainerArgs )
         {
         super();
 
         this._children = [];
+
+        if ( typeof args !== 'undefined' )
+            {
+            if ( typeof args.children !== 'undefined' )
+                {
+                this.addChild( args.children );
+                }
+            }
         }
 
-
-    addChild( element: Element )
+    /*
+        addChild( element );
+        addChild( element1, element2 );
+        addChild( [ element1, element2 ] );
+     */
+    addChild( elements: any )
         {
-        this._children.push( element );
+        var children = arguments;
 
-        element._container = this;
+        if ( elements instanceof Array )
+            {
+            children = elements;
+            }
+
+        var length = children.length;
+
+        for (var a = 0 ; a < length ; a++)
+            {
+            var element = children[ a ];
+
+            this._children.push( element );
+
+            element._container = this;
+            }
 
         this.calculateDimensions();
         }

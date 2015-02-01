@@ -2,7 +2,7 @@
 
 module Game
 {
-export interface BulletArgs
+export interface BulletArgs extends ContainerArgs
     {
         x: number;
         y: number;
@@ -36,7 +36,7 @@ export class Bullet extends Container
 
     constructor( args: BulletArgs )
         {
-        super();
+        super( args );
 
         this._has_logic = true;
 
