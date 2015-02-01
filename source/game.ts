@@ -19,6 +19,7 @@ var WIDTH: number;
 var HEIGHT: number;
 
 var TIME: number;
+var ANIMATION_ID: number;
 
 var ELEMENTS: Element[] = [];
 var CALLBACKS = [];
@@ -38,6 +39,24 @@ export function init( htmlContainer: HTMLElement, canvasWidth: number, canvasHei
     EventDispatcher.init( CANVAS );
     Sound.init();
     Bullet.init();
+
+    var timeHidden = new Date().getTime();
+
+    document.addEventListener( 'visibilitychange', function( event )
+        {
+        if ( document.hidden )
+            {
+            timeHidden = new Date().getTime();
+            window.cancelAnimationFrame( ANIMATION_ID );
+            }
+
+        else
+            {
+            TIME += new Date().getTime() - timeHidden;
+            loop();
+            }
+        });
+
 
     TIME = new Date().getTime();
     loop();
@@ -139,7 +158,7 @@ function loop()
         // draw all the elements to the canvas
     draw();
 
-    window.requestAnimationFrame( loop );
+    ANIMATION_ID = window.requestAnimationFrame( loop );
     }
 
 
