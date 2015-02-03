@@ -206,6 +206,16 @@ export class Element
     remove()
         {
         this._removed = true;
+
+        if ( this._container !== null )
+            {
+            this._container.removeChild( this );
+            }
+
+        else
+            {
+            Game.removeElement( this );
+            }
         }
     }
 }
