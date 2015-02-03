@@ -70,6 +70,18 @@ export class Element
         }
 
 
+    /*
+        'listener' will receive a 'data' argument when its called.
+        What 'data' is, depends on the event type.
+
+        type: 'click'
+        data: { event: MouseEvent; }
+
+        type: 'collision'
+        data: { element: Unit;
+                collidedWith: Unit; }
+
+     */
     addEventListener( type: string, listener )
         {
         if ( !this._listeners[ type ] )
@@ -94,7 +106,6 @@ export class Element
     /*
         Removes a specific listener of an event type, or all the listeners for that type (if 'listener' is not provided)
      */
-
     removeEventListener( type: string, listener? )
         {
         if ( this._listeners[ type ] )
@@ -130,21 +141,34 @@ export class Element
     /**
         Dispatches an event, which will trigger the listeners of that event
 
-        @param event - event to dispatch
+        @param type - type of the event to dispatch
+        @param data - Data to be sent to every listener
      */
-    dispatchEvent( event )
+    dispatchEvent( type, data? )
         {
-        var type = event.type;
         var listeners = this._listeners[ type ];
 
         if ( listeners )
             {
             for (var a = listeners.length - 1 ; a >= 0 ; a--)
                 {
-                listeners[ a ]( event );
+                listeners[ a ]( data );
                 }
             }
         }
+
+
+    hasListeners( type )
+        {
+        if ( this._listeners[ type ] &&
+             this._listeners[ type ].length > 0 )
+            {
+            return true;
+            }
+
+        return false;
+        }
+
 
     /**
         @returns - Rotation in radians

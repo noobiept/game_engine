@@ -52,7 +52,7 @@ export class Rectangle extends Element
                     this.height
                 ))
             {
-            this.dispatchEvent( event );
+            this.dispatchEvent( event.type, { event: event } );
             return true;
             }
 

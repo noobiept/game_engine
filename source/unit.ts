@@ -10,6 +10,11 @@ export interface UnitArgs extends ContainerArgs
 
 export class Unit extends Container
     {
+        // these will exist independently on every inherited class (not 1 on Unit for all)
+    static _all: Unit[];
+    static collidesWith: Unit[];
+
+        // :: unit stats :: //
     movement_speed: number;
     bullet_movement_speed: number;
     health: number;
@@ -68,6 +73,35 @@ export class Unit extends Container
         this._bullet_interval = -1;
         this._bullet_interval_count = 0;
         this._angle_or_target = null;
+
+            // init the static variables of the class (if its not yet)
+        var constructor = <any> this.constructor;
+
+        if ( typeof constructor._all === 'undefined' )
+            {
+            constructor._all = [];
+            }
+
+        if ( typeof constructor.collidesWith === 'undefined' )
+            {
+            constructor.collidesWith = [];
+            }
+
+
+        constructor._all.push( this );
+        }
+
+
+    remove()
+        {
+        super.remove();
+
+        var constructor = <any> this.constructor;
+        var all = constructor._all;
+
+        var index = all.indexOf( this );
+
+        all.splice( index, 1 );
         }
 
 
@@ -232,7 +266,8 @@ export class Unit extends Container
         bullet.addChild( shape );
         }
 
-    logic( delta )
+
+    movementLogic( delta )
         {
         if ( this._is_moving )
             {
@@ -261,8 +296,11 @@ export class Unit extends Container
                 this.moveToNext();
                 }
             }
+        }
 
 
+    firingLogic( delta )
+        {
         if ( this._bullet_interval > 0 )
             {
             this._bullet_interval_count += delta;
@@ -273,6 +311,63 @@ export class Unit extends Container
                 this._bullet_interval_count = 0;
                 }
             }
+        }
+
+
+    collisionLogic( delta )
+        {
+        var constructor = <any> this.constructor;
+        var length = constructor.collidesWith.length;
+
+        if ( length > 0 &&
+             this.hasListeners( 'collision' ) )
+            {
+            var x = this.x - this.width / 2;
+            var y = this.y - this.height / 2;
+            var width = this.width;
+            var height = this.height;
+
+            for (var a = 0 ; a < length ; a++)
+                {
+                var all = constructor.collidesWith[ a ]._all;
+
+                for (var b = all.length - 1 ; b >= 0 ; b--)
+                    {
+                    var unit = all[ b ];
+
+                    if ( unit === this )
+                        {
+                        continue;
+                        }
+
+                    if ( Utilities.boxBoxCollision(
+                                x,
+                                y,
+                                width,
+                                height,
+                                unit.x - unit.width / 2,
+                                unit.y - unit.height / 2,
+                                unit.width,
+                                unit.height
+                            ))
+                        {
+                        this.dispatchEvent( 'collision', {
+                                element: this,
+                                collidedWith: unit
+                            });
+                        return;
+                        }
+                    }
+                }
+            }
+        }
+
+
+    logic( delta )
+        {
+        this.movementLogic( delta );
+        this.firingLogic( delta );
+        this.collisionLogic( delta );
         }
     }
 }

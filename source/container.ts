@@ -105,7 +105,7 @@ export class Container extends Element
 
         if ( found === true )
             {
-            this.dispatchEvent( event );
+            this.dispatchEvent( event.type, { event: event } );
             }
 
         return found;

@@ -56,7 +56,7 @@ export class Bitmap extends Element
                     this.height
                 ))
             {
-            this.dispatchEvent( event );
+            this.dispatchEvent( event.type, { event: event } );
             return true;
             }
 

@@ -60,7 +60,7 @@ export class Circle extends Element
                     y
                 ))
             {
-            this.dispatchEvent( event );
+            this.dispatchEvent( event.type, { event: event } );
             return true;
             }
 
