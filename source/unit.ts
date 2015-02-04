@@ -259,7 +259,11 @@ export class Unit extends Container
                 }
             }
 
-        var shape = new Game.Rectangle( 0, 0, 10, 2, 'blue' );
+        var shape = new Game.Rectangle({
+                width: 10,
+                height: 2,
+                color: 'blue'
+            });
 
         var bullet = new Game.Bullet({
                 x: this.x,

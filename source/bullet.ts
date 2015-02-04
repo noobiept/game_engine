@@ -4,8 +4,6 @@ module Game
 {
 export interface BulletArgs extends ContainerArgs
     {
-        x: number;
-        y: number;
         movement_speed: number;
 
             // bullet moves in a fixed direction if an angle is given, until its out of the canvas
@@ -43,8 +41,6 @@ export class Bullet extends Container
 
         this._has_logic = true;
 
-        this.x = args.x;
-        this.y = args.y;
         this.movement_speed = args.movement_speed;
 
             // its an angle

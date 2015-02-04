@@ -2,23 +2,28 @@
 
 module Game
 {
+export interface RectangleArgs extends ElementArgs
+    {
+        width: number;
+        height: number;
+        color: string;
+    }
+
 export class Rectangle extends Element
     {
     color: string;
     half_width: number;
     half_height: number;
 
-    constructor( x, y, width, height, color )
+    constructor( args: RectangleArgs )
         {
-        super();
+        super( args );
 
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.half_width = width / 2;
-        this.half_height = height / 2;
-        this.color = color;
+        this.width = args.width;
+        this.height = args.height;
+        this.half_width = args.width / 2;
+        this.half_height = args.height / 2;
+        this.color = args.color;
         }
 
     drawElement( ctx )

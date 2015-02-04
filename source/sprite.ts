@@ -1,10 +1,7 @@
 module Game
 {
-export interface SpriteArgs
+export interface SpriteArgs extends BitmapArgs
     {
-        x: number;
-        y: number;
-        image: HTMLImageElement;
         frameWidth: number;
         frameHeight: number;
 
@@ -27,7 +24,7 @@ export class Sprite extends Bitmap
 
     constructor( args: SpriteArgs )
         {
-        super( args.x, args.y, args.image );
+        super( args );
 
         this.width = args.frameWidth;
         this.height = args.frameHeight;

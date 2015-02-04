@@ -4,7 +4,11 @@ Game.init( document.body, 400, 400 );
 
 Game.Preload.load( 'mystery_ship', 'mystery_ship.png', function( image )
     {
-    var bitmap = new Game.Bitmap( 200, 200, image );
+    var bitmap = new Game.Bitmap({
+            x: 200,
+            y: 200,
+            image: image
+        });
 
     bitmap.rotate( 90, true );
     bitmap.addEventListener( 'click', function( event )
@@ -24,7 +28,13 @@ Game.Preload.load( 'scumm_bar', 'scumm_bar.ogg', function( audioBuffer )
 
 Game.Preload.load( 'json_test', 'test.json', function( obj )
     {
-    var rectangle = new Game.Rectangle( obj.x, obj.y, obj.width, obj.height, obj.color );
+    var rectangle = new Game.Rectangle({
+            x: obj.x,
+            y: obj.y,
+            width: obj.width,
+            height: obj.height,
+            color: obj.color
+        });
 
     Game.addElement( rectangle );
     });
@@ -32,13 +42,13 @@ Game.Preload.load( 'json_test', 'test.json', function( obj )
 Game.Preload.load( 'text_test', 'test.txt', function( text )
     {
     var textElement = new Game.Text({
+            x: 200,
+            y: 10,
             text: text,
             fontFamily: 'serif',
             fontSize: 25
         });
 
-    textElement.x = 200;
-    textElement.y = 10;
     textElement.textAlign = 'center';
 
     Game.addElement( textElement );
@@ -57,9 +67,21 @@ Game.Preload.loadManifest( manifest, 'a/', function()
     var two = Game.Preload.get( 'two' );
     var three = Game.Preload.get( 'three' );
 
-    var oneBitmap = new Game.Bitmap( 50, 350, one );
-    var twoBitmap = new Game.Bitmap( 200, 350, two );
-    var threeBitmap = new Game.Bitmap( 350, 350, three );
+    var oneBitmap = new Game.Bitmap({
+            x: 50,
+            y: 350,
+            image: one
+        });
+    var twoBitmap = new Game.Bitmap({
+            x: 200,
+            y: 350,
+            image: two
+        });
+    var threeBitmap = new Game.Bitmap({
+            x: 350,
+            y: 350,
+            image: three
+        });
 
     Game.addElement( oneBitmap );
     Game.addElement( twoBitmap );

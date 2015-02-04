@@ -7,7 +7,11 @@ Game.init( document.body, width, height );
 
     // add a unit
 var size = 10;
-var unitShape = new Game.Rectangle( 0, 0, size, size, 'green' );
+var unitShape = new Game.Rectangle({
+        width: size,
+        height: size,
+        color: 'green'
+    });
 
 var unit = new Game.Unit({
         movement_speed: 100,
@@ -20,7 +24,11 @@ unit.y = height / 2 - size / 2;
 Game.addElement( unit );
 
     // add a target
-var targetRect = new Game.Rectangle( 0, 0, 10, 10, 'red' );
+var targetRect = new Game.Rectangle({
+        width: 10,
+        height: 10,
+        color: 'red'
+    });
 var target = new Game.Unit({
         movement_speed: 50,
         children: targetRect

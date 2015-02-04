@@ -1,5 +1,11 @@
 module Game
 {
+export interface ElementArgs
+    {
+        x?: number;
+        y?: number;
+    }
+
 export class Element
     {
     x: number;
@@ -14,10 +20,27 @@ export class Element
     _removed: boolean;  // a reference to this element may be saved in several places, so we need a way to know if its ok to work on the element or not
 
 
-    constructor()
+    constructor( args?: ElementArgs )
         {
-        this.x = 0;
-        this.y = 0;
+        var x = 0;
+        var y = 0;
+
+        if ( typeof args !== 'undefined' )
+            {
+            if ( typeof args.x !== 'undefined' )
+                {
+                x = args.x;
+                }
+
+            if ( typeof args.y !== 'undefined' )
+                {
+                y = args.y;
+                }
+            }
+
+
+        this.x = x;
+        this.y = y;
         this.width = 0;
         this.height = 0;
         this._container = null;

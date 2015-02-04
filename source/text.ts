@@ -1,6 +1,6 @@
 module Game
 {
-export interface TextArgs
+export interface TextArgs extends ElementArgs
     {
         text: string;
         fontFamily?: string;
@@ -33,7 +33,7 @@ export class Text extends Element
             }
 
 
-        super();
+        super( args );
 
         this._font_size = args.fontSize;
         this.text = args.text;

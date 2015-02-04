@@ -2,6 +2,12 @@
 
 module Game
 {
+export interface BitmapArgs extends ElementArgs
+    {
+        image: HTMLImageElement
+    }
+
+
 export class Bitmap extends Element
     {
     image;
@@ -10,12 +16,12 @@ export class Bitmap extends Element
     _half_width: number;
     _half_height: number;
 
-    constructor( x, y, image )
+    constructor( args: BitmapArgs )
         {
-        super();
+        super( args );
 
-        this.x = x;
-        this.y = y;
+        var image = args.image;
+
         this.width = image.width;
         this.height = image.height;
         this._half_width = image.width / 2;

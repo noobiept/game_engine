@@ -2,20 +2,25 @@
 
 module Game
 {
+export interface CircleArgs extends ElementArgs
+    {
+        radius: number;
+        color: string;
+    }
+
+
 export class Circle extends Element
     {
     color: string;
     private _radius: number;
 
-    constructor( x, y, radius, color )
+    constructor( args: CircleArgs )
         {
-        super();
+        super( args );
 
-        this.x = x;
-        this.y = y;
-        this._radius = radius;
-        this.width = this.height = radius * 2;
-        this.color = color;
+        this._radius = args.radius;
+        this.width = this.height = args.radius * 2;
+        this.color = args.color;
         }
 
     set radius( value: number )

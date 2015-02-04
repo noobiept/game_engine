@@ -8,11 +8,35 @@ var rectSize = 20;
 var circleRadius = 4;
 var offset = rectSize / 2;
 
-var rect = new Game.Rectangle( 0, 0, rectSize, rectSize, 'gray' );
-var circle1 = new Game.Circle( -offset, -offset, circleRadius, 'black' );
-var circle2 = new Game.Circle( -offset + rectSize, -offset + rectSize, circleRadius, 'black' );
-var circle3 = new Game.Circle( -offset + rectSize, -offset, circleRadius, 'black' );
-var circle4 = new Game.Circle( -offset, -offset + rectSize, circleRadius, 'black' );
+var rect = new Game.Rectangle({
+        width: rectSize,
+        height: rectSize,
+        color: 'gray'
+    });
+var circle1 = new Game.Circle({
+        x: -offset,
+        y: -offset,
+        radius: circleRadius,
+        color: 'black'
+    });
+var circle2 = new Game.Circle({
+        x: -offset + rectSize,
+        y: -offset + rectSize,
+        radius: circleRadius,
+        color: 'black'
+    });
+var circle3 = new Game.Circle({
+        x: -offset + rectSize,
+        y: -offset,
+        radius: circleRadius,
+        color: 'black'
+    });
+var circle4 = new Game.Circle({
+        x: -offset,
+        y: -offset + rectSize,
+        radius: circleRadius,
+        color: 'black'
+    });
 
 container.x = 150 - rectSize / 2;
 container.y = 150 - rectSize / 2;
@@ -30,15 +54,25 @@ rect.addEventListener( 'click', function()
 Game.addElement( container );
 
 
-var unitRect = new Game.Rectangle( 0, 0, 10, 10, 'blue' );
-var unitRect2 = new Game.Rectangle( 5, 5, 10, 10, 'black' );
+var unitRect = new Game.Rectangle({
+        width: 10,
+        height: 10,
+        color: 'blue'
+    });
+var unitRect2 = new Game.Rectangle({
+        x: 5,
+        y: 5,
+        width: 10,
+        height: 10,
+        color: 'black'
+    });
 var unit = new Game.Unit({
+        x: 0,
+        y: 50,
         movement_speed: 100,
         children: [ unitRect, unitRect2 ]
     });
 
-unit.x = 0;
-unit.y = 50;
 unit.moveTo( 300, 50 );
 unit.queueMoveTo( 150, 290 );
 unit.queueMoveTo( 0, 50, function()
@@ -53,7 +87,10 @@ var unit2 = new Game.Unit({
         movement_speed: 50
     });
 
-var unit2circle = new Game.Circle( 0, 0, 10, 'green' );
+var unit2circle = new Game.Circle({
+        radius: 10,
+        color: 'green'
+    });
 
 unit2.addChild( unit2circle );
 unit2.x = 10;

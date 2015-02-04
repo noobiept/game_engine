@@ -82,7 +82,11 @@ Game.addElement( text );
 
 function One( x, y )
 {
-var shape = new Game.Rectangle( 0, 0, 10, 10, 'blue' );
+var shape = new Game.Rectangle({
+        width: 10,
+        height: 10,
+        color: 'blue'
+    });
 
 Game.Unit.call( this, {
         children: shape
@@ -100,7 +104,11 @@ Utilities.inheritPrototype( One, Game.Unit );
 
 function Two( x, y )
 {
-var shape = new Game.Rectangle( 0, 0, 10, 10, 'red' );
+var shape = new Game.Rectangle({
+        width: 10,
+        height: 10,
+        color: 'red'
+    });
 
 Game.Unit.call( this, {
         children: shape

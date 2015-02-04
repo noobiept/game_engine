@@ -2,7 +2,7 @@
 
 module Game
 {
-export interface ContainerArgs
+export interface ContainerArgs extends ElementArgs
     {
         children?: any; // Element or Element[]
     }
@@ -15,7 +15,7 @@ export class Container extends Element
 
     constructor( args?: ContainerArgs )
         {
-        super();
+        super( args );
 
         this._children = [];
 
