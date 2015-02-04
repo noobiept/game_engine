@@ -34,6 +34,7 @@ export class Unit extends Container
     _bullet_interval: number;   // time between firing bullets (<0 if its not active)
     _bullet_interval_count: number;
     _angle_or_target: any;
+    _bullets: Bullet[];
 
     constructor( args: UnitArgs )
         {
@@ -73,6 +74,7 @@ export class Unit extends Container
         this._bullet_interval = -1;
         this._bullet_interval_count = 0;
         this._angle_or_target = null;
+        this._bullets = [];
 
             // init the static variables of the class (if its not yet)
         var constructor = <any> this.constructor;
@@ -240,6 +242,8 @@ export class Unit extends Container
 
     _fire( angleOrTarget? )
         {
+        var _this = this;
+
         if ( typeof angleOrTarget === 'undefined' )
             {
             angleOrTarget = this._angle_or_target;
@@ -261,9 +265,19 @@ export class Unit extends Container
                 x: this.x,
                 y: this.y,
                 angleOrTarget: angleOrTarget,
-                movement_speed: this.bullet_movement_speed
+                movement_speed: this.bullet_movement_speed,
+                remove: function()
+                    {
+                    var index = _this._bullets.indexOf( bullet );
+
+                    _this._bullets.splice( index, 1 );
+
+                    bullet.remove();
+                    }
             });
         bullet.addChild( shape );
+
+        this._bullets.push( bullet );
         }
 
 
@@ -335,20 +349,20 @@ export class Unit extends Container
                     {
                     var unit = all[ b ];
 
+                        // can't collide with itself
                     if ( unit === this )
                         {
                         continue;
                         }
 
+                    var unitWidth = unit.width;
+                    var unitHeight = unit.height;
+                    var unitX = unit.x - unitWidth / 2;
+                    var unitY = unit.y - unitHeight / 2;
+
                     if ( Utilities.boxBoxCollision(
-                                x,
-                                y,
-                                width,
-                                height,
-                                unit.x - unit.width / 2,
-                                unit.y - unit.height / 2,
-                                unit.width,
-                                unit.height
+                            x,     y,     width,     height,
+                            unitX, unitY, unitWidth, unitHeight
                             ))
                         {
                         this.dispatchEvent( 'collision', {
@@ -356,6 +370,31 @@ export class Unit extends Container
                                 collidedWith: unit
                             });
                         return;
+                        }
+
+
+                        // check the bullets as well
+                    for (var c = this._bullets.length - 1 ; c >= 0 ; c--)
+                        {
+                        var bullet = this._bullets[ c ];
+
+                        if ( Utilities.boxBoxCollision(
+                                    bullet.x - bullet.width / 2,
+                                    bullet.y - bullet.height / 2,
+                                    bullet.width,
+                                    bullet.height,
+                                    unitX,
+                                    unitY,
+                                    unitWidth,
+                                    unitHeight
+                                ))
+                            {
+                            this.dispatchEvent( 'collision', {
+                                    element: this,
+                                    collidedWith: unit
+                                });
+                            return;
+                            }
                         }
                     }
                 }

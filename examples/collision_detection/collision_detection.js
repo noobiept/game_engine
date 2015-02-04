@@ -8,8 +8,8 @@ Two.collidesWith = [ One ];
 
 
     // example 1 - remove a unit on collision, and stop the other
-var one = new One( 100, 100 );
-var two = new Two( 200, 100 );
+var one = new One( 100, 50 );
+var two = new Two( 200, 50 );
 
 one.addEventListener( 'collision', function( data )
     {
@@ -21,16 +21,16 @@ one.addEventListener( 'collision', function( data )
     element.stop();
     collidedWith.remove();
     });
-one.moveTo( 300, 100 );
+one.moveTo( 300, 50 );
 
 
     // example 2 - collision depends on what classes were set in 'collidesWith', even if its the same class
-var three = new One( 100, 200 );
-var four = new One( 200, 200 );
+var three = new One( 100, 150 );
+var four = new One( 200, 150 );
 
 three.moveLoop([
-        { x: 300, y: 200 },
-        { x: 100, y: 200 }
+        { x: 300, y: 150 },
+        { x: 100, y: 150 }
     ]);
 three.addEventListener( 'collision', function( data )
     {
@@ -39,18 +39,30 @@ three.addEventListener( 'collision', function( data )
 
 
     // example 3 - since 'Two' doesn't collide with 'Two', here the message won't be printed
-var five = new Two( 100, 300 );
-var six = new Two( 200, 300 );
+var five = new Two( 100, 250 );
+var six = new Two( 200, 250 );
 
 five.moveLoop([
-        { x: 300, y: 300 },
-        { x: 100, y: 300 }
+        { x: 300, y: 250 },
+        { x: 100, y: 250 }
     ]);
 five.addEventListener( 'collision', function( data )
     {
     console.log( 'No collision here!' );
     });
+
+
+    // example 4 - bullets respect the collision detection of the unit it was fired from
+var seven = new One( 150, 350 );
+var eight = new Two( 250, 350 );
+
+seven.fireBullet( 0, 5 );
+seven.addEventListener( 'collision', function( data )
+    {
+    console.log( 'Bullet collision' );
+    });
 };
+
 
 
 

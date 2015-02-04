@@ -10,7 +10,8 @@ export interface BulletArgs extends ContainerArgs
 
             // bullet moves in a fixed direction if an angle is given, until its out of the canvas
             // or follows a target, if an Element is given instead
-        angleOrTarget: any; // number | Element
+        angleOrTarget: any;     // number | Element
+        remove?: () => any;     // to have a different function that is called when the bullet is removed
     }
 
 
@@ -20,6 +21,8 @@ export class Bullet extends Container
     _move_x: number;
     _move_y: number;
     _target: Element;
+    _remove: () => any;
+
 
     static _all: Bullet[];
     static _container: Game.Container;
@@ -61,6 +64,17 @@ export class Bullet extends Container
             }
 
 
+        if ( typeof args.remove === 'undefined' )
+            {
+            this._remove = this.remove;
+            }
+
+        else
+            {
+            this._remove = args.remove;
+            }
+
+
         Bullet._container.addChild( this );
         Bullet._all.push( this );
         }
@@ -87,7 +101,7 @@ export class Bullet extends Container
 
         if ( !Game.isInCanvas( this.x, this.y ) )
             {
-            this.remove();
+            this._remove();
             }
         }
 
@@ -116,7 +130,7 @@ export class Bullet extends Container
                 target.height
                 ))
             {
-            this.remove();
+            this._remove();
             }
         }
 
