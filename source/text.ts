@@ -1,5 +1,13 @@
 module Game
 {
+export interface TextArgs
+    {
+        text: string;
+        fontFamily?: string;
+        fontSize?: number;
+        timeout?: number;
+    }
+
 export class Text extends Element
     {
     _text: string;
@@ -10,17 +18,40 @@ export class Text extends Element
     fill: boolean;  // fill or stroke text
 
 
-    constructor( text: string, fontFamily: string, fontSize: number )
+    constructor( args: TextArgs )
         {
+        var _this = this;
+
+        if ( typeof args.fontFamily === 'undefined' )
+            {
+            args.fontFamily = 'monospace';
+            }
+
+        if ( typeof args.fontSize === 'undefined' )
+            {
+            args.fontSize = 20;
+            }
+
+
         super();
 
-        this._font_size = fontSize;
-        this.text = text;
-        this.font_family = fontFamily;  // this calls the set method that updates ._font as well
+        this._font_size = args.fontSize;
+        this.text = args.text;
+        this.font_family = args.fontFamily;  // this calls the set method that updates ._font as well
 
-        this.height = fontSize;     // not quite the same thing, but there's no way to determine the height right now so..
+        this.height = args.fontSize;     // not quite the same thing, but there's no way to determine the height right now so..
         this.textAlign = 'start';
         this.fill = true;
+
+        if ( Utilities.isNumber( args.timeout ) && args.timeout > 0 )
+            {
+            var timeout = new Utilities.Timeout();
+
+            timeout.start( function()
+                {
+                _this.remove();
+                }, args.timeout * 1000 );
+            }
         }
 
 

@@ -13,7 +13,7 @@ var two = new Two( 200, 50 );
 
 one.addEventListener( 'collision', function( data )
     {
-    console.log( 'Collision!' );
+    addText( 'Collision!', two.x, two.y );
 
     var element = data.element;
     var collidedWith = data.collidedWith;
@@ -34,7 +34,7 @@ three.moveLoop([
     ]);
 three.addEventListener( 'collision', function( data )
     {
-    console.log( 'Can collide with units of same type.' );
+    addText( 'Can collide with units of same type.', four.x, four.y );
     });
 
 
@@ -59,9 +59,23 @@ var eight = new Two( 250, 350 );
 seven.fireBullet( 0, 5 );
 seven.addEventListener( 'collision', function( data )
     {
-    console.log( 'Bullet collision' );
+    addText( 'Bullet collision!', eight.x, eight.y );
     });
 };
+
+
+function addText( text, x, y )
+{
+var text = new Game.Text({
+        text: text,
+        timeout: 1
+    });
+text.x = x;
+text.y = y;
+text.textAlign = 'center';
+
+Game.addElement( text );
+}
 
 
 

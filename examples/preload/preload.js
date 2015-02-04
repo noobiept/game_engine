@@ -31,10 +31,15 @@ Game.Preload.load( 'json_test', 'test.json', function( obj )
 
 Game.Preload.load( 'text_test', 'test.txt', function( text )
     {
-    var textElement = new Game.Text( text, 'monospace', 20 );
+    var textElement = new Game.Text({
+            text: text,
+            fontFamily: 'serif',
+            fontSize: 25
+        });
 
-    textElement.x = 10;
+    textElement.x = 200;
     textElement.y = 10;
+    textElement.textAlign = 'center';
 
     Game.addElement( textElement );
     });
