@@ -1,3 +1,4 @@
+/// <reference path="grid.ts" />
 /// <reference path="bullet.ts" />
 /// <reference path="sprite.ts" />
 /// <reference path="text.ts" />
