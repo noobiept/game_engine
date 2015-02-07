@@ -2,10 +2,11 @@ module Game
 {
 export interface TextArgs extends ElementArgs
     {
-        text: string;
+        text?: string;
         fontFamily?: string;
         fontSize?: number;
         timeout?: number;
+        textAlign?: string;
     }
 
 export class Text extends Element
@@ -22,6 +23,11 @@ export class Text extends Element
         {
         var _this = this;
 
+        if ( typeof args.text === 'undefined' )
+            {
+            args.text = '';
+            }
+
         if ( typeof args.fontFamily === 'undefined' )
             {
             args.fontFamily = 'monospace';
@@ -32,6 +38,11 @@ export class Text extends Element
             args.fontSize = 20;
             }
 
+        if ( typeof args.textAlign === 'undefined' )
+            {
+            args.textAlign = 'start';
+            }
+
 
         super( args );
 
@@ -40,7 +51,7 @@ export class Text extends Element
         this.font_family = args.fontFamily;  // this calls the set method that updates ._font as well
 
         this.height = args.fontSize;     // not quite the same thing, but there's no way to determine the height right now so..
-        this.textAlign = 'start';
+        this.textAlign = args.textAlign;
         this.fill = true;
 
         if ( Utilities.isNumber( args.timeout ) && args.timeout > 0 )

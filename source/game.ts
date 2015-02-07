@@ -23,7 +23,7 @@ var TIME: number;
 var ANIMATION_ID: number;
 
 var ELEMENTS: Element[] = [];
-var CALLBACKS = [];
+var CALLBACKS: { callback: () => any; interval: number; count: number; }[] = [];
 
 export function init( htmlContainer: HTMLElement, canvasWidth: number, canvasHeight: number )
     {
@@ -118,20 +118,29 @@ export function removeElement( args: any )
 
 
 /**
-    Adds a callback function to called every tick in the game loop (before the draw phase)
+    Adds a callback function to be called at a certain interval (or every tick) in the game loop (before the draw phase)
 
-    @param callback {Function} the callback
+    @param callback - the callback
+    @param interval - interval between function calls. If not given then it is called every tick. In seconds.
     @return {Boolean} If it was added successful
  */
-
-export function addToGameLoop( callback )
+export function addToGameLoop( callback: () => any, interval?: number )
     {
     if ( !Utilities.isFunction( callback ) )
         {
         return false;
         }
 
-    CALLBACKS.push( callback );
+    if ( !Utilities.isNumber( interval ) || interval <= 0 )
+        {
+        interval = -1;
+        }
+
+    CALLBACKS.push({
+            callback: callback,
+            interval: interval,
+            count: 0
+        });
 
     return true;
     }
@@ -148,10 +157,7 @@ function loop()
     TIME = now;
 
         // call any function added to the game loop
-    for (var a = CALLBACKS.length - 1 ; a >= 0 ; a--)
-        {
-        CALLBACKS[ a ]();
-        }
+    callbacks( delta );
 
         // call any game logic (from units/etc)
     logic( delta );
@@ -160,6 +166,32 @@ function loop()
     draw();
 
     ANIMATION_ID = window.requestAnimationFrame( loop );
+    }
+
+
+
+function callbacks( deltaTime )
+    {
+    for (var a = CALLBACKS.length - 1 ; a >= 0 ; a--)
+        {
+        var call = CALLBACKS[ a ];
+
+        if ( call.interval <= 0 )
+            {
+            call.callback();
+            }
+
+        else
+            {
+            call.count += deltaTime;
+
+            if ( call.count >= call.interval )
+                {
+                call.count = 0;
+                call.callback();
+                }
+            }
+        }
     }
 
 
