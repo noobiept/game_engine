@@ -8,6 +8,15 @@ export interface UnitArgs extends ContainerArgs
     }
 
 
+export enum UnitMovement
+    {
+        stop,           // unit isn't moving
+        angle,          // move in a specific direction/angle
+        destination,    // move to a x/y position
+        loop            // move between some x/y positions
+    }
+
+
 export class Unit extends Container
     {
         // these will exist independently on every inherited class (not 1 on Unit for all)
@@ -20,6 +29,7 @@ export class Unit extends Container
     health: number;
 
         // :: movement related :: //
+    _movement_type: UnitMovement;
     _is_moving: boolean;
     _move_x: number;
     _move_y: number;
@@ -27,7 +37,6 @@ export class Unit extends Container
     _destination_x: number;
     _destination_y: number;
     _path: { x: number; y: number; callback?: () => any }[];
-    _loop_movement: boolean;
     _loop_path_position: number; // when looping a path, to know what is the current position the unit is going for (the path array position)
 
         // :: bullet related :: //
@@ -61,6 +70,7 @@ export class Unit extends Container
         this.bullet_movement_speed = args.bullet_movement_speed;
         this.health = args.health;
 
+        this._movement_type = UnitMovement.stop;
         this._is_moving = false;
         this._move_x = 0;
         this._move_y = 0;
@@ -68,7 +78,6 @@ export class Unit extends Container
         this._destination_x = 0;
         this._destination_y = 0;
         this._path = [];
-        this._loop_movement = false;
         this._loop_path_position = 0;
 
         this._bullet_interval = -1;
@@ -117,7 +126,7 @@ export class Unit extends Container
             callback = null;
             }
 
-        this._loop_movement = false;
+        this._movement_type = UnitMovement.destination;
         this._path.length = 0;
         this._path.push({
                 x: x,
@@ -125,6 +134,7 @@ export class Unit extends Container
                 callback: callback
             });
 
+        this.movementLogic = this.movementPathLogic;
         this.moveToNext();
         }
 
@@ -135,7 +145,7 @@ export class Unit extends Container
         {
         var next;
 
-        if ( this._loop_movement )
+        if ( this._movement_type === UnitMovement.loop )
             {
             this._loop_path_position++;
 
@@ -181,9 +191,9 @@ export class Unit extends Container
 
     stop()
         {
+        this._movement_type = UnitMovement.stop;
         this._path.length = 0;
         this._is_moving = false;
-        this._loop_movement = false;
         }
 
 
@@ -203,11 +213,39 @@ export class Unit extends Container
 
     moveLoop( path: { x: number; y: number; callback?: () => any }[] )
         {
-        this._loop_movement = true;
+        this._movement_type = UnitMovement.loop;
         this._path = path;
         this._loop_path_position = -1;   // will be added in .moveToNext() and so will start at the 0 position
 
+        this.movementLogic = this.movementPathLogic;
         this.moveToNext();
+        }
+
+
+    /**
+        Move continuously in a specific angle
+
+        @angle - the angle of the direction. Positive clockwise.
+        @degrees - If the 'angle' value is in degrees or radians
+        @callback - To be called when it reaches the end of the canvas
+     */
+    moveAngle( angle: number, degrees?: boolean, callback?: () => any )
+        {
+        if ( degrees === true )
+            {
+            angle = Math.PI / 180 * angle;
+            }
+
+        this._movement_type = UnitMovement.angle;
+        this._is_moving = true;
+
+        this._move_x = Math.cos( angle ) * this.movement_speed;
+        this._move_y = Math.sin( angle ) * this.movement_speed;
+
+        this.rotation = angle;
+        this._move_callback = callback;
+
+        this.movementLogic = this.movementAngleLogic;
         }
 
 
@@ -286,6 +324,40 @@ export class Unit extends Container
 
 
     movementLogic( delta )
+        {
+            // this is going to be assigned to a different movement logic method, depending on the current movement type
+        }
+
+
+    /*
+        Deals with movement in a certain direction/angle.
+
+        Calls the function callback when it reaches the end of the canvas.
+     */
+    movementAngleLogic( delta )
+        {
+        if ( this._is_moving )
+            {
+            this.x += this._move_x * delta;
+            this.y += this._move_y * delta;
+
+            if ( !Game.isInCanvas( this.x, this.y ) )
+                {
+                if ( this._move_callback )
+                    {
+                    this._move_callback();
+                    }
+                }
+            }
+        }
+
+
+    /*
+        Deals with movement to a x/y position.
+
+        Calls the function callback when it reaches the destination.
+     */
+    movementPathLogic( delta )
         {
         if ( this._is_moving )
             {
