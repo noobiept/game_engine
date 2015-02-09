@@ -88,6 +88,15 @@ for (var a = 0 ; a < length ; a++)
 };
 
 
+Snake.prototype.remove = function()
+{
+for (var a = this.tails.length - 1 ; a >= 0 ; a--)
+    {
+    this.tails[ a ].remove();
+    }
+};
+
+
 Snake.prototype.tick = function()
 {
 var length = this.tails.length;

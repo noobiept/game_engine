@@ -146,6 +146,27 @@ export function addToGameLoop( callback: () => any, interval?: number )
     }
 
 
+
+/*
+    Remove a callback from the game loop
+ */
+export function removeFromGameLoop( callback: () => any )
+    {
+    for (var a = CALLBACKS.length - 1 ; a >= 0 ; a--)
+        {
+        var callInfo = CALLBACKS[ a ];
+
+        if ( callInfo.callback === callback )
+            {
+            CALLBACKS.splice( a, 1 );
+            return true;
+            }
+        }
+
+    return false;
+    }
+
+
 function loop()
     {
         // find the delta time
