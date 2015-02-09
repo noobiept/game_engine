@@ -100,6 +100,32 @@ export class Grid
         return previous;
         }
 
+
+    /*
+        move an element to a different position in the grid
+     */
+    move( sourceColumn, sourceLine, destColumn, destLine )
+        {
+        var element = this._grid[ sourceColumn ][ sourceLine ];
+
+        if ( element === null )
+            {
+            return null;
+            }
+
+        var previous = this._grid[ destColumn ][ destLine ];
+
+        this._grid[ destColumn ][ destLine ] = element;
+        this._grid[ sourceColumn ][ sourceLine ] = null;
+
+        var canvasPosition = this.toCanvas( destColumn, destLine );
+
+        element.x = canvasPosition.x;
+        element.y = canvasPosition.y;
+
+        return previous;
+        }
+
     remove( column, line )
         {
         var previous = this._grid[ column ][ line ];
@@ -117,6 +143,51 @@ export class Grid
     isEmpty( column, line )
         {
         if ( this._grid[ column ][ line ] )
+            {
+            return false;
+            }
+
+        return true;
+        }
+
+    normalizePosition( column, line )
+        {
+        if ( column < 0 )
+            {
+            column = 0;
+            }
+
+        else if ( column >= this.columns )
+            {
+            column = this.columns - 1;
+            }
+
+
+        if ( line < 0 )
+            {
+            line = 0;
+            }
+
+        else if ( line >= this.lines )
+            {
+            line = this.lines - 1;
+            }
+
+        return {
+                column: column,
+                line: line
+            }
+        }
+
+    /*
+        If this position is valid for this grid (is within it)
+     */
+    isInGrid( column, line )
+        {
+        if ( column < 0 ||
+             column >= this.columns ||
+             line < 0 ||
+             line >= this.lines )
             {
             return false;
             }

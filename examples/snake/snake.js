@@ -1,53 +1,99 @@
-window.onload = function()
+function Snake( args )
 {
-Game.init( document.body, 400, 400 );
+var first = new Tail( args );
 
-var snake = new Snake({
-        x: 200,
-        y: 200
-    });
-Game.addElement( snake );
+this.tails = [ first ];
+this.first_tail = first;
+}
 
+/*
+    Add a new tail at the end of the snake
+ */
+Snake.prototype.addTail = function()
+{
+var last = this.tails[ this.tails.length - 1 ];
 
-document.body.addEventListener( 'keydown', function( event )
+var column = last.column;
+var line = last.line;
+
+if ( last.direction === Direction.left )
     {
-    var key = event.keyCode;
+    column++;
+    }
 
-    if ( key === Utilities.KEY_CODE.a )
-        {
-        snake.moveAngle( 180, true );
-        }
+else if ( last.direction === Direction.right )
+    {
+    column--;
+    }
 
-    else if ( key === Utilities.KEY_CODE.d )
-        {
-        snake.moveAngle( 0, true );
-        }
+else if ( last.direction === Direction.up )
+    {
+    line++;
+    }
 
-    else if ( key === Utilities.KEY_CODE.w )
-        {
-        snake.moveAngle( -90, true );
-        }
+else if ( last.direction === Direction.down )
+    {
+    line--;
+    }
 
-    else if ( key === Utilities.KEY_CODE.s )
-        {
-        snake.moveAngle( 90, true );
-        }
+var tail = new Tail({
+        column: column,
+        line: line,
+        path: Utilities.deepClone( last.path ),
+        direction: last.direction
     });
+
+this.tails.push( tail );
 };
 
 
-function Snake( args )
+Snake.prototype.getDirection = function()
 {
-Game.Unit.call( this, args );
-
-var rect = new Game.Rectangle({
-        width: 20,
-        height: 20,
-        color: 'green'
-    });
-this.addChild( rect );
-}
-
-Utilities.inheritPrototype( Snake, Game.Unit );
+return this.first_tail.direction;
+};
 
 
+Snake.prototype.changeDirection = function( newDirection )
+{
+var currentDirection = this.getDirection();
+
+    // already going that way
+if ( currentDirection === newDirection )
+    {
+    return;
+    }
+
+    // don't allow to go to the opposing direction
+if ( (currentDirection === Direction.left && newDirection === Direction.right) ||
+     (currentDirection === Direction.right && newDirection === Direction.left) ||
+     (currentDirection === Direction.up && newDirection === Direction.down) ||
+     (currentDirection === Direction.down && newDirection === Direction.up) )
+    {
+    return;
+    }
+
+var column = this.first_tail.column;
+var line = this.first_tail.line;
+
+var length = this.tails.length;
+
+for (var a = 0 ; a < length ; a++)
+    {
+    this.tails[ a ].path.push({
+            column: column,
+            line: line,
+            direction: newDirection
+        });
+    }
+};
+
+
+Snake.prototype.tick = function()
+{
+var length = this.tails.length;
+
+for (var a = 0 ; a < length ; a++)
+    {
+    this.tails[ a ].tick();
+    }
+};
