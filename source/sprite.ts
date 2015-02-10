@@ -1,3 +1,5 @@
+/// <reference path="bitmap.ts" />
+
 module Game
 {
 export interface SpriteArgs extends BitmapArgs

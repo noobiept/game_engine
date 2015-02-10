@@ -37,9 +37,11 @@ export function init( htmlContainer: HTMLElement, canvasWidth: number, canvasHei
 
     htmlContainer.appendChild( CANVAS );
 
-    EventDispatcher.init( CANVAS );
     Sound.init();
     Bullet.init();
+
+    CANVAS.addEventListener( 'click', mouseEvents );
+
 
     var timeHidden = new Date().getTime();
 
@@ -180,6 +182,33 @@ export function getRandomPosition()
             y: Utilities.getRandomInt( 0, HEIGHT )
         }
     }
+
+
+    function mouseEvents( event )
+        {
+        var elements = getElements();
+        var canvas = getCanvas();
+        var type = event.type;
+
+        var rect = canvas.getBoundingClientRect();
+        var x = event.x - rect.left;
+        var y = event.y - rect.top;
+
+            // find the element on the x/y position
+        for (var a = 0 ; a < elements.length ; a++)
+            {
+            var element = elements[ a ];
+
+                // check if there's listeners on this element
+            if ( element.hasListeners( type ) )
+                {
+                if ( element.intersect( x, y, event ) )
+                    {
+                    break;
+                    }
+                }
+            }
+        }
 
 
 function loop()

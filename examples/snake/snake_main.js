@@ -16,6 +16,8 @@ var GRID;
 var SNAKE;
 var ALL_FOOD = [];
 
+var COLLISION_CALLBACKS = [];
+
 var Direction = {
     left: 0,
     right: 1,
@@ -47,26 +49,76 @@ SNAKE.addTail();
 SNAKE.addTail();
 
 
-GRID.addEventListener( 'collision', function( elementA, elementB )
+GRID.addEventListener( 'collision', function( data )
     {
+    var elementA = data.element;
+    var elementB = data.collidedWith;
 
+    var constructorA = elementA.constructor;
+    var constructorB = elementB.constructor;
+
+    if ( constructorA === Tail )
+        {
+            // collision between tails
+        if ( constructorB === Tail )
+            {
+                // this isn't executed right away since the listener will trigger during the tail's tick movement, so its better to wait for the update to finish, and then execute these functions
+                // look at the functions added to the game loop
+            COLLISION_CALLBACKS.push( function()
+                {
+                SnakeGame.gameOver();
+                });
+            }
+
+            // collision between a tail and food
+        else if ( constructorB === Food )
+            {
+            COLLISION_CALLBACKS.push( function()
+                {
+                SNAKE.addTail();
+                elementB.remove();
+                });
+            }
+        }
+
+        // means A is Food, and B is Tail
+    else
+        {
+        COLLISION_CALLBACKS.push( function()
+            {
+            SNAKE.addTail();
+            elementA.remove();
+            });
+        }
     });
 
 
 Game.addToGameLoop( function()
     {
     SNAKE.tick();
+
+
+    while ( COLLISION_CALLBACKS.length > 0 )
+        {
+        var callback = COLLISION_CALLBACKS.pop();
+
+        callback();
+        }
     }, 0.1 );
+
 Game.addToGameLoop( function()
     {
-    var position = GRID.getRandomPosition();
+    var position = GRID.getRandomEmptyPosition( 5 );
 
-    var food = new Food({
-            column: position.column,
-            line: position.line
-        });
+    if ( position !== null )
+        {
+        var food = new Food({
+                column: position.column,
+                line: position.line
+            });
 
-    ALL_FOOD.push( food );
+        ALL_FOOD.push( food );
+        }
     }, 1 );
 };
 
@@ -103,6 +155,7 @@ SnakeGame.clear = function()
 SNAKE.remove();
 GRID = null;
 SNAKE = null;
+COLLISION_CALLBACKS.length = 0;
 
 for (var a = ALL_FOOD.length - 1 ; a >= 0 ; a--)
     {

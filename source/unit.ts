@@ -1,3 +1,5 @@
+/// <reference path="container.ts" />
+
 module Game
 {
 export interface UnitArgs extends ContainerArgs

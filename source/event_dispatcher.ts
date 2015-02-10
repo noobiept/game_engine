@@ -1,37 +1,117 @@
 module Game
 {
-export module EventDispatcher
+export interface EventDispatcherArgs
     {
-    export function init( canvas )
+
+    }
+
+export class EventDispatcher
+    {
+    _listeners;
+
+    constructor( args )
         {
-        canvas.addEventListener( 'click', mouseEvents );
+        this._listeners = {};
         }
 
 
-    function mouseEvents( event )
+    /*
+        'listener' will receive a 'data' argument when its called.
+        What 'data' is, depends on the event type.
+
+        type: 'click'
+        data: { event: MouseEvent; }
+
+        type: 'collision'
+        data: { element: Unit;
+                collidedWith: Unit; }
+
+     */
+    addEventListener( type: string, listener )
         {
-        var elements = getElements();
-        var canvas = getCanvas();
-        var type = event.type;
-
-        var rect = canvas.getBoundingClientRect();
-        var x = event.x - rect.left;
-        var y = event.y - rect.top;
-
-            // find the element on the x/y position
-        for (var a = 0 ; a < elements.length ; a++)
+        if ( !this._listeners[ type ] )
             {
-            var element = elements[ a ];
+            this._listeners[ type ] = [];
+            }
 
-                // check if there's listeners on this element
-            if ( element.hasListeners( type ) )
+        if ( Utilities.isFunction( listener ) )
+            {
+            if ( this._listeners[ type ].indexOf( listener ) < 0 )
                 {
-                if ( element.intersect( x, y, event ) )
-                    {
-                    break;
-                    }                
+                this._listeners[ type ].push( listener );
+
+                return true;
                 }
             }
+
+        return false;
+        }
+
+
+    /*
+        Removes a specific listener of an event type, or all the listeners for that type (if 'listener' is not provided)
+     */
+    removeEventListener( type: string, listener? )
+        {
+        if ( this._listeners[ type ] )
+            {
+            if ( typeof listener !== 'undefined' )
+                {
+                var index = this._listeners[ type ].indexOf( listener );
+
+                if ( index >= 0 )
+                    {
+                    this._listeners.splice( index, 1 );
+                    return true;
+                    }
+                }
+
+            else
+                {
+                this._listeners[ type ] = [];
+                return true;
+                }
+            }
+
+        return false;
+        }
+
+
+    removeAllEventListeners()
+        {
+        this._listeners = {};
+        }
+
+
+    /**
+        Dispatches an event, which will trigger the listeners of that event
+
+        @param type - type of the event to dispatch
+        @param data - Data to be sent to every listener
+     */
+    dispatchEvent( type, data? )
+        {
+        var listeners = this._listeners[ type ];
+
+        if ( listeners )
+            {
+            for (var a = listeners.length - 1 ; a >= 0 ; a--)
+                {
+                listeners[ a ]( data );
+                }
+            }
+        }
+
+
+    hasListeners( type )
+        {
+        if ( this._listeners[ type ] &&
+             this._listeners[ type ].length > 0 )
+            {
+            return true;
+            }
+
+        return false;
         }
     }
 }

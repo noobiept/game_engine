@@ -1,6 +1,8 @@
+/// <reference path="event_dispatcher.ts" />
+
 module Game
 {
-export interface GridArgs
+export interface GridArgs extends EventDispatcherArgs
     {
         squareSize: number;
         columns: number;
@@ -9,7 +11,7 @@ export interface GridArgs
         refY?: number;
     }
 
-export class Grid
+export class Grid extends EventDispatcher
     {
     _grid: Element[][];
     columns: number;
@@ -20,6 +22,8 @@ export class Grid
 
     constructor( args: GridArgs )
         {
+        super( args );
+
         this._grid = [];
 
         for (var column = 0 ; column < args.columns ; column++)
@@ -97,6 +101,14 @@ export class Grid
         element.x = canvasPosition.x;
         element.y = canvasPosition.y;
 
+        if ( previous !== null )
+            {
+            this.dispatchEvent( 'collision', {
+                    element: element,
+                    collidedWith: previous
+                });
+            }
+
         return previous;
         }
 
@@ -122,6 +134,14 @@ export class Grid
 
         element.x = canvasPosition.x;
         element.y = canvasPosition.y;
+
+        if ( previous !== null )
+            {
+            this.dispatchEvent( 'collision', {
+                    element: element,
+                    collidedWith: previous
+                });
+            }
 
         return previous;
         }
@@ -202,6 +222,22 @@ export class Grid
                 column: Utilities.getRandomInt( 0, this.columns - 1 ),
                 line: Utilities.getRandomInt( 0, this.lines - 1 )
             }
+        }
+
+
+    getRandomEmptyPosition( tries: number )
+        {
+        for ( ; tries > 0 ; tries--)
+            {
+            var position = this.getRandomPosition();
+
+            if ( this.isEmpty( position.column, position.line ) )
+                {
+                return position;
+                }
+            }
+
+        return null;
         }
     }
 }
