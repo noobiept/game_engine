@@ -167,6 +167,21 @@ export function removeFromGameLoop( callback: () => any )
     }
 
 
+export function removeAllCallbacks()
+    {
+    CALLBACKS.length = 0;
+    }
+
+
+export function getRandomPosition()
+    {
+    return {
+            x: Utilities.getRandomInt( 0, WIDTH ),
+            y: Utilities.getRandomInt( 0, HEIGHT )
+        }
+    }
+
+
 function loop()
     {
         // find the delta time

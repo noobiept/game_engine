@@ -194,5 +194,14 @@ export class Grid
 
         return true;
         }
+
+
+    getRandomPosition()
+        {
+        return {
+                column: Utilities.getRandomInt( 0, this.columns - 1 ),
+                line: Utilities.getRandomInt( 0, this.lines - 1 )
+            }
+        }
     }
 }

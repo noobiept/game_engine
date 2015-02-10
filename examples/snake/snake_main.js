@@ -14,6 +14,7 @@ var SnakeGame = {};
 
 var GRID;
 var SNAKE;
+var ALL_FOOD = [];
 
 var Direction = {
     left: 0,
@@ -46,7 +47,27 @@ SNAKE.addTail();
 SNAKE.addTail();
 
 
-Game.addToGameLoop( SnakeGame.tick, 0.1 );
+GRID.addEventListener( 'collision', function( elementA, elementB )
+    {
+
+    });
+
+
+Game.addToGameLoop( function()
+    {
+    SNAKE.tick();
+    }, 0.1 );
+Game.addToGameLoop( function()
+    {
+    var position = GRID.getRandomPosition();
+
+    var food = new Food({
+            column: position.column,
+            line: position.line
+        });
+
+    ALL_FOOD.push( food );
+    }, 1 );
 };
 
 
@@ -76,12 +97,6 @@ else if ( key === Utilities.KEY_CODE.s )
 };
 
 
-SnakeGame.tick = function()
-{
-SNAKE.tick();
-};
-
-
 
 SnakeGame.clear = function()
 {
@@ -89,8 +104,15 @@ SNAKE.remove();
 GRID = null;
 SNAKE = null;
 
+for (var a = ALL_FOOD.length - 1 ; a >= 0 ; a--)
+    {
+    ALL_FOOD[ a].remove();
+    }
+
+ALL_FOOD.length = 0;
+
 document.body.removeEventListener( 'keydown', Game.keyDown );
-Game.removeFromGameLoop( SnakeGame.tick );
+Game.removeAllCallbacks();
 };
 
 
