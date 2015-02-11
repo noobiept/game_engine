@@ -97,6 +97,12 @@ for (var a = this.tails.length - 1 ; a >= 0 ; a--)
 };
 
 
+Snake.prototype.getTailSize = function()
+{
+return this.tails.length;
+};
+
+
 Snake.prototype.tick = function()
 {
 var length = this.tails.length;

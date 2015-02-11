@@ -15,6 +15,7 @@ var SnakeGame = {};
 var GRID;
 var SNAKE;
 var ALL_FOOD = [];
+var TAIL_SIZE;
 
 var COLLISION_CALLBACKS = [];
 
@@ -53,12 +54,22 @@ SNAKE = new Snake({
         direction: Direction.right
     });
 
+var fontSize = 20;
+
+TAIL_SIZE = new Game.Text({
+        x: 0,
+        y: canvas.height - fontSize,
+        fontSize: fontSize
+    });
+Game.addElement( TAIL_SIZE );
 
 document.body.addEventListener( 'keydown', SnakeGame.keyDown );
 
 SNAKE.addTail();
 SNAKE.addTail();
 SNAKE.addTail();
+
+updateTailSize();
 
 
 GRID.addEventListener( 'collision', function( data )
@@ -89,6 +100,7 @@ GRID.addEventListener( 'collision', function( data )
                 {
                 SNAKE.addTail();
                 elementB.remove();
+                updateTailSize();
                 });
             }
         }
@@ -100,6 +112,7 @@ GRID.addEventListener( 'collision', function( data )
             {
             SNAKE.addTail();
             elementA.remove();
+            updateTailSize();
             });
         }
     });
@@ -168,6 +181,8 @@ SNAKE.remove();
 SNAKE = null;
 GRID.remove();
 GRID = null;
+TAIL_SIZE.remove();
+TAIL_SIZE = null;
 
 COLLISION_CALLBACKS.length = 0;
 
@@ -192,7 +207,19 @@ SnakeGame.start();
 
 SnakeGame.gameOver = function()
 {
-console.log( 'Game Over!' );
+var canvas = Game.getCanvas();
+
+var fontSize = 20;
+
+var message = new Game.Text({
+        x: canvas.width / 2,
+        y: canvas.height - fontSize,
+        fontSize: fontSize,
+        text: 'Game Over!',
+        timeout: 1,
+        textAlign: 'center'
+    });
+Game.addElement( message );
 
 SnakeGame.restart();
 };
@@ -202,6 +229,12 @@ SnakeGame.getGrid = function()
 {
 return GRID;
 };
+
+
+function updateTailSize()
+{
+TAIL_SIZE.text = 'Tails: ' + SNAKE.getTailSize();
+}
 
 
 window.Direction = Direction;
