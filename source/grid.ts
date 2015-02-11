@@ -9,6 +9,7 @@ export interface GridArgs extends EventDispatcherArgs
         lines: number;
         refX?: number;
         refY?: number;
+        background?: { color: string; fill: boolean; };
     }
 
 export class Grid extends EventDispatcher
@@ -19,6 +20,7 @@ export class Grid extends EventDispatcher
     square_size: number;
     ref_x: number;
     ref_y: number;
+    _background: Rectangle;
 
     constructor( args: GridArgs )
         {
@@ -45,6 +47,27 @@ export class Grid extends EventDispatcher
         if ( typeof args.refY === 'undefined' )
             {
             args.refY = 0;
+            }
+
+        if ( typeof args.background !== 'undefined' )
+            {
+            var width = args.squareSize * args.columns;
+            var height = args.squareSize * args.lines;
+
+            this._background = new Game.Rectangle({
+                    x: args.refX + width / 2 - args.squareSize / 2,
+                    y: args.refY + height / 2 - args.squareSize / 2,
+                    width: width,
+                    height: height,
+                    color: args.background.color,
+                    fill: args.background.fill
+                });
+            Game.addElement( this._background );
+            }
+
+        else
+            {
+            this._background = null;
             }
 
         this.square_size = args.squareSize;
@@ -146,7 +169,7 @@ export class Grid extends EventDispatcher
         return previous;
         }
 
-    remove( column, line )
+    removeElement( column, line )
         {
         var previous = this._grid[ column ][ line ];
 
@@ -238,6 +261,24 @@ export class Grid extends EventDispatcher
             }
 
         return null;
+        }
+
+    getDimensions()
+        {
+        return {
+                x: this.ref_x,
+                y: this.ref_y,
+                width: this.square_size * this.columns,
+                height: this.square_size * this.lines
+            }
+        }
+
+    remove()
+        {
+        if ( this._background !== null )
+            {
+            this._background.remove();
+            }
         }
     }
 }

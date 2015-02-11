@@ -7,6 +7,7 @@ export interface RectangleArgs extends ElementArgs
         width: number;
         height: number;
         color: string;
+        fill?: boolean; // fill or stroke
     }
 
 export class Rectangle extends Element
@@ -14,11 +15,18 @@ export class Rectangle extends Element
     color: string;
     half_width: number;
     half_height: number;
+    fill: boolean;
 
     constructor( args: RectangleArgs )
         {
         super( args );
 
+        if ( typeof args.fill === 'undefined' )
+            {
+            args.fill = true;
+            }
+
+        this.fill = args.fill;
         this.width = args.width;
         this.height = args.height;
         this.half_width = args.width / 2;
@@ -30,10 +38,20 @@ export class Rectangle extends Element
         {
         ctx.save();
         ctx.beginPath();
-        ctx.fillStyle = this.color;
         ctx.translate( this.x, this.y );
         ctx.rotate( this.rotation );
-        ctx.fillRect( -this.half_width, -this.half_height, this.width, this.height );
+
+        if ( this.fill )
+            {
+            ctx.fillStyle = this.color;
+            ctx.fillRect( -this.half_width, -this.half_height, this.width, this.height );
+            }
+
+        else
+            {
+            ctx.strokeStyle = this.color;
+            ctx.strokeRect( -this.half_width, -this.half_height, this.width, this.height );
+            }
         ctx.restore();
         }
 

@@ -27,17 +27,29 @@ var Direction = {
 
 SnakeGame.start = function()
 {
+var canvas = Game.getCanvas();
+var squareSize = 10;
+var columns = 25;
+var lines = 25;
+
+    // center the grid
+var refX = (canvas.width - squareSize * columns) / 2;
+var refY = (canvas.height - squareSize * lines) / 2;
+
+
 GRID = new Game.Grid({
-        squareSize: 10,
-        columns: 20,
-        lines: 20,
-        refX: 20,
-        refY: 20
+        squareSize: squareSize,
+        columns: columns,
+        lines: lines,
+        refX: refX,
+        refY: refY,
+        background: { color: 'gray', fill: false }
     });
 
+
 SNAKE = new Snake({
-        column: 10,
-        line: 10,
+        column: Math.round( columns / 2 ),
+        line: Math.round( lines / 2 ),
         direction: Direction.right
     });
 
@@ -153,8 +165,10 @@ else if ( key === Utilities.KEY_CODE.s )
 SnakeGame.clear = function()
 {
 SNAKE.remove();
-GRID = null;
 SNAKE = null;
+GRID.remove();
+GRID = null;
+
 COLLISION_CALLBACKS.length = 0;
 
 for (var a = ALL_FOOD.length - 1 ; a >= 0 ; a--)
