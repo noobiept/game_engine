@@ -1,3 +1,4 @@
+/// <reference path="tween.ts" />
 /// <reference path="grid.ts" />
 /// <reference path="bullet.ts" />
 /// <reference path="sprite.ts" />
@@ -184,31 +185,31 @@ export function getRandomPosition()
     }
 
 
-    function mouseEvents( event )
+function mouseEvents( event )
+    {
+    var elements = getElements();
+    var canvas = getCanvas();
+    var type = event.type;
+
+    var rect = canvas.getBoundingClientRect();
+    var x = event.x - rect.left;
+    var y = event.y - rect.top;
+
+        // find the element on the x/y position
+    for (var a = 0 ; a < elements.length ; a++)
         {
-        var elements = getElements();
-        var canvas = getCanvas();
-        var type = event.type;
+        var element = elements[ a ];
 
-        var rect = canvas.getBoundingClientRect();
-        var x = event.x - rect.left;
-        var y = event.y - rect.top;
-
-            // find the element on the x/y position
-        for (var a = 0 ; a < elements.length ; a++)
+            // check if there's listeners on this element
+        if ( element.hasListeners( type ) )
             {
-            var element = elements[ a ];
-
-                // check if there's listeners on this element
-            if ( element.hasListeners( type ) )
+            if ( element.intersect( x, y, event ) )
                 {
-                if ( element.intersect( x, y, event ) )
-                    {
-                    break;
-                    }
+                break;
                 }
             }
         }
+    }
 
 
 function loop()
@@ -226,6 +227,9 @@ function loop()
 
         // call any game logic (from units/etc)
     logic( delta );
+
+        // update all the tweens
+    Tween.update( delta );
 
         // draw all the elements to the canvas
     draw();
