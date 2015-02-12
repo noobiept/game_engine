@@ -7,6 +7,9 @@ Game.init( document.body, width, height );
 
     // add a unit
 var size = 10;
+var centerX = width / 2 - size / 2;
+var centerY = height / 2 - size / 2;
+
 var unitShape = new Game.Rectangle({
         width: size,
         height: size,
@@ -18,8 +21,8 @@ var unit = new Game.Unit({
         children: unitShape
     });
 
-unit.x = width / 2 - size / 2;
-unit.y = height / 2 - size / 2;
+unit.x = centerX;
+unit.y = centerY;
 
 Game.addElement( unit );
 
@@ -33,12 +36,12 @@ var target = new Game.Unit({
         movement_speed: 50,
         children: targetRect
     });
-target.x = 10;
-target.y = 10;
+target.x = 5;
+target.y = 5;
 
 Game.addElement( target );
 
-target.moveTo( 10, 100 );
+target.moveTo( 5, centerY );
 
     // fire in whatever direction the unit is facing
 unit.fireBullet();

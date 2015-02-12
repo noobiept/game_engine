@@ -67,15 +67,15 @@ var unitRect2 = new Game.Rectangle({
         color: 'black'
     });
 var unit = new Game.Unit({
-        x: 0,
+        x: 5,
         y: 50,
         movement_speed: 100,
         children: [ unitRect, unitRect2 ]
     });
 
-unit.moveTo( 300, 50 );
+unit.moveTo( 290, 50 );
 unit.queueMoveTo( 150, 290 );
-unit.queueMoveTo( 0, 50, function()
+unit.queueMoveTo( 5, 50, function()
     {
     console.log( 'End movement!' );
     });
@@ -96,7 +96,7 @@ unit2.addChild( unit2circle );
 unit2.x = 10;
 unit2.y = 230;
 unit2.moveLoop([
-        { x: 280, y: 230, callback: function() { console.log( 'Right!' ); } },
+        { x: 290, y: 230, callback: function() { console.log( 'Right!' ); } },
         { x: 10, y: 230 }
     ]);
 

@@ -38,6 +38,8 @@ export class Unit extends Container
     _move_callback: () => any;
     _destination_x: number;
     _destination_y: number;
+    _is_destination_x_diff_positive: boolean;
+    _is_destination_y_diff_positive: boolean;
     _path: { x: number; y: number; callback?: () => any }[];
     _loop_path_position: number; // when looping a path, to know what is the current position the unit is going for (the path array position)
 
@@ -81,6 +83,8 @@ export class Unit extends Container
         this._destination_y = 0;
         this._path = [];
         this._loop_path_position = 0;
+        this._is_destination_x_diff_positive = false;
+        this._is_destination_y_diff_positive = false;
 
         this._bullet_interval = -1;
         this._bullet_interval_count = 0;
@@ -174,6 +178,10 @@ export class Unit extends Container
             this._destination_x = x;
             this._destination_y = y;
             this._move_callback = next.callback;
+
+            this._is_destination_x_diff_positive = x - this.x > 0;
+            this._is_destination_y_diff_positive = y - this.y > 0;
+
 
             var angleRads = Utilities.calculateAngle( this.x, this.y * -1, x, y * -1 );
 
@@ -366,19 +374,26 @@ export class Unit extends Container
             this.x += this._move_x * delta;
             this.y += this._move_y * delta;
 
-            if ( Utilities.boxBoxCollision(
-                    this._destination_x,
-                    this._destination_y,
-                    20,
-                    20,
-                    this.x - this.width / 2,
-                    this.y - this.height / 2,
-                    this.width,
-                    this.height
-                    ))
+            var diffX = this._destination_x - this.x;
+            var diffY = this._destination_y - this.y;
+
+                // going from a positive difference to a negative
+                // we switch the signal so that we only need to check >= 0 below
+            if ( this._is_destination_x_diff_positive )
                 {
-                this.x += this._move_x * delta;
-                this.y += this._move_y * delta;
+                diffX *= -1;
+                }
+
+            if ( this._is_destination_y_diff_positive )
+                {
+                diffY *= -1;
+                }
+
+                // means we reached the destination
+            if ( diffX >= 0 && diffY >= 0 )
+                {
+                this.x = this._destination_x;
+                this.y = this._destination_y;
 
                 if ( this._move_callback )
                     {

@@ -7,7 +7,8 @@ var grid = new Game.Grid({
         columns: 20,
         lines: 20,
         refX: 50,
-        refY: 50
+        refY: 50,
+        background: { fill: false, color: 'gray' }
     });
 
 var canvas = Game.getCanvas();
