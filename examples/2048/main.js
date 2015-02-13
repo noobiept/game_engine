@@ -23,10 +23,16 @@ var ADD_DURATION = 0.5;
 
 Main.start = function()
 {
+var canvas = Game.getCanvas();
+
+var gridSize = 4;   // lines/columns
+var gridLength = Block.size * gridSize;
+
 GRID = new Game.Grid({
+        refX: canvas.width / 2 - gridLength / 2 + Block.size / 2,
         squareSize: Block.size,
-        columns: 4,
-        lines: 4,
+        columns: gridSize,
+        lines: gridSize,
         background: { color: 'gray', fill: false }
     });
 
@@ -412,7 +418,7 @@ var gameEnded = hasGameEnded();
     // game has ended
 if ( gameEnded !== 0 )
     {
-    var text = 'Game has ended.\n\n';
+    var text = 'Game has ended. ';
 
     if ( gameEnded === 1 )
         {
@@ -424,7 +430,18 @@ if ( gameEnded !== 0 )
         text += 'Defeat!';
         }
 
-    console.log( text );
+    var canvas = Game.getCanvas();
+
+    var message = new Game.Text({
+            x: canvas.width / 2,
+            y: canvas.height,
+            text: text,
+            textAlign: 'center',
+            textBaseline: 'bottom',
+            timeout: 2
+        });
+    Game.addElement( message );
+
     Main.restart();
     }
 

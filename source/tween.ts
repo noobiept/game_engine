@@ -190,6 +190,20 @@ export class Tween
         }
 
 
+    static removeTweens( element )
+        {
+        for (var a = Tween._tweens.length - 1 ; a >= 0 ; a--)
+            {
+            var tween = Tween._tweens[ a ];
+
+            if ( tween._element === element )
+                {
+                Tween._tweens.splice( a, 1 );
+                }
+            }
+        }
+
+
     static removeAll()
         {
         Tween._tweens.length = 0;
