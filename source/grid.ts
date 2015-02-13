@@ -215,6 +215,7 @@ export class Grid extends EventDispatcher
         return previous;
         }
 
+
     get( column, line )
         {
         if ( !this.isInGrid( column, line ) )
@@ -222,7 +223,14 @@ export class Grid extends EventDispatcher
             return null;
             }
 
-        return this._grid[ column ][ line ];
+        var element = this._grid[ column ][ line ];
+
+        if ( !element )
+            {
+            return null;
+            }
+
+        return element;
         }
 
     isEmpty( column, line )

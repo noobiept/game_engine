@@ -171,6 +171,25 @@ export class Tween
         }
 
 
+    /*
+        Returns an existing tween of an element, or null if there's no active tween working on the element.
+     */
+    static getTween( element )
+        {
+        for (var a = Tween._tweens.length - 1 ; a >= 0 ; a--)
+            {
+            var tween = Tween._tweens[ a ];
+
+            if ( tween._element === element )
+                {
+                return tween;
+                }
+            }
+
+        return null;
+        }
+
+
     static removeAll()
         {
         Tween._tweens.length = 0;

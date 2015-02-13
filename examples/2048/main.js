@@ -16,6 +16,11 @@ function Main()
 var SPAWN_VALUES = [ 2,4 ];
 var GRID;
 
+    // duration of the animation
+var MOVE_DURATION = 0.1;
+var REMOVE_DURATION = 0.1;
+var ADD_DURATION = 0.5;
+
 Main.start = function()
 {
 GRID = new Game.Grid({
@@ -80,6 +85,13 @@ var block = new Block({
     });
 Game.addElement( block );
 
+var tween = new Game.Tween( block );
+
+block.opacity = 0;
+
+tween.to( { opacity: 1 }, ADD_DURATION );
+tween.start();
+
 GRID.add( block, position.column, position.line );
 };
 
@@ -143,13 +155,12 @@ for (line = 0 ; line < lines ; line++)
 
             else
                 {
-                if ( firstBlock.value == block.value )
+                if ( firstBlock.value === block.value )
                     {
-                    firstBlock.setValue( firstBlock.value * 2 );
+                    block.setValue( firstBlock.value * 2 );
 
-                    GRID.move( firstBlock.column, firstBlock.line, block.column, block.line, 2 );
-
-                    block.remove( 1 );
+                    GRID.removeElement( firstBlock.column, firstBlock.line );
+                    firstBlock.remove( REMOVE_DURATION );
                     break;  // only one combination per line
                     }
 
@@ -169,13 +180,13 @@ for (line = 0 ; line < lines ; line++)
     {
     var position = 0;
 
-    for (column = 0 ; column < columns ; column++)
+    for (column = position ; column < columns ; column++)
         {
         block = GRID.get( column, line );
 
         if ( block !== null )
             {
-            GRID.move( block.column, block.line, position, line, 2 );
+            GRID.move( block.column, block.line, position, line, MOVE_DURATION );
 
             position++;
             }
@@ -188,17 +199,206 @@ checkGameState();
 
 function moveRight()
 {
+var columns = GRID.columns;
+var lines = GRID.lines;
+
+var line, column;
+var block;
+
+    // combine
+for (line = 0 ; line < lines ; line++)
+    {
+    var firstBlock = null;
+
+    for (column = 0 ; column < columns ; column++)
+        {
+        block = GRID.get( column, line );
+
+        if ( block !== null )
+            {
+            if ( firstBlock === null )
+                {
+                firstBlock = block;
+                }
+
+            else
+                {
+                if ( firstBlock.value === block.value )
+                    {
+                    block.setValue( firstBlock.value * 2 );
+
+                    GRID.removeElement( firstBlock.column, firstBlock.line );
+                    firstBlock.remove( REMOVE_DURATION );
+                    break;  // only one combination per line
+                    }
+
+                else
+                    {
+                    firstBlock = block;
+                    }
+                }
+            }
+        }
+    }
+
+
+    // count and move
+    // loop in the opposite direction
+for (line = 0 ; line < lines ; line++)
+    {
+    var position = columns - 1;
+
+    for (column = position ; column >= 0 ; column--)
+        {
+        block = GRID.get( column, line );
+
+        if ( block !== null )
+            {
+            GRID.move( block.column, block.line, position, line, MOVE_DURATION );
+
+            position--;
+            }
+        }
+    }
+
+
 checkGameState();
 }
 
 
 function moveUp()
 {
+var columns = GRID.columns;
+var lines = GRID.lines;
+
+var line, column;
+var block;
+
+    // combine
+for (column = 0 ; column < columns ; column++)
+    {
+    var firstBlock = null;
+
+    for (line = lines - 1 ; line >= 0 ; line--)
+        {
+        block = GRID.get( column, line );
+
+        if ( block !== null )
+            {
+            if ( firstBlock === null )
+                {
+                firstBlock = block;
+                }
+
+            else
+                {
+                if ( firstBlock.value === block.value )
+                    {
+                    block.setValue( firstBlock.value * 2 );
+
+                    GRID.removeElement( firstBlock.column, firstBlock.line );
+                    firstBlock.remove( REMOVE_DURATION );
+                    break;  // only one combination per line
+                    }
+
+                else
+                    {
+                    firstBlock = block;
+                    }
+                }
+            }
+        }
+    }
+
+
+    // count and move
+    // loop in the opposite direction
+for (column = 0 ; column < columns ; column++)
+    {
+    var position = 0;
+
+    for (line = position ; line < lines ; line++)
+        {
+        block = GRID.get( column, line );
+
+        if ( block !== null )
+            {
+            GRID.move( block.column, block.line, column, position, MOVE_DURATION );
+
+            position++;
+            }
+        }
+    }
+
+
 checkGameState();
 }
 
 function moveDown()
 {
+var columns = GRID.columns;
+var lines = GRID.lines;
+
+var line, column;
+var block;
+
+    // combine
+for (column = 0 ; column < columns ; column++)
+    {
+    var firstBlock = null;
+
+    for (line = 0 ; line < lines ; line++)
+        {
+        block = GRID.get( column, line );
+
+        if ( block !== null )
+            {
+            if ( firstBlock === null )
+                {
+                firstBlock = block;
+                }
+
+            else
+                {
+                if ( firstBlock.value === block.value )
+                    {
+                    block.setValue( firstBlock.value * 2 );
+
+                    GRID.removeElement( firstBlock.column, firstBlock.line );
+                    firstBlock.remove( REMOVE_DURATION );
+                    break;  // only one combination per line
+                    }
+
+                else
+                    {
+                    firstBlock = block;
+                    }
+                }
+            }
+        }
+    }
+
+
+    // count and move
+    // loop in the opposite direction
+for (column = 0 ; column < columns ; column++)
+    {
+    var position = lines - 1;
+
+    for (line = position ; line >= 0 ; line--)
+        {
+        block = GRID.get( column, line );
+
+        if ( block !== null )
+            {
+            GRID.move( block.column, block.line, column, position, MOVE_DURATION );
+
+            position--;
+            }
+        }
+    }
+
+
 checkGameState();
 }
 
