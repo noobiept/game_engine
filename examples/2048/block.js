@@ -11,7 +11,8 @@ var background = new Game.Rectangle({
     });
 var value = new Game.Text({
         fontSize: Block.fontSize,
-        textAlign: 'center'
+        textAlign: 'center',
+        textBaseline: 'middle'
     });
 
 this.addChild( background, value );

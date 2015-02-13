@@ -9,6 +9,7 @@ export interface TextArgs extends ElementArgs
         fontSize?: number;
         timeout?: number;
         textAlign?: string;
+        textBaseline: string;
     }
 
 export class Text extends Element
@@ -18,6 +19,7 @@ export class Text extends Element
     _font_size: number;
     _font: string;   // font_family + font_size
     textAlign: string;
+    textBaseline: string;
     fill: boolean;  // fill or stroke text
 
 
@@ -45,6 +47,11 @@ export class Text extends Element
             args.textAlign = 'start';
             }
 
+        if ( typeof args.textBaseline === 'undefined' )
+            {
+            args.textBaseline = 'top';
+            }
+
 
         super( args );
 
@@ -54,6 +61,7 @@ export class Text extends Element
 
         this.height = args.fontSize;     // not quite the same thing, but there's no way to determine the height right now so..
         this.textAlign = args.textAlign;
+        this.textBaseline = args.textBaseline;
         this.fill = true;
 
         if ( Utilities.isNumber( args.timeout ) && args.timeout > 0 )
@@ -74,7 +82,7 @@ export class Text extends Element
         ctx.globalAlpha *= this.opacity;
         ctx.font = this._font;
         ctx.textAlign = this.textAlign;
-        ctx.textBaseline = 'top';
+        ctx.textBaseline = this.textBaseline;
 
         if ( this.fill )
             {
