@@ -73,6 +73,7 @@ export class Container extends Element
     draw( ctx )
         {
         ctx.save();
+        ctx.globalAlpha *= this.opacity;
         ctx.translate( this.x, this.y );
         ctx.rotate( this.rotation );
 

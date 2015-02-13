@@ -36,6 +36,7 @@ export class Bitmap extends Element
         {
         ctx.save();
         ctx.beginPath();
+        ctx.globalAlpha *= this.opacity;
         ctx.translate( this.x, this.y );
         ctx.rotate( this.rotation );
         ctx.drawImage( this.image, this._source_x, this._source_y, this.width, this.height,  -this._half_width, -this._half_height, this.width, this.height );

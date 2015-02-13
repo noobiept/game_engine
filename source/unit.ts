@@ -109,7 +109,32 @@ export class Unit extends Container
         }
 
 
-    remove()
+    /**
+        @param animationDuration - If this is passed, then the unit's opacity will be animated until it reaches 0, and only then will the unit be removed
+     */
+    remove( animationDuration?: number )
+        {
+        if ( typeof animationDuration === 'undefined' )
+            {
+            this._removeNow();
+            }
+
+        else
+            {
+            var tween = new Tween( this );
+            var _this = this;
+
+            tween.to({
+                    opacity: 0
+                }, animationDuration ).call( function()
+                {
+                _this._removeNow();
+                });
+            tween.start();
+            }
+        }
+
+    _removeNow()
         {
         super.remove();
 
@@ -120,7 +145,6 @@ export class Unit extends Container
 
         all.splice( index, 1 );
         }
-
 
     /**
         Clears any previous path, and forces the unit to move to the specified position.

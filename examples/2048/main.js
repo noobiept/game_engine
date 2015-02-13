@@ -147,9 +147,9 @@ for (line = 0 ; line < lines ; line++)
                     {
                     firstBlock.setValue( firstBlock.value * 2 );
 
-                    GRID.move( firstBlock.column, firstBlock.line, block.column, block.line, 0.1 );
+                    GRID.move( firstBlock.column, firstBlock.line, block.column, block.line, 2 );
 
-                    block.remove();
+                    block.remove( 1 );
                     break;  // only one combination per line
                     }
 
@@ -175,7 +175,7 @@ for (line = 0 ; line < lines ; line++)
 
         if ( block !== null )
             {
-            GRID.move( block.column, block.line, position, line, 0.1 );
+            GRID.move( block.column, block.line, position, line, 2 );
 
             position++;
             }

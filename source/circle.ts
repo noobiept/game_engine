@@ -38,6 +38,7 @@ export class Circle extends Element
         {
         ctx.save();
         ctx.beginPath();
+        ctx.globalAlpha *= this.opacity;
         ctx.fillStyle = this.color;
         ctx.translate( this.x, this.y );
         ctx.rotate( this.rotation );

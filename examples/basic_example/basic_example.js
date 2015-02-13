@@ -40,7 +40,7 @@ var circle4 = new Game.Circle({
 
 container.x = 150 - rectSize / 2;
 container.y = 150 - rectSize / 2;
-container.addChild( circle1, circle2, circle3, circle4, rect );
+container.addChild( rect, circle1, circle2, circle3, circle4 );
 container.rotate( 45, true );
 container.addEventListener( 'click', function()
     {
@@ -53,6 +53,11 @@ rect.addEventListener( 'click', function()
 
 Game.addElement( container );
 
+
+var tween = new Game.Tween( container );
+
+tween.to({ opacity: 0.2 }, 2 ).to({ opacity: 1 }, 2 );
+tween.start();
 
 var unitRect = new Game.Rectangle({
         width: 10,

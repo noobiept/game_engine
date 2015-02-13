@@ -71,6 +71,7 @@ export class Text extends Element
     drawElement( ctx )
         {
         ctx.save();
+        ctx.globalAlpha *= this.opacity;
         ctx.font = this._font;
         ctx.textAlign = this.textAlign;
         ctx.textBaseline = 'top';

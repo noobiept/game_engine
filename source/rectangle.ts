@@ -38,6 +38,7 @@ export class Rectangle extends Element
         {
         ctx.save();
         ctx.beginPath();
+        ctx.globalAlpha *= this.opacity;
         ctx.translate( this.x, this.y );
         ctx.rotate( this.rotation );
 

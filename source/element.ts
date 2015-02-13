@@ -14,6 +14,7 @@ export class Element extends EventDispatcher
     y: number;
     width: number;
     height: number;
+    opacity: number;    // value between 0 and 1
 
         // optional properties, only for when using a Grid
     column: number;
@@ -50,6 +51,7 @@ export class Element extends EventDispatcher
         this.y = y;
         this.width = 0;
         this.height = 0;
+        this.opacity = 1;
         this.column = -1;
         this.line = -1;
         this._container = null;
