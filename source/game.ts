@@ -282,7 +282,9 @@ function draw()
     {
     CTX.clearRect( 0, 0, WIDTH, HEIGHT );
 
-    for (var a = 0 ; a < ELEMENTS.length ; a++)
+    var length = ELEMENTS.length;
+
+    for (var a = 0 ; a < length ; a++)
         {
         ELEMENTS[ a ].draw( CTX );
         }

@@ -41,12 +41,12 @@ export class Grid extends EventDispatcher
 
         if ( typeof args.refX === 'undefined' )
             {
-            args.refX = 0;
+            args.refX = args.squareSize / 2;
             }
 
         if ( typeof args.refY === 'undefined' )
             {
-            args.refY = 0;
+            args.refY = args.squareSize / 2;
             }
 
         if ( typeof args.background !== 'undefined' )
@@ -180,6 +180,11 @@ export class Grid extends EventDispatcher
 
     get( column, line )
         {
+        if ( !this.isInGrid( column, line ) )
+            {
+            return null;
+            }
+
         return this._grid[ column ][ line ];
         }
 
@@ -248,19 +253,39 @@ export class Grid extends EventDispatcher
         }
 
 
-    getRandomEmptyPosition( tries: number )
+    getRandomEmptyPosition()
         {
-        for ( ; tries > 0 ; tries--)
-            {
-            var position = this.getRandomPosition();
+        var empty = this.getEmptyPositions();
 
-            if ( this.isEmpty( position.column, position.line ) )
-                {
-                return position;
-                }
+        if ( empty.length > 0 )
+            {
+            var index = Utilities.getRandomInt( 0, empty.length - 1 );
+
+            return empty[ index ];
             }
 
         return null;
+        }
+
+    getEmptyPositions()
+        {
+        var emptyPositions = [];
+
+        for (var column = 0 ; column < this.columns ; column++)
+            {
+            for (var line = 0 ; line < this.lines ; line++)
+                {
+                if ( this._grid[ column ][ line ] === null )
+                    {
+                    emptyPositions.push({
+                            column: column,
+                            line: line
+                        });
+                    }
+                }
+            }
+
+        return emptyPositions;
         }
 
     getDimensions()
