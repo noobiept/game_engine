@@ -15,6 +15,10 @@ export class Element extends EventDispatcher
     width: number;
     height: number;
 
+        // optional properties, only for when using a Grid
+    column: number;
+    line: number;
+
     _rotation: number;   // in radians (clockwise)
     _container: Container;
     _has_logic: boolean; // to know if we need to run the .logic() method or not
@@ -46,6 +50,8 @@ export class Element extends EventDispatcher
         this.y = y;
         this.width = 0;
         this.height = 0;
+        this.column = -1;
+        this.line = -1;
         this._container = null;
         this._rotation = 0;
         this._has_logic = false;

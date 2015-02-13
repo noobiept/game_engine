@@ -119,6 +119,70 @@ switch( key )
 
 function moveLeft()
 {
+var columns = GRID.columns;
+var lines = GRID.lines;
+
+var line, column;
+var block;
+
+    // combine
+for (line = 0 ; line < lines ; line++)
+    {
+    var firstBlock = null;
+
+    for (column = columns - 1 ; column >= 0 ; column--)
+        {
+        block = GRID.get( column, line );
+
+        if ( block !== null )
+            {
+            if ( firstBlock === null )
+                {
+                firstBlock = block;
+                }
+
+            else
+                {
+                if ( firstBlock.value == block.value )
+                    {
+                    firstBlock.setValue( firstBlock.value * 2 );
+
+                    GRID.move( firstBlock.column, firstBlock.line, block.column, block.line, 0.1 );
+
+                    block.remove();
+                    break;  // only one combination per line
+                    }
+
+                else
+                    {
+                    firstBlock = block;
+                    }
+                }
+            }
+        }
+    }
+
+
+    // count and move
+    // loop in the opposite direction
+for (line = 0 ; line < lines ; line++)
+    {
+    var position = 0;
+
+    for (column = 0 ; column < columns ; column++)
+        {
+        block = GRID.get( column, line );
+
+        if ( block !== null )
+            {
+            GRID.move( block.column, block.line, position, line, 0.1 );
+
+            position++;
+            }
+        }
+    }
+
+
 checkGameState();
 }
 

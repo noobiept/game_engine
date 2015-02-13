@@ -123,6 +123,8 @@ export class Grid extends EventDispatcher
 
         element.x = canvasPosition.x;
         element.y = canvasPosition.y;
+        element.column = column;
+        element.line = line;
 
         if ( previous !== null )
             {
@@ -139,27 +141,51 @@ export class Grid extends EventDispatcher
     /*
         move an element to a different position in the grid
      */
-    move( sourceColumn, sourceLine, destColumn, destLine )
+    move( sourceColumn, sourceLine, destColumn, destLine, duration? )
         {
         var element = this._grid[ sourceColumn ][ sourceLine ];
+        var previous = this._grid[ destColumn ][ destLine ];
 
-        if ( element === null )
+        if ( element === null ||
+             element === previous )
             {
             return null;
             }
 
-        var previous = this._grid[ destColumn ][ destLine ];
 
         this._grid[ destColumn ][ destLine ] = element;
         this._grid[ sourceColumn ][ sourceLine ] = null;
 
         var canvasPosition = this.toCanvas( destColumn, destLine );
 
-        element.x = canvasPosition.x;
-        element.y = canvasPosition.y;
+        element.column = destColumn;
+        element.line = destLine;
+
+            // move immediately
+        if ( typeof duration === 'undefined' || duration <= 0 )
+            {
+            element.x = canvasPosition.x;
+            element.y = canvasPosition.y;
+            }
+
+            // use a tween for the animation
+        else
+            {
+            var tween = new Game.Tween( element );
+
+            tween.to({
+                    x: canvasPosition.x,
+                    y: canvasPosition.y
+                }, duration );
+            tween.start();
+            }
+
 
         if ( previous !== null )
             {
+            previous.column = -1;
+            previous.line = -1;
+
             this.dispatchEvent( 'collision', {
                     element: element,
                     collidedWith: previous
@@ -171,9 +197,20 @@ export class Grid extends EventDispatcher
 
     removeElement( column, line )
         {
+        if ( !this.isInGrid( column, line ) )
+            {
+            return null;
+            }
+
         var previous = this._grid[ column ][ line ];
 
         this._grid[ column ][ line ] = null;
+
+        if ( previous !== null )
+            {
+            previous.column = -1;
+            previous.line = -1;
+            }
 
         return previous;
         }
