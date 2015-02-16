@@ -1,7 +1,35 @@
 window.onload = function()
 {
-Game.init( document.body, 400, 400 );
+var canvasContainer = document.querySelector( '#CanvasContainer' );
 
+Game.init( canvasContainer, 400, 400 );
+
+    // set up the game menu
+var menu = document.querySelector( '#GameMenu' );
+
+var start = menu.querySelector( '#Start' );
+
+var firstPhase = true;
+
+start.onclick = function()
+    {
+    if ( firstPhase )
+        {
+        start.innerHTML = 'Restart';
+        Main.secondPhase();
+        }
+
+    else
+        {
+        start.innerHTML = 'Start';
+        Main.restart();
+        }
+
+    firstPhase = !firstPhase;
+    };
+
+
+    // start the game on the first phase
 Main.firstPhase();
 };
 
@@ -144,6 +172,19 @@ for (var a = 0 ; a < changes.length ; a++)
 
 Main.clear = function()
 {
+for (var column = 0 ; column < GRID.columns ; column++)
+    {
+    for (var line = 0 ; line < GRID.lines ; line++)
+        {
+        var element = GRID.getElement( column, line );
+
+        if ( element )
+            {
+            element.remove();
+            }
+        }
+    }
+
 GRID.remove();
 GRID = null;
 
@@ -158,7 +199,7 @@ Game.removeAllCallbacks();
 Main.restart = function()
 {
 Main.clear();
-Main.start();
+Main.firstPhase();
 };
 
 
