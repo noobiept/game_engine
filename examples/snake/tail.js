@@ -18,7 +18,7 @@ this.line = args.line;
 
 Game.addElement( this );
 
-SnakeGame.getGrid().add( this, this.column, this.line );
+SnakeGame.getGrid().addElement( this, this.column, this.line );
 }
 
 Utilities.inheritPrototype( Tail, Game.Rectangle );
@@ -67,7 +67,7 @@ var grid = SnakeGame.getGrid();
 
 if ( grid.isInGrid( this.column, this.line ) )
     {
-    grid.move( prevColumn, prevLine, this.column, this.line );
+    grid.movePosition( prevColumn, prevLine, this.column, this.line );
     }
 
 else

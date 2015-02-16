@@ -52,7 +52,7 @@ for (var column = 0 ; column < columns ; column++)
     {
     for (var line = 0 ; line < lines ; line++)
         {
-        var element = GRID.get( column, line );
+        var element = GRID.getElement( column, line );
 
         if ( element )
             {
@@ -98,7 +98,7 @@ block.opacity = 0;
 tween.to( { opacity: 1 }, ADD_DURATION );
 tween.start();
 
-GRID.add( block, position.column, position.line );
+GRID.addElement( block, position.column, position.line );
 };
 
 
@@ -150,7 +150,7 @@ for (line = 0 ; line < lines ; line++)
 
     for (column = columns - 1 ; column >= 0 ; column--)
         {
-        block = GRID.get( column, line );
+        block = GRID.getElement( column, line );
 
         if ( block !== null )
             {
@@ -165,7 +165,7 @@ for (line = 0 ; line < lines ; line++)
                     {
                     block.setValue( firstBlock.value * 2 );
 
-                    GRID.removeElement( firstBlock.column, firstBlock.line );
+                    GRID.removePosition( firstBlock.column, firstBlock.line );
                     firstBlock.remove( REMOVE_DURATION );
                     break;  // only one combination per line
                     }
@@ -188,11 +188,11 @@ for (line = 0 ; line < lines ; line++)
 
     for (column = position ; column < columns ; column++)
         {
-        block = GRID.get( column, line );
+        block = GRID.getElement( column, line );
 
         if ( block !== null )
             {
-            GRID.move( block.column, block.line, position, line, MOVE_DURATION );
+            GRID.movePosition( block.column, block.line, position, line, MOVE_DURATION );
 
             position++;
             }
@@ -218,7 +218,7 @@ for (line = 0 ; line < lines ; line++)
 
     for (column = 0 ; column < columns ; column++)
         {
-        block = GRID.get( column, line );
+        block = GRID.getElement( column, line );
 
         if ( block !== null )
             {
@@ -233,7 +233,7 @@ for (line = 0 ; line < lines ; line++)
                     {
                     block.setValue( firstBlock.value * 2 );
 
-                    GRID.removeElement( firstBlock.column, firstBlock.line );
+                    GRID.removePosition( firstBlock.column, firstBlock.line );
                     firstBlock.remove( REMOVE_DURATION );
                     break;  // only one combination per line
                     }
@@ -256,11 +256,11 @@ for (line = 0 ; line < lines ; line++)
 
     for (column = position ; column >= 0 ; column--)
         {
-        block = GRID.get( column, line );
+        block = GRID.getElement( column, line );
 
         if ( block !== null )
             {
-            GRID.move( block.column, block.line, position, line, MOVE_DURATION );
+            GRID.movePosition( block.column, block.line, position, line, MOVE_DURATION );
 
             position--;
             }
@@ -287,7 +287,7 @@ for (column = 0 ; column < columns ; column++)
 
     for (line = lines - 1 ; line >= 0 ; line--)
         {
-        block = GRID.get( column, line );
+        block = GRID.getElement( column, line );
 
         if ( block !== null )
             {
@@ -302,7 +302,7 @@ for (column = 0 ; column < columns ; column++)
                     {
                     block.setValue( firstBlock.value * 2 );
 
-                    GRID.removeElement( firstBlock.column, firstBlock.line );
+                    GRID.removePosition( firstBlock.column, firstBlock.line );
                     firstBlock.remove( REMOVE_DURATION );
                     break;  // only one combination per line
                     }
@@ -325,11 +325,11 @@ for (column = 0 ; column < columns ; column++)
 
     for (line = position ; line < lines ; line++)
         {
-        block = GRID.get( column, line );
+        block = GRID.getElement( column, line );
 
         if ( block !== null )
             {
-            GRID.move( block.column, block.line, column, position, MOVE_DURATION );
+            GRID.movePosition( block.column, block.line, column, position, MOVE_DURATION );
 
             position++;
             }
@@ -355,7 +355,7 @@ for (column = 0 ; column < columns ; column++)
 
     for (line = 0 ; line < lines ; line++)
         {
-        block = GRID.get( column, line );
+        block = GRID.getElement( column, line );
 
         if ( block !== null )
             {
@@ -370,7 +370,7 @@ for (column = 0 ; column < columns ; column++)
                     {
                     block.setValue( firstBlock.value * 2 );
 
-                    GRID.removeElement( firstBlock.column, firstBlock.line );
+                    GRID.removePosition( firstBlock.column, firstBlock.line );
                     firstBlock.remove( REMOVE_DURATION );
                     break;  // only one combination per line
                     }
@@ -393,11 +393,11 @@ for (column = 0 ; column < columns ; column++)
 
     for (line = position ; line >= 0 ; line--)
         {
-        block = GRID.get( column, line );
+        block = GRID.getElement( column, line );
 
         if ( block !== null )
             {
-            GRID.move( block.column, block.line, column, position, MOVE_DURATION );
+            GRID.movePosition( block.column, block.line, column, position, MOVE_DURATION );
 
             position--;
             }
@@ -476,7 +476,7 @@ for (column = 0 ; column < columns ; column++)
     {
     for (line = 0 ; line < lines ; line++)
         {
-        block = GRID.get( column, line );
+        block = GRID.getElement( column, line );
 
         if ( block && block.value >= 2048 )
             {
@@ -498,13 +498,13 @@ for (column = 0 ; column < columns ; column++)
     {
     for (line = 0 ; line < lines ; line++)
         {
-        block = GRID.get( column, line );
+        block = GRID.getElement( column, line );
 
             // check all positions around this one
-        var left = GRID.get( column - 1, line );
-        var right = GRID.get( column + 1, line );
-        var up = GRID.get( column, line - 1 );
-        var down = GRID.get( column, line + 1 );
+        var left = GRID.getElement( column - 1, line );
+        var right = GRID.getElement( column + 1, line );
+        var up = GRID.getElement( column, line - 1 );
+        var down = GRID.getElement( column, line + 1 );
 
         if ( (left && left.value === block.value) ||
              (right && right.value === block.value) ||

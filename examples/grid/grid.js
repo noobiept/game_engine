@@ -26,7 +26,7 @@ canvas.addEventListener( 'click', function( event )
             height: 10,
             color: 'blue'
         });
-    var previous = grid.add( rectangle, gridPosition.column, gridPosition.line );
+    var previous = grid.addElement( rectangle, gridPosition.column, gridPosition.line );
 
     if ( previous !== null )
         {
