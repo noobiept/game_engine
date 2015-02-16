@@ -93,7 +93,8 @@ export class Grid extends EventDispatcher
             };
         }
 
-    add( element, column, line )
+
+    addElement( element, column, line )
         {
         if ( column < 0 )
             {
@@ -138,10 +139,15 @@ export class Grid extends EventDispatcher
         }
 
 
+    moveElement( element, destColumn, destLine, duration? )
+        {
+        return this.movePosition( element.column, element.line, destColumn, destLine, duration );
+        }
+
     /*
         move an element to a different position in the grid
      */
-    move( sourceColumn, sourceLine, destColumn, destLine, duration? )
+    movePosition( sourceColumn, sourceLine, destColumn, destLine, duration? )
         {
         var element = this._grid[ sourceColumn ][ sourceLine ];
         var previous = this._grid[ destColumn ][ destLine ];
@@ -195,7 +201,14 @@ export class Grid extends EventDispatcher
         return previous;
         }
 
-    removeElement( column, line )
+
+    removeElement( element )
+        {
+        return this.removePosition( element.column, element.line );
+        }
+
+
+    removePosition( column, line )
         {
         if ( !this.isInGrid( column, line ) )
             {
@@ -216,7 +229,7 @@ export class Grid extends EventDispatcher
         }
 
 
-    get( column, line )
+    getPosition( column, line )
         {
         if ( !this.isInGrid( column, line ) )
             {
