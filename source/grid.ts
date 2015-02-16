@@ -229,7 +229,7 @@ export class Grid extends EventDispatcher
         }
 
 
-    getPosition( column, line )
+    getElement( column, line )
         {
         if ( !this.isInGrid( column, line ) )
             {
@@ -356,12 +356,52 @@ export class Grid extends EventDispatcher
             }
         }
 
+    /*
+        Remove grid related elements etc
+
+        Called when we don't need the grid anymore
+     */
     remove()
         {
         if ( this._background !== null )
             {
             this._background.remove();
             }
+        }
+
+    /*
+        Get the neighbor elements around the position given
+     */
+    getNeighbors( refColumn, refLine, range? )
+        {
+        if ( typeof range === 'undefined' )
+            {
+            range = 1;
+            }
+
+        var neighbors = [];
+        var start = this.normalizePosition( refColumn - range, refLine - range );
+        var end = this.normalizePosition( refColumn + range, refLine + range );
+        var element;
+
+        for (var column = start.column ; column <= end.column ; column++)
+            {
+            for (var line = start.line ; line <= end.line ; line++)
+                {
+                    // don't include the reference position
+                if ( !(column === refColumn && line === refLine) )
+                    {
+                    element = this.getElement( column, line );
+
+                    if ( element !== null )
+                        {
+                        neighbors.push( element );
+                        }
+                    }
+                }
+            }
+
+        return neighbors;
         }
     }
 }
