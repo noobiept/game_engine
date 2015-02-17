@@ -1,3 +1,5 @@
+/// <reference path="component.ts" />
+/// <reference path="game_menu.ts" />
 /// <reference path="tween.ts" />
 /// <reference path="grid.ts" />
 /// <reference path="bullet.ts" />
