@@ -4,6 +4,7 @@ export interface ComponentArgs
     {
         cssId?: string;
         cssClass?: any;     // string or string[]
+        preText: string;
     }
 
 export class Component
@@ -34,6 +35,16 @@ export class Component
                     }
                 }
             }
+
+        if ( typeof args.preText !== 'undefined' )
+            {
+            var preText = document.createElement( 'span' );
+
+            preText.innerHTML = args.preText;
+
+            container.appendChild( preText );
+            }
+
 
         this.container = container;
         }

@@ -68,18 +68,27 @@ export module GameMenu
     export class Value extends Component
         {
         value: any;
+        element: HTMLElement;
 
         constructor( args: ValueArgs )
             {
             super( args );
+
+            this.element = document.createElement( 'span' );
+            this.container.appendChild( this.element );
 
             this.setValue( args.value );
             }
 
         setValue( value )
             {
+            if ( value === this.value )
+                {
+                return;
+                }
+
             this.value = value;
-            this.container.innerHTML = value;
+            this.element.innerHTML = value;
             }
 
         getValue()
@@ -96,27 +105,149 @@ export module GameMenu
 
     export interface ButtonArgs extends ComponentArgs
         {
+            callback: (value: any) => any;
             text: string;
-            callback: () => any;
         }
 
     export class Button extends Component
         {
-        callback: () => any;
+        callback: (value: any) => any;
+        isActive: boolean;
+        element: HTMLElement;
 
         constructor( args: ButtonArgs )
             {
             super( args );
 
-            this.container.innerHTML = args.text;
+            this.element = document.createElement( 'span' );
+            this.element.className = 'button';
+            this.element.innerHTML = args.text;
             this.callback = args.callback;
-            this.container.addEventListener( 'click', args.callback );
+
+            this.setActive( true );
+
+            this.container.appendChild( this.element );
+            }
+
+        setActive( yesNo: boolean )
+            {
+                // already in that state
+            if ( yesNo === this.isActive )
+                {
+                return;
+                }
+
+            if ( yesNo === true )
+                {
+                this.element.addEventListener( 'click', this.callback );
+                this.element.classList.remove( 'inactive' );
+                }
+
+            else
+                {
+                this.element.removeEventListener( 'click', this.callback );
+                this.element.classList.add( 'inactive' );
+                }
+
+            this.isActive = yesNo;
             }
 
         clear()
             {
-            this.container.removeEventListener( 'click', this.callback );
             this.callback = null;
+            this.element.removeEventListener( 'click', this.callback );
+            }
+        }
+
+
+    export interface BooleanArgs extends ComponentArgs
+        {
+            value: boolean;
+            callback: (value: any) => any;
+        }
+
+    export class Boolean extends Component
+        {
+        value: boolean;
+        element: HTMLElement;
+        click_ref;
+        callback: (value: any) => any;
+        isActive: boolean;
+
+        constructor( args: BooleanArgs )
+            {
+            super( args );
+
+            this.element = document.createElement( 'span' );
+            this.container.appendChild( this.element );
+            this.container.className = 'button';
+            this.callback = args.callback;
+
+            this.setValue( args.value );
+            this.setActive( true );
+            }
+
+
+        setActive( yesNo: boolean )
+            {
+                // already in that state
+            if ( yesNo === this.isActive )
+                {
+                return;
+                }
+
+            if ( yesNo === true )
+                {
+                var _this = this;
+
+                this.click_ref = function()
+                    {
+                    _this.setValue( !_this.value );
+                    _this.callback( _this.value );
+                    };
+                this.container.addEventListener( 'click', this.click_ref );
+                this.container.classList.remove( 'inactive' );
+                }
+
+            else
+                {
+                this.container.removeEventListener( 'click', this.click_ref );
+                this.container.classList.add( 'inactive' );
+                }
+
+            this.isActive = yesNo;
+            }
+
+        setValue( value )
+            {
+            if ( value === this.value )
+                {
+                return;
+                }
+
+            if ( value === true )
+                {
+                this.element.innerHTML = 'On';
+                }
+
+            else
+                {
+                this.element.innerHTML = 'Off';
+                }
+
+            this.value = value;
+            }
+
+        getValue()
+            {
+            return this.value;
+            }
+
+        clear()
+            {
+            this.element.removeEventListener( 'click', this.click_ref );
+            this.callback = null;
+            this.click_ref = null;
             }
         }
     }

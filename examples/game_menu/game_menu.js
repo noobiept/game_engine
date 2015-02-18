@@ -8,17 +8,29 @@ var menu = new Game.GameMenu({
         cssClass: [ 'Test1', 'Test2' ]
     });
 
-var value = new Game.GameMenu.Value({ value: 0 });
+var value = new Game.GameMenu.Value({ preText: 'Value: ', value: 0 });
 var button = new Game.GameMenu.Button({
         text: 'Click me!',
         callback: function()
-        {
-        console.log( 'clicked!' );
-        }
+            {
+            console.log( 'clicked!' );
+            button.setActive( false );
+            }
     });
+var boolean = new Game.GameMenu.Boolean({
+        value: true,
+        preText: 'State: ',
+        callback: function( value )
+            {
+            console.log( value );
+            }
+    });
+
+
 
 menu.add( value );
 menu.add( button );
+menu.add( boolean );
 
 var count = 0;
 
