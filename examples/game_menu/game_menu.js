@@ -25,12 +25,25 @@ var boolean = new Game.GameMenu.Boolean({
             console.log( value );
             }
     });
+var twoStateButton = new Game.GameMenu.TwoStateButton({
+        text: 'Start',
+        text2: 'Stop',
+        callback: function( button )
+            {
+            console.log( 'Start!!' );
+            },
+        callback2: function( button )
+            {
+            console.log( 'Stop!' );
+            }
+    });
 
 
 
 menu.add( value );
 menu.add( button );
 menu.add( boolean );
+menu.add( twoStateButton );
 
 var count = 0;
 

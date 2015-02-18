@@ -105,24 +105,35 @@ export module GameMenu
 
     export interface ButtonArgs extends ComponentArgs
         {
-            callback: (value: any) => any;
+            callback: (button: Button) => any;
             text: string;
         }
 
     export class Button extends Component
         {
-        callback: (value: any) => any;
         isActive: boolean;
         element: HTMLElement;
+        text: string;
+        callback: (button: Button) => any;
+        click_ref: () => any;
 
         constructor( args: ButtonArgs )
             {
             super( args );
 
+            var _this = this;
+
             this.element = document.createElement( 'span' );
             this.element.className = 'button';
             this.element.innerHTML = args.text;
-            this.callback = args.callback;
+
+            if ( typeof this.click_ref === 'undefined' )
+                {
+                this.click_ref = function()
+                    {
+                    args.callback( _this );
+                    };
+                }
 
             this.setActive( true );
 
@@ -139,13 +150,13 @@ export module GameMenu
 
             if ( yesNo === true )
                 {
-                this.element.addEventListener( 'click', this.callback );
+                this.element.addEventListener( 'click', this.click_ref );
                 this.element.classList.remove( 'inactive' );
                 }
 
             else
                 {
-                this.element.removeEventListener( 'click', this.callback );
+                this.element.removeEventListener( 'click', this.click_ref );
                 this.element.classList.add( 'inactive' );
                 }
 
@@ -154,8 +165,9 @@ export module GameMenu
 
         clear()
             {
+            this.element.removeEventListener( 'click', this.click_ref );
             this.callback = null;
-            this.element.removeEventListener( 'click', this.callback );
+            this.click_ref = null;
             }
         }
 
@@ -248,6 +260,50 @@ export module GameMenu
             this.element.removeEventListener( 'click', this.click_ref );
             this.callback = null;
             this.click_ref = null;
+            }
+        }
+
+
+    export interface TwoStateButtonArgs extends ButtonArgs
+        {
+            callback2: (button: Button) => any;
+            text2: string;
+        }
+
+    export class TwoStateButton extends Button
+        {
+        callback2: (button: Button) => any;
+        text2: string;
+        isText1: boolean;
+
+        constructor( args: TwoStateButtonArgs )
+            {
+            var _this = this;
+
+            this.callback = args.callback;
+            this.callback2 = args.callback2;
+            this.text = args.text;
+            this.text2 = args.text2;
+            this.isText1 = true;
+
+            this.click_ref = function()
+                {
+                if ( _this.isText1 )
+                    {
+                    _this.element.innerHTML = _this.text2;
+                    _this.callback( _this );
+                    }
+
+                else
+                    {
+                    _this.element.innerHTML = _this.text;
+                    _this.callback2( _this );
+                    }
+
+                _this.isText1 = !_this.isText1;
+                };
+
+            super( args );
             }
         }
     }
