@@ -1,33 +1,25 @@
 window.onload = function()
 {
-var canvasContainer = document.querySelector( '#CanvasContainer' );
-
-Game.init( canvasContainer, 400, 400 );
+Game.init( document.body, 400, 400 );
 
     // set up the game menu
-var menu = document.querySelector( '#GameMenu' );
+var menu = new Game.GameMenu({ parent: document.body, cssId: 'GameMenu' });
 
-var start = menu.querySelector( '#Start' );
-
-var firstPhase = true;
-
-start.onclick = function()
-    {
-    if ( firstPhase )
-        {
-        start.innerHTML = 'Restart';
-        Main.secondPhase();
-        }
-
-    else
-        {
-        start.innerHTML = 'Start';
-        Main.restart();
-        }
-
-    firstPhase = !firstPhase;
-    };
-
+var start = new Game.GameMenu.TwoState({
+        cssId: 'Start',
+        cssClass: 'button',
+        text: 'Start',
+        text2: 'Restart',
+        callback: function()
+            {
+            Main.secondPhase();
+            },
+        callback2: function()
+            {
+            Main.restart();
+            }
+    });
+menu.add( start );
 
     // start the game on the first phase
 Main.firstPhase();
