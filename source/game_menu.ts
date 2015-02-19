@@ -115,8 +115,6 @@ export module GameMenu
     export class Button extends Component
         {
         element: HTMLElement;
-        text: string;
-        callback: (button: Button) => any;
         click_ref: () => any;
 
         constructor( args: ButtonArgs )
@@ -155,7 +153,6 @@ export module GameMenu
         clear()
             {
             this.removeEvents();
-            this.callback = null;
             this.click_ref = null;
             }
         }
@@ -171,18 +168,16 @@ export module GameMenu
         {
         value: boolean;
         element: HTMLElement;
-        click_ref;
-        callback: (value: any) => any;
+        click_ref: () => any;
 
         constructor( args: BooleanArgs )
             {
             var _this = this;
 
-            this.callback = args.callback;
             this.click_ref = function()
                 {
                 _this.setValue( !_this.value );
-                _this.callback( _this.value );
+                args.callback( _this.value );
                 };
 
 
@@ -235,7 +230,6 @@ export module GameMenu
         clear()
             {
             this.removeEvents();
-            this.callback = null;
             this.click_ref = null;
             }
         }
@@ -249,32 +243,25 @@ export module GameMenu
 
     export class TwoState extends Button
         {
-        callback2: (button: Button) => any;
-        text2: string;
         isText1: boolean;
 
         constructor( args: TwoStateArgs )
             {
             var _this = this;
 
-            this.callback = args.callback;
-            this.callback2 = args.callback2;
-            this.text = args.text;
-            this.text2 = args.text2;
             this.isText1 = true;
-
             this.click_ref = function()
                 {
                 if ( _this.isText1 )
                     {
-                    _this.element.innerHTML = _this.text2;
-                    _this.callback( _this );
+                    _this.element.innerHTML = args.text2;
+                    args.callback( _this );
                     }
 
                 else
                     {
-                    _this.element.innerHTML = _this.text;
-                    _this.callback2( _this );
+                    _this.element.innerHTML = args.text;
+                    args.callback2( _this );
                     }
 
                 _this.isText1 = !_this.isText1;
