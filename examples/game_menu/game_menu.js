@@ -44,6 +44,17 @@ var multipleOptions = new Game.GameMenu.MultipleOptions({
             console.log( position, ':', htmlElement.innerHTML );
             }
     });
+var range = new Game.GameMenu.Range({
+        min: 2,
+        max: 8,
+        value: 4,
+        step: 2,
+        onChange: function( button )
+            {
+            console.log( button.getValue() );
+            },
+        preText: 'Range'
+    });
 
 
 menu.add( value );
@@ -51,6 +62,7 @@ menu.add( button );
 menu.add( boolean );
 menu.add( twoStateButton );
 menu.add( multipleOptions );
+menu.add( range );
 
 var count = 0;
 

@@ -375,5 +375,106 @@ export module GameMenu
             this.elements.length = 0;
             }
         }
+
+
+    export interface RangeArgs extends ComponentArgs
+        {
+            min: number;
+            max: number;
+            value: number;
+            step?: number;
+            onChange?: (button: Range) => any;
+        }
+
+    export class Range extends Component
+        {
+        value: HTMLElement;
+        input: HTMLInputElement;
+        current_value: number;
+        change_ref: (event) => any;
+        input_ref: (event) => any;
+
+        constructor( args: RangeArgs )
+            {
+            var _this = this;
+
+
+            if ( typeof args.step === 'undefined' )
+                {
+                args.step = 1;
+                }
+
+
+            this.change_ref = function( event )
+                {
+                _this.setValue( parseInt( event.srcElement.value, 10 ) );
+
+                if ( args.onChange )
+                    {
+                    args.onChange( _this );
+                    }
+                };
+            this.input_ref = function( event )
+                {
+                _this.value.innerHTML = event.srcElement.value;
+                };
+
+
+            super( args );
+
+
+            this.input = document.createElement( 'input' );
+            this.input.type = 'range';
+            this.input.min = args.min.toString();
+            this.input.max = args.max.toString();
+            this.input.value = args.value.toString();
+            this.input.step = args.step.toString();
+
+            this.value = document.createElement( 'span' );
+
+            this.container.classList.add( 'GameMenu-Range' );
+            this.container.appendChild( this.input );
+            this.container.appendChild( this.value );
+
+            this.setValue( args.value );
+            this.addEvents();
+            }
+
+        setValue( value )
+            {
+            if ( value === this.current_value )
+                {
+                return;
+                }
+
+            this.current_value = value;
+            this.input.value = value;
+            this.value.innerHTML = value;
+            }
+
+        getValue()
+            {
+            return this.current_value;
+            }
+
+        addEvents()
+            {
+            this.input.addEventListener( 'input', this.input_ref );
+            this.input.addEventListener( 'change', this.change_ref );
+            }
+
+        removeEvents()
+            {
+            this.input.removeEventListener( 'input', this.input_ref );
+            this.input.removeEventListener( 'change', this.change_ref );
+            }
+
+        clear()
+            {
+            this.removeEvents();
+            this.change_ref = null;
+            this.input_ref = null;
+            }
+        }
     }
 }
