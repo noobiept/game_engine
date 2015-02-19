@@ -185,7 +185,7 @@ for (var column = 0 ; column < GRID.columns ; column++)
         }
     }
 
-GRID.remove();
+GRID.clear();
 GRID = null;
 
 var canvas = Game.getCanvas();

@@ -179,7 +179,7 @@ SnakeGame.clear = function()
 {
 SNAKE.remove();
 SNAKE = null;
-GRID.remove();
+GRID.clear();
 GRID = null;
 TAIL_SIZE.remove();
 TAIL_SIZE = null;

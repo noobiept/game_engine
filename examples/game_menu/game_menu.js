@@ -58,11 +58,8 @@ var range = new Game.GameMenu.Range({
 
 
 menu.add( value );
-menu.add( button );
-menu.add( boolean );
-menu.add( twoStateButton );
-menu.add( multipleOptions );
-menu.add( range );
+menu.add( button, boolean, twoStateButton );
+menu.add( [ multipleOptions, range ] );
 
 var count = 0;
 

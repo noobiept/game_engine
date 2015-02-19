@@ -357,11 +357,11 @@ export class Grid extends EventDispatcher
         }
 
     /*
-        Remove grid related elements etc
+        Clear grid related elements etc
 
         Called when we don't need the grid anymore
      */
-    remove()
+    clear()
         {
         if ( this._background !== null )
             {

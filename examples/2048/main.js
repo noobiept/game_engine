@@ -61,7 +61,7 @@ for (var column = 0 ; column < columns ; column++)
         }
     }
 
-GRID.remove();
+GRID.clear();
 GRID = null;
 };
 

@@ -22,25 +22,63 @@ export class GameMenu extends Component
         this.parent.appendChild( this.container );
         }
 
-    add( component: Component )
-        {
-        this.components.push( component );
-        this.container.appendChild( component.container );
-        }
+    /*
+        add( element );
+        add( element1, element2 );
+        add( [ element1, element2 ] );
 
-    remove( component )
+        element is of type 'Component'
+     */
+    add( args: any )
         {
-        var index = this.components.indexOf( component );
+        var elements = arguments;
 
-        if ( index >= 0 )
+        if ( args instanceof Array )
             {
-            this.components.splice( index, 1 );
-            component.clear();
-
-            return true;
+            elements = args;
             }
 
-        return false;
+        var length = elements.length;
+
+        for (var a = 0 ; a < length ; a++)
+            {
+            var component = elements[ a ];
+
+            this.components.push( component );
+            this.container.appendChild( component.container );
+            }
+        }
+
+    /*
+        remove( element );
+        remove( element1, element2 );
+        remove( [ element1, element2 ] );
+
+        element is of type 'Component'
+     */
+    remove( args: any )
+        {
+        var elements = arguments;
+
+        if ( args instanceof Array )
+            {
+            elements = args;
+            }
+
+        var length = elements.length;
+
+        for (var a = 0 ; a < length ; a++)
+            {
+            var component = elements[ a ];
+
+            var index = this.components.indexOf( component );
+
+            if ( index >= 0 )
+                {
+                this.components.splice( index, 1 );
+                component.clear();
+                }
+            }
         }
 
     /*
