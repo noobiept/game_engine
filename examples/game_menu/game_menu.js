@@ -25,7 +25,7 @@ var boolean = new Game.GameMenu.Boolean({
             console.log( value );
             }
     });
-var twoStateButton = new Game.GameMenu.TwoStateButton({
+var twoStateButton = new Game.GameMenu.TwoState({
         text: 'Start',
         text2: 'Stop',
         callback: function( button )

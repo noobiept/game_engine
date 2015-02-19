@@ -10,21 +10,26 @@ export interface ComponentArgs
 export class Component
     {
     container: HTMLElement;
+    isActive: boolean;
 
     constructor( args: ComponentArgs )
         {
         var container = document.createElement( 'div' );
 
+        container.className = 'GameMenu-Component';
+
+            // add an optional id
         if ( typeof args.cssId !== 'undefined' )
             {
             container.id = args.cssId;
             }
 
+            // add optional class/classes
         if ( typeof args.cssClass !== 'undefined' )
             {
             if ( typeof args.cssClass === 'string' )
                 {
-                container.className = args.cssClass;
+                container.classList.add( args.cssClass );
                 }
 
             else
@@ -36,6 +41,7 @@ export class Component
                 }
             }
 
+            // add optional pre text
         if ( typeof args.preText !== 'undefined' )
             {
             var preText = document.createElement( 'span' );
@@ -47,6 +53,43 @@ export class Component
 
 
         this.container = container;
+
+            // start with the component active
+        this.setActive( true );
+        }
+
+
+    setActive( yesNo: boolean )
+        {
+            // already in that state
+        if ( yesNo === this.isActive )
+            {
+            return;
+            }
+
+        if ( yesNo === true )
+            {
+            this.addEvents();
+            this.container.classList.remove( 'GameMenu-inactive' );
+            }
+
+        else
+            {
+            this.removeEvents();
+            this.container.classList.add( 'GameMenu-inactive' );
+            }
+
+        this.isActive = yesNo;
+        }
+
+    addEvents()
+        {
+            // implement this if needed
+        }
+
+    removeEvents()
+        {
+            // implement this if needed
         }
 
     clear()

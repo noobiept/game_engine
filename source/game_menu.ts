@@ -72,10 +72,13 @@ export module GameMenu
 
         constructor( args: ValueArgs )
             {
+                // set properties before this
             super( args );
 
+                // .container only available after super()
             this.element = document.createElement( 'span' );
             this.container.appendChild( this.element );
+            this.container.classList.add( 'GameMenu-Value' );
 
             this.setValue( args.value );
             }
@@ -111,7 +114,6 @@ export module GameMenu
 
     export class Button extends Component
         {
-        isActive: boolean;
         element: HTMLElement;
         text: string;
         callback: (button: Button) => any;
@@ -119,14 +121,6 @@ export module GameMenu
 
         constructor( args: ButtonArgs )
             {
-            super( args );
-
-            var _this = this;
-
-            this.element = document.createElement( 'span' );
-            this.element.className = 'button';
-            this.element.innerHTML = args.text;
-
             if ( typeof this.click_ref === 'undefined' )
                 {
                 this.click_ref = function()
@@ -135,37 +129,32 @@ export module GameMenu
                     };
                 }
 
-            this.setActive( true );
+                // set properties before this
+            super( args );
 
+                // .container only available after super()
+            var _this = this;
+
+            this.element = document.createElement( 'span' );
+            this.element.innerHTML = args.text;
+
+            this.container.classList.add( 'GameMenu-Button' );
             this.container.appendChild( this.element );
             }
 
-        setActive( yesNo: boolean )
+        addEvents()
             {
-                // already in that state
-            if ( yesNo === this.isActive )
-                {
-                return;
-                }
+            this.container.addEventListener( 'click', this.click_ref );
+            }
 
-            if ( yesNo === true )
-                {
-                this.element.addEventListener( 'click', this.click_ref );
-                this.element.classList.remove( 'inactive' );
-                }
-
-            else
-                {
-                this.element.removeEventListener( 'click', this.click_ref );
-                this.element.classList.add( 'inactive' );
-                }
-
-            this.isActive = yesNo;
+        removeEvents()
+            {
+            this.container.removeEventListener( 'click', this.click_ref );
             }
 
         clear()
             {
-            this.element.removeEventListener( 'click', this.click_ref );
+            this.removeEvents();
             this.callback = null;
             this.click_ref = null;
             }
@@ -184,50 +173,38 @@ export module GameMenu
         element: HTMLElement;
         click_ref;
         callback: (value: any) => any;
-        isActive: boolean;
 
         constructor( args: BooleanArgs )
             {
+            var _this = this;
+
+            this.callback = args.callback;
+            this.click_ref = function()
+                {
+                _this.setValue( !_this.value );
+                _this.callback( _this.value );
+                };
+
+
+                // set properties before this
             super( args );
 
+                // .container only available after super()
             this.element = document.createElement( 'span' );
             this.container.appendChild( this.element );
-            this.container.className = 'button';
-            this.callback = args.callback;
+            this.container.classList.add( 'GameMenu-Boolean' );
 
             this.setValue( args.value );
-            this.setActive( true );
             }
 
-
-        setActive( yesNo: boolean )
+        addEvents()
             {
-                // already in that state
-            if ( yesNo === this.isActive )
-                {
-                return;
-                }
+            this.container.addEventListener( 'click', this.click_ref );
+            }
 
-            if ( yesNo === true )
-                {
-                var _this = this;
-
-                this.click_ref = function()
-                    {
-                    _this.setValue( !_this.value );
-                    _this.callback( _this.value );
-                    };
-                this.container.addEventListener( 'click', this.click_ref );
-                this.container.classList.remove( 'inactive' );
-                }
-
-            else
-                {
-                this.container.removeEventListener( 'click', this.click_ref );
-                this.container.classList.add( 'inactive' );
-                }
-
-            this.isActive = yesNo;
+        removeEvents()
+            {
+            this.container.removeEventListener( 'click', this.click_ref );
             }
 
         setValue( value )
@@ -257,26 +234,26 @@ export module GameMenu
 
         clear()
             {
-            this.element.removeEventListener( 'click', this.click_ref );
+            this.removeEvents();
             this.callback = null;
             this.click_ref = null;
             }
         }
 
 
-    export interface TwoStateButtonArgs extends ButtonArgs
+    export interface TwoStateArgs extends ButtonArgs
         {
             callback2: (button: Button) => any;
             text2: string;
         }
 
-    export class TwoStateButton extends Button
+    export class TwoState extends Button
         {
         callback2: (button: Button) => any;
         text2: string;
         isText1: boolean;
 
-        constructor( args: TwoStateButtonArgs )
+        constructor( args: TwoStateArgs )
             {
             var _this = this;
 
@@ -303,6 +280,27 @@ export module GameMenu
                 _this.isText1 = !_this.isText1;
                 };
 
+                // set properties before this
+            super( args );
+
+                // .container only available after super()
+            this.container.classList.add( 'GameMenu-TwoState' );
+            }
+        }
+
+
+    export interface MultipleOptionsArgs extends ComponentArgs
+        {
+            options: string[];
+            callback: (button: Button, position: number, text: string) => any;
+        }
+
+    export class MultipleOptions extends Component
+        {
+        elements: HTMLElement[];
+
+        constructor( args: MultipleOptionsArgs )
+            {
             super( args );
             }
         }
