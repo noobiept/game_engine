@@ -53,9 +53,7 @@ export class Component
 
 
         this.container = container;
-
-            // start with the component active
-        this.setActive( true );
+        this.isActive = true;
         }
 
 

@@ -37,13 +37,20 @@ var twoStateButton = new Game.GameMenu.TwoState({
             console.log( 'Stop!' );
             }
     });
-
+var multipleOptions = new Game.GameMenu.MultipleOptions({
+        options: [ 'One', 'Two', 'Three' ],
+        callback: function( button, position, htmlElement )
+            {
+            console.log( position, ':', htmlElement.innerHTML );
+            }
+    });
 
 
 menu.add( value );
 menu.add( button );
 menu.add( boolean );
 menu.add( twoStateButton );
+menu.add( multipleOptions );
 
 var count = 0;
 

@@ -138,6 +138,8 @@ export module GameMenu
 
             this.container.classList.add( 'GameMenu-Button' );
             this.container.appendChild( this.element );
+
+            this.addEvents();
             }
 
         addEvents()
@@ -190,6 +192,7 @@ export module GameMenu
             this.container.classList.add( 'GameMenu-Boolean' );
 
             this.setValue( args.value );
+            this.addEvents();
             }
 
         addEvents()
@@ -279,16 +282,97 @@ export module GameMenu
     export interface MultipleOptionsArgs extends ComponentArgs
         {
             options: string[];
-            callback: (button: Button, position: number, text: string) => any;
+            callback: (button: MultipleOptions, position: number, htmlElement: HTMLElement) => any;
         }
 
     export class MultipleOptions extends Component
         {
         elements: HTMLElement[];
+        click_ref: () => any;
+        selected: HTMLElement;
 
         constructor( args: MultipleOptionsArgs )
             {
+            var _this = this;
+
+            this.click_ref = function()
+                {
+                var element = this;
+
+                if ( element === _this.selected )
+                    {
+                    return;
+                    }
+
+                var position = _this.elements.indexOf( element );
+
+                _this.select( position );
+
+                args.callback( _this, position, element );
+                };
+
             super( args );
+
+            this.elements = [];
+
+            var length = args.options.length;
+
+            for (var a = 0 ; a < length ; a++)
+                {
+                var option = document.createElement( 'span' );
+
+                option.innerHTML = args.options[ a ];
+
+                this.container.appendChild( option );
+                this.elements.push( option );
+                }
+
+            this.container.classList.add( 'GameMenu-MultipleOptions' );
+            this.selected = null;
+            this.select( 0 );
+            this.addEvents();
+            }
+
+        select( position )
+            {
+            var element = this.elements[ position ];
+
+            if ( !element || element === this.selected )
+                {
+                return;
+                }
+
+
+            if ( this.selected )
+                {
+                this.selected.classList.remove( 'GameMenu-selected' );
+                }
+
+            this.selected = element;
+            element.classList.add( 'GameMenu-selected' );
+            }
+
+        addEvents()
+            {
+            for (var a = this.elements.length - 1 ; a >= 0 ; a--)
+                {
+                this.elements[ a ].addEventListener( 'click', this.click_ref );
+                }
+            }
+
+        removeEvents()
+            {
+            for (var a = this.elements.length - 1 ; a >= 0 ; a--)
+                {
+                this.elements[ a ].removeEventListener( 'click', this.click_ref );
+                }
+            }
+
+        clear()
+            {
+            this.removeEvents();
+            this.click_ref = null;
+            this.elements.length = 0;
             }
         }
     }
