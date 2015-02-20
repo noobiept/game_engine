@@ -7,6 +7,7 @@ export interface UnitArgs extends ContainerArgs
         movement_speed?: number;
         bullet_movement_speed?: number;
         health?: number;
+        bullet_shape?: { classRef: (args: any) => void; args: Object; };
     }
 
 
@@ -48,6 +49,7 @@ export class Unit extends Container
     _bullet_interval_count: number;
     _angle_or_target: any;
     _bullets: Bullet[];
+    _bullet_shape: { classRef: (args: any) => void; args: Object; };
 
     constructor( args: UnitArgs )
         {
@@ -66,6 +68,11 @@ export class Unit extends Container
         if ( typeof args.bullet_movement_speed === 'undefined' )
             {
             args.bullet_movement_speed = 100;
+            }
+
+        if ( typeof args.bullet_shape === 'undefined' )
+            {
+            args.bullet_shape = null;
             }
 
         this._has_logic = true;
@@ -90,6 +97,7 @@ export class Unit extends Container
         this._bullet_interval_count = 0;
         this._angle_or_target = null;
         this._bullets = [];
+        this._bullet_shape = args.bullet_shape;
 
             // init the static variables of the class (if its not yet)
         var constructor = <any> this.constructor;
@@ -331,11 +339,23 @@ export class Unit extends Container
                 }
             }
 
-        var shape = new Game.Rectangle({
-                width: 10,
-                height: 2,
-                color: 'blue'
-            });
+
+        var shape;
+
+        if ( this._bullet_shape !== null )
+            {
+            shape = new this._bullet_shape.classRef( this._bullet_shape.args );
+            }
+
+        else
+            {
+            shape = new Game.Rectangle({
+                    width: 10,
+                    height: 2,
+                    color: 'blue'
+                });
+            }
+
 
         var bullet = new Game.Bullet({
                 x: this.x,
