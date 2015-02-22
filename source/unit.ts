@@ -545,5 +545,27 @@ export class Unit extends Container
         this.firingLogic( delta );
         this.collisionLogic( delta );
         }
+
+
+    clone()
+        {
+        var children = [];
+        var length = this._children.length;
+
+        for (var a = 0 ; a < length ; a++)
+            {
+            children.push( this._children[ a ].clone() );
+            }
+
+        return new Game.Unit({
+                x: this.x,
+                y: this.y,
+                children: children,
+                movement_speed: this.movement_speed,
+                bullet_movement_speed: this.bullet_movement_speed,
+                health: this.health,
+                bullet_shape: this._bullet_shape
+            });
+        }
     }
 }

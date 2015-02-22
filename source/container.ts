@@ -176,5 +176,22 @@ export class Container extends Element
                 }
             }
         }
+
+    clone()
+        {
+        var children = [];
+        var length = this._children.length;
+
+        for (var a = 0 ; a < length ; a++)
+            {
+            children.push( this._children[ a ].clone() );
+            }
+
+        return new Game.Container({
+                x: this.x,
+                y: this.y,
+                children: children
+            });
+        }
     }
 }

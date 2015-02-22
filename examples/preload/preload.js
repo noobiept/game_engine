@@ -2,7 +2,9 @@ window.onload = function()
 {
 Game.init( document.body, 400, 400 );
 
-Game.Preload.load( 'mystery_ship', 'mystery_ship.png', function( image )
+var assetsPath = '../assets/';
+
+Game.Preload.load( 'mystery_ship', assetsPath + 'images/mystery_ship.png', function( image )
     {
     var bitmap = new Game.Bitmap({
             x: 200,
@@ -20,13 +22,13 @@ Game.Preload.load( 'mystery_ship', 'mystery_ship.png', function( image )
     });
 
 
-Game.Preload.load( 'scumm_bar', 'scumm_bar.ogg', function( audioBuffer )
+Game.Preload.load( 'scumm_bar', assetsPath + 'sounds/scumm_bar.ogg', function( audioBuffer )
     {
     Game.Sound.play( audioBuffer );
     });
 
 
-Game.Preload.load( 'json_test', 'test.json', function( obj )
+Game.Preload.load( 'json_test', assetsPath + 'json/test.json', function( obj )
     {
     var rectangle = new Game.Rectangle({
             x: obj.x,
@@ -39,7 +41,7 @@ Game.Preload.load( 'json_test', 'test.json', function( obj )
     Game.addElement( rectangle );
     });
 
-Game.Preload.load( 'text_test', 'test.txt', function( text )
+Game.Preload.load( 'text_test', assetsPath + 'texts/test.txt', function( text )
     {
     var textElement = new Game.Text({
             x: 200,
@@ -61,7 +63,7 @@ var manifest = [
         { id: 'three', path: 'ship_three_1.png' }
     ];
 
-Game.Preload.loadManifest( manifest, 'a/', function()
+Game.Preload.loadManifest( manifest, assetsPath + 'images/', function()
     {
     var one = Game.Preload.get( 'one' );
     var two = Game.Preload.get( 'two' );

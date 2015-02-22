@@ -106,5 +106,18 @@ export class Sprite extends Bitmap
             this.nextFrame();
             }
         }
+
+    clone()
+        {
+        return new Game.Sprite({
+                x: this.x,
+                y: this.y,
+                image: this.image,
+                frameWidth: this.width,
+                frameHeight: this.height,
+                animations: this._animations,
+                interval: this.interval
+            });
+        }
     }
 }

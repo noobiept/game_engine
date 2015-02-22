@@ -72,5 +72,15 @@ export class Circle extends Element
 
         return false;
         }
+
+    clone()
+        {
+        return new Game.Circle({
+                x: this.x,
+                y: this.y,
+                radius: this._radius,
+                color: this.color
+            });
+        }
     }
 }

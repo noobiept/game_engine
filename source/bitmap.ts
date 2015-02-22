@@ -69,5 +69,14 @@ export class Bitmap extends Element
 
         return false;
         }
+
+    clone()
+        {
+        return new Game.Bitmap({
+                x: this.x,
+                y: this.y,
+                image: this.image
+            });
+        }
     }
 }

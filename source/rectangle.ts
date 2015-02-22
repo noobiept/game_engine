@@ -82,5 +82,17 @@ export class Rectangle extends Element
 
         return false;
         }
+
+    clone()
+        {
+        return new Game.Rectangle({
+                x: this.x,
+                y: this.y,
+                width: this.width,
+                height: this.height,
+                color: this.color,
+                fill: this.fill
+            });
+        }
     }
 }

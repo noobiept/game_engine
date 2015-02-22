@@ -134,5 +134,37 @@ export class Bullet extends Container
         {
             // this is going to assigned to either .fixedLogic() or .targetLogic(), depending on the type of bullet
         }
+
+    clone()
+        {
+        var children = [];
+        var length = this._children.length;
+
+        for (var a = 0 ; a < length ; a++)
+            {
+            children.push( this._children[ a ].clone() );
+            }
+
+        var angleOrTarget;
+
+        if ( this._target )
+            {
+            angleOrTarget = this._target;
+            }
+
+        else
+            {
+            angleOrTarget = this.rotation;
+            }
+
+        return new Game.Bullet({
+                x: this.x,
+                y: this.y,
+                children: children,
+                movement_speed: this.movement_speed,
+                angleOrTarget: angleOrTarget,
+                remove: this._remove
+            });
+        }
     }
 }

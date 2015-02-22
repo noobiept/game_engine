@@ -9,7 +9,8 @@ export interface TextArgs extends ElementArgs
         fontSize?: number;
         timeout?: number;
         textAlign?: string;
-        textBaseline: string;
+        textBaseline?: string;
+        fill?: boolean;
     }
 
 export class Text extends Element
@@ -21,7 +22,7 @@ export class Text extends Element
     textAlign: string;
     textBaseline: string;
     fill: boolean;  // fill or stroke text
-
+    _timeout: number;
 
     constructor( args: TextArgs )
         {
@@ -52,6 +53,10 @@ export class Text extends Element
             args.textBaseline = 'top';
             }
 
+        if ( typeof args.fill === 'undefined' )
+            {
+            args.fill = true;
+            }
 
         super( args );
 
@@ -62,7 +67,8 @@ export class Text extends Element
         this.height = args.fontSize;     // not quite the same thing, but there's no way to determine the height right now so..
         this.textAlign = args.textAlign;
         this.textBaseline = args.textBaseline;
-        this.fill = true;
+        this.fill = args.fill;
+        this._timeout = args.timeout;
 
         if ( Utilities.isNumber( args.timeout ) && args.timeout > 0 )
             {
@@ -133,6 +139,21 @@ export class Text extends Element
     get font_size()
         {
         return this._font_size;
+        }
+
+    clone()
+        {
+        return new Game.Text({
+                x: this.x,
+                y: this.y,
+                text: this._text,
+                fontFamily: this._font_family,
+                fontSize: this._font_size,
+                timeout: this._timeout,
+                textAlign: this.textAlign,
+                textBaseline: this.textBaseline,
+                fill: this.fill
+            });
         }
     }
 }

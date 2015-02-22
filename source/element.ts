@@ -150,5 +150,13 @@ export class Element extends EventDispatcher
             Game.removeElement( this );
             }
         }
+
+    /**
+        @abstract
+     */
+    clone(): Element
+        {
+        throw new Error( 'Implement .clone().' );
+        }
     }
 }
