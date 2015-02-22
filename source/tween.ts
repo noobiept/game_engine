@@ -148,7 +148,10 @@ export class Tween
 
         this._count += deltaTime;
 
-        var value = step.ease( this._count / step.duration );
+            // how far into the complete movement we're in
+        var percentage = this._count / step.duration;
+
+        var value = step.ease( percentage );
 
         for ( var property in step.end_properties )
             {

@@ -15,14 +15,17 @@ export interface TextArgs extends ElementArgs
 
 export class Text extends Element
     {
+    textAlign: string;
+    textBaseline: string;
+    fill: boolean;  // fill or stroke text
+
     _text: string;
     _font_family: string;
     _font_size: number;
     _font: string;   // font_family + font_size
-    textAlign: string;
-    textBaseline: string;
-    fill: boolean;  // fill or stroke text
     _timeout: number;
+    _lines: string[];
+
 
     constructor( args: TextArgs )
         {
@@ -64,7 +67,6 @@ export class Text extends Element
         this.text = args.text;
         this.font_family = args.fontFamily;  // this calls the set method that updates ._font as well
 
-        this.height = args.fontSize;     // not quite the same thing, but there's no way to determine the height right now so..
         this.textAlign = args.textAlign;
         this.textBaseline = args.textBaseline;
         this.fill = args.fill;
@@ -90,26 +92,54 @@ export class Text extends Element
         ctx.textAlign = this.textAlign;
         ctx.textBaseline = this.textBaseline;
 
-        if ( this.fill )
-            {
-            ctx.fillText( this._text, this.x, this.y );
-            }
+        var length = this._lines.length;
 
-        else
+            // draw each line
+        for (var a = 0 ; a < length ; a++)
             {
-            ctx.strokeText( this._text, this.x, this.y );
+            var y = this.y + a * this.font_size;
+
+            if ( this.fill )
+                {
+                ctx.fillText( this._lines[ a ], this.x, y );
+                }
+
+            else
+                {
+                ctx.strokeText( this._lines[ a ], this.x, y );
+                }
             }
 
         ctx.restore();
         }
 
+
     set text( value: string )
         {
         this._text = value;
+        this._lines = this._text.split( '\n' );
 
-        var textMetrics = Game.getCanvasContext().measureText( value );
+        var ctx = Game.getCanvasContext();
 
-        this.width = textMetrics.width;
+        var line = this._lines[ 0 ];
+        var highestWidth = ctx.measureText( line ).width;
+        var width;
+        var length = this._lines.length;
+
+        for (var a = 1 ; a < length ; a++)
+            {
+            line = this._lines[ a ];
+
+            width = ctx.measureText( line ).width;
+
+            if ( width > highestWidth )
+                {
+                highestWidth = width;
+                }
+            }
+
+        this.width = highestWidth;
+        this.height = this.font_size * length;     // 'font_size' not quite the same thing as height, but there's no way to determine the height right now so..
         }
 
     get text()

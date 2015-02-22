@@ -349,8 +349,12 @@ export module GameMenu
                 args.callback( _this, position, element );
                 };
 
+
+                // set properties before this
             super( args );
 
+
+                // .container only available after super()
             this.elements = [];
 
             var length = args.options.length;
@@ -458,9 +462,11 @@ export module GameMenu
                 };
 
 
+                // set properties before this
             super( args );
 
 
+                // .container only available after super()
             this.input = document.createElement( 'input' );
             this.input.type = 'range';
             this.input.min = args.min.toString();
