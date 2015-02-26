@@ -2,6 +2,9 @@ window.onload = function()
 {
 Game.init( document.body, 400, 400 );
 
+    // disable the context menu (when right-clicking)
+Game.getCanvas().oncontextmenu = function( event ) { return false; };
+
 var manifest = [
         { id: 'one', path: 'one.png' },
         { id: 'two', path: 'two.png' },
@@ -36,6 +39,8 @@ var NUMBER_OF_MINES = 10;
 var TIMER;
 var COLUMNS = 10;
 var LINES = 10;
+var SELECTED_SQUARE = null;
+var CANVAS_RECT = null;
 
 Main.start = function()
 {
@@ -44,11 +49,14 @@ GRID = new Game.Grid({
         columns: COLUMNS,
         lines: LINES
     });
+CANVAS_RECT = Game.getCanvas().getBoundingClientRect();
+
 
 var emptyPositions = GRID.getEmptyPositions();
 var minesPositions = Utilities.getSeveralRandomInts( 0, emptyPositions.length - 1, NUMBER_OF_MINES );
 var square;
 var column, line;
+
 
     // add all the squares
 for (column = 0 ; column < COLUMNS ; column++)
@@ -85,12 +93,22 @@ for (column = 0 ; column < COLUMNS ; column++)
         GRID.getElement( column, line ).value = minesAround;
         }
     }
+
+
+document.body.addEventListener( 'mousemove', mouseMove );
+document.body.addEventListener( 'mouseup', mouseClick );
 };
 
 
 Main.clear = function()
 {
+GRID.remove();
+GRID = null;
 
+SELECTED_SQUARE = null;
+
+document.body.removeEventListener( 'mousemove', mouseMove );
+document.body.removeEventListener( 'mouseup', mouseClick );
 };
 
 
@@ -116,6 +134,81 @@ for (var a = neighbors.length - 1 ; a >= 0 ; a--)
 
 return count;
 };
+
+
+
+function mouseMove( event )
+{
+var x = event.clientX - CANVAS_RECT.left;
+var y = event.clientY - CANVAS_RECT.top;
+
+var square = GRID.getElement2( x, y );
+
+if ( !square || SELECTED_SQUARE === square )
+    {
+    return;
+    }
+
+
+if ( SELECTED_SQUARE )
+    {
+    SELECTED_SQUARE.setMouseOver( false );
+    }
+
+square.setMouseOver( true );
+
+SELECTED_SQUARE = square;
+}
+
+
+function mouseClick( event )
+{
+var button = event.button;
+var x = event.clientX - CANVAS_RECT.left;
+var y = event.clientY - CANVAS_RECT.top;
+
+var square = GRID.getElement2( x, y );
+
+if ( !square || square.state === Square.STATE.revealed )
+    {
+    return;
+    }
+
+
+if ( button === Utilities.MOUSE_CODE.left )
+    {
+    revealSquare( square );
+    }
+
+else if ( button === Utilities.MOUSE_CODE.right )
+    {
+    if ( square.state === Square.STATE.hidden )
+        {
+        square.setState( Square.STATE.question_mark );
+        }
+
+    else if ( square.state === Square.STATE.question_mark )
+        {
+        square.setState( Square.STATE.mine_flag );
+        }
+
+    else
+        {
+        square.setState( Square.STATE.hidden );
+        }
+
+        // the .setState() sets the background to hidden, but when we click we have the mouse over
+    square.setMouseOver( true );
+    }
+
+}
+
+
+
+function revealSquare( square )
+{
+
+}
 
 
 

@@ -17,7 +17,7 @@ this.front = new Game.Bitmap({
     });
 this.front.visible = false;
 
-this.addChild( this.background );
+this.addChild( this.background, this.front );
 }
 
 Utilities.inheritPrototype( Square, Game.Container );
@@ -84,6 +84,21 @@ else
     }
 
 this.state = state;
+};
+
+
+
+Square.prototype.setMouseOver = function( yesNo )
+{
+if ( yesNo === true )
+    {
+    this.background.image = Game.Preload.get( 'hidden_mouse_over' );
+    }
+
+else
+    {
+    this.background.image = Game.Preload.get( 'hidden' );
+    }
 };
 
 

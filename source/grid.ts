@@ -246,6 +246,15 @@ export class Grid extends EventDispatcher
         return element;
         }
 
+
+    getElement2( x, y )
+        {
+        var position = this.toGrid( x, y );
+
+        return this.getElement( position.column, position.line );
+        }
+
+
     isEmpty( column, line )
         {
         if ( this._grid[ column ][ line ] )

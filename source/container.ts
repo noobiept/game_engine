@@ -78,10 +78,16 @@ export class Container extends Element
         ctx.rotate( this.rotation );
 
         var length = this._children.length;
+        var child;
 
         for (var a = 0 ; a < length ; a++)
             {
-            this._children[ a ].drawElement( ctx );
+            child = this._children[ a ];
+
+            if ( child.visible )
+                {
+                child.drawElement( ctx );
+                }
             }
 
         ctx.restore();
