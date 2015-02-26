@@ -4,13 +4,13 @@ module Game
 {
 export interface BitmapArgs extends ElementArgs
     {
-        image: HTMLImageElement
+        image: HTMLImageElement;
     }
 
 
 export class Bitmap extends Element
     {
-    image;
+    _image: HTMLImageElement;
     _source_x: number;
     _source_y: number;
     _half_width: number;
@@ -20,16 +20,9 @@ export class Bitmap extends Element
         {
         super( args );
 
-        var image = args.image;
-
-        this.width = image.width;
-        this.height = image.height;
-        this._half_width = image.width / 2;
-        this._half_height = image.height / 2;
+        this.image = args.image;
         this._source_x = 0;
         this._source_y = 0;
-
-        this.image = image;
         }
 
     drawElement( ctx )
@@ -39,7 +32,7 @@ export class Bitmap extends Element
         ctx.globalAlpha *= this.opacity;
         ctx.translate( this.x, this.y );
         ctx.rotate( this.rotation );
-        ctx.drawImage( this.image, this._source_x, this._source_y, this.width, this.height,  -this._half_width, -this._half_height, this.width, this.height );
+        ctx.drawImage( this._image, this._source_x, this._source_y, this.width, this.height,  -this._half_width, -this._half_height, this.width, this.height );
         ctx.restore();
         }
 
@@ -75,8 +68,23 @@ export class Bitmap extends Element
         return new Game.Bitmap({
                 x: this.x,
                 y: this.y,
-                image: this.image
+                image: this._image
             });
+        }
+
+
+    get image()
+        {
+        return this._image;
+        }
+
+    set image( newImage: HTMLImageElement )
+        {
+        this.width = newImage.width;
+        this.height = newImage.height;
+        this._half_width = newImage.width / 2;
+        this._half_height = newImage.height / 2;
+        this._image = newImage;
         }
     }
 }

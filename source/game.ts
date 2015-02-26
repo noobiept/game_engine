@@ -288,7 +288,12 @@ function draw()
 
     for (var a = 0 ; a < length ; a++)
         {
-        ELEMENTS[ a ].draw( CTX );
+        var element = ELEMENTS[ a ];
+
+        if ( element.visible )
+            {
+            element.draw( CTX );
+            }
         }
     }
 

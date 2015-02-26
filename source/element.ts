@@ -15,6 +15,7 @@ export class Element extends EventDispatcher
     width: number;
     height: number;
     opacity: number;    // value between 0 and 1
+    visible: boolean;    // whether the element is drawn or not
 
         // optional properties, only for when using a Grid
     column: number;
@@ -47,6 +48,7 @@ export class Element extends EventDispatcher
             }
 
 
+        this.visible = true;
         this.x = x;
         this.y = y;
         this.width = 0;
