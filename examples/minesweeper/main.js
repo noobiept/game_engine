@@ -88,9 +88,14 @@ for (column = 0 ; column < COLUMNS ; column++)
     {
     for (line = 0 ; line < LINES ; line++)
         {
-        var minesAround = Main.minesAround( column, line );
+        square = GRID.getElement( column, line );
 
-        GRID.getElement( column, line ).value = minesAround;
+        if ( square.value !== Square.VALUE.mine )
+            {
+            var minesAround = Main.minesAround( column, line );
+
+            square.value = minesAround;
+            }
         }
     }
 
@@ -144,13 +149,13 @@ var y = event.clientY - CANVAS_RECT.top;
 
 var square = GRID.getElement2( x, y );
 
-if ( !square || SELECTED_SQUARE === square )
+if ( !square || SELECTED_SQUARE === square || square.state === Square.STATE.revealed )
     {
     return;
     }
 
 
-if ( SELECTED_SQUARE )
+if ( SELECTED_SQUARE && SELECTED_SQUARE.state !== Square.STATE.revealed )
     {
     SELECTED_SQUARE.setMouseOver( false );
     }
@@ -207,7 +212,100 @@ else if ( button === Utilities.MOUSE_CODE.right )
 
 function revealSquare( square )
 {
+if ( square.state === Square.STATE.revealed )
+    {
+    return;
+    }
 
+square.setState( Square.STATE.revealed );
+
+
+if ( square.value === Square.VALUE.mine )
+    {
+    gameOver( false );
+    return;
+    }
+
+
+    // need to reveal all the blank values around it
+if ( square.value === Square.VALUE.blank )
+    {
+    revealAdjacents( square );
+    }
+
+
+    // check if the game is won (when the un-revealed squares are all mines)
+var gameWon = true;
+
+for (var column = 0 ; column < GRID.columns ; column++)
+    {
+    for (var line = 0 ; line < GRID.lines ; line++)
+        {
+        var element = GRID.getElement( column, line );
+
+        if ( element.state !== Square.STATE.revealed &&
+             element.value !== Square.VALUE.mine )
+            {
+            gameWon = false;
+            break;
+            }
+        }
+    }
+
+
+if ( gameWon )
+    {
+    gameOver( true );
+    }
+}
+
+
+function revealAdjacents( square )
+{
+var adjacents = GRID.getNeighbors( square.column, square.line );
+
+for (var a = adjacents.length - 1 ; a >= 0 ; a--)
+    {
+    var adjacent = adjacents[ a ];
+
+    if ( adjacent.state !== Square.STATE.revealed )
+        {
+        adjacent.setState( Square.STATE.revealed );
+
+            // recursively reveal the adjacents of blank squares
+        if ( adjacent.value === Square.VALUE.blank )
+            {
+            revealAdjacents( adjacent );
+            }
+        }
+    }
+}
+
+
+
+function revealAllMines()
+{
+    //HERE
+}
+
+
+function gameOver( hasWon )
+{
+revealAllMines();
+
+var message = 'Game Over!\n';
+
+if ( hasWon )
+    {
+    message += 'You Won!';
+    }
+
+else
+    {
+    message += 'You Lost!';
+    }
+
+console.log( message );
 }
 
 
