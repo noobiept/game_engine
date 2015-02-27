@@ -11,7 +11,7 @@ var menu = new Game.GameMenu({
 var value = new Game.GameMenu.Value({ preText: 'Value: ', value: 0 });
 var button = new Game.GameMenu.Button({
         text: 'Click me!',
-        callback: function()
+        callback: function( button )
             {
             console.log( 'clicked!' );
             button.setActive( false );
@@ -20,9 +20,9 @@ var button = new Game.GameMenu.Button({
 var boolean = new Game.GameMenu.Boolean({
         value: true,
         preText: 'State: ',
-        callback: function( value )
+        callback: function( button )
             {
-            console.log( value );
+            console.log( button.value );
             }
     });
 var twoStateButton = new Game.GameMenu.TwoState({

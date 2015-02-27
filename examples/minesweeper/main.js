@@ -149,20 +149,30 @@ var y = event.clientY - CANVAS_RECT.top;
 
 var square = GRID.getElement2( x, y );
 
-if ( !square || SELECTED_SQUARE === square || square.state === Square.STATE.revealed )
+
+if ( !square || square.state === Square.STATE.revealed )
     {
-    return;
+    if ( SELECTED_SQUARE && SELECTED_SQUARE.state !== Square.STATE.revealed )
+        {
+        SELECTED_SQUARE.setMouseOver( false );
+        SELECTED_SQUARE = null;
+        }
     }
 
-
-if ( SELECTED_SQUARE && SELECTED_SQUARE.state !== Square.STATE.revealed )
+else
     {
-    SELECTED_SQUARE.setMouseOver( false );
+    if ( SELECTED_SQUARE !== square )
+        {
+        if ( SELECTED_SQUARE && SELECTED_SQUARE.state !== Square.STATE.revealed )
+            {
+            SELECTED_SQUARE.setMouseOver( false );
+            }
+
+        square.setMouseOver( true );
+
+        SELECTED_SQUARE = square;
+        }
     }
-
-square.setMouseOver( true );
-
-SELECTED_SQUARE = square;
 }
 
 

@@ -217,7 +217,7 @@ export module GameMenu
             this.click_ref = function()
                 {
                 _this.setValue( !_this.value );
-                args.callback( _this.value );
+                args.callback( _this );
                 };
 
 

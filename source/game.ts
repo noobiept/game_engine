@@ -1,3 +1,4 @@
+/// <reference path="message.ts" />
 /// <reference path="component.ts" />
 /// <reference path="game_menu.ts" />
 /// <reference path="tween.ts" />
