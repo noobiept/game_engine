@@ -22,6 +22,12 @@ grunt.initConfig({
                         src: [ 'utilities-1.6-min.js', 'utilities-1.6.d.ts' ],
                         dest: 'output/',
                         expand: true
+                    },
+                    {
+                        cwd: '../source/css/',
+                        src: [ 'style.css' ],
+                        dest: 'output/',
+                        expand: true
                     }
                 ]
             }

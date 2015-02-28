@@ -16,6 +16,7 @@ export class GameMenu extends Component
         {
         super( args );
 
+        this.container.classList.add( 'GameMenu' );
         this.components = [];
         this.parent = args.parent;
 

@@ -1,0 +1,59 @@
+    /* ---- Basic elements ---- */
+
+body
+    {
+    margin: 0;
+    text-align: center;
+    background-color: black;
+    }
+
+canvas
+    {
+    background-color: white;
+    }
+
+
+    /* ---- Menu ---- */
+
+.GameMenu
+    {
+    color: white;
+    }
+
+.GameMenu-Button, .GameMenu-Boolean, .GameMenu-MultipleOptions
+    {
+    cursor: pointer;
+    color: green;
+    }
+
+.GameMenu-MultipleOptions span
+    {
+    margin: 5px;
+    }
+
+.GameMenu-selected
+    {
+    color: red;
+    }
+
+.GameMenu-inactive
+    {
+    cursor: default;
+    color: gray;
+    }
+
+
+    /* ---- Message ---- */
+
+.Message-container
+    {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    }
+
+.Message-container .GameMenu-Component
+    {
+    color: black;
+    }
