@@ -50,6 +50,13 @@ var message3_button = new Game.GameMenu.Button({
         callback: function( button )
             {
             var component = new Game.GameMenu.Button({
+                    text: 'Other',
+                    callback: function( button )
+                        {
+                        console.log( 'An action!' );
+                        }
+                });
+            var component2 = new Game.GameMenu.Button({
                     text: 'Close',
                     callback: function( button )
                         {
@@ -60,7 +67,7 @@ var message3_button = new Game.GameMenu.Button({
             var message3 = new Game.Message({
                     container: container,
                     text: 'Nice message!',
-                    components: component
+                    components: [ component, component2 ]
                 });
             }
     });

@@ -20,16 +20,13 @@ export class Message
     constructor( args )
         {
         var container = document.createElement( 'div' );
-        var background = document.createElement( 'div' );
         var text = document.createElement( 'div' );
 
         container.className = 'Message-container';
-        background.className = 'Message-background';
         text.className = 'Message-text';
 
         text.innerHTML = args.text;
 
-        container.appendChild( background );
         container.appendChild( text );
 
 
@@ -49,13 +46,18 @@ export class Message
                 components = [ args.components ];
                 }
 
-
             var length = components.length;
+            var componentsContainer = document.createElement( 'div' );
+
+            componentsContainer.className = 'Message-Components';
+
 
             for (var a = 0 ; a < length ; a++)
                 {
-                container.appendChild( components[ a ].container );
+                componentsContainer.appendChild( components[ a ].container );
                 }
+
+            container.appendChild( componentsContainer );
 
             this.components = components;
             }
