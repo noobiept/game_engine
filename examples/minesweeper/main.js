@@ -1,6 +1,8 @@
 window.onload = function()
 {
-Game.init( document.body, 400, 400 );
+var canvasContainer = document.querySelector( '#CanvasContainer' );
+
+Game.init( canvasContainer, 400, 400 );
 
     // disable the context menu (when right-clicking)
 Game.getCanvas().oncontextmenu = function( event ) { return false; };
@@ -22,7 +24,23 @@ var manifest = [
         { id: 'question_mark', path: 'question_mark.png' }
     ];
 
-Game.Preload.loadManifest( manifest, '../assets/images/', Main.start );
+Game.Preload.loadManifest( manifest, '../assets/images/', function()
+    {
+        // add the game menu
+    var menu = new Game.GameMenu({
+            parent: document.body
+        });
+
+    var restart = new Game.GameMenu.Button({
+            text: 'Restart',
+            callback: Main.restart
+        });
+    menu.add( restart );
+
+
+        // start the game
+    Main.start();
+    });
 };
 
 
@@ -36,20 +54,29 @@ function Main()
 
 var GRID;
 var NUMBER_OF_MINES = 10;
-var TIMER;
+var TIMER;  //HERE
 var COLUMNS = 10;
 var LINES = 10;
 var SELECTED_SQUARE = null;
 var CANVAS_RECT = null;
+var HAS_ENDED = false;
+var END_MESSAGE = null;
+
 
 Main.start = function()
 {
+var canvas = Game.getCanvas();
+
+canvas.width = NUMBER_OF_MINES * Square.SIZE;
+canvas.height = NUMBER_OF_MINES * Square.SIZE;
+
 GRID = new Game.Grid({
         squareSize: Square.SIZE,
         columns: COLUMNS,
         lines: LINES
     });
-CANVAS_RECT = Game.getCanvas().getBoundingClientRect();
+CANVAS_RECT = canvas.getBoundingClientRect();
+HAS_ENDED = false;
 
 
 var emptyPositions = GRID.getEmptyPositions();
@@ -107,10 +134,32 @@ document.body.addEventListener( 'mouseup', mouseClick );
 
 Main.clear = function()
 {
-GRID.remove();
+for (var column = 0 ; column < GRID.columns ; column++)
+    {
+    for (var line = 0 ; line < GRID.lines ; line++)
+        {
+        var square = GRID.getElement( column, line );
+
+        if ( square )
+            {
+            square.remove();
+            }
+        }
+    }
+
+
+GRID.clear();
 GRID = null;
 
 SELECTED_SQUARE = null;
+
+
+if ( END_MESSAGE )
+    {
+    END_MESSAGE.remove();
+    END_MESSAGE = null;
+    }
+
 
 document.body.removeEventListener( 'mousemove', mouseMove );
 document.body.removeEventListener( 'mouseup', mouseClick );
@@ -184,7 +233,7 @@ var y = event.clientY - CANVAS_RECT.top;
 
 var square = GRID.getElement2( x, y );
 
-if ( !square || square.state === Square.STATE.revealed )
+if ( HAS_ENDED || !square || square.state === Square.STATE.revealed )
     {
     return;
     }
@@ -215,7 +264,6 @@ else if ( button === Utilities.MOUSE_CODE.right )
         // the .setState() sets the background to hidden, but when we click we have the mouse over
     square.setMouseOver( true );
     }
-
 }
 
 
@@ -301,21 +349,33 @@ function revealAllMines()
 
 function gameOver( hasWon )
 {
+HAS_ENDED = true;
 revealAllMines();
 
-var message = 'Game Over!\n';
+var text = 'Game Over! ';
 
 if ( hasWon )
     {
-    message += 'You Won!';
+    text += 'You Won!';
     }
 
 else
     {
-    message += 'You Lost!';
+    text += 'You Lost!';
     }
 
-console.log( message );
+
+var canvasContainer = document.querySelector( '#CanvasContainer' );
+
+var restart = new Game.GameMenu.Button({
+        text: 'Restart',
+        callback: Main.restart
+    });
+END_MESSAGE = new Game.Message({
+        container: canvasContainer,
+        text: text,
+        components: restart
+    });
 }
 
 
