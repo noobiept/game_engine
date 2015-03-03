@@ -39,32 +39,8 @@ preload.addEventListener( 'complete', function()
     {
     loadingMessage.remove();
 
-        // add the game menu
-    var menu = new Game.GameMenu({
-            parent: document.body
-        });
-
-
-        // restart button
-    var restart = new Game.GameMenu.Button({
-            text: 'Restart',
-            callback: Main.restart
-        });
-    menu.add( restart );
-
-
-        // difficulty selection
-    var difficulty = new Game.GameMenu.MultipleOptions({
-            options: [ 'beginner', 'intermediate', 'advanced' ],
-            callback: function( button, position, htmlElement )
-                {
-                Main.selectDifficulty( htmlElement.innerHTML );
-                }
-        });
-    menu.add( difficulty );
-
-
         // start the game
+    Main.init();
     Main.start();
     });
 preload.loadManifest( manifest, '../assets/images/' );
@@ -101,11 +77,52 @@ var GRID;
 var NUMBER_OF_COLUMNS = DIFFICULTY.beginner.columns;
 var NUMBER_OF_LINES = DIFFICULTY.beginner.lines;
 var NUMBER_OF_MINES = DIFFICULTY.beginner.mines;
-var TIMER;  //HERE
+var TIMER;
 var SELECTED_SQUARE = null;
 var CANVAS_RECT = null;
 var HAS_ENDED = false;
 var END_MESSAGE = null;
+
+
+
+
+Main.init = function()
+{
+    // add the game menu
+var menu = new Game.GameMenu({
+        parent: document.body
+    });
+
+
+    // restart button
+var restart = new Game.GameMenu.Button({
+        text: 'Restart',
+        callback: Main.restart
+    });
+menu.add( restart );
+
+
+    // difficulty selection
+var difficulty = new Game.GameMenu.MultipleOptions({
+        options: [ 'beginner', 'intermediate', 'advanced' ],
+        callback: function( button, position, htmlElement )
+            {
+            Main.selectDifficulty( htmlElement.innerHTML );
+            }
+    });
+menu.add( difficulty );
+
+
+    // timer
+var timer = new Game.GameMenu.Value({
+        value: 0
+    });
+menu.add( timer );
+
+TIMER = new Utilities.Timer( timer.element );
+};
+
+
 
 
 
@@ -124,6 +141,7 @@ GRID = new Game.Grid({
 CANVAS_RECT = canvas.getBoundingClientRect();
 HAS_ENDED = false;
 
+TIMER.start({ startValue: 0 });
 
 var emptyPositions = GRID.getEmptyPositions();
 var minesPositions = Utilities.getSeveralRandomInts( 0, emptyPositions.length - 1, NUMBER_OF_MINES );
@@ -198,6 +216,8 @@ GRID.clear();
 GRID = null;
 
 SELECTED_SQUARE = null;
+
+TIMER.reset();
 
 
 if ( END_MESSAGE )
@@ -417,18 +437,19 @@ function revealAllMines()
 function gameOver( hasWon )
 {
 HAS_ENDED = true;
+TIMER.stop();
 revealAllMines();
 
-var text = 'Game Over! ';
+var text;
 
 if ( hasWon )
     {
-    text += 'You Won!';
+    text = 'You Won! ' + TIMER.getTimeString() + '!';
     }
 
 else
     {
-    text += 'You Lost!';
+    text = 'Game Over! You Lost!';
     }
 
 
