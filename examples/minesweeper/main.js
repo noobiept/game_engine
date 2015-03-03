@@ -24,7 +24,13 @@ var manifest = [
         { id: 'question_mark', path: 'question_mark.png' }
     ];
 
-Game.Preload.loadManifest( manifest, '../assets/images/', function()
+var preload = new Game.Preload({ save_global: true });
+
+preload.addEventListener( 'progress', function( progress )
+    {
+    console.log( progress );
+    });
+preload.addEventListener( 'complete', function()
     {
         // add the game menu
     var menu = new Game.GameMenu({
@@ -41,6 +47,7 @@ Game.Preload.loadManifest( manifest, '../assets/images/', function()
         // start the game
     Main.start();
     });
+preload.loadManifest( manifest, '../assets/images/' );
 };
 
 

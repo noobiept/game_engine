@@ -5,7 +5,10 @@ var manifest = [
         { id: 'sprite', path: 'sprites/sprite_example.png' }
     ];
 
-Game.Preload.loadManifest( manifest, '../assets/', start );
+var preload = new Game.Preload({ save_global: true });
+
+preload.addEventListener( 'complete', start );
+preload.loadManifest( manifest, '../assets/' );
 };
 
 

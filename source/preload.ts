@@ -1,3 +1,4 @@
+/// <reference path="event_dispatcher.ts" />
 /// <reference path="sound.ts" />
 
     // typescript isn't recognizing this, so its added here
@@ -5,48 +6,128 @@ interface Window { URL: any }
 
 module Game
 {
-export module Preload
+export interface PreloadArgs extends EventDispatcherArgs
     {
-    var EXTENSIONS = {
-            image: [ 'png', 'jpg', 'jpeg' ],
-            json: [ 'json' ],
-            text: [ 'txt' ],
-            audio: [ 'ogg', 'mp3' ]
-        };
-
-    var RESPONSE_TYPE = {
-            image: 'blob',
-            json: 'json',
-            text: 'text',
-            audio: 'arraybuffer'
-        };
+        save_global?: boolean;   // save to global 'data' object, or to this object's 'data'
+    }
 
 
-        // key is the 'id'
-        // value is the 'data'
-    var DATA = {};
+/*
+    Events:
+        - complete -- all files loaded
+        - error -- an error occurred
+        - abort -- canceled by the user
+        - progress -- progress of the queue
+        - fileload -- a file loaded
 
+    Listeners:
+        - complete_listeners()
+        - error_listeners( data: { id: string; event; } )
+        - abort_listeners( data: { id: string; event; } )
+        - progress_listeners( progress: number )
+        - fileload_listeners( data: { id: string; data: Object; } )
+ */
+export class Preload extends EventDispatcher
+    {
+    _data: Object;
+    save_global: boolean;
+    _total_items: number;
+    _loaded_items: number;
 
-    export function load( id: string, path: string, callback?: (data: any) => any )
+    constructor( args?: PreloadArgs )
         {
-        var type = getType( path );
+        super( args );
 
-        var loaded = function( data )
+        var saveGlobal = false;
+
+        if ( typeof args !== 'undefined' )
             {
-            DATA[ id ] = data;
-
-            if ( Utilities.isFunction( callback ) )
+            if ( Utilities.isBoolean( args.save_global ) )
                 {
-                callback( data );
+                saveGlobal = args.save_global;
                 }
-            };
+            }
 
+        this._total_items = 0;
+        this._loaded_items = 0;
+        this.save_global = saveGlobal;
+        this._data = {};
+        }
+
+
+    _loaded( id, data )
+        {
+        if ( this.save_global )
+            {
+            Game.Preload.DATA[ id ] = data;
+            }
+
+        else
+            {
+            this._data[ id ] = data;
+            }
+
+        this.dispatchEvent( 'fileload', { id: id, data: data } );
+
+
+        this._loaded_items++;
+
+        if ( this._loaded_items >= this._total_items )
+            {
+            this.dispatchEvent( 'complete' );
+            }
+        }
+
+    _on_error( event, id )
+        {
+        this.dispatchEvent( 'error', { event: event, id: id } );
+        }
+
+    _on_abort( event, id )
+        {
+        this.dispatchEvent( 'abort', { event: event, id: id } );
+        }
+
+    _on_progress( event: ProgressEvent )
+        {
+        var fileProgress = 0;
+
+        if ( event.lengthComputable )
+            {
+            fileProgress = event.loaded / event.total;
+            }
+
+        var progress = Math.round( (fileProgress + this._loaded_items) / this._total_items * 100 );
+
+
+        this.dispatchEvent( 'progress', progress )
+        }
+
+
+    load( id: string, path: string )
+        {
+        var type = Game.Preload.getType( path );
+        var _this = this;
+
+        this._total_items++;
 
         var request = new XMLHttpRequest();
 
-        request.responseType = RESPONSE_TYPE[ type ];
+        request.responseType = Game.Preload.RESPONSE_TYPE[ type ];
 
-            // events: progress / load / error / abort  //HERE
+            // add the request events
+        request.addEventListener( 'error', function( event )
+            {
+            _this._on_error( event, id );
+            });
+        request.addEventListener( 'abort', function( event )
+            {
+            _this._on_abort( event, id );
+            });
+        request.addEventListener( 'progress', function( event )
+            {
+            _this._on_progress( event );
+            });
         request.addEventListener( 'load', function( event )
             {
             var response = this.response;
@@ -57,13 +138,13 @@ export module Preload
                 image.src = window.URL.createObjectURL( response );
                 image.onload = function()
                     {
-                    loaded( image );
+                    _this._loaded( id, image );
                     }
                 }
 
             else if ( type === 'json' )
                 {
-                loaded( response );
+                _this._loaded( id, response );
                 }
 
             else if ( type === 'audio' )
@@ -76,15 +157,13 @@ export module Preload
                         return;
                         }
 
-                    DATA[ id ] = audioBuffer;
-
-                    loaded( audioBuffer );
+                    _this._loaded( id, audioBuffer );
                     });
                 }
 
             else
                 {
-                loaded( response );
+                _this._loaded( id, response );
                 }
             }, false );
 
@@ -93,10 +172,10 @@ export module Preload
         }
 
 
-    export function loadManifest( manifest: { id: string; path: string; }[], basePath?: string, callback?: () => any )
+
+    loadManifest( manifest: { id: string; path: string; }[], basePath?: string )
         {
         var length = manifest.length;
-        var count = 0;
 
         if ( typeof basePath === 'undefined' )
             {
@@ -107,20 +186,39 @@ export module Preload
             {
             var file = manifest[ a ];
 
-            load( file.id, basePath + file.path, function()
-                {
-                count++;
-
-                if ( count >= length )
-                    {
-                    if ( Utilities.isFunction( callback ) )
-                        {
-                        callback();
-                        }
-                    }
-                });
+            this.load( file.id, basePath + file.path );
             }
         }
+
+
+    get( id )
+        {
+        return this._data[ id ];
+        }
+    }
+
+
+
+export module Preload
+    {
+    export var EXTENSIONS = {
+            image: [ 'png', 'jpg', 'jpeg' ],
+            json: [ 'json' ],
+            text: [ 'txt' ],
+            audio: [ 'ogg', 'mp3' ]
+        };
+
+    export var RESPONSE_TYPE = {
+            image: 'blob',
+            json: 'json',
+            text: 'text',
+            audio: 'arraybuffer'
+        };
+
+
+        // key is the 'id'
+        // value is the 'data'
+    export var DATA = {};
 
 
     export function get( id )
@@ -129,7 +227,7 @@ export module Preload
         }
 
 
-    function getType( file )
+    export function getType( file )
         {
         var extension = file.split( '.' ).pop();
 

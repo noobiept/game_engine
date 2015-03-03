@@ -6,7 +6,11 @@ var manifest = [
         { id: 'sprite', path: 'sprite_example.png' },
         { id: 'sprite2', path: 'sprite_example2.png' }
     ];
-Game.Preload.loadManifest( manifest, '../assets/sprites/', start );
+
+var preload = new Game.Preload({ save_global: true });
+
+preload.addEventListener( 'complete', start );
+preload.loadManifest( manifest, '../assets/sprites/' );
 };
 
 

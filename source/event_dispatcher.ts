@@ -9,7 +9,7 @@ export class EventDispatcher
     {
     _listeners;
 
-    constructor( args )
+    constructor( args?: EventDispatcherArgs )
         {
         this._listeners = {};
         }
