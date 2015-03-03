@@ -172,7 +172,6 @@ export class Preload extends EventDispatcher
         }
 
 
-
     loadManifest( manifest: { id: string; path: string; }[], basePath?: string )
         {
         var length = manifest.length;

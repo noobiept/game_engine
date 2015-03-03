@@ -14,6 +14,7 @@ export class Message
     {
     base_container: HTMLElement;
     container: HTMLElement;
+    text: HTMLElement;
     timeout: Utilities.Timeout;
     components: Game.Component[];
 
@@ -68,6 +69,7 @@ export class Message
 
         this.base_container = args.container;
         this.container = container;
+        this.text = text;
         this.timeout = null;
 
 
@@ -107,6 +109,18 @@ export class Message
 
         this.base_container = null;
         this.container = null;
+        }
+
+
+    getText()
+        {
+        return this.text.innerHTML;
+        }
+
+
+    setText( text )
+        {
+        this.text.innerHTML = text;
         }
     }
 }

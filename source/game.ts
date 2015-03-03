@@ -311,6 +311,13 @@ export function getCanvas()
     }
 
 
+export function updateCanvasDimensions( width, height )
+    {
+    CANVAS.width = WIDTH = width;
+    CANVAS.height = HEIGHT = height;
+    }
+
+
 export function getCanvasContext()
     {
     return CTX;

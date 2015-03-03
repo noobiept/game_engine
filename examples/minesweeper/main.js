@@ -26,22 +26,42 @@ var manifest = [
 
 var preload = new Game.Preload({ save_global: true });
 
+var loadingMessage = new Game.Message({
+        container: canvasContainer,
+        text: 'Loading..'
+    });
+
 preload.addEventListener( 'progress', function( progress )
     {
-    console.log( progress );
+    loadingMessage.setText( 'Loading.. ' + progress + '%' );
     });
 preload.addEventListener( 'complete', function()
     {
+    loadingMessage.remove();
+
         // add the game menu
     var menu = new Game.GameMenu({
             parent: document.body
         });
 
+
+        // restart button
     var restart = new Game.GameMenu.Button({
             text: 'Restart',
             callback: Main.restart
         });
     menu.add( restart );
+
+
+        // difficulty selection
+    var difficulty = new Game.GameMenu.MultipleOptions({
+            options: [ 'beginner', 'intermediate', 'advanced' ],
+            callback: function( button, position, htmlElement )
+                {
+                Main.selectDifficulty( htmlElement.innerHTML );
+                }
+        });
+    menu.add( difficulty );
 
 
         // start the game
@@ -59,28 +79,47 @@ function Main()
 
 }
 
+var DIFFICULTY = {
+    beginner: {
+        columns: 9,
+        lines: 9,
+        mines: 10
+    },
+    intermediate: {
+        columns: 16,
+        lines: 16,
+        mines: 40
+    },
+    advanced: {
+        columns: 30,
+        lines: 16,
+        mines: 99
+    }
+};
+
 var GRID;
-var NUMBER_OF_MINES = 10;
+var NUMBER_OF_COLUMNS = DIFFICULTY.beginner.columns;
+var NUMBER_OF_LINES = DIFFICULTY.beginner.lines;
+var NUMBER_OF_MINES = DIFFICULTY.beginner.mines;
 var TIMER;  //HERE
-var COLUMNS = 10;
-var LINES = 10;
 var SELECTED_SQUARE = null;
 var CANVAS_RECT = null;
 var HAS_ENDED = false;
 var END_MESSAGE = null;
 
 
+
 Main.start = function()
 {
 var canvas = Game.getCanvas();
 
-canvas.width = NUMBER_OF_MINES * Square.SIZE;
-canvas.height = NUMBER_OF_MINES * Square.SIZE;
+Game.updateCanvasDimensions( NUMBER_OF_COLUMNS * Square.SIZE, NUMBER_OF_LINES * Square.SIZE );
+
 
 GRID = new Game.Grid({
         squareSize: Square.SIZE,
-        columns: COLUMNS,
-        lines: LINES
+        columns: NUMBER_OF_COLUMNS,
+        lines: NUMBER_OF_LINES
     });
 CANVAS_RECT = canvas.getBoundingClientRect();
 HAS_ENDED = false;
@@ -93,9 +132,9 @@ var column, line;
 
 
     // add all the squares
-for (column = 0 ; column < COLUMNS ; column++)
+for (column = 0 ; column < NUMBER_OF_COLUMNS ; column++)
     {
-    for (line = 0 ; line < LINES ; line++)
+    for (line = 0 ; line < NUMBER_OF_LINES ; line++)
         {
         square = new Square();
 
@@ -118,9 +157,9 @@ for (var a = minesPositions.length - 1 ; a >= 0 ; a--)
 
 
     // add the remaining values
-for (column = 0 ; column < COLUMNS ; column++)
+for (column = 0 ; column < NUMBER_OF_COLUMNS ; column++)
     {
-    for (line = 0 ; line < LINES ; line++)
+    for (line = 0 ; line < NUMBER_OF_LINES ; line++)
         {
         square = GRID.getElement( column, line );
 
@@ -194,6 +233,27 @@ for (var a = neighbors.length - 1 ; a >= 0 ; a--)
     }
 
 return count;
+};
+
+
+
+Main.selectDifficulty = function( difficulty )
+{
+var stats = DIFFICULTY[ difficulty ];
+
+if ( !stats )
+    {
+    throw new Error( 'Wrong difficulty value.' );
+    }
+
+
+Main.clear();
+
+NUMBER_OF_COLUMNS = stats.columns;
+NUMBER_OF_LINES = stats.lines;
+NUMBER_OF_MINES = stats.mines;
+
+Main.start();
 };
 
 
