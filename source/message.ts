@@ -5,7 +5,7 @@ module Game
 export interface MessageArgs
     {
         container: HTMLElement;
-        text: string;
+        text: any;          // string | HTMLElement
         components?: any;   // Component | Component[]
         timeout?: number;   // remove the message after a certain time (in seconds)
     }
@@ -26,7 +26,15 @@ export class Message
         container.className = 'Message-container';
         text.className = 'Message-text';
 
-        text.innerHTML = args.text;
+        if ( args.text instanceof HTMLElement )
+            {
+            text.appendChild( args.text );
+            }
+
+        else
+            {
+            text.innerHTML = args.text;
+            }
 
         container.appendChild( text );
 

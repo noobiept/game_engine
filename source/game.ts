@@ -1,3 +1,4 @@
+/// <reference path="highscore.ts" />
 /// <reference path="message.ts" />
 /// <reference path="component.ts" />
 /// <reference path="game_menu.ts" />

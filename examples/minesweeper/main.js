@@ -74,15 +74,16 @@ var DIFFICULTY = {
 };
 
 var GRID;
-var NUMBER_OF_COLUMNS = DIFFICULTY.beginner.columns;
-var NUMBER_OF_LINES = DIFFICULTY.beginner.lines;
-var NUMBER_OF_MINES = DIFFICULTY.beginner.mines;
+var CURRENT_DIFFICULTY = 'beginner';
+var NUMBER_OF_COLUMNS = DIFFICULTY[ CURRENT_DIFFICULTY ].columns;
+var NUMBER_OF_LINES = DIFFICULTY[ CURRENT_DIFFICULTY ].lines;
+var NUMBER_OF_MINES = DIFFICULTY[ CURRENT_DIFFICULTY ].mines;
 var TIMER;
 var SELECTED_SQUARE = null;
 var CANVAS_RECT = null;
 var HAS_ENDED = false;
 var END_MESSAGE = null;
-
+var MAX_SCORES_SAVED = 5;
 
 
 
@@ -100,6 +101,14 @@ var restart = new Game.GameMenu.Button({
         callback: Main.restart
     });
 menu.add( restart );
+
+
+    // show highscores
+var highscore = new Game.GameMenu.Button({
+        text: 'Highscore',
+        callback: showHighScores
+    });
+menu.add( highscore );
 
 
     // difficulty selection
@@ -120,8 +129,11 @@ var timer = new Game.GameMenu.Value({
 menu.add( timer );
 
 TIMER = new Utilities.Timer( timer.element );
-};
 
+
+    // init highscore
+Game.HighScore.init( MAX_SCORES_SAVED, 'minesweeper_high_score' );
+};
 
 
 
@@ -269,6 +281,7 @@ if ( !stats )
 
 Main.clear();
 
+CURRENT_DIFFICULTY = difficulty;
 NUMBER_OF_COLUMNS = stats.columns;
 NUMBER_OF_LINES = stats.lines;
 NUMBER_OF_MINES = stats.mines;
@@ -430,8 +443,87 @@ for (var a = adjacents.length - 1 ; a >= 0 ; a--)
 
 function revealAllMines()
 {
-    //HERE
+for (var column = 0 ; column < GRID.columns ; column++)
+    {
+    for (var line = 0 ; line < GRID.lines ; line++)
+        {
+        var square = GRID.getElement( column, line );
+
+        if ( square.value === Square.VALUE.mine )
+            {
+            square.setState( Square.STATE.revealed );
+            }
+        }
+    }
 }
+
+
+function showHighScores()
+{
+var canvasContainer = document.querySelector( '#CanvasContainer' );
+
+var difficulties = [ 'beginner', 'intermediate', 'advanced' ];
+var length = difficulties.length;
+
+var table = document.createElement( 'table' );
+var tr, td;
+
+for (var a = 0 ; a < length ; a++)
+    {
+    var difficultyName = difficulties[ a ];
+    var scores = Game.HighScore.get( difficultyName );
+    tr = document.createElement( 'tr' );
+
+    td = document.createElement( 'td' );
+    td.innerHTML = difficultyName;
+
+    tr.appendChild( td );
+
+    if ( !scores )
+        {
+        scores = [];
+        }
+
+
+    for (var b = 0 ; b < MAX_SCORES_SAVED ; b++)
+        {
+        td = document.createElement( 'td' );
+
+        var scoreValue = scores[ b ];
+
+        if ( typeof scoreValue !== 'undefined' )
+            {
+            td.innerHTML = scoreValue + 's';
+            }
+
+        else
+            {
+            td.innerHTML = '-';
+            }
+
+        tr.appendChild( td );
+        }
+
+
+    table.appendChild( tr );
+    }
+
+
+var close = new Game.GameMenu.Button({
+        text: 'Close',
+        callback: function( button )
+            {
+            highScore.remove();
+            }
+    });
+
+var highScore = new Game.Message({
+        container: canvasContainer,
+        text: table,
+        components: close
+    });
+}
+
 
 
 function gameOver( hasWon )
@@ -445,6 +537,8 @@ var text;
 if ( hasWon )
     {
     text = 'You Won! ' + TIMER.getTimeString() + '!';
+
+    Game.HighScore.add( CURRENT_DIFFICULTY, TIMER.getTimeSeconds() );
     }
 
 else
