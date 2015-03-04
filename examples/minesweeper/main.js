@@ -132,7 +132,19 @@ TIMER = new Utilities.Timer( timer.element );
 
 
     // init highscore
-Game.HighScore.init( MAX_SCORES_SAVED, 'minesweeper_high_score' );
+Game.HighScore.init( MAX_SCORES_SAVED, 'minesweeper_high_score', true );
+
+
+    // setup keyboard shortcuts
+document.body.addEventListener( 'keyup', function( event )
+    {
+    var key = event.keyCode;
+
+    if ( key === Utilities.KEY_CODE.space )
+        {
+        Main.restart();
+        }
+    });
 };
 
 
