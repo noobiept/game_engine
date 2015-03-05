@@ -14,7 +14,7 @@
 /// <reference path="element.ts" />
 /// <reference path="rectangle.ts" />
 /// <reference path="circle.ts" />
-/// <reference path="utilities/utilities-1.6.d.ts" />
+/// <reference path="utilities/utilities.1.7.0.d.ts" />
 /// <reference path="typings/tsd.d.ts" />
 
 module Game

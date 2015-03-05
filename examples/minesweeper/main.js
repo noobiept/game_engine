@@ -165,7 +165,7 @@ GRID = new Game.Grid({
 CANVAS_RECT = canvas.getBoundingClientRect();
 HAS_ENDED = false;
 
-TIMER.start({ startValue: 0 });
+TIMER.start();
 
 var emptyPositions = GRID.getEmptyPositions();
 var minesPositions = Utilities.getSeveralRandomInts( 0, emptyPositions.length - 1, NUMBER_OF_MINES );

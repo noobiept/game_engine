@@ -1,4 +1,4 @@
-/// <reference path="utilities/utilities-1.6.d.ts" />
+/// <reference path="utilities/utilities.1.7.0.d.ts" />
 
 module Game
 {
