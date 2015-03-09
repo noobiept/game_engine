@@ -90,43 +90,43 @@ var MAX_SCORES_SAVED = 5;
 Main.init = function()
 {
     // add the game menu
-var menu = new Game.GameMenu({
+var menu = new Game.Html.HtmlContainer({
         parent: document.body
     });
 
 
     // restart button
-var restart = new Game.GameMenu.Button({
+var restart = new Game.Html.Button({
         text: 'Restart',
         callback: Main.restart
     });
-menu.add( restart );
+menu.addChild( restart );
 
 
     // show highscores
-var highscore = new Game.GameMenu.Button({
+var highscore = new Game.Html.Button({
         text: 'Highscore',
         callback: showHighScores
     });
-menu.add( highscore );
+menu.addChild( highscore );
 
 
     // difficulty selection
-var difficulty = new Game.GameMenu.MultipleOptions({
+var difficulty = new Game.Html.MultipleOptions({
         options: [ 'beginner', 'intermediate', 'advanced' ],
         callback: function( button, position, htmlElement )
             {
             Main.selectDifficulty( htmlElement.innerHTML );
             }
     });
-menu.add( difficulty );
+menu.addChild( difficulty );
 
 
     // timer
-var timer = new Game.GameMenu.Value({
+var timer = new Game.Html.Value({
         value: 0
     });
-menu.add( timer );
+menu.addChild( timer );
 
 TIMER = new Utilities.Timer( timer.element );
 
@@ -521,7 +521,7 @@ for (var a = 0 ; a < length ; a++)
     }
 
 
-var close = new Game.GameMenu.Button({
+var close = new Game.Html.Button({
         text: 'Close',
         callback: function( button )
             {
@@ -561,7 +561,7 @@ else
 
 var canvasContainer = document.querySelector( '#CanvasContainer' );
 
-var restart = new Game.GameMenu.Button({
+var restart = new Game.Html.Button({
         text: 'Restart',
         callback: Main.restart
     });

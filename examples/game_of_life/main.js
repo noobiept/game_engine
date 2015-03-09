@@ -3,9 +3,9 @@ window.onload = function()
 Game.init( document.body, 400, 400 );
 
     // set up the game menu
-var menu = new Game.GameMenu({ parent: document.body, cssId: 'GameMenu' });
+var menu = new Game.Html.HtmlContainer({ parent: document.body, cssId: 'GameMenu' });
 
-var start = new Game.GameMenu.TwoState({
+var start = new Game.Html.TwoState({
         cssId: 'Start',
         cssClass: 'button',
         text: 'Start',
@@ -19,7 +19,7 @@ var start = new Game.GameMenu.TwoState({
             Main.restart();
             }
     });
-menu.add( start );
+menu.addChild( start );
 
     // start the game on the first phase
 Main.firstPhase();

@@ -2,14 +2,14 @@ window.onload = function()
 {
 Game.init( document.body, 400, 400 );
 
-var menu = new Game.GameMenu({
+var menu = new Game.Html.HtmlContainer({
         parent: document.body,
         cssId: 'Menu',
         cssClass: [ 'Test1', 'Test2' ]
     });
 
-var value = new Game.GameMenu.Value({ preText: 'Value: ', value: 0 });
-var button = new Game.GameMenu.Button({
+var value = new Game.Html.Value({ preText: 'Value: ', value: 0 });
+var button = new Game.Html.Button({
         text: 'Click me!',
         callback: function( button )
             {
@@ -17,7 +17,7 @@ var button = new Game.GameMenu.Button({
             button.setActive( false );
             }
     });
-var boolean = new Game.GameMenu.Boolean({
+var boolean = new Game.Html.Boolean({
         value: true,
         preText: 'State: ',
         callback: function( button )
@@ -25,7 +25,7 @@ var boolean = new Game.GameMenu.Boolean({
             console.log( button.value );
             }
     });
-var twoStateButton = new Game.GameMenu.TwoState({
+var twoStateButton = new Game.Html.TwoState({
         text: 'Start',
         text2: 'Stop',
         callback: function( button )
@@ -37,14 +37,14 @@ var twoStateButton = new Game.GameMenu.TwoState({
             console.log( 'Stop!' );
             }
     });
-var multipleOptions = new Game.GameMenu.MultipleOptions({
+var multipleOptions = new Game.Html.MultipleOptions({
         options: [ 'One', 'Two', 'Three' ],
         callback: function( button, position, htmlElement )
             {
             console.log( position, ':', htmlElement.innerHTML );
             }
     });
-var range = new Game.GameMenu.Range({
+var range = new Game.Html.Range({
         min: 2,
         max: 8,
         value: 4,
@@ -57,9 +57,9 @@ var range = new Game.GameMenu.Range({
     });
 
 
-menu.add( value );
-menu.add( button, boolean, twoStateButton );
-menu.add( [ multipleOptions, range ] );
+menu.addChild( value );
+menu.addChild( button, boolean, twoStateButton );
+menu.addChild( [ multipleOptions, range ] );
 
 var count = 0;
 

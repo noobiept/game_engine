@@ -1,4 +1,4 @@
-/// <reference path="component.ts" />
+/// <reference path="html.ts" />
 
 module Game
 {
@@ -6,7 +6,7 @@ export interface MessageArgs
     {
         container: HTMLElement;
         text: any;          // string | HTMLElement
-        components?: any;   // Component | Component[]
+        components?: any;   // HtmlElement | HtmlElement[]
         timeout?: number;   // remove the message after a certain time (in seconds)
     }
 
@@ -16,15 +16,15 @@ export class Message
     container: HTMLElement;
     text: HTMLElement;
     timeout: Utilities.Timeout;
-    components: Game.Component[];
+    components: Game.Html.HtmlElement[];
 
     constructor( args )
         {
         var container = document.createElement( 'div' );
         var text = document.createElement( 'div' );
 
-        container.className = 'Message-container';
-        text.className = 'Message-text';
+        container.className = 'Game-Message-container';
+        text.className = 'Game-Message-text';
 
         if ( args.text instanceof HTMLElement )
             {
@@ -58,7 +58,7 @@ export class Message
             var length = components.length;
             var componentsContainer = document.createElement( 'div' );
 
-            componentsContainer.className = 'Message-Components';
+            componentsContainer.className = 'Game-Message-Components';
 
 
             for (var a = 0 ; a < length ; a++)

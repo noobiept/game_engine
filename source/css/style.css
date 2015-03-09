@@ -15,28 +15,28 @@ canvas
 
     /* ---- Menu ---- */
 
-.GameMenu
+.Game-Container
     {
     color: white;
     }
 
-.GameMenu-Button, .GameMenu-Boolean, .GameMenu-MultipleOptions
+.Game-Button, .Game-Boolean, .Game-MultipleOptions
     {
     cursor: pointer;
     color: green;
     }
 
-.GameMenu-MultipleOptions span
+.Game-MultipleOptions span
     {
     margin: 5px;
     }
 
-.GameMenu-selected
+.Game-selected
     {
     color: red;
     }
 
-.GameMenu-inactive
+.Game-inactive
     {
     cursor: default;
     color: gray;
@@ -45,7 +45,7 @@ canvas
 
     /* ---- Message ---- */
 
-.Message-container
+.Game-Message-container
     {
     position: absolute;
     left: 50%;
@@ -56,19 +56,19 @@ canvas
     color: black;
     }
 
-.Message-container .GameMenu-Button
+.Game-Message-container .Game-Button
     {
     background-color: cornflowerblue;
     color: aliceblue;
     }
 
-.Message-Components
+.Game-Message-Components
     {
     margin-top: 10px;
     text-align: right;
     }
 
-.Message-Components > *
+.Game-Message-Components > *
     {
     display: inline-block;
     padding: 2px 5px;

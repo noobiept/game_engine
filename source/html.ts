@@ -1,110 +1,212 @@
-/// <reference path="component.ts" />
-
 module Game
 {
-export interface GameMenuArgs extends ComponentArgs
+export module Html
     {
-        parent: HTMLElement;
-    }
-
-export class GameMenu extends Component
-    {
-    parent: HTMLElement;
-    components: Component[];
-
-    constructor( args: GameMenuArgs )
+    export interface HtmlElementArgs
         {
-        super( args );
-
-        this.container.classList.add( 'GameMenu' );
-        this.components = [];
-        this.parent = args.parent;
-
-        this.parent.appendChild( this.container );
+            cssId?: string;
+            cssClass?: any;     // string or string[]
+            preText: string;
         }
 
-    /*
-        add( element );
-        add( element1, element2 );
-        add( [ element1, element2 ] );
-
-        element is of type 'Component'
-     */
-    add( args: any )
+    export class HtmlElement
         {
-        var elements = arguments;
+        container: HTMLElement;
+        isActive: boolean;
 
-        if ( args instanceof Array )
+        constructor( args: HtmlElementArgs )
             {
-            elements = args;
-            }
+            var container = document.createElement( 'div' );
 
-        var length = elements.length;
+            container.className = 'Game-Element';
 
-        for (var a = 0 ; a < length ; a++)
-            {
-            var component = elements[ a ];
-
-            this.components.push( component );
-            this.container.appendChild( component.container );
-            }
-        }
-
-    /*
-        remove( element );
-        remove( element1, element2 );
-        remove( [ element1, element2 ] );
-
-        element is of type 'Component'
-     */
-    remove( args: any )
-        {
-        var elements = arguments;
-
-        if ( args instanceof Array )
-            {
-            elements = args;
-            }
-
-        var length = elements.length;
-
-        for (var a = 0 ; a < length ; a++)
-            {
-            var component = elements[ a ];
-
-            var index = this.components.indexOf( component );
-
-            if ( index >= 0 )
+                // add an optional id
+            if ( typeof args.cssId !== 'undefined' )
                 {
-                this.components.splice( index, 1 );
-                component.clear();
+                container.id = args.cssId;
+                }
+
+                // add optional class/classes
+            if ( typeof args.cssClass !== 'undefined' )
+                {
+                if ( typeof args.cssClass === 'string' )
+                    {
+                    container.classList.add( args.cssClass );
+                    }
+
+                else
+                    {
+                    for (var a = args.cssClass.length - 1 ; a >= 0 ; a--)
+                        {
+                        container.classList.add( args.cssClass[ a ] );
+                        }
+                    }
+                }
+
+                // add optional pre text
+            if ( typeof args.preText !== 'undefined' )
+                {
+                var preText = document.createElement( 'span' );
+
+                preText.innerHTML = args.preText;
+
+                container.appendChild( preText );
+                }
+
+
+            this.container = container;
+            this.isActive = true;
+            }
+
+
+        setActive( yesNo: boolean )
+            {
+                // already in that state
+            if ( yesNo === this.isActive )
+                {
+                return;
+                }
+
+            if ( yesNo === true )
+                {
+                this.addEvents();
+                this.container.classList.remove( 'Game-inactive' );
+                }
+
+            else
+                {
+                this.removeEvents();
+                this.container.classList.add( 'Game-inactive' );
+                }
+
+            this.isActive = yesNo;
+            }
+
+        addEvents()
+            {
+                // implement this if needed
+            }
+
+        removeEvents()
+            {
+                // implement this if needed
+            }
+
+        clear()
+            {
+                // implement this if needed
+            }
+        }
+
+
+    export interface ContainerArgs extends HtmlElementArgs
+        {
+            parent: HTMLElement;
+            children?: any;     // HtmlElement or HtmlElement[]
+        }
+
+    export class HtmlContainer extends HtmlElement
+        {
+        parent: HTMLElement;
+        _children: HtmlElement[];
+
+        constructor( args: ContainerArgs )
+            {
+            super( args );
+
+            this.container.classList.add( 'Game-Container' );
+            this._children = [];
+            this.parent = args.parent;
+            this.parent.appendChild( this.container );
+
+
+            if ( typeof args.children !== 'undefined' )
+                {
+                this.addChild( args.children );
                 }
             }
-        }
 
-    /*
-        Removes the game menu, plus all of its components (can't use the menu after this)
-     */
-    clear()
-        {
-        for (var a = this.components.length - 1 ; a >= 0 ; a--)
+        /*
+            addChild( element );
+            addChild( element1, element2 );
+            addChild( [ element1, element2 ] );
+
+            element is of type 'HtmlElement'
+         */
+        addChild( args: any )
             {
-            this.components[ a ].clear();
+            var elements = arguments;
+
+            if ( args instanceof Array )
+                {
+                elements = args;
+                }
+
+            var length = elements.length;
+
+            for (var a = 0 ; a < length ; a++)
+                {
+                var child = elements[ a ];
+
+                this._children.push( child );
+                this.container.appendChild( child.container );
+                }
             }
 
-        this.parent.removeChild( this.container );
-        this.components.length = 0;
-        }
-    }
+        /*
+            removeChild( element );
+            removeChild( element1, element2 );
+            removeChild( [ element1, element2 ] );
 
-export module GameMenu
-    {
-    export interface ValueArgs extends ComponentArgs
+            element is of type 'Component'
+         */
+        removeChild( args: any )
+            {
+            var elements = arguments;
+
+            if ( args instanceof Array )
+                {
+                elements = args;
+                }
+
+            var length = elements.length;
+
+            for (var a = 0 ; a < length ; a++)
+                {
+                var child = elements[ a ];
+
+                var index = this._children.indexOf( child );
+
+                if ( index >= 0 )
+                    {
+                    this._children.splice( index, 1 );
+                    child.clear();
+                    }
+                }
+            }
+
+        /*
+            Removes the game menu, plus all of its components (can't use the menu after this)
+         */
+        clear()
+            {
+            for (var a = this._children.length - 1 ; a >= 0 ; a--)
+                {
+                this._children[ a ].clear();
+                }
+
+            this.parent.removeChild( this.container );
+            this._children.length = 0;
+            }
+        }
+
+
+    export interface ValueArgs extends HtmlElementArgs
         {
             value: any;
         }
 
-    export class Value extends Component
+    export class Value extends HtmlElement
         {
         value: any;
         element: HTMLElement;
@@ -117,7 +219,7 @@ export module GameMenu
                 // .container only available after super()
             this.element = document.createElement( 'span' );
             this.container.appendChild( this.element );
-            this.container.classList.add( 'GameMenu-Value' );
+            this.container.classList.add( 'Game-Value' );
 
             this.setValue( args.value );
             }
@@ -145,13 +247,13 @@ export module GameMenu
         }
 
 
-    export interface ButtonArgs extends ComponentArgs
+    export interface ButtonArgs extends HtmlElementArgs
         {
             callback: (button: Button) => any;
             text: string;
         }
 
-    export class Button extends Component
+    export class Button extends HtmlElement
         {
         element: HTMLElement;
         click_ref: () => any;
@@ -175,7 +277,7 @@ export module GameMenu
             this.element = document.createElement( 'span' );
             this.element.innerHTML = args.text;
 
-            this.container.classList.add( 'GameMenu-Button' );
+            this.container.classList.add( 'Game-Button' );
             this.container.appendChild( this.element );
 
             this.addEvents();
@@ -199,13 +301,13 @@ export module GameMenu
         }
 
 
-    export interface BooleanArgs extends ComponentArgs
+    export interface BooleanArgs extends HtmlElementArgs
         {
             value: boolean;
             callback: (value: any) => any;
         }
 
-    export class Boolean extends Component
+    export class Boolean extends HtmlElement
         {
         value: boolean;
         element: HTMLElement;
@@ -228,7 +330,7 @@ export module GameMenu
                 // .container only available after super()
             this.element = document.createElement( 'span' );
             this.container.appendChild( this.element );
-            this.container.classList.add( 'GameMenu-Boolean' );
+            this.container.classList.add( 'Game-Boolean' );
 
             this.setValue( args.value );
             this.addEvents();
@@ -313,18 +415,18 @@ export module GameMenu
             super( args );
 
                 // .container only available after super()
-            this.container.classList.add( 'GameMenu-TwoState' );
+            this.container.classList.add( 'Game-TwoState' );
             }
         }
 
 
-    export interface MultipleOptionsArgs extends ComponentArgs
+    export interface MultipleOptionsArgs extends HtmlElementArgs
         {
             options: string[];
             callback: (button: MultipleOptions, position: number, htmlElement: HTMLElement) => any;
         }
 
-    export class MultipleOptions extends Component
+    export class MultipleOptions extends HtmlElement
         {
         elements: HTMLElement[];
         click_ref: () => any;
@@ -370,7 +472,7 @@ export module GameMenu
                 this.elements.push( option );
                 }
 
-            this.container.classList.add( 'GameMenu-MultipleOptions' );
+            this.container.classList.add( 'Game-MultipleOptions' );
             this.selected = null;
             this.select( 0 );
             this.addEvents();
@@ -388,11 +490,11 @@ export module GameMenu
 
             if ( this.selected )
                 {
-                this.selected.classList.remove( 'GameMenu-selected' );
+                this.selected.classList.remove( 'Game-selected' );
                 }
 
             this.selected = element;
-            element.classList.add( 'GameMenu-selected' );
+            element.classList.add( 'Game-selected' );
             }
 
         addEvents()
@@ -420,7 +522,7 @@ export module GameMenu
         }
 
 
-    export interface RangeArgs extends ComponentArgs
+    export interface RangeArgs extends HtmlElementArgs
         {
             min: number;
             max: number;
@@ -429,7 +531,7 @@ export module GameMenu
             onChange?: (button: Range) => any;
         }
 
-    export class Range extends Component
+    export class Range extends HtmlElement
         {
         value: HTMLElement;
         input: HTMLInputElement;
@@ -477,7 +579,7 @@ export module GameMenu
 
             this.value = document.createElement( 'span' );
 
-            this.container.classList.add( 'GameMenu-Range' );
+            this.container.classList.add( 'Game-Range' );
             this.container.appendChild( this.input );
             this.container.appendChild( this.value );
 

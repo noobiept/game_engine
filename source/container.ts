@@ -57,16 +57,34 @@ export class Container extends Element
         }
 
 
-    removeChild( element )
+    /*
+        removeChild( element );
+        removeChild( element1, element2 );
+        removeChild( [ element1, element2 ] );
+     */
+    removeChild( args: any )
         {
-        var index = this._children.indexOf( element );
+        var children = arguments;
 
-        if ( index >= 0 )
+        if ( args instanceof Array )
             {
-            this._children.splice( index, 1 );
+            children = args;
             }
 
-        element.container = null;
+        var length = children.length;
+
+        for (var a = 0 ; a < length ; a++)
+            {
+            var element = children[ a ];
+            var index = this._children.indexOf( element );
+
+            if ( index >= 0 )
+                {
+                this._children.splice( index, 1 );
+                }
+
+            element.container = null;
+            }
         }
 
 
