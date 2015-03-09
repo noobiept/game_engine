@@ -2,82 +2,62 @@
 
 module Game
 {
-export interface MessageArgs
+export interface MessageArgs extends Game.Html.HtmlContainerArgs
     {
-        container: HTMLElement;
         text: any;          // string | HTMLElement
-        components?: any;   // HtmlElement | HtmlElement[]
+        buttons?: any;   // HtmlElement | HtmlElement[]
         timeout?: number;   // remove the message after a certain time (in seconds)
     }
 
-export class Message
+export class Message extends Game.Html.HtmlContainer
     {
-    base_container: HTMLElement;
-    container: HTMLElement;
     text: HTMLElement;
     timeout: Utilities.Timeout;
-    components: Game.Html.HtmlElement[];
 
-    constructor( args )
+
+    constructor( args: MessageArgs )
         {
-        var container = document.createElement( 'div' );
-        var text = document.createElement( 'div' );
+        super( args );
 
-        container.className = 'Game-Message-container';
-        text.className = 'Game-Message-text';
+        this.text = document.createElement( 'div' );
+        this.text.className = 'Game-Message-text';
 
-        if ( args.text instanceof HTMLElement )
+        this.setText( args.text );
+
+        this.container.appendChild( this.text );
+        this.container.classList.add( 'Game-Message-container' );
+
+
+        if ( typeof args.buttons !== 'undefined' )
             {
-            text.appendChild( args.text );
-            }
+            var buttons;
 
-        else
-            {
-            text.innerHTML = args.text;
-            }
-
-        container.appendChild( text );
-
-
-        this.components = null;
-
-        if ( typeof args.components !== 'undefined' )
-            {
-            var components;
-
-            if ( args.components instanceof Array )
+            if ( args.buttons instanceof Array )
                 {
-                components = args.components;
+                buttons = args.buttons;
                 }
 
             else
                 {
-                components = [ args.components ];
+                buttons = [ args.buttons ];
                 }
 
-            var length = components.length;
-            var componentsContainer = document.createElement( 'div' );
+            var length = buttons.length;
 
-            componentsContainer.className = 'Game-Message-Components';
+            var buttonsContainer = new Game.Html.HtmlContainer({
+                    cssClass: 'Game-Message-Components'
+                });
 
 
             for (var a = 0 ; a < length ; a++)
                 {
-                componentsContainer.appendChild( components[ a ].container );
+                buttonsContainer.addChild( buttons[ a ] );
                 }
 
-            container.appendChild( componentsContainer );
-
-            this.components = components;
+            this.addChild( buttonsContainer );
             }
 
 
-
-        args.container.appendChild( container );
-
-        this.base_container = args.container;
-        this.container = container;
-        this.text = text;
         this.timeout = null;
 
 
@@ -88,13 +68,13 @@ export class Message
 
             this.timeout.start( function()
                 {
-                _this.remove();
+                _this.clear();
                 }, args.timeout * 1000 );
             }
         }
 
 
-    remove()
+    clear()
         {
         if ( this.timeout )
             {
@@ -102,21 +82,7 @@ export class Message
             this.timeout = null;
             }
 
-        if ( this.components )
-            {
-            for (var a = this.components.length - 1 ; a >= 0 ; a--)
-                {
-                this.components[ a ].clear();
-                }
-            }
-
-        this.components = null;
-
-
-        this.base_container.removeChild( this.container );
-
-        this.base_container = null;
-        this.container = null;
+        super.clear();
         }
 
 
@@ -128,7 +94,16 @@ export class Message
 
     setText( text )
         {
-        this.text.innerHTML = text;
+        if ( text instanceof HTMLElement )
+            {
+            this.text.innerHTML = '';
+            this.text.appendChild( text );
+            }
+
+        else
+            {
+            this.text.innerHTML = text;
+            }
         }
     }
 }

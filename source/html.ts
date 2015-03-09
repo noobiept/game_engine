@@ -6,7 +6,7 @@ export module Html
         {
             cssId?: string;
             cssClass?: any;     // string or string[]
-            preText: string;
+            preText?: string;
         }
 
     export class HtmlElement
@@ -14,43 +14,47 @@ export module Html
         container: HTMLElement;
         isActive: boolean;
 
-        constructor( args: HtmlElementArgs )
+        constructor( args?: HtmlElementArgs )
             {
             var container = document.createElement( 'div' );
 
             container.className = 'Game-Element';
 
-                // add an optional id
-            if ( typeof args.cssId !== 'undefined' )
-                {
-                container.id = args.cssId;
-                }
 
-                // add optional class/classes
-            if ( typeof args.cssClass !== 'undefined' )
+            if ( typeof args !== 'undefined' )
                 {
-                if ( typeof args.cssClass === 'string' )
+                    // add an optional id
+                if ( typeof args.cssId !== 'undefined' )
                     {
-                    container.classList.add( args.cssClass );
+                    container.id = args.cssId;
                     }
 
-                else
+                    // add optional class/classes
+                if ( typeof args.cssClass !== 'undefined' )
                     {
-                    for (var a = args.cssClass.length - 1 ; a >= 0 ; a--)
+                    if ( typeof args.cssClass === 'string' )
                         {
-                        container.classList.add( args.cssClass[ a ] );
+                        container.classList.add( args.cssClass );
+                        }
+
+                    else
+                        {
+                        for (var a = args.cssClass.length - 1 ; a >= 0 ; a--)
+                            {
+                            container.classList.add( args.cssClass[ a ] );
+                            }
                         }
                     }
-                }
 
-                // add optional pre text
-            if ( typeof args.preText !== 'undefined' )
-                {
-                var preText = document.createElement( 'span' );
+                    // add optional pre text
+                if ( typeof args.preText !== 'undefined' )
+                    {
+                    var preText = document.createElement( 'span' );
 
-                preText.innerHTML = args.preText;
+                    preText.innerHTML = args.preText;
 
-                container.appendChild( preText );
+                    container.appendChild( preText );
+                    }
                 }
 
 
@@ -99,30 +103,28 @@ export module Html
         }
 
 
-    export interface ContainerArgs extends HtmlElementArgs
+    export interface HtmlContainerArgs extends HtmlElementArgs
         {
-            parent: HTMLElement;
             children?: any;     // HtmlElement or HtmlElement[]
         }
 
     export class HtmlContainer extends HtmlElement
         {
-        parent: HTMLElement;
         _children: HtmlElement[];
 
-        constructor( args: ContainerArgs )
+        constructor( args?: HtmlContainerArgs )
             {
             super( args );
 
             this.container.classList.add( 'Game-Container' );
             this._children = [];
-            this.parent = args.parent;
-            this.parent.appendChild( this.container );
 
-
-            if ( typeof args.children !== 'undefined' )
+            if ( typeof args !== 'undefined' )
                 {
-                this.addChild( args.children );
+                if ( typeof args.children !== 'undefined' )
+                    {
+                    this.addChild( args.children );
+                    }
                 }
             }
 
@@ -195,7 +197,7 @@ export module Html
                 this._children[ a ].clear();
                 }
 
-            this.parent.removeChild( this.container );
+            this.container.parentNode.removeChild( this.container );
             this._children.length = 0;
             }
         }

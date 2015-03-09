@@ -3,10 +3,11 @@ window.onload = function()
 Game.init( document.body, 400, 400 );
 
 var menu = new Game.Html.HtmlContainer({
-        parent: document.body,
         cssId: 'Menu',
         cssClass: [ 'Test1', 'Test2' ]
     });
+document.body.appendChild( menu.container );
+
 
 var value = new Game.Html.Value({ preText: 'Value: ', value: 0 });
 var button = new Game.Html.Button({

@@ -4,10 +4,9 @@ var container = document.querySelector( '#CanvasContainer' );
 
 Game.init( container, 400, 400 );
 
-var menu = new Game.Html.HtmlContainer({
-        parent: document.body
-    });
+var menu = new Game.Html.HtmlContainer();
 
+document.body.appendChild( menu.container );
 
     // example 1 - add/remove a message
 var message1;
@@ -17,13 +16,14 @@ var message1_button = new Game.Html.TwoState({
         callback: function( button )
             {
             message1 = new Game.Message({
-                    container: container,
                     text: 'Hello there!'
                 });
+
+            container.appendChild( message1.container );
             },
         callback2: function( button )
             {
-            message1.remove();
+            message1.clear();
             }
     });
 menu.addChild( message1_button );
@@ -34,11 +34,11 @@ var message2_button = new Game.Html.Button({
         text: 'With timeout',
         callback: function( button )
             {
-            new Game.Message({
-                    container: container,
+            var message2 = new Game.Message({
                     text: 'Timeout!',
                     timeout: 1
                 });
+            container.appendChild( message2.container );
             }
     });
 menu.addChild( message2_button );
@@ -49,26 +49,27 @@ var message3_button = new Game.Html.Button({
         text: 'With components',
         callback: function( button )
             {
-            var component = new Game.Html.Button({
+            var button1 = new Game.Html.Button({
                     text: 'Other',
                     callback: function( button )
                         {
                         console.log( 'An action!' );
                         }
                 });
-            var component2 = new Game.Html.Button({
+            var button2 = new Game.Html.Button({
                     text: 'Close',
                     callback: function( button )
                         {
-                        message3.remove();
+                        message3.clear();
                         }
                 });
 
             var message3 = new Game.Message({
-                    container: container,
                     text: 'Nice message!',
-                    components: [ component, component2 ]
+                    buttons: [ button1, button2 ]
                 });
+
+            container.appendChild( message3.container );
             }
     });
 menu.addChild( message3_button );

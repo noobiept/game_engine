@@ -3,7 +3,9 @@ window.onload = function()
 Game.init( document.body, 400, 400 );
 
     // set up the game menu
-var menu = new Game.Html.HtmlContainer({ parent: document.body, cssId: 'GameMenu' });
+var menu = new Game.Html.HtmlContainer({ cssId: 'GameMenu' });
+
+document.body.appendChild( menu.container );
 
 var start = new Game.Html.TwoState({
         cssId: 'Start',

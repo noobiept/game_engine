@@ -27,9 +27,10 @@ var manifest = [
 var preload = new Game.Preload({ save_global: true });
 
 var loadingMessage = new Game.Message({
-        container: canvasContainer,
         text: 'Loading..'
     });
+canvasContainer.appendChild( loadingMessage.container );
+
 
 preload.addEventListener( 'progress', function( progress )
     {
@@ -37,7 +38,7 @@ preload.addEventListener( 'progress', function( progress )
     });
 preload.addEventListener( 'complete', function()
     {
-    loadingMessage.remove();
+    loadingMessage.clear();
 
         // start the game
     Main.init();
@@ -90,10 +91,8 @@ var MAX_SCORES_SAVED = 5;
 Main.init = function()
 {
     // add the game menu
-var menu = new Game.Html.HtmlContainer({
-        parent: document.body
-    });
-
+var menu = new Game.Html.HtmlContainer();
+document.body.appendChild( menu.container );
 
     // restart button
 var restart = new Game.Html.Button({
@@ -246,7 +245,7 @@ TIMER.reset();
 
 if ( END_MESSAGE )
     {
-    END_MESSAGE.remove();
+    END_MESSAGE.clear();
     END_MESSAGE = null;
     }
 
@@ -525,15 +524,15 @@ var close = new Game.Html.Button({
         text: 'Close',
         callback: function( button )
             {
-            highScore.remove();
+            highScore.clear();
             }
     });
 
 var highScore = new Game.Message({
-        container: canvasContainer,
         text: table,
-        components: close
+        buttons: close
     });
+canvasContainer.appendChild( highScore.container );
 }
 
 
@@ -566,10 +565,10 @@ var restart = new Game.Html.Button({
         callback: Main.restart
     });
 END_MESSAGE = new Game.Message({
-        container: canvasContainer,
         text: text,
-        components: restart
+        buttons: restart
     });
+canvasContainer.appendChild( END_MESSAGE.container );
 }
 
 
