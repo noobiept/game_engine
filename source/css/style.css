@@ -13,6 +13,11 @@ canvas
     }
 
 
+#Game-canvasContainer
+    {
+    position: relative;
+    }
+
     /* ---- Menu ---- */
 
 .Game-Container

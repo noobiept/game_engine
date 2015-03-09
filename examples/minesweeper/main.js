@@ -1,8 +1,6 @@
 window.onload = function()
 {
-var canvasContainer = document.querySelector( '#CanvasContainer' );
-
-Game.init( canvasContainer, 400, 400 );
+Game.init( document.body, 400, 400 );
 
     // disable the context menu (when right-clicking)
 Game.getCanvas().oncontextmenu = function( event ) { return false; };
@@ -26,6 +24,7 @@ var manifest = [
 
 var preload = new Game.Preload({ save_global: true });
 
+var canvasContainer = Game.getCanvasContainer();
 var loadingMessage = new Game.Message({
         text: 'Loading..'
     });
@@ -471,7 +470,7 @@ for (var column = 0 ; column < GRID.columns ; column++)
 
 function showHighScores()
 {
-var canvasContainer = document.querySelector( '#CanvasContainer' );
+var canvasContainer = Game.getCanvasContainer();
 
 var difficulties = [ 'beginner', 'intermediate', 'advanced' ];
 var length = difficulties.length;
@@ -558,7 +557,7 @@ else
     }
 
 
-var canvasContainer = document.querySelector( '#CanvasContainer' );
+var canvasContainer = Game.getCanvasContainer();
 
 var restart = new Game.Html.Button({
         text: 'Restart',

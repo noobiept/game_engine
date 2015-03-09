@@ -19,7 +19,8 @@
 module Game
 {
 var CANVAS: HTMLCanvasElement;
-var CTX;
+var CANVAS_CONTAINER: HTMLDivElement;
+var CTX: CanvasRenderingContext2D;
 var WIDTH: number;
 var HEIGHT: number;
 
@@ -35,11 +36,16 @@ export function init( htmlContainer: HTMLElement, canvasWidth: number, canvasHei
     CANVAS.width = canvasWidth;
     CANVAS.height = canvasHeight;
 
+    CANVAS_CONTAINER = document.createElement( 'div' );
+    CANVAS_CONTAINER.id = 'Game-canvasContainer';
+
     CTX = CANVAS.getContext( '2d' );
+
     WIDTH = canvasWidth;
     HEIGHT = canvasHeight;
 
-    htmlContainer.appendChild( CANVAS );
+    CANVAS_CONTAINER.appendChild( CANVAS );
+    htmlContainer.appendChild( CANVAS_CONTAINER );
 
     Sound.init();
     Bullet.init();
@@ -308,6 +314,12 @@ export function getElements()
 export function getCanvas()
     {
     return CANVAS;
+    }
+
+
+export function getCanvasContainer()
+    {
+    return CANVAS_CONTAINER;
     }
 
 

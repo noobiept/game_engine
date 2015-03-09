@@ -1,9 +1,8 @@
 window.onload = function()
 {
-var container = document.querySelector( '#CanvasContainer' );
+Game.init( document.body, 400, 400 );
 
-Game.init( container, 400, 400 );
-
+var container = Game.getCanvasContainer();
 var menu = new Game.Html.HtmlContainer();
 
 document.body.appendChild( menu.container );
