@@ -43,7 +43,7 @@ var GRID;
  */
 Main.firstPhase = function()
 {
-var canvas = Game.getCanvas();
+var canvas = Game.getCanvas().getHtmlCanvasElement();
 
 GRID = new Game.Grid({
         squareSize: Square.SIZE,
@@ -62,7 +62,7 @@ canvas.addEventListener( 'click', clickEvent );
  */
 Main.secondPhase = function()
 {
-var canvas = Game.getCanvas();
+var canvas = Game.getCanvas().getHtmlCanvasElement();
 
 canvas.removeEventListener( 'click', clickEvent );
 
@@ -72,7 +72,7 @@ Game.addToGameLoop( gameLogic, 0.5 );
 
 function clickEvent( event )
 {
-var canvas = Game.getCanvas();
+var canvas = Game.getCanvas().getHtmlCanvasElement();
 var canvasRect = canvas.getBoundingClientRect();
 
 var x = event.x - canvasRect.left;
@@ -182,7 +182,7 @@ for (var column = 0 ; column < GRID.columns ; column++)
 GRID.clear();
 GRID = null;
 
-var canvas = Game.getCanvas();
+var canvas = Game.getCanvas().getHtmlCanvasElement();
 
 canvas.removeEventListener( 'click', clickEvent );
 

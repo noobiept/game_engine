@@ -13,7 +13,8 @@ var frame = new Game.Text({
         textAlign: 'center'
     });
 
-Game.addElement( time, frame );
+Game.addElement( time );
+Game.addElement( frame );
 
 
 var countTime = 0;

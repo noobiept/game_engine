@@ -71,5 +71,5 @@ var sprite4 = new Game.Sprite({
     });
 sprite4.play( 'main' );
 
-Game.addElement( sprite, sprite2, sprite3, sprite4 );
+Game.getCanvas().addElement( sprite, sprite2, sprite3, sprite4 );
 }

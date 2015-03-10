@@ -28,7 +28,7 @@ var Direction = {
 
 SnakeGame.start = function()
 {
-var canvas = Game.getCanvas();
+var canvas = Game.getCanvas().getHtmlCanvasElement();
 var squareSize = 10;
 var columns = 25;
 var lines = 25;
@@ -207,7 +207,7 @@ SnakeGame.start();
 
 SnakeGame.gameOver = function()
 {
-var canvas = Game.getCanvas();
+var canvas = Game.getCanvas().getHtmlCanvasElement();
 
 var fontSize = 20;
 

@@ -45,7 +45,7 @@ menu.addChild( message2_button );
 
     // example 3 - add a button component that on click removes the message
 var message3_button = new Game.Html.Button({
-        text: 'With components',
+        text: 'With buttons',
         callback: function( button )
             {
             var button1 = new Game.Html.Button({

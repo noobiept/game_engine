@@ -198,7 +198,7 @@ export class Canvas
         }
 
 
-    getCanvas()
+    getHtmlCanvasElement()
         {
         return this._canvas;
         }

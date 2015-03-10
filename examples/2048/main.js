@@ -29,7 +29,7 @@ var gridSize = 4;   // lines/columns
 var gridLength = Block.size * gridSize;
 
 GRID = new Game.Grid({
-        refX: canvas.width / 2 - gridLength / 2 + Block.size / 2,
+        refX: canvas.getWidth() / 2 - gridLength / 2 + Block.size / 2,
         squareSize: Block.size,
         columns: gridSize,
         lines: gridSize,
@@ -433,8 +433,8 @@ if ( gameEnded !== 0 )
     var canvas = Game.getCanvas();
 
     var message = new Game.Text({
-            x: canvas.width / 2,
-            y: canvas.height,
+            x: canvas.getWidth() / 2,
+            y: canvas.getHeight(),
             text: text,
             textAlign: 'center',
             textBaseline: 'bottom',

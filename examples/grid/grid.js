@@ -11,7 +11,7 @@ var grid = new Game.Grid({
         background: { fill: false, color: 'gray' }
     });
 
-var canvas = Game.getCanvas();
+var canvas = Game.getCanvas().getHtmlCanvasElement();
 var canvasRect = canvas.getBoundingClientRect();
 
 canvas.addEventListener( 'click', function( event )

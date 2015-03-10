@@ -131,8 +131,11 @@ export function addCanvas( canvas: Game.Canvas, position?: number )
     }
 
 
-/*
-    Adds an element to a canvas. If 'id' is not given, then its added to the first/initial canvas.
+/**
+    Adds an element to a canvas. If 'id' is not given, then its added to the first canvas (the one most to the back).
+
+    @param element - Element or Element[]
+    @param id - The canvas id
  */
 export function addElement( element: Element, id?: number )
     {

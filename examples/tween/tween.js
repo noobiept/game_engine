@@ -2,6 +2,8 @@ window.onload = function()
 {
 Game.init( document.body, 400, 400 );
 
+var canvas = Game.getCanvas();
+
     // example 1
 var rect1 = new Game.Rectangle({
         x: 5,
@@ -10,7 +12,7 @@ var rect1 = new Game.Rectangle({
         height: 10,
         color: 'green'
     });
-Game.addElement( rect1 );
+canvas.addElement( rect1 );
 
 
 var tween1 = new Game.Tween( rect1 );
@@ -41,7 +43,7 @@ var rect3 = new Game.Rectangle({
         height: 10,
         color: 'blue'
     });
-Game.addElement( rect2, rect3 );
+canvas.addElement( rect2, rect3 );
 
 var tween2 = new Game.Tween( rect2 );
 var tween3 = new Game.Tween( rect3 );

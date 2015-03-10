@@ -12,7 +12,12 @@ body
     position: relative;
     }
 
-.Game-Canvas
+#Game-canvasContainer canvas:first-child
+    {
+    background-color: white;
+    }
+
+.Game-Canvas:not(:first-child)
     {
     position: absolute;
     left: 0;

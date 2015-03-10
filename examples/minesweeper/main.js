@@ -3,7 +3,7 @@ window.onload = function()
 Game.init( document.body, 400, 400 );
 
     // disable the context menu (when right-clicking)
-Game.getCanvas().oncontextmenu = function( event ) { return false; };
+Game.getCanvas().getHtmlCanvasElement().oncontextmenu = function( event ) { return false; };
 
 var manifest = [
         { id: 'one', path: 'one.png' },
@@ -152,7 +152,7 @@ Main.start = function()
 {
 var canvas = Game.getCanvas();
 
-Game.updateCanvasDimensions( NUMBER_OF_COLUMNS * Square.SIZE, NUMBER_OF_LINES * Square.SIZE );
+canvas.updateDimensions( NUMBER_OF_COLUMNS * Square.SIZE, NUMBER_OF_LINES * Square.SIZE );
 
 
 GRID = new Game.Grid({
@@ -160,7 +160,7 @@ GRID = new Game.Grid({
         columns: NUMBER_OF_COLUMNS,
         lines: NUMBER_OF_LINES
     });
-CANVAS_RECT = canvas.getBoundingClientRect();
+CANVAS_RECT = canvas.getHtmlCanvasElement().getBoundingClientRect();
 HAS_ENDED = false;
 
 TIMER.start();
