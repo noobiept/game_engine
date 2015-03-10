@@ -7,15 +7,17 @@ body
     background-color: black;
     }
 
-canvas
-    {
-    background-color: white;
-    }
-
-
 #Game-canvasContainer
     {
     position: relative;
+    }
+
+.Game-Canvas
+    {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
     }
 
     /* ---- Menu ---- */

@@ -19,7 +19,7 @@
 
 module Game
 {
-var ALL_CANVAS: Game.Canvas[];
+var ALL_CANVAS: Game.Canvas[] = [];
 var CANVAS_CONTAINER: HTMLDivElement;
 
 var TIME: number;
@@ -27,7 +27,7 @@ var ANIMATION_ID: number;
 
 var CALLBACKS: { callback: () => any; interval: number; count: number; }[] = [];
 
-    
+
 export function init( htmlContainer: HTMLElement, canvasWidth: number, canvasHeight: number )
     {
     CANVAS_CONTAINER = document.createElement( 'div' );
@@ -85,15 +85,63 @@ export function getCanvas( id?: number )
     }
 
 
-export function addCanvas( canvas )
+/**
+    @param canvas - the canvas to be added
+    @param position - the desired position of the canvas. The canvas are stacked on the same space. The 0 position, is the one in the back, and the higher the value, the most on top. Keep in mind that the position may not be the same as the returned id. If not provided, then the canvas is added on top (last position).
+    @return - The id of the canvas. Can be used to retrieve the canvas later on with Game.getCanvas(). The id can be invalidated if there's new canvas added in a specific position.
+ */
+export function addCanvas( canvas: Game.Canvas, position?: number )
     {
-    var id = ALL_CANVAS.length;
+    if ( Utilities.isNumber( position ) )
+        {
+        if ( position < 0 )
+            {
+            position = 0;
+            }
 
-    ALL_CANVAS.push( canvas );
+        else if ( position > ALL_CANVAS.length )
+            {
+            position = ALL_CANVAS.length;
+            }
+        }
 
-    CANVAS_CONTAINER.appendChild( canvas._canvas );
+    else
+        {
+            // add at the end
+        position = ALL_CANVAS.length;
+        }
 
-    return id;
+
+    var previous = ALL_CANVAS[ position ];
+
+    ALL_CANVAS.splice( position, 0, canvas );
+
+    if ( previous )
+        {
+        CANVAS_CONTAINER.insertBefore( canvas._canvas, previous._canvas );
+        }
+
+    else
+        {
+        CANVAS_CONTAINER.appendChild( canvas._canvas );
+        }
+
+
+    return position;
+    }
+
+
+/*
+    Adds an element to a canvas. If 'id' is not given, then its added to the first/initial canvas.
+ */
+export function addElement( element: Element, id?: number )
+    {
+    if ( typeof id === 'undefined' )
+        {
+        id = 0;
+        }
+
+    return ALL_CANVAS[ id ].addElement( element );
     }
 
 
@@ -123,7 +171,7 @@ export function removeElement( element )
 
     @param callback - the callback
     @param interval - interval between function calls. If not given then it is called every tick. In seconds.
-    @return {Boolean} If it was added successful
+    @return - If it was added successful
  */
 export function addToGameLoop( callback: () => any, interval?: number )
     {
