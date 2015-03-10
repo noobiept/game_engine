@@ -395,7 +395,7 @@ export class Unit extends Container
             this.x += this._move_x * delta;
             this.y += this._move_y * delta;
 
-            if ( !Game.isInCanvas( this.x, this.y ) )
+            if ( !Game.getCanvas().isInCanvas( this.x, this.y ) )
                 {
                 if ( this._move_callback )
                     {

@@ -119,7 +119,7 @@ export class Text extends Element
         this._text = value;
         this._lines = this._text.split( '\n' );
 
-        var ctx = Game.getCanvasContext();
+        var ctx = Game.getCanvas().getCanvasContext();
 
         var line = this._lines[ 0 ];
         var highestWidth = ctx.measureText( line ).width;

@@ -31,7 +31,7 @@ export class Bullet extends Container
         Bullet._container = new Game.Container();
         Bullet._container._has_logic = true;
 
-        Game.addElement( Bullet._container );
+        Game.getCanvas().addElement( Bullet._container );
         }
 
 
@@ -95,7 +95,7 @@ export class Bullet extends Container
         this.x += this._move_x * deltaTime;
         this.y += this._move_y * deltaTime;
 
-        if ( !Game.isInCanvas( this.x, this.y ) )
+        if ( !Game.getCanvas().isInCanvas( this.x, this.y ) )
             {
             this._remove();
             }

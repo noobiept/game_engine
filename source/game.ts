@@ -1,3 +1,4 @@
+/// <reference path="canvas.ts" />
 /// <reference path="html.ts" />
 /// <reference path="highscore.ts" />
 /// <reference path="message.ts" />
@@ -18,39 +19,33 @@
 
 module Game
 {
-var CANVAS: HTMLCanvasElement;
+var ALL_CANVAS: Game.Canvas[];
 var CANVAS_CONTAINER: HTMLDivElement;
-var CTX: CanvasRenderingContext2D;
-var WIDTH: number;
-var HEIGHT: number;
 
 var TIME: number;
 var ANIMATION_ID: number;
 
-var ELEMENTS: Element[] = [];
 var CALLBACKS: { callback: () => any; interval: number; count: number; }[] = [];
 
+    
 export function init( htmlContainer: HTMLElement, canvasWidth: number, canvasHeight: number )
     {
-    CANVAS = document.createElement( 'canvas' );
-    CANVAS.width = canvasWidth;
-    CANVAS.height = canvasHeight;
-
     CANVAS_CONTAINER = document.createElement( 'div' );
     CANVAS_CONTAINER.id = 'Game-canvasContainer';
 
-    CTX = CANVAS.getContext( '2d' );
-
-    WIDTH = canvasWidth;
-    HEIGHT = canvasHeight;
-
-    CANVAS_CONTAINER.appendChild( CANVAS );
     htmlContainer.appendChild( CANVAS_CONTAINER );
+
+    var canvas = new Game.Canvas({
+            width: canvasWidth,
+            height: canvasHeight
+        });
+    Game.addCanvas( canvas );
+
 
     Sound.init();
     Bullet.init();
 
-    CANVAS.addEventListener( 'click', mouseEvents );
+    CANVAS_CONTAINER.addEventListener( 'click', mouseEvents );
 
 
     var timeHidden = new Date().getTime();
@@ -76,56 +71,50 @@ export function init( htmlContainer: HTMLElement, canvasWidth: number, canvasHei
     }
 
 
-/*
-    addElement( element );
-    addElement( element1, element2 );
-    addElement( [ element1, element2 ] );
+/**
+    @param id - Id of the canvas, returns the first one (id 0) by default.
  */
-export function addElement( args: any )
+export function getCanvas( id?: number )
     {
-    var elements = arguments;
-
-    if ( args instanceof Array )
+    if ( typeof id === 'undefined' )
         {
-        elements = args;
+        id = 0;
         }
 
-    var length = elements.length;
+    return ALL_CANVAS[ id ];
+    }
 
-    for (var a = 0 ; a < length ; a++)
-        {
-        ELEMENTS.push( elements[ a ] );
-        }
+
+export function addCanvas( canvas )
+    {
+    var id = ALL_CANVAS.length;
+
+    ALL_CANVAS.push( canvas );
+
+    CANVAS_CONTAINER.appendChild( canvas._canvas );
+
+    return id;
     }
 
 
 /*
-    removeElement( element );
-    removeElement( element1, element2 );
-    removeElement( [ element1, element2 ] );
+    For when you don't know in what canvas the element is in. It will try in all the canvas.
  */
-export function removeElement( args: any )
+export function removeElement( element )
     {
-    var elements = arguments;
-
-    if ( args instanceof Array )
+    for (var a = ALL_CANVAS.length - 1 ; a >= 0 ; a--)
         {
-        elements = args;
-        }
+        var canvas = ALL_CANVAS[ a ];
 
-    var length = elements.length;
+        var removed = canvas.removeElement( element );
 
-    for (var a = 0 ; a < length ; a++)
-        {
-        var element = elements[ a ];
-
-        var index = ELEMENTS.indexOf( element );
-
-        if ( index >= 0 )
+        if ( removed )
             {
-            ELEMENTS.splice( index, 1 );
+            return true;
             }
         }
+
+    return false;
     }
 
 
@@ -158,7 +147,6 @@ export function addToGameLoop( callback: () => any, interval?: number )
     }
 
 
-
 /*
     Remove a callback from the game loop
  */
@@ -185,37 +173,15 @@ export function removeAllCallbacks()
     }
 
 
-export function getRandomPosition()
-    {
-    return {
-            x: Utilities.getRandomInt( 0, WIDTH ),
-            y: Utilities.getRandomInt( 0, HEIGHT )
-        }
-    }
-
-
 function mouseEvents( event )
     {
-    var elements = getElements();
-    var canvas = getCanvas();
-    var type = event.type;
-
-    var rect = canvas.getBoundingClientRect();
-    var x = event.x - rect.left;
-    var y = event.y - rect.top;
-
-        // find the element on the x/y position
-    for (var a = 0 ; a < elements.length ; a++)
+    for (var a = ALL_CANVAS.length - 1 ; a >= 0 ; a--)
         {
-        var element = elements[ a ];
+        var canvas = ALL_CANVAS[ a ];
 
-            // check if there's listeners on this element
-        if ( element.hasListeners( type ) )
+        if ( canvas.events_enabled )
             {
-            if ( element.intersect( x, y, event ) )
-                {
-                break;
-                }
+            canvas.mouseEvents( event );
             }
         }
     }
@@ -234,14 +200,24 @@ function loop()
         // call any function added to the game loop
     callbacks( delta );
 
-        // call any game logic (from units/etc)
-    logic( delta );
-
         // update all the tweens
     Tween.update( delta );
 
-        // draw all the elements to the canvas
-    draw();
+
+    for (var a = ALL_CANVAS.length - 1 ; a >= 0 ; a--)
+        {
+        var canvas = ALL_CANVAS[ a ];
+
+        if ( canvas.update_on_loop )
+            {
+                // call any game logic (from units/etc)
+            canvas.logic( delta );
+
+                // draw all the elements to the canvas
+            canvas.draw();
+            }
+        }
+
 
     ANIMATION_ID = window.requestAnimationFrame( loop );
     }
@@ -273,82 +249,8 @@ function callbacks( deltaTime )
     }
 
 
-function logic( deltaTime )
-    {
-    for (var a = ELEMENTS.length - 1 ; a >= 0 ; a--)
-        {
-        var element = ELEMENTS[ a ];
-
-        if ( element._has_logic === true )
-            {
-            element.logic( deltaTime );
-            }
-        }
-    }
-
-
-function draw()
-    {
-    CTX.clearRect( 0, 0, WIDTH, HEIGHT );
-
-    var length = ELEMENTS.length;
-
-    for (var a = 0 ; a < length ; a++)
-        {
-        var element = ELEMENTS[ a ];
-
-        if ( element.visible )
-            {
-            element.draw( CTX );
-            }
-        }
-    }
-
-
-export function getElements()
-    {
-    return ELEMENTS;
-    }
-
-
-export function getCanvas()
-    {
-    return CANVAS;
-    }
-
-
 export function getCanvasContainer()
     {
     return CANVAS_CONTAINER;
-    }
-
-
-export function updateCanvasDimensions( width, height )
-    {
-    CANVAS.width = WIDTH = width;
-    CANVAS.height = HEIGHT = height;
-    }
-
-
-export function getCanvasContext()
-    {
-    return CTX;
-    }
-
-
-/*
-    Check if a position is located in the canvas
- */
-export function isInCanvas( x, y ): boolean
-    {
-    if ( x < 0 ||
-         x > WIDTH ||
-         y < 0 ||
-         y > HEIGHT )
-        {
-        return false;
-        }
-
-    return true;
     }
 }

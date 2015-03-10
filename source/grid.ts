@@ -9,7 +9,7 @@ export interface GridArgs extends EventDispatcherArgs
         lines: number;
         refX?: number;
         refY?: number;
-        background?: { color: string; fill: boolean; };
+        background?: { color: string; fill: boolean; canvasId?: number; };
     }
 
 export class Grid extends EventDispatcher
@@ -62,7 +62,13 @@ export class Grid extends EventDispatcher
                     color: args.background.color,
                     fill: args.background.fill
                 });
-            Game.addElement( this._background );
+
+            if ( typeof args.background.canvasId === 'undefined' )
+                {
+                args.background.canvasId = 0;
+                }
+
+            Game.getCanvas( args.background.canvasId ).addElement( this._background );
             }
 
         else
