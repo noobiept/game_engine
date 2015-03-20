@@ -8,6 +8,16 @@ export interface BitmapArgs extends ElementArgs
     }
 
 
+/**
+ * Basic Usage:
+ *
+ *     var bitmap = new Game.Bitmap({
+ *             x: 10,
+ *             y: 20,
+ *             image: Game.Preload.get( 'id' )
+ *         });
+ *     Game.addElement( image );
+ */
 export class Bitmap extends Element
     {
     _image: HTMLImageElement;

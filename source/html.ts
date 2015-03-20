@@ -249,19 +249,19 @@ export module Html
         }
 
 
-    export interface ButtonArgs extends HtmlElementArgs
+    export interface ButtonArgs extends ValueArgs
         {
             callback: (button: Button) => any;
-            text: string;
         }
 
-    export class Button extends HtmlElement
+    export class Button extends Value
         {
-        element: HTMLElement;
         click_ref: () => any;
 
         constructor( args: ButtonArgs )
             {
+            var _this = this;
+
             if ( typeof this.click_ref === 'undefined' )
                 {
                 this.click_ref = function()
@@ -274,13 +274,7 @@ export module Html
             super( args );
 
                 // .container only available after super()
-            var _this = this;
-
-            this.element = document.createElement( 'span' );
-            this.element.innerHTML = args.text;
-
             this.container.classList.add( 'Game-Button' );
-            this.container.appendChild( this.element );
 
             this.addEvents();
             }
@@ -297,6 +291,7 @@ export module Html
 
         clear()
             {
+            super.clear();
             this.removeEvents();
             this.click_ref = null;
             }
@@ -384,33 +379,33 @@ export module Html
     export interface TwoStateArgs extends ButtonArgs
         {
             callback2: (button: Button) => any;
-            text2: string;
+            value2: string;
         }
 
     export class TwoState extends Button
         {
-        isText1: boolean;
+        isValue1: boolean;
 
         constructor( args: TwoStateArgs )
             {
             var _this = this;
 
-            this.isText1 = true;
+            this.isValue1 = true;
             this.click_ref = function()
                 {
-                if ( _this.isText1 )
+                if ( _this.isValue1 )
                     {
-                    _this.element.innerHTML = args.text2;
+                    _this.element.innerHTML = args.value2;
                     args.callback( _this );
                     }
 
                 else
                     {
-                    _this.element.innerHTML = args.text;
+                    _this.element.innerHTML = args.value;
                     args.callback2( _this );
                     }
 
-                _this.isText1 = !_this.isText1;
+                _this.isValue1 = !_this.isValue1;
                 };
 
                 // set properties before this

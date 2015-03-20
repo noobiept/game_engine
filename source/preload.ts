@@ -12,20 +12,38 @@ export interface PreloadArgs extends EventDispatcherArgs
     }
 
 
-/*
-    Events:
-        - complete -- all files loaded
-        - error -- an error occurred
-        - abort -- canceled by the user
-        - progress -- progress of the queue
-        - fileload -- a file loaded
-
-    Listeners:
-        - complete_listeners()
-        - error_listeners( data: { id: string; event; } )
-        - abort_listeners( data: { id: string; event; } )
-        - progress_listeners( progress: number )
-        - fileload_listeners( data: { id: string; data: Object; } )
+/**
+ * Basic Usage:
+ *
+ *     var preload = new Game.Preload({ save_global: true });
+ *
+ *     preload.addEventListener( 'complete', completeListener );
+ *     preload.load( 'id', 'path_to_file.png' );
+ *
+ *         // or with a manifest
+ *     var manifest = [
+ *             { id: 'the_id', path: 'path_to_file.png' }
+ *         ];
+ *     preload.loadManifest( manifest, '' );
+ *
+ *
+ * Examples:
+ *     - preload
+ *
+ *
+ * Events:
+ *     - complete -- all files loaded
+ *     - error -- an error occurred
+ *     - abort -- canceled by the user
+ *     - progress -- progress of the queue
+ *     - fileload -- a file loaded
+ *
+ * Listeners:
+ *     - complete_listeners()
+ *     - error_listeners( data: { id: string; event; } )
+ *     - abort_listeners( data: { id: string; event; } )
+ *     - progress_listeners( progress: number )
+ *     - fileload_listeners( data: { id: string; data: Object; } )
  */
 export class Preload extends EventDispatcher
     {
@@ -104,6 +122,12 @@ export class Preload extends EventDispatcher
         }
 
 
+    /**
+        Load a file.
+
+        @param id - the id to be used later on to get the element
+        @param path - path to the file
+     */
     load( id: string, path: string )
         {
         var type = Game.Preload.getType( path );
@@ -172,6 +196,12 @@ export class Preload extends EventDispatcher
         }
 
 
+    /**
+        Load several files.
+
+        @param manifest - Has the information about the files.
+        @param basePath - Base path for all the files in the manifest.
+     */
     loadManifest( manifest: { id: string; path: string; }[], basePath?: string )
         {
         var length = manifest.length;
@@ -190,6 +220,11 @@ export class Preload extends EventDispatcher
         }
 
 
+    /**
+        Get a previously loaded file.
+
+        @param id - The id of the file.
+     */
     get( id )
         {
         return this._data[ id ];

@@ -13,6 +13,17 @@ export interface TextArgs extends ElementArgs
         fill?: boolean;
     }
 
+
+/**
+ * Basic Usage:
+ *
+ *     var text = new Game.Text({
+ *             x: 10,
+ *             y: 20,
+ *             text: 'Hi'
+ *         });
+ *     Game.addElement( text );
+ */
 export class Text extends Element
     {
     textAlign: string;

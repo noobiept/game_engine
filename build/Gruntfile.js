@@ -25,7 +25,7 @@ grunt.initConfig({
                     },
                     {
                         cwd: '../source/css/',
-                        src: [ 'style.css' ],
+                        src: [ 'game_engine.css' ],
                         dest: 'output/',
                         expand: true
                     }

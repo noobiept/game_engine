@@ -13,6 +13,32 @@ export interface SpriteArgs extends BitmapArgs
     }
 
 
+/**
+ * Basic usage:
+ *
+ *     var sprite = new Game.Sprite({
+ *             x: 10,
+ *             y: 20,
+ *             image: Game.Preload.get( 'id' ),
+ *             frameWidth: 30,
+ *             frameHeight: 40,
+ *             interval: 1,
+ *             animations: {
+ *                 animationName: [ 0, 1 ]
+ *             }
+ *         });
+ *     Game.addElement( sprite );
+ *
+ *         // set a static frame
+ *     sprite.setFrame( 1 );
+ *
+ *         // or play a specific animation
+ *     sprite.play( 'animationName' );
+ *
+ * Examples:
+ *
+ *     - sprite
+ */
 export class Sprite extends Bitmap
     {
     interval: number;           // time between each frame
