@@ -11,7 +11,7 @@ document.body.appendChild( menu.container );
 
 var value = new Game.Html.Value({ preText: 'Value: ', value: 0 });
 var button = new Game.Html.Button({
-        text: 'Click me!',
+        value: 'Click me!',
         callback: function( button )
             {
             console.log( 'clicked!' );
@@ -27,8 +27,8 @@ var boolean = new Game.Html.Boolean({
             }
     });
 var twoStateButton = new Game.Html.TwoState({
-        text: 'Start',
-        text2: 'Stop',
+        value: 'Start',
+        value2: 'Stop',
         callback: function( button )
             {
             console.log( 'Start!!' );

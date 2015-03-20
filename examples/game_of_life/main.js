@@ -10,8 +10,8 @@ document.body.appendChild( menu.container );
 var start = new Game.Html.TwoState({
         cssId: 'Start',
         cssClass: 'button',
-        text: 'Start',
-        text2: 'Restart',
+        value: 'Start',
+        value2: 'Restart',
         callback: function()
             {
             Main.secondPhase();

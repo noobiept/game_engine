@@ -26,9 +26,9 @@ var preload = new Game.Preload({ save_global: true });
 
 var canvasContainer = Game.getCanvasContainer();
 var loadingMessage = new Game.Message({
-        text: 'Loading..'
+        text: 'Loading..',
+        container: canvasContainer
     });
-canvasContainer.appendChild( loadingMessage.container );
 
 
 preload.addEventListener( 'progress', function( progress )
@@ -80,7 +80,6 @@ var NUMBER_OF_LINES = DIFFICULTY[ CURRENT_DIFFICULTY ].lines;
 var NUMBER_OF_MINES = DIFFICULTY[ CURRENT_DIFFICULTY ].mines;
 var TIMER;
 var SELECTED_SQUARE = null;
-var CANVAS_RECT = null;
 var HAS_ENDED = false;
 var END_MESSAGE = null;
 var MAX_SCORES_SAVED = 5;
@@ -95,7 +94,7 @@ document.body.appendChild( menu.container );
 
     // restart button
 var restart = new Game.Html.Button({
-        text: 'Restart',
+        value: 'Restart',
         callback: Main.restart
     });
 menu.addChild( restart );
@@ -103,7 +102,7 @@ menu.addChild( restart );
 
     // show highscores
 var highscore = new Game.Html.Button({
-        text: 'Highscore',
+        value: 'Highscore',
         callback: showHighScores
     });
 menu.addChild( highscore );
@@ -160,7 +159,6 @@ GRID = new Game.Grid({
         columns: NUMBER_OF_COLUMNS,
         lines: NUMBER_OF_LINES
     });
-CANVAS_RECT = canvas.getHtmlCanvasElement().getBoundingClientRect();
 HAS_ENDED = false;
 
 TIMER.start();
@@ -303,8 +301,10 @@ Main.start();
 
 function mouseMove( event )
 {
-var x = event.clientX - CANVAS_RECT.left;
-var y = event.clientY - CANVAS_RECT.top;
+var canvasRect = Game.getCanvas().getHtmlCanvasElement().getBoundingClientRect();
+
+var x = event.clientX - canvasRect.left;
+var y = event.clientY - canvasRect.top;
 
 var square = GRID.getElement2( x, y );
 
@@ -338,8 +338,10 @@ else
 function mouseClick( event )
 {
 var button = event.button;
-var x = event.clientX - CANVAS_RECT.left;
-var y = event.clientY - CANVAS_RECT.top;
+var canvasRect = Game.getCanvas().getHtmlCanvasElement().getBoundingClientRect();
+
+var x = event.clientX - canvasRect.left;
+var y = event.clientY - canvasRect.top;
 
 var square = GRID.getElement2( x, y );
 
@@ -520,7 +522,7 @@ for (var a = 0 ; a < length ; a++)
 
 
 var close = new Game.Html.Button({
-        text: 'Close',
+        value: 'Close',
         callback: function( button )
             {
             highScore.clear();
@@ -529,9 +531,10 @@ var close = new Game.Html.Button({
 
 var highScore = new Game.Message({
         text: table,
+        container: canvasContainer,
+        background: true,
         buttons: close
     });
-canvasContainer.appendChild( highScore.container );
 }
 
 
@@ -560,14 +563,15 @@ else
 var canvasContainer = Game.getCanvasContainer();
 
 var restart = new Game.Html.Button({
-        text: 'Restart',
+        value: 'Restart',
         callback: Main.restart
     });
 END_MESSAGE = new Game.Message({
         text: text,
+        container: canvasContainer,
+        background: true,
         buttons: restart
     });
-canvasContainer.appendChild( END_MESSAGE.container );
 }
 
 

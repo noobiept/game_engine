@@ -5,13 +5,16 @@ module Game
 export interface MessageArgs extends Game.Html.HtmlContainerArgs
     {
         text: any;          // string | HTMLElement
-        buttons?: any;   // HtmlElement | HtmlElement[]
+        container: HTMLElement;
+        buttons?: any;      // HtmlElement | HtmlElement[]
         timeout?: number;   // remove the message after a certain time (in seconds)
+        background?: boolean;
     }
 
 export class Message extends Game.Html.HtmlContainer
     {
     text: HTMLElement;
+    background: HTMLElement;
     timeout: Utilities.Timeout;
 
 
@@ -26,6 +29,9 @@ export class Message extends Game.Html.HtmlContainer
 
         this.container.appendChild( this.text );
         this.container.classList.add( 'Game-Message-container' );
+
+        this.timeout = null;
+        this.background = null;
 
 
         if ( typeof args.buttons !== 'undefined' )
@@ -58,9 +64,6 @@ export class Message extends Game.Html.HtmlContainer
             }
 
 
-        this.timeout = null;
-
-
         if ( Utilities.isNumber( args.timeout ) )
             {
             this.timeout = new Utilities.Timeout();
@@ -71,6 +74,18 @@ export class Message extends Game.Html.HtmlContainer
                 _this.clear();
                 }, args.timeout * 1000 );
             }
+
+
+        if ( args.background === true )
+            {
+            this.background = document.createElement( 'div' );
+            this.background.className = 'Game-Message-background';
+
+            args.container.appendChild( this.background );
+            }
+
+
+        args.container.appendChild( this.container );
         }
 
 
@@ -80,6 +95,11 @@ export class Message extends Game.Html.HtmlContainer
             {
             this.timeout.clear();
             this.timeout = null;
+            }
+
+        if ( this.background )
+            {
+            this.container.parentNode.removeChild( this.background );
             }
 
         super.clear();
