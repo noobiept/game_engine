@@ -54,20 +54,30 @@ export function init( htmlContainer: HTMLElement, canvasWidth: number, canvasHei
         {
         if ( document.hidden )
             {
-            timeHidden = new Date().getTime();
-            window.cancelAnimationFrame( ANIMATION_ID );
+            stopGameLoop();
             }
 
         else
             {
-            TIME += new Date().getTime() - timeHidden;
-            loop();
+            startGameLoop();
             }
         });
 
 
+    startGameLoop();
+    }
+
+
+export function startGameLoop()
+    {
     TIME = new Date().getTime();
     loop();
+    }
+
+
+export function stopGameLoop()
+    {
+    window.cancelAnimationFrame( ANIMATION_ID );
     }
 
 

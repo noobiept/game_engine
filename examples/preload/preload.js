@@ -15,7 +15,7 @@ preload.addEventListener( 'complete', complete );
 preload.load( 'mystery_ship', assetsPath + 'images/mystery_ship.png' );
 preload.load( 'scumm_bar', assetsPath + 'sounds/scumm_bar.ogg' );
 preload.load( 'json_test', assetsPath + 'json/test.json' );
-preload.load( 'text_test', assetsPath + 'texts/test.txt' );
+preload.load( 'text_test', assetsPath + 'texts/test.txt', Game.Preload.TYPES.text );
 
 
     // save in object (to get the data, use preload2.get())

@@ -127,10 +127,29 @@ export class Preload extends EventDispatcher
 
         @param id - the id to be used later on to get the element
         @param path - path to the file
+        @param typeId - type of the file to load. If not provided then it will try to determine the type from the file extension.
      */
-    load( id: string, path: string )
+    load( id: string, path: string, typeId?: Game.Preload.TYPES )
         {
-        var type = Game.Preload.getType( path );
+        var type;
+
+        if ( typeof type === 'undefined' )
+            {
+            type = Game.Preload.getType( path );
+            }
+
+        else
+            {
+            type = Game.Preload.TYPES[ typeId ];
+            }
+
+
+        if ( !type )
+            {
+            throw new Error( 'Invalid file type.' );
+            }
+
+
         var _this = this;
 
         this._total_items++;
@@ -235,6 +254,10 @@ export class Preload extends EventDispatcher
 
 export module Preload
     {
+        // supported file types
+    export enum TYPES { image, json, text, audio }
+
+        // file extensions of each type
     export var EXTENSIONS = {
             image: [ 'png', 'jpg', 'jpeg' ],
             json: [ 'json' ],
@@ -242,6 +265,7 @@ export module Preload
             audio: [ 'ogg', 'mp3' ]
         };
 
+        // XMLHttpRequest response type of each file type
     export var RESPONSE_TYPE = {
             image: 'blob',
             json: 'json',
