@@ -17,6 +17,26 @@
 /// <reference path="utilities/utilities.1.7.0.d.ts" />
 /// <reference path="typings/tsd.d.ts" />
 
+/**
+ * Basic usage:
+ *
+ *     Game.init( document.body, 400, 400 );
+ *
+ *     var rect = new Game.Rectangle({
+ *             x: 200,
+ *             y: 200,
+ *             width: 20,
+ *             height: 20,
+ *             color: 'green'
+ *         });
+ *     Game.addElement( rect );
+ *
+ *     Game.addToGameLoop( function()
+ *         {
+ *         console.log( 'hi' );
+ *         }, 1 );
+ *
+ */
 module Game
 {
 var ALL_CANVAS: Game.Canvas[] = [];
@@ -28,6 +48,13 @@ var ANIMATION_ID: number;
 var CALLBACKS: { callback: () => any; interval: number; count: number; }[] = [];
 
 
+/**
+ * Initialize the canvas/game loop/etc.
+ *
+ * @param htmlContainer The canvas is going to be appended to this element.
+ * @param canvasWidth Canvas width.
+ * @param canvasHeight Canvas height.
+ */
 export function init( htmlContainer: HTMLElement, canvasWidth: number, canvasHeight: number )
     {
     CANVAS_CONTAINER = document.createElement( 'div' );
@@ -45,10 +72,8 @@ export function init( htmlContainer: HTMLElement, canvasWidth: number, canvasHei
     Sound.init();
     Bullet.init();
 
-    CANVAS_CONTAINER.addEventListener( 'click', mouseEvents );
+    CANVAS_CONTAINER.addEventListener( 'click', clickEvents );
 
-
-    var timeHidden = new Date().getTime();
 
     document.addEventListener( 'visibilitychange', function( event )
         {
@@ -68,6 +93,10 @@ export function init( htmlContainer: HTMLElement, canvasWidth: number, canvasHei
     }
 
 
+/**
+ * Starts the game loop. This is called automatically when you initialize the engine (Game.init()).
+ * Only useful when you manually stop the loop (with Game.stopGameLoop()) and need to restart it later.
+ */
 export function startGameLoop()
     {
     TIME = new Date().getTime();
@@ -75,6 +104,9 @@ export function startGameLoop()
     }
 
 
+/**
+ * Stops the game loop (that means there's no redrawn of the canvas, callbacks in the game loop being called, tween loop, etc).
+ */
 export function stopGameLoop()
     {
     window.cancelAnimationFrame( ANIMATION_ID );
@@ -82,7 +114,9 @@ export function stopGameLoop()
 
 
 /**
-    @param id - Id of the canvas, returns the first one (id 0) by default.
+ * Get a canvas object (Game.Canvas). When called without an argument it returns the first one.
+ *
+ * @param id Id of the canvas, returns the first one (id 0) by default.
  */
 export function getCanvas( id?: number )
     {
@@ -96,9 +130,9 @@ export function getCanvas( id?: number )
 
 
 /**
-    @param canvas - the canvas to be added
-    @param position - the desired position of the canvas. The canvas are stacked on the same space. The 0 position, is the one in the back, and the higher the value, the most on top. Keep in mind that the position may not be the same as the returned id. If not provided, then the canvas is added on top (last position).
-    @return - The id of the canvas. Can be used to retrieve the canvas later on with Game.getCanvas(). The id can be invalidated if there's new canvas added in a specific position.
+    @param canvas The canvas to be added.
+    @param position The desired position of the canvas. The canvas are stacked on the same space. The 0 position, is the one in the back, and the higher the value, the most on top. Keep in mind that the position may not be the same as the returned id. If not provided, then the canvas is added on top (last position).
+    @return The id of the canvas. Can be used to retrieve the canvas later on with Game.getCanvas(). The id can be invalidated if there's new canvas added in a specific position.
  */
 export function addCanvas( canvas: Game.Canvas, position?: number )
     {
@@ -144,10 +178,10 @@ export function addCanvas( canvas: Game.Canvas, position?: number )
 /**
     Adds an element to a canvas. If 'id' is not given, then its added to the first canvas (the one most to the back).
 
-    @param element - Element or Element[]
-    @param id - The canvas id
+    @param element Element or Element[] to be added.
+    @param id The canvas id.
  */
-export function addElement( element: Element, id?: number )
+export function addElement( element: any, id?: number )
     {
     if ( typeof id === 'undefined' )
         {
@@ -158,10 +192,13 @@ export function addElement( element: Element, id?: number )
     }
 
 
-/*
-    For when you don't know in what canvas the element is in. It will try in all the canvas.
+/**
+ * For when you don't know in what canvas the element is in. It will try in all the canvas.
+ *
+ * @param element Element or Element[] to be removed.
+ * @return If the element was removed.
  */
-export function removeElement( element )
+export function removeElement( element: any )
     {
     for (var a = ALL_CANVAS.length - 1 ; a >= 0 ; a--)
         {
@@ -180,11 +217,11 @@ export function removeElement( element )
 
 
 /**
-    Adds a callback function to be called at a certain interval (or every tick) in the game loop (before the draw phase)
-
-    @param callback - the callback
-    @param interval - interval between function calls. If not given then it is called every tick. In seconds.
-    @return - If it was added successful
+ * Adds a callback function to be called at a certain interval (or every tick) in the game loop (before the draw phase)
+ *
+ * @param callback The callback function.
+ * @param interval Interval between function calls. If not given then it is called every tick. In seconds.
+ * @return If it was added successful.
  */
 export function addToGameLoop( callback: () => any, interval?: number )
     {
@@ -208,8 +245,11 @@ export function addToGameLoop( callback: () => any, interval?: number )
     }
 
 
-/*
-    Remove a callback from the game loop
+/**
+ * Remove a callback from the game loop.
+ *
+ * @param callback The function to remove.
+ * @return If the function was removed or wasn't found.
  */
 export function removeFromGameLoop( callback: () => any )
     {
@@ -228,13 +268,21 @@ export function removeFromGameLoop( callback: () => any )
     }
 
 
+/**
+ * Remove all the callbacks from the game loop.
+ */
 export function removeAllCallbacks()
     {
     CALLBACKS.length = 0;
     }
 
 
-function mouseEvents( event )
+/**
+ * A click event on the canvas was dispatched. We pass it on to the canvas objects.
+ *
+ * @param event The mouse event fired.
+ */
+function clickEvents( event: MouseEvent )
     {
     for (var a = ALL_CANVAS.length - 1 ; a >= 0 ; a--)
         {
@@ -248,6 +296,10 @@ function mouseEvents( event )
     }
 
 
+/**
+ * The game loop.
+ * Updates the game logic, drawn of the canvas, tween update, etc.
+ */
 function loop()
     {
         // find the delta time
@@ -284,8 +336,12 @@ function loop()
     }
 
 
-
-function callbacks( deltaTime )
+/**
+ * Deal with the callbacks added to the game loop.
+ *
+ * @param deltaTime Time elapsed since the last update.
+ */
+function callbacks( deltaTime: number )
     {
     for (var a = CALLBACKS.length - 1 ; a >= 0 ; a--)
         {
@@ -310,6 +366,9 @@ function callbacks( deltaTime )
     }
 
 
+/**
+ * @return The canvas container (an html element).
+ */
 export function getCanvasContainer()
     {
     return CANVAS_CONTAINER;

@@ -5,6 +5,10 @@ export interface EventDispatcherArgs
 
     }
 
+
+/**
+ * Base class that provides a way to add/remove listeners, and dispatch events.
+ */
 export class EventDispatcher
     {
     _listeners;
@@ -15,19 +19,22 @@ export class EventDispatcher
         }
 
 
-    /*
-        'listener' will receive a 'data' argument when its called.
-        What 'data' is, depends on the event type.
-
-        type: 'click'
-        data: { event: MouseEvent; }
-
-        type: 'collision'
-        data: { element: Unit;
-                collidedWith: Unit; }
-
+    /**
+     * 'listener' will receive a 'data' argument when its called.
+     * What 'data' is, depends on the event type.
+     *
+     *     type: 'click'
+     *     data: { event: MouseEvent; }
+     *
+     *     type: 'collision'
+     *     data: { element: Unit;
+     *             collidedWith: Unit; }
+     *
+     * @param type Type of the event.
+     * @param listener A function to be called when the event is dispatched.
+     * @return If it was successfully added.
      */
-    addEventListener( type: string, listener )
+    addEventListener( type: string, listener: (data: any) => any )
         {
         if ( !this._listeners[ type ] )
             {
@@ -48,10 +55,14 @@ export class EventDispatcher
         }
 
 
-    /*
-        Removes a specific listener of an event type, or all the listeners for that type (if 'listener' is not provided)
+    /**
+     * Removes a specific listener of an event type, or all the listeners for that type (if 'listener' is not provided).
+     *
+     * @param type The event type.
+     * @param listener The listener function to remove. If not provided then remove all the functions associated with the event type.
+     * @return If it was successfully removed.
      */
-    removeEventListener( type: string, listener? )
+    removeEventListener( type: string, listener?: (data: any) => any )
         {
         if ( this._listeners[ type ] )
             {
@@ -77,6 +88,9 @@ export class EventDispatcher
         }
 
 
+    /**
+     * Remove all the event listeners.
+     */
     removeAllEventListeners()
         {
         this._listeners = {};
@@ -84,12 +98,12 @@ export class EventDispatcher
 
 
     /**
-        Dispatches an event, which will trigger the listeners of that event
-
-        @param type - type of the event to dispatch
-        @param data - Data to be sent to every listener
+     * Dispatches an event, which will trigger the listeners of that event.
+     *
+     * @param type Type of the event to dispatch.
+     * @param data Data to be sent to every listener.
      */
-    dispatchEvent( type, data? )
+    dispatchEvent( type: string, data?: any )
         {
         var listeners = this._listeners[ type ];
 
@@ -103,7 +117,13 @@ export class EventDispatcher
         }
 
 
-    hasListeners( type )
+    /**
+     * Check if there are listeners to a particular event type.
+     *
+     * @param type The event type to check.
+     * @return If there are listeners or not.
+     */
+    hasListeners( type: string )
         {
         if ( this._listeners[ type ] &&
              this._listeners[ type ].length > 0 )

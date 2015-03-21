@@ -8,6 +8,12 @@ export interface ElementArgs extends EventDispatcherArgs
         y?: number;
     }
 
+
+/**
+ * Base class for a canvas element. Don't create an object directly.
+ *
+ * @abstract
+ */
 export class Element extends EventDispatcher
     {
     x: number;
@@ -64,32 +70,33 @@ export class Element extends EventDispatcher
 
 
     /**
-        Draws just this element
-
-        @param ctx - canvas context
-        @abstract
+     * Draws just this element.
+     *
+     * @param ctx Canvas context.
+     * @abstract
      */
-
     drawElement( ctx: CanvasRenderingContext2D )
         {
         throw new Error( 'Implement .drawElement().' );
         }
 
 
-    /*
-        Draws this element, and all of its _children
+    /**
+     * Draws this element, and all of its _children.
+     *
+     * @param ctx Canvas context.
      */
-
     draw( ctx: CanvasRenderingContext2D )
         {
         this.drawElement( ctx );
         }
 
 
-    /*
-        Logic code here (runs every tick)
+    /**
+     * Logic code here (runs every tick).
+     *
+     * @param deltaTime Time elapsed since the last update.
      */
-
     logic( deltaTime )
         {
             // optional
@@ -97,7 +104,9 @@ export class Element extends EventDispatcher
 
 
     /**
-        @abstract
+     * Check if the x/y position intersects with this element. If so then dispatch the event.
+     *
+     * @abstract
      */
     intersect( x: number, y: number, event: Event ): boolean
         {
@@ -106,24 +115,26 @@ export class Element extends EventDispatcher
 
 
     /**
-        @returns - Rotation in radians
+     * @returns Rotation in radians.
      */
     get rotation()
         {
         return this._rotation;
         }
 
+
     /**
-        @param angle - Rotate by a certain angle (in radians)
+     * @param angle Rotate by a certain angle (in radians).
      */
     set rotation( angle: number )
         {
         this.rotate( angle, false );
         }
 
+
     /**
-        @param angle - angle of rotation
-        @param degrees - whether the angle provided is in degrees or radians
+     * @param angle Angle of rotation.
+     * @param degrees Whether the angle provided is in degrees or radians.
      */
     rotate( angle: number, degrees?: boolean )
         {
@@ -138,6 +149,10 @@ export class Element extends EventDispatcher
             }
         }
 
+
+    /**
+     * Remove this element from the either its container or from the canvas.
+     */
     remove()
         {
         this._removed = true;
@@ -153,8 +168,11 @@ export class Element extends EventDispatcher
             }
         }
 
+
     /**
-        @abstract
+     * Create a clone of this element.
+     *
+     * @abstract
      */
     clone(): Element
         {
