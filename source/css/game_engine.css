@@ -34,8 +34,15 @@ body
 
 .Game-Button, .Game-Boolean, .Game-MultipleOptions
     {
+    display: inline-block;
     cursor: pointer;
     color: green;
+    margin: 2px 5px;
+    }
+
+.Game-Button:hover
+    {
+    text-decoration: underline;
     }
 
 .Game-MultipleOptions span
@@ -48,10 +55,15 @@ body
     color: red;
     }
 
-.Game-inactive
+.Game-inactive, .Game-Button.Game-inactive
     {
     cursor: default;
     color: gray;
+    }
+
+.Game-Button.Game-inactive:hover
+    {
+    text-decoration: none;
     }
 
 
