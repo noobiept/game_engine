@@ -281,12 +281,12 @@ export module Html
 
         addEvents()
             {
-            this.element.addEventListener( 'click', this.click_ref );
+            this.container.addEventListener( 'click', this.click_ref );
             }
 
         removeEvents()
             {
-            this.element.removeEventListener( 'click', this.click_ref );
+            this.container.removeEventListener( 'click', this.click_ref );
             }
 
         clear()
