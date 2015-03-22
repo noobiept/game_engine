@@ -13,6 +13,26 @@ export interface BulletArgs extends ContainerArgs
     }
 
 
+/**
+ * Basic Usage:
+ *
+ *     var bulletShape = new Game.Rectangle({
+ *             width: 10,
+ *             height: 2,
+ *             color: 'blue'
+ *         });
+ *     var bullet = new Game.Bullet({
+ *             x: 10,
+ *             y: 10,
+ *             angleOrTarget: 0,
+ *             movement_speed: 100,
+ *             remove: function()
+ *                 {
+ *                 console.log( 'Bullet removed!' );
+ *                 }
+ *         });
+ *     bullet.addChild( bulletShape );
+ */
 export class Bullet extends Container
     {
     movement_speed: number;
@@ -25,6 +45,10 @@ export class Bullet extends Container
     static _all: Bullet[];
     static _container: Game.Container;
 
+
+    /**
+     * Initializer for the Bullet class.
+     */
     static init()
         {
         Bullet._all = [];
@@ -76,6 +100,9 @@ export class Bullet extends Container
         }
 
 
+    /**
+     * Remove the bullet from the canvas.
+     */
     remove()
         {
         super.remove();
@@ -87,10 +114,12 @@ export class Bullet extends Container
         }
 
 
-    /*
-        logic for when the bullet is moving in a fixed direction
+    /**
+     * Logic for when the bullet is moving in a fixed direction.
+     *
+     * @param deltaTime Time elapsed since the last update.
      */
-    fixedLogic( deltaTime )
+    fixedLogic( deltaTime: number )
         {
         this.x += this._move_x * deltaTime;
         this.y += this._move_y * deltaTime;
@@ -101,10 +130,12 @@ export class Bullet extends Container
             }
         }
 
-    /*
-        logic for when the bullet is following a target
+    /**
+     * Logic for when the bullet is following a target.
+     *
+     * @param deltaTime Time elapsed since the last update.
      */
-    targetLogic( deltaTime )
+    targetLogic( deltaTime: number )
         {
         var target = this._target;
 
@@ -130,11 +161,21 @@ export class Bullet extends Container
             }
         }
 
-    logic( deltaTime )
+
+    /**
+     * This is going to assigned to either .fixedLogic() or .targetLogic(), depending on the type of bullet.
+     *
+     * @param deltaTime Time elapsed since the last update.
+     */
+    logic( deltaTime: number )
         {
-            // this is going to assigned to either .fixedLogic() or .targetLogic(), depending on the type of bullet
+            // empty
         }
 
+
+    /**
+     * Create a clone of this element.
+     */
     clone()
         {
         var children = [];

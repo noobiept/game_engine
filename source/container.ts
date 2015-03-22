@@ -8,6 +8,20 @@ export interface ContainerArgs extends ElementArgs
     }
 
 
+/**
+ * Basic Usage:
+ *
+ *     var container = new Game.Container();
+ *
+ *     var rectangle = new Game.Rectangle({
+ *             width: 10,
+ *             height: 10,
+ *             color: 'red'
+ *         });
+ *     container.addChild( rectangle );
+ *
+ *     Game.addElement( container );
+ */
 export class Container extends Element
     {
     _children: Element[];
@@ -28,10 +42,12 @@ export class Container extends Element
             }
         }
 
-    /*
-        addChild( element );
-        addChild( element1, element2 );
-        addChild( [ element1, element2 ] );
+    /**
+     *     addChild( element );
+     *     addChild( element1, element2 );
+     *     addChild( [ element1, element2 ] );
+     *
+     * @param elements Either `Element` or `...Element` or `Element[]`.
      */
     addChild( elements: any )
         {
@@ -57,10 +73,12 @@ export class Container extends Element
         }
 
 
-    /*
-        removeChild( element );
-        removeChild( element1, element2 );
-        removeChild( [ element1, element2 ] );
+    /**
+     *     removeChild( element );
+     *     removeChild( element1, element2 );
+     *     removeChild( [ element1, element2 ] );
+     *
+     * @param args Either `Element` or `...Element` or `Element[]`.
      */
     removeChild( args: any )
         {
@@ -88,7 +106,12 @@ export class Container extends Element
         }
 
 
-    draw( ctx )
+    /**
+     * Draw all the elements in the container.
+     *
+     * @param ctx The canvas rendering context.
+     */
+    draw( ctx: CanvasRenderingContext2D )
         {
         ctx.save();
         ctx.globalAlpha *= this.opacity;
@@ -111,12 +134,27 @@ export class Container extends Element
         ctx.restore();
         }
 
-    drawElement( ctx )
+
+    /**
+     * Normally draws the element, but in the case of the container just draw its children.
+     *
+     * @param ctx The canvas rendering context.
+     */
+    drawElement( ctx: CanvasRenderingContext2D )
         {
         this.draw( ctx );   // to allow containers to be inside containers
         }
 
-    intersect( x, y, event )
+
+    /**
+     * Check if a mouse event intersects with any of the elements that are part of this container.
+     *
+     * @param x The x position.
+     * @param y The y position.
+     * @param event The triggered mouse event.
+     * @return If an element did intersect.
+     */
+    intersect( x: number, y: number, event: MouseEvent )
         {
         var found = false;
 
@@ -139,10 +177,9 @@ export class Container extends Element
         }
 
 
-    /*
-        calculate the width/height of the container
+    /**
+     * Calculate the width/height of the container (based on the dimensions of the children elements).
      */
-
     calculateDimensions()
         {
         if ( this._children.length === 0 )
@@ -188,7 +225,12 @@ export class Container extends Element
         }
 
 
-    logic( deltaTime )
+    /**
+     * Call the logic of the children elements.
+     *
+     * @param deltaTime Time elapsed since the last update.
+     */
+    logic( deltaTime: number )
         {
         for (var a = this._children.length - 1 ; a >= 0 ; a--)
             {
@@ -201,6 +243,12 @@ export class Container extends Element
             }
         }
 
+
+    /**
+     * Clones the container (as well as the children).
+     *
+     * @return A new cloned container.
+     */
     clone()
         {
         var children = [];

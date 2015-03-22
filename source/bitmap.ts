@@ -73,6 +73,7 @@ export class Bitmap extends Element
         return false;
         }
 
+
     clone()
         {
         return new Game.Bitmap({

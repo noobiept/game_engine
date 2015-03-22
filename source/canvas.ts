@@ -7,6 +7,22 @@ export interface CanvasArgs
     }
 
 
+/**
+ * When you call `Game.init()`, a canvas is already added, which you can use to add elements. If you need more than one canvas, then you can create a new canvas object and add to the game.
+ *
+ * Basic Usage:
+ *
+ *     var canvas1 = Game.getCanvas();
+ *     var canvas2 = new Game.Canvas({
+ *             width: 400,
+ *             height: 400
+ *         });
+ *     Game.addCanvas( canvas2 );
+ *
+ *     var container = new Game.Container();
+ *
+ *     canvas2.addElement( container );
+ */
 export class Canvas
     {
     _canvas: HTMLCanvasElement;
@@ -37,10 +53,12 @@ export class Canvas
         }
 
 
-    /*
-        addElement( element );
-        addElement( element1, element2 );
-        addElement( [ element1, element2 ] );
+    /**
+     *     addElement( element );
+     *     addElement( element1, element2 );
+     *     addElement( [ element1, element2 ] );
+     *
+     * @param args Either an `Element`, or `...Element` or an `Element[]`
      */
     addElement( args: any )
         {
@@ -60,11 +78,13 @@ export class Canvas
         }
 
 
-    /*
-        removeElement( element );
-        removeElement( element1, element2 );
-        removeElement( [ element1, element2 ] );
-    */
+    /**
+     *     removeElement( element );
+     *     removeElement( element1, element2 );
+     *     removeElement( [ element1, element2 ] );
+     *
+     * @param args Either an `Element` or `...Element` or an `Element[]`
+     */
     removeElement( args: any )
         {
         var elements = arguments;
@@ -94,7 +114,12 @@ export class Canvas
         }
 
 
-    logic( deltaTime )
+    /**
+     * Call the logic of the elements added to this canvas (normally on the game loop).
+     *
+     * @param deltaTime Time elapsed since the last update.
+     */
+    logic( deltaTime: number )
         {
         for (var a = this._elements.length - 1 ; a >= 0 ; a--)
             {
@@ -108,6 +133,9 @@ export class Canvas
         }
 
 
+    /**
+     * Draw all the elements added to the canvas.
+     */
     draw()
         {
         this._ctx.clearRect( 0, 0, this._width, this._height );
@@ -126,7 +154,12 @@ export class Canvas
         }
 
 
-    mouseEvents( event )
+    /**
+     * Check if a mouse event that was triggered is on top of an element (if it intersects it) that is part of this canvas.
+     *
+     * @param event The mouse event triggered.
+     */
+    mouseEvents( event: MouseEvent )
         {
         var elements = this._elements;
         var rect = this._canvas.getBoundingClientRect();
@@ -153,13 +186,24 @@ export class Canvas
         }
 
 
-    updateDimensions( width, height )
+    /**
+     * Change the canvas dimensions (width/height).
+     *
+     * @param width The new width.
+     * @param height The new Height.
+     */
+    updateDimensions( width: number, height: number )
         {
         this._canvas.width = this._width = width;
         this._canvas.height = this._height = height;
         }
 
 
+    /**
+     * Get a random x/y position that is within the canvas.
+     *
+     * @return The random x/y position.
+     */
     getRandomPosition()
         {
         return {
@@ -169,10 +213,12 @@ export class Canvas
         }
 
 
-    /*
-        Check if a position is located in the canvas
+    /**
+     * @param x The x position.
+     * @param y The y position.
+     * @return If this position is located inside the canvas or not.
      */
-    isInCanvas( x, y )
+    isInCanvas( x: number, y: number )
         {
         if ( x < 0 ||
              x > this._width ||
@@ -186,30 +232,45 @@ export class Canvas
         }
 
 
+    /**
+     * @return The canvas width.
+     */
     getWidth()
         {
         return this._width;
         }
 
 
+    /**
+     * @return The canvas height.
+     */
     getHeight()
         {
         return this._height;
         }
 
 
+    /**
+     * @return The canvas html element.
+     */
     getHtmlCanvasElement()
         {
         return this._canvas;
         }
 
 
+    /**
+     * @return The 2d canvas rendering context object.
+     */
     getCanvasContext()
         {
         return this._ctx;
         }
 
 
+    /**
+     * @return The elements added to this canvas.
+     */
     getElements()
         {
         return this._elements;

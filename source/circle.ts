@@ -9,6 +9,17 @@ export interface CircleArgs extends ElementArgs
     }
 
 
+/**
+ * Basic Usage:
+ *
+ *     var circle = new Game.Circle({
+ *             x: 10,
+ *             y: 10,
+ *             radius: 5,
+ *             color: 'blue'
+ *         });
+ *     Game.addElement( circle );
+ */
 export class Circle extends Element
     {
     color: string;
@@ -23,18 +34,21 @@ export class Circle extends Element
         this.color = args.color;
         }
 
+
     set radius( value: number )
         {
         this._radius = value;
         this.width = this.height = value * 2;
         }
 
+
     get radius()
         {
         return this._radius;
         }
 
-    drawElement( ctx )
+
+    drawElement( ctx: CanvasRenderingContext2D )
         {
         ctx.save();
         ctx.beginPath();
@@ -47,7 +61,8 @@ export class Circle extends Element
         ctx.restore();
         }
 
-    intersect( x, y, event )
+
+    intersect( x: number, y: number, event: MouseEvent )
         {
         var refX = 0;
         var refY = 0;
@@ -72,6 +87,7 @@ export class Circle extends Element
 
         return false;
         }
+
 
     clone()
         {
