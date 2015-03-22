@@ -73,7 +73,13 @@ export class Preload extends EventDispatcher
         }
 
 
-    _loaded( id, data )
+    /**
+     * An element just finished being loaded, add it to the `data` object (either the global or the object) and dispatch the relevant events.
+     *
+     * @param id The id of the loaded element.
+     * @param data Its data.
+     */
+    _loaded( id: string, data: any )
         {
         if ( this.save_global )
             {
@@ -96,16 +102,36 @@ export class Preload extends EventDispatcher
             }
         }
 
-    _on_error( event, id )
+
+    /**
+     * Dispatch the `error` event.
+     *
+     * @param event The event to dispatch.
+     * @param id The id of the element.
+     */
+    _on_error( event, id: string )
         {
         this.dispatchEvent( 'error', { event: event, id: id } );
         }
 
-    _on_abort( event, id )
+
+    /**
+     * Dispatch the `abort` event.
+     *
+     * @param event The event to dispatch.
+     * @param id The id of the element.
+     */
+    _on_abort( event, id: string )
         {
         this.dispatchEvent( 'abort', { event: event, id: id } );
         }
 
+
+    /**
+     * Dispatch the current progress percentage.
+     *
+     * @param event The event that was triggered.
+     */
     _on_progress( event: ProgressEvent )
         {
         var fileProgress = 0;
@@ -123,11 +149,11 @@ export class Preload extends EventDispatcher
 
 
     /**
-        Load a file.
-
-        @param id - the id to be used later on to get the element
-        @param path - path to the file
-        @param typeId - type of the file to load. If not provided then it will try to determine the type from the file extension.
+     * Load a file.
+     *
+     * @param id The id to be used later on to get the element.
+     * @param path Path to the file.
+     * @param typeId Type of the file to load. If not provided then it will try to determine the type from the file extension.
      */
     load( id: string, path: string, typeId?: Game.Preload.TYPES )
         {
@@ -216,10 +242,10 @@ export class Preload extends EventDispatcher
 
 
     /**
-        Load several files.
-
-        @param manifest - Has the information about the files.
-        @param basePath - Base path for all the files in the manifest.
+     * Load several files.
+     *
+     * @param manifest Has the information about the files.
+     * @param basePath Base path for all the files in the manifest.
      */
     loadManifest( manifest: { id: string; path: string; }[], basePath?: string )
         {
@@ -240,11 +266,11 @@ export class Preload extends EventDispatcher
 
 
     /**
-        Get a previously loaded file.
-
-        @param id - The id of the file.
+     * Get a previously loaded file.
+     *
+     * @param id The id of the file.
      */
-    get( id )
+    get( id: string )
         {
         return this._data[ id ];
         }
@@ -279,13 +305,25 @@ export module Preload
     export var DATA = {};
 
 
-    export function get( id )
+    /**
+     * Get an element that was saved in the global `DATA` object.
+     *
+     * @param id The id of the element we're retrieving.
+     * @return The preloaded element.
+     */
+    export function get( id: string )
         {
         return DATA[ id ];
         }
 
 
-    export function getType( file )
+    /**
+     * Determine the type of a file based on its extension.
+     *
+     * @param file The file name.
+     * @return The file type.
+     */
+    export function getType( file: string )
         {
         var extension = file.split( '.' ).pop();
 

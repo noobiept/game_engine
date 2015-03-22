@@ -12,6 +12,24 @@ export interface GridArgs extends EventDispatcherArgs
         background?: { color: string; fill: boolean; canvasId?: number; };
     }
 
+
+/**
+ * Basic Usage:
+ *
+ *     var rectangle = new Game.Rectangle({
+ *             width: 10,
+ *             height: 10,
+ *             color: 'green'
+ *         });
+ *     Game.addElement( rectangle );
+ *
+ *     var grid = new Game.Grid({
+ *             squareSize: 10,
+ *             columns: 20,
+ *             lines: 20
+ *         });
+ *     grid.addElement( rectangle, 10, 10 );
+ */
 export class Grid extends EventDispatcher
     {
     _grid: Element[][];
@@ -83,6 +101,14 @@ export class Grid extends EventDispatcher
         this.ref_y = args.refY;
         }
 
+
+    /**
+     * Get the equivalent x/y position from a column/line position.
+     *
+     * @param column The column position.
+     * @param line The line position.
+     * @return The x/y position.
+     */
     toCanvas( column: number, line: number )
         {
         return {
@@ -91,7 +117,15 @@ export class Grid extends EventDispatcher
             };
         }
 
-    toGrid( x, y )
+
+    /**
+     * Get the equivalent column/line position from a x/y position.
+     *
+     * @param x The x position.
+     * @param y The y position.
+     * @return The column/line position.
+     */
+    toGrid( x: number, y: number )
         {
         return {
                 column: Math.round( (x - this.ref_x) / this.square_size ),
@@ -100,7 +134,15 @@ export class Grid extends EventDispatcher
         }
 
 
-    addElement( element, column, line )
+    /**
+     * Add an `Element` to a grid position.
+     *
+     * @param element The element to be added.
+     * @param column The column position.
+     * @param line The line position.
+     * @return The previous element that was in that position (or `null` if there wasn't one).
+     */
+    addElement( element: Element, column: number, line: number )
         {
         if ( column < 0 )
             {
@@ -145,15 +187,31 @@ export class Grid extends EventDispatcher
         }
 
 
-    moveElement( element, destColumn, destLine, duration? )
+    /**
+     * Move an element from one grid position to another (the element needs to be already in the grid).
+     *
+     * @param element The element to be moved.
+     * @param destColumn The destination column position.
+     * @param destLine The destination line position.
+     * @param duration If duration >0, then a tween animation is going to be applied to the movement.
+     * @return The previous element that was in the destination position (or null if there wasn't one).
+     */
+    moveElement( element: Element, destColumn: number, destLine: number, duration?: number )
         {
         return this.movePosition( element.column, element.line, destColumn, destLine, duration );
         }
 
-    /*
-        move an element to a different position in the grid
+    /**
+     * Move an element from one grid position to another (the element needs to be already in the grid).
+     *
+     * @param sourceColumn The source column of an existing element.
+     * @param sourceLine The source line of an existing element.
+     * @param destColumn The destination column position.
+     * @param destLine The destination line position.
+     * @param duration If duration >0, then a tween animation is going to be applied to the movement.
+     * @return The previous element that was in the destination position (or null if there wasn't one).
      */
-    movePosition( sourceColumn, sourceLine, destColumn, destLine, duration? )
+    movePosition( sourceColumn: number, sourceLine: number, destColumn: number, destLine: number, duration?: number )
         {
         var element = this._grid[ sourceColumn ][ sourceLine ];
         var previous = this._grid[ destColumn ][ destLine ];
@@ -208,34 +266,54 @@ export class Grid extends EventDispatcher
         }
 
 
+    /**
+     * Remove an element from the grid.
+     *
+     * @param element The element to be removed.
+     * @return The element that was removed.
+     */
     removeElement( element )
         {
         return this.removePosition( element.column, element.line );
         }
 
 
-    removePosition( column, line )
+    /**
+     * Remove an element from the grid.
+     *
+     * @param column The column position.
+     * @param line The line position.
+     * @return The element that was removed.
+     */
+    removePosition( column: number, line: number )
         {
         if ( !this.isInGrid( column, line ) )
             {
             return null;
             }
 
-        var previous = this._grid[ column ][ line ];
+        var element = this._grid[ column ][ line ];
 
         this._grid[ column ][ line ] = null;
 
-        if ( previous !== null )
+        if ( element !== null )
             {
-            previous.column = -1;
-            previous.line = -1;
+            element.column = -1;
+            element.line = -1;
             }
 
-        return previous;
+        return element;
         }
 
 
-    getElement( column, line )
+    /**
+     * Get an element from the grid.
+     *
+     * @param column The column position.
+     * @param line The line position.
+     * @return The element, or `null` if there wasn't an element in that position.
+     */
+    getElement( column: number, line: number )
         {
         if ( !this.isInGrid( column, line ) )
             {
@@ -253,7 +331,14 @@ export class Grid extends EventDispatcher
         }
 
 
-    getElement2( x, y )
+    /**
+     * Get an element from the grid.
+     *
+     * @param x The x position.
+     * @param y The y position.
+     * @return The element, or `null` if there wasn't an element in that position.
+     */
+    getElement2( x: number, y: number )
         {
         var position = this.toGrid( x, y );
 
@@ -261,7 +346,12 @@ export class Grid extends EventDispatcher
         }
 
 
-    isEmpty( column, line )
+    /**
+     * @param column The column position.
+     * @param line The line position.
+     * @return If the position is empty or not.
+     */
+    isEmpty( column: number, line: number )
         {
         if ( this._grid[ column ][ line ] )
             {
@@ -271,7 +361,16 @@ export class Grid extends EventDispatcher
         return true;
         }
 
-    normalizePosition( column, line )
+
+    /**
+     * Makes sure the position is within the grid's dimensions.
+     * For example if you pass a column that is <0 then it will return a column with value 0 (since you can't have negative columns).
+     *
+     * @param column The column position.
+     * @param line The line position.
+     * @return The column/line position that is guaranteed to be within the grid's dimensions.
+     */
+    normalizePosition( column: number, line: number )
         {
         if ( column < 0 )
             {
@@ -300,10 +399,13 @@ export class Grid extends EventDispatcher
             }
         }
 
-    /*
-        If this position is valid for this grid (is within it)
+
+    /**
+     * @param column The column position.
+     * @param line The line position.
+     * @return If this position is valid for this grid (is within it).
      */
-    isInGrid( column, line )
+    isInGrid( column: number, line: number )
         {
         if ( column < 0 ||
              column >= this.columns ||
@@ -317,6 +419,9 @@ export class Grid extends EventDispatcher
         }
 
 
+    /**
+     * @return A random column/line position that is within the grid's dimensions.
+     */
     getRandomPosition()
         {
         return {
@@ -326,6 +431,9 @@ export class Grid extends EventDispatcher
         }
 
 
+    /**
+     * @return A random empty column/line position, or `null` if there aren't any empty positions.
+     */
     getRandomEmptyPosition()
         {
         var empty = this.getEmptyPositions();
@@ -340,6 +448,10 @@ export class Grid extends EventDispatcher
         return null;
         }
 
+
+    /**
+     * @return An array with all the empty column/line positions of this grid (the array will be empty if there aren't any empty positions).
+     */
     getEmptyPositions()
         {
         var emptyPositions = [];
@@ -361,6 +473,10 @@ export class Grid extends EventDispatcher
         return emptyPositions;
         }
 
+
+    /**
+     * @return The grid's dimensions.
+     */
     getDimensions()
         {
         return {
@@ -371,10 +487,10 @@ export class Grid extends EventDispatcher
             }
         }
 
-    /*
-        Clear grid related elements etc
 
-        Called when we don't need the grid anymore
+    /**
+     * Clear grid related elements etc.
+     * Called when we don't need the grid anymore.
      */
     clear()
         {
@@ -384,10 +500,16 @@ export class Grid extends EventDispatcher
             }
         }
 
-    /*
-        Get the neighbor elements around the position given
+
+    /**
+     * Get the neighbor elements around the given position.
+     *
+     * @param refColumn The reference column position.
+     * @param refLine The reference line position.
+     * @param range The range of elements around the reference position to get.
+     * @return The neighbor elements.
      */
-    getNeighbors( refColumn, refLine, range? )
+    getNeighbors( refColumn: number, refLine: number, range?: number )
         {
         if ( typeof range === 'undefined' )
             {

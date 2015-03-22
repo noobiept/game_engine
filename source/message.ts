@@ -11,6 +11,26 @@ export interface MessageArgs extends Game.Html.HtmlContainerArgs
         background?: boolean;
     }
 
+
+/**
+ * Basic Usage:
+ *
+ *     var container = Game.getCanvasContainer();
+ *
+ *     var button = new Game.Html.Button({
+ *             value: 'Ok',
+ *             callback: function( button )
+ *                 {
+ *                 message.clear();
+ *                 }
+ *         });
+ *     var message = new Game.Message({
+ *             text: 'Hi there!',
+ *             container: container,
+ *             background: true,
+ *             buttons: button
+ *         });
+ */
 export class Message extends Game.Html.HtmlContainer
     {
     text: HTMLElement;
@@ -89,6 +109,9 @@ export class Message extends Game.Html.HtmlContainer
         }
 
 
+    /**
+     * Remove the message.
+     */
     clear()
         {
         if ( this.timeout )
@@ -106,13 +129,19 @@ export class Message extends Game.Html.HtmlContainer
         }
 
 
+    /**
+     * @return Current message.
+     */
     getText()
         {
         return this.text.innerHTML;
         }
 
 
-    setText( text )
+    /**
+     * @param text New message text. Its either a `string` or an `HTMLElement`.
+     */
+    setText( text: any )
         {
         if ( text instanceof HTMLElement )
             {

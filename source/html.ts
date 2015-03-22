@@ -1,5 +1,21 @@
 module Game
 {
+/**
+ * Basic Usage:
+ *
+ *     var menu = new Game.Html.HtmlContainer();
+ *
+ *     var button = new Game.Html.Button({
+ *             value: 'click here',
+ *             callback: function( button )
+ *                 {
+ *                 console.log( 'clicked!' );
+ *                 }
+ *         });
+ *     menu.addChild( button );
+ *
+ *     document.body.appendChild( menu.container );
+ */
 export module Html
     {
     export interface HtmlElementArgs
@@ -9,6 +25,9 @@ export module Html
             preText?: string;
         }
 
+    /**
+     * Generic html element, serves as base for the rest of the classes.
+     */
     export class HtmlElement
         {
         container: HTMLElement;
@@ -63,6 +82,11 @@ export module Html
             }
 
 
+        /**
+         * When the element is inactive, its events are disabled, and a `.Game-inactive` css class is applied.
+         *
+         * @param yesNo Whether to set it active or not.
+         */
         setActive( yesNo: boolean )
             {
                 // already in that state
@@ -86,16 +110,28 @@ export module Html
             this.isActive = yesNo;
             }
 
+
+        /**
+         * Activates the element's event handlers.
+         */
         addEvents()
             {
                 // implement this if needed
             }
 
+
+        /**
+         * Deactivate the element's event handlers.
+         */
         removeEvents()
             {
                 // implement this if needed
             }
 
+
+        /**
+         * Calls this to remove the element.
+         */
         clear()
             {
                 // implement this if needed
@@ -108,6 +144,9 @@ export module Html
             children?: any;     // HtmlElement or HtmlElement[]
         }
 
+    /**
+     * Container of the other html elements.
+     */
     export class HtmlContainer extends HtmlElement
         {
         _children: HtmlElement[];
@@ -128,12 +167,12 @@ export module Html
                 }
             }
 
-        /*
-            addChild( element );
-            addChild( element1, element2 );
-            addChild( [ element1, element2 ] );
-
-            element is of type 'HtmlElement'
+        /**
+         *     addChild( element );
+         *     addChild( element1, element2 );
+         *     addChild( [ element1, element2 ] );
+         *
+         * @param args `HtmlElement` or `...HtmlElement` or `HtmlElement[]`.
          */
         addChild( args: any )
             {
@@ -155,12 +194,12 @@ export module Html
                 }
             }
 
-        /*
-            removeChild( element );
-            removeChild( element1, element2 );
-            removeChild( [ element1, element2 ] );
-
-            element is of type 'Component'
+        /**
+         *     removeChild( element );
+         *     removeChild( element1, element2 );
+         *     removeChild( [ element1, element2 ] );
+         *
+         * @param args `HtmlElement` or `...HtmlElement` or `HtmlElement[]`.
          */
         removeChild( args: any )
             {
@@ -187,8 +226,8 @@ export module Html
                 }
             }
 
-        /*
-            Removes the game menu, plus all of its components (can't use the menu after this)
+        /**
+         * Removes the game menu, plus all of its children (can't use the menu after this).
          */
         clear()
             {
@@ -208,10 +247,14 @@ export module Html
             value: any;
         }
 
+    /**
+     * Display a value.
+     */
     export class Value extends HtmlElement
         {
         value: any;
         element: HTMLElement;
+
 
         constructor( args: ValueArgs )
             {
@@ -226,7 +269,11 @@ export module Html
             this.setValue( args.value );
             }
 
-        setValue( value )
+
+        /**
+         * @param value New value to be displayed.
+         */
+        setValue( value: any )
             {
             if ( value === this.value )
                 {
@@ -237,11 +284,19 @@ export module Html
             this.element.innerHTML = value;
             }
 
+
+        /**
+         * @return The current value set.
+         */
         getValue()
             {
             return this.value;
             }
 
+
+        /**
+         * Clear the object (don't use it after this).
+         */
         clear()
             {
             this.value = null;
@@ -254,6 +309,10 @@ export module Html
             callback: (button: Button) => any;
         }
 
+
+    /**
+     * An html button.
+     */
     export class Button extends Value
         {
         click_ref: () => any;
@@ -279,16 +338,28 @@ export module Html
             this.addEvents();
             }
 
+
+        /**
+         * Add the click event handler.
+         */
         addEvents()
             {
             this.container.addEventListener( 'click', this.click_ref );
             }
 
+
+        /**
+         * Remove the click event handler.
+         */
         removeEvents()
             {
             this.container.removeEventListener( 'click', this.click_ref );
             }
 
+
+        /**
+         * Clear the object (don't use it after this).
+         */
         clear()
             {
             super.clear();
@@ -304,6 +375,10 @@ export module Html
             callback: (value: any) => any;
         }
 
+
+    /**
+     * A boolean html button (possible values are 'On' or 'Off').
+     */
     export class Boolean extends HtmlElement
         {
         value: boolean;
@@ -333,17 +408,29 @@ export module Html
             this.addEvents();
             }
 
+
+        /**
+         * Add the click event handler.
+         */
         addEvents()
             {
             this.container.addEventListener( 'click', this.click_ref );
             }
 
+
+        /**
+         * Remove the click event handler.
+         */
         removeEvents()
             {
             this.container.removeEventListener( 'click', this.click_ref );
             }
 
-        setValue( value )
+
+        /**
+         * @param value New value of the button. When the value is `true`, the display text is 'On`, and when the value is `false`, the display text will be `Off`.
+         */
+        setValue( value: boolean )
             {
             if ( value === this.value )
                 {
@@ -363,11 +450,19 @@ export module Html
             this.value = value;
             }
 
+
+        /**
+         * @return The current value that is set.
+         */
         getValue()
             {
             return this.value;
             }
 
+
+        /**
+         * Clear the object.
+         */
         clear()
             {
             this.removeEvents();
@@ -382,6 +477,9 @@ export module Html
             value2: string;
         }
 
+    /**
+     * A button that has 2 states, each state with its own value and callback.
+     */
     export class TwoState extends Button
         {
         isValue1: boolean;
@@ -423,6 +521,9 @@ export module Html
             callback: (button: MultipleOptions, position: number, htmlElement: HTMLElement) => any;
         }
 
+    /**
+     * Multiple options button.
+     */
     export class MultipleOptions extends HtmlElement
         {
         elements: HTMLElement[];
@@ -475,7 +576,13 @@ export module Html
             this.addEvents();
             }
 
-        select( position )
+
+        /**
+         * Select the active option by position.
+         *
+         * @param position The position to select.
+         */
+        select( position: number )
             {
             var element = this.elements[ position ];
 
@@ -494,6 +601,10 @@ export module Html
             element.classList.add( 'Game-selected' );
             }
 
+
+        /**
+         * add the click event handler on the options.
+         */
         addEvents()
             {
             for (var a = this.elements.length - 1 ; a >= 0 ; a--)
@@ -502,6 +613,10 @@ export module Html
                 }
             }
 
+
+        /**
+         * Remove the click event handlers from the options elements.
+         */
         removeEvents()
             {
             for (var a = this.elements.length - 1 ; a >= 0 ; a--)
@@ -510,6 +625,10 @@ export module Html
                 }
             }
 
+
+        /**
+         * Clear the object.
+         */
         clear()
             {
             this.removeEvents();
@@ -528,6 +647,10 @@ export module Html
             onChange?: (button: Range) => any;
         }
 
+
+    /**
+     * Number range control.
+     */
     export class Range extends HtmlElement
         {
         value: HTMLElement;
@@ -584,35 +707,56 @@ export module Html
             this.addEvents();
             }
 
-        setValue( value )
+
+        /**
+         * @param value New value to be set.
+         */
+        setValue( value: number )
             {
             if ( value === this.current_value )
                 {
                 return;
                 }
 
+            var valueStr = value.toString();
+
             this.current_value = value;
-            this.input.value = value;
-            this.value.innerHTML = value;
+            this.input.value = valueStr;
+            this.value.innerHTML = valueStr;
             }
 
+        /**
+         * @return Current value that is set.
+         */
         getValue()
             {
             return this.current_value;
             }
 
+
+        /**
+         * Add the relevant event handlers.
+         */
         addEvents()
             {
             this.input.addEventListener( 'input', this.input_ref );
             this.input.addEventListener( 'change', this.change_ref );
             }
 
+
+        /**
+         * Remove the event handlers.
+         */
         removeEvents()
             {
             this.input.removeEventListener( 'input', this.input_ref );
             this.input.removeEventListener( 'change', this.change_ref );
             }
 
+
+        /**
+         * Clear the object.
+         */
         clear()
             {
             this.removeEvents();
