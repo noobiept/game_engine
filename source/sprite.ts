@@ -79,7 +79,13 @@ export class Sprite extends Bitmap
             }
         }
 
-    setFrame( frame )
+
+    /**
+     * Show a specific frame of the sprite.
+     *
+     * @param frame The position of the frame.
+     */
+    setFrame( frame: number )
         {
         var line = Math.floor( frame / this._frames_per_line );
         var column = frame - line * this._frames_per_line;
@@ -89,6 +95,12 @@ export class Sprite extends Bitmap
         }
 
 
+    /**
+     * Play a previously set animation.
+     *
+     * @param animationId The name of the animation.
+     * @return If it was successful.
+     */
     play( animationId: string )
         {
         this._current_animation = this._animations[ animationId ];
@@ -108,6 +120,9 @@ export class Sprite extends Bitmap
         }
 
 
+    /**
+     * Change to the next frame. If we're on the last frame then it changes to the first one (frame 0).
+     */
     nextFrame()
         {
         this._current_animation_position++;
@@ -121,7 +136,12 @@ export class Sprite extends Bitmap
         }
 
 
-    logic( deltaTime )
+    /**
+     * Changes the current sprite frame, based on the interval set.
+     *
+     * @param deltaTime Time elapsed since the last update.
+     */
+    logic( deltaTime: number )
         {
         this._count_interval += deltaTime;
 
@@ -133,6 +153,10 @@ export class Sprite extends Bitmap
             }
         }
 
+
+    /**
+     * @return A cloned sprite object.
+     */
     clone()
         {
         return new Game.Sprite({

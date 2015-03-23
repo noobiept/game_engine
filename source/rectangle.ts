@@ -10,6 +10,19 @@ export interface RectangleArgs extends ElementArgs
         fill?: boolean; // fill or stroke
     }
 
+
+/**
+ * Basic Usage:
+ *
+ *     var rectangle = new Game.Rectangle({
+ *             x: 100,
+ *             y: 200,
+ *             width: 10,
+ *             height: 20,
+ *             color: 'gray'
+ *         });
+ *     Game.addElement( rectangle );
+ */
 export class Rectangle extends Element
     {
     color: string;
@@ -34,7 +47,13 @@ export class Rectangle extends Element
         this.color = args.color;
         }
 
-    drawElement( ctx )
+
+    /**
+     * Draw this element.
+     *
+     * @param ctx The canvas rendering context.
+     */
+    drawElement( ctx: CanvasRenderingContext2D )
         {
         ctx.save();
         ctx.beginPath();
@@ -56,7 +75,8 @@ export class Rectangle extends Element
         ctx.restore();
         }
 
-    intersect( x, y, event )
+
+    intersect( x: number, y: number, event: MouseEvent )
         {
         var refX = 0;
         var refY = 0;
@@ -82,6 +102,7 @@ export class Rectangle extends Element
 
         return false;
         }
+
 
     clone()
         {

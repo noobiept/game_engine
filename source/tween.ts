@@ -12,6 +12,25 @@ export interface TweenStep
     }
 
 
+/**
+ * Basic Usage:
+ *
+ *     var rectangle = new Game.Rectangle({
+ *             x: 10,
+ *             y: 10,
+ *             width: 10,
+ *             height: 10,
+ *             color: 'green'
+ *         });
+ *     Game.addElement( rectangle );
+ *
+ *     var tween = new Game.Tween( rectangle );
+ *
+ *     tween.to( { x: 200 }, 2 ).wait( 1 ).call function()
+ *         {
+ *         console.log( 'Finished!' );
+ *         }).start();
+ */
 export class Tween
     {
     static _tweens: Tween[] = [];
@@ -35,6 +54,9 @@ export class Tween
         }
 
 
+    /**
+     * Start the tween animation.
+     */
     start()
         {
         this.nextStep();
@@ -43,7 +65,15 @@ export class Tween
         }
 
 
-    to( properties, duration: number, ease? )
+    /**
+     * Set the end value of some properties, and the animation duration.
+     *
+     * @param properties The `key` is the element's properties we want to animate, and the `value` is the value that property will have at the end of the animation.
+     * @param duration Duration of the animation.
+     * @param ease Ease function, that describes how the value of the property will progress between the animation.
+     * @return The tween object for chaining.
+     */
+    to( properties: Object, duration: number, ease?: (value: number) => number )
         {
         if ( typeof ease === 'undefined' )
             {
@@ -61,7 +91,13 @@ export class Tween
         }
 
 
-    wait( duration )
+    /**
+     * Wait for some time doing nothing.
+     *
+     * @param duration Duration of the wait.
+     * @return The tween object for chaining.
+     */
+    wait( duration: number )
         {
         this._steps.push({
                 action: TweenAction.wait,
@@ -72,7 +108,13 @@ export class Tween
         }
 
 
-    call( callback )
+    /**
+     * Call a given function.
+     *
+     * @param callback The function to be called.
+     * @return The tween object for chaining.
+     */
+    call( callback: () => any )
         {
         this._steps.push({
                 action: TweenAction.call,
@@ -83,6 +125,9 @@ export class Tween
         }
 
 
+    /**
+     * Remove the tween.
+     */
     remove()
         {
         var index = Tween._tweens.indexOf( this );
@@ -90,6 +135,10 @@ export class Tween
         Tween._tweens.splice( index, 1 );
         }
 
+
+    /**
+     * Move unto the next step in the tween animation.
+     */
     nextStep()
         {
         var step = this._steps.shift();
@@ -130,7 +179,12 @@ export class Tween
         }
 
 
-    waitUpdate( deltaTime )
+    /**
+     * .wait() tick logic.
+     *
+     * @param deltaTime Time elapsed since the last update.
+     */
+    waitUpdate( deltaTime: number )
         {
         var step = this._current_step;
 
@@ -142,6 +196,12 @@ export class Tween
             }
         }
 
+
+    /**
+     * .to() tick logic.
+     *
+     * @param deltaTime Time elapsed since the last update.
+     */
     propertiesUpdate( deltaTime )
         {
         var step = this._current_step;
@@ -174,10 +234,13 @@ export class Tween
         }
 
 
-    /*
-        Returns an existing tween of an element, or null if there's no active tween working on the element.
+    /**
+     * Returns an existing tween of an element, or null if there's no active tween working on the element.
+     *
+     * @param element The element that has a tween animation.
+     * @return The associated tween object.
      */
-    static getTween( element )
+    static getTween( element: Object )
         {
         for (var a = Tween._tweens.length - 1 ; a >= 0 ; a--)
             {
@@ -193,7 +256,12 @@ export class Tween
         }
 
 
-    static removeTweens( element )
+    /**
+     * Remove all the tweens of an element.
+     *
+     * @param element The element associated with the tweens we want to remove.
+     */
+    static removeTweens( element: Object )
         {
         for (var a = Tween._tweens.length - 1 ; a >= 0 ; a--)
             {
@@ -207,13 +275,21 @@ export class Tween
         }
 
 
+    /**
+     * Remove all the tween animations.
+     */
     static removeAll()
         {
         Tween._tweens.length = 0;
         }
 
 
-    static update( deltaTime )
+    /**
+     * Gets called in the game loop, to update all the tween animations.
+     *
+     * @param deltaTime Time elapsed since the last update.
+     */
+    static update( deltaTime: number )
         {
         for (var a = Tween._tweens.length - 1 ; a >= 0 ; a--)
             {
@@ -224,14 +300,17 @@ export class Tween
 
 export module Tween
     {
+    /**
+     * Ease function, that describes how the value of the property will progress between the animation.
+     */
     export module Ease
         {
-        export function linear( value )
+        export function linear( value: number )
             {
             return value;
             }
 
-        export function quadraticIn( value )
+        export function quadraticIn( value: number )
             {
             return value * value;
             }

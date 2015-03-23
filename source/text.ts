@@ -95,7 +95,12 @@ export class Text extends Element
         }
 
 
-    drawElement( ctx )
+    /**
+     * Draw this element.
+     *
+     * @param ctx The canvas rendering context.
+     */
+    drawElement( ctx: CanvasRenderingContext2D )
         {
         ctx.save();
         ctx.globalAlpha *= this.opacity;
@@ -125,6 +130,9 @@ export class Text extends Element
         }
 
 
+    /**
+     * @param value Change the text to this.
+     */
     set text( value: string )
         {
         this._text = value;
@@ -153,35 +161,57 @@ export class Text extends Element
         this.height = this.font_size * length;     // 'font_size' not quite the same thing as height, but there's no way to determine the height right now so..
         }
 
+
+    /**
+     * @return The current text.
+     */
     get text()
         {
         return this._text;
         }
 
 
+    /**
+     * @param font Set a new font family.
+     */
     set font_family( font: string )
         {
         this._font_family = font;
         this._font = this._font_size + 'px ' + font;
         }
 
+
+    /**
+     * @return Current font family.
+     */
     get font_family()
         {
         return this._font_family;
         }
 
 
+    /**
+     * @param size New font size.
+     */
     set font_size( size: number )
         {
         this._font_size = size;
         this._font = size + 'px ' + this._font_family;
         }
 
+
+    /**
+     * @return Current font size.
+     */
     get font_size()
         {
         return this._font_size;
         }
 
+
+    /**
+     * @return New cloned text object.
+     */
     clone()
         {
         return new Game.Text({
