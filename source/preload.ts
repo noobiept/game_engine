@@ -26,24 +26,15 @@ export interface PreloadArgs extends EventDispatcherArgs
  *         ];
  *     preload.loadManifest( manifest, '' );
  *
- *
- * Examples:
- *     - preload
- *
- *
  * Events:
- *     - complete -- all files loaded
- *     - error -- an error occurred
- *     - abort -- canceled by the user
- *     - progress -- progress of the queue
- *     - fileload -- a file loaded
  *
- * Listeners:
- *     - complete_listeners()
- *     - error_listeners( data: { id: string; event; } )
- *     - abort_listeners( data: { id: string; event; } )
- *     - progress_listeners( progress: number )
- *     - fileload_listeners( data: { id: string; data: Object; } )
+ * - `complete` -- `listener();`
+ * - `error` -- `listener( data: { id: string; event; } );`
+ * - `abort` -- `listener( data: { id: string; event; } );`
+ * - `progress` -- `listener( progress: number );`
+ * - `fileload` -- `listener( data: { id: string; data: Object; } );`
+ *
+ * Examples -- `clone`, `minesweeper`, `multiple_canvas`, `preload`, `sprite`
  */
 export class Preload extends EventDispatcher
     {

@@ -29,6 +29,12 @@ export interface GridArgs extends EventDispatcherArgs
  *             lines: 20
  *         });
  *     grid.addElement( rectangle, 10, 10 );
+ *
+ * Events:
+ *
+ * - `collision` -- `listener( data: { element: Element; collidedWith: Element; } );`
+ *
+ * Examples -- `2048`, `game_of_life`, `grid`, `minesweeper`, `snake`
  */
 export class Grid extends EventDispatcher
     {

@@ -20,6 +20,34 @@ export enum UnitMovement
     }
 
 
+/**
+ * Basic Usage:
+ *
+ *     var unitShape = new Game.Rectangle({
+ *             width: 10,
+ *             height: 10,
+ *             color: 'blue'
+ *         });
+ *     var unit = new Game.Unit({
+ *             x: 100,
+ *             y: 100,
+ *             movement_speed: 100,
+ *             children: unitShape
+ *         });
+ *     Game.addElement( unit );
+ *
+ *     unit.moveTo( 300, 100 );
+ *     unit.queueMoveTo( 200, 200, function()
+ *         {
+ *         console.log( 'Done!' );
+ *         });
+ *
+ * Events:
+ *
+ * - `collision` -- `listener( data: { element: Unit; collidedWith: Unit; } );`
+ *
+ * Examples -- `2048`, `basic_example`, `bullets`, `collision_detection`, `custom_element`
+ */
 export class Unit extends Container
     {
         // these will exist independently on every inherited class (not 1 on Unit for all)
@@ -118,7 +146,7 @@ export class Unit extends Container
 
 
     /**
-        @param animationDuration - If this is passed, then the unit's opacity will be animated until it reaches 0, and only then will the unit be removed
+     * @param animationDuration If this is passed, then the unit's opacity will be animated until it reaches 0, and only then will the unit be removed
      */
     remove( animationDuration?: number )
         {
@@ -142,6 +170,10 @@ export class Unit extends Container
             }
         }
 
+
+    /**
+     * Remove the unit immediately.
+     */
     _removeNow()
         {
         super.remove();
@@ -154,8 +186,9 @@ export class Unit extends Container
         all.splice( index, 1 );
         }
 
+
     /**
-        Clears any previous path, and forces the unit to move to the specified position.
+     * Clears any previous path, and forces the unit to move to the specified position.
      */
     moveTo( x: number, y: number, callback?: () => any )
         {
@@ -176,8 +209,9 @@ export class Unit extends Container
         this.moveToNext();
         }
 
+
     /**
-        Move the next position in the path
+     * Move to the next position in the path.
      */
     moveToNext()
         {
@@ -231,6 +265,10 @@ export class Unit extends Container
         return false;
         }
 
+
+    /**
+     * Stop moving.
+     */
     stop()
         {
         this._movement_type = UnitMovement.stop;
@@ -239,6 +277,13 @@ export class Unit extends Container
         }
 
 
+    /**
+     * Add a x/y position to the movement queue.
+     *
+     * @param x The x position.
+     * @param y The y position.
+     * @param callback Optional function to be called when it reaches this position.
+     */
     queueMoveTo( x: number, y: number, callback?: () => any )
         {
         if ( !Utilities.isFunction( callback ) )
@@ -253,6 +298,12 @@ export class Unit extends Container
             });
         }
 
+
+    /**
+     * Move continuously between the positions in the path.
+     *
+     * @param path The path of the movement.
+     */
     moveLoop( path: { x: number; y: number; callback?: () => any }[] )
         {
         this._movement_type = UnitMovement.loop;
@@ -265,11 +316,11 @@ export class Unit extends Container
 
 
     /**
-        Move continuously in a specific angle
-
-        @angle - the angle of the direction. Positive clockwise.
-        @degrees - If the 'angle' value is in degrees or radians
-        @callback - To be called when it reaches the end of the canvas
+     * Move continuously in a specific angle.
+     *
+     * @angle The angle of the direction. Positive clockwise.
+     * @degrees If the `angle` value is in degrees or radians.
+     * @callback To be called when it reaches the end of the canvas.
      */
     moveAngle( angle: number, degrees?: boolean, callback?: () => any )
         {
@@ -292,8 +343,8 @@ export class Unit extends Container
 
 
     /**
-        @param angleOrTarget {Number|Element} - The angle of the bullet movement. If not given, then the bullet will have the unit's current rotation angle. Can be passed an Element which will work as the target of the bullet (it will follow the target until it hits it).
-        @param interval - If you want to keep firing bullets at the same angle (or same target). Pass a positive number for that.
+     * @param angleOrTarget {Number|Element} The angle of the bullet movement. If not given, then the bullet will have the unit's current rotation angle. Can be passed an Element which will work as the target of the bullet (it will follow the target until it hits it).
+     * @param interval If you want to keep firing bullets at the same angle (or same target). Pass a positive number for that.
      */
     fireBullet( angleOrTarget?: any, interval?: number )
         {
@@ -313,6 +364,9 @@ export class Unit extends Container
         }
 
 
+    /**
+     * Stop firing bullets (if it was set to fire at a certain interval).
+     */
     stopFiring()
         {
         this._bullet_interval = -1;
@@ -320,7 +374,13 @@ export class Unit extends Container
         this._angle_or_target = null;
         }
 
-    _fire( angleOrTarget? )
+
+    /**
+     * Fire a bullet at a certain angle, or towards a specific target.
+     *
+     * @param angleOrTarget The angle or target of the bullet.
+     */
+    _fire( angleOrTarget?: any )
         {
         var _this = this;
 
@@ -377,18 +437,24 @@ export class Unit extends Container
         }
 
 
-    movementLogic( delta )
+    /**
+     * Its called in every update. This is going to be assigned to a different movement logic method, depending on the current movement type.
+     *
+     * @param delta Time elapsed since the last update.
+     */
+    movementLogic( delta: number )
         {
-            // this is going to be assigned to a different movement logic method, depending on the current movement type
+            // empty
         }
 
 
-    /*
-        Deals with movement in a certain direction/angle.
-
-        Calls the function callback when it reaches the end of the canvas.
+    /**
+     * Deals with movement in a certain direction/angle.
+     * Calls the function callback when it reaches the end of the canvas.
+     *
+     * @param delta Time elapsed since the last update.
      */
-    movementAngleLogic( delta )
+    movementAngleLogic( delta: number )
         {
         if ( this._is_moving )
             {
@@ -406,12 +472,13 @@ export class Unit extends Container
         }
 
 
-    /*
-        Deals with movement to a x/y position.
-
-        Calls the function callback when it reaches the destination.
+    /**
+     * Deals with movement to a x/y position.
+     * Calls the function callback when it reaches the destination.
+     *
+     * @param delta Time elapsed since the last update.
      */
-    movementPathLogic( delta )
+    movementPathLogic( delta: number )
         {
         if ( this._is_moving )
             {
@@ -450,7 +517,12 @@ export class Unit extends Container
         }
 
 
-    firingLogic( delta )
+    /**
+     * You can set the unit to fire bullets at a certain interval. This is the function that deals with that logic.
+     *
+     * @param delta Time elapsed since the last update.
+     */
+    firingLogic( delta: number )
         {
         if ( this._bullet_interval > 0 )
             {
@@ -465,7 +537,12 @@ export class Unit extends Container
         }
 
 
-    collisionLogic( delta )
+    /**
+     * Logic to determine when a unit has collided with another unit.
+     *
+     * @param delta Time elapsed since the last update.
+     */
+    collisionLogic( delta: number )
         {
         var constructor = <any> this.constructor;
         var length = constructor.collidesWith.length;
@@ -539,7 +616,12 @@ export class Unit extends Container
         }
 
 
-    logic( delta )
+    /**
+     * Unit's logic function, that gets called in every update.
+     *
+     * @param delta Time elapsed since the last update.
+     */
+    logic( delta: number )
         {
         this.movementLogic( delta );
         this.firingLogic( delta );
@@ -547,6 +629,9 @@ export class Unit extends Container
         }
 
 
+    /**
+     * @return A clone of this unit.
+     */
     clone()
         {
         var children = [];

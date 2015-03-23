@@ -30,6 +30,8 @@ export interface MessageArgs extends Game.Html.HtmlContainerArgs
  *             background: true,
  *             buttons: button
  *         });
+ *
+ * Examples -- `message`, `minesweeper`
  */
 export class Message extends Game.Html.HtmlContainer
     {

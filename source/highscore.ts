@@ -16,6 +16,8 @@ module Game
  *         {
  *         console.log( easyScores[ a ] );
  *         }
+ *
+ * Examples -- `minesweeper`
  */
 export module HighScore
     {

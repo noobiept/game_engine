@@ -23,6 +23,8 @@ export interface TextArgs extends ElementArgs
  *             text: 'Hi'
  *         });
  *     Game.addElement( text );
+ *
+ * Examples -- `2048`, `clone`, `collision_detection`, `game_loop_callbacks`, `preload`, `snake`
  */
 export class Text extends Element
     {

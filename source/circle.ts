@@ -19,6 +19,12 @@ export interface CircleArgs extends ElementArgs
  *             color: 'blue'
  *         });
  *     Game.addElement( circle );
+ *
+ * Events:
+ *
+ * - `click` -- `listener( data: { event: MouseEvent; } );`
+ *
+ * Examples -- `basic_example`, `clone`, `custom_element`
  */
 export class Circle extends Element
     {

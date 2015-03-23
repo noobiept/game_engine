@@ -21,6 +21,12 @@ export interface ContainerArgs extends ElementArgs
  *     container.addChild( rectangle );
  *
  *     Game.addElement( container );
+ *
+ * Events:
+ *
+ * - `click` -- `listener( data: { event: MouseEvent; } );`
+ *
+ * Examples -- `basic_example`, `clone`, `minesweeper`
  */
 export class Container extends Element
     {

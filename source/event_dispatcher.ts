@@ -23,13 +23,6 @@ export class EventDispatcher
      * 'listener' will receive a 'data' argument when its called.
      * What 'data' is, depends on the event type.
      *
-     *     type: 'click'
-     *     data: { event: MouseEvent; }
-     *
-     *     type: 'collision'
-     *     data: { element: Unit;
-     *             collidedWith: Unit; }
-     *
      * @param type Type of the event.
      * @param listener A function to be called when the event is dispatched.
      * @return If it was successfully added.

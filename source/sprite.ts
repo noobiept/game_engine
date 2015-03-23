@@ -35,9 +35,7 @@ export interface SpriteArgs extends BitmapArgs
  *         // or play a specific animation
  *     sprite.play( 'animationName' );
  *
- * Examples:
- *
- *     - sprite
+ * Examples -- `clone`, `sprite`
  */
 export class Sprite extends Bitmap
     {

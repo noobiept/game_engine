@@ -17,6 +17,12 @@ export interface BitmapArgs extends ElementArgs
  *             image: Game.Preload.get( 'id' )
  *         });
  *     Game.addElement( image );
+ *
+ * Events:
+ *
+ * - `click` -- `listener( data: { event: MouseEvent; } );`
+ *
+ * Examples -- `clone`, `minesweeper`, `multiple_canvas`, `preload`
  */
 export class Bitmap extends Element
     {

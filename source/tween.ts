@@ -30,6 +30,8 @@ export interface TweenStep
  *         {
  *         console.log( 'Finished!' );
  *         }).start();
+ *
+ * Examples -- `2048`, `basic_example`, `clone`, `multiple_canvas`, `tween`
  */
 export class Tween
     {

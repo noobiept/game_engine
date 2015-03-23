@@ -22,6 +22,8 @@ export interface CanvasArgs
  *     var container = new Game.Container();
  *
  *     canvas2.addElement( container );
+ *
+ * Examples -- `multiple_canvas`
  */
 export class Canvas
     {

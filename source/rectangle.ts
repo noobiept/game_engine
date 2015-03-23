@@ -22,6 +22,12 @@ export interface RectangleArgs extends ElementArgs
  *             color: 'gray'
  *         });
  *     Game.addElement( rectangle );
+ *
+ * Events:
+ *
+ * - `click` -- `listener( data: { event: MouseEvent; } );`
+ *
+ * Examples -- `basic_example`, `bullets`, `clone`, `collision_detection`, `custom_element`, `game_of_life`, `grid`, `multiple_canvas`, `preload`, `snake`, `tween`
  */
 export class Rectangle extends Element
     {

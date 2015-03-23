@@ -10,6 +10,8 @@ module Game
  *         Game.Sound.play( Game.Preload.get( 'sound' ) );
  *         });
  *     preload.load( 'sound', 'path_to_file.ogg' );
+ *
+ * Examples -- `preload`
  */
 export module Sound
     {
