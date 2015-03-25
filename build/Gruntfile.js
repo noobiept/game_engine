@@ -88,14 +88,13 @@ grunt.initConfig({
 
             // build the documentation
         typedoc: {
-            dev: {
-                src: [ '../source/**/*.ts' ],
-                options: {
-                    out: 'documentation/',
-                    name: '{%= pkg.name %>',
-                    target: 'es5'
-                }
-            }
+            options: {
+                out: 'documentation/',
+                name: 'Game Engine',
+                mode: 'File',
+                target: 'es5'
+            },
+            src: '../source/'
         }
     });
 
@@ -107,7 +106,7 @@ grunt.loadNpmTasks( 'grunt-typescript' );
 grunt.loadNpmTasks( 'grunt-contrib-copy' );
 grunt.loadNpmTasks( 'grunt-contrib-uglify' );
 grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
-grunt.loadNpmTasks( 'grunt-typedoc' );
+grunt.loadNpmTasks( 'typedoc' );
 
     // tasks
 grunt.registerTask( 'default', [ 'typescript', 'copy:dev' ] );      // dev build
