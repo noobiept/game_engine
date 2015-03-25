@@ -173,6 +173,7 @@ export class Preload extends EventDispatcher
 
         var request = new XMLHttpRequest();
 
+        request.open( 'get', path, true );
         request.responseType = Game.Preload.RESPONSE_TYPE[ type ];
 
             // add the request events
@@ -227,7 +228,6 @@ export class Preload extends EventDispatcher
                 }
             }, false );
 
-        request.open( 'get', path, true );
         request.send();
         }
 

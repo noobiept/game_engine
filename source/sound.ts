@@ -22,7 +22,15 @@ export module Sound
      */
     export function init()
         {
-        CTX = new AudioContext();
+        try {
+            CTX = new AudioContext();
+            }
+
+            // AudioContext not supported
+        catch ( error )
+            {
+            CTX = null;
+            }
         }
 
 
@@ -34,6 +42,11 @@ export module Sound
      */
     export function decodeAudio( data: ArrayBuffer, callback: (decodedData: AudioBuffer) => any )
         {
+        if ( !CTX )
+            {
+            throw Error( 'AudioContext not supported in this browser.' );
+            }
+
         CTX.decodeAudioData( data, callback );
         }
 
@@ -45,6 +58,11 @@ export module Sound
      */
     export function play( audioBuffer: AudioBuffer )
         {
+        if ( !CTX )
+            {
+            throw Error( 'AudioContext not supported in this browser.' );
+            }
+
         var source = CTX.createBufferSource();
 
         source.buffer = audioBuffer;

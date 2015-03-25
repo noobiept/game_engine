@@ -75,8 +75,8 @@ function clickEvent( event )
 var canvas = Game.getCanvas().getHtmlCanvasElement();
 var canvasRect = canvas.getBoundingClientRect();
 
-var x = event.x - canvasRect.left;
-var y = event.y - canvasRect.top;
+var x = event.clientX - canvasRect.left;
+var y = event.clientY - canvasRect.top;
 
 var gridPosition = GRID.toGrid( x, y );
 

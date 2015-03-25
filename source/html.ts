@@ -674,7 +674,7 @@ export module Html
 
             this.change_ref = function( event )
                 {
-                _this.setValue( parseInt( event.srcElement.value, 10 ) );
+                _this.setValue( parseInt( event.target.value, 10 ) );
 
                 if ( args.onChange )
                     {
@@ -683,7 +683,7 @@ export module Html
                 };
             this.input_ref = function( event )
                 {
-                _this.value.innerHTML = event.srcElement.value;
+                _this.value.innerHTML = event.target.value;
                 };
 
 

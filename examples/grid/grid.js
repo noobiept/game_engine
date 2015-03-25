@@ -16,8 +16,8 @@ var canvasRect = canvas.getBoundingClientRect();
 
 canvas.addEventListener( 'click', function( event )
     {
-    var x = event.x - canvasRect.left;
-    var y = event.y - canvasRect.top;
+    var x = event.clientX - canvasRect.left;
+    var y = event.clientY - canvasRect.top;
 
     var gridPosition = grid.toGrid( x, y );
 
