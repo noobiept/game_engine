@@ -9,6 +9,12 @@ Just something to get you started, and then later on you can use your own stylin
 All the css classes/ids from the engine start with the string `Game-`, so its easy to avoid conflicts (for example, `.Game-Container`).
 
 
+Documentation
+=============
+
+Is available in [http://game-engine1.herokuapp.com/](http://game-engine1.herokuapp.com/).
+
+
 Build
 =====
 
