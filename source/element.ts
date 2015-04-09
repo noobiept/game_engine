@@ -104,13 +104,13 @@ export class Element extends EventDispatcher
 
 
     /**
-     * Check if the x/y position intersects with this element. If so then dispatch the event.
+     * Checks if this element has any listeners associated with the event passed, and if so then checks if the x/y position intersects with the element. Dispatch an event in that case and returns true.
      *
      * @abstract
      */
-    intersect( x: number, y: number, event: Event ): boolean
+    mouseEvents( x: number, y: number, event: MouseEvent ): boolean
         {
-        throw new Error( 'Implement .intersect().' );
+        throw new Error( 'Implement .mouseEvents().' );
         }
 
 

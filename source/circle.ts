@@ -68,8 +68,14 @@ export class Circle extends Element
         }
 
 
-    intersect( x: number, y: number, event: MouseEvent )
+    mouseEvents( x: number, y: number, event: MouseEvent )
         {
+            // see if there's listeners to this particular event type
+        if ( !this.hasListeners( event.type ) )
+            {
+            return false;
+            }
+
         var refX = 0;
         var refY = 0;
 

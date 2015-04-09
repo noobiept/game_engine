@@ -153,28 +153,30 @@ export class Container extends Element
 
 
     /**
-     * Check if a mouse event intersects with any of the elements that are part of this container.
+     * Check if a mouse event intersects with any of the elements that are part of this container, and dispatch the appropriate events (can be from the children and from the container as well).
      *
      * @param x The x position.
      * @param y The y position.
      * @param event The triggered mouse event.
      * @return If an element did intersect.
      */
-    intersect( x: number, y: number, event: MouseEvent )
+    mouseEvents( x: number, y: number, event: MouseEvent )
         {
+            // check if the mouse event intersects with any of the elements that are part of this container
         var found = false;
 
         for (var a = this._children.length - 1 ; a >= 0 ; a--)
             {
             var element = this._children[ a ];
 
-            if ( element.intersect( x, y, event ) )
+            if ( element.mouseEvents( x, y, event ) )
                 {
                 found = true;
                 }
             }
 
-        if ( found === true )
+            // see if we need to dispatch the listeners associated with the container
+        if ( found === true && this.hasListeners( event.type ) )
             {
             this.dispatchEvent( event.type, { event: event } );
             }

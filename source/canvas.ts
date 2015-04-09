@@ -168,7 +168,6 @@ export class Canvas
 
         var x = event.x - rect.left;
         var y = event.y - rect.top;
-        var type = event.type;
 
 
             // find the element on the x/y position
@@ -176,13 +175,9 @@ export class Canvas
             {
             var element = elements[ a ];
 
-                // check if there's listeners on this element
-            if ( element.hasListeners( type ) )
+            if ( element.mouseEvents( x, y, event ) )
                 {
-                if ( element.intersect( x, y, event ) )
-                    {
-                    break;
-                    }
+                break;
                 }
             }
         }

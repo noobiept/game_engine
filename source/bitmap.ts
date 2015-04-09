@@ -52,8 +52,15 @@ export class Bitmap extends Element
         ctx.restore();
         }
 
-    intersect( x, y, event )
+
+    mouseEvents( x: number, y: number, event: MouseEvent )
         {
+            // see if there's listeners to this particular event type
+        if ( !this.hasListeners( event.type ) )
+            {
+            return false;
+            }
+
         var refX = 0;
         var refY = 0;
 
@@ -63,6 +70,7 @@ export class Bitmap extends Element
             refY = this._container.y;
             }
 
+            // see if the x/y position intersects with this element
         if ( Utilities.pointBoxCollision(
                     x,
                     y,
