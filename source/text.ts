@@ -24,6 +24,12 @@ export interface TextArgs extends ElementArgs
  *         });
  *     Game.addElement( text );
  *
+ * Events:
+ *
+ * - `click` -- `listener( data: { event: MouseEvent; } );`
+ * - `mouseover` -- `listener( data: { element: Element; } );`
+ * - `mouseout` -- `listener( data: { element: Element; } );`
+ *
  * Examples -- `2048`, `clone`, `collision_detection`, `game_loop_callbacks`, `preload`, `snake`
  */
 export class Text extends Element
@@ -129,6 +135,51 @@ export class Text extends Element
             }
 
         ctx.restore();
+        }
+
+
+    intersect( x: number, y: number )
+        {
+        var refX = 0;
+        var refY = 0;
+
+        if ( this._container !== null )
+            {
+            refX = this._container.x;
+            refY = this._container.y;
+            }
+
+        if ( Utilities.pointBoxCollision(
+                    x,
+                    y,
+                    refX + this.x - this.width / 2,
+                    refY + this.y - this.height / 2,
+                    this.width,
+                    this.height
+                ))
+            {
+            return true;
+            }
+
+        return false;
+        }
+
+
+    mouseClickEvents( x: number, y: number, event: MouseEvent )
+        {
+            // see if there's listeners to this particular event type
+        if ( !this.hasListeners( event.type ) )
+            {
+            return false;
+            }
+
+        if ( this.intersect( x, y ) )
+            {
+            this.dispatchEvent( event.type, { event: event } );
+            return true;
+            }
+
+        return false;
         }
 
 

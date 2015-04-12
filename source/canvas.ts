@@ -180,7 +180,7 @@ export class Canvas
      *
      * @param event The mouse event triggered.
      */
-    mouseEvents( event: MouseEvent )
+    mouseClickEvents( event: MouseEvent )
         {
         var elements = this._elements;
         var rect = this._canvas.getBoundingClientRect();
@@ -194,7 +194,7 @@ export class Canvas
             {
             var element = elements[ a ];
 
-            if ( element.mouseEvents( x, y, event ) )
+            if ( element.mouseClickEvents( x, y, event ) )
                 {
                 break;
                 }

@@ -328,7 +328,7 @@ function clickEvents( event: MouseEvent )
 
         if ( canvas.events_enabled )
             {
-            canvas.mouseEvents( event );
+            canvas.mouseClickEvents( event );
             }
         }
     }

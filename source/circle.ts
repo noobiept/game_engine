@@ -23,6 +23,8 @@ export interface CircleArgs extends ElementArgs
  * Events:
  *
  * - `click` -- `listener( data: { event: MouseEvent; } );`
+ * - `mouseover` -- `listener( data: { element: Element; } );`
+ * - `mouseout` -- `listener( data: { element: Element; } );`
  *
  * Examples -- `basic_example`, `clone`, `custom_element`
  */
@@ -68,14 +70,8 @@ export class Circle extends Element
         }
 
 
-    mouseEvents( x: number, y: number, event: MouseEvent )
+    intersect( x: number, y: number )
         {
-            // see if there's listeners to this particular event type
-        if ( !this.hasListeners( event.type ) )
-            {
-            return false;
-            }
-
         var refX = 0;
         var refY = 0;
 
@@ -92,6 +88,24 @@ export class Circle extends Element
                     x,
                     y
                 ))
+            {
+            return true;
+            }
+
+        return false;
+        }
+
+
+    mouseClickEvents( x: number, y: number, event: MouseEvent )
+        {
+            // see if there's listeners to this particular event type
+        if ( !this.hasListeners( event.type ) )
+            {
+            return false;
+            }
+
+
+        if ( this.intersect( x, y ) )
             {
             this.dispatchEvent( event.type, { event: event } );
             return true;

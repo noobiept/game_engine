@@ -21,6 +21,8 @@ export interface BitmapArgs extends ElementArgs
  * Events:
  *
  * - `click` -- `listener( data: { event: MouseEvent; } );`
+ * - `mouseover` -- `listener( data: { element: Element; } );`
+ * - `mouseout` -- `listener( data: { element: Element; } );`
  *
  * Examples -- `clone`, `minesweeper`, `multiple_canvas`, `preload`
  */
@@ -81,7 +83,7 @@ export class Bitmap extends Element
         }
 
 
-    mouseEvents( x: number, y: number, event: MouseEvent )
+    mouseClickEvents( x: number, y: number, event: MouseEvent )
         {
             // see if there's listeners to this particular event type
         if ( !this.hasListeners( event.type ) )

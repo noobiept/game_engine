@@ -44,6 +44,9 @@ export enum UnitMovement
  *
  * Events:
  *
+ * - `click` -- `listener( data: { event: MouseEvent; } );`
+ * - `mouseover` -- `listener( data: { element: Element; } );`
+ * - `mouseout` -- `listener( data: { element: Element; } );`
  * - `collision` -- `listener( data: { element: Unit; collidedWith: Unit; } );`
  *
  * Examples -- `2048`, `basic_example`, `bullets`, `collision_detection`, `custom_element`

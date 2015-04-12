@@ -25,6 +25,8 @@ export interface ContainerArgs extends ElementArgs
  * Events:
  *
  * - `click` -- `listener( data: { event: MouseEvent; } );`
+ * - `mouseover` -- `listener( data: { element: Element; } );`
+ * - `mouseout` -- `listener( data: { element: Element; } );`
  *
  * Examples -- `basic_example`, `clone`, `minesweeper`
  */
@@ -191,14 +193,14 @@ export class Container extends Element
 
 
     /**
-     * Check if a mouse event intersects with any of the elements that are part of this container, and dispatch the appropriate events (can be from the children and from the container as well).
+     * Check if a mouse click intersects with any of the elements that are part of this container, and dispatch the appropriate events (can be from the children and from the container as well).
      *
      * @param x The x position.
      * @param y The y position.
      * @param event The triggered mouse event.
      * @return If an element did intersect.
      */
-    mouseEvents( x: number, y: number, event: MouseEvent )
+    mouseClickEvents( x: number, y: number, event: MouseEvent )
         {
         var element = this.getElement( x, y );
         var found = false;

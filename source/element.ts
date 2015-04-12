@@ -119,9 +119,9 @@ export class Element extends EventDispatcher
      *
      * @abstract
      */
-    mouseEvents( x: number, y: number, event: MouseEvent ): boolean
+    mouseClickEvents( x: number, y: number, event: MouseEvent ): boolean
         {
-        throw new Error( 'Implement .mouseEvents().' );
+        throw new Error( 'Implement .mouseClickEvents().' );
         }
 
 

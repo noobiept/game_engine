@@ -26,8 +26,10 @@ export interface RectangleArgs extends ElementArgs
  * Events:
  *
  * - `click` -- `listener( data: { event: MouseEvent; } );`
+ * - `mouseover` -- `listener( data: { element: Element; } );`
+ * - `mouseout` -- `listener( data: { element: Element; } );`
  *
- * Examples -- `basic_example`, `bullets`, `clone`, `collision_detection`, `custom_element`, `game_of_life`, `grid`, `multiple_canvas`, `preload`, `snake`, `tween`
+ * Examples -- `basic_example`, `bullets`, `clone`, `collision_detection`, `custom_element`, `game_of_life`, `grid`, `mouse_move`, `multiple_canvas`, `preload`, `snake`, `tween`
  */
 export class Rectangle extends Element
     {
@@ -109,7 +111,7 @@ export class Rectangle extends Element
         }
 
 
-    mouseEvents( x: number, y: number, event: MouseEvent )
+    mouseClickEvents( x: number, y: number, event: MouseEvent )
         {
             // see if there's listeners to this particular event type
         if ( !this.hasListeners( event.type ) )

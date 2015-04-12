@@ -6,10 +6,10 @@ Game.activateMouseMoveEvents( 100 );
 
     // rectangle 1
 var rectangle1 = new Game.Rectangle({
-        x: 200,
+        x: 175,
         y: 200,
-        width: 20,
-        height: 20,
+        width: 50,
+        height: 50,
         color: 'blue'
     });
 Game.addElement( rectangle1 );
@@ -20,10 +20,10 @@ rectangle1.addEventListener( 'mouseout', mouseOut );
 
     // rectangle 2
 var rectangle2 = new Game.Rectangle({
-        x: 220,
+        x: 225,
         y: 200,
-        width: 20,
-        height: 20,
+        width: 50,
+        height: 50,
         color: 'red'
     });
 Game.addElement( rectangle2 );
