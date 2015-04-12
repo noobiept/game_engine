@@ -82,14 +82,8 @@ export class Rectangle extends Element
         }
 
 
-    mouseEvents( x: number, y: number, event: MouseEvent )
+    intersect( x: number, y: number )
         {
-            // see if there's listeners to this particular event type
-        if ( !this.hasListeners( event.type ) )
-            {
-            return false;
-            }
-
         var refX = 0;
         var refY = 0;
 
@@ -107,6 +101,23 @@ export class Rectangle extends Element
                     this.width,
                     this.height
                 ))
+            {
+            return true;
+            }
+
+        return false;
+        }
+
+
+    mouseEvents( x: number, y: number, event: MouseEvent )
+        {
+            // see if there's listeners to this particular event type
+        if ( !this.hasListeners( event.type ) )
+            {
+            return false;
+            }
+
+        if ( this.intersect( x, y ) )
             {
             this.dispatchEvent( event.type, { event: event } );
             return true;

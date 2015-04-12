@@ -117,6 +117,25 @@ export class Canvas
 
 
     /**
+     * Get an element that is in given x/y position.
+     */
+    getElement( x: number, y: number )
+        {
+        for (var a = this._elements.length - 1 ; a >= 0 ; a--)
+            {
+            var element = this._elements[ a ];
+
+            if ( element.intersect( x, y ) )
+                {
+                return element;
+                }
+            }
+
+        return null;
+        }
+
+
+    /**
      * Call the logic of the elements added to this canvas (normally on the game loop).
      *
      * @param deltaTime Time elapsed since the last update.
@@ -166,8 +185,8 @@ export class Canvas
         var elements = this._elements;
         var rect = this._canvas.getBoundingClientRect();
 
-        var x = event.x - rect.left;
-        var y = event.y - rect.top;
+        var x = event.clientX - rect.left;
+        var y = event.clientY - rect.top;
 
 
             // find the element on the x/y position

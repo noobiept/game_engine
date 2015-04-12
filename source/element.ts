@@ -104,6 +104,17 @@ export class Element extends EventDispatcher
 
 
     /**
+     * Check if the element is within the given x/y position.
+     *
+     * @abstract
+     */
+    intersect( x: number, y: number ): boolean
+        {
+        throw new Error( 'Implement .intersect().' );
+        }
+
+
+    /**
      * Checks if this element has any listeners associated with the event passed, and if so then checks if the x/y position intersects with the element. Dispatch an event in that case and returns true.
      *
      * @abstract

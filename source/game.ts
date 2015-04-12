@@ -45,6 +45,12 @@ var CANVAS_CONTAINER: HTMLDivElement;
 var TIME: number;
 var ANIMATION_ID: number;
 
+    // mouse move variables
+var MOUSE_MOVE_ID: number;
+var ELEMENT_UNDER_MOUSE: Element = null;
+var MOUSE_X: number = -1;
+var MOUSE_Y: number = -1;
+
 var CALLBACKS: { callback: () => any; interval: number; count: number; }[] = [];
 
 
@@ -110,6 +116,38 @@ export function startGameLoop()
 export function stopGameLoop()
     {
     window.cancelAnimationFrame( ANIMATION_ID );
+    }
+
+
+/**
+ * Activate the mouse move events: `mouseout` and `mouseover`.
+ *
+ * @param interval Interval (in milliseconds) between calls of the function that checks for these events.
+ */
+export function activateMouseMoveEvents( interval: number )
+    {
+    ELEMENT_UNDER_MOUSE = null;
+
+    document.body.addEventListener( 'mousemove', updateMousePosition );
+
+    MOUSE_MOVE_ID = window.setInterval( mouseMoveEvents, interval );
+    }
+
+
+/**
+ * Disable the mouse move events: `mouseout` and `mouseover`.
+ */
+export function disableMouseMoveEvents()
+    {
+    window.clearInterval( MOUSE_MOVE_ID );
+    document.body.removeEventListener( 'mousemove', updateMousePosition );
+    }
+
+
+function updateMousePosition( event )
+    {
+    MOUSE_X = event.clientX;
+    MOUSE_Y = event.clientY;
     }
 
 
@@ -294,6 +332,63 @@ function clickEvents( event: MouseEvent )
             }
         }
     }
+
+
+/**
+ * Deal with the mouse move events: `mouseout` and `mouseover`.
+ */
+function mouseMoveEvents()
+    {
+        // find an element that is under the current x/y position of the mouse
+    var element;
+
+    for (var a = ALL_CANVAS.length - 1 ; a >= 0 ; a--)
+        {
+        var canvas = ALL_CANVAS[ a ];
+
+        if ( canvas.events_enabled )
+            {
+            var rect = canvas._canvas.getBoundingClientRect();
+
+            var x = MOUSE_X - rect.left;
+            var y = MOUSE_Y - rect.top;
+
+            element = canvas.getElement( x, y );
+
+                // found one element, no need to search more
+            if ( element )
+                {
+                break;
+                }
+            }
+        }
+
+
+    if ( element )
+        {
+        if ( element !== ELEMENT_UNDER_MOUSE )
+            {
+            if ( ELEMENT_UNDER_MOUSE )
+                {
+                ELEMENT_UNDER_MOUSE.dispatchEvent( 'mouseout', { element: ELEMENT_UNDER_MOUSE } );
+                }
+
+            element.dispatchEvent( 'mouseover', { element: element } );
+
+            ELEMENT_UNDER_MOUSE = element;
+            }
+        }
+
+    else
+        {
+        if ( ELEMENT_UNDER_MOUSE )
+            {
+            ELEMENT_UNDER_MOUSE.dispatchEvent( 'mouseout', { element: ELEMENT_UNDER_MOUSE } );
+            ELEMENT_UNDER_MOUSE = null;
+            }
+        }
+    }
+
 
 
 /**

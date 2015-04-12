@@ -153,6 +153,44 @@ export class Container extends Element
 
 
     /**
+     * Get a child element that is at the given x/y position.
+     */
+    getElement( x: number, y: number )
+        {
+        for (var a = this._children.length - 1 ; a >= 0 ; a--)
+            {
+            var element = this._children[ a ];
+
+            if ( element.intersect( x, y ) )
+                {
+                return element;
+                }
+            }
+
+        return null;
+        }
+
+
+    /**
+     * Check if the given x/y position intersects with any of this container's children.
+     */
+    intersect( x: number, y: number )
+        {
+        for (var a = this._children.length - 1 ; a >= 0 ; a--)
+            {
+            var element = this._children[ a ];
+
+            if ( element.intersect( x, y ) )
+                {
+                return true;
+                }
+            }
+
+        return false;
+        }
+
+
+    /**
      * Check if a mouse event intersects with any of the elements that are part of this container, and dispatch the appropriate events (can be from the children and from the container as well).
      *
      * @param x The x position.
@@ -162,24 +200,26 @@ export class Container extends Element
      */
     mouseEvents( x: number, y: number, event: MouseEvent )
         {
-            // check if the mouse event intersects with any of the elements that are part of this container
+        var element = this.getElement( x, y );
         var found = false;
 
-        for (var a = this._children.length - 1 ; a >= 0 ; a--)
+            // the x/y position intersects with this container
+        if ( element )
             {
-            var element = this._children[ a ];
+            found = true;
 
-            if ( element.mouseEvents( x, y, event ) )
+                // see if we need to dispatch events
+            if ( this.hasListeners( event.type ) )
                 {
-                found = true;
+                this.dispatchEvent( event.type, { event: event } );
+                }
+
+            if ( element.hasListeners( event.type ) )
+                {
+                element.dispatchEvent( event.type, { event: event } );
                 }
             }
 
-            // see if we need to dispatch the listeners associated with the container
-        if ( found === true && this.hasListeners( event.type ) )
-            {
-            this.dispatchEvent( event.type, { event: event } );
-            }
 
         return found;
         }
