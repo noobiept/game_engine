@@ -75,11 +75,16 @@ export class Circle extends Element
         var refX = 0;
         var refY = 0;
 
-        if ( this._container !== null )
+        var parent = this._container;
+
+        while ( parent !== null )
             {
-            refX = this._container.x;
-            refY = this._container.y;
+            refX += parent.x;
+            refY += parent.y;
+
+            parent = parent._container;
             }
+
 
         if ( Utilities.circlePointCollision(
                     refX + this.x,

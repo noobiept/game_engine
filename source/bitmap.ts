@@ -60,11 +60,16 @@ export class Bitmap extends Element
         var refX = 0;
         var refY = 0;
 
-        if ( this._container !== null )
+        var parent = this._container;
+
+        while ( parent !== null )
             {
-            refX = this._container.x;
-            refY = this._container.y;
+            refX += parent.x;
+            refY += parent.y;
+
+            parent = parent._container;
             }
+
 
             // see if the x/y position intersects with this element
         if ( Utilities.pointBoxCollision(

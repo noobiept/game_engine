@@ -11,6 +11,7 @@ export interface TextArgs extends ElementArgs
         textAlign?: string;
         textBaseline?: string;
         fill?: boolean;
+        color?: string;
     }
 
 
@@ -37,6 +38,7 @@ export class Text extends Element
     textAlign: string;
     textBaseline: string;
     fill: boolean;  // fill or stroke text
+    color: string;
 
     _text: string;
     _font_family: string;
@@ -49,6 +51,11 @@ export class Text extends Element
     constructor( args: TextArgs )
         {
         var _this = this;
+
+        if ( typeof args === 'undefined' )
+            {
+            args = {};
+            }
 
         if ( typeof args.text === 'undefined' )
             {
@@ -80,12 +87,18 @@ export class Text extends Element
             args.fill = true;
             }
 
+        if ( typeof args.color === 'undefined' )
+            {
+            args.color = 'black';
+            }
+
         super( args );
 
         this._font_size = args.fontSize;
         this.text = args.text;
         this.font_family = args.fontFamily;  // this calls the set method that updates ._font as well
 
+        this.color = args.color;
         this.textAlign = args.textAlign;
         this.textBaseline = args.textBaseline;
         this.fill = args.fill;
@@ -125,11 +138,13 @@ export class Text extends Element
 
             if ( this.fill )
                 {
+                ctx.fillStyle = this.color;
                 ctx.fillText( this._lines[ a ], this.x, y );
                 }
 
             else
                 {
+                ctx.strokeStyle = this.color;
                 ctx.strokeText( this._lines[ a ], this.x, y );
                 }
             }
@@ -143,11 +158,16 @@ export class Text extends Element
         var refX = 0;
         var refY = 0;
 
-        if ( this._container !== null )
+        var parent = this._container;
+
+        while ( parent !== null )
             {
-            refX = this._container.x;
-            refY = this._container.y;
+            refX += parent.x;
+            refY += parent.y;
+
+            parent = parent._container;
             }
+
 
         if ( Utilities.pointBoxCollision(
                     x,
