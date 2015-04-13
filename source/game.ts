@@ -370,10 +370,10 @@ function mouseMoveEvents()
             {
             if ( ELEMENT_UNDER_MOUSE )
                 {
-                ELEMENT_UNDER_MOUSE.dispatchEvent( 'mouseout', { element: ELEMENT_UNDER_MOUSE } );
+                ELEMENT_UNDER_MOUSE.dispatchMouseOutEvent();
                 }
 
-            element.dispatchEvent( 'mouseover', { element: element } );
+            element.dispatchMouseOverEvent();
 
             ELEMENT_UNDER_MOUSE = element;
             }
@@ -383,7 +383,7 @@ function mouseMoveEvents()
         {
         if ( ELEMENT_UNDER_MOUSE )
             {
-            ELEMENT_UNDER_MOUSE.dispatchEvent( 'mouseout', { element: ELEMENT_UNDER_MOUSE } );
+            ELEMENT_UNDER_MOUSE.dispatchMouseOutEvent();
             ELEMENT_UNDER_MOUSE = null;
             }
         }

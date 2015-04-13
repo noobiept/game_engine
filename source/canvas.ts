@@ -123,9 +123,9 @@ export class Canvas
         {
         for (var a = this._elements.length - 1 ; a >= 0 ; a--)
             {
-            var element = this._elements[ a ];
+            var element = this._elements[ a ].intersect( x, y );
 
-            if ( element.intersect( x, y ) )
+            if ( element )
                 {
                 return element;
                 }
@@ -187,12 +187,12 @@ export class Canvas
 
         var x = event.clientX - rect.left;
         var y = event.clientY - rect.top;
-
+        var element;
 
             // find the element on the x/y position
         for (var a = elements.length - 1 ; a >= 0 ; a--)
             {
-            var element = elements[ a ];
+            element = elements[ a ];
 
             if ( element.mouseClickEvents( x, y, event ) )
                 {

@@ -155,15 +155,15 @@ export class Container extends Element
 
 
     /**
-     * Get a child element that is at the given x/y position.
+     * Check if the given x/y position intersects with any of this container's children.
      */
-    getElement( x: number, y: number )
+    intersect( x: number, y: number )
         {
         for (var a = this._children.length - 1 ; a >= 0 ; a--)
             {
-            var element = this._children[ a ];
+            var element = this._children[ a ].intersect( x, y );
 
-            if ( element.intersect( x, y ) )
+            if ( element )
                 {
                 return element;
                 }
@@ -173,57 +173,17 @@ export class Container extends Element
         }
 
 
-    /**
-     * Check if the given x/y position intersects with any of this container's children.
-     */
-    intersect( x: number, y: number )
+    mouseClickEvents( x, y, event )
         {
         for (var a = this._children.length - 1 ; a >= 0 ; a--)
             {
-            var element = this._children[ a ];
-
-            if ( element.intersect( x, y ) )
+            if ( this._children[ a ].mouseClickEvents( x, y, event ) )
                 {
                 return true;
                 }
             }
 
         return false;
-        }
-
-
-    /**
-     * Check if a mouse click intersects with any of the elements that are part of this container, and dispatch the appropriate events (can be from the children and from the container as well).
-     *
-     * @param x The x position.
-     * @param y The y position.
-     * @param event The triggered mouse event.
-     * @return If an element did intersect.
-     */
-    mouseClickEvents( x: number, y: number, event: MouseEvent )
-        {
-        var element = this.getElement( x, y );
-        var found = false;
-
-            // the x/y position intersects with this container
-        if ( element )
-            {
-            found = true;
-
-                // see if we need to dispatch events
-            if ( this.hasListeners( event.type ) )
-                {
-                this.dispatchEvent( event.type, { event: event } );
-                }
-
-            if ( element.hasListeners( event.type ) )
-                {
-                element.dispatchEvent( event.type, { event: event } );
-                }
-            }
-
-
-        return found;
         }
 
 

@@ -108,20 +108,59 @@ export class Element extends EventDispatcher
      *
      * @abstract
      */
-    intersect( x: number, y: number ): boolean
+    intersect( x: number, y: number ): Element
         {
         throw new Error( 'Implement .intersect().' );
         }
 
 
-    /**
-     * Checks if this element has any listeners associated with the event passed, and if so then checks if the x/y position intersects with the element. Dispatch an event in that case and returns true.
-     *
-     * @abstract
-     */
-    mouseClickEvents( x: number, y: number, event: MouseEvent ): boolean
+    mouseClickEvents( x, y, event )
         {
-        throw new Error( 'Implement .mouseClickEvents().' );
+        if ( this.hasListeners( event.type ) )
+            {
+            var element = this.intersect( x, y );
+
+            if ( element )
+                {
+                element.dispatchMouseClickEvent( event );
+                return true;
+                }
+            }
+
+        return false;
+        }
+
+
+    dispatchMouseOverEvent()
+        {
+        if ( this._container )
+            {
+            this._container.dispatchMouseOverEvent();
+            }
+
+        this.dispatchEvent( 'mouseover', { element: this } );
+        }
+
+
+    dispatchMouseOutEvent()
+        {
+        if ( this._container )
+            {
+            this._container.dispatchMouseOutEvent();
+            }
+
+        this.dispatchEvent( 'mouseout', { element: this } );
+        }
+
+
+    dispatchMouseClickEvent( event: MouseEvent )
+        {
+        if ( this._container )
+            {
+            this._container.dispatchMouseClickEvent( event );
+            }
+
+        this.dispatchEvent( event.type, { event: event } );
         }
 
 

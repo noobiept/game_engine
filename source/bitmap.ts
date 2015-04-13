@@ -76,29 +76,10 @@ export class Bitmap extends Element
                     this.height
                 ))
             {
-            return true;
+            return this;
             }
 
-        return false;
-        }
-
-
-    mouseClickEvents( x: number, y: number, event: MouseEvent )
-        {
-            // see if there's listeners to this particular event type
-        if ( !this.hasListeners( event.type ) )
-            {
-            return false;
-            }
-
-
-        if ( this.intersect( x, y ) )
-            {
-            this.dispatchEvent( event.type, { event: event } );
-            return true;
-            }
-
-        return false;
+        return null;
         }
 
 
