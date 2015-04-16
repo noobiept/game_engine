@@ -115,6 +115,20 @@ export class Container extends Element
 
 
     /**
+     * Remove all of this container's children.
+     */
+    removeAllChildren()
+        {
+        for (var a = this._children.length - 1 ; a >= 0 ; a--)
+            {
+            this._children[ a ]._container = null;
+            }
+
+        this._children.length = 0;
+        }
+
+
+    /**
      * Draw all the elements in the container.
      *
      * @param ctx The canvas rendering context.
