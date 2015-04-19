@@ -63,7 +63,8 @@ export class Circle extends Element
         ctx.globalAlpha *= this.opacity;
         ctx.fillStyle = this.color;
         ctx.translate( this.x, this.y );
-        ctx.rotate( this.rotation );
+        ctx.scale( this.scaleX, this.scaleY );
+        ctx.rotate( this._rotation );
         ctx.arc( 0, 0, this._radius, 0, 2 * Math.PI );
         ctx.fill();
         ctx.restore();
@@ -103,12 +104,19 @@ export class Circle extends Element
 
     clone()
         {
-        return new Game.Circle({
+        var element = new Game.Circle({
                 x: this.x,
                 y: this.y,
                 radius: this._radius,
                 color: this.color
             });
+        element.opacity = this.opacity;
+        element.visible = this.visible;
+        element.scaleX = this.scaleX;
+        element.scaleY = this.scaleY;
+        element._rotation = this._rotation;
+
+        return element;
         }
     }
 }

@@ -125,6 +125,10 @@ export class Text extends Element
         {
         ctx.save();
         ctx.globalAlpha *= this.opacity;
+        ctx.translate( this.x, this.y );
+        ctx.scale( this.scaleX, this.scaleY );
+        ctx.rotate( this._rotation );
+
         ctx.font = this._font;
         ctx.textAlign = this.textAlign;
         ctx.textBaseline = this.textBaseline;
@@ -134,18 +138,18 @@ export class Text extends Element
             // draw each line
         for (var a = 0 ; a < length ; a++)
             {
-            var y = this.y + a * this.font_size;
+            var y = a * this.font_size;
 
             if ( this.fill )
                 {
                 ctx.fillStyle = this.color;
-                ctx.fillText( this._lines[ a ], this.x, y );
+                ctx.fillText( this._lines[ a ], 0, y );
                 }
 
             else
                 {
                 ctx.strokeStyle = this.color;
-                ctx.strokeText( this._lines[ a ], this.x, y );
+                ctx.strokeText( this._lines[ a ], 0, y );
                 }
             }
 
@@ -269,7 +273,7 @@ export class Text extends Element
      */
     clone()
         {
-        return new Game.Text({
+        var element = new Game.Text({
                 x: this.x,
                 y: this.y,
                 text: this._text,
@@ -280,6 +284,13 @@ export class Text extends Element
                 textBaseline: this.textBaseline,
                 fill: this.fill
             });
+        element.opacity = this.opacity;
+        element.visible = this.visible;
+        element.scaleX = this.scaleX;
+        element.scaleY = this.scaleY;
+        element._rotation = this._rotation;
+
+        return element;
         }
     }
 }

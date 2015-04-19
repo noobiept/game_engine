@@ -198,7 +198,8 @@ export class Bullet extends Container
             angleOrTarget = this.rotation;
             }
 
-        return new Game.Bullet({
+
+        var bullet = new Game.Bullet({
                 x: this.x,
                 y: this.y,
                 children: children,
@@ -206,6 +207,12 @@ export class Bullet extends Container
                 angleOrTarget: angleOrTarget,
                 remove: this._remove
             });
+        bullet.opacity = this.opacity;
+        bullet.visible = this.visible;
+        bullet.scaleX = this.scaleX;
+        bullet.scaleY = this.scaleY;
+
+        return bullet;
         }
     }
 }

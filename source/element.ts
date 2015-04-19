@@ -20,8 +20,12 @@ export class Element extends EventDispatcher
     y: number;
     width: number;
     height: number;
+
     opacity: number;    // value between 0 and 1
     visible: boolean;    // whether the element is drawn or not
+
+    scaleX: number;
+    scaleY: number;
 
         // optional properties, only for when using a Grid
     column: number;
@@ -54,16 +58,22 @@ export class Element extends EventDispatcher
             }
 
 
-        this.visible = true;
         this.x = x;
         this.y = y;
         this.width = 0;
         this.height = 0;
+
+        this.visible = true;
         this.opacity = 1;
+
+        this.scaleX = 1;
+        this.scaleY = 1;
+
         this.column = -1;
         this.line = -1;
-        this._container = null;
+
         this._rotation = 0;
+        this._container = null;
         this._has_logic = false;
         this._removed = false;
         }

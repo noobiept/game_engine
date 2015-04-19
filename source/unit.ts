@@ -645,7 +645,7 @@ export class Unit extends Container
             children.push( this._children[ a ].clone() );
             }
 
-        return new Game.Unit({
+        var unit = new Game.Unit({
                 x: this.x,
                 y: this.y,
                 children: children,
@@ -654,6 +654,12 @@ export class Unit extends Container
                 health: this.health,
                 bullet_shape: this._bullet_shape
             });
+        unit.opacity = this.opacity;
+        unit.visible = this.visible;
+        unit.scaleX = this.scaleX;
+        unit.scaleY = this.scaleY;
+
+        return unit;
         }
     }
 }

@@ -138,7 +138,8 @@ export class Container extends Element
         ctx.save();
         ctx.globalAlpha *= this.opacity;
         ctx.translate( this.x, this.y );
-        ctx.rotate( this.rotation );
+        ctx.scale( this.scaleX, this.scaleY );
+        ctx.rotate( this._rotation );
 
         var length = this._children.length;
         var child;
@@ -283,11 +284,18 @@ export class Container extends Element
             children.push( this._children[ a ].clone() );
             }
 
-        return new Game.Container({
+        var container = new Game.Container({
                 x: this.x,
                 y: this.y,
                 children: children
             });
+        container.opacity = this.opacity;
+        container.visible = this.visible;
+        container.scaleX = this.scaleX;
+        container.scaleY = this.scaleY;
+        container._rotation = this._rotation;
+
+        return container;
         }
     }
 }

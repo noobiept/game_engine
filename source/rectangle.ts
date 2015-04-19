@@ -67,7 +67,8 @@ export class Rectangle extends Element
         ctx.beginPath();
         ctx.globalAlpha *= this.opacity;
         ctx.translate( this.x, this.y );
-        ctx.rotate( this.rotation );
+        ctx.scale( this.scaleX, this.scaleY );
+        ctx.rotate( this._rotation );
 
         if ( this.fill )
             {
@@ -118,7 +119,7 @@ export class Rectangle extends Element
 
     clone()
         {
-        return new Game.Rectangle({
+        var element = new Game.Rectangle({
                 x: this.x,
                 y: this.y,
                 width: this.width,
@@ -126,6 +127,13 @@ export class Rectangle extends Element
                 color: this.color,
                 fill: this.fill
             });
+        element.opacity = this.opacity;
+        element.visible = this.visible;
+        element.scaleX = this.scaleX;
+        element.scaleY = this.scaleY;
+        element._rotation = this._rotation;
+
+        return element;
         }
     }
 }

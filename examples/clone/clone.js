@@ -28,6 +28,11 @@ var rect = new Game.Rectangle({
         height: 20,
         color: 'green'
     });
+rect.scaleX = 1.2;
+rect.scaleY = 1.6;
+rect.rotate( 45, true );
+rect.opacity = 0.5;
+
 Game.addElement( rect );
 
 animate( rect );
@@ -53,6 +58,8 @@ var text = new Game.Text({
         textAlign: 'center',
         textBaseline: 'middle'
     });
+text.rotate( 90, true );
+
 Game.addElement( text );
 
 animate( text );

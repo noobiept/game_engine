@@ -49,7 +49,8 @@ export class Bitmap extends Element
         ctx.beginPath();
         ctx.globalAlpha *= this.opacity;
         ctx.translate( this.x, this.y );
-        ctx.rotate( this.rotation );
+        ctx.scale( this.scaleX, this.scaleY );
+        ctx.rotate( this._rotation );
         ctx.drawImage( this._image, this._source_x, this._source_y, this.width, this.height,  -this._half_width, -this._half_height, this.width, this.height );
         ctx.restore();
         }
@@ -90,11 +91,18 @@ export class Bitmap extends Element
 
     clone()
         {
-        return new Game.Bitmap({
+        var element = new Game.Bitmap({
                 x: this.x,
                 y: this.y,
                 image: this._image
             });
+        element.opacity = this.opacity;
+        element.visible = this.visible;
+        element.scaleX = this.scaleX;
+        element.scaleY = this.scaleY;
+        element._rotation = this._rotation;
+
+        return element;
         }
 
 

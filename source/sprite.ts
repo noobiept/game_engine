@@ -163,7 +163,7 @@ export class Sprite extends Bitmap
      */
     clone()
         {
-        return new Game.Sprite({
+        var element = new Game.Sprite({
                 x: this.x,
                 y: this.y,
                 image: this.image,
@@ -172,6 +172,13 @@ export class Sprite extends Bitmap
                 animations: this._animations,
                 interval: this.interval
             });
+        element.opacity = this.opacity;
+        element.visible = this.visible;
+        element.scaleX = this.scaleX;
+        element.scaleY = this.scaleY;
+        element._rotation = this._rotation;
+
+        return element;
         }
     }
 }
