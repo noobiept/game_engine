@@ -49,7 +49,7 @@ var range = new Game.Html.Range({
         min: 2,
         max: 8,
         value: 4,
-        step: 2,
+        step: 0.2,
         onChange: function( button )
             {
             console.log( button.getValue() );

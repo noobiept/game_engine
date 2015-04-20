@@ -660,6 +660,7 @@ export module Html
         current_value: number;
         change_ref: (event) => any;
         input_ref: (event) => any;
+        number_of_decimals: number;
 
         constructor( args: RangeArgs )
             {
@@ -669,12 +670,29 @@ export module Html
             if ( typeof args.step === 'undefined' )
                 {
                 args.step = 1;
+                this.number_of_decimals = 0;
+                }
+
+            else
+                {
+                    // find the number of decimals cases
+                var split = args.step.toString().split( '.' );
+
+                if ( split.length > 1 )
+                    {
+                    this.number_of_decimals = split[ 1 ].length;
+                    }
+
+                else
+                    {
+                    this.number_of_decimals = 0;
+                    }
                 }
 
 
             this.change_ref = function( event )
                 {
-                _this.setValue( parseInt( event.target.value, 10 ) );
+                _this.setValue( parseFloat( event.target.value ) );
 
                 if ( args.onChange )
                     {
@@ -683,7 +701,9 @@ export module Html
                 };
             this.input_ref = function( event )
                 {
-                _this.value.innerHTML = event.target.value;
+                var value = parseFloat( event.target.value );
+
+                _this.value.innerHTML = value.toFixed( _this.number_of_decimals );
                 };
 
 
@@ -720,7 +740,7 @@ export module Html
                 return;
                 }
 
-            var valueStr = value.toString();
+            var valueStr = value.toFixed( this.number_of_decimals );
 
             this.current_value = value;
             this.input.value = valueStr;
