@@ -115,12 +115,58 @@ export class Element extends EventDispatcher
 
     /**
      * Check if the element is within the given x/y position.
-     *
-     * @abstract
      */
-    intersect( x: number, y: number ): Element
+    intersect( refX: number, refY: number )
         {
-        throw new Error( 'Implement .intersect().' );
+        var parent = this._container;
+        var parents = [];
+        var elements = [];
+
+            // get all the parent elements
+        while ( parent !== null )
+            {
+            parents.push( parent );
+
+            parent = parent._container;
+            }
+
+        var x = 0;
+        var y = 0;
+        var scaleX = 1;
+        var scaleY = 1;
+
+            // starting at the most top level element, and going down until this element
+        for (var a = parents.length - 1 ; a >= 0 ; a--)
+            {
+            parent = parents[ a ];
+
+                // get the combined parent's x/y
+            x += parent.x * scaleX;
+            y += parent.y * scaleY;
+
+            scaleX *= parent.scaleX;
+            scaleY *= parent.scaleY;
+            }
+
+        scaleX *= this.scaleX;
+        scaleY *= this.scaleY;
+
+        x += (this.x - this.width / 2) * scaleX;
+        y += (this.y - this.height / 2) * scaleY;
+
+        if ( Utilities.pointBoxCollision(
+                    refX,
+                    refY,
+                    x,
+                    y,
+                    this.width * scaleX,
+                    this.height * scaleY
+                ))
+            {
+            elements.push( this );
+            }
+
+        return elements;
         }
 
 
@@ -128,11 +174,15 @@ export class Element extends EventDispatcher
         {
         if ( this.hasListeners( event.type ) )
             {
-            var element = this.intersect( x, y );
+            var elements = this.intersect( x, y );
 
-            if ( element )
+            if ( elements )
                 {
-                element.dispatchMouseClickEvent( event );
+                for (var a = elements.length - 1 ; a >= 0 ; a--)
+                    {
+                    elements[ a ].dispatchMouseClickEvent( event );
+                    }
+
                 return true;
                 }
             }

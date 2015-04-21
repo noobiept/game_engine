@@ -170,35 +170,24 @@ export class Container extends Element
 
 
     /**
-     * Check if the given x/y position intersects with any of this container's children.
+     * Check if the given x/y position intersects with any of this container's children. Returns all the elements it intersects.
      */
     intersect( x: number, y: number )
         {
+        var all = [];
+        var elements;
+
         for (var a = this._children.length - 1 ; a >= 0 ; a--)
             {
-            var element = this._children[ a ].intersect( x, y );
+            elements = this._children[ a ].intersect( x, y );
 
-            if ( element )
+            if ( elements )
                 {
-                return element;
+                all = all.concat( elements );
                 }
             }
 
-        return null;
-        }
-
-
-    mouseClickEvents( x, y, event )
-        {
-        for (var a = this._children.length - 1 ; a >= 0 ; a--)
-            {
-            if ( this._children[ a ].mouseClickEvents( x, y, event ) )
-                {
-                return true;
-                }
-            }
-
-        return false;
+        return all;
         }
 
 

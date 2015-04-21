@@ -157,38 +157,6 @@ export class Text extends Element
         }
 
 
-    intersect( x: number, y: number )
-        {
-        var refX = 0;
-        var refY = 0;
-
-        var parent = this._container;
-
-        while ( parent !== null )
-            {
-            refX += parent.x;
-            refY += parent.y;
-
-            parent = parent._container;
-            }
-
-
-        if ( Utilities.pointBoxCollision(
-                    x,
-                    y,
-                    refX + this.x - this.width / 2,
-                    refY + this.y - this.height / 2,
-                    this.width,
-                    this.height
-                ))
-            {
-            return this;
-            }
-
-        return null;
-        }
-
-
     /**
      * @param value Change the text to this.
      */

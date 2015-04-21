@@ -117,21 +117,24 @@ export class Canvas
 
 
     /**
-     * Get an element that is in given x/y position.
+     * Get all the elements that are in a given x/y position.
      */
-    getElement( x: number, y: number )
+    getElements( x: number, y: number )
         {
+        var all = [];
+        var elements;
+
         for (var a = this._elements.length - 1 ; a >= 0 ; a--)
             {
-            var element = this._elements[ a ].intersect( x, y );
+            elements = this._elements[ a ].intersect( x, y );
 
-            if ( element )
+            if ( elements )
                 {
-                return element;
+                all = all.concat( elements );
                 }
             }
 
-        return null;
+        return all;
         }
 
 
@@ -287,7 +290,7 @@ export class Canvas
     /**
      * @return The elements added to this canvas.
      */
-    getElements()
+    getAllElements()
         {
         return this._elements;
         }

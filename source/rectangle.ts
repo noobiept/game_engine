@@ -85,38 +85,6 @@ export class Rectangle extends Element
         }
 
 
-    intersect( x: number, y: number )
-        {
-        var refX = 0;
-        var refY = 0;
-
-        var parent = this._container;
-
-        while ( parent !== null )
-            {
-            refX += parent.x;
-            refY += parent.y;
-
-            parent = parent._container;
-            }
-
-
-        if ( Utilities.pointBoxCollision(
-                    x,
-                    y,
-                    refX + this.x - this.half_width,
-                    refY + this.y - this.half_height,
-                    this.width,
-                    this.height
-                ))
-            {
-            return this;
-            }
-
-        return null;
-        }
-
-
     clone()
         {
         var element = new Game.Rectangle({

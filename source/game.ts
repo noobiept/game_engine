@@ -47,7 +47,7 @@ var ANIMATION_ID: number;
 
     // mouse move variables
 var MOUSE_MOVE_ID: number;
-var ELEMENT_UNDER_MOUSE: Element = null;
+var ELEMENTS_UNDER_MOUSE: Element[] = [];
 var MOUSE_X: number = -1;
 var MOUSE_Y: number = -1;
 
@@ -126,7 +126,7 @@ export function stopGameLoop()
  */
 export function activateMouseMoveEvents( interval: number )
     {
-    ELEMENT_UNDER_MOUSE = null;
+    ELEMENTS_UNDER_MOUSE.length = 0;
 
     document.body.addEventListener( 'mousemove', updateMousePosition );
 
@@ -339,10 +339,12 @@ function clickEvents( event: MouseEvent )
  */
 function mouseMoveEvents()
     {
-        // find an element that is under the current x/y position of the mouse
-    var element;
+        // find all the elements that are under the current x/y position of the mouse
+    var all = [];
+    var elements;
+    var a, element;
 
-    for (var a = ALL_CANVAS.length - 1 ; a >= 0 ; a--)
+    for (a = ALL_CANVAS.length - 1 ; a >= 0 ; a--)
         {
         var canvas = ALL_CANVAS[ a ];
 
@@ -353,39 +355,53 @@ function mouseMoveEvents()
             var x = MOUSE_X - rect.left;
             var y = MOUSE_Y - rect.top;
 
-            element = canvas.getElement( x, y );
+            elements = canvas.getElements( x, y );
 
-                // found one element, no need to search more
-            if ( element )
+                // found some elements that are under the x/y position
+            if ( elements )
                 {
-                break;
+                all = all.concat( elements );
                 }
             }
         }
 
-
-    if ( element )
+    if ( all.length > 0 )
         {
-        if ( element !== ELEMENT_UNDER_MOUSE )
+        for (a = all.length - 1 ; a >= 0 ; a--)
             {
-            if ( ELEMENT_UNDER_MOUSE )
+            element = all[ a ];
+
+                // check if this element was not already with the mouse over before, if it wasn't then it means its new so we dispatch the mouse over event
+            if ( ELEMENTS_UNDER_MOUSE.indexOf( element ) < 0 )
                 {
-                ELEMENT_UNDER_MOUSE.dispatchMouseOutEvent();
+                element.dispatchMouseOverEvent();
+
+                ELEMENTS_UNDER_MOUSE.push( element );
                 }
+            }
 
-            element.dispatchMouseOverEvent();
+        for (a = ELEMENTS_UNDER_MOUSE.length - 1 ; a >= 0 ; a--)
+            {
+            element = ELEMENTS_UNDER_MOUSE[ a ];
 
-            ELEMENT_UNDER_MOUSE = element;
+                // check if an element that was under the mouse, is still under, otherwise we need to remove it and dispatch the mouse out event
+            if ( all.indexOf( element ) < 0 )
+                {
+                ELEMENTS_UNDER_MOUSE.splice( a, 1 );
+
+                element.dispatchMouseOutEvent();
+                }
             }
         }
 
     else
         {
-        if ( ELEMENT_UNDER_MOUSE )
+        for (a = ELEMENTS_UNDER_MOUSE.length - 1 ; a >= 0 ; a--)
             {
-            ELEMENT_UNDER_MOUSE.dispatchMouseOutEvent();
-            ELEMENT_UNDER_MOUSE = null;
+            ELEMENTS_UNDER_MOUSE[ a ].dispatchMouseOutEvent();
             }
+
+        ELEMENTS_UNDER_MOUSE.length = 0;
         }
     }
 

@@ -71,37 +71,6 @@ export class Circle extends Element
         }
 
 
-    intersect( x: number, y: number )
-        {
-        var refX = 0;
-        var refY = 0;
-
-        var parent = this._container;
-
-        while ( parent !== null )
-            {
-            refX += parent.x;
-            refY += parent.y;
-
-            parent = parent._container;
-            }
-
-
-        if ( Utilities.circlePointCollision(
-                    refX + this.x,
-                    refY + this.y,
-                    this._radius,
-                    x,
-                    y
-                ))
-            {
-            return this;
-            }
-
-        return null;
-        }
-
-
     clone()
         {
         var element = new Game.Circle({
