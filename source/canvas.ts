@@ -128,7 +128,7 @@ export class Canvas
             {
             elements = this._elements[ a ].intersect( x, y );
 
-            if ( elements )
+            if ( elements.length > 0 )
                 {
                 all = all.concat( elements );
                 }

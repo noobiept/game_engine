@@ -358,7 +358,7 @@ function mouseMoveEvents()
             elements = canvas.getElements( x, y );
 
                 // found some elements that are under the x/y position
-            if ( elements )
+            if ( elements.length > 0 )
                 {
                 all = all.concat( elements );
                 }

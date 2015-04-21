@@ -181,13 +181,29 @@ export class Container extends Element
             {
             elements = this._children[ a ].intersect( x, y );
 
-            if ( elements )
+            if ( elements.length > 0 )
                 {
                 all = all.concat( elements );
                 }
             }
 
         return all;
+        }
+
+
+    mouseClickEvents( x, y, event )
+        {
+        var found = false;
+
+        for (var a = this._children.length - 1 ; a >= 0 ; a--)
+            {
+            if ( this._children[ a ].mouseClickEvents( x, y, event ) )
+                {
+                found = true;
+                }
+            }
+
+        return found;
         }
 
 

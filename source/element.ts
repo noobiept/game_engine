@@ -176,12 +176,9 @@ export class Element extends EventDispatcher
             {
             var elements = this.intersect( x, y );
 
-            if ( elements )
+            if ( elements.length > 0 )
                 {
-                for (var a = elements.length - 1 ; a >= 0 ; a--)
-                    {
-                    elements[ a ].dispatchMouseClickEvent( event );
-                    }
+                elements[ 0 ].dispatchMouseClickEvent( event );
 
                 return true;
                 }
