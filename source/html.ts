@@ -521,7 +521,7 @@ export module Html
     export interface MultipleOptionsArgs extends HtmlElementArgs
         {
         options: string[];
-        callback: (button: MultipleOptions, position: number, htmlElement: HTMLElement) => any;
+        callback?: (button: MultipleOptions, position: number, htmlElement: HTMLElement) => any;
         }
 
     /**
@@ -536,6 +536,12 @@ export module Html
         constructor( args: MultipleOptionsArgs )
             {
             var _this = this;
+            var callback = null;
+
+            if ( typeof args.callback !== 'undefined' )
+                {
+                callback = args.callback;
+                }
 
             this.click_ref = function()
                 {
@@ -550,7 +556,10 @@ export module Html
 
                 _this.select( position );
 
-                args.callback( _this, position, element );
+                if ( callback )
+                    {
+                    callback( _this, position, element );
+                    }
                 };
 
 
@@ -602,6 +611,15 @@ export module Html
 
             this.selected = element;
             element.classList.add( 'Game-selected' );
+            }
+
+
+        /**
+         * Get the string value of the currently selected option.
+         */
+        getValue()
+            {
+            return this.selected.innerHTML;
             }
 
 
