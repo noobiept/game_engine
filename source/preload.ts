@@ -8,7 +8,7 @@ module Game
 {
 export interface PreloadArgs extends EventDispatcherArgs
     {
-        save_global?: boolean;   // save to global 'data' object, or to this object's 'data'
+    save_global?: boolean;   // save to global 'data' object, or to this object's 'data'
     }
 
 

@@ -4,7 +4,7 @@ module Game
 {
 export interface ContainerArgs extends ElementArgs
     {
-        children?: any; // Element or Element[]
+    children?: any; // Element or Element[]
     }
 
 

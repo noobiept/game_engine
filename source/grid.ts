@@ -4,12 +4,12 @@ module Game
 {
 export interface GridArgs extends EventDispatcherArgs
     {
-        squareSize: number;
-        columns: number;
-        lines: number;
-        refX?: number;
-        refY?: number;
-        background?: { color: string; fill: boolean; canvasId?: number; };
+    squareSize: number;
+    columns: number;
+    lines: number;
+    refX?: number;
+    refY?: number;
+    background?: { color: string; fill: boolean; canvasId?: number; };
     }
 
 

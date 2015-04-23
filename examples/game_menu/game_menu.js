@@ -56,10 +56,19 @@ var range = new Game.Html.Range({
             },
         preText: 'Range'
     });
+var text = new Game.Html.Text({
+        preText: 'Text',
+        placeholder: 'Something..',
+        buttonText: 'Go!',
+        callback: function( textButton )
+            {
+            console.log( textButton.getValue() );
+            }
+    });
 
 
 menu.addChild( value );
-menu.addChild( button, boolean, twoStateButton );
+menu.addChild( button, boolean, twoStateButton, text );
 menu.addChild( [ multipleOptions, range ] );
 
 var count = 0;

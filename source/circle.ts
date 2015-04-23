@@ -4,8 +4,8 @@ module Game
 {
 export interface CircleArgs extends ElementArgs
     {
-        radius: number;
-        color: string;
+    radius: number;
+    color: string;
     }
 
 

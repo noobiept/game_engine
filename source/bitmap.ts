@@ -4,7 +4,7 @@ module Game
 {
 export interface BitmapArgs extends ElementArgs
     {
-        image: HTMLImageElement;
+    image: HTMLImageElement;
     }
 
 

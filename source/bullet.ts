@@ -4,12 +4,12 @@ module Game
 {
 export interface BulletArgs extends ContainerArgs
     {
-        movement_speed: number;
+    movement_speed: number;
 
-            // bullet moves in a fixed direction if an angle is given, until its out of the canvas
-            // or follows a target, if an Element is given instead
-        angleOrTarget: any;     // number | Element
-        remove?: () => any;     // to have a different function that is called when the bullet is removed
+        // bullet moves in a fixed direction if an angle is given, until its out of the canvas
+        // or follows a target, if an Element is given instead
+    angleOrTarget: any;     // number | Element
+    remove?: () => any;     // to have a different function that is called when the bullet is removed
     }
 
 

@@ -2,8 +2,8 @@ module Game
 {
 export interface CanvasArgs
     {
-        width: number;
-        height: number;
+    width: number;
+    height: number;
     }
 
 

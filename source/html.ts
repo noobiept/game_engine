@@ -22,9 +22,9 @@ export module Html
     {
     export interface HtmlElementArgs
         {
-            cssId?: string;
-            cssClass?: any;     // string or string[]
-            preText?: string;
+        cssId?: string;
+        cssClass?: any;     // string or string[]
+        preText?: string;
         }
 
     /**
@@ -72,6 +72,7 @@ export module Html
                     {
                     var preText = document.createElement( 'span' );
 
+                    preText.className = 'Game-preText';
                     preText.innerHTML = args.preText;
 
                     container.appendChild( preText );
@@ -143,7 +144,7 @@ export module Html
 
     export interface HtmlContainerArgs extends HtmlElementArgs
         {
-            children?: any;     // HtmlElement or HtmlElement[]
+        children?: any;     // HtmlElement or HtmlElement[]
         }
 
     /**
@@ -246,7 +247,7 @@ export module Html
 
     export interface ValueArgs extends HtmlElementArgs
         {
-            value: any;
+        value: any;
         }
 
     /**
@@ -308,7 +309,7 @@ export module Html
 
     export interface ButtonArgs extends ValueArgs
         {
-            callback: (button: Button) => any;
+        callback: (button: Button) => any;
         }
 
 
@@ -373,8 +374,8 @@ export module Html
 
     export interface BooleanArgs extends HtmlElementArgs
         {
-            value: boolean;
-            callback: (value: any) => any;
+        value: boolean;
+        callback: (value: any) => any;
         }
 
 
@@ -475,8 +476,8 @@ export module Html
 
     export interface TwoStateArgs extends ButtonArgs
         {
-            callback2: (button: Button) => any;
-            value2: string;
+        callback2: (button: Button) => any;
+        value2: string;
         }
 
     /**
@@ -519,8 +520,8 @@ export module Html
 
     export interface MultipleOptionsArgs extends HtmlElementArgs
         {
-            options: string[];
-            callback: (button: MultipleOptions, position: number, htmlElement: HTMLElement) => any;
+        options: string[];
+        callback: (button: MultipleOptions, position: number, htmlElement: HTMLElement) => any;
         }
 
     /**
@@ -642,11 +643,11 @@ export module Html
 
     export interface RangeArgs extends HtmlElementArgs
         {
-            min: number;
-            max: number;
-            value: number;
-            step?: number;
-            onChange?: (button: Range) => any;
+        min: number;
+        max: number;
+        value: number;
+        step?: number;
+        onChange?: (button: Range) => any;
         }
 
 
@@ -784,6 +785,134 @@ export module Html
             this.removeEvents();
             this.change_ref = null;
             this.input_ref = null;
+            }
+        }
+
+
+    export interface TextArgs extends HtmlElementArgs
+        {
+        placeholder?: string;               // placeholder text, that shows when the input has no text
+        callback?: (button: Text) => any;   // to be called when the 'enter' key is pressed (and the input is on focus), or through an optional button
+        buttonText?: string;                // adds a button next to the input (which will trigger the callback if clicked)
+        }
+
+    /**
+     * Text input control.
+     */
+    export class Text extends HtmlElement
+        {
+        input: HTMLInputElement;
+        button: Button;
+        key_ref: (event) => any;
+
+        constructor( args?: TextArgs )
+            {
+            var _this = this;
+
+            this.button = null;
+            this.key_ref = null;
+
+            if ( typeof args === 'undefined' )
+                {
+                args = {};
+                }
+
+                // set properties before this
+            super( args );
+
+                // .container only available after super()
+                // add the input element
+            var input = document.createElement( 'input' );
+
+            input.type = 'text';
+
+            if ( typeof args.placeholder !== 'undefined' )
+                {
+                input.setAttribute( 'placeholder', args.placeholder );
+                }
+
+            this.container.appendChild( input );
+            this.input = input;
+
+
+                // setup the callback function
+            if ( typeof args.callback !== 'undefined' )
+                {
+                this.key_ref = function( event )
+                    {
+                    var key = event.keyCode;
+
+                    if ( key === Utilities.KEY_CODE.enter )
+                        {
+                        args.callback( _this );
+                        }
+                    };
+                }
+
+
+                // add a button if needed
+            if ( typeof args.buttonText !== 'undefined' )
+                {
+                this.button = new Game.Html.Button({
+                        value: args.buttonText,
+                        callback: function()
+                            {
+                            args.callback( _this );
+                            }
+                    });
+                this.container.appendChild( this.button.container );
+                }
+
+
+            this.container.classList.add( 'Game-Text' );
+            this.addEvents();
+            }
+
+
+        setValue( value: string )
+            {
+            this.input.value = value;
+            }
+
+
+        getValue()
+            {
+            return this.input.value;
+            }
+
+
+        addEvents()
+            {
+            this.input.addEventListener( 'keyup', this.key_ref );
+
+            if ( this.button )
+                {
+                this.button.addEvents();
+                }
+            }
+
+
+        removeEvents()
+            {
+            this.input.removeEventListener( 'keyup', this.key_ref );
+
+            if ( this.button )
+                {
+                this.button.removeEvents();
+                }
+            }
+
+
+        clear()
+            {
+            super.clear();
+            this.removeEvents();
+            this.key_ref = null;
+
+            if ( this.button )
+                {
+                this.button.clear();
+                }
             }
         }
     }

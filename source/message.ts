@@ -4,11 +4,11 @@ module Game
 {
 export interface MessageArgs extends Game.Html.HtmlContainerArgs
     {
-        text: any;          // string | HTMLElement
-        container: HTMLElement;
-        buttons?: any;      // HtmlElement | HtmlElement[]
-        timeout?: number;   // remove the message after a certain time (in seconds)
-        background?: boolean;
+    text: any;          // string | HTMLElement
+    container: HTMLElement;
+    buttons?: any;      // HtmlElement | HtmlElement[]
+    timeout?: number;   // remove the message after a certain time (in seconds)
+    background?: boolean;
     }
 
 

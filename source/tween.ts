@@ -4,11 +4,11 @@ export enum TweenAction { properties, wait, call }
 
 export interface TweenStep
     {
-        action: TweenAction;
-        duration?: number;
-        end_properties?: Object;
-        ease?: (value: number) => number;
-        callback?: () => any;
+    action: TweenAction;
+    duration?: number;
+    end_properties?: Object;
+    ease?: (value: number) => number;
+    callback?: () => any;
     }
 
 

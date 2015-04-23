@@ -4,14 +4,14 @@ module Game
 {
 export interface TextArgs extends ElementArgs
     {
-        text?: string;
-        fontFamily?: string;
-        fontSize?: number;
-        timeout?: number;
-        textAlign?: string;
-        textBaseline?: string;
-        fill?: boolean;
-        color?: string;
+    text?: string;
+    fontFamily?: string;
+    fontSize?: number;
+    timeout?: number;
+    textAlign?: string;
+    textBaseline?: string;
+    fill?: boolean;
+    color?: string;
     }
 
 

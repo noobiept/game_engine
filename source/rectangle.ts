@@ -4,10 +4,10 @@ module Game
 {
 export interface RectangleArgs extends ElementArgs
     {
-        width: number;
-        height: number;
-        color: string;
-        fill?: boolean; // fill or stroke
+    width: number;
+    height: number;
+    color: string;
+    fill?: boolean; // fill or stroke
     }
 
 

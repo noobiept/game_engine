@@ -66,6 +66,11 @@ body
     text-decoration: none;
     }
 
+.Game-preText
+    {
+    padding: 5px;
+    }
+
 
     /* ---- Message ---- */
 
@@ -80,6 +85,11 @@ body
     color: black;
     }
 
+.Game-Message-container .Game-preText
+    {
+    color: black;
+    }
+    
 .Game-Message-container .Game-Button
     {
     background-color: cornflowerblue;

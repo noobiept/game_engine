@@ -4,8 +4,8 @@ module Game
 {
 export interface ElementArgs extends EventDispatcherArgs
     {
-        x?: number;
-        y?: number;
+    x?: number;
+    y?: number;
     }
 
 

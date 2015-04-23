@@ -4,12 +4,12 @@ module Game
 {
 export interface SpriteArgs extends BitmapArgs
     {
-        frameWidth: number;
-        frameHeight: number;
+    frameWidth: number;
+    frameHeight: number;
 
-           // if 'animations' is provided, then the rest of the optional arguments are required (only optional for non-animation)
-        animations?: { [id: string]: number[] };
-        interval?: number;
+       // if 'animations' is provided, then the rest of the optional arguments are required (only optional for non-animation)
+    animations?: { [id: string]: number[] };
+    interval?: number;
     }
 
 

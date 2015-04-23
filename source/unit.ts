@@ -4,10 +4,10 @@ module Game
 {
 export interface UnitArgs extends ContainerArgs
     {
-        movement_speed?: number;
-        bullet_movement_speed?: number;
-        health?: number;
-        bullet_shape?: { classRef: (args: any) => void; args: Object; };
+    movement_speed?: number;
+    bullet_movement_speed?: number;
+    health?: number;
+    bullet_shape?: { classRef: (args: any) => void; args: Object; };
     }
 
 
