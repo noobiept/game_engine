@@ -32,6 +32,15 @@ export interface BulletArgs extends ContainerArgs
  *                 }
  *         });
  *     bullet.addChild( bulletShape );
+ *
+ * Events:
+ *
+ * - `click` -- `listener( data: { event: MouseEvent; } );`
+ * - `mousedown` -- `listener( data: { event: MouseEvent; } );`
+ * - `mouseup` -- `listener( data: { event: MouseEvent; } );`
+ * - `mousemove` -- `listener( data: { event: MouseEvent; } );`
+ * - `mouseover` -- `listener( data: { element: Element; } );`
+ * - `mouseout` -- `listener( data: { element: Element; } );`
  */
 export class Bullet extends Container
     {

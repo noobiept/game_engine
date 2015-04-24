@@ -179,7 +179,7 @@ export class Canvas
 
 
     /**
-     * Check if a mouse event that was triggered is on top of an element (if it intersects it) that is part of this canvas.
+     * Receives a mouse event. Move it along to this canvas elements, to see if there's an element that has listeners to it.
      *
      * @param event The mouse event triggered.
      */

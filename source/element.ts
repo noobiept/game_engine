@@ -12,6 +12,15 @@ export interface ElementArgs extends EventDispatcherArgs
 /**
  * Base class for a canvas element. Don't create an object directly.
  *
+ * Events:
+ *
+ * - `click` -- `listener( data: { event: MouseEvent; } );`
+ * - `mousedown` -- `listener( data: { event: MouseEvent; } );`
+ * - `mouseup` -- `listener( data: { event: MouseEvent; } );`
+ * - `mousemove` -- `listener( data: { event: MouseEvent; } );`
+ * - `mouseover` -- `listener( data: { element: Element; } );`
+ * - `mouseout` -- `listener( data: { element: Element; } );`
+ *
  * @abstract
  */
 export class Element extends EventDispatcher
@@ -210,6 +219,20 @@ export class Element extends EventDispatcher
         }
 
 
+    dispatchMouseMoveEvent()
+        {
+        if ( this._container )
+            {
+            this._container.dispatchMouseMoveEvent();
+            }
+
+        this.dispatchEvent( 'mousemove', { element: this } );
+        }
+
+
+    /**
+     * @param event Either a mouse up, mouse down or click event.
+     */
     dispatchMouseClickEvent( event: MouseEvent )
         {
         if ( this._container )

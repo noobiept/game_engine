@@ -50,6 +50,7 @@ var MOUSE_MOVE_ID: number;
 var ELEMENTS_UNDER_MOUSE: Element[] = [];
 var MOUSE_X: number = -1;
 var MOUSE_Y: number = -1;
+var MOUSE_MOVED = false;   // if the mouse moved since the last time we checked
 
 var CALLBACKS: { callback: () => any; interval: number; count: number; }[] = [];
 
@@ -79,6 +80,8 @@ export function init( htmlContainer: HTMLElement, canvasWidth: number, canvasHei
     Bullet.init();
 
     CANVAS_CONTAINER.addEventListener( 'click', clickEvents );
+    CANVAS_CONTAINER.addEventListener( 'mousedown', clickEvents );
+    CANVAS_CONTAINER.addEventListener( 'mouseup', clickEvents );
 
 
     document.addEventListener( 'visibilitychange', function( event )
@@ -148,6 +151,8 @@ function updateMousePosition( event )
     {
     MOUSE_X = event.clientX;
     MOUSE_Y = event.clientY;
+
+    MOUSE_MOVED = true;
     }
 
 
@@ -316,7 +321,7 @@ export function removeAllCallbacks()
 
 
 /**
- * A click event on the canvas was dispatched. We pass it on to the canvas objects.
+ * When a mouse event is fired on the canvas, this is called, which will pass it to the canvas objects to check if there's any element that has listeners to it.
  *
  * @param event The mouse event fired.
  */
@@ -335,7 +340,7 @@ function clickEvents( event: MouseEvent )
 
 
 /**
- * Deal with the mouse move events: `mouseout` and `mouseover`.
+ * Deal with the mouse move events: `mouseout`, `mouseover` and `mousemove`.
  */
 function mouseMoveEvents()
     {
@@ -365,8 +370,22 @@ function mouseMoveEvents()
             }
         }
 
+
+        // found some elements in the mouse x/y position
     if ( all.length > 0 )
         {
+            // if the mouse moved since the last time, dispatch the mouse move events for these elements
+        if ( MOUSE_MOVED )
+            {
+            for (a = all.length - 1 ; a >= 0 ; a--)
+                {
+                all[ a ].dispatchMouseMoveEvent();
+                }
+
+            MOUSE_MOVED = false;
+            }
+
+
         for (a = all.length - 1 ; a >= 0 ; a--)
             {
             element = all[ a ];
@@ -483,5 +502,17 @@ function callbacks( deltaTime: number )
 export function getCanvasContainer()
     {
     return CANVAS_CONTAINER;
+    }
+
+
+/**
+ * Return the current mouse position (in the client area, not the canvas).
+ */
+export function getMousePosition()
+    {
+    return {
+            x: MOUSE_X,
+            y: MOUSE_Y
+        };
     }
 }
