@@ -4,11 +4,11 @@ module Game
 {
 export interface MessageArgs extends Game.Html.HtmlContainerArgs
     {
-    text: any;          // string | HTMLElement
-    container: HTMLElement;
-    buttons?: any;      // HtmlElement | HtmlElement[]
-    timeout?: number;   // remove the message after a certain time (in seconds)
-    background?: boolean;
+    body: any;               // string | HTMLElement | HTMLElement[] | Html.HtmlElement | Html.HtmlElement[]
+    container: HTMLElement; // where the message is going to be added to
+    buttons?: any;          // HtmlElement | HtmlElement[]
+    timeout?: number;       // remove the message after a certain time (in seconds)
+    background?: boolean;   // add a faded background behind the message
     }
 
 
@@ -25,7 +25,7 @@ export interface MessageArgs extends Game.Html.HtmlContainerArgs
  *                 }
  *         });
  *     var message = new Game.Message({
- *             text: 'Hi there!',
+ *             body: 'Hi there!',
  *             container: container,
  *             background: true,
  *             buttons: button
@@ -35,7 +35,7 @@ export interface MessageArgs extends Game.Html.HtmlContainerArgs
  */
 export class Message extends Game.Html.HtmlContainer
     {
-    text: HTMLElement;
+    body: HTMLElement;
     background: HTMLElement;
     timeout: Utilities.Timeout;
 
@@ -44,12 +44,12 @@ export class Message extends Game.Html.HtmlContainer
         {
         super( args );
 
-        this.text = document.createElement( 'div' );
-        this.text.className = 'Game-Message-text';
+        this.body = document.createElement( 'div' );
+        this.body.className = 'Game-Message-body';
 
-        this.setText( args.text );
+        this.setBody( args.body );
 
-        this.container.appendChild( this.text );
+        this.container.appendChild( this.body );
         this.container.classList.add( 'Game-Message-container' );
 
         this.timeout = null;
@@ -73,7 +73,7 @@ export class Message extends Game.Html.HtmlContainer
             var length = buttons.length;
 
             var buttonsContainer = new Game.Html.HtmlContainer({
-                    cssClass: 'Game-Message-Components'
+                    cssClass: 'Game-Message-Buttons'
                 });
 
 
@@ -134,26 +134,60 @@ export class Message extends Game.Html.HtmlContainer
     /**
      * @return Current message.
      */
-    getText()
+    getBody()
         {
-        return this.text.innerHTML;
+        return this.body.innerHTML;
         }
 
 
     /**
-     * @param text New message text. Its either a `string` or an `HTMLElement`.
+     * @param body Set the body of the message. Either a `string`, `HTMLElement`, `HTMLElement[]`, `Html.HtmlElement` or `HtmlElement[]`.
      */
-    setText( text: any )
+    setBody( body: any )
         {
-        if ( text instanceof HTMLElement )
+            // clear previous content
+        this.body.innerHTML = '';
+
+        if ( body instanceof Array )
             {
-            this.text.innerHTML = '';
-            this.text.appendChild( text );
+            if ( body.length > 0 )
+                {
+                var first = body[ 0 ];
+                var a;
+                var length = body.length;
+
+                if ( first instanceof HTMLElement )
+                    {
+                    for (a = 0 ; a < length ; a++)
+                        {
+                        this.body.appendChild( body[ a ] );
+                        }
+                    }
+
+                else
+                    {
+                    for (a = 0 ; a < length ; a++)
+                        {
+                        this.body.appendChild( body[ a ].container );
+                        }
+                    }
+                }
             }
 
+        else if ( body instanceof HTMLElement )
+            {
+            this.body.appendChild( body );
+            }
+
+        else if ( body instanceof Html.HtmlElement )
+            {
+            this.body.appendChild( body.container );
+            }
+
+            // string
         else
             {
-            this.text.innerHTML = text;
+            this.body.innerHTML = body;
             }
         }
     }

@@ -96,13 +96,13 @@ body
     color: aliceblue;
     }
 
-.Game-Message-Components
+.Game-Message-Buttons
     {
     margin-top: 10px;
     text-align: right;
     }
 
-.Game-Message-Components > *
+.Game-Message-Buttons > *
     {
     display: inline-block;
     padding: 2px 5px;
