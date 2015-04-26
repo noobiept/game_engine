@@ -309,7 +309,7 @@ export module Html
 
     export interface ButtonArgs extends ValueArgs
         {
-        callback: (button: Button) => any;
+        callback?: (button: Button) => any;
         }
 
 
@@ -324,11 +324,15 @@ export module Html
             {
             var _this = this;
 
+
             if ( typeof this.click_ref === 'undefined' )
                 {
                 this.click_ref = function()
                     {
-                    args.callback( _this );
+                    if ( args.callback )
+                        {
+                        args.callback( _this );
+                        }
                     };
                 }
 
@@ -337,7 +341,6 @@ export module Html
 
                 // .container only available after super()
             this.container.classList.add( 'Game-Button' );
-
             this.addEvents();
             }
 
@@ -372,21 +375,18 @@ export module Html
         }
 
 
-    export interface BooleanArgs extends HtmlElementArgs
+    export interface BooleanArgs extends ButtonArgs
         {
         value: boolean;
-        callback: (value: any) => any;
         }
 
 
     /**
      * A boolean html button (possible values are 'On' or 'Off').
      */
-    export class Boolean extends HtmlElement
+    export class Boolean extends Button
         {
         value: boolean;
-        element: HTMLElement;
-        click_ref: () => any;
 
         constructor( args: BooleanArgs )
             {
@@ -395,7 +395,11 @@ export module Html
             this.click_ref = function()
                 {
                 _this.setValue( !_this.value );
-                args.callback( _this );
+
+                if ( args.callback )
+                    {
+                    args.callback( _this );
+                    }
                 };
 
 
@@ -403,11 +407,7 @@ export module Html
             super( args );
 
                 // .container only available after super()
-            this.element = document.createElement( 'span' );
-            this.container.appendChild( this.element );
             this.container.classList.add( 'Game-Boolean' );
-
-            this.setValue( args.value );
             this.addEvents();
             }
 
@@ -476,8 +476,8 @@ export module Html
 
     export interface TwoStateArgs extends ButtonArgs
         {
-        callback2: (button: Button) => any;
         value2: string;
+        callback2?: (button: TwoState) => any;
         }
 
     /**
@@ -497,13 +497,21 @@ export module Html
                 if ( _this.isValue1 )
                     {
                     _this.element.innerHTML = args.value2;
-                    args.callback( _this );
+
+                    if ( args.callback )
+                        {
+                        args.callback( _this );
+                        }
                     }
 
                 else
                     {
                     _this.element.innerHTML = args.value;
-                    args.callback2( _this );
+
+                    if ( args.callback2 )
+                        {
+                        args.callback2( _this );
+                        }
                     }
 
                 _this.isValue1 = !_this.isValue1;
@@ -514,6 +522,12 @@ export module Html
 
                 // .container only available after super()
             this.container.classList.add( 'Game-TwoState' );
+            }
+
+
+        getValue()
+            {
+            return this.element.innerHTML;
             }
         }
 
@@ -536,12 +550,6 @@ export module Html
         constructor( args: MultipleOptionsArgs )
             {
             var _this = this;
-            var callback = null;
-
-            if ( typeof args.callback !== 'undefined' )
-                {
-                callback = args.callback;
-                }
 
             this.click_ref = function()
                 {
@@ -556,9 +564,9 @@ export module Html
 
                 _this.select( position );
 
-                if ( callback )
+                if ( args.callback )
                     {
-                    callback( _this, position, element );
+                    args.callback( _this, position, element );
                     }
                 };
 
@@ -582,6 +590,7 @@ export module Html
                 this.elements.push( option );
                 }
 
+            this.container.classList.add( 'Game-Button' );
             this.container.classList.add( 'Game-MultipleOptions' );
             this.selected = null;
             this.select( 0 );

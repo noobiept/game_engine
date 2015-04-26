@@ -101,12 +101,21 @@ var message4_button = new Game.Html.Button({
             var text = new Game.Html.Text({
                     preText: 'Text:'
                 });
+            var boolean = new Game.Html.Boolean({
+                    preText: 'Boolean:',
+                    value: true
+                });
+            var twoState = new Game.Html.TwoState({
+                    preText: 'Two State:',
+                    value: 'One',
+                    value2: 'Two'
+                });
 
             var ok = new Game.Html.Button({
                     value: 'Ok',
                     callback: function( button )
                         {
-                        console.log( range.getValue(), text.getValue() );
+                        console.log( range.getValue(), text.getValue(), boolean.getValue(), twoState.getValue() );
 
                         message4.clear();
                         }
@@ -119,7 +128,7 @@ var message4_button = new Game.Html.Button({
                         }
                 });
 
-            body = [ range, text ];
+            body = [ range, text, boolean, twoState ];
 
             var message4 = new Game.Message({
                     body: body,

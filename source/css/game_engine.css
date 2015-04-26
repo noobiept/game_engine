@@ -25,6 +25,12 @@ body
     margin: auto;
     }
 
+.Game-preText
+    {
+    color: white;
+    margin-right: 5px;
+    }
+
     /* ---- Menu ---- */
 
 .Game-Container
@@ -32,7 +38,7 @@ body
     color: white;
     }
 
-.Game-Button, .Game-Boolean, .Game-MultipleOptions
+.Game-Button
     {
     display: inline-block;
     cursor: pointer;
@@ -40,14 +46,15 @@ body
     margin: 2px 5px;
     }
 
-.Game-Button:hover
+.Game-Button:hover > :not(.Game-preText):not(.Game-selected)
     {
     text-decoration: underline;
     }
 
+
 .Game-MultipleOptions span
     {
-    margin: 5px;
+    padding: 5px;
     }
 
 .Game-selected
@@ -59,16 +66,12 @@ body
     {
     cursor: default;
     color: gray;
-    }
-
-.Game-Button.Game-inactive:hover
-    {
     text-decoration: none;
     }
 
-.Game-preText
+.Game-Value.Game-Button.Game-inactive:hover > span
     {
-    padding: 5px;
+    text-decoration: none;
     }
 
 
@@ -92,8 +95,7 @@ body
     
 .Game-Message-container .Game-Button
     {
-    background-color: cornflowerblue;
-    color: aliceblue;
+    color: cornflowerblue;
     }
 
 .Game-Message-Buttons
@@ -107,6 +109,12 @@ body
     display: inline-block;
     padding: 2px 5px;
     margin: 0 5px;
+    }
+
+.Game-Message-Buttons .Game-Button
+    {
+    background-color: cornflowerblue;
+    color: aliceblue;
     }
 
 .Game-Message-background
