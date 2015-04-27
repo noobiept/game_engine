@@ -33,13 +33,18 @@ export module Html
     export class HtmlElement
         {
         container: HTMLElement;
-        isActive: boolean;
+        _is_active: boolean;
+        _pre_text: HTMLElement;
 
         constructor( args?: HtmlElementArgs )
             {
             var container = document.createElement( 'div' );
 
             container.className = 'Game-Element';
+
+            this.container = container;
+            this._is_active = true;
+            this._pre_text = null;
 
 
             if ( typeof args !== 'undefined' )
@@ -76,12 +81,10 @@ export module Html
                     preText.innerHTML = args.preText;
 
                     container.appendChild( preText );
+
+                    this._pre_text = preText;
                     }
                 }
-
-
-            this.container = container;
-            this.isActive = true;
             }
 
 
@@ -93,7 +96,7 @@ export module Html
         setActive( yesNo: boolean )
             {
                 // already in that state
-            if ( yesNo === this.isActive )
+            if ( yesNo === this._is_active )
                 {
                 return;
                 }
@@ -110,7 +113,16 @@ export module Html
                 this.container.classList.add( 'Game-inactive' );
                 }
 
-            this.isActive = yesNo;
+            this._is_active = yesNo;
+            }
+
+
+        /**
+         * Check if the element is active or not currently.
+         */
+        isActive()
+            {
+            return this._is_active;
             }
 
 
@@ -137,7 +149,14 @@ export module Html
          */
         clear()
             {
-                // implement this if needed
+            if ( this._pre_text )
+                {
+                this.container.removeChild( this._pre_text );
+                this._pre_text = null;
+                }
+
+            this.container.parentNode.removeChild( this.container );
+            this.container = null;
             }
         }
 
@@ -239,8 +258,8 @@ export module Html
                 this._children[ a ].clear();
                 }
 
-            this.container.parentNode.removeChild( this.container );
             this._children.length = 0;
+            super.clear();
             }
         }
 
@@ -302,7 +321,11 @@ export module Html
          */
         clear()
             {
+            this.container.removeChild( this.element );
+            this.element = null;
             this.value = null;
+
+            super.clear();
             }
         }
 
@@ -368,9 +391,10 @@ export module Html
          */
         clear()
             {
-            super.clear();
             this.removeEvents();
             this.click_ref = null;
+
+            super.clear();
             }
         }
 
@@ -413,24 +437,6 @@ export module Html
 
 
         /**
-         * Add the click event handler.
-         */
-        addEvents()
-            {
-            this.container.addEventListener( 'click', this.click_ref );
-            }
-
-
-        /**
-         * Remove the click event handler.
-         */
-        removeEvents()
-            {
-            this.container.removeEventListener( 'click', this.click_ref );
-            }
-
-
-        /**
          * @param value New value of the button. When the value is `true`, the display text is 'On`, and when the value is `false`, the display text will be `Off`.
          */
         setValue( value: boolean )
@@ -460,16 +466,6 @@ export module Html
         getValue()
             {
             return this.value;
-            }
-
-
-        /**
-         * Clear the object.
-         */
-        clear()
-            {
-            this.removeEvents();
-            this.click_ref = null;
             }
         }
 
@@ -663,7 +659,16 @@ export module Html
             {
             this.removeEvents();
             this.click_ref = null;
+            this.selected = null;
+
+            for (var a = this.elements.length - 1 ; a >= 0 ; a--)
+                {
+                this.container.removeChild( this.elements[ a ] );
+                }
+
             this.elements.length = 0;
+
+            super.clear();
             }
         }
 
@@ -812,6 +817,13 @@ export module Html
             this.removeEvents();
             this.change_ref = null;
             this.input_ref = null;
+
+            this.container.removeChild( this.value );
+            this.container.removeChild( this.input );
+            this.value = null;
+            this.input = null;
+
+            super.clear();
             }
         }
 
@@ -932,14 +944,18 @@ export module Html
 
         clear()
             {
-            super.clear();
             this.removeEvents();
             this.key_ref = null;
+            this.container.removeChild( this.input );
+            this.input = null;
 
             if ( this.button )
                 {
                 this.button.clear();
+                this.button = null;
                 }
+
+            super.clear();
             }
         }
     }
