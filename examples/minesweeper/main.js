@@ -26,14 +26,14 @@ var preload = new Game.Preload({ save_global: true });
 
 var canvasContainer = Game.getCanvasContainer();
 var loadingMessage = new Game.Message({
-        text: 'Loading..',
+        body: 'Loading..',
         container: canvasContainer
     });
 
 
 preload.addEventListener( 'progress', function( progress )
     {
-    loadingMessage.setText( 'Loading.. ' + progress + '%' );
+    loadingMessage.setBody( 'Loading.. ' + progress + '%' );
     });
 preload.addEventListener( 'complete', function()
     {
@@ -530,7 +530,7 @@ var close = new Game.Html.Button({
     });
 
 var highScore = new Game.Message({
-        text: table,
+        body: table,
         container: canvasContainer,
         background: true,
         buttons: close
@@ -567,7 +567,7 @@ var restart = new Game.Html.Button({
         callback: Main.restart
     });
 END_MESSAGE = new Game.Message({
-        text: text,
+        body: text,
         container: canvasContainer,
         background: true,
         buttons: restart
