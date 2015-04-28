@@ -4,7 +4,7 @@ module Game
 {
 export interface MessageArgs extends Game.Html.HtmlContainerArgs
     {
-    body: any;               // string | HTMLElement | HTMLElement[] | Html.HtmlElement | Html.HtmlElement[]
+    body: any;               // Either a `string`, `HTMLElement`, `Html.HtmlElement` or an `array` with any combination of the types before.
     container: HTMLElement; // where the message is going to be added to
     buttons?: any;          // HtmlElement | HtmlElement[]
     timeout?: number;       // remove the message after a certain time (in seconds)
@@ -35,7 +35,8 @@ export interface MessageArgs extends Game.Html.HtmlContainerArgs
  */
 export class Message extends Game.Html.HtmlContainer
     {
-    body: HTMLElement;
+    body: Html.HtmlContainer;
+    buttons: Html.HtmlContainer;
     background: HTMLElement;
     timeout: Utilities.Timeout;
 
@@ -44,16 +45,17 @@ export class Message extends Game.Html.HtmlContainer
         {
         super( args );
 
-        this.body = document.createElement( 'div' );
-        this.body.className = 'Game-Message-body';
+        this.body = new Game.Html.HtmlContainer({
+                cssClass: 'Game-Message-body'
+            });
 
         this.setBody( args.body );
-
-        this.container.appendChild( this.body );
         this.container.classList.add( 'Game-Message-container' );
+        this.addChild( this.body );
 
         this.timeout = null;
         this.background = null;
+        this.buttons = null;
 
 
         if ( typeof args.buttons !== 'undefined' )
@@ -72,17 +74,17 @@ export class Message extends Game.Html.HtmlContainer
 
             var length = buttons.length;
 
-            var buttonsContainer = new Game.Html.HtmlContainer({
+            this.buttons = new Game.Html.HtmlContainer({
                     cssClass: 'Game-Message-Buttons'
                 });
 
 
             for (var a = 0 ; a < length ; a++)
                 {
-                buttonsContainer.addChild( buttons[ a ] );
+                this.buttons.addChild( buttons[ a ] );
                 }
 
-            this.addChild( buttonsContainer );
+            this.addChild( this.buttons );
             }
 
 
@@ -132,62 +134,44 @@ export class Message extends Game.Html.HtmlContainer
 
 
     /**
-     * @return Current message.
-     */
-    getBody()
-        {
-        return this.body.innerHTML;
-        }
-
-
-    /**
-     * @param body Set the body of the message. Either a `string`, `HTMLElement`, `HTMLElement[]`, `Html.HtmlElement` or `HtmlElement[]`.
+     * @param body Set the body of the message. Either a `string`, `HTMLElement`, `Html.HtmlElement` or an `array` with any combination of the types before.
      */
     setBody( body: any )
         {
             // clear previous content
-        this.body.innerHTML = '';
+        this.body.removeAllChildren();
 
-        if ( body instanceof Array )
+            // make sure 'body' is always an array
+        if ( !(body instanceof Array) )
             {
-            if ( body.length > 0 )
+            body = [ body ];
+            }
+
+
+        var length = body.length;
+
+        for (var a = 0 ; a < length ; a++)
+            {
+            var element = body[ a ];
+
+            if ( element instanceof Html.HtmlElement )
                 {
-                var first = body[ 0 ];
-                var a;
-                var length = body.length;
-
-                if ( first instanceof HTMLElement )
-                    {
-                    for (a = 0 ; a < length ; a++)
-                        {
-                        this.body.appendChild( body[ a ] );
-                        }
-                    }
-
-                else
-                    {
-                    for (a = 0 ; a < length ; a++)
-                        {
-                        this.body.appendChild( body[ a ].container );
-                        }
-                    }
+                this.body.addChild( element );
                 }
-            }
 
-        else if ( body instanceof HTMLElement )
-            {
-            this.body.appendChild( body );
-            }
+            else if ( element instanceof HTMLElement )
+                {
+                this.body.container.appendChild( element );
+                }
 
-        else if ( body instanceof Html.HtmlElement )
-            {
-            this.body.appendChild( body.container );
-            }
+                // a string
+            else
+                {
+                var bodyElement = document.createElement( 'div' );
+                bodyElement.innerHTML = element;
 
-            // string
-        else
-            {
-            this.body.innerHTML = body;
+                this.body.container.appendChild( bodyElement );
+                }
             }
         }
     }

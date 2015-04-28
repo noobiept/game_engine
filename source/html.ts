@@ -248,10 +248,11 @@ export module Html
                 }
             }
 
+
         /**
-         * Removes the game menu, plus all of its children (can't use the menu after this).
+         * Remove all children of this container.
          */
-        clear()
+        removeAllChildren()
             {
             for (var a = this._children.length - 1 ; a >= 0 ; a--)
                 {
@@ -259,6 +260,15 @@ export module Html
                 }
 
             this._children.length = 0;
+            }
+
+
+        /**
+         * Removes the container, plus all of its children (can't use the container after this).
+         */
+        clear()
+            {
+            this.removeAllChildren();
             super.clear();
             }
         }

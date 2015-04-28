@@ -74,6 +74,11 @@ body
     text-decoration: none;
     }
 
+.Game-Text
+    {
+    text-align: right;
+    }
+
 
     /* ---- Message ---- */
 
@@ -88,11 +93,12 @@ body
     color: black;
     }
 
+.Game-Message-container .Game-Container,
 .Game-Message-container .Game-preText
     {
     color: black;
     }
-    
+
 .Game-Message-container .Game-Button
     {
     color: cornflowerblue;
