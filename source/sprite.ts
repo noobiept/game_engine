@@ -40,7 +40,7 @@ export interface SpriteArgs extends BitmapArgs
  * - `click` -- `listener( data: { event: MouseEvent; } );`
  * - `mousedown` -- `listener( data: { event: MouseEvent; } );`
  * - `mouseup` -- `listener( data: { event: MouseEvent; } );`
- * - `mousemove` -- `listener( data: { event: MouseEvent; } );`
+ * - `mousemove` -- `listener( data: { element: Element; } );`
  * - `mouseover` -- `listener( data: { element: Element; } );`
  * - `mouseout` -- `listener( data: { element: Element; } );`
  *
