@@ -44,7 +44,7 @@ container.addChild( rect, circle1, circle2, circle3, circle4 );
 container.rotate( 45, true );
 container.addEventListener( 'click', function()
     {
-    console.log( 'container! width:' + container.width, ' height: ' + container.height );
+    console.log( 'container! width:' + container.getWidth(), ' height: ' + container.getHeight() );
     });
 rect.addEventListener( 'click', function()
     {

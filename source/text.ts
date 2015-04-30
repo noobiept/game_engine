@@ -187,8 +187,10 @@ export class Text extends Element
                 }
             }
 
-        this.width = highestWidth;
-        this.height = this.font_size * length;     // 'font_size' not quite the same thing as height, but there's no way to determine the height right now so..
+        this._width = highestWidth;
+        this._height = this.font_size * length;     // 'font_size' not quite the same thing as height, but there's no way to determine the height right now so..
+        this._half_width = this._width / 2;
+        this._half_height = this._height / 2;
         }
 
 

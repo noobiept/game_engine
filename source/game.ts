@@ -386,19 +386,6 @@ function mouseMoveEvents()
             }
 
 
-        for (a = all.length - 1 ; a >= 0 ; a--)
-            {
-            element = all[ a ];
-
-                // check if this element was not already with the mouse over before, if it wasn't then it means its new so we dispatch the mouse over event
-            if ( ELEMENTS_UNDER_MOUSE.indexOf( element ) < 0 )
-                {
-                element.dispatchMouseOverEvent();
-
-                ELEMENTS_UNDER_MOUSE.push( element );
-                }
-            }
-
         for (a = ELEMENTS_UNDER_MOUSE.length - 1 ; a >= 0 ; a--)
             {
             element = ELEMENTS_UNDER_MOUSE[ a ];
@@ -409,6 +396,20 @@ function mouseMoveEvents()
                 ELEMENTS_UNDER_MOUSE.splice( a, 1 );
 
                 element.dispatchMouseOutEvent();
+                }
+            }
+
+
+        for (a = all.length - 1 ; a >= 0 ; a--)
+            {
+            element = all[ a ];
+
+                // check if this element was not already with the mouse over before, if it wasn't then it means its new so we dispatch the mouse over event
+            if ( ELEMENTS_UNDER_MOUSE.indexOf( element ) < 0 )
+                {
+                element.dispatchMouseOverEvent();
+
+                ELEMENTS_UNDER_MOUSE.push( element );
                 }
             }
         }

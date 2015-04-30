@@ -74,11 +74,6 @@ body
     text-decoration: none;
     }
 
-.Game-Text
-    {
-    text-align: right;
-    }
-
 
     /* ---- Message ---- */
 
@@ -131,4 +126,9 @@ body
     background-color: rgba(0, 0, 0, 0.2);
     width: 100%;
     height: 100%;
+    }
+
+.Game-Message-container .Game-Text
+    {
+    text-align: right;
     }

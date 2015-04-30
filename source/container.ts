@@ -217,14 +217,15 @@ export class Container extends Element
         {
         if ( this._children.length === 0 )
             {
-            this.width = this.height = 0;
+            this._width = this._height = 0;
+            this._half_width = this._half_height = 0;
             }
 
         var firstChild = this._children[ 0 ];
         var leftMost = firstChild.x;
-        var rightMost = firstChild.x + firstChild.width;
+        var rightMost = firstChild.x + firstChild._width;
         var topMost = firstChild.y;
-        var bottomMost = firstChild.y + firstChild.height;
+        var bottomMost = firstChild.y + firstChild._height;
         var length = this._children.length;
 
         for (var a = 1 ; a < length ; a++)
@@ -236,9 +237,9 @@ export class Container extends Element
                 leftMost = element.x;
                 }
 
-            else if ( element.x + element.width > rightMost )
+            else if ( element.x + element._width > rightMost )
                 {
-                rightMost = element.x + element.width;
+                rightMost = element.x + element._width;
                 }
 
 
@@ -247,14 +248,16 @@ export class Container extends Element
                 topMost = element.y;
                 }
 
-            else if ( element.y + element.height > bottomMost )
+            else if ( element.y + element._height > bottomMost )
                 {
-                bottomMost = element.y + element.height;
+                bottomMost = element.y + element._height;
                 }
             }
 
-        this.width = rightMost - leftMost;
-        this.height = bottomMost - topMost;
+        this._width = rightMost - leftMost;
+        this._height = bottomMost - topMost;
+        this._half_width = this._width / 2;
+        this._half_height = this._height / 2;
         }
 
 

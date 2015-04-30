@@ -41,7 +41,8 @@ export class Circle extends Element
         super( args );
 
         this._radius = args.radius;
-        this.width = this.height = args.radius * 2;
+        this._width = this._height = args.radius * 2;
+        this._half_width = this._half_height = args.radius;
         this.color = args.color;
         }
 
@@ -49,7 +50,8 @@ export class Circle extends Element
     set radius( value: number )
         {
         this._radius = value;
-        this.width = this.height = value * 2;
+        this._width = this._height = value * 2;
+        this._half_width = this._half_height = value;
         }
 
 

@@ -27,8 +27,6 @@ export class Element extends EventDispatcher
     {
     x: number;
     y: number;
-    width: number;
-    height: number;
 
     opacity: number;    // value between 0 and 1
     visible: boolean;    // whether the element is drawn or not
@@ -39,6 +37,11 @@ export class Element extends EventDispatcher
         // optional properties, only for when using a Grid
     column: number;
     line: number;
+
+    _width: number;
+    _height: number;
+    _half_width: number;
+    _half_height: number;
 
     _rotation: number;   // in radians (clockwise)
     _container: Container;
@@ -69,8 +72,8 @@ export class Element extends EventDispatcher
 
         this.x = x;
         this.y = y;
-        this.width = 0;
-        this.height = 0;
+        this._width = this._half_width = 0;
+        this._height = this._half_height = 0;
 
         this.visible = true;
         this.opacity = 1;
@@ -160,16 +163,16 @@ export class Element extends EventDispatcher
         scaleX *= this.scaleX;
         scaleY *= this.scaleY;
 
-        x += (this.x - this.width / 2) * scaleX;
-        y += (this.y - this.height / 2) * scaleY;
+        x += (this.x - this._half_width) * scaleX;
+        y += (this.y - this._half_height) * scaleY;
 
         if ( Utilities.pointBoxCollision(
                     refX,
                     refY,
                     x,
                     y,
-                    this.width * scaleX,
-                    this.height * scaleY
+                    this._width * scaleX,
+                    this._height * scaleY
                 ))
             {
             elements.push( this );
@@ -241,6 +244,56 @@ export class Element extends EventDispatcher
             }
 
         this.dispatchEvent( event.type, { event: event } );
+        }
+
+
+    /**
+     * @return The element's width.
+     */
+    getWidth()
+        {
+        return this._width;
+        }
+
+
+    /**
+     * @return The element's height.
+     */
+    getHeight()
+        {
+        return this._height;
+        }
+
+
+    /**
+     * @param width New width.
+     */
+    setWidth( width: number )
+        {
+        this._width = width;
+        this._half_width = width / 2;
+        }
+
+
+    /**
+     * @param height New height.
+     */
+    setHeight( height: number )
+        {
+        this._height = height;
+        this._half_height = height / 2;
+        }
+
+
+    /**
+     * Set the width and height at the same time.
+     */
+    setDimensions( width: number, height: number )
+        {
+        this._width = width;
+        this._half_width = width / 2;
+        this._height = height;
+        this._half_height = height / 2;
         }
 
 

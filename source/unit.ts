@@ -556,10 +556,10 @@ export class Unit extends Container
         if ( length > 0 &&
              this.hasListeners( 'collision' ) )
             {
-            var x = this.x - this.width / 2;
-            var y = this.y - this.height / 2;
-            var width = this.width;
-            var height = this.height;
+            var x = this.x - this._half_width;
+            var y = this.y - this._half_height;
+            var width = this._width;
+            var height = this._height;
 
             for (var a = 0 ; a < length ; a++)
                 {
@@ -575,10 +575,10 @@ export class Unit extends Container
                         continue;
                         }
 
-                    var unitWidth = unit.width;
-                    var unitHeight = unit.height;
-                    var unitX = unit.x - unitWidth / 2;
-                    var unitY = unit.y - unitHeight / 2;
+                    var unitWidth = unit._width;
+                    var unitHeight = unit._height;
+                    var unitX = unit.x - unit._half_width;
+                    var unitY = unit.y - unit._half_height;
 
                     if ( Utilities.boxBoxCollision(
                             x,     y,     width,     height,
@@ -599,10 +599,10 @@ export class Unit extends Container
                         var bullet = this._bullets[ c ];
 
                         if ( Utilities.boxBoxCollision(
-                                    bullet.x - bullet.width / 2,
-                                    bullet.y - bullet.height / 2,
-                                    bullet.width,
-                                    bullet.height,
+                                    bullet.x - bullet._half_width,
+                                    bullet.y - bullet._half_height,
+                                    bullet._width,
+                                    bullet._height,
                                     unitX,
                                     unitY,
                                     unitWidth,

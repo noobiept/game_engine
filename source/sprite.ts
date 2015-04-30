@@ -61,8 +61,8 @@ export class Sprite extends Bitmap
         {
         super( args );
 
-        this.width = args.frameWidth;
-        this.height = args.frameHeight;
+        this._width = args.frameWidth;
+        this._height = args.frameHeight;
         this._half_width = args.frameWidth / 2;
         this._half_height = args.frameHeight / 2;
 
@@ -97,8 +97,8 @@ export class Sprite extends Bitmap
         var line = Math.floor( frame / this._frames_per_line );
         var column = frame - line * this._frames_per_line;
 
-        this._source_x = column * this.width;
-        this._source_y = line * this.height;
+        this._source_x = column * this._width;
+        this._source_y = line * this._height;
         }
 
 
@@ -170,8 +170,8 @@ export class Sprite extends Bitmap
                 x: this.x,
                 y: this.y,
                 image: this.image,
-                frameWidth: this.width,
-                frameHeight: this.height,
+                frameWidth: this._width,
+                frameHeight: this._height,
                 animations: this._animations,
                 interval: this.interval
             });

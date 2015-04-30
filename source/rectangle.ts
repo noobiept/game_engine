@@ -37,8 +37,6 @@ export interface RectangleArgs extends ElementArgs
 export class Rectangle extends Element
     {
     color: string;
-    half_width: number;
-    half_height: number;
     fill: boolean;
 
     constructor( args: RectangleArgs )
@@ -51,10 +49,10 @@ export class Rectangle extends Element
             }
 
         this.fill = args.fill;
-        this.width = args.width;
-        this.height = args.height;
-        this.half_width = args.width / 2;
-        this.half_height = args.height / 2;
+        this._width = args.width;
+        this._height = args.height;
+        this._half_width = args.width / 2;
+        this._half_height = args.height / 2;
         this.color = args.color;
         }
 
@@ -76,13 +74,13 @@ export class Rectangle extends Element
         if ( this.fill )
             {
             ctx.fillStyle = this.color;
-            ctx.fillRect( -this.half_width, -this.half_height, this.width, this.height );
+            ctx.fillRect( -this._half_width, -this._half_height, this._width, this._height );
             }
 
         else
             {
             ctx.strokeStyle = this.color;
-            ctx.strokeRect( -this.half_width, -this.half_height, this.width, this.height );
+            ctx.strokeRect( -this._half_width, -this._half_height, this._width, this._height );
             }
         ctx.restore();
         }
@@ -93,8 +91,8 @@ export class Rectangle extends Element
         var element = new Game.Rectangle({
                 x: this.x,
                 y: this.y,
-                width: this.width,
-                height: this.height,
+                width: this._width,
+                height: this._height,
                 color: this.color,
                 fill: this.fill
             });

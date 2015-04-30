@@ -260,6 +260,12 @@ export module Html
                 }
 
             this._children.length = 0;
+
+                // there may be other children that are not classes from Game.Html.*, so we just remove the html normally
+            while( this.container.lastChild )
+                {
+                this.container.removeChild( this.container.lastChild );
+                }
             }
 
 

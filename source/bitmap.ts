@@ -34,8 +34,7 @@ export class Bitmap extends Element
     _image: HTMLImageElement;
     _source_x: number;
     _source_y: number;
-    _half_width: number;
-    _half_height: number;
+
 
     constructor( args: BitmapArgs )
         {
@@ -54,7 +53,7 @@ export class Bitmap extends Element
         ctx.translate( this.x, this.y );
         ctx.scale( this.scaleX, this.scaleY );
         ctx.rotate( this._rotation );
-        ctx.drawImage( this._image, this._source_x, this._source_y, this.width, this.height,  -this._half_width, -this._half_height, this.width, this.height );
+        ctx.drawImage( this._image, this._source_x, this._source_y, this._width, this._height,  -this._half_width, -this._half_height, this._width, this._height );
         ctx.restore();
         }
 
@@ -83,8 +82,8 @@ export class Bitmap extends Element
 
     set image( newImage: HTMLImageElement )
         {
-        this.width = newImage.width;
-        this.height = newImage.height;
+        this._width = newImage.width;
+        this._height = newImage.height;
         this._half_width = newImage.width / 2;
         this._half_height = newImage.height / 2;
         this._image = newImage;
