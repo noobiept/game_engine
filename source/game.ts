@@ -131,7 +131,7 @@ export function activateMouseMoveEvents( interval: number )
     {
     ELEMENTS_UNDER_MOUSE.length = 0;
 
-    document.body.addEventListener( 'mousemove', updateMousePosition );
+    CANVAS_CONTAINER.addEventListener( 'mousemove', updateMousePosition );
 
     MOUSE_MOVE_ID = window.setInterval( mouseMoveEvents, interval );
     }
@@ -143,7 +143,7 @@ export function activateMouseMoveEvents( interval: number )
 export function disableMouseMoveEvents()
     {
     window.clearInterval( MOUSE_MOVE_ID );
-    document.body.removeEventListener( 'mousemove', updateMousePosition );
+    CANVAS_CONTAINER.removeEventListener( 'mousemove', updateMousePosition );
     }
 
 
