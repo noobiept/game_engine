@@ -52,7 +52,7 @@ var MOUSE_X: number = -1;
 var MOUSE_Y: number = -1;
 var MOUSE_MOVED = false;   // if the mouse moved since the last time we checked
 
-var CALLBACKS: { callback: () => any; interval: number; count: number; }[] = [];
+var CALLBACKS: { callback: () => any; delay: number; count: number; isInterval: boolean; }[] = [];
 
 
 /**
@@ -260,27 +260,32 @@ export function removeElement( element: any )
 
 
 /**
- * Adds a callback function to be called at a certain interval (or every tick) in the game loop (before the draw phase)
+ * Adds a callback function to be called at a certain timeout/interval (or every tick) in the game loop (before the draw phase).
+ *
+ * Sometimes its useful to add a function call through this, for example when you have code that may remove elements, but its called from an event handler (which may try to process the elements that you removed).
  *
  * @param callback The callback function.
- * @param interval Interval between function calls. If not given then it is called every tick. In seconds.
- * @return If it was added successful.
+ * @param delay Time until the function is called. In seconds.
+ * @param isInterval If the function is to be called constantly (every passed `delay`), or just one time (a timeout). Default is an interval.
+ * @return If it was added successfully.
  */
-export function addToGameLoop( callback: () => any, interval?: number )
+export function addToGameLoop( callback: () => any, delay: number,  isInterval?: boolean )
     {
-    if ( !Utilities.isFunction( callback ) )
+    if ( !Utilities.isFunction( callback ) ||
+         !Utilities.isNumber( delay ) )
         {
         return false;
         }
 
-    if ( !Utilities.isNumber( interval ) || interval <= 0 )
+    if ( isInterval !== true )
         {
-        interval = -1;
+        isInterval = false;
         }
 
     CALLBACKS.push({
             callback: callback,
-            interval: interval,
+            isInterval: isInterval,
+            delay: delay,
             count: 0
         });
 
@@ -478,19 +483,29 @@ function callbacks( deltaTime: number )
         {
         var call = CALLBACKS[ a ];
 
-        if ( call.interval <= 0 )
+        if ( call.delay <= 0 )
             {
             call.callback();
+
+            if ( !call.isInterval )
+                {
+                CALLBACKS.splice( a, 1 );
+                }
             }
 
         else
             {
             call.count += deltaTime;
 
-            if ( call.count >= call.interval )
+            if ( call.count >= call.delay )
                 {
                 call.count = 0;
                 call.callback();
+
+                if ( !call.isInterval )
+                    {
+                    CALLBACKS.splice( a, 1 );
+                    }
                 }
             }
         }
