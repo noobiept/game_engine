@@ -28,7 +28,7 @@ export interface PreloadArgs extends EventDispatcherArgs
  *
  * Events:
  *
- * - `complete` -- `listener();`
+ * - `complete` -- `listener( data: { failed_ids: string[]; loaded_ids: string[]; } );`
  * - `error` -- `listener( data: { id: string; event; } );`
  * - `abort` -- `listener( data: { id: string; event; } );`
  * - `progress` -- `listener( progress: number );`
@@ -42,6 +42,8 @@ export class Preload extends EventDispatcher
     save_global: boolean;
     _total_items: number;
     _loaded_items: number;
+    _failed_ids: string[];      // list of the ids that failed to load
+    _loaded_ids: string[];      // list of the ids that were successfully loaded
 
     constructor( args?: PreloadArgs )
         {
@@ -61,6 +63,8 @@ export class Preload extends EventDispatcher
         this._loaded_items = 0;
         this.save_global = saveGlobal;
         this._data = {};
+        this._failed_ids = [];
+        this._loaded_ids = [];
         }
 
 
@@ -84,13 +88,47 @@ export class Preload extends EventDispatcher
 
         this.dispatchEvent( 'fileload', { id: id, data: data } );
 
-
         this._loaded_items++;
+        this._loaded_ids.push( id );
 
         if ( this._loaded_items >= this._total_items )
             {
-            this.dispatchEvent( 'complete' );
+            this._loading_complete();
             }
+        }
+
+
+    /**
+     * An element failed to load. We'll keep track of its id, to send it later on the 'complete' event.
+     */
+    _failed_to_load( id: string )
+        {
+        this._loaded_items++;
+        this._failed_ids.push( id );
+
+        if ( this._loaded_items >= this._total_items )
+            {
+            this._loading_complete();
+            }
+        }
+
+
+    /**
+     * All the elements were dealt with. Dispatch the `complete` event with a list of the loaded ids, and another list with the ids that failed to load as well.
+     */
+    _loading_complete()
+        {
+        this.dispatchEvent( 'complete',
+            {
+            failed_ids: this._failed_ids,
+            loaded_ids: this._loaded_ids
+            });
+
+            // clear the variables
+        this._failed_ids.length = 0;
+        this._loaded_ids.length = 0;
+        this._loaded_items = 0;
+        this._total_items = 0;
         }
 
 
@@ -191,6 +229,14 @@ export class Preload extends EventDispatcher
             });
         request.addEventListener( 'load', function( event )
             {
+                // failed to load
+            if ( this.status !== 200 )
+                {
+                _this._failed_to_load( id );
+                return;
+                }
+
+
             var response = this.response;
 
             if ( type === 'image' )
