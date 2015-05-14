@@ -27,7 +27,7 @@ Game.addToGameLoop( function()
     countFrames++;
 
     frame.text = countFrames + ' frames';
-    });
+    }, 0 );
 
 
     // called every second

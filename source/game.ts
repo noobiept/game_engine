@@ -277,9 +277,9 @@ export function addToGameLoop( callback: () => any, delay: number,  isInterval?:
         return false;
         }
 
-    if ( isInterval !== true )
+    if ( isInterval !== false )
         {
-        isInterval = false;
+        isInterval = true;
         }
 
     CALLBACKS.push({
