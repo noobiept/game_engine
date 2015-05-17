@@ -251,6 +251,20 @@ export class Preload extends EventDispatcher
 
             else if ( type === 'json' )
                 {
+                    // for the browsers that don't return the object, but a string instead
+                if ( typeof response === 'string' )
+                    {
+                    try {
+                        response = JSON.parse( response );
+                        }
+
+                    catch( error )
+                        {
+                        _this._failed_to_load( id );
+                        return;
+                        }
+                    }
+
                 _this._loaded( id, response );
                 }
 
