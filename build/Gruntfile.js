@@ -1,13 +1,19 @@
+var PATH = require( 'path' );
+
 module.exports = function( grunt )
 {
+var devDest = 'output/';
+var releaseDest = '../release/<%= pkg.version %>/';
+var source = '../source/';
+
 grunt.initConfig({
         pkg: grunt.file.readJSON( 'package.json' ),
 
             // compile typescript code to javascript
-        typescript: {
+        ts: {
             dev: {
-                src: [ '../source/**/*.ts' ],
-                dest: 'output/<%= pkg.name %>.js',
+                src: [ PATH.join( source, '**/*.ts' ) ],
+                out: PATH.join( devDest, '<%= pkg.name %>.js' ),
                 options: {
                     declaration: true,
                     target: 'es5'
@@ -20,16 +26,14 @@ grunt.initConfig({
             dev: {
                 files: [
                     {
-                        cwd: '../source/utilities/',
-                        src: [ 'utilities.1.7.0.min.js', 'utilities.1.7.0.d.ts' ],
-                        dest: 'output/',
-                        expand: true
-                    },
-                    {
-                        cwd: '../source/css/',
-                        src: [ '<%= pkg.name %>.css' ],
-                        dest: 'output/',
-                        expand: true
+                        expand: true,
+                        cwd: source,
+                        src: [
+                            'utilities/*',
+                            'css/*'
+                        ],
+                        dest: devDest,
+                        flatten: true
                     }
                 ]
             },
@@ -37,15 +41,22 @@ grunt.initConfig({
             release: {
                 files: [
                     {
-                        cwd: 'output/',
-                        src: [ 'utilities.1.7.0.min.js', 'utilities.1.7.0.d.ts' ],
-                        dest: '../release/<%= pkg.version %>/',
+                        cwd: devDest,
+                        src: [
+                            'utilities.1.7.0.min.js',
+                            'utilities.1.7.0.d.ts'
+                        ],
+                        dest: releaseDest,
                         expand: true
                     },
                     {
-                        cwd: 'output/',
-                        src: [ '<%= pkg.name %>.min.css', '<%= pkg.name %>.min.js', '<%= pkg.name %>.d.ts' ],
-                        dest: '../release/<%= pkg.version %>/',
+                        cwd: devDest,
+                        src: [
+                            '<%= pkg.name %>.css',
+                            '<%= pkg.name %>.min.js',
+                            '<%= pkg.name %>.d.ts'
+                        ],
+                        dest: releaseDest,
                         expand: true,
                         rename: function( dest, source )
                             {
@@ -68,20 +79,9 @@ grunt.initConfig({
         uglify: {
             dev: {
                 files: {
-                    'output/<%= pkg.name %>.min.js': [ 'output/<%= pkg.name %>.js' ]
-                }
-            }
-        },
-
-            // minimize css
-        cssmin: {
-            options: {
-                shorthandCompacting: false,
-                roundingPrecision: -1
-            },
-            dev: {
-                files: {
-                    'output/<%= pkg.name %>.min.css': [ 'output/<%= pkg.name %>.css' ]
+                    'output/<%= pkg.name %>.min.js': [
+                        PATH.join( devDest, '<%= pkg.name %>.js' )
+                    ]
                 }
             }
         },
@@ -94,7 +94,7 @@ grunt.initConfig({
                 mode: 'File',
                 target: 'es5'
             },
-            src: '../source/'
+            src: source
         }
     });
 
@@ -102,15 +102,14 @@ grunt.initConfig({
 
 
     // load the plug-ins
-grunt.loadNpmTasks( 'grunt-typescript' );
+grunt.loadNpmTasks( 'grunt-ts' );
 grunt.loadNpmTasks( 'grunt-contrib-copy' );
 grunt.loadNpmTasks( 'grunt-contrib-uglify' );
-grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
 grunt.loadNpmTasks( 'typedoc' );
 
     // tasks
-grunt.registerTask( 'default', [ 'typescript', 'copy:dev' ] );      // dev build
-grunt.registerTask( 'docs', [ 'typedoc' ] );                        // build the documentation
-grunt.registerTask( 'minimize', [ 'uglify', 'cssmin' ] );           // minimize js and css
+grunt.registerTask( 'default', [ 'ts', 'copy:dev' ] );      // dev build
+grunt.registerTask( 'docs', [ 'typedoc' ] );                // build the documentation
+grunt.registerTask( 'minimize', [ 'uglify' ] );             // minimize js
 grunt.registerTask( 'release', [ 'default', 'minimize', 'docs', 'copy:release' ] ); // release build
 };
