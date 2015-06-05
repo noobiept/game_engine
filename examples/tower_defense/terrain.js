@@ -6,7 +6,7 @@ args.height = Main.SQUARE_SIZE;
 
 Game.Rectangle.call( this, args );
 
-this.setPassable( false );
+this.setPassable( 0 );
 }
 
 Utilities.inheritPrototype( Terrain, Game.Rectangle );
@@ -14,7 +14,7 @@ Utilities.inheritPrototype( Terrain, Game.Rectangle );
 
 Terrain.prototype.setPassable = function( passable )
 {
-if ( passable === true )
+if ( passable !== 0 )
     {
     this.color = 'rgb(100, 100, 100)';
     }

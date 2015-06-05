@@ -2,9 +2,12 @@ function Tower( args )
 {
 Game.Unit.call( this, args );
 
+var width = Main.SQUARE_SIZE;
+var height = Main.SQUARE_SIZE;
+
 var shape = new Game.Rectangle({
-        width: 20,
-        height: 20,
+        width: width,
+        height: height,
         color: 'purple'
     });
 this.addChild( shape );
@@ -16,6 +19,9 @@ this.cost = 50;
 
 this.attack_count = 0;
 this.can_attack = true;
+
+this.x = args.column * Main.SQUARE_SIZE + width / 2;
+this.y = args.line * Main.SQUARE_SIZE + height / 2;
 }
 
 Utilities.inheritPrototype( Tower, Game.Unit );

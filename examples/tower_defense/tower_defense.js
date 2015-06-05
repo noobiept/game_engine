@@ -9,31 +9,28 @@ var Main;
 
 
 var MAP_INFO = {
-    columns: 20,
-    lines: 20,
+    columns: 5,
+    lines: 5,
     start: {
         column: 0,
-        line: 10
+        line: 0
         },
     end: {
-        column: 19,
-        line: 10
+        column: 4,
+        line: 4
         },
-    passableTerrain: [
-            { column: 0, line: 10 },
-            { column: 1, line: 10 },
-            { column: 2, line: 10 },
-            { column: 3, line: 10 },
-            { column: 4, line: 10 },
-            { column: 5, line: 10 },
-            { column: 6, line: 10 },
-            { column: 7, line: 10 },
-            { column: 8, line: 10 },
-            { column: 9, line: 10 }
+        // '1' means its a passable position
+        // '0' means its not passable
+    map: [
+            [ 1, 0, 1, 1, 1 ],
+            [ 1, 0, 1, 0, 1 ],
+            [ 1, 0, 1, 0, 1 ],
+            [ 1, 0, 1, 0, 1 ],
+            [ 1, 1, 1, 0, 1 ]
         ]
     };
-var GRID;
-var TERRAINS = [];
+
+var PATH;
 
     // top level container for all the elements
 var TERRAINS_CONTAINER;
@@ -48,12 +45,6 @@ Main.init = function()
 {
 Game.init( document.body, 500, 500 );
 Game.addToGameLoop( tick, 0 );
-
-GRID = new Game.Grid({
-        squareSize: Main.SQUARE_SIZE,
-        columns: MAP_INFO.columns,
-        lines: MAP_INFO.lines
-    });
 
 TERRAINS_CONTAINER = new Game.Container();
 BULLETS_CONTAINER = new Game.Container();
@@ -72,58 +63,74 @@ Main.start( MAP_INFO );
 
 Main.start = function( mapInfo )
 {
-    // add the terrain
-var line;
 var column;
-var a;
+var line;
 
+
+    // add the terrain
 for (line = 0 ; line < mapInfo.lines ; line++)
     {
     for (column = 0 ; column < mapInfo.columns ; column++)
         {
+        var value = mapInfo.map[ line ][ column ];
+
+            // add the terrain
         var terrain = new Terrain({
             x: Main.SQUARE_SIZE * column + Main.SQUARE_SIZE / 2,
             y: Main.SQUARE_SIZE * line + Main.SQUARE_SIZE / 2
         });
-        TERRAINS_CONTAINER.addChild( terrain );
+        terrain.setPassable( value );
 
-        TERRAINS.push( terrain );
+        TERRAINS_CONTAINER.addChild( terrain );
         }
     }
 
 
-for (a = mapInfo.passableTerrain.length - 1 ; a >= 0 ; a--)
-    {
-    var terrainInfo = mapInfo.passableTerrain[ a ];
+    // calculate the path
+PATH = PathFinding.getPath( mapInfo );
 
-    var position = terrainInfo.column + terrainInfo.line * mapInfo.columns;
 
-    TERRAINS[ position ].setPassable( true );
-    }
-
+    // add some towers
 var tower = new Tower({
-        x: 60,
-        y: 200,
+        column: 1,
+        line: 3,
         bullet_container: BULLETS_CONTAINER
     });
 TOWERS_CONTAINER.addChild( tower );
 
 
+
 var tower2 = new Tower({
-        x: 200,
-        y: 200,
+        column: 3,
+        line: 1,
         bullet_container: BULLETS_CONTAINER
     });
 TOWERS_CONTAINER.addChild( tower2 );
 
 
+    // and some creeps
 var creep = new Creep({
-        x: 10,
-        y: 220
+        column: mapInfo.start.column,
+        line: mapInfo.start.line
     });
 CREEPS_CONTAINER.addChild( creep );
 
-creep.moveTo( 400, 220 );
+
+var endColumn = mapInfo.end.column;
+var endLine = mapInfo.end.line;
+
+column = mapInfo.start.column;
+line = mapInfo.start.line;
+
+while( !(column === endColumn && line === endLine) )
+    {
+    var next = PATH[ line ][ column ];
+
+    creep.queueMoveTo2( next.column, next.line );
+
+    column = next.column;
+    line = next.line;
+    }
 };
 
 

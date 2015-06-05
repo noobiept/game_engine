@@ -305,6 +305,12 @@ export class Unit extends Container
             callback = null;
             }
 
+        if ( !this._is_moving )
+            {
+            this.moveTo( x, y, callback );
+            return;
+            }
+
         this._path.push({
                 x: x,
                 y: y,
