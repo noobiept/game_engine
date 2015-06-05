@@ -115,11 +115,12 @@ export class Element extends EventDispatcher
 
 
     /**
-     * Logic code here (runs every tick).
+     * Logic code here (runs every update/tick).
+     * Set the `_has_logic` property to `true` for this to get called.
      *
      * @param deltaTime Time elapsed since the last update.
      */
-    logic( deltaTime )
+    logic( deltaTime: number )
         {
             // optional
         }

@@ -75,9 +75,7 @@ export function init( htmlContainer: HTMLElement, canvasWidth: number, canvasHei
         });
     Game.addCanvas( canvas );
 
-
     Sound.init();
-    Bullet.init();
 
     CANVAS_CONTAINER.addEventListener( 'click', clickEvents );
     CANVAS_CONTAINER.addEventListener( 'mousedown', clickEvents );

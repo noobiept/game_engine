@@ -43,6 +43,7 @@ export class Container extends Element
         super( args );
 
         this._children = [];
+        this._has_logic = true;
 
         if ( typeof args !== 'undefined' )
             {

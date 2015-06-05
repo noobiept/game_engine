@@ -51,28 +51,9 @@ export class Bullet extends Container
     _remove: () => any;
 
 
-    static _all: Bullet[];
-    static _container: Game.Container;
-
-
-    /**
-     * Initializer for the Bullet class.
-     */
-    static init()
-        {
-        Bullet._all = [];
-        Bullet._container = new Game.Container();
-        Bullet._container._has_logic = true;
-
-        Game.getCanvas().addElement( Bullet._container );
-        }
-
-
     constructor( args: BulletArgs )
         {
         super( args );
-
-        this._has_logic = true;
 
         this.movement_speed = args.movement_speed;
 
@@ -102,24 +83,6 @@ export class Bullet extends Container
             {
             this._remove = args.remove;
             }
-
-
-        Bullet._container.addChild( this );
-        Bullet._all.push( this );
-        }
-
-
-    /**
-     * Remove the bullet from the canvas.
-     */
-    remove()
-        {
-        super.remove();
-
-        var index = Bullet._all.indexOf( this );
-
-        Bullet._all.splice( index, 1 );
-        Bullet._container.removeChild( this );
         }
 
 

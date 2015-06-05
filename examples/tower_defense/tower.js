@@ -5,7 +5,7 @@ Game.Unit.call( this, args );
 var shape = new Game.Rectangle({
         width: 20,
         height: 20,
-        color: 'red'
+        color: 'purple'
     });
 this.addChild( shape );
 
