@@ -15,7 +15,6 @@ this.addChild( shape );
 this.range = 50;     // attack range
 this.damage = 50;
 this.attack_interval = 0.5;
-this.cost = 50;
 
 this.attack_count = 0;
 this.can_attack = true;
@@ -23,6 +22,11 @@ this.can_attack = true;
 this.x = args.column * Main.SQUARE_SIZE + width / 2;
 this.y = args.line * Main.SQUARE_SIZE + height / 2;
 
+
+    // towers cost money
+Main.addMoney( -Tower.COST );
+
+    // set the 'collision' listener to know when it hits a creep
 this.addEventListener( 'collision', function( data )
     {
     var tower = data.element;
@@ -32,6 +36,7 @@ this.addEventListener( 'collision', function( data )
 
     if ( creep.health <= 0 )
         {
+        Main.addMoney( creep.worth );
         creep.remove();
         }
 
@@ -43,6 +48,10 @@ this.addEventListener( 'collision', function( data )
 }
 
 Utilities.inheritPrototype( Tower, Game.Unit );
+
+
+    // cost of each tower
+Tower.COST = 50;
 
 
 Tower.prototype.base_logic = Tower.prototype.logic;

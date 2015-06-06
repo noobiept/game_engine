@@ -144,10 +144,13 @@ export class Bullet extends Container
      */
     remove()
         {
-        this._target = null;
-        this.dispatchEvent( 'remove', { element: this } );
+        if ( !this._removed )
+            {
+            this._target = null;
+            this.dispatchEvent( 'remove', { element: this } );
 
-        super.remove();
+            super.remove();
+            }
         }
 
 

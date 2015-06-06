@@ -339,16 +339,19 @@ export class Element extends EventDispatcher
      */
     remove()
         {
-        this._removed = true;
-
-        if ( this._container !== null )
+        if ( !this._removed )
             {
-            this._container.removeChild( this );
-            }
+            this._removed = true;
 
-        else
-            {
-            Game.removeElement( this );
+            if ( this._container !== null )
+                {
+                this._container.removeChild( this );
+                }
+
+            else
+                {
+                Game.removeElement( this );
+                }
             }
         }
 

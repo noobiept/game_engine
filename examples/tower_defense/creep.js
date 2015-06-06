@@ -18,6 +18,9 @@ this.y = args.line * Main.SQUARE_SIZE + center;
 this.column = args.column;
 this.line = args.line;
 
+    // how much money you get from the creep
+this.worth = 10;
+
 this.checkDestination();
 }
 

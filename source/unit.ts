@@ -190,14 +190,17 @@ export class Unit extends Container
      */
     _removeNow()
         {
-        super.remove();
+        if ( !this._removed )
+            {
+            super.remove();
 
-        var constructor = <any> this.constructor;
-        var all = constructor._all;
+            var constructor = <any> this.constructor;
+            var all = constructor._all;
 
-        var index = all.indexOf( this );
+            var index = all.indexOf( this );
 
-        all.splice( index, 1 );
+            all.splice( index, 1 );
+            }
         }
 
 
