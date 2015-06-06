@@ -527,12 +527,12 @@ export class Unit extends Container
                 this.x = this._destination_x;
                 this.y = this._destination_y;
 
+                this.moveToNext();
+
                 if ( this._move_callback )
                     {
                     this._move_callback();
                     }
-
-                this.moveToNext();
                 }
             }
         }

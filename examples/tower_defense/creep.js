@@ -12,14 +12,54 @@ var center = Main.SQUARE_SIZE / 2;
 
 this.x = args.column * Main.SQUARE_SIZE + center;
 this.y = args.line * Main.SQUARE_SIZE + center;
+
+this.column = args.column;
+this.line = args.line;
+
+this.checkDestination();
 }
 
 Utilities.inheritPrototype( Creep, Game.Unit );
 
 
-Creep.prototype.queueMoveTo2 = function( column, line )
+/**
+ * Move to a column/line position. Once it reaches the destination, check to where it needs to go next.
+ */
+Creep.prototype.moveTo2 = function( column, line )
 {
 var center = Main.SQUARE_SIZE / 2;
+var _this = this;
 
-this.queueMoveTo( column * Main.SQUARE_SIZE + center, line * Main.SQUARE_SIZE + center );
+this.moveTo(
+    column * Main.SQUARE_SIZE + center,
+    line * Main.SQUARE_SIZE + center,
+    function()
+        {
+        _this.column = column;
+        _this.line = line;
+        _this.checkDestination();
+        }
+    );
+};
+
+
+/**
+ * See where to go from the current column/line position.
+ * If it reached the end, then the unit is removed.
+ */
+Creep.prototype.checkDestination = function()
+{
+var next = Main.getNextPosition( this.column, this.line );
+
+    // we reached the end
+if ( next.column === this.column &&
+     next.line   === this.line )
+    {
+    this.remove();
+    }
+
+else
+    {
+    this.moveTo2( next.column, next.line );
+    }
 };

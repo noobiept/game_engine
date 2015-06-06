@@ -109,28 +109,21 @@ TOWERS_CONTAINER.addChild( tower2 );
 
 
     // and some creeps
-var creep = new Creep({
-        column: mapInfo.start.column,
-        line: mapInfo.start.line
-    });
-CREEPS_CONTAINER.addChild( creep );
-
-
-var endColumn = mapInfo.end.column;
-var endLine = mapInfo.end.line;
-
-column = mapInfo.start.column;
-line = mapInfo.start.line;
-
-while( !(column === endColumn && line === endLine) )
+Game.addToGameLoop( function()
     {
-    var next = PATH[ line ][ column ];
+    var creep = new Creep({
+            column: mapInfo.start.column,
+            line: mapInfo.start.line
+        });
+    CREEPS_CONTAINER.addChild( creep );
 
-    creep.queueMoveTo2( next.column, next.line );
+    }, 1 );
+};
 
-    column = next.column;
-    line = next.line;
-    }
+
+Main.getNextPosition = function( column, line )
+{
+return PATH[ line ][ column ];
 };
 
 
@@ -142,7 +135,8 @@ for (var a = 0 ; a < Tower._all.length ; a++)
     {
     var tower = Tower._all[ a ];
 
-    if ( tower.can_attack )
+    if ( tower.can_attack &&
+         Creep._all )
         {
         for (var b = 0 ; b < Creep._all.length ; b++)
             {
