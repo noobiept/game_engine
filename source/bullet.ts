@@ -9,7 +9,6 @@ export interface BulletArgs extends ContainerArgs
         // bullet moves in a fixed direction if an angle is given, until its out of the canvas
         // or follows a target, if an Element is given instead
     angleOrTarget: any;     // number | Element
-    remove?: () => any;     // to have a different function that is called when the bullet is removed
     }
 
 
@@ -25,13 +24,13 @@ export interface BulletArgs extends ContainerArgs
  *             x: 10,
  *             y: 10,
  *             angleOrTarget: 0,
- *             movement_speed: 100,
- *             remove: function()
- *                 {
- *                 console.log( 'Bullet removed!' );
- *                 }
+ *             movement_speed: 100
  *         });
  *     bullet.addChild( bulletShape );
+ *     bullet.addEventListener( 'remove', function( data )
+ *         {
+ *         console.log( 'Bullet removed!' );
+ *         });
  *
  * Events:
  *
@@ -41,6 +40,8 @@ export interface BulletArgs extends ContainerArgs
  * - `mousemove` -- `listener( data: { element: Element; } );`
  * - `mouseover` -- `listener( data: { element: Element; } );`
  * - `mouseout` -- `listener( data: { element: Element; } );`
+ * - `collision` -- `listener( data: { element: Bullet; collidedWith: Element; } );`    // only when it has a set target.
+ * - `remove` -- `listener( data: { element: Bullet; };`
  */
 export class Bullet extends Container
     {
@@ -48,7 +49,6 @@ export class Bullet extends Container
     _move_x: number;
     _move_y: number;
     _target: Element;
-    _remove: () => any;
 
 
     constructor( args: BulletArgs )
@@ -72,17 +72,6 @@ export class Bullet extends Container
             this._target = args.angleOrTarget;
             this.logic = this.targetLogic;
             }
-
-
-        if ( typeof args.remove === 'undefined' )
-            {
-            this._remove = this.remove;
-            }
-
-        else
-            {
-            this._remove = args.remove;
-            }
         }
 
 
@@ -98,7 +87,7 @@ export class Bullet extends Container
 
         if ( !Game.getCanvas().isInCanvas( this.x, this.y ) )
             {
-            this._remove();
+            this.remove();
             }
         }
 
@@ -129,7 +118,11 @@ export class Bullet extends Container
                 target._height
                 ))
             {
-            this._remove();
+            this.dispatchEvent( 'collision', {
+                    element: this,
+                    collidedWith: target
+                });
+            this.remove();
             }
         }
 
@@ -142,6 +135,19 @@ export class Bullet extends Container
     logic( deltaTime: number )
         {
             // empty
+        }
+
+
+    /**
+     * Clear the target reference, before removing.
+     * Dispatch the `remove` event as well.
+     */
+    remove()
+        {
+        this._target = null;
+        this.dispatchEvent( 'remove', { element: this } );
+
+        super.remove();
         }
 
 
@@ -176,8 +182,7 @@ export class Bullet extends Container
                 y: this.y,
                 children: children,
                 movement_speed: this.movement_speed,
-                angleOrTarget: angleOrTarget,
-                remove: this._remove
+                angleOrTarget: angleOrTarget
             });
         bullet.opacity = this.opacity;
         bullet.visible = this.visible;

@@ -51,7 +51,7 @@ export enum UnitMovement
  * - `mousemove` -- `listener( data: { element: Element; } );`
  * - `mouseover` -- `listener( data: { element: Element; } );`
  * - `mouseout` -- `listener( data: { element: Element; } );`
- * - `collision` -- `listener( data: { element: Unit; collidedWith: Unit; } );`
+ * - `collision` -- `listener( data: { element: Unit; bullet?: Bullet; collidedWith: Unit; } );`
  *
  * Examples -- `2048`, `basic_example`, `bullets`, `collision_detection`, `custom_element`
  */
@@ -441,17 +441,23 @@ export class Unit extends Container
                 x: this.x,
                 y: this.y,
                 angleOrTarget: angleOrTarget,
-                movement_speed: this.bullet_movement_speed,
-                remove: function()
-                    {
-                    var index = _this._bullets.indexOf( bullet );
-
-                    _this._bullets.splice( index, 1 );
-
-                    bullet.remove();
-                    }
+                movement_speed: this.bullet_movement_speed
             });
         bullet.addChild( shape );
+        bullet.addEventListener( 'collision', function( data )
+            {
+            _this.dispatchEvent( 'collision', {
+                    element: _this,
+                    bullet: data.element,
+                    collidedWith: data.collidedWith
+                });
+            });
+        bullet.addEventListener( 'remove', function( data )
+            {
+            var index = _this._bullets.indexOf( bullet );
+
+            _this._bullets.splice( index, 1 );
+            });
 
         this._bullet_container.addChild( bullet );
         this._bullets.push( bullet );
@@ -580,6 +586,12 @@ export class Unit extends Container
                 {
                 var all = constructor.collidesWith[ a ]._all;
 
+                    // the 'all' array is only initialized when the first object is created. So add this check for the case when we're checking the collision against a class that doesn't have any object yet
+                if ( !all )
+                    {
+                    continue;
+                    }
+
                 for (var b = all.length - 1 ; b >= 0 ; b--)
                     {
                     var unit = all[ b ];
@@ -626,6 +638,7 @@ export class Unit extends Container
                             {
                             this.dispatchEvent( 'collision', {
                                     element: this,
+                                    bullet: bullet,
                                     collidedWith: unit
                                 });
                             return;

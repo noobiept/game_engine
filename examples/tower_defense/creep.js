@@ -1,5 +1,7 @@
 function Creep( args )
 {
+args.health = 100;
+
 Game.Unit.call( this, args );
 
 var shape = new Game.Circle({

@@ -9,24 +9,40 @@ var Main;
 
 
 var MAP_INFO = {
-    columns: 5,
-    lines: 5,
-    start: {
-        column: 0,
+    columns: 15,
+    lines: 15,
+    start: [
+        {
+        column: 1,
         line: 0
         },
+        {
+        column: 14,
+        line: 3
+        }
+    ],
     end: {
-        column: 4,
-        line: 4
+        column: 13,
+        line: 7
         },
         // '1' means its a passable position
         // '0' means its not passable
     map: [
-            [ 1, 0, 1, 1, 1 ],
-            [ 1, 0, 1, 0, 1 ],
-            [ 1, 0, 1, 0, 1 ],
-            [ 1, 0, 1, 0, 1 ],
-            [ 1, 1, 1, 0, 1 ]
+            [ 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+            [ 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+            [ 0, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0 ],
+            [ 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1 ],
+            [ 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 ],
+            [ 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 ],
+            [ 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0 ],
+            [ 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0 ],
+            [ 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0 ],
+            [ 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0 ],
+            [ 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0 ],
+            [ 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0 ],
+            [ 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0 ],
+            [ 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0 ],
+            [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
         ]
     };
 
@@ -56,6 +72,9 @@ Game.addElement( TERRAINS_CONTAINER );
 Game.addElement( TOWERS_CONTAINER );
 Game.addElement( CREEPS_CONTAINER );
 Game.addElement( BULLETS_CONTAINER );
+
+    // set the possible collisions between the elements
+Tower.collidesWith = [ Creep ];
 
 Main.start( MAP_INFO );
 };
@@ -92,8 +111,8 @@ PATH = PathFinding.getPath( mapInfo );
 
     // add some towers
 var tower = new Tower({
-        column: 1,
-        line: 3,
+        column: 2,
+        line: 4,
         bullet_container: BULLETS_CONTAINER
     });
 TOWERS_CONTAINER.addChild( tower );
@@ -101,8 +120,8 @@ TOWERS_CONTAINER.addChild( tower );
 
 
 var tower2 = new Tower({
-        column: 3,
-        line: 1,
+        column: 8,
+        line: 5,
         bullet_container: BULLETS_CONTAINER
     });
 TOWERS_CONTAINER.addChild( tower2 );
@@ -111,12 +130,16 @@ TOWERS_CONTAINER.addChild( tower2 );
     // and some creeps
 Game.addToGameLoop( function()
     {
-    var creep = new Creep({
-            column: mapInfo.start.column,
-            line: mapInfo.start.line
-        });
-    CREEPS_CONTAINER.addChild( creep );
+    for (var a = 0 ; a < mapInfo.start.length ; a++)
+        {
+        var position = mapInfo.start[ a ];
 
+        var creep = new Creep({
+            column: position.column,
+            line: position.line
+        });
+        CREEPS_CONTAINER.addChild( creep );
+        }
     }, 1 );
 };
 

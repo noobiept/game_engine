@@ -13,7 +13,7 @@ var shape = new Game.Rectangle({
 this.addChild( shape );
 
 this.range = 50;     // attack range
-this.damage = 10;
+this.damage = 50;
 this.attack_interval = 0.5;
 this.cost = 50;
 
@@ -22,10 +22,27 @@ this.can_attack = true;
 
 this.x = args.column * Main.SQUARE_SIZE + width / 2;
 this.y = args.line * Main.SQUARE_SIZE + height / 2;
+
+this.addEventListener( 'collision', function( data )
+    {
+    var tower = data.element;
+    var creep = data.collidedWith;
+
+    creep.health -= tower.damage;
+
+    if ( creep.health <= 0 )
+        {
+        creep.remove();
+        }
+
+    if ( data.bullet )
+        {
+        data.bullet.remove();
+        }
+    });
 }
 
 Utilities.inheritPrototype( Tower, Game.Unit );
-
 
 
 Tower.prototype.base_logic = Tower.prototype.logic;
