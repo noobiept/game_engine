@@ -346,6 +346,7 @@ export class Element extends EventDispatcher
             if ( this._container !== null )
                 {
                 this._container.removeChild( this );
+                this._container = null;
                 }
 
             else

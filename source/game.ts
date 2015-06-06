@@ -44,6 +44,7 @@ var CANVAS_CONTAINER: HTMLDivElement;
 
 var TIME: number;
 var ANIMATION_ID: number;
+var STOP_LOOP = false;
 
     // mouse move variables
 var MOUSE_MOVE_ID: number;
@@ -106,6 +107,8 @@ export function init( htmlContainer: HTMLElement, canvasWidth: number, canvasHei
  */
 export function startGameLoop()
     {
+    STOP_LOOP = false;
+
     TIME = new Date().getTime();
     loop();
     }
@@ -116,6 +119,8 @@ export function startGameLoop()
  */
 export function stopGameLoop()
     {
+    STOP_LOOP = true;
+
     window.cancelAnimationFrame( ANIMATION_ID );
     }
 
@@ -466,7 +471,10 @@ function loop()
         }
 
 
-    ANIMATION_ID = window.requestAnimationFrame( loop );
+    if ( !STOP_LOOP )
+        {
+        ANIMATION_ID = window.requestAnimationFrame( loop );
+        }
     }
 
 

@@ -60,7 +60,11 @@ var next = Main.getNextPosition( this.column, this.line );
 if ( next.column === this.column &&
      next.line   === this.line )
     {
+    Main.addLife( -1 );
     this.remove();
+
+        // checks if the game is over
+    Main.gameOver();
     }
 
 else

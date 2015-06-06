@@ -48,7 +48,9 @@ var MAP_INFO = {
     };
 
 var PATH;           // has the path that the creeps need to do to reach the destination
-var MENU_MONEY;     // reference to the menu element that shows the current money value
+var MENU_MONEY;     // reference to the menu element that shows/holds the current money value
+var MENU_LIFE;      // reference to the menu element that shows/holds the current life value
+var MENU_RESTART;
 
     // top level container for all the elements
 var TERRAINS_CONTAINER;
@@ -62,7 +64,6 @@ Main.SQUARE_SIZE = 25;
 Main.init = function()
 {
 Game.init( document.body, 400, 400 );
-Game.addToGameLoop( tick, 0 );
 
 TERRAINS_CONTAINER = new Game.Container();
 BULLETS_CONTAINER = new Game.Container();
@@ -80,41 +81,48 @@ Tower.collidesWith = [ Creep ];
 
     // initialize the menu
 var menu = new Game.Html.HtmlContainer();
+var life = new Game.Html.Value({
+        value: 0,
+        preText: 'Lives:'
+    });
 var money = new Game.Html.Value({
         value: 0,
         preText: 'Money:'
     });
 var restart = new Game.Html.Button({
         value: 'Restart',
-        callback: restart
+        callback: Main.restart
     });
 
-menu.addChild( money, restart );
+menu.addChild( life, money, restart );
 document.body.appendChild( menu.container );
 
 MENU_MONEY = money;
+MENU_LIFE = life;
+MENU_RESTART = restart;
 
 
     // start the game
-Main.start( MAP_INFO );
+Main.start();
 };
 
 
-Main.start = function( mapInfo )
+Main.start = function()
 {
 var column;
 var line;
 
-    // starting money
+    // starting values
 Main.setMoney( 200 );
+Main.setLife( 10 );
 
 
     // add the terrain
-for (line = 0 ; line < mapInfo.lines ; line++)
+for (line = 0 ; line < MAP_INFO.lines ; line++)
     {
-    for (column = 0 ; column < mapInfo.columns ; column++)
+    for (column = 0 ; column < MAP_INFO.columns ; column++)
         {
-        var value = mapInfo.map[ line ][ column ];
+        var value = MAP_INFO.map[ line ][ column ];
 
             // add the terrain
         var terrain = new Terrain({
@@ -129,7 +137,7 @@ for (line = 0 ; line < mapInfo.lines ; line++)
 
 
     // calculate the path
-PATH = PathFinding.getPath( mapInfo );
+PATH = PathFinding.getPath( MAP_INFO );
 
 
     // on click, add a tower (if it is on a valid position)
@@ -137,19 +145,8 @@ Game.getCanvasContainer().addEventListener( 'click', addTower );
 
 
     // add some creeps every second
-Game.addToGameLoop( function()
-    {
-    for (var a = 0 ; a < mapInfo.start.length ; a++)
-        {
-        var position = mapInfo.start[ a ];
-
-        var creep = new Creep({
-            column: position.column,
-            line: position.line
-        });
-        CREEPS_CONTAINER.addChild( creep );
-        }
-    }, 1 );
+Game.addToGameLoop( addCreeps, 1 );
+Game.addToGameLoop( tick, 0 );
 };
 
 
@@ -159,12 +156,59 @@ return PATH[ line ][ column ];
 };
 
 
-function restart()
+function clear()
 {
+clearListeners();
+clearElements();
+}
+
+function clearElements()
+{
+TERRAINS_CONTAINER.removeAllChildren();
+BULLETS_CONTAINER.removeAllChildren();
+CREEPS_CONTAINER.removeAllChildren();
+TOWERS_CONTAINER.removeAllChildren();
+}
+
+
+function clearListeners()
+{
+Game.getCanvasContainer().removeEventListener( 'click', addTower );
+Game.removeFromGameLoop( addCreeps );
+Game.removeFromGameLoop( tick );
+}
+
+
+
+Main.restart = function()
+{
+clear();
+Main.start();
+};
+
+
+/**
+ * Add a creep at every spawn position.
+ */
+function addCreeps()
+{
+for (var a = 0 ; a < MAP_INFO.start.length ; a++)
+    {
+    var position = MAP_INFO.start[ a ];
+
+    var creep = new Creep({
+        column: position.column,
+        line: position.line
+    });
+    CREEPS_CONTAINER.addChild( creep );
+    }
 
 }
 
 
+/**
+ * Add a tower on click event.
+ */
 function addTower( event )
 {
     // check if we have the necessary money
@@ -215,6 +259,61 @@ MENU_MONEY.setValue( current + money );
 Main.getMoney = function()
 {
 return MENU_MONEY.getValue();
+};
+
+
+Main.setLife = function( life )
+{
+MENU_LIFE.setValue( life );
+};
+
+
+Main.addLife = function( life )
+{
+var current = MENU_LIFE.getValue();
+
+MENU_LIFE.setValue( current + life );
+};
+
+
+Main.getLife = function()
+{
+return MENU_LIFE.getValue();
+};
+
+
+Main.gameOver = function()
+{
+var life = Main.getLife();
+
+if ( life <= 0 )
+    {
+        // stop the game
+    clearListeners();
+    Game.stopGameLoop();
+
+    MENU_RESTART.setActive( false );
+
+        // show a message telling the game is over
+    var container = Game.getCanvasContainer();
+    var button = new Game.Html.Button({
+            value: 'Ok',
+            callback: function( button )
+                {
+                message.clear();
+                clearElements();
+                Game.startGameLoop();
+                MENU_RESTART.setActive( true );
+                Main.start();
+                }
+        });
+    var message = new Game.Message({
+            body: 'Game Over!',
+            container: container,
+            background: true,
+            buttons: button
+        });
+    }
 };
 
 

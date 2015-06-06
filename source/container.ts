@@ -126,9 +126,20 @@ export class Container extends Element
         for (var a = this._children.length - 1 ; a >= 0 ; a--)
             {
             this._children[ a ]._container = null;
+            this._children[ a ].remove();
             }
 
         this._children.length = 0;
+        }
+
+
+    /**
+     * Make sure the children are removed as well.
+     */
+    remove()
+        {
+        this.removeAllChildren();
+        super.remove();
         }
 
 
