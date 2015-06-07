@@ -357,7 +357,7 @@ export module Html
      */
     export class Button extends Value
         {
-        click_ref: () => any;
+        click_ref: (event: MouseEvent) => any;
 
         constructor( args: ButtonArgs )
             {
@@ -366,12 +366,14 @@ export module Html
 
             if ( typeof this.click_ref === 'undefined' )
                 {
-                this.click_ref = function()
+                this.click_ref = function( event: MouseEvent )
                     {
                     if ( args.callback )
                         {
                         args.callback( _this );
                         }
+
+                    event.stopPropagation();
                     };
                 }
 
@@ -432,7 +434,7 @@ export module Html
             {
             var _this = this;
 
-            this.click_ref = function()
+            this.click_ref = function( event: MouseEvent )
                 {
                 _this.setValue( !_this.value );
 
@@ -440,6 +442,8 @@ export module Html
                     {
                     args.callback( _this );
                     }
+
+                event.stopPropagation();
                 };
 
 
@@ -504,7 +508,7 @@ export module Html
             var _this = this;
 
             this.isValue1 = true;
-            this.click_ref = function()
+            this.click_ref = function( event: MouseEvent )
                 {
                 if ( _this.isValue1 )
                     {
@@ -527,6 +531,7 @@ export module Html
                     }
 
                 _this.isValue1 = !_this.isValue1;
+                event.stopPropagation();
                 };
 
                 // set properties before this

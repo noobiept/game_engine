@@ -51,6 +51,8 @@ var PATH;           // has the path that the creeps need to do to reach the dest
 var MENU_MONEY;     // reference to the menu element that shows/holds the current money value
 var MENU_LIFE;      // reference to the menu element that shows/holds the current life value
 var MENU_RESTART;
+var TOWER_GRID;     // keeps track of where the towers are added
+
 
     // top level container for all the elements
 var TERRAINS_CONTAINER;
@@ -117,9 +119,14 @@ Main.setMoney( 200 );
 Main.setLife( 10 );
 
 
+TOWER_GRID = [];
+
     // add the terrain
+    // and initialize the tower's grid
 for (line = 0 ; line < MAP_INFO.lines ; line++)
     {
+    TOWER_GRID[ line ] = [];
+
     for (column = 0 ; column < MAP_INFO.columns ; column++)
         {
         var value = MAP_INFO.map[ line ][ column ];
@@ -132,6 +139,9 @@ for (line = 0 ; line < MAP_INFO.lines ; line++)
         terrain.setPassable( value );
 
         TERRAINS_CONTAINER.addChild( terrain );
+
+
+        TOWER_GRID[ line ][ column ] = null;
         }
     }
 
@@ -230,7 +240,8 @@ if ( column >= 0 &&
      column < MAP_INFO.columns &&
      line >= 0 &&
      line < MAP_INFO.lines &&
-     MAP_INFO.map[ line ][ column ] === 0 )
+     TOWER_GRID[ line ][ column ] === null &&   // check if there isn't a tower already there
+     MAP_INFO.map[ line ][ column ] === 0 )     // check if this is a position not in the creeps path
     {
     var tower = new Tower({
             column: column,
@@ -238,6 +249,8 @@ if ( column >= 0 &&
             bullet_container: BULLETS_CONTAINER
         });
     TOWERS_CONTAINER.addChild( tower );
+
+    TOWER_GRID[ line ][ column ] = tower;
     }
 }
 
