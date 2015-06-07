@@ -1,3 +1,4 @@
+/// <reference path="path_finding.ts" />
 /// <reference path="canvas.ts" />
 /// <reference path="html.ts" />
 /// <reference path="highscore.ts" />

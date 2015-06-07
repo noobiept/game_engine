@@ -11,6 +11,10 @@ var Main;
 var MAP_INFO = {
     columns: 16,
     lines: 16,
+    positionType: {
+        passable: 1,
+        blocked: 0
+    },
     start: [
         {
         column: 1,
@@ -149,7 +153,7 @@ for (line = 0 ; line < MAP_INFO.lines ; line++)
 
 
     // calculate the path
-PATH = PathFinding.getPath( MAP_INFO );
+PATH = Game.PathFinding.breadthFirstSearch( MAP_INFO.map, MAP_INFO.end, MAP_INFO.positionType );
 
 
     // on click, add a tower (if it is on a valid position)
