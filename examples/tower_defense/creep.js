@@ -1,7 +1,5 @@
 function Creep( args )
 {
-args.health = 100;
-
 Game.Unit.call( this, args );
 
 var shape = new Game.Circle({
@@ -19,7 +17,7 @@ this.column = args.column;
 this.line = args.line;
 
     // how much money you get from the creep
-this.worth = 10;
+this.worth = 5;
 
 this.checkDestination();
 }

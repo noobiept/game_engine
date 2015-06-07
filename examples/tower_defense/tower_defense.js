@@ -52,6 +52,7 @@ var MENU_MONEY;     // reference to the menu element that shows/holds the curren
 var MENU_LIFE;      // reference to the menu element that shows/holds the current life value
 var MENU_RESTART;
 var TOWER_GRID;     // keeps track of where the towers are added
+var CREEP_HEALTH;   // health of the next creeps to be added (it changes overtime)
 
 
     // top level container for all the elements
@@ -117,6 +118,7 @@ var line;
     // starting values
 Main.setMoney( 200 );
 Main.setLife( 10 );
+CREEP_HEALTH = 100;
 
 
 TOWER_GRID = [];
@@ -202,17 +204,21 @@ Main.start();
  */
 function addCreeps()
 {
+    // add a creep in all the start/spawn positions
 for (var a = 0 ; a < MAP_INFO.start.length ; a++)
     {
     var position = MAP_INFO.start[ a ];
 
     var creep = new Creep({
         column: position.column,
-        line: position.line
+        line: position.line,
+        health: CREEP_HEALTH
     });
     CREEPS_CONTAINER.addChild( creep );
     }
 
+    // increase the creeps health
+CREEP_HEALTH += 17;
 }
 
 
