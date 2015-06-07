@@ -8,7 +8,7 @@ export module PathFinding
      * The algorithm used is the `breadth First Search - unweighted edges`. All sources, one destination.
      * We start at the end position, and spread from there.
      *
-     * Example:
+     * Basic Usage:
      *
      *     var map = [
      *         [ 1, 1, 0, 0 ],
@@ -32,6 +32,8 @@ export module PathFinding
      *     var line = 0;
      *     var column = 1;
      *     var goTo = path[ line ][ column ];   // { column: 0, line: 0 }
+     *
+     * Examples -- `tower_defense`
      *
      *
      * @param map A 2d array, where each value tells if that position is passable/blocked. Its assumed each line will have the same number of columns.

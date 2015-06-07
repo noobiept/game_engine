@@ -32,6 +32,8 @@ export interface BulletArgs extends ContainerArgs
  *         console.log( 'Bullet removed!' );
  *         });
  *
+ *     Game.addElement( bullet );
+ *
  * Events:
  *
  * - `click` -- `listener( data: { event: MouseEvent; } );`

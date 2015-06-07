@@ -16,7 +16,7 @@ module Game
  *
  *     document.body.appendChild( menu.container );
  *
- * Examples -- `game_menu`, `game_of_life`, `message`, `minesweeper`
+ * Examples -- `game_menu`, `game_of_life`, `message`, `minesweeper`, `tower_defense`
  */
 export module Html
     {

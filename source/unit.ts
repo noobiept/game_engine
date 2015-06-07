@@ -53,7 +53,7 @@ export enum UnitMovement
  * - `mouseout` -- `listener( data: { element: Element; } );`
  * - `collision` -- `listener( data: { element: Unit; bullet?: Bullet; collidedWith: Unit; } );`
  *
- * Examples -- `2048`, `basic_example`, `bullets`, `collision_detection`, `custom_element`
+ * Examples -- `2048`, `basic_example`, `bullets`, `collision_detection`, `custom_element`, `tower_defense`
  */
 export class Unit extends Container
     {

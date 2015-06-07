@@ -29,7 +29,7 @@ export interface CircleArgs extends ElementArgs
  * - `mouseover` -- `listener( data: { element: Element; } );`
  * - `mouseout` -- `listener( data: { element: Element; } );`
  *
- * Examples -- `basic_example`, `clone`, `custom_element`
+ * Examples -- `basic_example`, `clone`, `custom_element`, `tower_defense`
  */
 export class Circle extends Element
     {
