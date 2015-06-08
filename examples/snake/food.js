@@ -14,6 +14,6 @@ Game.addElement( this );
 SnakeGame.getGrid().addElement( this, this.column, this.line );
 }
 
-Utilities.inheritPrototype( Food, Game.Rectangle );
+Game.Utilities.inheritPrototype( Food, Game.Rectangle );
 
 

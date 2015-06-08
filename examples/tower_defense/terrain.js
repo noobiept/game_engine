@@ -9,7 +9,7 @@ Game.Rectangle.call( this, args );
 this.setPassable( 0 );
 }
 
-Utilities.inheritPrototype( Terrain, Game.Rectangle );
+Game.Utilities.inheritPrototype( Terrain, Game.Rectangle );
 
 
 Terrain.prototype.setPassable = function( passable )

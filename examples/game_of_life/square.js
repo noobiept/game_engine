@@ -19,7 +19,7 @@ Game.addElement( this );
 
 Square.SIZE = 20;
 
-Utilities.inheritPrototype( Square, Game.Rectangle );
+Game.Utilities.inheritPrototype( Square, Game.Rectangle );
 
 
 window.Square = Square;

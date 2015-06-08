@@ -21,7 +21,7 @@ Game.addElement( this );
 SnakeGame.getGrid().addElement( this, this.column, this.line );
 }
 
-Utilities.inheritPrototype( Tail, Game.Rectangle );
+Game.Utilities.inheritPrototype( Tail, Game.Rectangle );
 
 
 Tail.prototype.tick = function()

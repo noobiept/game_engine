@@ -39,7 +39,7 @@ else if ( last.direction === Direction.down )
 var tail = new Tail({
         column: column,
         line: line,
-        path: Utilities.deepClone( last.path ),
+        path: Game.Utilities.deepClone( last.path ),
         direction: last.direction
     });
 

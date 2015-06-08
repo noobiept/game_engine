@@ -125,7 +125,7 @@ var timer = new Game.Html.Value({
     });
 menu.addChild( timer );
 
-TIMER = new Utilities.Timer( timer.element );
+TIMER = new Game.Utilities.Timer( timer.element );
 
 
     // init highscore
@@ -137,7 +137,7 @@ document.body.addEventListener( 'keyup', function( event )
     {
     var key = event.keyCode;
 
-    if ( key === Utilities.KEY_CODE.space )
+    if ( key === Game.Utilities.KEY_CODE.space )
         {
         Main.restart();
         }
@@ -164,7 +164,7 @@ HAS_ENDED = false;
 TIMER.start();
 
 var emptyPositions = GRID.getEmptyPositions();
-var minesPositions = Utilities.getSeveralRandomInts( 0, emptyPositions.length - 1, NUMBER_OF_MINES );
+var minesPositions = Game.Utilities.getSeveralRandomInts( 0, emptyPositions.length - 1, NUMBER_OF_MINES );
 var square;
 var column, line;
 
@@ -351,12 +351,12 @@ if ( HAS_ENDED || !square || square.state === Square.STATE.revealed )
     }
 
 
-if ( button === Utilities.MOUSE_CODE.left )
+if ( button === Game.Utilities.MOUSE_CODE.left )
     {
     revealSquare( square );
     }
 
-else if ( button === Utilities.MOUSE_CODE.right )
+else if ( button === Game.Utilities.MOUSE_CODE.right )
     {
     if ( square.state === Square.STATE.hidden )
         {

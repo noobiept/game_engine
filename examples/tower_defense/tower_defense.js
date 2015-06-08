@@ -355,7 +355,7 @@ if ( Tower._all )
                 var creep = Creep._all[ b ];
 
                     // fire 1 bullet if the creep is within the tower's range
-                if ( Utilities.circleCircleCollision(
+                if ( Game.Utilities.circleCircleCollision(
                             tower.x,
                             tower.y,
                             tower.range,

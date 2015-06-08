@@ -40,7 +40,7 @@ Block.colors = {
     '2048': 'rgb(116,108,255)'
 };
 
-Utilities.inheritPrototype( Block, Game.Unit );
+Game.Utilities.inheritPrototype( Block, Game.Unit );
 
 
 Block.prototype.setValue = function( value )

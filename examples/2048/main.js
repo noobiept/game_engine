@@ -82,7 +82,7 @@ if ( !position )
     return;
     }
 
-var valueIndex = Utilities.getRandomInt( 0, SPAWN_VALUES.length - 1 );
+var valueIndex = Game.Utilities.getRandomInt( 0, SPAWN_VALUES.length - 1 );
 
 var value = SPAWN_VALUES[ valueIndex ];
 
@@ -108,26 +108,26 @@ var key = event.keyCode;
 
 switch( key )
     {
-    case Utilities.KEY_CODE.leftArrow:
-    case Utilities.KEY_CODE.a:
+    case Game.Utilities.KEY_CODE.leftArrow:
+    case Game.Utilities.KEY_CODE.a:
 
         moveLeft();
         break;
 
-    case Utilities.KEY_CODE.rightArrow:
-    case Utilities.KEY_CODE.d:
+    case Game.Utilities.KEY_CODE.rightArrow:
+    case Game.Utilities.KEY_CODE.d:
 
         moveRight();
         break;
 
-    case Utilities.KEY_CODE.upArrow:
-    case Utilities.KEY_CODE.w:
+    case Game.Utilities.KEY_CODE.upArrow:
+    case Game.Utilities.KEY_CODE.w:
 
         moveUp();
         break;
 
-    case Utilities.KEY_CODE.downArrow:
-    case Utilities.KEY_CODE.s:
+    case Game.Utilities.KEY_CODE.downArrow:
+    case Game.Utilities.KEY_CODE.s:
 
         moveDown();
         break;

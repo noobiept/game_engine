@@ -98,7 +98,7 @@ this.y = y;
 Game.addElement( this );
 }
 
-Utilities.inheritPrototype( One, Game.Unit );
+Game.Utilities.inheritPrototype( One, Game.Unit );
 
 
 
@@ -120,5 +120,5 @@ this.y = y;
 Game.addElement( this );
 }
 
-Utilities.inheritPrototype( Two, Game.Unit );
+Game.Utilities.inheritPrototype( Two, Game.Unit );
 

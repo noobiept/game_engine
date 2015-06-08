@@ -14,7 +14,7 @@ args.radius = this.outer_radius;
 Game.Circle.call( this, args );
 }
 
-Utilities.inheritPrototype( Star, Game.Circle );
+Game.Utilities.inheritPrototype( Star, Game.Circle );
 
 
 

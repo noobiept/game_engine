@@ -152,22 +152,22 @@ SnakeGame.keyDown = function( event )
 {
 var key = event.keyCode;
 
-if ( key === Utilities.KEY_CODE.a )
+if ( key === Game.Utilities.KEY_CODE.a )
     {
     SNAKE.changeDirection( Direction.left );
     }
 
-else if ( key === Utilities.KEY_CODE.d )
+else if ( key === Game.Utilities.KEY_CODE.d )
     {
     SNAKE.changeDirection( Direction.right );
     }
 
-else if ( key === Utilities.KEY_CODE.w )
+else if ( key === Game.Utilities.KEY_CODE.w )
     {
     SNAKE.changeDirection( Direction.up );
     }
 
-else if ( key === Utilities.KEY_CODE.s )
+else if ( key === Game.Utilities.KEY_CODE.s )
     {
     SNAKE.changeDirection( Direction.down );
     }

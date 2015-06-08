@@ -20,7 +20,7 @@ this.front.visible = false;
 this.addChild( this.background, this.front );
 }
 
-Utilities.inheritPrototype( Square, Game.Container );
+Game.Utilities.inheritPrototype( Square, Game.Container );
 
 Square.SIZE = 30;
 
@@ -33,7 +33,7 @@ Square.SIZE = 30;
     The number corresponds to the number of mines around it
     Or <0 if it is a mine
  */
-Square.VALUE = Utilities.createEnum( [ 'mine', 'blank', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' ], -1 );
+Square.VALUE = Game.Utilities.createEnum( [ 'mine', 'blank', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' ], -1 );
 
 
 Square.STATE = {

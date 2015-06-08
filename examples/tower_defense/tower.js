@@ -47,7 +47,7 @@ this.addEventListener( 'collision', function( data )
     });
 }
 
-Utilities.inheritPrototype( Tower, Game.Unit );
+Game.Utilities.inheritPrototype( Tower, Game.Unit );
 
 
     // cost of each tower

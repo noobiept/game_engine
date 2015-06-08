@@ -22,7 +22,7 @@ this.worth = 5;
 this.checkDestination();
 }
 
-Utilities.inheritPrototype( Creep, Game.Unit );
+Game.Utilities.inheritPrototype( Creep, Game.Unit );
 
 
 /**

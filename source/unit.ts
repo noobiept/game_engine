@@ -537,11 +537,14 @@ export class Unit extends Container
                 this.x = this._destination_x;
                 this.y = this._destination_y;
 
+                    // save the callback, since its going to be changed in the method below
+                var moveCallback = this._move_callback;
                 this.moveToNext();
 
-                if ( this._move_callback )
+                    // this function is called after the '.moveToNext()', to allow it to cancel the movement, if needed
+                if ( moveCallback )
                     {
-                    this._move_callback();
+                    moveCallback();
                     }
                 }
             }
