@@ -1,4 +1,4 @@
-/// <reference path="utilities/utilities.1.7.0.d.ts" />
+/// <reference path="utilities.ts" />
 /// <reference path="typings/tsd.d.ts" />
 /// <reference path="canvas.ts" />
 /// <reference path="element.ts" />

@@ -22,14 +22,13 @@ grunt.initConfig({
         },
 
         copy: {
-                // copy the utilities library and the .css file
+                // copy the .css file
             dev: {
                 files: [
                     {
                         expand: true,
                         cwd: source,
                         src: [
-                            'utilities/*',
                             'css/*'
                         ],
                         dest: devDest,
@@ -40,15 +39,6 @@ grunt.initConfig({
                 // make a new copy of the development version to /release/version_number/, and rename the files to include the version number
             release: {
                 files: [
-                    {
-                        cwd: devDest,
-                        src: [
-                            'utilities.1.7.0.min.js',
-                            'utilities.1.7.0.d.ts'
-                        ],
-                        dest: releaseDest,
-                        expand: true
-                    },
                     {
                         cwd: devDest,
                         src: [

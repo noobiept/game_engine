@@ -1,7 +1,7 @@
 Usage
 =====
 
-Link the *game_engine.js* and *utilities.js* files.
+Link the *game_engine.js* file.
 
 You can optionally use the `style.css` for some basic styling, but its not necessary for the engine to work.
 Just something to get you started, and then later on you can use your own styling.
