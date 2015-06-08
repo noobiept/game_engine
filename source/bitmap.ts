@@ -45,6 +45,7 @@ export class Bitmap extends Element
         this._source_y = 0;
         }
 
+
     drawElement( ctx )
         {
         ctx.save();
@@ -79,6 +80,7 @@ export class Bitmap extends Element
         {
         return this._image;
         }
+
 
     set image( newImage: HTMLImageElement )
         {

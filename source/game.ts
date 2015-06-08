@@ -1,22 +1,7 @@
-/// <reference path="path_finding.ts" />
-/// <reference path="canvas.ts" />
-/// <reference path="html.ts" />
-/// <reference path="highscore.ts" />
-/// <reference path="message.ts" />
-/// <reference path="tween.ts" />
-/// <reference path="grid.ts" />
-/// <reference path="bullet.ts" />
-/// <reference path="sprite.ts" />
-/// <reference path="text.ts" />
-/// <reference path="sound.ts" />
-/// <reference path="container.ts" />
-/// <reference path="event_dispatcher.ts" />
-/// <reference path="preload.ts" />
-/// <reference path="element.ts" />
-/// <reference path="rectangle.ts" />
-/// <reference path="circle.ts" />
 /// <reference path="utilities/utilities.1.7.0.d.ts" />
 /// <reference path="typings/tsd.d.ts" />
+/// <reference path="canvas.ts" />
+/// <reference path="element.ts" />
 
 /**
  * Basic usage:

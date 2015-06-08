@@ -37,7 +37,6 @@ export interface ElementGridArgs extends EventDispatcherArgs, GridArgs
  */
 export class ElementGrid extends Grid
     {
-    _grid: Element[][];
     square_size: number;
     ref_x: number;
     ref_y: number;

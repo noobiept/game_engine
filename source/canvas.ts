@@ -1,3 +1,5 @@
+/// <reference path="element.ts" />
+
 module Game
 {
 export interface CanvasArgs
