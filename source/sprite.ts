@@ -68,13 +68,12 @@ export class Sprite extends Bitmap
 
         this._frames_per_line = Math.floor( args.image.width / args.frameWidth );
 
-        this._has_logic = true;
-
         this._current_animation_position = 0;
         this._count_interval = 0;
 
         this.setFrame( 0 );
 
+            // no animation set
         if ( typeof args.animations === 'undefined' )
             {
             this._animations = {};
@@ -119,11 +118,21 @@ export class Sprite extends Bitmap
             return false;
             }
 
+        this._has_logic = true;
         this._current_animation_position = 0;
 
         this.setFrame( this._current_animation[ this._current_animation_position ] );
 
         return true;
+        }
+
+
+    /**
+     * Stop the animation. Will keep the current frame displayed.
+     */
+    stop()
+        {
+        this._has_logic = false;
         }
 
 

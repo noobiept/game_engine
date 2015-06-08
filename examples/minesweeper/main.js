@@ -146,7 +146,6 @@ document.body.addEventListener( 'keyup', function( event )
 
 
 
-
 Main.start = function()
 {
 var canvas = Game.getCanvas();
@@ -306,7 +305,14 @@ var canvasRect = Game.getCanvas().getHtmlCanvasElement().getBoundingClientRect()
 var x = event.clientX - canvasRect.left;
 var y = event.clientY - canvasRect.top;
 
-var square = GRID.getElement2( x, y );
+var position = GRID.toGrid( x, y );
+
+try {
+    var square = GRID.get( position.column, position.line );
+}
+catch( error ) {
+    return;
+}
 
 
 if ( !square || square.state === Square.STATE.revealed )
@@ -343,7 +349,15 @@ var canvasRect = Game.getCanvas().getHtmlCanvasElement().getBoundingClientRect()
 var x = event.clientX - canvasRect.left;
 var y = event.clientY - canvasRect.top;
 
-var square = GRID.getElement2( x, y );
+var position = GRID.toGrid( x, y );
+
+try {
+    var square = GRID.get( position.column, position.line );
+}
+catch( error ) {
+    return;
+}
+
 
 if ( HAS_ENDED || !square || square.state === Square.STATE.revealed )
     {
@@ -411,7 +425,7 @@ for (var column = 0 ; column < GRID.columns ; column++)
     {
     for (var line = 0 ; line < GRID.lines ; line++)
         {
-        var element = GRID.getElement( column, line );
+        var element = GRID.get( column, line );
 
         if ( element.state !== Square.STATE.revealed &&
              element.value !== Square.VALUE.mine )
@@ -459,7 +473,7 @@ for (var column = 0 ; column < GRID.columns ; column++)
     {
     for (var line = 0 ; line < GRID.lines ; line++)
         {
-        var square = GRID.getElement( column, line );
+        var square = GRID.get( column, line );
 
         if ( square.value === Square.VALUE.mine )
             {

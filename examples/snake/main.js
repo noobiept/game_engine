@@ -6,11 +6,9 @@ SnakeGame.start();
 };
 
 
-
 (function(window)
 {
 var SnakeGame = {};
-
 
 var GRID;
 var SNAKE;
@@ -38,7 +36,7 @@ var refX = (canvas.width - squareSize * columns) / 2;
 var refY = (canvas.height - squareSize * lines) / 2;
 
 
-GRID = new Game.Grid({
+GRID = new Game.ElementGrid({
         squareSize: squareSize,
         columns: columns,
         lines: lines,
@@ -72,7 +70,7 @@ SNAKE.addTail();
 updateTailSize();
 
 
-GRID.addEventListener( 'collision', function( data )
+GRID.events.addEventListener( 'collision', function( data )
     {
     var elementA = data.element;
     var elementB = data.collidedWith;

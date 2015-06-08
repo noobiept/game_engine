@@ -38,7 +38,8 @@ var unit = new Game.Unit({
         x: 100,
         y: 200,
         children: unitRect,
-        bullet_shape: { classRef: Star, args: bulletStarArgs }
+        bullet_shape: { classRef: Star, args: bulletStarArgs },
+        bullet_container: Game.getCanvas()
     });
 unit.fireBullet( star, 1 );
 

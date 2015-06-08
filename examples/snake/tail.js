@@ -67,7 +67,7 @@ var grid = SnakeGame.getGrid();
 
 if ( grid.isInGrid( this.column, this.line ) )
     {
-    grid.movePosition( prevColumn, prevLine, this.column, this.line );
+    grid.move( prevColumn, prevLine, this.column, this.line );
     }
 
 else

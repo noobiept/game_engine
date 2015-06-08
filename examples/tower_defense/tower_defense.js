@@ -220,7 +220,7 @@ for (var a = 0 ; a < MAP_INFO.start.length ; a++)
     }
 
     // increase the creeps health
-CREEP_HEALTH += 17;
+CREEP_HEALTH += 15;
 }
 
 

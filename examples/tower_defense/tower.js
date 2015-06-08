@@ -36,8 +36,11 @@ this.addEventListener( 'collision', function( data )
 
     if ( creep.health <= 0 )
         {
-        Main.addMoney( creep.worth );
-        creep.remove();
+        if ( !creep._removed )
+            {
+            Main.addMoney( creep.worth );
+            creep.remove();
+            }
         }
 
     if ( data.bullet )

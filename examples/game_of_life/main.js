@@ -104,7 +104,7 @@ GRID.add( element, column, line );
 
 function removeSquare( square )
 {
-GRID.remove( square );
+GRID.remove( square.column, square.line );
 Game.removeElement( square );
 }
 

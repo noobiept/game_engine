@@ -17,7 +17,7 @@ this.column = args.column;
 this.line = args.line;
 
     // how much money you get from the creep
-this.worth = 5;
+this.worth = 10;
 
 this.checkDestination();
 }

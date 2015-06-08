@@ -20,13 +20,14 @@ canvas.addEventListener( 'click', function( event )
     var y = event.clientY - canvasRect.top;
 
     var gridPosition = grid.toGrid( x, y );
+    var normalized = grid.normalizePosition( gridPosition.column, gridPosition.line );
 
     var rectangle = new Game.Rectangle({
             width: 10,
             height: 10,
             color: 'blue'
         });
-    var previous = grid.add( rectangle, gridPosition.column, gridPosition.line );
+    var previous = grid.add( rectangle, normalized.column, normalized.line );
 
     if ( previous !== null )
         {

@@ -89,7 +89,8 @@ var shape = new Game.Rectangle({
     });
 
 Game.Unit.call( this, {
-        children: shape
+        children: shape,
+        bullet_container: Game.getCanvas()
     });
 
 this.x = x;
@@ -111,7 +112,8 @@ var shape = new Game.Rectangle({
     });
 
 Game.Unit.call( this, {
-        children: shape
+        children: shape,
+        bullet_container: Game.getCanvas()
     });
 
 this.x = x;
