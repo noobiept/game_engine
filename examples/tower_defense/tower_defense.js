@@ -125,14 +125,15 @@ Main.setLife( 10 );
 CREEP_HEALTH = 100;
 
 
-TOWER_GRID = [];
+TOWER_GRID = new Game.Grid({
+        columns: MAP_INFO.columns,
+        lines: MAP_INFO.lines
+    });
 
     // add the terrain
     // and initialize the tower's grid
 for (line = 0 ; line < MAP_INFO.lines ; line++)
     {
-    TOWER_GRID[ line ] = [];
-
     for (column = 0 ; column < MAP_INFO.columns ; column++)
         {
         var value = MAP_INFO.map[ line ][ column ];
@@ -145,9 +146,6 @@ for (line = 0 ; line < MAP_INFO.lines ; line++)
         terrain.setPassable( value );
 
         TERRAINS_CONTAINER.addChild( terrain );
-
-
-        TOWER_GRID[ line ][ column ] = null;
         }
     }
 
@@ -250,7 +248,7 @@ if ( column >= 0 &&
      column < MAP_INFO.columns &&
      line >= 0 &&
      line < MAP_INFO.lines &&
-     TOWER_GRID[ line ][ column ] === null &&   // check if there isn't a tower already there
+     TOWER_GRID.isEmpty( column, line ) &&      // check if there isn't a tower already there
      MAP_INFO.map[ line ][ column ] === 0 )     // check if this is a position not in the creeps path
     {
     var tower = new Tower({
@@ -260,7 +258,7 @@ if ( column >= 0 &&
         });
     TOWERS_CONTAINER.addChild( tower );
 
-    TOWER_GRID[ line ][ column ] = tower;
+    TOWER_GRID.add( tower, column, line );
     }
 }
 

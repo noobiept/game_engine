@@ -1,55 +1,38 @@
-/// <reference path="event_dispatcher.ts" />
-
 module Game
 {
-export interface GridArgs extends EventDispatcherArgs
+export interface GridArgs
     {
-    squareSize: number;
     columns: number;
     lines: number;
-    refX?: number;
-    refY?: number;
-    background?: { color: string; fill: boolean; canvasId?: number; };
     }
 
 
 /**
+ * Generic grid, to hold any value in a 2d array. Values are added/retrieved by a column/line position.
+ *
  * Basic Usage:
  *
- *     var rectangle = new Game.Rectangle({
- *             width: 10,
- *             height: 10,
- *             color: 'green'
- *         });
- *     Game.addElement( rectangle );
- *
  *     var grid = new Game.Grid({
- *             squareSize: 10,
  *             columns: 20,
  *             lines: 20
  *         });
- *     grid.addElement( rectangle, 10, 10 );
+ *     var value = 100;
+ *     var column = 5;
+ *     var line = 10;
  *
- * Events:
+ *     grid.add( value, column, line );
  *
- * - `collision` -- `listener( data: { element: Element; collidedWith: Element; } );`
- *
- * Examples -- `2048`, `game_of_life`, `grid`, `minesweeper`, `snake`
+ * Examples -- `tower_defense`
  */
-export class Grid extends EventDispatcher
+export class Grid
     {
-    _grid: Element[][];
+    _grid: any[][];
     columns: number;
     lines: number;
-    square_size: number;
-    ref_x: number;
-    ref_y: number;
-    _background: Rectangle;
+
 
     constructor( args: GridArgs )
         {
-        super( args );
-
         this._grid = [];
 
         for (var column = 0 ; column < args.columns ; column++)
@@ -62,309 +45,127 @@ export class Grid extends EventDispatcher
                 }
             }
 
-
-        if ( typeof args.refX === 'undefined' )
-            {
-            args.refX = args.squareSize / 2;
-            }
-
-        if ( typeof args.refY === 'undefined' )
-            {
-            args.refY = args.squareSize / 2;
-            }
-
-        if ( typeof args.background !== 'undefined' )
-            {
-            var width = args.squareSize * args.columns;
-            var height = args.squareSize * args.lines;
-
-            this._background = new Game.Rectangle({
-                    x: args.refX + width / 2 - args.squareSize / 2,
-                    y: args.refY + height / 2 - args.squareSize / 2,
-                    width: width,
-                    height: height,
-                    color: args.background.color,
-                    fill: args.background.fill
-                });
-
-            if ( typeof args.background.canvasId === 'undefined' )
-                {
-                args.background.canvasId = 0;
-                }
-
-            Game.getCanvas( args.background.canvasId ).addElement( this._background );
-            }
-
-        else
-            {
-            this._background = null;
-            }
-
-        this.square_size = args.squareSize;
         this.columns = args.columns;
         this.lines = args.lines;
-        this.ref_x = args.refX;
-        this.ref_y = args.refY;
         }
 
 
     /**
-     * Get the equivalent x/y position from a column/line position.
+     * Adds a value to a given column/line position.
+     * Throws an exception if its an invalid column/line position.
      *
-     * @param column The column position.
-     * @param line The line position.
-     * @return The x/y position.
+     * @param value Any value to add to the grid.
+     * @param column Column position.
+     * @param line Line position.
+     * @return The previous value.
      */
-    toCanvas( column: number, line: number )
+    add( value: any, column: number, line: number )
         {
-        return {
-                x: this.ref_x + column * this.square_size,
-                y: this.ref_y + line * this.square_size
-            };
-        }
-
-
-    /**
-     * Get the equivalent column/line position from a x/y position.
-     *
-     * @param x The x position.
-     * @param y The y position.
-     * @return The column/line position.
-     */
-    toGrid( x: number, y: number )
-        {
-        return {
-                column: Math.round( (x - this.ref_x) / this.square_size ),
-                line: Math.round( (y - this.ref_y) / this.square_size )
-            };
-        }
-
-
-    /**
-     * Add an `Element` to a grid position.
-     *
-     * @param element The element to be added.
-     * @param column The column position.
-     * @param line The line position.
-     * @return The previous element that was in that position (or `null` if there wasn't one).
-     */
-    addElement( element: Element, column: number, line: number )
-        {
-        if ( column < 0 )
+        if ( !this.isInGrid( column, line ) )
             {
-            column = 0;
-            }
-
-        else if ( column >= this.columns )
-            {
-            column = this.columns - 1;
-            }
-
-        if ( line < 0 )
-            {
-            line = 0;
-            }
-
-        else if ( line >= this.lines )
-            {
-            line = this.lines - 1;
+            throw new Error( 'Invalid column/line position.' );
             }
 
         var previous = this._grid[ column ][ line ];
 
-        this._grid[ column ][ line ] = element;
-
-        var canvasPosition = this.toCanvas( column, line );
-
-        element.x = canvasPosition.x;
-        element.y = canvasPosition.y;
-        element.column = column;
-        element.line = line;
-
-        if ( previous !== null )
-            {
-            this.dispatchEvent( 'collision', {
-                    element: element,
-                    collidedWith: previous
-                });
-            }
+        this._grid[ column ][ line ] = value;
 
         return previous;
         }
 
 
     /**
-     * Move an element from one grid position to another (the element needs to be already in the grid).
+     * Move an value from one position to another.
+     * Throws an exception if any of the positions are invalid.
      *
-     * @param element The element to be moved.
-     * @param destColumn The destination column position.
-     * @param destLine The destination line position.
-     * @param duration If duration >0, then a tween animation is going to be applied to the movement.
-     * @return The previous element that was in the destination position (or null if there wasn't one).
+     * @param sourceColumn The column of the source value.
+     * @param sourceLine The line of the source value.
+     * @param destinationColumn The column of the destination.
+     * @param destinationLine The line of the destination.
+     * @return The previous value that was on the destination position.
      */
-    moveElement( element: Element, destColumn: number, destLine: number, duration?: number )
+    move( sourceColumn: number, sourceLine: number, destinationColumn: number, destinationLine: number )
         {
-        return this.movePosition( element.column, element.line, destColumn, destLine, duration );
-        }
-
-    /**
-     * Move an element from one grid position to another (the element needs to be already in the grid).
-     *
-     * @param sourceColumn The source column of an existing element.
-     * @param sourceLine The source line of an existing element.
-     * @param destColumn The destination column position.
-     * @param destLine The destination line position.
-     * @param duration If duration >0, then a tween animation is going to be applied to the movement.
-     * @return The previous element that was in the destination position (or null if there wasn't one).
-     */
-    movePosition( sourceColumn: number, sourceLine: number, destColumn: number, destLine: number, duration?: number )
-        {
-        var element = this._grid[ sourceColumn ][ sourceLine ];
-        var previous = this._grid[ destColumn ][ destLine ];
-
-        if ( element === null ||
-             element === previous )
+        if ( !this.isInGrid( sourceColumn, sourceLine ) ||
+             !this.isInGrid( destinationColumn, destinationLine ) )
             {
-            return null;
+            throw new Error( 'Invalid column/line position.' );
             }
 
 
-        this._grid[ destColumn ][ destLine ] = element;
+        var value = this._grid[ sourceColumn ][ sourceLine ];
+        var previous = this._grid[ destinationColumn ][ destinationLine ];
+
         this._grid[ sourceColumn ][ sourceLine ] = null;
-
-        var canvasPosition = this.toCanvas( destColumn, destLine );
-
-        element.column = destColumn;
-        element.line = destLine;
-
-            // move immediately
-        if ( typeof duration === 'undefined' || duration <= 0 )
-            {
-            element.x = canvasPosition.x;
-            element.y = canvasPosition.y;
-            }
-
-            // use a tween for the animation
-        else
-            {
-            var tween = new Game.Tween( element );
-
-            tween.to({
-                    x: canvasPosition.x,
-                    y: canvasPosition.y
-                }, duration );
-            tween.start();
-            }
-
-
-        if ( previous !== null )
-            {
-            previous.column = -1;
-            previous.line = -1;
-
-            this.dispatchEvent( 'collision', {
-                    element: element,
-                    collidedWith: previous
-                });
-            }
+        this._grid[ destinationColumn ][ destinationLine ] = value;
 
         return previous;
         }
 
 
     /**
-     * Remove an element from the grid.
-     *
-     * @param element The element to be removed.
-     * @return The element that was removed.
-     */
-    removeElement( element )
-        {
-        return this.removePosition( element.column, element.line );
-        }
-
-
-    /**
-     * Remove an element from the grid.
+     * Remove a value from the grid.
+     * Throws an exception if its an invalid column/line position.
      *
      * @param column The column position.
      * @param line The line position.
-     * @return The element that was removed.
+     * @return The value that was removed.
      */
-    removePosition( column: number, line: number )
+    remove( column: number, line: number )
         {
         if ( !this.isInGrid( column, line ) )
             {
-            return null;
+            throw new Error( 'Invalid column/line position.' );
             }
 
-        var element = this._grid[ column ][ line ];
+        var value = this._grid[ column ][ line ];
 
         this._grid[ column ][ line ] = null;
 
-        if ( element !== null )
-            {
-            element.column = -1;
-            element.line = -1;
-            }
-
-        return element;
+        return value;
         }
 
 
     /**
-     * Get an element from the grid.
+     * Get the value from a column/line position of the grid.
+     * Throws an exception if its an invalid column/line position.
      *
      * @param column The column position.
      * @param line The line position.
-     * @return The element, or `null` if there wasn't an element in that position.
+     * @return The value on that position. The default value is `null`, so if there was no value set previously, that's what you'll get.
      */
-    getElement( column: number, line: number )
+    get( column: number, line: number )
         {
         if ( !this.isInGrid( column, line ) )
             {
-            return null;
+            throw new Error( 'invalid column/line position.' );
             }
 
-        var element = this._grid[ column ][ line ];
-
-        if ( !element )
-            {
-            return null;
-            }
-
-        return element;
+        return this._grid[ column ][ line ];
         }
 
 
     /**
-     * Get an element from the grid.
+     * Check if a given position is empty. A position is considered empty if it has the value `null`.
+     * Throws an exception if its an invalid column/line position.
      *
-     * @param x The x position.
-     * @param y The y position.
-     * @return The element, or `null` if there wasn't an element in that position.
-     */
-    getElement2( x: number, y: number )
-        {
-        var position = this.toGrid( x, y );
-
-        return this.getElement( position.column, position.line );
-        }
-
-
-    /**
      * @param column The column position.
      * @param line The line position.
      * @return If the position is empty or not.
      */
     isEmpty( column: number, line: number )
         {
-        if ( this._grid[ column ][ line ] )
+        if ( !this.isInGrid( column, line ) )
             {
-            return false;
+            throw new Error( 'Invalid column/line position.' );
             }
 
-        return true;
+        if ( this._grid[ column ][ line ] === null )
+            {
+            return true;
+            }
+
+        return false;
         }
 
 
@@ -407,6 +208,8 @@ export class Grid extends EventDispatcher
 
 
     /**
+     * Checks if a given column/line position is within the grid's dimensions.
+     *
      * @param column The column position.
      * @param line The line position.
      * @return If this position is valid for this grid (is within it).
@@ -481,42 +284,21 @@ export class Grid extends EventDispatcher
 
 
     /**
-     * @return The grid's dimensions.
-     */
-    getDimensions()
-        {
-        return {
-                x: this.ref_x,
-                y: this.ref_y,
-                width: this.square_size * this.columns,
-                height: this.square_size * this.lines
-            }
-        }
-
-
-    /**
-     * Clear grid related elements etc.
-     * Called when we don't need the grid anymore.
-     */
-    clear()
-        {
-        if ( this._background !== null )
-            {
-            this._background.remove();
-            }
-        }
-
-
-    /**
-     * Get the neighbor elements around the given position.
+     * Get the neighbor values around the given position.
+     * Throws an exception if the reference position is invalid.
      *
      * @param refColumn The reference column position.
      * @param refLine The reference line position.
-     * @param range The range of elements around the reference position to get.
-     * @return The neighbor elements.
+     * @param range The range around the reference position to get.
+     * @return The neighbor values.
      */
     getNeighbors( refColumn: number, refLine: number, range?: number )
         {
+        if ( !this.isInGrid( refColumn, refLine ) )
+            {
+            throw new Error( 'Invalid column/line position.' );
+            }
+
         if ( typeof range === 'undefined' )
             {
             range = 1;
@@ -525,7 +307,7 @@ export class Grid extends EventDispatcher
         var neighbors = [];
         var start = this.normalizePosition( refColumn - range, refLine - range );
         var end = this.normalizePosition( refColumn + range, refLine + range );
-        var element;
+        var value;
 
         for (var column = start.column ; column <= end.column ; column++)
             {
@@ -534,11 +316,11 @@ export class Grid extends EventDispatcher
                     // don't include the reference position
                 if ( !(column === refColumn && line === refLine) )
                     {
-                    element = this.getElement( column, line );
+                    value = this.get( column, line );
 
-                    if ( element !== null )
+                    if ( value !== null )
                         {
-                        neighbors.push( element );
+                        neighbors.push( value );
                         }
                     }
                 }
