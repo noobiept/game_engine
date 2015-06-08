@@ -77,7 +77,7 @@ var unit = new Game.Unit({
         movement_speed: 100,
         children: [ unitRect, unitRect2 ]
     });
-    
+
 unit.moveTo( 290, 50 );
 unit.queueMoveTo( 150, 290 );
 unit.queueMoveTo( 5, 50, function()

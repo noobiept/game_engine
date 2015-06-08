@@ -18,7 +18,8 @@ var unitShape = new Game.Rectangle({
 
 var unit = new Game.Unit({
         movement_speed: 100,
-        children: unitShape
+        children: unitShape,
+        bullet_container: Game.getCanvas()
     });
 
 unit.x = centerX;

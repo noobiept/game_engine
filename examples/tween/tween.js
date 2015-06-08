@@ -12,7 +12,7 @@ var rect1 = new Game.Rectangle({
         height: 10,
         color: 'green'
     });
-canvas.addElement( rect1 );
+canvas.addChild( rect1 );
 
 
 var tween1 = new Game.Tween( rect1 );
@@ -43,7 +43,7 @@ var rect3 = new Game.Rectangle({
         height: 10,
         color: 'blue'
     });
-canvas.addElement( rect2, rect3 );
+canvas.addChild( rect2, rect3 );
 
 var tween2 = new Game.Tween( rect2 );
 var tween3 = new Game.Tween( rect3 );

@@ -34,7 +34,7 @@ var background = new Game.Bitmap({
         y: height / 2,
         image: Game.Preload.get( 'background' )
     });
-canvas2.addElement( background );
+canvas2.addChild( background );
 canvas2.draw();
 
 
@@ -46,7 +46,7 @@ var rect = new Game.Rectangle({
         height: 20,
         color: 'red'
     });
-canvas1.addElement( rect );
+canvas1.addChild( rect );
 
 
     // move it across the canvas

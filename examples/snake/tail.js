@@ -18,7 +18,7 @@ this.line = args.line;
 
 Game.addElement( this );
 
-SnakeGame.getGrid().addElement( this, this.column, this.line );
+SnakeGame.getGrid().add( this, this.column, this.line );
 }
 
 Game.Utilities.inheritPrototype( Tail, Game.Rectangle );

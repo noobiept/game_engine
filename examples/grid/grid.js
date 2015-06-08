@@ -2,7 +2,7 @@ window.onload = function()
 {
 Game.init( document.body, 400, 400 );
 
-var grid = new Game.Grid({
+var grid = new Game.ElementGrid({
         squareSize: 10,
         columns: 20,
         lines: 20,
@@ -26,7 +26,7 @@ canvas.addEventListener( 'click', function( event )
             height: 10,
             color: 'blue'
         });
-    var previous = grid.addElement( rectangle, gridPosition.column, gridPosition.line );
+    var previous = grid.add( rectangle, gridPosition.column, gridPosition.line );
 
     if ( previous !== null )
         {

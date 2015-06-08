@@ -220,7 +220,7 @@ export function addElement( element: any, id?: number )
         id = 0;
         }
 
-    return ALL_CANVAS[ id ].addElement( element );
+    return ALL_CANVAS[ id ].addChild( element );
     }
 
 
@@ -236,7 +236,7 @@ export function removeElement( element: any )
         {
         var canvas = ALL_CANVAS[ a ];
 
-        var removed = canvas.removeElement( element );
+        var removed = canvas.removeChild( element );
 
         if ( removed )
             {
@@ -354,7 +354,7 @@ function mouseMoveEvents()
             var x = MOUSE_X - rect.left;
             var y = MOUSE_Y - rect.top;
 
-            elements = canvas.getElements( x, y );
+            elements = canvas.getChildrenIn( x, y );
 
                 // found some elements that are under the x/y position
             if ( elements.length > 0 )

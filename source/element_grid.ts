@@ -77,7 +77,7 @@ export class ElementGrid extends Grid
                 args.background.canvasId = 0;
                 }
 
-            Game.getCanvas( args.background.canvasId ).addElement( this._background );
+            Game.getCanvas( args.background.canvasId ).addChild( this._background );
             }
 
         else

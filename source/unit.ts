@@ -9,7 +9,7 @@ export interface UnitArgs extends ContainerArgs
     bullet_movement_speed?: number;
     health?: number;
     bullet_shape?: { classRef: (args: any) => void; args: Object; };
-    bullet_container?: Container;   // if you're firing units from the unit, you need to pass this argument. Bullets will be added to this element when fired.
+    bullet_container?: Container | Canvas;   // if you're firing units from the unit, you need to pass this argument. Bullets will be added to this element when fired.
     }
 
 
@@ -86,7 +86,7 @@ export class Unit extends Container
     _angle_or_target: any;
     _bullets: Bullet[];
     _bullet_shape: { classRef: (args: any) => void; args: Object; };
-    _bullet_container: Container;
+    _bullet_container: Container | Canvas;
 
 
     constructor( args: UnitArgs )

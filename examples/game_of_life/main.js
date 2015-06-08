@@ -45,7 +45,7 @@ Main.firstPhase = function()
 {
 var canvas = Game.getCanvas().getHtmlCanvasElement();
 
-GRID = new Game.Grid({
+GRID = new Game.ElementGrid({
         squareSize: Square.SIZE,
         columns: Math.floor( canvas.width / Square.SIZE ),
         lines: Math.floor( canvas.height / Square.SIZE ),
@@ -80,7 +80,7 @@ var y = event.clientY - canvasRect.top;
 
 var gridPosition = GRID.toGrid( x, y );
 
-var previous = GRID.getElement( gridPosition.column, gridPosition.line );
+var previous = GRID.get( gridPosition.column, gridPosition.line );
 
 if ( previous !== null )
     {
@@ -98,13 +98,13 @@ function addSquare( column, line )
 {
 var element = new Square();
 
-GRID.addElement( element, column, line );
+GRID.add( element, column, line );
 }
 
 
 function removeSquare( square )
 {
-GRID.removeElement( square );
+GRID.remove( square );
 Game.removeElement( square );
 }
 
@@ -118,7 +118,7 @@ for (var column = 0 ; column < GRID.columns ; column++)
     {
     for (var line = 0 ; line < GRID.lines ; line++)
         {
-        var square = GRID.getElement( column, line );
+        var square = GRID.get( column, line );
         var neighbors = GRID.getNeighbors( column, line );
         var howMany = neighbors.length;
 
@@ -152,7 +152,7 @@ for (var a = 0 ; a < changes.length ; a++)
 
     else
         {
-        var element = GRID.getElement( change.column, change.line );
+        var element = GRID.get( change.column, change.line );
 
         if ( element )
             {
@@ -170,7 +170,7 @@ for (var column = 0 ; column < GRID.columns ; column++)
     {
     for (var line = 0 ; line < GRID.lines ; line++)
         {
-        var element = GRID.getElement( column, line );
+        var element = GRID.get( column, line );
 
         if ( element )
             {

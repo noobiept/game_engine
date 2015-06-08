@@ -154,7 +154,7 @@ var canvas = Game.getCanvas();
 canvas.updateDimensions( NUMBER_OF_COLUMNS * Square.SIZE, NUMBER_OF_LINES * Square.SIZE );
 
 
-GRID = new Game.Grid({
+GRID = new Game.ElementGrid({
         squareSize: Square.SIZE,
         columns: NUMBER_OF_COLUMNS,
         lines: NUMBER_OF_LINES
@@ -178,7 +178,7 @@ for (column = 0 ; column < NUMBER_OF_COLUMNS ; column++)
 
         Game.addElement( square );
 
-        GRID.addElement( square, column, line );
+        GRID.add( square, column, line );
         }
     }
 
@@ -189,7 +189,7 @@ for (var a = minesPositions.length - 1 ; a >= 0 ; a--)
     var index = minesPositions[ a ];
     var position = emptyPositions[ index ];
 
-    square = GRID.getElement( position.column, position.line );
+    square = GRID.get( position.column, position.line );
     square.value = Square.VALUE.mine;
     }
 
@@ -199,7 +199,7 @@ for (column = 0 ; column < NUMBER_OF_COLUMNS ; column++)
     {
     for (line = 0 ; line < NUMBER_OF_LINES ; line++)
         {
-        square = GRID.getElement( column, line );
+        square = GRID.get( column, line );
 
         if ( square.value !== Square.VALUE.mine )
             {
@@ -222,7 +222,7 @@ for (var column = 0 ; column < GRID.columns ; column++)
     {
     for (var line = 0 ; line < GRID.lines ; line++)
         {
-        var square = GRID.getElement( column, line );
+        var square = GRID.get( column, line );
 
         if ( square )
             {

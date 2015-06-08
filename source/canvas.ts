@@ -23,7 +23,7 @@ export interface CanvasArgs
  *
  *     var container = new Game.Container();
  *
- *     canvas2.addElement( container );
+ *     canvas2.addChild( container );
  *
  * Examples -- `multiple_canvas`
  */
@@ -35,7 +35,7 @@ export class Canvas
     _width: number;
     _height: number;
 
-    _elements: Element[];
+    _children: Element[];
 
     events_enabled: boolean;
     update_on_loop: boolean;    // if it calls the .logic() and .draw() on the game loop (if false, then you need to call it manually)
@@ -50,7 +50,7 @@ export class Canvas
         this._canvas.width = this._width = args.width;
         this._canvas.height = this._height = args.height;
 
-        this._elements = [];
+        this._children = [];
 
         this.events_enabled = true;
         this.update_on_loop = true;
@@ -58,13 +58,13 @@ export class Canvas
 
 
     /**
-     *     addElement( element );
-     *     addElement( element1, element2 );
-     *     addElement( [ element1, element2 ] );
+     *     addChild( element );
+     *     addChild( element1, element2 );
+     *     addChild( [ element1, element2 ] );
      *
      * @param args Either an `Element`, or `...Element` or an `Element[]`
      */
-    addElement( args: any )
+    addChild( args: any )
         {
         var elements = arguments;
 
@@ -77,19 +77,19 @@ export class Canvas
 
         for (var a = 0 ; a < length ; a++)
             {
-            this._elements.push( elements[ a ] );
+            this._children.push( elements[ a ] );
             }
         }
 
 
     /**
-     *     removeElement( element );
-     *     removeElement( element1, element2 );
-     *     removeElement( [ element1, element2 ] );
+     *     removeChild( element );
+     *     removeChild( element1, element2 );
+     *     removeChild( [ element1, element2 ] );
      *
      * @param args Either an `Element` or `...Element` or an `Element[]`
      */
-    removeElement( args: any )
+    removeChild( args: any )
         {
         var elements = arguments;
         var removed = false;
@@ -105,11 +105,11 @@ export class Canvas
             {
             var element = elements[ a ];
 
-            var index = this._elements.indexOf( element );
+            var index = this._children.indexOf( element );
 
             if ( index >= 0 )
                 {
-                this._elements.splice( index, 1 );
+                this._children.splice( index, 1 );
                 removed = true;
                 }
             }
@@ -119,16 +119,16 @@ export class Canvas
 
 
     /**
-     * Get all the elements that are in a given x/y position.
+     * Get all the child elements that are in a given x/y position.
      */
-    getElements( x: number, y: number )
+    getChildrenIn( x: number, y: number )
         {
         var all = [];
         var elements;
 
-        for (var a = this._elements.length - 1 ; a >= 0 ; a--)
+        for (var a = this._children.length - 1 ; a >= 0 ; a--)
             {
-            elements = this._elements[ a ].intersect( x, y );
+            elements = this._children[ a ].intersect( x, y );
 
             if ( elements.length > 0 )
                 {
@@ -147,9 +147,9 @@ export class Canvas
      */
     logic( deltaTime: number )
         {
-        for (var a = this._elements.length - 1 ; a >= 0 ; a--)
+        for (var a = this._children.length - 1 ; a >= 0 ; a--)
             {
-            var element = this._elements[ a ];
+            var element = this._children[ a ];
 
             if ( element._has_logic === true )
                 {
@@ -166,11 +166,11 @@ export class Canvas
         {
         this._ctx.clearRect( 0, 0, this._width, this._height );
 
-        var length = this._elements.length;
+        var length = this._children.length;
 
         for (var a = 0 ; a < length ; a++)
             {
-            var element = this._elements[ a ];
+            var element = this._children[ a ];
 
             if ( element.visible )
                 {
@@ -187,7 +187,7 @@ export class Canvas
      */
     mouseClickEvents( event: MouseEvent )
         {
-        var elements = this._elements;
+        var elements = this._children;
         var rect = this._canvas.getBoundingClientRect();
 
         var x = event.clientX - rect.left;
@@ -292,9 +292,9 @@ export class Canvas
     /**
      * @return The elements added to this canvas.
      */
-    getAllElements()
+    getAllChildren()
         {
-        return this._elements;
+        return this._children;
         }
     }
 }
