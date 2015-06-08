@@ -53,8 +53,6 @@ this.background_element.color = Block.colors[ valueStr ];
 };
 
 
-
-
 window.Block = Block;
 
 }(window));

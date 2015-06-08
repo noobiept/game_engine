@@ -1,3 +1,5 @@
+/// <reference path="utilities/utilities.1.7.0.d.ts" />
+
 module Game
 {
 export interface GridArgs
