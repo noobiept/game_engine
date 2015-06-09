@@ -72,7 +72,7 @@ export module PathFinding
             // go through all the passable positions
         while( frontier.length > 0 )
             {
-            var current = frontier.pop();
+            var current = frontier.shift();
             var neighbors = getNeighbors( current, info );
 
             for (var a = 0 ; a < neighbors.length ; a++)
@@ -80,7 +80,7 @@ export module PathFinding
                 var next = neighbors[ a ];
 
                     // check if we've being through this position
-                if ( !cameFrom[ next.line ][ next.column ] )
+                if ( cameFrom[ next.line ][ next.column ] === null )
                     {
                     frontier.push( next );
 
