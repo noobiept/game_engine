@@ -274,7 +274,7 @@ export module Utilities
      */
     export function isNumber( element: any )
         {
-        return typeof element === 'number' && !isNaN( parseFloat( element ) ) && isFinite( element );
+        return typeof element === 'number' && !isNaN( parseFloat( <any>element ) ) && isFinite( element );
         }
 
 

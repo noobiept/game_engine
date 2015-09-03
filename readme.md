@@ -18,7 +18,8 @@ Is available in [http://game-engine1.herokuapp.com/](http://game-engine1.herokua
 Build
 =====
 
-Uses gruntjs. 
+Uses gruntjs and typescript v1.5.
+ 
 The result is available on the */build/output/* folder.
 
 * ```cd build``` - move to the build folder

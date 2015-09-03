@@ -26,7 +26,7 @@ export interface TweenStep
  *
  *     var tween = new Game.Tween( rectangle );
  *
- *     tween.to( { x: 200 }, 2 ).wait( 1 ).call function()
+ *     tween.to( { x: 200 }, 2 ).wait( 1 ).call( function()
  *         {
  *         console.log( 'Finished!' );
  *         }).start();
