@@ -3,9 +3,8 @@ window.onload = function()
 var preload = new Game.Preload({ save_global: true });
 
 preload.addEventListener( 'complete', start );
-preload.load( 'background', '../assets/images/parallax-forest.png' );
+preload.load( 'background', '../assets/scrolling_bitmap/parallax-forest.png' );
 };
-
 
 
 function start()

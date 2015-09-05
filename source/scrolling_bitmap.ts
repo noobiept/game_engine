@@ -38,14 +38,15 @@ export module ScrollingBitmapArgs
  * - `mouseover` -- `listener( data: { element: Element; } );`
  * - `mouseout` -- `listener( data: { element: Element; } );`
  *
- * Examples -- `parallax_scrolling`
+ * Examples -- `clone`, `parallax_scrolling`
  */
 export class ScrollingBitmap extends Bitmap
     {
-    _count: number;
-    _interval: number;
-    _step: number;
-    _ref_position: number;
+    private _count: number;     // interval counter
+    private _interval: number;  // time between the scroll movement
+    private _step: number;      // how many pixels it moves per scroll movement
+    private _ref_position: number;  // the current image division point position
+    private _direction: ScrollingBitmapArgs.Direction;  // the scrolling direction
 
 
     constructor( args: ScrollingBitmapArgs )
@@ -58,6 +59,7 @@ export class ScrollingBitmap extends Bitmap
         this._interval = args.interval;
         this._step = args.step;
         this._ref_position = 0;
+        this._direction = args.direction;
 
         switch( args.direction )
             {
@@ -84,7 +86,10 @@ export class ScrollingBitmap extends Bitmap
         }
 
 
-    _draw_horizontal( ctx: CanvasRenderingContext2D )
+    /**
+     * Used for the horizontal movement (left or right).
+     */
+    private _draw_horizontal( ctx: CanvasRenderingContext2D )
         {
         ctx.save();
         ctx.beginPath();
@@ -116,7 +121,10 @@ export class ScrollingBitmap extends Bitmap
         }
 
 
-    _draw_vertical( ctx: CanvasRenderingContext2D )
+    /**
+     * Used for the vertical movement (top or bottom).
+     */
+    private _draw_vertical( ctx: CanvasRenderingContext2D )
         {
         ctx.save();
         ctx.beginPath();
@@ -148,7 +156,11 @@ export class ScrollingBitmap extends Bitmap
         }
 
 
-    _left_logic( deltaTime: number )
+    /**
+     * Scrolling left logic.
+     * Keeps moving the reference position every interval.
+     */
+    private _left_logic( deltaTime: number )
         {
         this._count += deltaTime;
 
@@ -165,7 +177,11 @@ export class ScrollingBitmap extends Bitmap
         }
 
 
-    _right_logic( deltaTime: number )
+    /**
+     * Scrolling right logic.
+     * Keeps moving the reference position every interval.
+     */
+    private _right_logic( deltaTime: number )
         {
         this._count += deltaTime;
 
@@ -182,7 +198,11 @@ export class ScrollingBitmap extends Bitmap
         }
 
 
-    _top_logic( deltaTime: number )
+    /**
+     * Scrolling top logic.
+     * Keeps moving the reference position every interval.
+     */
+    private _top_logic( deltaTime: number )
         {
         this._count += deltaTime;
 
@@ -199,7 +219,11 @@ export class ScrollingBitmap extends Bitmap
         }
 
 
-    _bottom_logic( deltaTime: number )
+    /**
+     * Scrolling bottom logic.
+     * Keeps moving the reference position every interval.
+     */
+    private _bottom_logic( deltaTime: number )
         {
         this._count += deltaTime;
 
@@ -213,6 +237,31 @@ export class ScrollingBitmap extends Bitmap
                 this._ref_position = this._height;
                 }
             }
+        }
+
+
+    /**
+     * Get a copy of this object.
+     */
+    clone()
+        {
+        var element = new Game.ScrollingBitmap({
+                x: this.x,
+                y: this.y,
+                image: this._image,
+                direction: this._direction,
+                step: this._step,
+                interval: this._interval
+            });
+        element.opacity = this.opacity;
+        element.visible = this.visible;
+        element.scaleX = this.scaleX;
+        element.scaleY = this.scaleY;
+        element._rotation = this._rotation;
+        element._count = this._count;
+        element._ref_position = this._ref_position;
+
+        return element;
         }
     }
 }

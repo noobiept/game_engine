@@ -7,7 +7,7 @@ var assetsPath = '../assets/';
 var preload = new Game.Preload({ save_global: true });
 
 preload.addEventListener( 'complete', start );
-preload.load( 'background', assetsPath + 'images/parallax-forest.png' );
+preload.load( 'background', assetsPath + 'scrolling_bitmap/parallax-forest.png' );
 };
 
 

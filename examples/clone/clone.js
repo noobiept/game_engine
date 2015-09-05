@@ -2,7 +2,8 @@ window.onload = function()
 {
 var manifest = [
         { id: 'image', path: 'images/ship_one_1.png' },
-        { id: 'sprite', path: 'sprites/sprite_example.png' }
+        { id: 'sprite', path: 'sprites/sprite_example.png' },
+        { id: 'scrolling_bitmap', path: 'scrolling_bitmap/vertical_scrolling.png' }
     ];
 
 var preload = new Game.Preload({ save_global: true });
@@ -23,7 +24,7 @@ var startX = 20;
     // Rectangle
 var rect = new Game.Rectangle({
         x: startX,
-        y: 40,
+        y: 30,
         width: 20,
         height: 20,
         color: 'green'
@@ -41,7 +42,7 @@ animate( rect );
     // Circle
 var circle = new Game.Circle({
         x: startX,
-        y: 100,
+        y: 85,
         radius: 15,
         color: 'red'
     });
@@ -53,7 +54,7 @@ animate( circle );
     // Text
 var text = new Game.Text({
         x: startX,
-        y: 160,
+        y: 140,
         text: 'Hi!',
         textAlign: 'center',
         textBaseline: 'middle'
@@ -68,7 +69,7 @@ animate( text );
     // Bitmap
 var bitmap = new Game.Bitmap({
         x: startX,
-        y: 220,
+        y: 195,
         image: Game.Preload.get( 'image' )
     });
 Game.addElement( bitmap );
@@ -79,7 +80,7 @@ animate( bitmap );
     // Sprite
 var sprite = new Game.Sprite({
         x: startX,
-        y: 280,
+        y: 250,
         image: Game.Preload.get( 'sprite' ),
         frameWidth: 40,
         frameHeight: 40
@@ -87,6 +88,20 @@ var sprite = new Game.Sprite({
 Game.addElement( sprite );
 
 animate( sprite );
+
+
+    // ScrollingBitmap
+var scrolling = new Game.ScrollingBitmap({
+        x: startX,
+        y: 305,
+        image: Game.Preload.get( 'scrolling_bitmap' ),
+        direction: Game.ScrollingBitmapArgs.Direction.top,
+        step: 1,
+        interval: 0.1
+    });
+Game.addElement( scrolling );
+
+animate( scrolling );
 
 
     // Container
@@ -97,7 +112,7 @@ containerRect.y = 0;
 
 var container = new Game.Container({
         x: startX,
-        y: 340,
+        y: 360,
         children: containerRect
     });
 Game.addElement( container );
