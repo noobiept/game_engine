@@ -6,7 +6,7 @@ export interface ScrollingBitmapArgs extends BitmapArgs
     {
     direction: ScrollingBitmapArgs.Direction,
     step: number;
-    interval: number;
+    interval?: number;
     }
 
 export module ScrollingBitmapArgs
@@ -47,41 +47,104 @@ export class ScrollingBitmap extends Bitmap
     private _step: number;      // how many pixels it moves per scroll movement
     private _ref_position: number;  // the current image division point position
     private _direction: ScrollingBitmapArgs.Direction;  // the scrolling direction
+    private _scroll: () => void;
 
 
     constructor( args: ScrollingBitmapArgs )
         {
         super( args );
 
-        this._has_logic = true;
-
         this._count = 0;
-        this._interval = args.interval;
-        this._step = args.step;
         this._ref_position = 0;
+        this._step = args.step;
         this._direction = args.direction;
 
         switch( args.direction )
             {
             case ScrollingBitmapArgs.Direction.left:
-                this.logic = this._left_logic;
+                this._scroll = this.scroll_left;
                 this.drawElement = this._draw_horizontal;
                 break;
 
             case ScrollingBitmapArgs.Direction.right:
-                this.logic = this._right_logic;
+                this._scroll = this.scroll_right;
                 this.drawElement = this._draw_horizontal;
                 break;
 
             case ScrollingBitmapArgs.Direction.top:
-                this.logic = this._top_logic;
+                this._scroll = this.scroll_top;
                 this.drawElement = this._draw_vertical;
                 break;
 
             case ScrollingBitmapArgs.Direction.bottom:
-                this.logic = this._bottom_logic;
+                this._scroll = this.scroll_bottom;
                 this.drawElement = this._draw_vertical;
                 break;
+            }
+
+
+            // scroll the image automatically at the given interval
+            // otherwise, its moved manually by calling the move functions
+        if ( typeof args.interval !== 'undefined' )
+            {
+            this._interval = args.interval;
+            this._has_logic = true;
+            }
+        }
+
+
+    /**
+     * Scroll to the left.
+     */
+    scroll_left()
+        {
+        this._ref_position += this._step;
+
+        if ( this._ref_position >= this._width )
+            {
+            this._ref_position = 0;
+            }
+        }
+
+
+    /**
+     * Scroll to the right.
+     */
+    scroll_right()
+        {
+        this._ref_position -= this._step;
+
+        if ( this._ref_position < 0 )
+            {
+            this._ref_position = this._width;
+            }
+        }
+
+
+    /**
+     * Scroll to the top.
+     */
+    scroll_top()
+        {
+        this._ref_position += this._step;
+
+        if ( this._ref_position >= this._height )
+            {
+            this._ref_position = 0;
+            }
+        }
+
+
+    /**
+     * Scroll to the bottom.
+     */
+    scroll_bottom()
+        {
+        this._ref_position -= this._step;
+
+        if ( this._ref_position < 0 )
+            {
+            this._ref_position = this._height;
             }
         }
 
@@ -157,85 +220,16 @@ export class ScrollingBitmap extends Bitmap
 
 
     /**
-     * Scrolling left logic.
-     * Keeps moving the reference position every interval.
+     * Scroll the image at the given interval.
      */
-    private _left_logic( deltaTime: number )
+    logic( deltaTime: number )
         {
         this._count += deltaTime;
 
         if ( this._count >= this._interval )
             {
             this._count = 0;
-            this._ref_position += this._step;
-
-            if ( this._ref_position >= this._width )
-                {
-                this._ref_position = 0;
-                }
-            }
-        }
-
-
-    /**
-     * Scrolling right logic.
-     * Keeps moving the reference position every interval.
-     */
-    private _right_logic( deltaTime: number )
-        {
-        this._count += deltaTime;
-
-        if ( this._count >= this._interval )
-            {
-            this._count = 0;
-            this._ref_position -= this._step;
-
-            if ( this._ref_position < 0 )
-                {
-                this._ref_position = this._width;
-                }
-            }
-        }
-
-
-    /**
-     * Scrolling top logic.
-     * Keeps moving the reference position every interval.
-     */
-    private _top_logic( deltaTime: number )
-        {
-        this._count += deltaTime;
-
-        if ( this._count >= this._interval )
-            {
-            this._count = 0;
-            this._ref_position += this._step;
-
-            if ( this._ref_position >= this._height )
-                {
-                this._ref_position = 0;
-                }
-            }
-        }
-
-
-    /**
-     * Scrolling bottom logic.
-     * Keeps moving the reference position every interval.
-     */
-    private _bottom_logic( deltaTime: number )
-        {
-        this._count += deltaTime;
-
-        if ( this._count >= this._interval )
-            {
-            this._count = 0;
-            this._ref_position -= this._step;
-
-            if ( this._ref_position < 0 )
-                {
-                this._ref_position = this._height;
-                }
+            this._scroll();
             }
         }
 
@@ -246,6 +240,7 @@ export class ScrollingBitmap extends Bitmap
     clone()
         {
         var element = new Game.ScrollingBitmap({
+
                 x: this.x,
                 y: this.y,
                 image: this._image,
