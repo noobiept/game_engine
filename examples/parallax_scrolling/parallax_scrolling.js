@@ -1,6 +1,6 @@
 window.onload = function()
 {
-Game.init( document.body, 400, 400 );
+Game.init( document.body, 272, 160 );
 
 var path = '../assets/';
 var preload = new Game.Preload({ save_global: true });
@@ -68,23 +68,12 @@ var frontTrees = new Game.ScrollingBitmap({
 Game.addElement( frontTrees );
 
 
-var rogue = new Game.Sprite({
-        x: centerX,
-        y: centerY + 50,
-        image: Game.Preload.get( 'rogue' ),
-        frameWidth: 32,
-        frameHeight: 32,
-        interval: 0.3,
-        animations: {
-            idle_left: [ 50, 51, 52, 53, 54, 55, 56, 57, 58, 59 ],
-            idle_right: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ],
-            walk_left: [ 70, 71, 72, 73, 74, 75, 76, 77, 78, 79 ],
-            walk_right: [ 20, 21, 22, 23, 24, 25, 26, 27, 28, 29 ]
-        }
-    });
-rogue.play( 'idle_right' );
-Game.addElement( rogue );
+var rogue = new Unit( centerX, centerY + 50, UnitState.idle );
+Game.addElement( rogue.sprite );
 
+
+    // by pressing the left/right arrow key, we can change the state of the game
+var nextState = rogue.state;
 
 window.addEventListener( 'keydown', function( event )
     {
@@ -93,13 +82,11 @@ window.addEventListener( 'keydown', function( event )
     switch( key )
         {
         case Game.Utilities.KEY_CODE.leftArrow:
-            frontTrees.scroll_left();
-            rogue.play( 'walk_left' );
+            nextState = UnitState.walk_left;
             break;
 
         case Game.Utilities.KEY_CODE.rightArrow:
-            frontTrees.scroll_right();
-            rogue.play( 'walk_right' );
+            nextState = UnitState.walk_right;
             break;
         }
     });
@@ -110,12 +97,34 @@ window.addEventListener( 'keyup', function( event )
     switch( key )
         {
         case Game.Utilities.KEY_CODE.leftArrow:
-            rogue.play( 'idle_left' );
-            break;
-
         case Game.Utilities.KEY_CODE.rightArrow:
-            rogue.play( 'idle_right' );
+            nextState = UnitState.idle;
             break;
         }
     });
+
+
+Game.addToGameLoop( function()
+    {
+    if ( nextState !== rogue.state )
+        {
+        rogue.setState( nextState );
+
+        switch( nextState )
+            {
+            case UnitState.idle:
+                frontTrees.clearInterval();
+                break;
+
+            case UnitState.walk_left:
+                frontTrees.setDirection( Game.ScrollingBitmapArgs.Direction.left );
+                frontTrees.setInterval( 0.1 );
+                break;
+
+            case UnitState.walk_right:
+                frontTrees.setDirection( Game.ScrollingBitmapArgs.Direction.right );
+                frontTrees.setInterval( 0.1 );
+            }
+        }
+    }, 0 );
 }

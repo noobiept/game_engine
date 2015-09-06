@@ -57,9 +57,25 @@ export class ScrollingBitmap extends Bitmap
         this._count = 0;
         this._ref_position = 0;
         this._step = args.step;
-        this._direction = args.direction;
 
-        switch( args.direction )
+        this.setDirection( args.direction );
+
+            // scroll the image automatically at the given interval
+        if ( typeof args.interval !== 'undefined' )
+            {
+            this.setInterval( args.interval );
+            }
+        }
+
+
+    /**
+     * Set the direction of the scrolling.
+     */
+    setDirection( direction: ScrollingBitmapArgs.Direction )
+        {
+        this._direction = direction;
+
+        switch( direction )
             {
             case ScrollingBitmapArgs.Direction.left:
                 this._scroll = this.scroll_left;
@@ -81,15 +97,35 @@ export class ScrollingBitmap extends Bitmap
                 this.drawElement = this._draw_vertical;
                 break;
             }
+        }
 
 
-            // scroll the image automatically at the given interval
-            // otherwise, its moved manually by calling the move functions
-        if ( typeof args.interval !== 'undefined' )
-            {
-            this._interval = args.interval;
-            this._has_logic = true;
-            }
+    /**
+     * Change the step of the animation (how much it scrolls per update).
+     */
+    setStep( step: number )
+        {
+        this._step = step;
+        }
+
+
+    /**
+     * Set an interval between the scroll movements.
+     */
+    setInterval( interval: number )
+        {
+        this._count = 0;
+        this._interval = interval;
+        this._has_logic = true;
+        }
+
+
+    /**
+     * Stop the animation.
+     */
+    clearInterval()
+        {
+        this._has_logic = false;
         }
 
 
