@@ -1,3 +1,17 @@
 parallax-forest:
     - http://opengameart.org/content/forest-background
     - license: public domain
+
+rogue:
+    - http://opengameart.org/content/animated-rogue
+    - license: CC-BY 3.0 (attribution)
+
+    - animations:
+        - idle
+        - gesture
+        - walk
+        - attack
+        - death
+
+    - frameWidth: 32
+    - frameHeight: 32

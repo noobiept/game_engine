@@ -107,19 +107,38 @@ export class Sprite extends Bitmap
      * Play a previously set animation.
      *
      * @param animationId The name of the animation.
+     * @param reset When trying to play the current animation again, if we reset the animation (back to the first frame) or do nothing.
      * @return If it was successful.
      */
-    play( animationId: string )
+    play( animationId: string, reset= false )
         {
-        this._current_animation = this._animations[ animationId ];
+        var next = this._animations[ animationId ];
 
-        if ( !this._current_animation )
+            // doesnt't exist an animation with the given id
+        if ( !next )
             {
             return false;
             }
 
-        this._has_logic = true;
+            // we're already playing that animation
+        if ( next === this._current_animation )
+            {
+            if ( reset === true )
+                {
+                this._current_animation_position = 0;
+                this._count_interval = 0;
+                this.setFrame( this._current_animation[ 0 ] );
+                }
+
+            return true;
+            }
+
+
+        this._current_animation = next;
         this._current_animation_position = 0;
+        this._count_interval = 0;
+
+        this._has_logic = true;
 
         this.setFrame( this._current_animation[ this._current_animation_position ] );
 
