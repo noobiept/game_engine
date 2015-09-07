@@ -1,13 +1,14 @@
 var UnitState = {
-    idle: 0,
-    walk_left: 1,
-    walk_right: 2
+    idle_left: 0,
+    idle_right: 1,
+    walk_left: 2,
+    walk_right: 3
 };
 
 
 function Unit( x, y, state )
 {
-var rogue = new Game.Sprite({
+Game.Sprite.call( this, {
         x: x,
         y: y,
         image: Game.Preload.get( 'rogue' ),
@@ -22,33 +23,79 @@ var rogue = new Game.Sprite({
         }
     });
 
-this.sprite = rogue;
 this.setState( state );
 }
+
+
+Game.Utilities.inheritPrototype( Unit, Game.Sprite );
+
+
+Unit.prototype.handleInput = function( input )
+{
+switch( this.state )
+    {
+    case UnitState.idle_left:
+    case UnitState.idle_right:
+        if ( input === Input.press_leftArrow )
+            {
+            this.setState( UnitState.walk_left );
+            }
+
+        else if ( input === Input.press_rightArrow )
+            {
+            this.setState( UnitState.walk_right );
+            }
+        break;
+
+    case UnitState.walk_left:
+        if ( input === Input.release_leftArrow )
+            {
+            this.setState( UnitState.idle_left );
+            }
+
+        else if ( input === Input.press_rightArrow )
+            {
+            this.setState( UnitState.walk_right );
+            }
+        break;
+
+    case UnitState.walk_right:
+        if ( input === Input.release_rightArrow )
+            {
+            this.setState( UnitState.idle_right );
+            }
+
+        else if ( input === Input.press_leftArrow )
+            {
+            this.setState( UnitState.walk_left );
+            }
+        break;
+    }
+};
 
 
 Unit.prototype.setState = function( state )
 {
 switch( state )
     {
-    case UnitState.idle:
-        if ( this.state === UnitState.walk_left )
-            {
-            this.sprite.play( 'idle_left' );
-            }
+    case UnitState.idle_left:
+        this.play( 'idle_left' );
+        this.dispatchEvent( 'idle' );
+        break;
 
-        else
-            {
-            this.sprite.play( 'idle_right' );
-            }
+    case UnitState.idle_right:
+        this.play( 'idle_right' );
+        this.dispatchEvent( 'idle' );
         break;
 
     case UnitState.walk_left:
-        this.sprite.play( 'walk_left' );
+        this.play( 'walk_left' );
+        this.dispatchEvent( 'walk_left' );
         break;
 
     case UnitState.walk_right:
-        this.sprite.play( 'walk_right' );
+        this.play( 'walk_right' );
+        this.dispatchEvent( 'walk_right' );
         break;
 
     default:

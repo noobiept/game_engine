@@ -17,6 +17,15 @@ preload.loadManifest( manifest, path );
 };
 
 
+    // possible valid inputs
+var Input = {
+    press_leftArrow: 0,
+    press_rightArrow: 1,
+    release_leftArrow: 2,
+    release_rightArrow: 3
+};
+
+
 function start()
 {
 var canvas = Game.getCanvas();
@@ -68,12 +77,31 @@ var frontTrees = new Game.ScrollingBitmap({
 Game.addElement( frontTrees );
 
 
-var rogue = new Unit( centerX, centerY + 50, UnitState.idle );
-Game.addElement( rogue.sprite );
+var rogue = new Unit( centerX, centerY + 50, UnitState.idle_right );
+Game.addElement( rogue );
 
 
-    // by pressing the left/right arrow key, we can change the state of the game
-var nextState = rogue.state;
+    // move the front trees based on the unit movement
+rogue.addEventListener( 'idle', function()
+    {
+    frontTrees.clearInterval();
+    });
+rogue.addEventListener( 'walk_left', function()
+    {
+    frontTrees.setDirection( Game.ScrollingBitmapArgs.Direction.left );
+    frontTrees.setInterval( 0.1 );
+    });
+rogue.addEventListener( 'walk_right', function()
+    {
+    frontTrees.setDirection( Game.ScrollingBitmapArgs.Direction.right );
+    frontTrees.setInterval( 0.1 );
+    });
+
+
+    // by pressing/releasing the left/right arrow key, we can change the state of the game
+var currentInput = -1;
+var nextInput = -1;
+
 
 window.addEventListener( 'keydown', function( event )
     {
@@ -82,11 +110,11 @@ window.addEventListener( 'keydown', function( event )
     switch( key )
         {
         case Game.Utilities.KEY_CODE.leftArrow:
-            nextState = UnitState.walk_left;
+            nextInput = Input.press_leftArrow;
             break;
 
         case Game.Utilities.KEY_CODE.rightArrow:
-            nextState = UnitState.walk_right;
+            nextInput = Input.press_rightArrow;
             break;
         }
     });
@@ -97,34 +125,24 @@ window.addEventListener( 'keyup', function( event )
     switch( key )
         {
         case Game.Utilities.KEY_CODE.leftArrow:
+            nextInput = Input.release_leftArrow;
+            break;
+
         case Game.Utilities.KEY_CODE.rightArrow:
-            nextState = UnitState.idle;
+            nextInput = Input.release_rightArrow;
             break;
         }
     });
 
 
+    // handle the input
 Game.addToGameLoop( function()
     {
-    if ( nextState !== rogue.state )
+    if ( currentInput !== nextInput )
         {
-        rogue.setState( nextState );
+        currentInput = nextInput;
 
-        switch( nextState )
-            {
-            case UnitState.idle:
-                frontTrees.clearInterval();
-                break;
-
-            case UnitState.walk_left:
-                frontTrees.setDirection( Game.ScrollingBitmapArgs.Direction.left );
-                frontTrees.setInterval( 0.1 );
-                break;
-
-            case UnitState.walk_right:
-                frontTrees.setDirection( Game.ScrollingBitmapArgs.Direction.right );
-                frontTrees.setInterval( 0.1 );
-            }
+        rogue.handleInput( nextInput );
         }
     }, 0 );
 }
