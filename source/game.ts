@@ -212,7 +212,7 @@ export function addCanvas( canvas: Game.Canvas, position?: number )
     @param element Element or Element[] to be added.
     @param id The canvas id.
  */
-export function addElement( element: any, id?: number )
+export function addElement( element: Element | Element[], id?: number )
     {
     if ( typeof id === 'undefined' )
         {
@@ -229,7 +229,7 @@ export function addElement( element: any, id?: number )
  * @param element Element or Element[] to be removed.
  * @return If the element was removed.
  */
-export function removeElement( element: any )
+export function removeElement( element: Element | Element[] )
     {
     for (var a = ALL_CANVAS.length - 1 ; a >= 0 ; a--)
         {

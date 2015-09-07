@@ -83,7 +83,7 @@ export class Unit extends Container
         // :: bullet related :: //
     protected _bullet_interval: number;   // time between firing bullets (<0 if its not active)
     protected _bullet_interval_count: number;
-    protected _angle_or_target: any;
+    protected _angle_or_target: number | Element;
     protected _bullets: Bullet[];
     protected _bullet_shape: { classRef: (args: any) => void; args: Object; };
     protected _bullet_container: Container | Canvas;
@@ -367,10 +367,10 @@ export class Unit extends Container
 
 
     /**
-     * @param angleOrTarget {Number|Element} The angle of the bullet movement. If not given, then the bullet will have the unit's current rotation angle. Can be passed an Element which will work as the target of the bullet (it will follow the target until it hits it).
+     * @param angleOrTarget The angle of the bullet movement. If not given, then the bullet will have the unit's current rotation angle. Can be passed an Element which will work as the target of the bullet (it will follow the target until it hits it).
      * @param interval If you want to keep firing bullets at the same angle (or same target). Pass a positive number for that.
      */
-    fireBullet( angleOrTarget?: any, interval?: number )
+    fireBullet( angleOrTarget?: number | Element, interval?: number )
         {
         if ( typeof angleOrTarget === 'undefined' )
             {
@@ -404,7 +404,7 @@ export class Unit extends Container
      *
      * @param angleOrTarget The angle or target of the bullet.
      */
-    protected _fire( angleOrTarget?: any )
+    protected _fire( angleOrTarget?: number | Element )
         {
         var _this = this;
 
@@ -416,7 +416,7 @@ export class Unit extends Container
             // if it happens to be a target, need to make sure it hasn't been removed yet
         if ( typeof angleOrTarget !== 'number' )
             {
-            if ( angleOrTarget._removed === true )
+            if ( angleOrTarget.isRemoved() === true )
                 {
                 this.stopFiring();
                 return;

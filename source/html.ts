@@ -23,7 +23,7 @@ export module Html
     export interface HtmlElementArgs
         {
         cssId?: string;
-        cssClass?: any;     // string or string[]
+        cssClass?: string | string[];
         preText?: string;
         }
 
@@ -55,19 +55,21 @@ export module Html
                     container.id = args.cssId;
                     }
 
+                var cssClass = args.cssClass;
+
                     // add optional class/classes
-                if ( typeof args.cssClass !== 'undefined' )
+                if ( typeof cssClass !== 'undefined' )
                     {
-                    if ( typeof args.cssClass === 'string' )
+                    if ( typeof cssClass === 'string' )
                         {
-                        container.classList.add( args.cssClass );
+                        container.classList.add( cssClass );
                         }
 
                     else
                         {
-                        for (var a = args.cssClass.length - 1 ; a >= 0 ; a--)
+                        for (var a = cssClass.length - 1 ; a >= 0 ; a--)
                             {
-                            container.classList.add( args.cssClass[ a ] );
+                            container.classList.add( cssClass[ a ] );
                             }
                         }
                     }
@@ -163,7 +165,7 @@ export module Html
 
     export interface HtmlContainerArgs extends HtmlElementArgs
         {
-        children?: any;     // HtmlElement or HtmlElement[]
+        children?: HtmlElement | HtmlElement[];
         }
 
     /**

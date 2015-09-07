@@ -9,7 +9,7 @@ export interface BulletArgs extends ContainerArgs
 
         // bullet moves in a fixed direction if an angle is given, until its out of the canvas
         // or follows a target, if an Element is given instead
-    angleOrTarget: any;     // number | Element
+    angleOrTarget: number | Element;
     }
 
 
@@ -60,19 +60,21 @@ export class Bullet extends Container
 
         this.movement_speed = args.movement_speed;
 
+        var angleOrTarget = args.angleOrTarget;
+
             // its an angle
-        if ( typeof args.angleOrTarget === 'number' )
+        if ( typeof angleOrTarget === 'number' )
             {
-            this._move_x = Math.cos( args.angleOrTarget ) * args.movement_speed;
-            this._move_y = Math.sin( args.angleOrTarget ) * args.movement_speed;
-            this.rotation = args.angleOrTarget;
+            this._move_x = Math.cos( angleOrTarget ) * args.movement_speed;
+            this._move_y = Math.sin( angleOrTarget ) * args.movement_speed;
+            this.rotation = angleOrTarget;
             this.logic = this.fixedLogic;
             }
 
             // an Element as the target
         else
             {
-            this._target = args.angleOrTarget;
+            this._target = angleOrTarget;
             this.logic = this.targetLogic;
             }
         }

@@ -359,6 +359,15 @@ export class Element extends EventDispatcher
 
 
     /**
+     * Tells if this element has already been removed or not.
+     */
+    isRemoved()
+        {
+        return this._removed;
+        }
+
+
+    /**
      * Create a clone of this element.
      *
      * @abstract
