@@ -37,12 +37,12 @@ export class Tween
     {
     static _tweens: Tween[] = [];
 
-    _element: Object;
-    _steps: TweenStep[];
-    _current_step: TweenStep;
-    _start_properties: Object;
-    _count: number;
-    _update: (delta: number) => any;
+    protected _element: Object;
+    protected _steps: TweenStep[];
+    protected _current_step: TweenStep;
+    protected _start_properties: Object;
+    protected _count: number;
+    protected _update: (delta: number) => any;
 
 
     constructor( element: Object )
@@ -186,7 +186,7 @@ export class Tween
      *
      * @param deltaTime Time elapsed since the last update.
      */
-    waitUpdate( deltaTime: number )
+    protected waitUpdate( deltaTime: number )
         {
         var step = this._current_step;
 
@@ -204,7 +204,7 @@ export class Tween
      *
      * @param deltaTime Time elapsed since the last update.
      */
-    propertiesUpdate( deltaTime )
+    protected propertiesUpdate( deltaTime )
         {
         var step = this._current_step;
 

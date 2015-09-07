@@ -30,12 +30,12 @@ export interface CanvasArgs
 export class Canvas
     {
     _canvas: HTMLCanvasElement;
-    _ctx: CanvasRenderingContext2D;
+    protected _ctx: CanvasRenderingContext2D;
 
-    _width: number;
-    _height: number;
+    protected _width: number;
+    protected _height: number;
 
-    _children: Element[];
+    protected _children: Element[];
 
     events_enabled: boolean;
     update_on_loop: boolean;    // if it calls the .logic() and .draw() on the game loop (if false, then you need to call it manually)

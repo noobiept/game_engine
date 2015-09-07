@@ -42,12 +42,12 @@ export module ScrollingBitmapArgs
  */
 export class ScrollingBitmap extends Bitmap
     {
-    private _count: number;     // interval counter
-    private _interval: number;  // time between the scroll movement
-    private _step: number;      // how many pixels it moves per scroll movement
-    private _ref_position: number;  // the current image division point position
-    private _direction: ScrollingBitmapArgs.Direction;  // the scrolling direction
-    private _scroll: () => void;
+    protected _count: number;     // interval counter
+    protected _interval: number;  // time between the scroll movement
+    protected _step: number;      // how many pixels it moves per scroll movement
+    protected _ref_position: number;  // the current image division point position
+    protected _direction: ScrollingBitmapArgs.Direction;  // the scrolling direction
+    protected _scroll: () => void;
 
 
     constructor( args: ScrollingBitmapArgs )
@@ -188,7 +188,7 @@ export class ScrollingBitmap extends Bitmap
     /**
      * Used for the horizontal movement (left or right).
      */
-    private _draw_horizontal( ctx: CanvasRenderingContext2D )
+    protected _draw_horizontal( ctx: CanvasRenderingContext2D )
         {
         ctx.save();
         ctx.beginPath();
@@ -223,7 +223,7 @@ export class ScrollingBitmap extends Bitmap
     /**
      * Used for the vertical movement (top or bottom).
      */
-    private _draw_vertical( ctx: CanvasRenderingContext2D )
+    protected _draw_vertical( ctx: CanvasRenderingContext2D )
         {
         ctx.save();
         ctx.beginPath();

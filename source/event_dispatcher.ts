@@ -13,7 +13,7 @@ export interface EventDispatcherArgs
  */
 export class EventDispatcher
     {
-    _listeners;
+    protected _listeners;
 
     constructor( args?: EventDispatcherArgs )
         {

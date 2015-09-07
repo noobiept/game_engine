@@ -34,7 +34,7 @@ export interface CircleArgs extends ElementArgs
 export class Circle extends Element
     {
     color: string;
-    private _radius: number;
+    protected _radius: number;
 
     constructor( args: CircleArgs )
         {

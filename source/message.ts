@@ -36,10 +36,10 @@ export interface MessageArgs extends Game.Html.HtmlContainerArgs
  */
 export class Message extends Game.Html.HtmlContainer
     {
-    body: Html.HtmlContainer;
-    buttons: Html.HtmlContainer;
-    background: HTMLElement;
-    timeout: Utilities.Timeout;
+    protected body: Html.HtmlContainer;
+    protected buttons: Html.HtmlContainer;
+    protected background: HTMLElement;
+    protected timeout: Utilities.Timeout;
 
 
     constructor( args: MessageArgs )

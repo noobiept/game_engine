@@ -68,25 +68,25 @@ export class Unit extends Container
     health: number;
 
         // :: movement related :: //
-    _movement_type: UnitMovement;
-    _is_moving: boolean;
-    _move_x: number;
-    _move_y: number;
-    _move_callback: () => any;
-    _destination_x: number;
-    _destination_y: number;
-    _is_destination_x_diff_positive: boolean;
-    _is_destination_y_diff_positive: boolean;
-    _path: { x: number; y: number; callback?: () => any }[];
-    _loop_path_position: number; // when looping a path, to know what is the current position the unit is going for (the path array position)
+    protected _movement_type: UnitMovement;
+    protected _is_moving: boolean;
+    protected _move_x: number;
+    protected _move_y: number;
+    protected _move_callback: () => any;
+    protected _destination_x: number;
+    protected _destination_y: number;
+    protected _is_destination_x_diff_positive: boolean;
+    protected _is_destination_y_diff_positive: boolean;
+    protected _path: { x: number; y: number; callback?: () => any }[];
+    protected _loop_path_position: number; // when looping a path, to know what is the current position the unit is going for (the path array position)
 
         // :: bullet related :: //
-    _bullet_interval: number;   // time between firing bullets (<0 if its not active)
-    _bullet_interval_count: number;
-    _angle_or_target: any;
-    _bullets: Bullet[];
-    _bullet_shape: { classRef: (args: any) => void; args: Object; };
-    _bullet_container: Container | Canvas;
+    protected _bullet_interval: number;   // time between firing bullets (<0 if its not active)
+    protected _bullet_interval_count: number;
+    protected _angle_or_target: any;
+    protected _bullets: Bullet[];
+    protected _bullet_shape: { classRef: (args: any) => void; args: Object; };
+    protected _bullet_container: Container | Canvas;
 
 
     constructor( args: UnitArgs )
@@ -189,7 +189,7 @@ export class Unit extends Container
     /**
      * Remove the unit immediately.
      */
-    _removeNow()
+    protected _removeNow()
         {
         if ( !this._removed )
             {
@@ -404,7 +404,7 @@ export class Unit extends Container
      *
      * @param angleOrTarget The angle or target of the bullet.
      */
-    _fire( angleOrTarget?: any )
+    protected _fire( angleOrTarget?: any )
         {
         var _this = this;
 
@@ -473,7 +473,7 @@ export class Unit extends Container
      *
      * @param delta Time elapsed since the last update.
      */
-    movementLogic( delta: number )
+    protected movementLogic( delta: number )
         {
             // empty
         }
@@ -485,7 +485,7 @@ export class Unit extends Container
      *
      * @param delta Time elapsed since the last update.
      */
-    movementAngleLogic( delta: number )
+    protected movementAngleLogic( delta: number )
         {
         if ( this._is_moving )
             {
@@ -509,7 +509,7 @@ export class Unit extends Container
      *
      * @param delta Time elapsed since the last update.
      */
-    movementPathLogic( delta: number )
+    protected movementPathLogic( delta: number )
         {
         if ( this._is_moving )
             {
@@ -556,7 +556,7 @@ export class Unit extends Container
      *
      * @param delta Time elapsed since the last update.
      */
-    firingLogic( delta: number )
+    protected firingLogic( delta: number )
         {
         if ( this._bullet_interval > 0 )
             {
@@ -576,7 +576,7 @@ export class Unit extends Container
      *
      * @param delta Time elapsed since the last update.
      */
-    collisionLogic( delta: number )
+    protected collisionLogic( delta: number )
         {
         var constructor = <any> this.constructor;
         var length = constructor.collidesWith.length;

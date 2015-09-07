@@ -35,7 +35,7 @@ export interface ContainerArgs extends ElementArgs
  */
 export class Container extends Element
     {
-    _children: Element[];
+    protected _children: Element[];
 
 
     constructor( args?: ContainerArgs )

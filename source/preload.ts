@@ -38,12 +38,12 @@ export interface PreloadArgs extends EventDispatcherArgs
  */
 export class Preload extends EventDispatcher
     {
-    _data: Object;
     save_global: boolean;
-    _total_items: number;
-    _loaded_items: number;
-    _failed_ids: string[];      // list of the ids that failed to load
-    _loaded_ids: string[];      // list of the ids that were successfully loaded
+    protected _data: Object;
+    protected _total_items: number;
+    protected _loaded_items: number;
+    protected _failed_ids: string[];      // list of the ids that failed to load
+    protected _loaded_ids: string[];      // list of the ids that were successfully loaded
 
     constructor( args?: PreloadArgs )
         {
@@ -74,7 +74,7 @@ export class Preload extends EventDispatcher
      * @param id The id of the loaded element.
      * @param data Its data.
      */
-    _loaded( id: string, data: any )
+    protected _loaded( id: string, data: any )
         {
         if ( this.save_global )
             {
@@ -101,7 +101,7 @@ export class Preload extends EventDispatcher
     /**
      * An element failed to load. We'll keep track of its id, to send it later on the 'complete' event.
      */
-    _failed_to_load( id: string )
+    protected _failed_to_load( id: string )
         {
         this._loaded_items++;
         this._failed_ids.push( id );
@@ -116,7 +116,7 @@ export class Preload extends EventDispatcher
     /**
      * All the elements were dealt with. Dispatch the `complete` event with a list of the loaded ids, and another list with the ids that failed to load as well.
      */
-    _loading_complete()
+    protected _loading_complete()
         {
         this.dispatchEvent( 'complete',
             {
@@ -138,7 +138,7 @@ export class Preload extends EventDispatcher
      * @param event The event to dispatch.
      * @param id The id of the element.
      */
-    _on_error( event, id: string )
+    protected _on_error( event, id: string )
         {
         this.dispatchEvent( 'error', { event: event, id: id } );
         }
@@ -150,7 +150,7 @@ export class Preload extends EventDispatcher
      * @param event The event to dispatch.
      * @param id The id of the element.
      */
-    _on_abort( event, id: string )
+    protected _on_abort( event, id: string )
         {
         this.dispatchEvent( 'abort', { event: event, id: id } );
         }
@@ -161,7 +161,7 @@ export class Preload extends EventDispatcher
      *
      * @param event The event that was triggered.
      */
-    _on_progress( event: ProgressEvent )
+    protected _on_progress( event: ProgressEvent )
         {
         var fileProgress = 0;
 

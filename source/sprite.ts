@@ -49,13 +49,14 @@ export interface SpriteArgs extends BitmapArgs
 export class Sprite extends Bitmap
     {
     interval: number;           // time between each frame
-    _count_interval: number;    // count time to compare with the set interval
+    protected _count_interval: number;    // count time to compare with the set interval
 
-    _frames_per_line: number;
+    protected _frames_per_line: number;
 
-    _animations: { [id: string]: number[] };
-    _current_animation: number[];
-    _current_animation_position: number;    // position in the array in '_current_animation'
+    protected _animations: { [id: string]: number[] };
+    protected _current_animation: number[];
+    protected _current_animation_position: number;    // position in the array in '_current_animation'
+
 
     constructor( args: SpriteArgs )
         {

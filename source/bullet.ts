@@ -49,9 +49,9 @@ export interface BulletArgs extends ContainerArgs
 export class Bullet extends Container
     {
     movement_speed: number;
-    _move_x: number;
-    _move_y: number;
-    _target: Element;
+    protected _move_x: number;
+    protected _move_y: number;
+    protected _target: Element;
 
 
     constructor( args: BulletArgs )

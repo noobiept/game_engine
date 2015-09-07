@@ -31,9 +31,9 @@ export interface BitmapArgs extends ElementArgs
  */
 export class Bitmap extends Element
     {
-    _image: HTMLImageElement;
-    _source_x: number;
-    _source_y: number;
+    protected _image: HTMLImageElement;
+    protected _source_x: number;
+    protected _source_y: number;
 
 
     constructor( args: BitmapArgs )

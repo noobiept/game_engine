@@ -44,12 +44,12 @@ export class Text extends Element
     fill: boolean;  // fill or stroke text
     color: string;
 
-    _text: string;
-    _font_family: string;
-    _font_size: number;
-    _font: string;   // font_family + font_size
-    _timeout: number;
-    _lines: string[];
+    protected _text: string;
+    protected _font_family: string;
+    protected _font_size: number;
+    protected _font: string;   // font_family + font_size
+    protected _timeout: number;
+    protected _lines: string[];
 
 
     constructor( args: TextArgs )

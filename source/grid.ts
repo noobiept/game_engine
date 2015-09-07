@@ -28,7 +28,7 @@ export interface GridArgs
  */
 export class Grid
     {
-    _grid: any[][];
+    protected _grid: any[][];
     columns: number;
     lines: number;
 

@@ -33,8 +33,8 @@ export module Html
     export class HtmlElement
         {
         container: HTMLElement;
-        _is_active: boolean;
-        _pre_text: HTMLElement;
+        protected _is_active: boolean;
+        protected _pre_text: HTMLElement;
 
         constructor( args?: HtmlElementArgs )
             {
@@ -171,7 +171,7 @@ export module Html
      */
     export class HtmlContainer extends HtmlElement
         {
-        _children: HtmlElement[];
+        protected _children: HtmlElement[];
 
         constructor( args?: HtmlContainerArgs )
             {
@@ -290,7 +290,7 @@ export module Html
      */
     export class Value extends HtmlElement
         {
-        value: any;
+        protected value: any;
         element: HTMLElement;
 
 
@@ -357,7 +357,7 @@ export module Html
      */
     export class Button extends Value
         {
-        click_ref: (event: MouseEvent) => any;
+        protected click_ref: (event: MouseEvent) => any;
 
         constructor( args: ButtonArgs )
             {
@@ -428,7 +428,7 @@ export module Html
      */
     export class Boolean extends Button
         {
-        value: boolean;
+        protected value: boolean;
 
         constructor( args: BooleanArgs )
             {
@@ -501,7 +501,7 @@ export module Html
      */
     export class TwoState extends Button
         {
-        isValue1: boolean;
+        protected isValue1: boolean;
 
         constructor( args: TwoStateArgs )
             {
@@ -560,9 +560,9 @@ export module Html
      */
     export class MultipleOptions extends HtmlElement
         {
-        elements: HTMLElement[];
-        click_ref: () => any;
-        selected: HTMLElement;
+        protected elements: HTMLElement[];
+        protected click_ref: () => any;
+        protected selected: HTMLElement;
 
         constructor( args: MultipleOptionsArgs )
             {
@@ -709,11 +709,11 @@ export module Html
      */
     export class Range extends HtmlElement
         {
-        value: HTMLElement;
-        input: HTMLInputElement;
-        current_value: number;
-        change_ref: (event) => any;
-        input_ref: (event) => any;
+        protected value: HTMLElement;
+        protected input: HTMLInputElement;
+        protected current_value: number;
+        protected change_ref: (event) => any;
+        protected input_ref: (event) => any;
         number_of_decimals: number;
 
         constructor( args: RangeArgs )
@@ -861,9 +861,9 @@ export module Html
      */
     export class Text extends HtmlElement
         {
-        input: HTMLInputElement;
-        button: Button;
-        key_ref: (event) => any;
+        protected input: HTMLInputElement;
+        protected button: Button;
+        protected key_ref: (event) => any;
 
         constructor( args?: TextArgs )
             {

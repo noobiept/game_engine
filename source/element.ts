@@ -44,10 +44,10 @@ export class Element extends EventDispatcher
     _half_width: number;
     _half_height: number;
 
-    _rotation: number;   // in radians (clockwise)
+    protected _rotation: number;   // in radians (clockwise)
     _container: Container;
     _has_logic: boolean; // to know if we need to run the .logic() method or not
-    _removed: boolean;  // a reference to this element may be saved in several places, so we need a way to know if its ok to work on the element or not
+    protected _removed: boolean;  // a reference to this element may be saved in several places, so we need a way to know if its ok to work on the element or not
 
 
     constructor( args?: ElementArgs )
