@@ -85,6 +85,10 @@ grunt.initConfig({
                 target: 'es5'
             },
             src: source
+        },
+
+        qunit: {
+            all: [ '../tests/start.html' ]
         }
     });
 
@@ -92,14 +96,16 @@ grunt.initConfig({
 
 
     // load the plug-ins
-grunt.loadNpmTasks( 'grunt-ts' );
 grunt.loadNpmTasks( 'grunt-contrib-copy' );
 grunt.loadNpmTasks( 'grunt-contrib-uglify' );
+grunt.loadNpmTasks( 'grunt-contrib-qunit' );
+grunt.loadNpmTasks( 'grunt-ts' );
 grunt.loadNpmTasks( 'typedoc' );
 
     // tasks
 grunt.registerTask( 'default', [ 'ts', 'copy:dev' ] );      // dev build
+grunt.registerTask( 'tests', [ 'qunit' ] );                 // run the tests
 grunt.registerTask( 'docs', [ 'typedoc' ] );                // build the documentation
 grunt.registerTask( 'minimize', [ 'uglify' ] );             // minimize js
-grunt.registerTask( 'release', [ 'default', 'minimize', 'docs', 'copy:release' ] ); // release build
+grunt.registerTask( 'release', [ 'default', 'tests', 'minimize', 'docs', 'copy:release' ] ); // release build
 };

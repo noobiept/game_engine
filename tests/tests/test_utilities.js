@@ -1,9 +1,11 @@
+QUnit.module( 'Utilities' );
+
+
 // ---------- Array Utilities ---------- //
 
 
     // shuffle //
-QUnit.module( 'shuffle' );
-QUnit.test( 'validate arguments', function( assert )
+QUnit.test( 'shuffle() - Validate arguments.', function( assert )
 {
 var expect = Error;
 
@@ -18,7 +20,7 @@ assert.throws( function()
     }, expect, 'Wrong argument type.' );
 });
 
-QUnit.test( 'test with valid arguments', function( assert )
+QUnit.test( 'shuffle() - Test with valid arguments.', function( assert )
 {
 var test = [ 1, 2, 3, 4 ];
 var length = test.length;
@@ -39,8 +41,7 @@ assert.deepEqual( test.indexOf( 4 ) >= 0, true );
 
 
     // boxBoxCollision //
-QUnit.module( 'boxBoxCollision' );
-QUnit.test( 'test with valid arguments', function( assert )
+QUnit.test( 'boxBoxCollision() - Test with valid arguments.', function( assert )
 {
 var result;
 var expect;
@@ -63,8 +64,7 @@ assert.deepEqual( result, expect, 'One box inside the other.' );
 
 
     // circleCircleCollision //
-QUnit.module( 'circleCircleCollision' );
-QUnit.test( 'test with valid arguments', function( assert )
+QUnit.test( 'circleCircleCollision() - Test with valid arguments.', function( assert )
 {
 var result;
 var expect;
@@ -87,8 +87,7 @@ assert.deepEqual( result, expect, 'Second circle inside the first.' );
 
 
     // circlePointCollision //
-QUnit.module( 'circlePointCollision' );
-QUnit.test( 'test with valid arguments', function( assert )
+QUnit.test( 'circlePointCollision() - Test with valid arguments.', function( assert )
 {
 var result;
 var expect;
@@ -111,8 +110,7 @@ assert.deepEqual( result, expect, 'Point inside the circle.' );
 
 
     // pointBoxCollision //
-QUnit.module( 'pointBoxCollision' );
-QUnit.test( 'test with valid arguments', function( assert )
+QUnit.test( 'pointBoxCollision() - Test with valid arguments.', function( assert )
 {
 var result;
 var expect;
@@ -143,8 +141,7 @@ assert.deepEqual( result, expect, 'Point inside the box.' );
 
 
     // isArray //
-QUnit.module( 'isArray' );
-QUnit.test( 'Test type', function( assert )
+QUnit.test( 'isArray()', function( assert )
 {
 var values = [
         { value: 1, expect: false },
@@ -173,8 +170,7 @@ for (var a = 0 ; a < values.length ; a++)
 
 
     // isBoolean //
-QUnit.module( 'isBoolean' );
-QUnit.test( 'Test type', function( assert )
+QUnit.test( 'isBoolean()', function( assert )
 {
 var values = [
         { value: 1, expect: false },
@@ -203,8 +199,7 @@ for (var a = 0 ; a < values.length ; a++)
 
 
     // isFunction //
-QUnit.module( 'isFunction' );
-QUnit.test( 'Test type', function( assert )
+QUnit.test( 'isFunction()', function( assert )
 {
 var values = [
         { value: 1, expect: false },
@@ -233,8 +228,7 @@ for (var a = 0 ; a < values.length ; a++)
 
 
     // isInteger //
-QUnit.module( 'isInteger' );
-QUnit.test( 'Test type', function( assert )
+QUnit.test( 'isInteger()', function( assert )
 {
 var values = [
         { value: 1, expect: true },
@@ -263,8 +257,7 @@ for (var a = 0 ; a < values.length ; a++)
 
 
     // isNumber //
-QUnit.module( 'isNumber' );
-QUnit.test( 'Test type', function( assert )
+QUnit.test( 'isNumber()', function( assert )
 {
 var values = [
         { value: 1, expect: true },
@@ -293,8 +286,7 @@ for (var a = 0 ; a < values.length ; a++)
 
 
     // isString //
-QUnit.module( 'isString' );
-QUnit.test( 'Test type', function( assert )
+QUnit.test( 'isString()', function( assert )
 {
 var values = [
         { value: 1, expect: false },
@@ -326,8 +318,7 @@ for (var a = 0 ; a < values.length ; a++)
 
 
     // saveObject / getObject //
-QUnit.module( 'saveGetObject' );
-QUnit.test( 'validate arguments', function( assert )
+QUnit.test( 'saveObject() / getObject() - Validate arguments.', function( assert )
 {
 var expect = Error;
 
@@ -352,7 +343,7 @@ assert.throws( function()
     }, expect, 'Passed a number for the key argument.' );
 });
 
-QUnit.test( 'test with valid arguments', function( assert )
+QUnit.test( 'saveObject() / getObject() - Test with valid arguments.', function( assert )
 {
 var key = 'test';
 var returnedValue;
@@ -376,8 +367,7 @@ for (var a = 0 ; a < testValues.length ; a++)
 
 
     // getRandomFloat //
-QUnit.module( 'getRandomFloat' );
-QUnit.test( 'validate arguments', function( assert )
+QUnit.test( 'getRandomFloat() - Validate arguments.', function( assert )
 {
 var expect = Error;
 
@@ -403,7 +393,7 @@ assert.throws( function()
 });
 
 
-QUnit.test( 'test with valid arguments', function( assert )
+QUnit.test( 'getRandomFloat() - Test with valid arguments.', function( assert )
 {
 var result;
 var expect;
@@ -427,8 +417,7 @@ assert.ok( ok, 'Zero in one of the range limits.' );
 
 
     // getRandomInt //
-QUnit.module( 'getRandomInt' );
-QUnit.test( "validate arguments", function( assert )
+QUnit.test( "getRandomInt() - Validate arguments.", function( assert )
 {
 var expect = Error;
 
@@ -463,7 +452,7 @@ assert.throws( function()
     }, expect, 'Passed a float to the 2nd argument.' );
 });
 
-QUnit.test( 'test with valid arguments', function( assert )
+QUnit.test( 'getRandomInt() - Test with valid arguments.', function( assert )
 {
 var result;
 var expect;
@@ -486,8 +475,7 @@ assert.ok( expect, 'Zero in one of the range limits.' );
 
 
     // getSeveralRandomInts //
-QUnit.module( 'getSeveralRandomInts' );
-QUnit.test( 'validate arguments', function( assert )
+QUnit.test( 'getSeveralRandomInts() - Validate arguments.', function( assert )
 {
 var expect = Error;
 
@@ -537,7 +525,7 @@ assert.throws( function()
     }, expect, 'Try to get more integers than the range of values provided.' );
 });
 
-QUnit.test( 'test with valid arguments', function( assert )
+QUnit.test( 'getSeveralRandomInts() - Test with valid arguments.', function( assert )
 {
 var result;
 var expect;
@@ -606,9 +594,7 @@ assert.ok( ok, 'A zero in the range limits.' );
 
 
     // numberOfDigits //
-
-QUnit.module( 'numberOfDigits' );
-QUnit.test( 'validate arguments', function( assert )
+QUnit.test( 'numberOfDigits() - Validate arguments.', function( assert )
 {
 var expect = Error;
 
@@ -623,7 +609,7 @@ assert.throws( function()
     }, expect, 'Passed string argument.' );
 });
 
-QUnit.test( 'test with valid arguments', function( assert )
+QUnit.test( 'numberOfDigits() - Test with valid arguments.', function( assert )
 {
 var result;
 var expect;
@@ -656,8 +642,7 @@ assert.deepEqual( result, expect );
 
 
     // round //
-QUnit.module( 'round' );
-QUnit.test( 'validate arguments', function( assert )
+QUnit.test( 'round() - Validate arguments.', function( assert )
 {
 var expect = Error;
 
@@ -687,7 +672,7 @@ assert.throws( function()
     }, expect, 'Negative decimal case.' );
 });
 
-QUnit.test( 'test with valid arguments', function( assert )
+QUnit.test( 'round() - Test with valid arguments.', function( assert )
 {
 var result;
 var expect;
@@ -713,8 +698,7 @@ assert.deepEqual( result, expect );
 
 
     // deepClone //
-QUnit.module( 'deepClone' );
-QUnit.test( 'test with valid arguments', function( assert )
+QUnit.test( 'deepClone() - Test with valid arguments.', function( assert )
 {
 var test;
 var copy;
@@ -736,9 +720,7 @@ assert.ok( test.two.length !== copy.two.length, 'Clone of an object.' );
 
 
     // createEnum //
-QUnit.module( 'createEnum' );
-
-QUnit.test( 'validate arguments', function( assert )
+QUnit.test( 'createEnum() - Validate arguments.', function( assert )
 {
 var expect = Error;
 
@@ -753,7 +735,7 @@ assert.throws( function()
     }, expect, 'Needs to be an array.' );
 });
 
-QUnit.test( 'test with valid arguments', function( assert )
+QUnit.test( 'createEnum() - Test with valid arguments.', function( assert )
 {
 var obj1 = Game.Utilities.createEnum( [ 'one', 'two' ] );
 
@@ -772,8 +754,7 @@ assert.deepEqual( obj2.there, -3 );
 
 
     // inheritPrototype //
-QUnit.module( 'inheritPrototype' );
-QUnit.test( 'test with valid arguments', function( assert )
+QUnit.test( 'inheritPrototype() - Test with valid arguments.', function( assert )
 {
 function BaseClass( b )
     {
@@ -815,8 +796,7 @@ assert.deepEqual( result, expect );
 
 
     // timeToString //
-QUnit.module( 'timeToString' );
-QUnit.test( 'validate arguments', function( assert )
+QUnit.test( 'timeToString() - Validate arguments.', function( assert )
 {
 var expect = Error;
 
@@ -831,7 +811,7 @@ assert.throws( function()
     }, expect, 'Passed a string argument.' );
 });
 
-QUnit.test( 'test with valid arguments', function( assert )
+QUnit.test( 'timeToString() - Test with valid arguments.', function( assert )
 {
 var values = [
         { milliSeconds: 0, expectedString: '0 seconds' },
@@ -863,8 +843,7 @@ assert.deepEqual( Game.Utilities.timeToString( 88201000, 3 ), '1 day 30 minutes 
 
 
     // Timeout //
-QUnit.module( 'Timeout' );
-QUnit.test( 'validate arguments', function( assert )
+QUnit.test( 'Timeout() - Validate arguments.', function( assert )
 {
 var expect = Error;
 var timeout = new Game.Utilities.Timeout();
@@ -894,10 +873,11 @@ assert.throws( function()
 timeout.clear();
 });
 
-QUnit.asyncTest( 'test with valid arguments', function( assert )
+QUnit.test( 'Timeout() - Test with valid arguments.', function( assert )
 {
-expect( 1 );    // number of assertions within this test
+assert.expect( 1 );    // number of assertions within this test
 
+var done = assert.async();
 var value = 0;
 var timeout = new Game.Utilities.Timeout();
 
@@ -906,14 +886,13 @@ timeout.start( function()
     value = 1;
 
     assert.deepEqual( value, 1 );
-    QUnit.start();
+    done();
     }, 10 );
 });
 
 
     // Timer //
-QUnit.module( 'Timer' );
-QUnit.test( 'validate arguments', function( assert )
+QUnit.test( 'Timer() - Validate arguments.', function( assert )
 {
 var expect = Error;
 
@@ -928,7 +907,7 @@ assert.throws( function()
     }, expect, 'Not an html element.' );
 });
 
-QUnit.test( 'test with valid arguments', function( assert )
+QUnit.test( 'Timer() - Test with valid arguments.', function( assert )
 {
 var htmlElement = document.createElement( 'div' );
 var timer = new Game.Utilities.Timer( htmlElement );
@@ -944,8 +923,7 @@ assert.deepEqual( timer.getTimeSeconds(), 0, '0 seconds.' );
 
 
     // calculateAngle //
-QUnit.module( 'calculateAngle' );
-QUnit.test( 'validate arguments', function( assert )
+QUnit.test( 'calculateAngle() - Validate arguments.', function( assert )
 {
 var expect = Error;
 
@@ -975,7 +953,7 @@ assert.throws( function()
     }, expect, 'Passed string arguments.' );
 });
 
-QUnit.test( 'test with valid arguments', function( assert )
+QUnit.test( 'calculateAngle() - Test with valid arguments.', function( assert )
 {
 var result;
 var expect;
@@ -1003,8 +981,7 @@ assert.deepEqual( result, expect );
 
 
     // calculateDistance //
-QUnit.module( 'calculateDistance' );
-QUnit.test( 'validate arguments', function( assert )
+QUnit.test( 'calculateDistance() - Validate arguments.', function( assert )
 {
 var expect = Error;
 
@@ -1034,7 +1011,7 @@ assert.throws( function()
     }, expect, 'Passed string arguments.' );
 });
 
-QUnit.test( 'test with valid arguments', function( assert )
+QUnit.test( 'calculateDistance() - Test with valid arguments.', function( assert )
 {
 var result;
 var expect;
@@ -1057,8 +1034,7 @@ assert.deepEqual( result, expect );
 
 
     // toDegrees //
-QUnit.module( 'toDegrees' );
-QUnit.test( 'validate arguments', function( assert )
+QUnit.test( 'toDegrees() - Validate arguments.', function( assert )
 {
 var expect = Error;
 
@@ -1073,7 +1049,7 @@ assert.throws( function()
     }, expect, 'Passed string argument.' );
 });
 
-QUnit.test( 'test with valid arguments', function( assert )
+QUnit.test( 'toDegrees() - Test with valid arguments.', function( assert )
 {
 var result;
 var expect;
@@ -1096,8 +1072,7 @@ assert.deepEqual( result, expect );
 
 
     // toRadians //
-QUnit.module( 'toRadians' );
-QUnit.test( 'validate arguments', function( assert )
+QUnit.test( 'toRadians() - Validate arguments.', function( assert )
 {
 var expect = Error;
 
@@ -1112,7 +1087,7 @@ assert.throws( function()
     }, expect, 'Passed string argument.' );
 });
 
-QUnit.test( 'test with valid arguments', function( assert )
+QUnit.test( 'toRadians() - Test with valid arguments.', function( assert )
 {
 var result;
 var expect;
