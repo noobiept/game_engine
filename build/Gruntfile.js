@@ -104,8 +104,8 @@ grunt.loadNpmTasks( 'typedoc' );
 
     // tasks
 grunt.registerTask( 'default', [ 'ts', 'copy:dev' ] );      // dev build
-grunt.registerTask( 'tests', [ 'qunit' ] );                 // run the tests
-grunt.registerTask( 'docs', [ 'typedoc' ] );                // build the documentation
-grunt.registerTask( 'minimize', [ 'uglify' ] );             // minimize js
-grunt.registerTask( 'release', [ 'default', 'tests', 'minimize', 'docs', 'copy:release' ] ); // release build
+grunt.registerTask( 'test', [ 'qunit' ] );                  // run the tests
+grunt.registerTask( 'doc', [ 'typedoc' ] );                 // build the documentation
+grunt.registerTask( 'min', [ 'default', 'uglify' ] );       // minimize js
+grunt.registerTask( 'release', [ 'default', 'test', 'uglify', 'doc', 'copy:release' ] ); // release build
 };

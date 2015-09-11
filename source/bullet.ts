@@ -5,11 +5,14 @@ module Game
 {
 export interface BulletArgs extends ContainerArgs
     {
-    movement_speed: number;
-
-        // bullet moves in a fixed direction if an angle is given, until its out of the canvas
+        // bullet moves in a fixed direction if an angle is given, until its out of the canvas (in radians)
         // or follows a target, if an Element is given instead
     angleOrTarget: number | Element;
+    movement_speed: number;
+
+        // the bullet shapes are assumed to have a 0 angle initial orientation (like this: ->)
+        // that can be changed by the value of this argument (in radians)
+    angleOffset?: number;
     }
 
 
@@ -52,14 +55,30 @@ export class Bullet extends Container
     protected _move_x: number;
     protected _move_y: number;
     protected _target: Element;
+    protected _angle_offset: number;
 
 
     constructor( args: BulletArgs )
         {
         super( args );
 
+            // movement speed argument
         this.movement_speed = args.movement_speed;
 
+
+            // angle offset argument
+        if ( typeof args.angleOffset === 'undefined' )
+            {
+            this._angle_offset = 0;
+            }
+
+        else
+            {
+            this._angle_offset = args.angleOffset;
+            }
+
+
+            // angle or target argument
         var angleOrTarget = args.angleOrTarget;
 
             // its an angle
@@ -67,7 +86,7 @@ export class Bullet extends Container
             {
             this._move_x = Math.cos( angleOrTarget ) * args.movement_speed;
             this._move_y = Math.sin( angleOrTarget ) * args.movement_speed;
-            this.rotation = angleOrTarget;
+            this.rotation = angleOrTarget - this._angle_offset;
             this.logic = this.fixedLogic;
             }
 
@@ -110,7 +129,7 @@ export class Bullet extends Container
         this.x += Math.cos( angle ) * this.movement_speed * deltaTime;
         this.y += Math.sin( angle ) * this.movement_speed * deltaTime;
 
-        this.rotation = angle;
+        this.rotation = angle - this._angle_offset;
 
         if ( Utilities.boxBoxCollision(
                 this.x - this._half_width,
