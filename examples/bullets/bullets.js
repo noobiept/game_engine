@@ -17,14 +17,12 @@ var unitShape = new Game.Rectangle({
     });
 
 var unit = new Game.Unit({
+        x: centerX,
+        y: centerY,
         movement_speed: 100,
         children: unitShape,
         bullet_container: Game.getCanvas()
     });
-
-unit.x = centerX;
-unit.y = centerY;
-
 Game.addElement( unit );
 
     // add a target
@@ -34,12 +32,11 @@ var targetRect = new Game.Rectangle({
         color: 'red'
     });
 var target = new Game.Unit({
+        x: 5,
+        y: 5,
         movement_speed: 50,
         children: targetRect
     });
-target.x = 5;
-target.y = 5;
-
 Game.addElement( target );
 
 target.moveTo( 5, centerY );
@@ -50,8 +47,21 @@ unit.fireBullet();
     // specify an angle
 unit.fireBullet( Math.PI );
 unit.fireBullet( Math.PI / 2 );
-unit.fireBullet( -Math.PI / 2, 1 );
+unit.fireBullet( -Math.PI / 2, 0, 1 );     // fire at an interval
 
     // specify a target
-unit.fireBullet( target );
+    // fire a different type of bullet
+var alternateShape = new Game.Rectangle({
+        width: 10,
+        height: 5,
+        color: 'purple'
+    });
+var bullet = new Game.Bullet({
+        angleOrTarget: 0,
+        children: alternateShape,
+        movement_speed: 100
+    });
+var id = unit.addBulletType( bullet );
+
+unit.fireBullet( target, id );
 };

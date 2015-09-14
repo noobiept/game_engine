@@ -84,18 +84,40 @@ export class Bullet extends Container
             // its an angle
         if ( typeof angleOrTarget === 'number' )
             {
-            this._move_x = Math.cos( angleOrTarget ) * args.movement_speed;
-            this._move_y = Math.sin( angleOrTarget ) * args.movement_speed;
-            this.rotation = angleOrTarget - this._angle_offset;
-            this.logic = this.fixedLogic;
+            this.setAngle( angleOrTarget );
             }
 
             // an Element as the target
         else
             {
-            this._target = angleOrTarget;
-            this.logic = this.targetLogic;
+            this.setTarget( angleOrTarget );
             }
+        }
+
+
+    /**
+     * The bullet will travel in a set direction, based on the angle given.
+     *
+     * @param angle In radians.
+     */
+    setAngle( angle: number )
+        {
+        this._move_x = Math.cos( angle ) * this.movement_speed;
+        this._move_y = Math.sin( angle ) * this.movement_speed;
+        this.rotation = angle - this._angle_offset;
+        this.logic = this.fixedLogic;
+        }
+
+
+    /**
+     * The bullet will follow the target, until it hits.
+     *
+     * @param target The element to go to.
+     */
+    setTarget( target: Element )
+        {
+        this._target = target;
+        this.logic = this.targetLogic;
         }
 
 

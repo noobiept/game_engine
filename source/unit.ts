@@ -6,9 +6,7 @@ module Game
 export interface UnitArgs extends ContainerArgs
     {
     movement_speed?: number;
-    bullet_movement_speed?: number;
     health?: number;
-    bullet_shape?: { classRef: (args: any) => void; args: Object; };
     bullet_container?: Container | Canvas;   // if you're firing units from the unit, you need to pass this argument. Bullets will be added to this element when fired.
     }
 
@@ -64,7 +62,6 @@ export class Unit extends Container
 
         // :: unit stats :: //
     movement_speed: number;
-    bullet_movement_speed: number;
     health: number;
 
         // :: movement related :: //
@@ -81,12 +78,10 @@ export class Unit extends Container
     protected _loop_path_position: number; // when looping a path, to know what is the current position the unit is going for (the path array position)
 
         // :: bullet related :: //
-    protected _bullet_interval: number;   // time between firing bullets (<0 if its not active)
-    protected _bullet_interval_count: number;
-    protected _angle_or_target: number | Element;
-    protected _bullets: Bullet[];
-    protected _bullet_shape: { classRef: (args: any) => void; args: Object; };
-    protected _bullet_container: Container | Canvas;
+    protected _bullets: Bullet[];       // has all the bullets fired by this unit
+    protected _bullet_types: Bullet[];  // various bullet types that can be fired
+    protected _bullet_container: Container | Canvas;    // where to add the bullet objects
+    protected _bullet_intervals: { count: number; bulletId: number; interval: number; angleOrTarget: number | Element }[];  // all the firing intervals
 
 
     constructor( args: UnitArgs )
@@ -103,16 +98,6 @@ export class Unit extends Container
             args.health = 1;
             }
 
-        if ( typeof args.bullet_movement_speed === 'undefined' )
-            {
-            args.bullet_movement_speed = 100;
-            }
-
-        if ( typeof args.bullet_shape === 'undefined' )
-            {
-            args.bullet_shape = null;
-            }
-
         if ( typeof args.bullet_container === 'undefined' )
             {
             args.bullet_container = null;
@@ -120,7 +105,6 @@ export class Unit extends Container
 
 
         this.movement_speed = args.movement_speed;
-        this.bullet_movement_speed = args.bullet_movement_speed;
         this.health = args.health;
 
         this._movement_type = UnitMovement.stop;
@@ -135,12 +119,21 @@ export class Unit extends Container
         this._is_destination_x_diff_positive = false;
         this._is_destination_y_diff_positive = false;
 
-        this._bullet_interval = -1;
-        this._bullet_interval_count = 0;
-        this._angle_or_target = null;
+        var defaultBulletShape = new Game.Rectangle({
+                width: 10,
+                height: 2,
+                color: 'blue'
+            });
+        var defaultBullet = new Game.Bullet({
+                angleOrTarget: 0,
+                children: defaultBulletShape,
+                movement_speed: 100
+            });
+
         this._bullets = [];
-        this._bullet_shape = args.bullet_shape;
         this._bullet_container = args.bullet_container;
+        this._bullet_types = [ defaultBullet ];
+        this._bullet_intervals = [];
 
             // init the static variables of the class (if its not yet)
         var constructor = <any> this.constructor;
@@ -367,24 +360,54 @@ export class Unit extends Container
 
 
     /**
+     * A unit can potentially fire different types of bullets.
+     * To do so, first need to associate a bullet type to the unit, and then later on specify the bullet type in the `.fireBullet()` call, with the returned id from this function.
+     *
+     * @param bullet A bullet object, to be cloned every time a bullet is fired later on.
+     * @return The bullet type id, that identifies this type. Use it when calling `.fireBullet()`.
+     */
+    addBulletType( bullet: Bullet ) //HERE Bullet | Bullet[] | ...Bullet
+        {
+        this._bullet_types.push( bullet );
+
+        return this._bullet_types.length - 1;
+        }
+
+
+    /**
      * @param angleOrTarget The angle of the bullet movement. If not given, then the bullet will have the unit's current rotation angle. Can be passed an Element which will work as the target of the bullet (it will follow the target until it hits it).
+     * @param bulletId The id of the bullet type to fire. See `.addBulletType()` for more information.
      * @param interval If you want to keep firing bullets at the same angle (or same target). Pass a positive number for that.
      */
-    fireBullet( angleOrTarget?: number | Element, interval?: number )
+    fireBullet( angleOrTarget?: number | Element, bulletId?: number, interval?: number )
         {
         if ( typeof angleOrTarget === 'undefined' )
             {
             angleOrTarget = this.rotation;
             }
 
-        if ( Utilities.isNumber( interval ) && interval > 0 )
+        if ( typeof bulletId === 'undefined' )
             {
-            this._bullet_interval = interval;
-            this._bullet_interval_count = 0;
-            this._angle_or_target = angleOrTarget;  // only save the target reference if we're going to continue firing at it
+            bulletId = 0;
             }
 
-        this._fire( angleOrTarget );
+        var info = {
+            angleOrTarget: angleOrTarget,
+            bulletId: bulletId
+        };
+
+        if ( Utilities.isNumber( interval ) && interval > 0 )
+            {
+            this._bullet_intervals.push({
+                    count: 0,
+                    interval: interval,
+                    bulletId: bulletId,
+                    angleOrTarget: angleOrTarget,
+                    intervalId: this._bullet_intervals.length
+                });
+            }
+
+        this._fire( info );
         }
 
 
@@ -393,61 +416,43 @@ export class Unit extends Container
      */
     stopFiring()
         {
-        this._bullet_interval = -1;
-        this._bullet_interval_count = 0;
-        this._angle_or_target = null;
+        this._bullet_intervals.length = 0;
         }
 
 
     /**
      * Fire a bullet at a certain angle, or towards a specific target.
      *
-     * @param angleOrTarget The angle or target of the bullet.
+     * @param info The angle or target of the bullet to be fired.
      */
-    protected _fire( angleOrTarget?: number | Element )
+    protected _fire( info: { angleOrTarget: number | Element; bulletId: number; } )
         {
         var _this = this;
-
-        if ( typeof angleOrTarget === 'undefined' )
-            {
-            angleOrTarget = this._angle_or_target;
-            }
+        var angleOrTarget = info.angleOrTarget;
 
             // if it happens to be a target, need to make sure it hasn't been removed yet
         if ( typeof angleOrTarget !== 'number' )
             {
             if ( angleOrTarget.isRemoved() === true )
                 {
-                this.stopFiring();
-                return;
+                return false;
                 }
             }
 
+        var bullet = this._bullet_types[ info.bulletId ].clone();
 
-        var shape;
-
-        if ( this._bullet_shape !== null )
+        if ( typeof angleOrTarget === 'number' )
             {
-            shape = new this._bullet_shape.classRef( this._bullet_shape.args );
+            bullet.setAngle( angleOrTarget );
             }
 
         else
             {
-            shape = new Game.Rectangle({
-                    width: 10,
-                    height: 2,
-                    color: 'blue'
-                });
+            bullet.setTarget( angleOrTarget );
             }
 
-
-        var bullet = new Game.Bullet({
-                x: this.x,
-                y: this.y,
-                angleOrTarget: angleOrTarget,
-                movement_speed: this.bullet_movement_speed
-            });
-        bullet.addChild( shape );
+        bullet.x = this.x;
+        bullet.y = this.y;
         bullet.addEventListener( 'collision', function( data )
             {
             _this.dispatchEvent( 'collision', {
@@ -465,6 +470,8 @@ export class Unit extends Container
 
         this._bullet_container.addChild( bullet );
         this._bullets.push( bullet );
+
+        return true;
         }
 
 
@@ -558,14 +565,30 @@ export class Unit extends Container
      */
     protected firingLogic( delta: number )
         {
-        if ( this._bullet_interval > 0 )
-            {
-            this._bullet_interval_count += delta;
+        var intervals = this._bullet_intervals;
 
-            if ( this._bullet_interval_count >= this._bullet_interval )
+        if ( intervals.length > 0 )
+            {
+            for (var a = intervals.length - 1 ; a >= 0 ; a--)
                 {
-                this._fire();
-                this._bullet_interval_count = 0;
+                var interval = intervals[ a ];
+
+                interval.count += delta;
+
+                if ( interval.count >= interval.interval )
+                    {
+                    var continueFiring = this._fire( interval );
+
+                    if ( !continueFiring )
+                        {
+                        intervals.splice( a, 1 );
+                        }
+
+                    else
+                        {
+                        interval.count = 0;
+                        }
+                    }
                 }
             }
         }
@@ -675,10 +698,11 @@ export class Unit extends Container
      */
     clone()
         {
+        var a;
         var children = [];
         var length = this._children.length;
 
-        for (var a = 0 ; a < length ; a++)
+        for (a = 0 ; a < length ; a++)
             {
             children.push( this._children[ a ].clone() );
             }
@@ -688,14 +712,19 @@ export class Unit extends Container
                 y: this.y,
                 children: children,
                 movement_speed: this.movement_speed,
-                bullet_movement_speed: this.bullet_movement_speed,
                 health: this.health,
-                bullet_shape: this._bullet_shape
+                bullet_container: this._bullet_container
             });
         unit.opacity = this.opacity;
         unit.visible = this.visible;
         unit.scaleX = this.scaleX;
         unit.scaleY = this.scaleY;
+
+            // starts at 1 to ignore the default type
+        for (a = 1 ; a < this._bullet_types.length ; a++)
+            {
+            unit._bullet_types.push( this._bullet_types[ a ].clone() );
+            }
 
         return unit;
         }
