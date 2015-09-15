@@ -77,11 +77,8 @@ export class Unit extends Container
     protected _path: { x: number; y: number; callback?: () => any }[];
     protected _loop_path_position: number; // when looping a path, to know what is the current position the unit is going for (the path array position)
 
-        // :: bullet related :: //
-    protected _bullets: Bullet[];       // has all the bullets fired by this unit
-    protected _bullet_types: Bullet[];  // various bullet types that can be fired
-    protected _bullet_container: Container | Canvas;    // where to add the bullet objects
-    protected _bullet_intervals: { count: number; bulletId: number; interval: number; angleOrTarget: number | Element }[];  // all the firing intervals
+        // :: weapon related :: //
+    protected _weapons: Weapon[];
 
 
     constructor( args: UnitArgs )
@@ -119,21 +116,8 @@ export class Unit extends Container
         this._is_destination_x_diff_positive = false;
         this._is_destination_y_diff_positive = false;
 
-        var defaultBulletShape = new Game.Rectangle({
-                width: 10,
-                height: 2,
-                color: 'blue'
-            });
-        var defaultBullet = new Game.Bullet({
-                angleOrTarget: 0,
-                children: defaultBulletShape,
-                movement_speed: 100
-            });
+        this._weapons = [];
 
-        this._bullets = [];
-        this._bullet_container = args.bullet_container;
-        this._bullet_types = [ defaultBullet ];
-        this._bullet_intervals = [];
 
             // init the static variables of the class (if its not yet)
         var constructor = <any> this.constructor;
@@ -150,6 +134,44 @@ export class Unit extends Container
 
 
         constructor._all.push( this );
+        }
+
+
+    /**
+     * Add a weapon to this unit.
+     *
+     * @param weapon The weapon to be added.
+     * @return The weapon id, to be used later to retrieve the weapon object.
+     */
+    addWeapon( weapon: Weapon )
+        {
+        this._weapons.push( weapon );
+
+        weapon.element = this;
+
+        return this._weapons.length - 1;
+        }
+
+
+    /**
+     * Remove the weapon from this unit.
+     */
+    removeWeapon( weaponId: number )
+        {
+        var weapon = this._weapons.splice( weaponId, 1 )[ 0 ];
+
+        weapon.element = null;
+
+        return weapon;
+        }
+
+
+    /**
+     * Get a weapon off this unit.
+     */
+    getWeapon( weaponId: number )
+        {
+        return this._weapons[ weaponId ];
         }
 
 
@@ -360,122 +382,6 @@ export class Unit extends Container
 
 
     /**
-     * A unit can potentially fire different types of bullets.
-     * To do so, first need to associate a bullet type to the unit, and then later on specify the bullet type in the `.fireBullet()` call, with the returned id from this function.
-     *
-     * @param bullet A bullet object, to be cloned every time a bullet is fired later on.
-     * @return The bullet type id, that identifies this type. Use it when calling `.fireBullet()`.
-     */
-    addBulletType( bullet: Bullet ) //HERE Bullet | Bullet[] | ...Bullet
-        {
-        this._bullet_types.push( bullet );
-
-        return this._bullet_types.length - 1;
-        }
-
-
-    /**
-     * @param angleOrTarget The angle of the bullet movement. If not given, then the bullet will have the unit's current rotation angle. Can be passed an Element which will work as the target of the bullet (it will follow the target until it hits it).
-     * @param bulletId The id of the bullet type to fire. See `.addBulletType()` for more information.
-     * @param interval If you want to keep firing bullets at the same angle (or same target). Pass a positive number for that.
-     */
-    fireBullet( angleOrTarget?: number | Element, bulletId?: number, interval?: number )
-        {
-        if ( typeof angleOrTarget === 'undefined' )
-            {
-            angleOrTarget = this.rotation;
-            }
-
-        if ( typeof bulletId === 'undefined' )
-            {
-            bulletId = 0;
-            }
-
-        var info = {
-            angleOrTarget: angleOrTarget,
-            bulletId: bulletId
-        };
-
-        if ( Utilities.isNumber( interval ) && interval > 0 )
-            {
-            this._bullet_intervals.push({
-                    count: 0,
-                    interval: interval,
-                    bulletId: bulletId,
-                    angleOrTarget: angleOrTarget,
-                    intervalId: this._bullet_intervals.length
-                });
-            }
-
-        this._fire( info );
-        }
-
-
-    /**
-     * Stop firing bullets (if it was set to fire at a certain interval).
-     */
-    stopFiring()
-        {
-        this._bullet_intervals.length = 0;
-        }
-
-
-    /**
-     * Fire a bullet at a certain angle, or towards a specific target.
-     *
-     * @param info The angle or target of the bullet to be fired.
-     */
-    protected _fire( info: { angleOrTarget: number | Element; bulletId: number; } )
-        {
-        var _this = this;
-        var angleOrTarget = info.angleOrTarget;
-
-            // if it happens to be a target, need to make sure it hasn't been removed yet
-        if ( typeof angleOrTarget !== 'number' )
-            {
-            if ( angleOrTarget.isRemoved() === true )
-                {
-                return false;
-                }
-            }
-
-        var bullet = this._bullet_types[ info.bulletId ].clone();
-
-        if ( typeof angleOrTarget === 'number' )
-            {
-            bullet.setAngle( angleOrTarget );
-            }
-
-        else
-            {
-            bullet.setTarget( angleOrTarget );
-            }
-
-        bullet.x = this.x;
-        bullet.y = this.y;
-        bullet.addEventListener( 'collision', function( data )
-            {
-            _this.dispatchEvent( 'collision', {
-                    element: _this,
-                    bullet: data.element,
-                    collidedWith: data.collidedWith
-                });
-            });
-        bullet.addEventListener( 'remove', function( data )
-            {
-            var index = _this._bullets.indexOf( bullet );
-
-            _this._bullets.splice( index, 1 );
-            });
-
-        this._bullet_container.addChild( bullet );
-        this._bullets.push( bullet );
-
-        return true;
-        }
-
-
-    /**
      * Its called in every update. This is going to be assigned to a different movement logic method, depending on the current movement type.
      *
      * @param delta Time elapsed since the last update.
@@ -559,42 +465,6 @@ export class Unit extends Container
 
 
     /**
-     * You can set the unit to fire bullets at a certain interval. This is the function that deals with that logic.
-     *
-     * @param delta Time elapsed since the last update.
-     */
-    protected firingLogic( delta: number )
-        {
-        var intervals = this._bullet_intervals;
-
-        if ( intervals.length > 0 )
-            {
-            for (var a = intervals.length - 1 ; a >= 0 ; a--)
-                {
-                var interval = intervals[ a ];
-
-                interval.count += delta;
-
-                if ( interval.count >= interval.interval )
-                    {
-                    var continueFiring = this._fire( interval );
-
-                    if ( !continueFiring )
-                        {
-                        intervals.splice( a, 1 );
-                        }
-
-                    else
-                        {
-                        interval.count = 0;
-                        }
-                    }
-                }
-            }
-        }
-
-
-    /**
      * Logic to determine when a unit has collided with another unit.
      *
      * @param delta Time elapsed since the last update.
@@ -650,27 +520,11 @@ export class Unit extends Container
                         }
 
 
-                        // check the bullets as well
-                    for (var c = this._bullets.length - 1 ; c >= 0 ; c--)
+                        // check the weapons/bullets as well
+                    for (var c = this._weapons.length - 1 ; c >= 0 ; c--)
                         {
-                        var bullet = this._bullets[ c ];
-
-                        if ( Utilities.boxBoxCollision(
-                                    bullet.x - bullet._half_width,
-                                    bullet.y - bullet._half_height,
-                                    bullet._width,
-                                    bullet._height,
-                                    unitX,
-                                    unitY,
-                                    unitWidth,
-                                    unitHeight
-                                ))
+                        if ( this._weapons[ a ].checkCollision( unit ) )
                             {
-                            this.dispatchEvent( 'collision', {
-                                    element: this,
-                                    bullet: bullet,
-                                    collidedWith: unit
-                                });
                             return;
                             }
                         }
@@ -688,7 +542,12 @@ export class Unit extends Container
     logic( delta: number )
         {
         this.movementLogic( delta );
-        this.firingLogic( delta );
+
+        for (var a = this._weapons.length - 1 ; a >= 0 ; a--)
+            {
+            this._weapons[ a ].logic( delta );
+            }
+
         this.collisionLogic( delta );
         }
 
@@ -712,18 +571,16 @@ export class Unit extends Container
                 y: this.y,
                 children: children,
                 movement_speed: this.movement_speed,
-                health: this.health,
-                bullet_container: this._bullet_container
+                health: this.health
             });
         unit.opacity = this.opacity;
         unit.visible = this.visible;
         unit.scaleX = this.scaleX;
         unit.scaleY = this.scaleY;
 
-            // starts at 1 to ignore the default type
-        for (a = 1 ; a < this._bullet_types.length ; a++)
+        for (a = 0 ; a < this._weapons.length ; a++)
             {
-            unit._bullet_types.push( this._bullet_types[ a ].clone() );
+            unit._weapons.push( this._weapons[ a ].clone() );
             }
 
         return unit;

@@ -15,14 +15,17 @@ var unitShape = new Game.Rectangle({
         height: size,
         color: 'green'
     });
+var unitWeapon = new Game.Weapon({
+        bulletContainer: Game.getCanvas()
+    });
 
 var unit = new Game.Unit({
         x: centerX,
         y: centerY,
         movement_speed: 100,
-        children: unitShape,
-        bullet_container: Game.getCanvas()
+        children: unitShape
     });
+var weaponId = unit.addWeapon( unitWeapon );
 Game.addElement( unit );
 
     // add a target
@@ -41,13 +44,17 @@ Game.addElement( target );
 
 target.moveTo( 5, centerY );
 
+    // use the `.getWeapon()` method to get the weapon
+    // this is the same object as in the `unitWeapon` variable (just showing how you would get it later on)
+var weapon = unit.getWeapon( weaponId );
+
     // fire in whatever direction the unit is facing
-unit.fireBullet();
+weapon.forceFire();
 
     // specify an angle
-unit.fireBullet( Math.PI );
-unit.fireBullet( Math.PI / 2 );
-unit.fireBullet( -Math.PI / 2, 0, 1 );     // fire at an interval
+weapon.forceFire( Math.PI );
+weapon.forceFire( Math.PI / 2 );
+weapon.forceFire( -Math.PI / 2, 0, 1 );     // fire at an interval
 
     // specify a target
     // fire a different type of bullet
@@ -61,7 +68,7 @@ var bullet = new Game.Bullet({
         children: alternateShape,
         movement_speed: 100
     });
-var id = unit.addBulletType( bullet );
+var id = weapon.addBulletType( bullet );
 
-unit.fireBullet( target, id );
+weapon.forceFire( target, id );
 };
