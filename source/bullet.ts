@@ -9,10 +9,6 @@ export interface BulletArgs extends ContainerArgs
         // or follows a target, if an Element is given instead
     angleOrTarget: number | Element;
     movement_speed: number;
-
-        // the bullet shapes are assumed to have a 0 angle initial orientation (like this: ->)
-        // that can be changed by the value of this argument (in radians)
-    angleOffset?: number;
     }
 
 
@@ -55,7 +51,6 @@ export class Bullet extends Container
     protected _move_x: number;
     protected _move_y: number;
     protected _target: Element;
-    protected _angle_offset: number;
 
 
     constructor( args: BulletArgs )
@@ -64,18 +59,6 @@ export class Bullet extends Container
 
             // movement speed argument
         this.movement_speed = args.movement_speed;
-
-
-            // angle offset argument
-        if ( typeof args.angleOffset === 'undefined' )
-            {
-            this._angle_offset = 0;
-            }
-
-        else
-            {
-            this._angle_offset = args.angleOffset;
-            }
 
 
             // angle or target argument
@@ -104,7 +87,7 @@ export class Bullet extends Container
         {
         this._move_x = Math.cos( angle ) * this.movement_speed;
         this._move_y = Math.sin( angle ) * this.movement_speed;
-        this.rotation = angle - this._angle_offset;
+        this.rotation = angle;
         this.logic = this.fixedLogic;
         }
 
@@ -151,7 +134,7 @@ export class Bullet extends Container
         this.x += Math.cos( angle ) * this.movement_speed * deltaTime;
         this.y += Math.sin( angle ) * this.movement_speed * deltaTime;
 
-        this.rotation = angle - this._angle_offset;
+        this.rotation = angle;
 
         if ( Utilities.boxBoxCollision(
                 this.x - this._half_width,

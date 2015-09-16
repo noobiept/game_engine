@@ -533,7 +533,7 @@ export class Unit extends Container
                         // check the weapons/bullets as well
                     for (var c = this._weapons.length - 1 ; c >= 0 ; c--)
                         {
-                        if ( this._weapons[ a ].checkCollision( unit ) )
+                        if ( this._weapons[ c ].checkCollision( unit ) )
                             {
                             return;
                             }
