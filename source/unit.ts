@@ -176,6 +176,16 @@ export class Unit extends Container
 
 
     /**
+     * Get all the weapons.
+     * Useful for firing all the weapons at the same time for example.
+     */
+    getAllWeapons()
+        {
+        return this._weapons;
+        }
+
+
+    /**
      * @param animationDuration If this is passed, then the unit's opacity will be animated until it reaches 0, and only then will the unit be removed
      */
     remove( animationDuration?: number )

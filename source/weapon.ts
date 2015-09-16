@@ -81,6 +81,17 @@ export class Weapon
 
 
     /**
+     * The firing pattern, for example if it fires one bullet in the given direction, or if it fires one in the direction and two to the sides, etc.
+     * You can override this in derived classes to easily make different types of weapons.
+     * The default is to fire a single bullet in the angle/target given.
+     */
+    firingPattern( angleOrTarget: number | Element, bulletId: number )
+        {
+        return this._fire( angleOrTarget, bulletId );
+        }
+
+
+    /**
      * Respects the firing interval (can only fire a bullet once the weapon is ready (the interval has passed)).
      */
     fire( angleOrTarget?: number | Element, bulletId?: number )
@@ -108,7 +119,7 @@ export class Weapon
                     }
                 }
 
-            return this._fire( angleOrTarget, bulletId );
+            return this.firingPattern( angleOrTarget, bulletId );
             }
 
         return false;
@@ -153,7 +164,7 @@ export class Weapon
                 });
             }
 
-        return this._fire( angleOrTarget, bulletId );
+        return this.firingPattern( angleOrTarget, bulletId );
         }
 
 
@@ -247,7 +258,7 @@ export class Weapon
 
                 if ( interval.count >= interval.interval )
                     {
-                    var continueFiring = this._fire( interval.angleOrTarget, interval.bulletId );
+                    var continueFiring = this.firingPattern( interval.angleOrTarget, interval.bulletId );
 
                         // if its firing at a target, and the target is not available anymore, stop the interval
                     if ( !continueFiring )
