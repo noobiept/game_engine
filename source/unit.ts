@@ -7,7 +7,6 @@ export interface UnitArgs extends ContainerArgs
     {
     movement_speed?: number;
     health?: number;
-    bullet_container?: Container | Canvas;   // if you're firing units from the unit, you need to pass this argument. Bullets will be added to this element when fired.
     }
 
 
@@ -81,9 +80,14 @@ export class Unit extends Container
     protected _weapons: Weapon[];
 
 
-    constructor( args: UnitArgs )
+    constructor( args?: UnitArgs )
         {
         super( args );
+
+        if ( typeof args === 'undefined' )
+            {
+            args = {};
+            }
 
         if ( typeof args.movement_speed === 'undefined' )
             {
@@ -93,11 +97,6 @@ export class Unit extends Container
         if ( typeof args.health === 'undefined' )
             {
             args.health = 1;
-            }
-
-        if ( typeof args.bullet_container === 'undefined' )
-            {
-            args.bullet_container = null;
             }
 
 
@@ -487,10 +486,7 @@ export class Unit extends Container
         if ( length > 0 &&
              this.hasListeners( 'collision' ) )
             {
-            var x = this.x - this._half_width;
-            var y = this.y - this._half_height;
-            var width = this._width;
-            var height = this._height;
+            var vertices = this.getVertices();
 
             for (var a = 0 ; a < length ; a++)
                 {
@@ -512,15 +508,9 @@ export class Unit extends Container
                         continue;
                         }
 
-                    var unitWidth = unit._width;
-                    var unitHeight = unit._height;
-                    var unitX = unit.x - unit._half_width;
-                    var unitY = unit.y - unit._half_height;
+                    var otherVertices = unit.getVertices();
 
-                    if ( Utilities.boxBoxCollision(
-                            x,     y,     width,     height,
-                            unitX, unitY, unitWidth, unitHeight
-                            ))
+                    if ( CollisionDetection.polygon( vertices, otherVertices ) )
                         {
                         this.dispatchEvent( 'collision', {
                                 element: this,

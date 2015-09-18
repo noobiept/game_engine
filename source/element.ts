@@ -376,5 +376,27 @@ export class Element extends EventDispatcher
         {
         throw new Error( 'Implement .clone().' );
         }
+
+
+    /**
+     * Get the element vertices points. Assumes its a rectangle.
+     */
+    getVertices()
+        {
+        var left = this.x - this._half_width;
+        var right = this.x + this._half_width;
+        var top = this.y - this._half_height;
+        var bottom = this.y + this._half_height;
+        var angle = this._rotation;
+        var center = { x: this.x, y: this.y };
+
+            // in clockwise order
+        return [
+                Vector.rotate( center, { x: left,  y: top    }, angle ), // top left
+                Vector.rotate( center, { x: right, y: top    }, angle ), // top right
+                Vector.rotate( center, { x: right, y: bottom }, angle ), // bottom right
+                Vector.rotate( center, { x: left,  y: bottom }, angle )  // bottom left
+            ];
+        }
     }
 }

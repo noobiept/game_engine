@@ -56,11 +56,16 @@ five.addEventListener( 'collision', function( data )
 var seven = new One( 150, 350 );
 var eight = new Two( 250, 350 );
 
-seven.fireBullet( 0, 5 );
+var weapon = new Game.Weapon({
+        bulletContainer: Game.getCanvas()
+    });
+seven.addWeapon( weapon );
 seven.addEventListener( 'collision', function( data )
     {
     addText( 'Bullet collision!', eight.x, eight.y );
     });
+
+weapon.forceFire( 0, 0, 5 );
 };
 
 

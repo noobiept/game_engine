@@ -278,25 +278,13 @@ export class Weapon
 
     checkCollision( element: Element )
         {
-        var elementX = element.x - element._half_width;
-        var elementY = element.y - element._half_height;
-        var elementWidth = element._width;
-        var elementHeight = element._height;
+        var vertices = element.getVertices();
 
         for (var a = this._bullets.length - 1 ; a >= 0 ; a--)
             {
             var bullet = this._bullets[ a ];
 
-            if ( Utilities.boxBoxCollision(
-                        bullet.x - bullet._half_width,
-                        bullet.y - bullet._half_height,
-                        bullet._width,
-                        bullet._height,
-                        elementX,
-                        elementY,
-                        elementWidth,
-                        elementHeight
-                    ))
+            if ( CollisionDetection.polygon( vertices, bullet.getVertices() ) )
                 {
                 this.element.dispatchEvent( 'collision', {
                         element: this.element,
