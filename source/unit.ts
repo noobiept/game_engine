@@ -486,7 +486,13 @@ export class Unit extends Container
         if ( length > 0 &&
              this.hasListeners( 'collision' ) )
             {
+            var x = this.x - this._half_width;
+            var y = this.y - this._half_height;
+            var width = this._width;
+            var height = this._height;
             var vertices = this.getVertices();
+            var isNotRotated = this._rotation === 0;
+            var collided;
 
             for (var a = 0 ; a < length ; a++)
                 {
@@ -500,21 +506,42 @@ export class Unit extends Container
 
                 for (var b = all.length - 1 ; b >= 0 ; b--)
                     {
-                    var unit = all[ b ];
+                    var other = all[ b ];
 
                         // can't collide with itself
-                    if ( unit === this )
+                    if ( other === this )
                         {
                         continue;
                         }
 
-                    var otherVertices = unit.getVertices();
+                    var otherVertices = other.getVertices();
 
-                    if ( CollisionDetection.polygon( vertices, otherVertices ) )
+                        // if both elements aren't rotated, we can use a simpler algorithm
+                    if ( isNotRotated && other._rotation === 0 )
+                        {
+                        collided = CollisionDetection.boxBox(
+                            x,
+                            y,
+                            width,
+                            height,
+                            other.x - other._half_width,
+                            other.y - other._half_height,
+                            other._width,
+                            other._height
+                            );
+                        }
+
+                    else
+                        {
+                        collided = CollisionDetection.polygon( vertices, otherVertices );
+                        }
+
+
+                    if ( collided )
                         {
                         this.dispatchEvent( 'collision', {
                                 element: this,
-                                collidedWith: unit
+                                collidedWith: other
                             });
                         return;
                         }
@@ -523,7 +550,7 @@ export class Unit extends Container
                         // check the weapons/bullets as well
                     for (var c = this._weapons.length - 1 ; c >= 0 ; c--)
                         {
-                        if ( this._weapons[ c ].checkCollision( unit ) )
+                        if ( this._weapons[ c ].checkCollision( other, otherVertices ) )
                             {
                             return;
                             }

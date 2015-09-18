@@ -136,7 +136,7 @@ export class Bullet extends Container
 
         this.rotation = angle;
 
-        if ( Utilities.boxBoxCollision(
+        if ( CollisionDetection.boxBox(
                 this.x - this._half_width,
                 this.y - this._half_height,
                 this._width,

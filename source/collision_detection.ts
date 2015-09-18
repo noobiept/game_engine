@@ -36,7 +36,6 @@ export module CollisionDetection
             }
 
             // loop over the axes 2
-
         for (a = 0 ; a < axes2.length ; a++)
             {
             axis = axes2[ a ];
@@ -81,12 +80,7 @@ export module CollisionDetection
                 // subtract the two to get the edge vector
             var edge = Vector.subtract( point1, point2 );
 
-                // get either perpendicular vector
-                // edge method is (x, y) => (-y, x) or (y, -x)
-                // the normals of the edges can be obtained by flipping the coordinates and negating one
-            var normal = Vector.normalRight( edge );
-
-            axes[ a ] = normal;
+            axes[ a ] = Vector.normalRight( edge );
             }
 
         return axes;
@@ -124,6 +118,76 @@ export module CollisionDetection
     function projectionOverlaps( one, two )
         {
         return !(one.min > two.max || two.min > one.max);
+        }
+
+
+    // ------ The functions below assume the axis are aligned (no rotations) ------ //
+
+    /**
+     * Detects collision between 2 boxes.
+     */
+    export function boxBox( oneX: number, oneY: number, oneWidth: number, oneHeight: number, twoX: number, twoY: number, twoWidth: number, twoHeight: number )
+        {
+        return !(
+                ( oneY + oneHeight < twoY ) ||
+                ( oneY > twoY + twoHeight ) ||
+                ( oneX > twoX + twoWidth ) ||
+                ( oneX + oneWidth < twoX )
+            );
+        }
+
+
+    /**
+     * Detects collision between two circles.
+     */
+    export function circleCircle( x1: number, y1: number, radius1: number, x2: number, y2: number, radius2: number )
+        {
+        var distX = x1 - x2;
+        var distY = y1 - y2;
+
+        if ( Math.pow( distX, 2 ) + Math.pow( distY, 2 ) <= Math.pow( radius1 + radius2, 2 ) )
+            {
+            return true;
+            }
+
+        return false;
+        }
+
+
+    /**
+     * Detects collision between a circle and a point.
+     */
+    export function circlePoint( circleX: number, circleY: number, circleRadius: number, pointX: number, pointY: number )
+        {
+        var distanceX = circleX - pointX;
+        var distanceY = circleY - pointY;
+
+            // pythagoras
+        var squareDistance = distanceX * distanceX + distanceY * distanceY;
+
+        if ( squareDistance <= circleRadius * circleRadius )
+            {
+            return true;
+            }
+
+        return false;
+        }
+
+
+    /**
+     * Detects collision between a point and a box.
+     */
+    export function pointBox( pointX: number, pointY: number, boxX: number, boxY: number, boxWidth: number, boxHeight: number )
+        {
+        if ( pointX < boxX ||
+             pointX > boxX + boxWidth ||
+             pointY < boxY ||
+             pointY > boxY + boxHeight )
+            {
+            return false;
+            }
+
+        return true;
         }
     }
 }

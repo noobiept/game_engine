@@ -276,15 +276,41 @@ export class Weapon
         }
 
 
-    checkCollision( element: Element )
+    checkCollision( element: Element, vertices: CollisionDetection.Vertices )
         {
-        var vertices = element.getVertices();
+        var x = element.x - element._half_width;
+        var y = element.y - element._half_height;
+        var width = element._width;
+        var height = element._height;
+        var isNotRotated = element._rotation === 0;
+        var collided;
 
         for (var a = this._bullets.length - 1 ; a >= 0 ; a--)
             {
             var bullet = this._bullets[ a ];
 
-            if ( CollisionDetection.polygon( vertices, bullet.getVertices() ) )
+                // if both elements aren't rotated, we can use a simpler algorithm
+            if ( isNotRotated && bullet._rotation === 0 )
+                {
+                collided = CollisionDetection.boxBox(
+                    x,
+                    y,
+                    width,
+                    height,
+                    bullet.x - bullet._half_width,
+                    bullet.y - bullet._half_height,
+                    bullet._width,
+                    bullet._height
+                    );
+                }
+
+            else
+                {
+                collided = CollisionDetection.polygon( vertices, bullet.getVertices() );
+                }
+
+
+            if ( collided )
                 {
                 this.element.dispatchEvent( 'collision', {
                         element: this.element,
