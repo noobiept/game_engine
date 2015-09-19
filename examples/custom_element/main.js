@@ -4,7 +4,7 @@ Game.init( document.body, 400, 400 );
 
 
     // example 1 -- add a star (custom Circle)
-var star = new Star({
+var star1 = new Star({
         x: 300,
         y: 200,
         fillColor: 'red',
@@ -13,36 +13,53 @@ var star = new Star({
         innerRadius: 4,
         spikes: 5
     });
-star.addEventListener( 'click', function()
+star1.addEventListener( 'click', function()
     {
     console.log( 'Star clicked!' );
     });
-Game.addElement( star );
+Game.addElement( star1 );
 
 
     // example 2 - it plays well with other classes (Unit/Bullet in this example)
-var unitRect = new Game.Rectangle({
+    // add a unit
+var unitShape = new Game.Rectangle({
         width: 20,
         height: 20,
         color: 'green'
     });
-var bulletStarArgs = {
+var unit = new Game.Unit({
+        x: 100,
+        y: 200,
+        children: unitShape
+    });
+unit.addEventListener( 'collision', function( data )
+    {
+    console.log( 'Hit!' );
+    });
+Game.addElement( unit );
+
+    // add a weapon to the unit
+var weapon = new Game.Weapon({
+        bulletContainer: Game.getCanvas()
+    });
+unit.addWeapon( weapon );
+
+    // the weapon will shoot a star shaped bullet
+var star2 = new Star({
         fillColor: 'white',
         strokeColor: 'black',
         outerRadius: 5,
         innerRadius: 2,
         spikes: 8
-    };
-
-var unit = new Game.Unit({
-        x: 100,
-        y: 200,
-        children: unitRect,
-        bullet_shape: { classRef: Star, args: bulletStarArgs },
-        bullet_container: Game.getCanvas()
     });
-unit.fireBullet( star, 1 );
+var starBullet = new Game.Bullet({
+        movement_speed: 100,
+        angleOrTarget: 0,
+        children: star2
+    });
+var id = weapon.addBulletType( starBullet );
 
-Game.addElement( unit );
+    // fire at a given interval
+weapon.forceFire( star1, id, 1 );
 };
 

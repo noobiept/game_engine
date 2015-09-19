@@ -1,5 +1,3 @@
-(function(window)
-{
 function Star( args )
 {
 this.fill_color = args.fillColor;
@@ -15,7 +13,6 @@ Game.Circle.call( this, args );
 }
 
 Game.Utilities.inheritPrototype( Star, Game.Circle );
-
 
 
 Star.prototype.drawElement = function( ctx )
@@ -62,6 +59,13 @@ ctx.restore();
 };
 
 
-window.Star = Star;
-
-})(window);
+Star.prototype.clone = function()
+{
+return new Star({
+        fillColor: this.fill_color,
+        strokeColor: this.stroke_color,
+        outerRadius: this.outer_radius,
+        innerRadius: this.inner_radius,
+        spikes: this.spikes
+    });
+};

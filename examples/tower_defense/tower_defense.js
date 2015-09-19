@@ -346,8 +346,9 @@ if ( Tower._all )
     for (var a = 0 ; a < Tower._all.length ; a++)
         {
         var tower = Tower._all[ a ];
+        var weapon = tower.getWeapon( 0 );
 
-        if ( tower.can_attack &&
+        if ( weapon.isReady() &&
              Creep._all )
             {
             for (var b = 0 ; b < Creep._all.length ; b++)
@@ -355,7 +356,7 @@ if ( Tower._all )
                 var creep = Creep._all[ b ];
 
                     // fire 1 bullet if the creep is within the tower's range
-                if ( Game.Utilities.circleCircleCollision(
+                if ( Game.CollisionDetection.circleCircle(
                             tower.x,
                             tower.y,
                             tower.range,
@@ -364,7 +365,7 @@ if ( Tower._all )
                             creep.getWidth() / 2
                         ))
                     {
-                    tower.fireBullet( creep );
+                    weapon.fire( creep );
                     break;
                     }
                 }
