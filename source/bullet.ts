@@ -136,15 +136,9 @@ export class Bullet extends Container
 
         this.rotation = angle;
 
-        if ( CollisionDetection.boxBox(
-                this.x - this._half_width,
-                this.y - this._half_height,
-                this._width,
-                this._height,
-                target.x - target._half_width,
-                target.y - target._half_height,
-                target._width,
-                target._height
+        if ( CollisionDetection.polygon(
+                this.getVertices(),
+                target.getVertices()
                 ))
             {
             this.dispatchEvent( 'collision', {
