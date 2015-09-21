@@ -486,13 +486,7 @@ export class Unit extends Container
         if ( length > 0 &&
              this.hasListeners( 'collision' ) )
             {
-            var x = this.x - this._half_width;
-            var y = this.y - this._half_height;
-            var width = this._width;
-            var height = this._height;
             var vertices = this.getVertices();
-            var isNotRotated = this._rotation === 0;
-            var collided;
 
             for (var a = 0 ; a < length ; a++)
                 {
@@ -516,28 +510,8 @@ export class Unit extends Container
 
                     var otherVertices = other.getVertices();
 
-                        // if both elements aren't rotated, we can use a simpler algorithm
-                    if ( isNotRotated && other._rotation === 0 )
-                        {
-                        collided = CollisionDetection.boxBox(
-                            x,
-                            y,
-                            width,
-                            height,
-                            other.x - other._half_width,
-                            other.y - other._half_height,
-                            other._width,
-                            other._height
-                            );
-                        }
 
-                    else
-                        {
-                        collided = CollisionDetection.polygon( vertices, otherVertices );
-                        }
-
-
-                    if ( collided )
+                    if ( CollisionDetection.polygonPolygonList( vertices, otherVertices ) )
                         {
                         this.dispatchEvent( 'collision', {
                                 element: this,

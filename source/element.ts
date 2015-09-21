@@ -29,6 +29,8 @@ export class Element extends EventDispatcher
     x: number;
     y: number;
 
+    vertices: CollisionDetection.Vertices;
+
     opacity: number;    // value between 0 and 1
     visible: boolean;    // whether the element is drawn or not
 
@@ -85,6 +87,7 @@ export class Element extends EventDispatcher
         this.column = -1;
         this.line = -1;
 
+        this.vertices = [];
         this._rotation = 0;
         this._container = null;
         this._has_logic = false;
@@ -379,24 +382,42 @@ export class Element extends EventDispatcher
 
 
     /**
-     * Get the element vertices points. Assumes its a rectangle.
+     * Get the global vertices points of this element.
+     * The arguments are the compound values from the parent containers.
      */
-    getVertices()
+    updateVertices( x: number, y: number, scaleX: number, scaleY: number, rotation: number )
         {
-        var left = this.x - this._half_width;
-        var right = this.x + this._half_width;
-        var top = this.y - this._half_height;
-        var bottom = this.y + this._half_height;
-        var angle = this._rotation;
-        var center = { x: this.x, y: this.y };
+        scaleX *= this.scaleX;
+        scaleY *= this.scaleY;
+
+        var center = {
+                x: x + this.x * scaleX,
+                y: y + this.y * scaleY
+            };
+
+        var left = center.x - this._half_width * scaleX;
+        var right = center.x + this._half_width * scaleX;
+        var top = center.y - this._half_height * scaleY;
+        var bottom = center.y + this._half_height * scaleY;
+
+        var angle = this._rotation + rotation;
 
             // in clockwise order
-        return [
+        this.vertices = [
                 Vector.rotate( center, { x: left,  y: top    }, angle ), // top left
                 Vector.rotate( center, { x: right, y: top    }, angle ), // top right
                 Vector.rotate( center, { x: right, y: bottom }, angle ), // bottom right
                 Vector.rotate( center, { x: left,  y: bottom }, angle )  // bottom left
             ];
+        }
+
+
+    /**
+     * Get the element vertices points. Assumes its a rectangle.
+     */
+    getVertices()
+        {
+        return [ this.vertices ];
         }
     }
 }

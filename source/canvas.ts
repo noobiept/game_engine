@@ -141,6 +141,18 @@ export class Canvas
 
 
     /**
+     * Update the vertices of all the children elements. Useful for collision detection for example.
+     */
+    updateVertices()
+        {
+        for (var a = this._children.length - 1 ; a >= 0 ; a--)
+            {
+            this._children[ a ].updateVertices( 0, 0, 1, 1, 0 );
+            }
+        }
+
+
+    /**
      * Call the logic of the elements added to this canvas (normally on the game loop).
      *
      * @param deltaTime Time elapsed since the last update.

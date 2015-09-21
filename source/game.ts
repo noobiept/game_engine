@@ -447,6 +447,9 @@ function loop()
 
         if ( canvas.update_on_loop )
             {
+                // update the global vertices position of all the elements
+            canvas.updateVertices();
+
                 // call any game logic (from units/etc)
             canvas.logic( delta );
 

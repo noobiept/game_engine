@@ -1,8 +1,8 @@
 QUnit.module( 'CollisionDetection' );
 
 
-    // polygon //
-QUnit.test( 'polygon()', function( assert )
+    // polygonPolygonList //
+QUnit.test( 'polygonPolygonList()', function( assert )
 {
 var one = new Game.Rectangle({
         x: 100,
@@ -44,15 +44,19 @@ for (var a = 0 ; a < tests.length ; a++)
     two.rotation = test.rotation2;
     two.x = test.x2;
     two.y = test.y2;
-    var collides = Game.CollisionDetection.polygon( one.getVertices(), two.getVertices() );
+
+    one.updateVertices( 0, 0, 1, 1, 0 );
+    two.updateVertices( 0, 0, 1, 1, 0 );
+
+    var collides = Game.CollisionDetection.polygonPolygonList( one.getVertices(), two.getVertices() );
 
     assert.deepEqual( collides, test.collide );
     }
 });
 
 
-    // boxBoxCollision //
-QUnit.test( 'boxBoxCollision() - Test with valid arguments.', function( assert )
+    // boxBox //
+QUnit.test( 'boxBox()', function( assert )
 {
 var result;
 var expect;
@@ -74,8 +78,8 @@ assert.deepEqual( result, expect, 'One box inside the other.' );
 });
 
 
-    // circleCircleCollision //
-QUnit.test( 'circleCircleCollision() - Test with valid arguments.', function( assert )
+    // circleCircle //
+QUnit.test( 'circleCircle()', function( assert )
 {
 var result;
 var expect;
@@ -97,8 +101,8 @@ assert.deepEqual( result, expect, 'Second circle inside the first.' );
 });
 
 
-    // circlePointCollision //
-QUnit.test( 'circlePointCollision() - Test with valid arguments.', function( assert )
+    // circlePoint //
+QUnit.test( 'circlePoint()', function( assert )
 {
 var result;
 var expect;
@@ -120,8 +124,8 @@ assert.deepEqual( result, expect, 'Point inside the circle.' );
 });
 
 
-    // pointBoxCollision //
-QUnit.test( 'pointBoxCollision() - Test with valid arguments.', function( assert )
+    // pointBox //
+QUnit.test( 'pointBox()', function( assert )
 {
 var result;
 var expect;
@@ -146,4 +150,3 @@ expect = true;
 
 assert.deepEqual( result, expect, 'Point inside the box.' );
 });
-

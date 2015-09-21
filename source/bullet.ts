@@ -136,7 +136,7 @@ export class Bullet extends Container
 
         this.rotation = angle;
 
-        if ( CollisionDetection.polygon(
+        if ( CollisionDetection.polygonPolygonList(
                 this.getVertices(),
                 target.getVertices()
                 ))

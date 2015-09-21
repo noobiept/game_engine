@@ -10,7 +10,7 @@ export module CollisionDetection
      *
      * Works for convex polygon shapes.
      */
-    export function polygon( one: Vertices, two: Vertices )
+    export function polygonPolygon( one: Vertices, two: Vertices )
         {
         var axes1 = getAxes( one );
         var axes2 = getAxes( two );
@@ -52,6 +52,29 @@ export module CollisionDetection
 
             // if the shape's projections overlap for all the axes, then they are intersecting
         return true;
+        }
+
+
+    export function polygonPolygonList( list1: Vertices[], list2: Vertices[] )
+        {
+        for (var a = list1.length - 1 ; a >= 0 ; a--)
+            {
+            var one = list1[ a ];
+
+            for (var b = list2.length - 1 ; b >= 0 ; b--)
+                {
+                var two = list2[ b ];
+
+                var collided = polygonPolygon( one, two );
+
+                if ( collided )
+                    {
+                    return true;
+                    }
+                }
+            }
+
+        return false;
         }
 
 

@@ -294,6 +294,42 @@ export class Container extends Element
 
 
     /**
+     * Get the global vertices points of this element.
+     * The arguments are the compound values from the parent containers.
+     */
+    updateVertices( x, y, scaleX, scaleY, rotation )
+        {
+        x += this.x * scaleX;
+        y += this.y * scaleY;
+
+        scaleX *= this.scaleX;
+        scaleY *= this.scaleY;
+        rotation += this.rotation;
+
+        for (var a = this._children.length - 1 ; a >= 0 ; a--)
+            {
+            this._children[ a ].updateVertices( x, y, scaleX, scaleY, rotation );
+            }
+        }
+
+
+    /**
+     * Get the element vertices points. Assumes its a rectangle.
+     */
+    getVertices()
+        {
+        var vertices = [];
+
+        for (var a = this._children.length - 1 ; a >= 0 ; a--)
+            {
+            vertices = vertices.concat( this._children[ a ].getVertices() );
+            }
+
+        return vertices;
+        }
+
+
+    /**
      * Clones the container (as well as the children).
      *
      * @return A new cloned container.
