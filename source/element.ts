@@ -135,52 +135,16 @@ export class Element extends EventDispatcher
      */
     intersect( refX: number, refY: number )
         {
-        var parent = this._container;
-        var parents = [];
         var elements = [];
+        var vertices = this.vertices;
 
-            // get all the parent elements
-        while ( parent !== null )
+            // check if the vertices were calculated yet (if the element was added this tick/frame, it won't be)
+        if ( vertices )
             {
-            parents.push( parent );
-
-            parent = parent._container;
-            }
-
-        var x = 0;
-        var y = 0;
-        var scaleX = 1;
-        var scaleY = 1;
-
-            // starting at the most top level element, and going down until this element
-        for (var a = parents.length - 1 ; a >= 0 ; a--)
-            {
-            parent = parents[ a ];
-
-                // get the combined parent's x/y
-            x += parent.x * scaleX;
-            y += parent.y * scaleY;
-
-            scaleX *= parent.scaleX;
-            scaleY *= parent.scaleY;
-            }
-
-        scaleX *= this.scaleX;
-        scaleY *= this.scaleY;
-
-        x += (this.x - this._half_width) * scaleX;
-        y += (this.y - this._half_height) * scaleY;
-
-        if ( CollisionDetection.pointBox(
-                    refX,
-                    refY,
-                    x,
-                    y,
-                    this._width * scaleX,
-                    this._height * scaleY
-                ))
-            {
-            elements.push( this );
+            if ( CollisionDetection.polygonPoint( this.vertices, {  x: refX, y: refY } ) )
+                {
+                elements.push( this );
+                }
             }
 
         return elements;

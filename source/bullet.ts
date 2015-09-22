@@ -144,6 +144,12 @@ export class Bullet extends Container
         {
         var target = this._target;
 
+        if ( target.isRemoved() )
+            {
+            this.remove();
+            return;
+            }
+
         var angle = Utilities.calculateAngle( this.x, this.y * -1, target.x, target.y * -1 );
 
         this.x += Math.cos( angle ) * this.movement_speed * deltaTime;

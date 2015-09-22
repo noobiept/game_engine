@@ -78,6 +78,49 @@ export module CollisionDetection
         }
 
 
+    export function polygonPoint( vertices: Vertices, point )
+        {
+        var isInside = false;
+        var minX = vertices[ 0 ].x;
+        var maxX = minX;
+        var minY = vertices[ 0 ].y;
+        var maxY = minY;
+        var a, b;
+
+        for (a = 1 ; a < vertices.length ; a++)
+            {
+            var vertex = vertices[ a ];
+
+            minX = Math.min( vertex.x, minX );
+            maxX = Math.max( vertex.x, maxX );
+            minY = Math.min( vertex.y, minY );
+            maxY = Math.max( vertex.y, maxY );
+            }
+
+        if ( point.x < minX ||
+             point.x > maxX ||
+             point.y < minY ||
+             point.y > maxY )
+            {
+            return false;
+            }
+
+        a = 0;
+        b = vertices.length - 1;
+
+        for ( ; a < vertices.length ; b = a++)
+            {
+            if ( (vertices[a].y > point.y) !== (vertices[b].y > point.y) &&
+                 point.x < (vertices[b].x - vertices[a].x) * (point.y - vertices[a].y) / (vertices[b].y - vertices[a].y) + vertices[a].x )
+                {
+                isInside = !isInside;
+                }
+            }
+
+        return isInside;
+        }
+
+
     function getAxes( vertices: Vertices )
         {
         var verticesLength = vertices.length;
