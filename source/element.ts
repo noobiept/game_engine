@@ -87,7 +87,7 @@ export class Element extends EventDispatcher
         this.column = -1;
         this.line = -1;
 
-        this.vertices = [];
+        this.vertices = null;
         this._rotation = 0;
         this._container = null;
         this._has_logic = false;
@@ -417,7 +417,12 @@ export class Element extends EventDispatcher
      */
     getVertices()
         {
-        return [ this.vertices ];
+        if ( this.vertices )
+            {
+            return [ this.vertices ];
+            }
+
+        return null;
         }
     }
 }

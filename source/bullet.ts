@@ -7,8 +7,8 @@ export interface BulletArgs extends ContainerArgs
     {
         // bullet moves in a fixed direction if an angle is given, until its out of the canvas (in radians)
         // or follows a target, if an Element is given instead
-    angleOrTarget: number | Element;
-    movement_speed: number;
+    angleOrTarget?: number | Element;
+    movementSpeed?: number;
     }
 
 
@@ -24,7 +24,7 @@ export interface BulletArgs extends ContainerArgs
  *             x: 10,
  *             y: 10,
  *             angleOrTarget: 0,
- *             movement_speed: 100
+ *             movementSpeed: 100
  *         });
  *     bullet.addChild( bulletShape );
  *     bullet.addEventListener( 'remove', function( data )
@@ -53,13 +53,28 @@ export class Bullet extends Container
     protected _target: Element;
 
 
-    constructor( args: BulletArgs )
+    constructor( args?: BulletArgs )
         {
+        if ( typeof args === 'undefined' )
+            {
+            args = {};
+            }
+
         super( args );
 
-            // movement speed argument
-        this.movement_speed = args.movement_speed;
+        if ( typeof args.angleOrTarget === 'undefined' )
+            {
+            args.angleOrTarget = 0;
+            }
 
+        if ( typeof args.movementSpeed === 'undefined' )
+            {
+            args.movementSpeed = 100;
+            }
+
+
+            // movement speed argument
+        this.movement_speed = args.movementSpeed;
 
             // angle or target argument
         var angleOrTarget = args.angleOrTarget;
@@ -207,7 +222,7 @@ export class Bullet extends Container
                 x: this.x,
                 y: this.y,
                 children: children,
-                movement_speed: this.movement_speed,
+                movementSpeed: this.movement_speed,
                 angleOrTarget: angleOrTarget
             });
         bullet.opacity = this.opacity;

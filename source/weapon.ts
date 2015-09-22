@@ -47,7 +47,7 @@ export class Weapon
         var defaultBullet = new Game.Bullet({
                 angleOrTarget: 0,
                 children: defaultBulletShape,
-                movement_speed: 100
+                movementSpeed: 100
             });
         this._bullet_types = [ defaultBullet ];
         this._bullet_intervals = [];
@@ -281,6 +281,13 @@ export class Weapon
         for (var a = this._bullets.length - 1 ; a >= 0 ; a--)
             {
             var bullet = this._bullets[ a ];
+            var bulletVertices = bullet.getVertices();
+
+                // this can happen if the bullet was added this tick
+            if ( !bulletVertices )
+                {
+                return;
+                }
 
             if ( CollisionDetection.polygonPolygonList( vertices, bullet.getVertices() ) )
                 {

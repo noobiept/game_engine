@@ -8,7 +8,7 @@ var assetsPath = '../assets/';
     // save to global object (to get the data, use the Game.Preload.get())
     // advantage in not needing to keep track of the preload object
     // disadvantage in that you may overwrite stuff (if you try to add with the same id)
-var preload = new Game.Preload({ save_global: true });
+var preload = new Game.Preload({ saveGlobal: true });
 
 preload.addEventListener( 'complete', complete );
 

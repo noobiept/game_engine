@@ -53,7 +53,7 @@ var star2 = new Star({
         spikes: 8
     });
 var starBullet = new Game.Bullet({
-        movement_speed: 100,
+        movementSpeed: 100,
         angleOrTarget: 0,
         children: star2
     });

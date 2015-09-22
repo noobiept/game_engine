@@ -1,6 +1,6 @@
 window.onload = function()
 {
-var preload = new Game.Preload({ save_global: true });
+var preload = new Game.Preload({ saveGlobal: true });
 
 preload.addEventListener( 'complete', start );
 preload.load( 'background', '../assets/scrolling_bitmap/parallax-forest.png' );

@@ -5,7 +5,7 @@ module Game
 {
 export interface UnitArgs extends ContainerArgs
     {
-    movement_speed?: number;
+    movementSpeed?: number;
     health?: number;
     }
 
@@ -30,7 +30,7 @@ export enum UnitMovement
  *     var unit = new Game.Unit({
  *             x: 100,
  *             y: 100,
- *             movement_speed: 100,
+ *             movementSpeed: 100,
  *             children: unitShape
  *         });
  *     Game.addElement( unit );
@@ -89,9 +89,9 @@ export class Unit extends Container
             args = {};
             }
 
-        if ( typeof args.movement_speed === 'undefined' )
+        if ( typeof args.movementSpeed === 'undefined' )
             {
-            args.movement_speed = 50;
+            args.movementSpeed = 50;
             }
 
         if ( typeof args.health === 'undefined' )
@@ -100,7 +100,7 @@ export class Unit extends Container
             }
 
 
-        this.movement_speed = args.movement_speed;
+        this.movement_speed = args.movementSpeed;
         this.health = args.health;
 
         this._movement_type = UnitMovement.stop;
@@ -488,6 +488,12 @@ export class Unit extends Container
             {
             var vertices = this.getVertices();
 
+                // this can happen if the unit was added this tick
+            if ( !vertices )
+                {
+                return;
+                }
+
             for (var a = 0 ; a < length ; a++)
                 {
                 var all = constructor.collidesWith[ a ]._all;
@@ -510,6 +516,11 @@ export class Unit extends Container
 
                     var otherVertices = other.getVertices();
 
+                        // this can happen if the unit was added this tick
+                    if ( !otherVertices )
+                        {
+                        return;
+                        }
 
                     if ( CollisionDetection.polygonPolygonList( vertices, otherVertices ) )
                         {
@@ -571,7 +582,7 @@ export class Unit extends Container
                 x: this.x,
                 y: this.y,
                 children: children,
-                movement_speed: this.movement_speed,
+                movementSpeed: this.movement_speed,
                 health: this.health
             });
         unit.opacity = this.opacity;

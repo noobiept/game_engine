@@ -22,7 +22,7 @@ var manifest = [
         { id: 'question_mark', path: 'question_mark.png' }
     ];
 
-var preload = new Game.Preload({ save_global: true });
+var preload = new Game.Preload({ saveGlobal: true });
 
 var canvasContainer = Game.getCanvasContainer();
 var loadingMessage = new Game.Message({

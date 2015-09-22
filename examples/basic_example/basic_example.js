@@ -74,7 +74,7 @@ var unitRect2 = new Game.Rectangle({
 var unit = new Game.Unit({
         x: 5,
         y: 50,
-        movement_speed: 100,
+        movementSpeed: 100,
         children: [ unitRect, unitRect2 ]
     });
 
@@ -89,7 +89,7 @@ Game.addElement( unit );
 
 
 var unit2 = new Game.Unit({
-        movement_speed: 50
+        movementSpeed: 50
     });
 
 var unit2circle = new Game.Circle({

@@ -22,7 +22,7 @@ var unitWeapon = new Game.Weapon({
 var unit = new Game.Unit({
         x: centerX,
         y: centerY,
-        movement_speed: 100,
+        movementSpeed: 100,
         children: unitShape
     });
 var weaponId = unit.addWeapon( unitWeapon );
@@ -37,7 +37,7 @@ var targetRect = new Game.Rectangle({
 var target = new Game.Unit({
         x: 5,
         y: 5,
-        movement_speed: 50,
+        movementSpeed: 50,
         children: targetRect
     });
 Game.addElement( target );
@@ -66,7 +66,7 @@ var alternateShape = new Game.Rectangle({
 var bullet = new Game.Bullet({
         angleOrTarget: 0,
         children: alternateShape,
-        movement_speed: 100
+        movementSpeed: 100
     });
 var id = weapon.addBulletType( bullet );
 

@@ -3,7 +3,7 @@ window.onload = function()
 Game.init( document.body, 272, 160 );
 
 var path = '../assets/';
-var preload = new Game.Preload({ save_global: true });
+var preload = new Game.Preload({ saveGlobal: true });
 
 var manifest = [
         { id: 'back-trees', path: 'scrolling_bitmap/parallax-forest-back-trees.png' },

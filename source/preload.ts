@@ -8,14 +8,14 @@ module Game
 {
 export interface PreloadArgs extends EventDispatcherArgs
     {
-    save_global?: boolean;   // save to global 'data' object, or to this object's 'data'
+    saveGlobal?: boolean;   // save to global 'data' object, or to this object's 'data'
     }
 
 
 /**
  * Basic Usage:
  *
- *     var preload = new Game.Preload({ save_global: true });
+ *     var preload = new Game.Preload({ saveGlobal: true });
  *
  *     preload.addEventListener( 'complete', completeListener );
  *     preload.load( 'id', 'path_to_file.png' );
@@ -53,9 +53,9 @@ export class Preload extends EventDispatcher
 
         if ( typeof args !== 'undefined' )
             {
-            if ( Utilities.isBoolean( args.save_global ) )
+            if ( Utilities.isBoolean( args.saveGlobal ) )
                 {
-                saveGlobal = args.save_global;
+                saveGlobal = args.saveGlobal;
                 }
             }
 

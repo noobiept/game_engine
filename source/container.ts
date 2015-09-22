@@ -322,7 +322,12 @@ export class Container extends Element
 
         for (var a = this._children.length - 1 ; a >= 0 ; a--)
             {
-            vertices = vertices.concat( this._children[ a ].getVertices() );
+            var childVertices = this._children[ a ].getVertices();
+
+            if ( childVertices )
+                {
+                vertices = vertices.concat( childVertices );
+                }
             }
 
         return vertices;

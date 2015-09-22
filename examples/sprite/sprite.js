@@ -7,7 +7,7 @@ var manifest = [
         { id: 'sprite2', path: 'sprite_example2.png' }
     ];
 
-var preload = new Game.Preload({ save_global: true });
+var preload = new Game.Preload({ saveGlobal: true });
 
 preload.addEventListener( 'complete', start );
 preload.loadManifest( manifest, '../assets/sprites/' );

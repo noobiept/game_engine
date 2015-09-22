@@ -6,7 +6,7 @@ var manifest = [
         { id: 'scrolling_bitmap', path: 'scrolling_bitmap/vertical_scrolling.png' }
     ];
 
-var preload = new Game.Preload({ save_global: true });
+var preload = new Game.Preload({ saveGlobal: true });
 
 preload.addEventListener( 'complete', start );
 preload.loadManifest( manifest, '../assets/' );
