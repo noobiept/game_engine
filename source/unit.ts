@@ -15,7 +15,8 @@ export enum UnitMovement
         stop,           // unit isn't moving
         angle,          // move in a specific direction/angle
         destination,    // move to a x/y position
-        loop            // move between some x/y positions
+        loop,           // move between some x/y positions
+        follow          // move towards an element position
     }
 
 
@@ -75,6 +76,7 @@ export class Unit extends Container
     protected _is_destination_y_diff_positive: boolean;
     protected _path: { x: number; y: number; callback?: () => any }[];
     protected _loop_path_position: number; // when looping a path, to know what is the current position the unit is going for (the path array position)
+    protected _follow_target: Element;
 
         // :: weapon related :: //
     protected _weapons: Weapon[];
@@ -114,6 +116,7 @@ export class Unit extends Container
         this._loop_path_position = 0;
         this._is_destination_x_diff_positive = false;
         this._is_destination_y_diff_positive = false;
+        this._follow_target = null;
 
         this._weapons = [];
 
@@ -217,6 +220,7 @@ export class Unit extends Container
         {
         if ( !this._removed )
             {
+            this.stop();
             super.remove();
 
             var constructor = <any> this.constructor;
@@ -316,6 +320,7 @@ export class Unit extends Container
         this._movement_type = UnitMovement.stop;
         this._path.length = 0;
         this._is_moving = false;
+        this._follow_target = null;
         }
 
 
@@ -391,6 +396,17 @@ export class Unit extends Container
 
 
     /**
+     * Move constantly towards the element's position.
+     */
+    follow( element: Element )
+        {
+        this._movement_type = UnitMovement.follow;
+        this._follow_target = element;
+        this.movementLogic = this.movementFollowLogic;
+        }
+
+
+    /**
      * Its called in every update. This is going to be assigned to a different movement logic method, depending on the current movement type.
      *
      * @param delta Time elapsed since the last update.
@@ -398,6 +414,27 @@ export class Unit extends Container
     protected movementLogic( delta: number )
         {
             // empty
+        }
+
+
+    /**
+     * Keep moving towards the target element's position.
+     */
+    protected movementFollowLogic( delta: number )
+        {
+        var target = this._follow_target;
+
+        if ( target.isRemoved() )
+            {
+            this.stop();
+            }
+
+        var angle = Utilities.calculateAngle( this.x, this.y * -1, target.x, target.y * -1 );
+
+        this.x += Math.cos( angle ) * this.movement_speed * delta;
+        this.y += Math.sin( angle ) * this.movement_speed * delta;
+
+        this.rotation = angle;
         }
 
 
