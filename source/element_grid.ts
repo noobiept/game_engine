@@ -1,5 +1,8 @@
 /// <reference path="grid.ts" />
 /// <reference path="event_dispatcher.ts" />
+/// <reference path="rectangle.ts" />
+/// <reference path="game.ts" />
+/// <reference path="tween.ts" />
 
 module Game
 {

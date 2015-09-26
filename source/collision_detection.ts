@@ -1,3 +1,5 @@
+/// <reference path="vector.ts" />
+
 module Game
 {
 export module CollisionDetection

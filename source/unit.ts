@@ -1,5 +1,7 @@
 /// <reference path="container.ts" />
 /// <reference path="utilities.ts" />
+/// <reference path="weapon.ts" />
+/// <reference path="tween.ts" />
 
 module Game
 {
@@ -223,6 +225,15 @@ export class Unit extends Container
             this.stop();
             super.remove();
 
+                // remove the associated weapons
+            for (var a = 0 ; a < this._weapons.length ; a++)
+                {
+                this._weapons[ a ].remove();
+                }
+
+            this._weapons.length = 0;
+
+
             var constructor = <any> this.constructor;
             var all = constructor._all;
 
@@ -319,6 +330,7 @@ export class Unit extends Container
         {
         this._movement_type = UnitMovement.stop;
         this._path.length = 0;
+        this._move_callback = null;
         this._is_moving = false;
         this._follow_target = null;
         }

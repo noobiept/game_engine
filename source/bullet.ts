@@ -1,5 +1,6 @@
 /// <reference path="container.ts" />
 /// <reference path="utilities.ts" />
+/// <reference path="game.ts" />
 
 module Game
 {

@@ -1,6 +1,7 @@
 /// <reference path="utilities.ts" />
 /// <reference path="canvas.ts" />
 /// <reference path="element.ts" />
+/// <reference path="sound.ts" />
 
 /**
  * Basic usage:

@@ -1,3 +1,8 @@
+/// <reference path="canvas.ts" />
+/// <reference path="bullet.ts" />
+/// <reference path="rectangle.ts" />
+/// <reference path="collision_detection.ts" />
+
 module Game
 {
 export interface WeaponArgs
@@ -325,6 +330,31 @@ export class Weapon
             }
 
         return weapon;
+        }
+
+
+    remove()
+        {
+        var a;
+
+            // remove the bullet types
+        for (a = 0 ; a < this._bullet_types.length ; a++)
+            {
+            this._bullet_types[ a ].remove();
+            }
+        this._bullet_types.length = 0;
+
+            // remove the bullets
+        for (a = 0 ; a < this._bullets.length ; a++)
+            {
+            this._bullets[ a ].remove();
+            }
+        this._bullets.length = 0;
+
+            // clear other variables
+        this.element = null;
+        this._bullet_intervals.length = 0;
+        this._bullet_container = null;
         }
     }
 }

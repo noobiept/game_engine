@@ -1,3 +1,5 @@
+/// <reference path="utilities.ts" />
+
 module Game
 {
 /**
