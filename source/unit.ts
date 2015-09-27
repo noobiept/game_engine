@@ -159,14 +159,21 @@ export class Unit extends Container
 
     /**
      * Remove the weapon from this unit.
+     *
+     * @param weapon `number | Weapon` The weapon id or the weapon object.
      */
-    removeWeapon( weaponId: number )
+    removeWeapon( weaponOrId: any )
         {
-        var weapon = this._weapons.splice( weaponId, 1 )[ 0 ];
+        if ( weaponOrId instanceof Weapon )
+            {
+            weaponOrId = this._weapons.indexOf( weaponOrId );
+            }
 
-        weapon.element = null;
+        var removed = this._weapons.splice( weaponOrId, 1 )[ 0 ];
 
-        return weapon;
+        removed.element = null;
+
+        return removed;
         }
 
 
