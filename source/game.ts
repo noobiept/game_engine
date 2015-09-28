@@ -2,6 +2,7 @@
 /// <reference path="canvas.ts" />
 /// <reference path="element.ts" />
 /// <reference path="sound.ts" />
+/// <reference path="tween.ts" />
 
 /**
  * Basic usage:
@@ -41,6 +42,7 @@ var MOUSE_MOVED = false;   // if the mouse moved since the last time we checked
 
 var CALLBACKS: { callback: () => any; delay: number; count: number; isInterval: boolean; }[] = [];
 
+var TO_BE_REMOVED: Element[] = [];
 
 /**
  * Initialize the canvas/game loop/etc.
@@ -249,6 +251,32 @@ export function removeElement( element: Element | Element[] )
 
 
 /**
+ * It can be problematic to remove elements during the logic functions, since the logic functions are called in a loop over all the elements.
+ * The elements passed to this function, will only be removed after.
+ *
+ *     removeChild( element );
+ *     removeChild( element1, element2 );
+ *     removeChild( [ element1, element2 ] );
+ *
+ * @param args Either an `Element` or `...Element` or an `Element[]`
+ */
+export function safeRemove( args: any )
+    {
+    var elements = arguments;
+
+    if ( args instanceof Array )
+        {
+        elements = args;
+        }
+
+    for (var a = elements.length - 1 ; a >= 0 ; a--)
+        {
+        TO_BE_REMOVED.push( elements[ a ] );
+        }
+    }
+
+
+/**
  * Adds a callback function to be called at a certain timeout/interval (or every tick) in the game loop (before the draw phase).
  *
  * Sometimes its useful to add a function call through this, for example when you have code that may remove elements, but its called from an event handler (which may try to process the elements that you removed).
@@ -441,22 +469,45 @@ function loop()
         // update all the tweens
     Tween.update( delta );
 
+        // get all the canvas that are to be updated on the game loop
+    var allCanvas = [];
+    var a;
 
-    for (var a = ALL_CANVAS.length - 1 ; a >= 0 ; a--)
+    for (a = ALL_CANVAS.length - 1 ; a >= 0 ; a--)
         {
         var canvas = ALL_CANVAS[ a ];
 
         if ( canvas.update_on_loop )
             {
-                // update the global vertices position of all the elements
-            canvas.updateVertices();
-
-                // call any game logic (from units/etc)
-            canvas.logic( delta );
-
-                // draw all the elements to the canvas
-            canvas.draw();
+            allCanvas.push( canvas );
             }
+        }
+
+        // update the global vertices position of all the elements
+    var lastPosition = allCanvas.length - 1;
+
+    for (a = lastPosition ; a >= 0 ; a--)
+        {
+        allCanvas[ a ].updateVertices();
+        }
+
+        // call any game logic (from units/etc)
+    for (a = lastPosition ; a >= 0 ; a--)
+        {
+        allCanvas[ a ].logic( delta );
+        }
+
+        // remove all deferred elements
+    for (a = TO_BE_REMOVED.length - 1 ; a >= 0 ; a--)
+        {
+        TO_BE_REMOVED[ a ].remove();
+        }
+    TO_BE_REMOVED.length = 0;
+
+        // draw all the elements to the canvas
+    for (a = lastPosition ; a >= 0 ; a--)
+        {
+        allCanvas[ a ].draw();
         }
 
 

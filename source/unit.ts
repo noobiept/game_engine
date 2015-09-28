@@ -233,7 +233,7 @@ export class Unit extends Container
             super.remove();
 
                 // remove the associated weapons
-            for (var a = 0 ; a < this._weapons.length ; a++)
+            for (var a = this._weapons.length - 1 ; a >= 0 ; a--)
                 {
                 this._weapons[ a ].remove();
                 }

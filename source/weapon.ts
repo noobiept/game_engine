@@ -338,17 +338,14 @@ export class Weapon
         var a;
 
             // remove the bullet types
-        for (a = 0 ; a < this._bullet_types.length ; a++)
+        for (a = this._bullet_types.length - 1 ; a >= 0 ; a--)
             {
             this._bullet_types[ a ].remove();
             }
         this._bullet_types.length = 0;
 
-            // remove the bullets
-        for (a = 0 ; a < this._bullets.length ; a++)
-            {
-            this._bullets[ a ].remove();
-            }
+            // clear the bullets array
+            // don't remove the actual bullets (let them hit their targets/go out of bounds)
         this._bullets.length = 0;
 
             // clear other variables

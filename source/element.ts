@@ -217,7 +217,7 @@ export class Element extends EventDispatcher
 
 
     /**
-     * @return The element's width.
+     * @return The element's width. Doesn't consider the rotation.
      */
     getWidth()
         {
@@ -226,7 +226,7 @@ export class Element extends EventDispatcher
 
 
     /**
-     * @return The element's height.
+     * @return The element's height. Doesn't consider the rotation.
      */
     getHeight()
         {
@@ -263,6 +263,61 @@ export class Element extends EventDispatcher
         this._half_width = width / 2;
         this._height = height;
         this._half_height = height / 2;
+        }
+
+
+    /**
+     * Calculates an axis-aligned rectangle from the rotated shape.
+     */
+    toAxisAligned()
+        {
+        var length = this.vertices.length;
+
+            // hasn't calculated the vertices yet
+        if ( length === 0 )
+            {
+            return null;
+            }
+
+        var vertex = this.vertices[ 0 ];
+        var minX = vertex.x;
+        var maxX = minX;
+        var minY = vertex.y;
+        var maxY = minY;
+
+        for (var a = 1 ; a < length ; a++)
+            {
+            var vertex = this.vertices[ a ];
+            var x = vertex.x;
+            var y = vertex.y;
+
+            if ( x < minX )
+                {
+                minX = x;
+                }
+
+            else if ( x > maxX )
+                {
+                maxX = x;
+                }
+
+            if ( y < minY )
+                {
+                minY = y;
+                }
+
+            else if ( y > maxY )
+                {
+                maxY = y;
+                }
+            }
+
+        return {
+                minX: minX,
+                maxX: maxX,
+                minY: minY,
+                maxY: maxY,
+            };
         }
 
 

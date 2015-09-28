@@ -224,7 +224,7 @@ export class Container extends Element
 
 
     /**
-     * Calculate the width/height of the container (based on the dimensions of the children elements).
+     * Calculate the width/height of the container (based on the dimensions of the children elements). Doesn't consider the rotations of the elements.
      */
     calculateDimensions()
         {
@@ -271,6 +271,60 @@ export class Container extends Element
         this._height = bottomMost - topMost;
         this._half_width = this._width / 2;
         this._half_height = this._height / 2;
+        }
+
+
+    /**
+     * Calculates an axis-aligned rectangle from the rotated shape.
+     */
+    toAxisAligned()
+        {
+        var length = this._children.length;
+
+        if ( length === 0 )
+            {
+            return null;
+            }
+
+        var minX = this.x;
+        var maxX = minX;
+        var minY = this.y;
+        var maxY = minY;
+
+        for (var a = this._children.length - 1 ; a >= 0 ; a--)
+            {
+            var rect = this._children[ a ].toAxisAligned();
+
+            if ( rect )
+                {
+                if ( rect.minX < minX )
+                    {
+                    minX = rect.minX;
+                    }
+
+                if ( rect.maxX > maxX )
+                    {
+                    maxX = rect.maxX;
+                    }
+
+                if ( rect.minY < minY )
+                    {
+                    minY = rect.minY;
+                    }
+
+                if ( rect.maxY > maxY )
+                    {
+                    maxY = rect.maxY;
+                    }
+                }
+            }
+
+        return {
+                minX: minX,
+                maxX: maxX,
+                minY: minY,
+                maxY: maxY
+            };
         }
 
 
