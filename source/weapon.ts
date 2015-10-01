@@ -207,6 +207,8 @@ export class Weapon
             {
             bullet.x = this.element.x;
             bullet.y = this.element.y;
+            bullet.category = this.element.category;
+            bullet.collidesWith = this.element.collidesWith;
 
             bullet.addEventListener( 'collision', function( data )
                 {
@@ -278,34 +280,6 @@ export class Weapon
                     }
                 }
             }
-        }
-
-
-    checkCollision( element: Element, vertices: CollisionDetection.Vertices[] )
-        {
-        for (var a = this._bullets.length - 1 ; a >= 0 ; a--)
-            {
-            var bullet = this._bullets[ a ];
-            var bulletVertices = bullet.getVertices();
-
-                // this can happen if the bullet was added this tick
-            if ( !bulletVertices )
-                {
-                return;
-                }
-
-            if ( CollisionDetection.polygonPolygonList( vertices, bullet.getVertices() ) )
-                {
-                this.element.dispatchEvent( 'collision', {
-                        element: this.element,
-                        bullet: bullet,
-                        collidedWith: element
-                    });
-                return true;
-                }
-            }
-
-        return false;
         }
 
 

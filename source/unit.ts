@@ -58,10 +58,6 @@ export enum UnitMovement
  */
 export class Unit extends Container
     {
-        // these will exist independently on every inherited class (not 1 on Unit for all)
-    static _all: Unit[];
-    static collidesWith: Unit[];
-
         // :: unit stats :: //
     movement_speed: number;
     health: number;
@@ -121,23 +117,6 @@ export class Unit extends Container
         this._follow_target = null;
 
         this._weapons = [];
-
-
-            // init the static variables of the class (if its not yet)
-        var constructor = <any> this.constructor;
-
-        if ( typeof constructor._all === 'undefined' )
-            {
-            constructor._all = [];
-            }
-
-        if ( typeof constructor.collidesWith === 'undefined' )
-            {
-            constructor.collidesWith = [];
-            }
-
-
-        constructor._all.push( this );
         }
 
 
@@ -239,14 +218,6 @@ export class Unit extends Container
                 }
 
             this._weapons.length = 0;
-
-
-            var constructor = <any> this.constructor;
-            var all = constructor._all;
-
-            var index = all.indexOf( this );
-
-            all.splice( index, 1 );
             }
         }
 

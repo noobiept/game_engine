@@ -22,16 +22,31 @@ export module CollisionDetection
                 {
                 var two = elements[ b ];
 
-                if ( one.checkCollision( two ) )
+                var oneCollidesWithTwo = (one.collidesWith & two.category) !== 0;
+                var twoCollidesWithOne = (two.collidesWith & one.category) !== 0;
+
+                    // check if they can collide with each other
+                if ( oneCollidesWithTwo || twoCollidesWithOne )
                     {
-                    one.dispatchEvent( 'collision', {
-                            element: one,
-                            collidedWith: two
-                        });
-                    two.dispatchEvent( 'collision', {
-                            element: two,
-                            collidedWith: one
-                        });
+                    if ( one.checkCollision( two ) )
+                        {
+                            // we'll only dispatch the event for the ones that care about it
+                        if ( oneCollidesWithTwo )
+                            {
+                            one.dispatchEvent( 'collision', {
+                                    element: one,
+                                    collidedWith: two
+                                });
+                            }
+
+                        if ( twoCollidesWithOne )
+                            {
+                            two.dispatchEvent( 'collision', {
+                                    element: two,
+                                    collidedWith: one
+                                });
+                            }
+                        }
                     }
                 }
             }

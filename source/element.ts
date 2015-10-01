@@ -7,6 +7,14 @@ export interface ElementArgs extends EventDispatcherArgs
     {
     x?: number;
     y?: number;
+
+        // these are used for collision detection
+        // bit identifier, for example: 001, 010, 100, etc (in decimal is 1, 2, 4, 8, 16, etc)
+    category?: number;
+
+        // bit flag field, with the category bits above
+        // use the bitwise OR operator to set several bits, for example: 2 | 4, sets 0110
+    collidesWith?: number;
     }
 
 
@@ -41,6 +49,9 @@ export class Element extends EventDispatcher
     column: number;
     line: number;
 
+    category: number;
+    collidesWith: number;
+
     _width: number;
     _height: number;
     _half_width: number;
@@ -58,6 +69,8 @@ export class Element extends EventDispatcher
 
         var x = 0;
         var y = 0;
+        var category = 0;
+        var collidesWith = 0;
 
         if ( typeof args !== 'undefined' )
             {
@@ -69,6 +82,16 @@ export class Element extends EventDispatcher
             if ( typeof args.y !== 'undefined' )
                 {
                 y = args.y;
+                }
+
+            if ( typeof args.category !== 'undefined' )
+                {
+                category = args.category;
+                }
+
+            if ( typeof args.collidesWith !== 'undefined' )
+                {
+                collidesWith = args.collidesWith;
                 }
             }
 
@@ -93,12 +116,10 @@ export class Element extends EventDispatcher
         this._has_logic = false;
         this._removed = false;
 
-        var constructor = <any> this.constructor;
+        this.category = category;
+        this.collidesWith = collidesWith;
 
-        if ( constructor.CollisionDetection === true )
-            {
-            Game.addElementCollisionDetection( this );
-            }
+        Game.addElementCollisionDetection( this );
         }
 
 
@@ -393,13 +414,7 @@ export class Element extends EventDispatcher
                 Game.removeElement( this );
                 }
 
-
-            var constructor = <any> this.constructor;
-
-            if ( constructor.CollisionDetection === true )
-                {
-                Game.removeElementCollisionDetection( this );
-                }
+            Game.removeElementCollisionDetection( this );
             }
         }
 
