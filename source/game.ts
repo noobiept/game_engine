@@ -43,6 +43,8 @@ var MOUSE_MOVED = false;   // if the mouse moved since the last time we checked
 var CALLBACKS: { callback: () => any; delay: number; count: number; isInterval: boolean; }[] = [];
 
 var TO_BE_REMOVED: Element[] = [];
+var COLLISION_ELEMENTS: Element[] = [];     // all elements that are going to be check for collisions
+
 
 /**
  * Initialize the canvas/game loop/etc.
@@ -70,7 +72,6 @@ export function init( htmlContainer: HTMLElement, canvasWidth: number, canvasHei
     CANVAS_CONTAINER.addEventListener( 'mousedown', clickEvents );
     CANVAS_CONTAINER.addEventListener( 'mouseup', clickEvents );
 
-
     document.addEventListener( 'visibilitychange', function( event )
         {
         if ( document.hidden )
@@ -83,7 +84,6 @@ export function init( htmlContainer: HTMLElement, canvasWidth: number, canvasHei
             startGameLoop();
             }
         });
-
 
     startGameLoop();
     }
@@ -448,7 +448,6 @@ function mouseMoveEvents()
     }
 
 
-
 /**
  * The game loop.
  * Updates the game logic, drawn of the canvas, tween update, etc.
@@ -496,6 +495,9 @@ function loop()
         {
         allCanvas[ a ].logic( delta );
         }
+
+        // run the collision detection
+    CollisionDetection.checkAll( COLLISION_ELEMENTS );
 
         // remove all deferred elements
     for (a = TO_BE_REMOVED.length - 1 ; a >= 0 ; a--)
@@ -576,5 +578,25 @@ export function getMousePosition()
             x: MOUSE_X,
             y: MOUSE_Y
         };
+    }
+
+
+/**
+ * Elements added will be considered in the collision detection tests.
+ */
+export function addElementCollisionDetection( element: Element )
+    {
+    COLLISION_ELEMENTS.push( element );
+    }
+
+
+/**
+ * Remove an element from being considered in the collision detection.
+ */
+export function removeElementCollisionDetection( element: Element )
+    {
+    var index = COLLISION_ELEMENTS.indexOf( element );
+
+    COLLISION_ELEMENTS.splice( index, 1 );
     }
 }

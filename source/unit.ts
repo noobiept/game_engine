@@ -530,79 +530,6 @@ export class Unit extends Container
 
 
     /**
-     * Logic to determine when a unit has collided with another unit.
-     *
-     * @param delta Time elapsed since the last update.
-     */
-    protected collisionLogic( delta: number )
-        {
-        var constructor = <any> this.constructor;
-        var length = constructor.collidesWith.length;
-
-        if ( length > 0 &&
-             this.hasListeners( 'collision' ) )
-            {
-            var vertices = this.getVertices();
-
-                // this can happen if the unit was added this tick
-            if ( !vertices )
-                {
-                return;
-                }
-
-            for (var a = 0 ; a < length ; a++)
-                {
-                var all = constructor.collidesWith[ a ]._all;
-
-                    // the 'all' array is only initialized when the first object is created. So add this check for the case when we're checking the collision against a class that doesn't have any object yet
-                if ( !all )
-                    {
-                    continue;
-                    }
-
-                for (var b = all.length - 1 ; b >= 0 ; b--)
-                    {
-                    var other = all[ b ];
-
-                        // can't collide with itself
-                    if ( other === this )
-                        {
-                        continue;
-                        }
-
-                    var otherVertices = other.getVertices();
-
-                        // this can happen if the unit was added this tick
-                    if ( !otherVertices )
-                        {
-                        return;
-                        }
-
-                    if ( CollisionDetection.polygonPolygonList( vertices, otherVertices ) )
-                        {
-                        this.dispatchEvent( 'collision', {
-                                element: this,
-                                collidedWith: other
-                            });
-                        return;
-                        }
-
-
-                        // check the weapons/bullets as well
-                    for (var c = this._weapons.length - 1 ; c >= 0 ; c--)
-                        {
-                        if ( this._weapons[ c ].checkCollision( other, otherVertices ) )
-                            {
-                            return;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-
-    /**
      * Unit's logic function, that gets called in every update.
      *
      * @param delta Time elapsed since the last update.
@@ -615,8 +542,6 @@ export class Unit extends Container
             {
             this._weapons[ a ].logic( delta );
             }
-
-        this.collisionLogic( delta );
         }
 
 

@@ -37,7 +37,7 @@ export class Element extends EventDispatcher
     scaleX: number;
     scaleY: number;
 
-        // optional properties, only for when using a Grid
+        // optional properties, only for when using an ElementGrid
     column: number;
     line: number;
 
@@ -92,6 +92,13 @@ export class Element extends EventDispatcher
         this._container = null;
         this._has_logic = false;
         this._removed = false;
+
+        var constructor = <any> this.constructor;
+
+        if ( constructor.CollisionDetection === true )
+            {
+            Game.addElementCollisionDetection( this );
+            }
         }
 
 
@@ -148,6 +155,15 @@ export class Element extends EventDispatcher
             }
 
         return elements;
+        }
+
+
+    /**
+     * Check collision between two elements.
+     */
+    checkCollision( other: Element )
+        {
+        return CollisionDetection.polygonPolygonList( this.getVertices(), other.getVertices() );
         }
 
 
@@ -375,6 +391,14 @@ export class Element extends EventDispatcher
             else
                 {
                 Game.removeElement( this );
+                }
+
+
+            var constructor = <any> this.constructor;
+
+            if ( constructor.CollisionDetection === true )
+                {
+                Game.removeElementCollisionDetection( this );
                 }
             }
         }

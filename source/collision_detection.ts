@@ -8,6 +8,37 @@ export module CollisionDetection
 
 
     /**
+     * Checks the collision between all the elements provided.
+     */
+    export function checkAll( elements: Element[] )
+        {
+        var length = elements.length;
+
+        for (var a = 0 ; a < length - 1 ; a++)
+            {
+            var one = elements[ a ];
+
+            for (var b = a + 1 ; b < length ; b++)
+                {
+                var two = elements[ b ];
+
+                if ( one.checkCollision( two ) )
+                    {
+                    one.dispatchEvent( 'collision', {
+                            element: one,
+                            collidedWith: two
+                        });
+                    two.dispatchEvent( 'collision', {
+                            element: two,
+                            collidedWith: one
+                        });
+                    }
+                }
+            }
+        }
+
+
+    /**
      * Uses the `Separating Axis Theorem` to determine if two elements have collided.
      *
      * Works for convex polygon shapes.

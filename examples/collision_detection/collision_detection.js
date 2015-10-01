@@ -6,6 +6,8 @@ Game.init( document.body, 400, 400 );
 One.collidesWith = [ One, Two ];
 Two.collidesWith = [ One ];
 
+One.CollisionDetection = true;
+Two.CollisionDetection = true;
 
     // example 1 - remove a unit on collision, and stop the other
 var one = new One( 100, 50 );
@@ -19,7 +21,7 @@ one.addEventListener( 'collision', function( data )
     var collidedWith = data.collidedWith;
 
     element.stop();
-    collidedWith.remove();
+    Game.safeRemove( collidedWith );
     });
 one.moveTo( 300, 50 );
 
