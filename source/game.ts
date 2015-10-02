@@ -43,7 +43,6 @@ var MOUSE_MOVED = false;   // if the mouse moved since the last time we checked
 var CALLBACKS: { callback: () => any; delay: number; count: number; isInterval: boolean; }[] = [];
 
 var TO_BE_REMOVED: Element[] = [];
-var COLLISION_ELEMENTS: Element[] = [];     // all elements that are going to be check for collisions
 
 
 /**
@@ -52,8 +51,9 @@ var COLLISION_ELEMENTS: Element[] = [];     // all elements that are going to be
  * @param htmlContainer The canvas is going to be appended to this element.
  * @param canvasWidth Canvas width.
  * @param canvasHeight Canvas height.
+ * @param collision Collision detection algorithm object. Default is the 'CheckAll' algorithm.
  */
-export function init( htmlContainer: HTMLElement, canvasWidth: number, canvasHeight: number )
+export function init( htmlContainer: HTMLElement, canvasWidth: number, canvasHeight: number, collision?: CollisionDetectionAlgorithm )
     {
     CANVAS_CONTAINER = document.createElement( 'div' );
     CANVAS_CONTAINER.id = 'Game-canvasContainer';
@@ -67,6 +67,7 @@ export function init( htmlContainer: HTMLElement, canvasWidth: number, canvasHei
     Game.addCanvas( canvas );
 
     Sound.init();
+    CollisionDetection.init( collision );
 
     CANVAS_CONTAINER.addEventListener( 'click', clickEvents );
     CANVAS_CONTAINER.addEventListener( 'mousedown', clickEvents );
@@ -497,7 +498,7 @@ function loop()
         }
 
         // run the collision detection
-    CollisionDetection.checkAll( COLLISION_ELEMENTS );
+    CollisionDetection.checkCollision();
 
         // remove all deferred elements
     for (a = TO_BE_REMOVED.length - 1 ; a >= 0 ; a--)
@@ -578,25 +579,5 @@ export function getMousePosition()
             x: MOUSE_X,
             y: MOUSE_Y
         };
-    }
-
-
-/**
- * Elements added will be considered in the collision detection tests.
- */
-export function addElementCollisionDetection( element: Element )
-    {
-    COLLISION_ELEMENTS.push( element );
-    }
-
-
-/**
- * Remove an element from being considered in the collision detection.
- */
-export function removeElementCollisionDetection( element: Element )
-    {
-    var index = COLLISION_ELEMENTS.indexOf( element );
-
-    COLLISION_ELEMENTS.splice( index, 1 );
     }
 }

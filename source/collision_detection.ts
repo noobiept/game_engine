@@ -2,54 +2,69 @@
 
 module Game
 {
+export interface CollisionDetectionAlgorithm
+    {
+    checkCollision();
+    add( element: Element );
+    remove( element: Element );
+    update( element: Element );
+    }
+
+
 export module CollisionDetection
     {
     export type Vertices = { x: number, y: number }[];
 
+    var COLLISION: CollisionDetectionAlgorithm;
+
+
+    export function init( collision?: CollisionDetectionAlgorithm )
+        {
+        if ( typeof collision === 'undefined' )
+            {
+            COLLISION = new CollisionDetection.CheckAll();
+            }
+
+        else
+            {
+            COLLISION = collision;
+            }
+        }
+
 
     /**
-     * Checks the collision between all the elements provided.
+     * Elements added will be considered in the collision detection tests.
      */
-    export function checkAll( elements: Element[] )
+    export function addElement( element: Element )
         {
-        var length = elements.length;
+        COLLISION.add( element );
+        }
 
-        for (var a = 0 ; a < length - 1 ; a++)
-            {
-            var one = elements[ a ];
 
-            for (var b = a + 1 ; b < length ; b++)
-                {
-                var two = elements[ b ];
+    /**
+     * Remove an element from being considered in the collision detection.
+     */
+    export function removeElement( element: Element )
+        {
+        COLLISION.remove( element );
+        }
 
-                var oneCollidesWithTwo = (one.collidesWith & two.category) !== 0;
-                var twoCollidesWithOne = (two.collidesWith & one.category) !== 0;
 
-                    // check if they can collide with each other
-                if ( oneCollidesWithTwo || twoCollidesWithOne )
-                    {
-                    if ( one.checkCollision( two ) )
-                        {
-                            // we'll only dispatch the event for the ones that care about it
-                        if ( oneCollidesWithTwo )
-                            {
-                            one.dispatchEvent( 'collision', {
-                                    element: one,
-                                    collidedWith: two
-                                });
-                            }
+    /**
+     * When an element changes its position, need to update the collision detection data structure (in some algorithms).
+     */
+    export function updateElement( element: Element )
+        {
+        COLLISION.update( element );
+        }
 
-                        if ( twoCollidesWithOne )
-                            {
-                            two.dispatchEvent( 'collision', {
-                                    element: two,
-                                    collidedWith: one
-                                });
-                            }
-                        }
-                    }
-                }
-            }
+
+    /**
+     * Look for collisions between the elements.
+     */
+    export function checkCollision()
+        {
+        COLLISION.checkCollision();
         }
 
 

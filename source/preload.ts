@@ -1,9 +1,6 @@
 /// <reference path="event_dispatcher.ts" />
 /// <reference path="sound.ts" />
 
-    // typescript isn't recognizing this, so its added here
-interface Window { URL: any }
-
 module Game
 {
 export interface PreloadArgs extends EventDispatcherArgs

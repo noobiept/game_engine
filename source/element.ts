@@ -52,6 +52,8 @@ export class Element extends EventDispatcher
     category: number;
     collidesWith: number;
 
+    collision_data: any;    // can be used by a collision detection algorithm
+
     _width: number;
     _height: number;
     _half_width: number;
@@ -119,7 +121,7 @@ export class Element extends EventDispatcher
         this.category = category;
         this.collidesWith = collidesWith;
 
-        Game.addElementCollisionDetection( this );
+        CollisionDetection.addElement( this );
         }
 
 
@@ -414,7 +416,7 @@ export class Element extends EventDispatcher
                 Game.removeElement( this );
                 }
 
-            Game.removeElementCollisionDetection( this );
+            CollisionDetection.removeElement( this );
             }
         }
 
@@ -481,6 +483,15 @@ export class Element extends EventDispatcher
             }
 
         return null;
+        }
+
+
+    setPosition( x: number, y: number )
+        {
+        this.x = x;
+        this.y = y;
+
+        CollisionDetection.updateElement( this );
         }
     }
 }

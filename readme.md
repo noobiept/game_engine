@@ -21,7 +21,7 @@ Is available in [http://game-engine1.herokuapp.com/](http://game-engine1.herokua
 Build
 =====
 
-Uses [gruntjs](http://gruntjs.com/) and [typescript](http://www.typescriptlang.org/) v1.5.
+Uses [gruntjs](http://gruntjs.com/) and [typescript](http://www.typescriptlang.org/) v1.6.
  
 * `cd build` - Move to the build directory.
 * `npm install` - Install the build dependencies.
