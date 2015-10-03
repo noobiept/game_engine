@@ -14,7 +14,7 @@ export module CollisionDetection
 
     export class SpatialPartition implements CollisionDetectionAlgorithm
         {
-        _grid;
+        _grid: Element[][];     // a grid of linked lists (the first element of the list)
         _grid_size: number;
         _partition_width: number;
         _partition_height: number;
@@ -36,23 +36,52 @@ export module CollisionDetection
 
                 for (var line = 0 ; line < partitions ; line++)
                     {
-                    this._grid[ column ][ line ] = [];
+                    this._grid[ column ][ line ] = null;
                     }
                 }
             }
 
 
+        /**
+         * Add an element to a partition in the grid, based on its current x/y position.
+         */
         add( element: Element )
             {
             var column = Math.floor( element.x / this._partition_width );
             var line = Math.floor( element.y / this._partition_height );
+            var size = this._grid_size;
 
-            element.collision_data = {
-                column: column,
-                line: line
-            };
+                // added outside the canvas, don't add to any partition
+            if ( column < 0 || column >= size ||
+                 line   < 0 || line   >= size )
+                {
+                element.collision_data = {
+                        column: -1,
+                        line: -1,
+                        previous: null,
+                        next: null
+                    };
+                }
 
-            this._grid[ column ][ line ].push( element );
+                // add to the partition's linked list in the beginning
+            else
+                {
+                var oldFirst = this._grid[ column ][ line ];
+
+                this._grid[ column ][ line ] = element;
+
+                element.collision_data = {
+                    column: column,
+                    line: line,
+                    previous: null,
+                    next: oldFirst
+                };
+
+                if ( oldFirst )
+                    {
+                    oldFirst.collision_data.previous = element;
+                    }
+                }
             }
 
 
@@ -60,27 +89,77 @@ export module CollisionDetection
             {
             var nextColumn = Math.floor( element.x / this._partition_width );
             var nextLine = Math.floor( element.y / this._partition_height );
+            var collisionData = element.collision_data;
+            var size = this._grid_size;
 
-            if ( nextColumn !== element.column ||
-                 nextLine   !== element.line )
+
+            if ( nextColumn !== collisionData.column ||
+                 nextLine   !== collisionData.line )
                 {
                 this.remove( element );
 
-                element.collision_data.column = nextColumn;
-                element.collision_data.line = nextLine;
+                    // moved to a position outside the canvas
+                if ( nextColumn < 0 || nextColumn >= size ||
+                     nextLine   < 0 || nextLine   >= size )
+                    {
+                    collisionData.column = -1;
+                    collisionData.line = -1;
+                    collisionData.previous = null;
+                    collisionData.next = null;
+                    }
 
-                this._grid[ nextColumn ][ nextLine ].push( element );
+                else
+                    {
+                    var oldFirst = this._grid[ nextColumn ][ nextLine ];
+
+                    collisionData.column = nextColumn;
+                    collisionData.line = nextLine;
+                    collisionData.previous = null;
+                    collisionData.next = oldFirst;
+
+                    this._grid[ nextColumn ][ nextLine ] = element;
+
+                    if ( oldFirst )
+                        {
+                        oldFirst.collision_data.previous = element;
+                        }
+                    }
                 }
             }
 
 
         remove( element: Element )
             {
-            var partitionArray = this._grid[ element.collision_data.column ][ element.collision_data.line ];
+            var collisionData = element.collision_data;
 
-            var index = partitionArray.indexOf( element );
+                // its outside the canvas
+            if ( collisionData.column < 0 ||
+                 collisionData.line < 0 )
+                {
+                return;
+                }
 
-            partitionArray.splice( index, 1 );
+            var previous = collisionData.previous;
+            var next = collisionData.next;
+
+            if ( previous )
+                {
+                previous.collision_data.next = next;
+                }
+
+            if ( next )
+                {
+                next.collision_data.previous = previous;
+                }
+
+
+                // check if this is was the first element on the partition
+            var first = this._grid[ collisionData.column ][ collisionData.line ];
+
+            if ( first === element )
+                {
+                this._grid[ collisionData.column ][ collisionData.line ] = next;
+                }
             }
 
 
@@ -92,13 +171,11 @@ export module CollisionDetection
                 {
                 for (var line = 0 ; line < gridSize ; line++)
                     {
-                    var partition = this._grid[ column ][ line ];
+                    var element = this._grid[ column ][ line ];
 
-                    for (var a = 0 ; a < partition.length ; a++)
+                    for( ; element !== null ; element = element.collision_data.next )
                         {
-                        var element = partition[ a ];
-
-                        this.checkElement( element, partition );
+                        this.checkElement( element, element.collision_data.next );
 
                             // try neighbor partitions as well
                         if ( column > 0 && line > 0 )
@@ -126,18 +203,38 @@ export module CollisionDetection
             }
 
 
-        checkElement( element: Element, partition: Element[] )
+        /**
+         * @param element The element to be compared with.
+         * @param other First element of the partition linked list.
+         */
+        checkElement( element: Element, other: Element )
             {
-            for (var a = partition.length - 1 ; a >= 0 ; a--)
+            for ( ; other !== null ; other = other.collision_data.next)
                 {
-                var other = partition[ a ];
+                var elementCollidesWithOther = (element.collidesWith & other.category) !== 0;
+                var otherCollidesWithElement = (other.collidesWith & element.category) !== 0;
 
-                if ( other !== element )
+                    // check if they can collide with each other
+                if ( elementCollidesWithOther || otherCollidesWithElement )
                     {
                     if ( element.checkCollision( other ) )
                         {
-                        element.dispatchEvent( 'collision' );
-                        other.dispatchEvent( 'collision' );
+                            // we'll only dispatch the event for the ones that care about it
+                        if ( elementCollidesWithOther )
+                            {
+                            element.dispatchEvent( 'collision', {
+                                    element: element,
+                                    collidedWith: other
+                                });
+                            }
+
+                        if ( otherCollidesWithElement )
+                            {
+                            other.dispatchEvent( 'collision', {
+                                    element: other,
+                                    collidedWith: element
+                                });
+                            }
                         }
                     }
                 }
