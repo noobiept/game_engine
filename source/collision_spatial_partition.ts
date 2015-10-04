@@ -1,4 +1,5 @@
 /// <reference path="collision_detection.ts" />
+/// <reference path="element.ts" />
 
 module Game
 {
@@ -12,6 +13,10 @@ export module CollisionDetection
         }
 
 
+    /**
+     * Useful when there's lots of elements in the game.
+     * Need to make sure no element is bigger than the size of a partition.
+     */
     export class SpatialPartition implements CollisionDetectionAlgorithm
         {
         _grid: Element[][];     // a grid of linked lists (the first element of the list)
@@ -151,6 +156,9 @@ export module CollisionDetection
                 {
                 next.collision_data.previous = previous;
                 }
+
+            collisionData.previous = null;
+            collisionData.next = null;
 
 
                 // check if this is was the first element on the partition

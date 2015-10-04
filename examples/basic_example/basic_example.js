@@ -71,16 +71,16 @@ var unitRect2 = new Game.Rectangle({
         height: 10,
         color: 'black'
     });
-var unit = new Game.Unit({
+var unit = new Unit({
         x: 5,
         y: 50,
         movementSpeed: 100,
         children: [ unitRect, unitRect2 ]
     });
 
-unit.moveTo( 290, 50 );
-unit.queueMoveTo( 150, 290 );
-unit.queueMoveTo( 5, 50, function()
+unit.movement.moveTo( 290, 50 );
+unit.movement.queueMoveTo( 150, 290 );
+unit.movement.queueMoveTo( 5, 50, function()
     {
     console.log( 'End movement!' );
     });
@@ -88,7 +88,7 @@ unit.queueMoveTo( 5, 50, function()
 Game.addElement( unit );
 
 
-var unit2 = new Game.Unit({
+var unit2 = new Unit({
         movementSpeed: 50
     });
 
@@ -98,12 +98,37 @@ var unit2circle = new Game.Circle({
     });
 
 unit2.addChild( unit2circle );
-unit2.x = 10;
-unit2.y = 230;
-unit2.moveLoop([
+unit2.setPosition( 10, 230 );
+
+unit2.movement.moveLoop([
         { x: 290, y: 230, callback: function() { console.log( 'Right!' ); } },
         { x: 10, y: 230 }
     ]);
 
 Game.addElement( unit2 );
 };
+
+
+/**
+ * Make your own unit class, reusing existing classes.
+ */
+function Unit( args )
+{
+Game.Container.call( this, args );
+
+this.movement = new Game.Movement({
+        element: this,
+        movementSpeed: args.movementSpeed
+    });
+}
+
+Game.Utilities.inheritPrototype( Unit, Game.Container );
+
+
+Unit.prototype.logic = function( deltaTime )
+{
+Game.Container.prototype.logic.call( this, deltaTime );
+
+this.movement.logic( deltaTime );
+};
+

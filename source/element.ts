@@ -1,5 +1,7 @@
 /// <reference path="event_dispatcher.ts" />
 /// <reference path="utilities.ts" />
+/// <reference path="collision_detection.ts" />
+/// <reference path="game.ts" />
 
 module Game
 {
@@ -486,10 +488,25 @@ export class Element extends EventDispatcher
         }
 
 
+    /**
+     * Move the unit to the given x/y position.
+     */
     setPosition( x: number, y: number )
         {
         this.x = x;
         this.y = y;
+
+        CollisionDetection.updateElement( this );
+        }
+
+
+    /**
+     * Adds to the current position.
+     */
+    addToPosition( x: number, y: number )
+        {
+        this.x += x;
+        this.y += y;
 
         CollisionDetection.updateElement( this );
         }

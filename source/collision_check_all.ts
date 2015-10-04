@@ -4,6 +4,9 @@ module Game
 {
 export module CollisionDetection
     {
+    /**
+     * Useful when there's a small number of elements in the game.
+     */
     export class CheckAll implements CollisionDetectionAlgorithm
         {
         _elements: Element[];
