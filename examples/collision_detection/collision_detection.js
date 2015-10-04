@@ -21,17 +21,17 @@ one.addEventListener( 'collision', function( data )
     var element = data.element;
     var collidedWith = data.collidedWith;
 
-    element.stop();
+    element.movement.stop();
     Game.safeRemove( collidedWith );
     });
-one.moveTo( 300, 50 );
+one.movement.moveTo( 300, 50 );
 
 
     // example 2 - no collision between elements of the same type
 var three = new One( 100, 150 );
 var four = new One( 200, 150 );
 
-three.moveLoop([
+three.movement.moveLoop([
         { x: 300, y: 150 },
         { x: 100, y: 150 }
     ]);
@@ -45,7 +45,7 @@ three.addEventListener( 'collision', function( data )
 var five = new One( 100, 250 );
 var six = new Two( 200, 250 );
 
-five.moveLoop([
+five.movement.moveLoop([
         { x: 300, y: 250 },
         { x: 100, y: 250 }
     ]);
@@ -58,16 +58,11 @@ six.addEventListener( 'collision', function( data )
 var seven = new One( 150, 350 );
 var eight = new Two( 250, 350 );
 
-var weapon = new Game.Weapon({
-        bulletContainer: Game.getCanvas()
-    });
-seven.addWeapon( weapon );
 seven.addEventListener( 'collision', function( data )
     {
     addText( 'Bullet collision!', eight.x, eight.y );
     });
-
-weapon.forceFire( 0, 0, 5 );
+seven.weapon.forceFire( 0, 0, 3 );
 };
 
 
@@ -87,45 +82,66 @@ Game.addElement( text );
 
 function One( x, y )
 {
-var shape = new Game.Rectangle({
+Game.Rectangle.call( this, {
         width: 10,
         height: 10,
-        color: 'blue'
-    });
-
-Game.Unit.call( this, {
-        children: shape,
+        color: 'blue',
         category: CATEGORY.friendly,
         collidesWith: CATEGORY.enemy
     });
 
+this._has_logic = true;
 this.x = x;
 this.y = y;
+
+this.weapon = new Game.Weapon({
+        element: this,
+        bulletContainer: Game.getCanvas()
+    });
+this.movement = new Game.Movement({
+        element: this,
+        movementSpeed: 100
+    });
 
 Game.addElement( this );
 }
 
-Game.Utilities.inheritPrototype( One, Game.Unit );
+Game.Utilities.inheritPrototype( One, Game.Rectangle );
+
+
+One.prototype.logic = function( deltaTime )
+{
+this.movement.logic( deltaTime );
+this.weapon.logic( deltaTime );
+};
 
 
 function Two( x, y )
 {
-var shape = new Game.Rectangle({
+Game.Rectangle.call( this, {
         width: 10,
         height: 10,
-        color: 'red'
-    });
-
-Game.Unit.call( this, {
-        children: shape,
+        color: 'red',
         category: CATEGORY.enemy,
         collidesWith: CATEGORY.friendly
     });
 
+this._has_logic = true;
 this.x = x;
 this.y = y;
+
+this.movement = new Game.Movement({
+        element: this,
+        movementSpeed: 100
+    });
 
 Game.addElement( this );
 }
 
-Game.Utilities.inheritPrototype( Two, Game.Unit );
+Game.Utilities.inheritPrototype( Two, Game.Rectangle );
+
+
+Two.prototype.logic = function( deltaTime )
+{
+this.movement.logic( deltaTime );
+};

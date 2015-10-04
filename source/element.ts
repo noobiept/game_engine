@@ -31,10 +31,8 @@ export interface ElementArgs extends EventDispatcherArgs
  * - `mousemove` -- `listener( data: { element: Element; } );`
  * - `mouseover` -- `listener( data: { element: Element; } );`
  * - `mouseout` -- `listener( data: { element: Element; } );`
- *
- * @abstract
  */
-export class Element extends EventDispatcher
+export abstract class Element extends EventDispatcher
     {
     x: number;
     y: number;
@@ -131,12 +129,8 @@ export class Element extends EventDispatcher
      * Draws just this element.
      *
      * @param ctx Canvas context.
-     * @abstract
      */
-    drawElement( ctx: CanvasRenderingContext2D )
-        {
-        throw new Error( 'Implement .drawElement().' );
-        }
+    abstract drawElement( ctx: CanvasRenderingContext2D );
 
 
     /**
@@ -434,13 +428,8 @@ export class Element extends EventDispatcher
 
     /**
      * Create a clone of this element.
-     *
-     * @abstract
      */
-    clone(): Element
-        {
-        throw new Error( 'Implement .clone().' );
-        }
+    abstract clone(): Element;
 
 
     /**
@@ -449,13 +438,13 @@ export class Element extends EventDispatcher
      */
     updateVertices( x: number, y: number, scaleX: number, scaleY: number, rotation: number )
         {
-        scaleX *= this.scaleX;
-        scaleY *= this.scaleY;
-
         var center = {
                 x: x + this.x * scaleX,
                 y: y + this.y * scaleY
             };
+
+        scaleX *= this.scaleX;
+        scaleY *= this.scaleY;
 
         var left = center.x - this._half_width * scaleX;
         var right = center.x + this._half_width * scaleX;

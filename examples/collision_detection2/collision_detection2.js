@@ -1,10 +1,14 @@
+var CATEGORIES = {
+    player: 1,
+    enemy: 2
+};
+
+
 window.onload = function()
 {
 Game.init( document.body, 400, 400 );
 Game.activateMouseMoveEvents( 50 );
 
-    // define to which kind of units it can collide with
-Player.collidesWith = [ Enemy ];
 
     // add the player
 var player = new Player( 200, 200 );
@@ -69,7 +73,7 @@ window.addEventListener( 'keydown', function( event )
             break;
 
         case Game.Utilities.KEY_CODE.space:
-            player.getWeapon( 0 ).fire();
+            player.weapon.forceFire();
             break;
 
         case Game.Utilities.KEY_CODE.r:
@@ -82,44 +86,42 @@ window.addEventListener( 'keydown', function( event )
 
 function Player( x, y )
 {
-var shape = new Game.Rectangle({
+Game.Rectangle.call( this, {
+        x: x,
+        y: y,
         width: 10,
         height: 10,
-        color: 'blue'
+        color: 'blue',
+        category: CATEGORIES.player,
+        collidesWith: CATEGORIES.enemy
     });
 
-Game.Unit.call( this, {
-        children: shape
-    });
-
-
-var weapon = new Game.Weapon({
+this._has_logic = true;
+this.weapon = new Game.Weapon({
+        element: this,
         bulletContainer: Game.getCanvas()
     });
-this.addWeapon( weapon );
-
-this.x = x;
-this.y = y;
 }
 
-Game.Utilities.inheritPrototype( Player, Game.Unit );
+Game.Utilities.inheritPrototype( Player, Game.Rectangle );
+
+
+Player.prototype.logic = function( deltaTime )
+{
+this.weapon.logic( deltaTime );
+};
 
 
 function Enemy( x, y )
 {
-var shape = new Game.Rectangle({
+Game.Rectangle.call( this, {
+        x: x,
+        y: y,
         width: 20,
         height: 20,
-        color: 'red'
+        color: 'red',
+        category: CATEGORIES.enemy
     });
-
-Game.Unit.call( this, {
-        children: shape
-    });
-
-this.x = x;
-this.y = y;
 }
 
-Game.Utilities.inheritPrototype( Enemy, Game.Unit );
-
+Game.Utilities.inheritPrototype( Enemy, Game.Rectangle );
