@@ -1,6 +1,5 @@
 /// <reference path="container.ts" />
 /// <reference path="utilities.ts" />
-/// <reference path="game.ts" />
 
 module Game
 {
@@ -9,7 +8,7 @@ export interface BulletArgs extends ContainerArgs
         // bullet moves in a fixed direction if an angle is given, until its out of the canvas (in radians)
         // or follows a target, if an Element is given instead
     angleOrTarget?: number | Element;
-    movementSpeed?: number;
+    movementSpeed: number;
     }
 
 
@@ -48,19 +47,11 @@ export interface BulletArgs extends ContainerArgs
  */
 export class Bullet extends Container
     {
-    movement_speed: number;
-    protected _move_x: number;
-    protected _move_y: number;
-    protected _target: Element;
+    movement: Movement;
 
 
-    constructor( args?: BulletArgs )
+    constructor( args: BulletArgs )
         {
-        if ( typeof args === 'undefined' )
-            {
-            args = {};
-            }
-
         super( args );
 
         if ( typeof args.angleOrTarget === 'undefined' )
@@ -68,14 +59,10 @@ export class Bullet extends Container
             args.angleOrTarget = 0;
             }
 
-        if ( typeof args.movementSpeed === 'undefined' )
-            {
-            args.movementSpeed = 100;
-            }
-
-
-            // movement speed argument
-        this.movement_speed = args.movementSpeed;
+        this.movement = new Game.Movement({
+                element: this,
+                movementSpeed: args.movementSpeed
+            });
 
             // angle or target argument
         var angleOrTarget = args.angleOrTarget;
@@ -101,10 +88,12 @@ export class Bullet extends Container
      */
     setAngle( angle: number )
         {
-        this._move_x = Math.cos( angle ) * this.movement_speed;
-        this._move_y = Math.sin( angle ) * this.movement_speed;
-        this.rotation = angle;
-        this.logic = this.fixedLogic;
+        var _this = this;
+
+        this.movement.moveAngle( angle, false, function()
+            {
+            _this.remove();
+            });
         }
 
 
@@ -115,71 +104,16 @@ export class Bullet extends Container
      */
     setTarget( target: Element )
         {
-        this._target = target;
-        this.logic = this.targetLogic;
+        this.movement.follow( target );
         }
 
 
     /**
-     * Logic for when the bullet is moving in a fixed direction.
-     *
-     * @param deltaTime Time elapsed since the last update.
-     */
-    fixedLogic( deltaTime: number )
-        {
-        this.x += this._move_x * deltaTime;
-        this.y += this._move_y * deltaTime;
-
-        if ( !Game.getCanvas().isInCanvas( this.x, this.y ) )
-            {
-            this.remove();
-            }
-        }
-
-    /**
-     * Logic for when the bullet is following a target.
-     *
-     * @param deltaTime Time elapsed since the last update.
-     */
-    targetLogic( deltaTime: number )
-        {
-        var target = this._target;
-
-        if ( target.isRemoved() )
-            {
-            this.remove();
-            return;
-            }
-
-        var angle = Utilities.calculateAngle( this.x, this.y * -1, target.x, target.y * -1 );
-
-        this.x += Math.cos( angle ) * this.movement_speed * deltaTime;
-        this.y += Math.sin( angle ) * this.movement_speed * deltaTime;
-
-        this.rotation = angle;
-
-        if ( CollisionDetection.polygonPolygonList(
-                this.getVertices(),
-                target.getVertices()
-                ))
-            {
-            this.dispatchEvent( 'collision', {
-                    element: this,
-                    collidedWith: target
-                });
-            this.remove();
-            }
-        }
-
-
-    /**
-     * This is going to assigned to either .fixedLogic() or .targetLogic(), depending on the type of bullet.
-     *
      * @param deltaTime Time elapsed since the last update.
      */
     logic( deltaTime: number )
         {
-            // empty
+        this.movement.logic( deltaTime );
         }
 
 
@@ -191,7 +125,8 @@ export class Bullet extends Container
         {
         if ( !this._removed )
             {
-            this._target = null;
+            this.movement.remove();
+            this.movement = null;
             this.dispatchEvent( 'remove', { element: this } );
 
             super.remove();
@@ -212,25 +147,11 @@ export class Bullet extends Container
             children.push( this._children[ a ].clone() );
             }
 
-        var angleOrTarget;
-
-        if ( this._target )
-            {
-            angleOrTarget = this._target;
-            }
-
-        else
-            {
-            angleOrTarget = this.rotation;
-            }
-
-
         var bullet = new Game.Bullet({
                 x: this.x,
                 y: this.y,
                 children: children,
-                movementSpeed: this.movement_speed,
-                angleOrTarget: angleOrTarget
+                movementSpeed: this.movement.movement_speed
             });
         bullet.opacity = this.opacity;
         bullet.visible = this.visible;

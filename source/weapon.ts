@@ -7,6 +7,7 @@ module Game
 {
 export interface WeaponArgs
     {
+    element: Element;       // the associated element
     bulletContainer: Container | Canvas;    // where to add the bullet objects
     fireInterval?: number;      // time between each shot
     damage?: number;
@@ -38,7 +39,7 @@ export class Weapon
             args.fireInterval = 0;
             }
 
-        this.element = null;
+        this.element = args.element;
         this.damage = args.damage;
         this.fire_interval = args.fireInterval;
         this._fire_count = 0;
@@ -292,6 +293,7 @@ export class Weapon
     clone()
         {
         var weapon = new Game.Weapon({
+                element: this.element,
                 bulletContainer: this._bullet_container,
                 fireInterval: this.fire_interval,
                 damage: this.damage

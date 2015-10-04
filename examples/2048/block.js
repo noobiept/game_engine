@@ -2,7 +2,7 @@
 {
 function Block( args )
 {
-Game.Unit.call( this, args );
+Game.Container.call( this, args );
 
 var background = new Game.Rectangle({
         width: Block.size,
@@ -40,7 +40,7 @@ Block.colors = {
     '2048': 'rgb(116,108,255)'
 };
 
-Game.Utilities.inheritPrototype( Block, Game.Unit );
+Game.Utilities.inheritPrototype( Block, Game.Container );
 
 
 Block.prototype.setValue = function( value )
