@@ -41,7 +41,7 @@ Game.addElement( enemiesContainer );
 
 
 var enemy1 = new Enemy( 110, 130 );
-enemy1.scaleX = 0.8;
+enemy1.scaleX = 0.7;
 Game.addElement( enemy1 );
 
 var enemy2 = new Enemy( 100, 100 );

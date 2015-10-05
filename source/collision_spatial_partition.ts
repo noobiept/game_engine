@@ -16,6 +16,20 @@ export module CollisionDetection
     /**
      * Useful when there's lots of elements in the game.
      * Need to make sure no element is bigger than the size of a partition.
+     *
+     * Basic Usage:
+     *
+     *     var width = 400;
+     *     var height = 400;
+     *
+     *     var collision = new Game.CollisionDetection.SpatialPartition({
+     *             canvasWidth: width,
+     *             canvasHeight: height,
+     *             partitions: 10
+     *         });
+     *     Game.init( document.body, width, height, collision );
+     *
+     * Examples -- `collision_spatial_partition`
      */
     export class SpatialPartition implements CollisionDetectionAlgorithm
         {

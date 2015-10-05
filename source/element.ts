@@ -438,10 +438,7 @@ export abstract class Element extends EventDispatcher
      */
     updateVertices( x: number, y: number, scaleX: number, scaleY: number, rotation: number )
         {
-        var center = {
-                x: x + this.x * scaleX,
-                y: y + this.y * scaleY
-            };
+        var center = Vector.rotate( { x: x, y: y }, { x: x + this.x * scaleX, y: y + this.y * scaleY }, rotation );
 
         scaleX *= this.scaleX;
         scaleY *= this.scaleY;
