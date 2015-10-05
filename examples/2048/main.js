@@ -165,7 +165,7 @@ for (line = 0 ; line < lines ; line++)
                     {
                     block.setValue( firstBlock.value * 2 );
 
-                    GRID.remove( firstBlock.column, firstBlock.line );
+                    GRID.remove( firstBlock.grid_data.column, firstBlock.grid_data.line );
                     firstBlock.remove( REMOVE_DURATION );
                     break;  // only one combination per line
                     }
@@ -192,7 +192,7 @@ for (line = 0 ; line < lines ; line++)
 
         if ( block !== null )
             {
-            GRID.move( block.column, block.line, position, line, MOVE_DURATION );
+            GRID.move( block.grid_data.column, block.grid_data.line, position, line, MOVE_DURATION );
 
             position++;
             }
@@ -233,7 +233,7 @@ for (line = 0 ; line < lines ; line++)
                     {
                     block.setValue( firstBlock.value * 2 );
 
-                    GRID.remove( firstBlock.column, firstBlock.line );
+                    GRID.remove( firstBlock.grid_data.column, firstBlock.grid_data.line );
                     firstBlock.remove( REMOVE_DURATION );
                     break;  // only one combination per line
                     }
@@ -260,7 +260,7 @@ for (line = 0 ; line < lines ; line++)
 
         if ( block !== null )
             {
-            GRID.move( block.column, block.line, position, line, MOVE_DURATION );
+            GRID.move( block.grid_data.column, block.grid_data.line, position, line, MOVE_DURATION );
 
             position--;
             }
@@ -302,7 +302,7 @@ for (column = 0 ; column < columns ; column++)
                     {
                     block.setValue( firstBlock.value * 2 );
 
-                    GRID.remove( firstBlock.column, firstBlock.line );
+                    GRID.remove( firstBlock.grid_data.column, firstBlock.grid_data.line );
                     firstBlock.remove( REMOVE_DURATION );
                     break;  // only one combination per line
                     }
@@ -329,7 +329,7 @@ for (column = 0 ; column < columns ; column++)
 
         if ( block !== null )
             {
-            GRID.move( block.column, block.line, column, position, MOVE_DURATION );
+            GRID.move( block.grid_data.column, block.grid_data.line, column, position, MOVE_DURATION );
 
             position++;
             }
@@ -370,7 +370,7 @@ for (column = 0 ; column < columns ; column++)
                     {
                     block.setValue( firstBlock.value * 2 );
 
-                    GRID.remove( firstBlock.column, firstBlock.line );
+                    GRID.remove( firstBlock.grid_data.column, firstBlock.grid_data.line );
                     firstBlock.remove( REMOVE_DURATION );
                     break;  // only one combination per line
                     }
@@ -397,7 +397,7 @@ for (column = 0 ; column < columns ; column++)
 
         if ( block !== null )
             {
-            GRID.move( block.column, block.line, column, position, MOVE_DURATION );
+            GRID.move( block.grid_data.column, block.grid_data.line, column, position, MOVE_DURATION );
 
             position--;
             }

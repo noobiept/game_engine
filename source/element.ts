@@ -42,13 +42,10 @@ export abstract class Element extends EventDispatcher
     scaleX: number;
     scaleY: number;
 
-        // optional properties, only for when using an ElementGrid
-    column: number;
-    line: number;
-
     category: number;
     collidesWith: number;
 
+    grid_data: any;         // can be used by a grid class that needs to save extra information in the element
     collision_data: any;    // can be used by a collision detection algorithm
 
     protected _x: number;
@@ -107,9 +104,6 @@ export abstract class Element extends EventDispatcher
 
         this.scaleX = 1;
         this.scaleY = 1;
-
-        this.column = -1;
-        this.line = -1;
 
         this.vertices = null;
         this._rotation = 0;
@@ -497,9 +491,25 @@ export abstract class Element extends EventDispatcher
         }
 
 
+    set x( x: number )
+        {
+        this._x = x;
+
+        CollisionDetection.updateElement( this );
+        }
+
+
     get x()
         {
         return this._x;
+        }
+
+
+    set y( y: number )
+        {
+        this._y = y;
+
+        CollisionDetection.updateElement( this );
         }
 
 

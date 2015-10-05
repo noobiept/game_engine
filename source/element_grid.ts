@@ -50,7 +50,6 @@ export class ElementGrid extends Grid
         {
         super( args );
 
-
         if ( typeof args.refX === 'undefined' )
             {
             args.refX = args.squareSize / 2;
@@ -141,10 +140,11 @@ export class ElementGrid extends Grid
         var previous = super.add( element, column, line );
         var canvasPosition = this.toCanvas( column, line );
 
-        element.x = canvasPosition.x;
-        element.y = canvasPosition.y;
-        element.column = column;
-        element.line = line;
+        element.setPosition( canvasPosition.x, canvasPosition.y );
+        element.grid_data = {
+                column: column,
+                line: line
+            };
 
         if ( previous !== null )
             {
@@ -184,14 +184,13 @@ export class ElementGrid extends Grid
 
         var canvasPosition = this.toCanvas( destColumn, destLine );
 
-        element.column = destColumn;
-        element.line = destLine;
+        element.grid_data.column = destColumn;
+        element.grid_data.line = destLine;
 
             // move immediately
         if ( typeof duration === 'undefined' || duration <= 0 )
             {
-            element.x = canvasPosition.x;
-            element.y = canvasPosition.y;
+            element.setPosition( canvasPosition.x, canvasPosition.y );
             }
 
             // use a tween for the animation
@@ -209,8 +208,8 @@ export class ElementGrid extends Grid
 
         if ( previous !== null )
             {
-            previous.column = -1;
-            previous.line = -1;
+            previous.grid_data.column = -1;
+            previous.grid_data.line = -1;
 
             this.events.dispatchEvent( 'collision', {
                     element: element,
@@ -236,8 +235,8 @@ export class ElementGrid extends Grid
 
         if ( element !== null )
             {
-            element.column = -1;
-            element.line = -1;
+            element.grid_data.column = -1;
+            element.grid_data.line = -1;
             }
 
         return element;
