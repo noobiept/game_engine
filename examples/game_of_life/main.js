@@ -104,10 +104,9 @@ GRID.add( element, column, line );
 
 function removeSquare( square )
 {
-GRID.remove( square.column, square.line );
+GRID.remove( square.grid_data.column, square.grid_data.line );
 Game.removeElement( square );
 }
-
 
 
 function gameLogic()
@@ -195,7 +194,6 @@ Main.restart = function()
 Main.clear();
 Main.firstPhase();
 };
-
 
 
 window.Main = Main;

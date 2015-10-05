@@ -446,7 +446,7 @@ if ( gameWon )
 
 function revealAdjacents( square )
 {
-var adjacents = GRID.getNeighbors( square.column, square.line );
+var adjacents = GRID.getNeighbors( square.grid_data.column, square.grid_data.line );
 
 for (var a = adjacents.length - 1 ; a >= 0 ; a--)
     {

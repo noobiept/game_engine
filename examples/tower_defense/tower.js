@@ -1,22 +1,18 @@
 function Tower( args )
 {
-Game.Unit.call( this, args );
-
 var width = Main.SQUARE_SIZE;
 var height = Main.SQUARE_SIZE;
 
-var shape = new Game.Rectangle({
-        width: width,
-        height: height,
-        color: 'purple'
-    });
-this.addChild( shape );
+args.x = args.column * Main.SQUARE_SIZE + width / 2;
+args.y = args.line * Main.SQUARE_SIZE + height / 2;
+args.width = width;
+args.height = height;
+args.color = 'purple';
 
+Game.Rectangle.call( this, args );
+
+this._has_logic = true;
 this.range = 50;     // attack range
-
-this.x = args.column * Main.SQUARE_SIZE + width / 2;
-this.y = args.line * Main.SQUARE_SIZE + height / 2;
-
 
     // towers cost money
 Main.addMoney( -Tower.COST );
@@ -27,34 +23,39 @@ this.addEventListener( 'collision', function( data )
     var tower = data.element;
     var creep = data.collidedWith;
 
-    creep.health -= tower.getWeapon( 0 ).damage;
+    creep.health -= tower.weapon.damage;
 
     if ( creep.health <= 0 )
         {
         if ( !creep._removed )
             {
             Main.addMoney( creep.worth );
-            creep.remove();
+            Game.safeRemove( creep );
             }
         }
 
     if ( data.bullet )
         {
-        data.bullet.remove();
+        Game.safeRemove( data.bullet );
         }
     });
 
     // add weapon
-var weapon = new Game.Weapon({
-        bulletContainer: args.bullet_container,
+this.weapon = new Game.Weapon({
+        element: this,
+        bulletContainer: args.bulletContainer,
         fireInterval: 0.5,
         damage: 50
     });
-this.addWeapon( weapon );
 }
 
-Game.Utilities.inheritPrototype( Tower, Game.Unit );
-
+Game.Utilities.inheritPrototype( Tower, Game.Rectangle );
 
     // cost of each tower
 Tower.COST = 50;
+
+
+Tower.prototype.logic = function( deltaTime )
+{
+this.weapon.logic( deltaTime );
+};

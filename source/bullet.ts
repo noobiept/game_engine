@@ -104,7 +104,12 @@ export class Bullet extends Container
      */
     setTarget( target: Element )
         {
-        this.movement.follow( target );
+        var _this = this;
+
+        this.movement.follow( target, function()
+            {
+            Game.safeRemove( _this );
+            });
         }
 
 

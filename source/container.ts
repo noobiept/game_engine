@@ -135,6 +135,15 @@ export class Container extends Element
 
 
     /**
+     * Get all the children elements.
+     */
+    getAllChildren()
+        {
+        return this._children;
+        }
+
+
+    /**
      * Make sure the children are removed as well.
      */
     remove()

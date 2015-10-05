@@ -224,12 +224,16 @@ export class Movement
 
     /**
      * Move constantly towards the element's position.
+     *
+     * @element The element to follow.
+     * @callback Called when the element that we're following is removed.
      */
-    follow( element: Element )
+    follow( element: Element, callback?: () => any )
         {
         this._movement_state = MovementState.follow;
         this._follow_target = element;
         this.logic = this.movementFollowLogic;
+        this._move_callback = callback;
         }
 
 
@@ -240,9 +244,24 @@ export class Movement
         {
         var target = this._follow_target;
 
+        if ( !target )
+            {
+            return;
+            }
+
         if ( target.isRemoved() )
             {
-            this.stop();
+            if ( this._move_callback )
+                {
+                this._move_callback();
+                }
+
+            else
+                {
+                this.stop();
+                }
+
+            return;
             }
 
         var elementX = this._element.x;
@@ -253,7 +272,7 @@ export class Movement
         this._element.setPosition(
                 elementX + Math.cos( angle ) * this.movement_speed * delta,
                 elementY + Math.sin( angle ) * this.movement_speed * delta
-            )
+            );
         this._element.rotation = angle;
         }
 
