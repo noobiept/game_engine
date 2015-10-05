@@ -236,9 +236,9 @@ export class Container extends Element
 
         var firstChild = this._children[ 0 ];
         var leftMost = firstChild.x;
-        var rightMost = firstChild.x + firstChild._width;
+        var rightMost = firstChild.x + firstChild.width;
         var topMost = firstChild.y;
-        var bottomMost = firstChild.y + firstChild._height;
+        var bottomMost = firstChild.y + firstChild.height;
         var length = this._children.length;
 
         for (var a = 1 ; a < length ; a++)
@@ -250,9 +250,9 @@ export class Container extends Element
                 leftMost = element.x;
                 }
 
-            else if ( element.x + element._width > rightMost )
+            else if ( element.x + element.width > rightMost )
                 {
-                rightMost = element.x + element._width;
+                rightMost = element.x + element.width;
                 }
 
 
@@ -261,9 +261,9 @@ export class Container extends Element
                 topMost = element.y;
                 }
 
-            else if ( element.y + element._height > bottomMost )
+            else if ( element.y + element.height > bottomMost )
                 {
-                bottomMost = element.y + element._height;
+                bottomMost = element.y + element.height;
                 }
             }
 

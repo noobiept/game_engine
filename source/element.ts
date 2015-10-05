@@ -34,9 +34,6 @@ export interface ElementArgs extends EventDispatcherArgs
  */
 export abstract class Element extends EventDispatcher
     {
-    x: number;
-    y: number;
-
     vertices: CollisionDetection.Vertices;
 
     opacity: number;    // value between 0 and 1
@@ -54,12 +51,14 @@ export abstract class Element extends EventDispatcher
 
     collision_data: any;    // can be used by a collision detection algorithm
 
-    _width: number;
-    _height: number;
-    _half_width: number;
-    _half_height: number;
+    protected _x: number;
+    protected _y: number;
+    protected _width: number;
+    protected _height: number;
+    protected _half_width: number;
+    protected _half_height: number;
 
-    _rotation: number;   // in radians (clockwise)
+    protected _rotation: number;   // in radians (clockwise)
     _container: Container;
     _has_logic: boolean; // to know if we need to run the .logic() method or not
     protected _removed: boolean;  // a reference to this element may be saved in several places, so we need a way to know if its ok to work on the element or not
@@ -98,8 +97,8 @@ export abstract class Element extends EventDispatcher
             }
 
 
-        this.x = x;
-        this.y = y;
+        this._x = x;
+        this._y = y;
         this._width = this._half_width = 0;
         this._height = this._half_height = 0;
 
@@ -438,7 +437,7 @@ export abstract class Element extends EventDispatcher
      */
     updateVertices( x: number, y: number, scaleX: number, scaleY: number, rotation: number )
         {
-        var center = Vector.rotate( { x: x, y: y }, { x: x + this.x * scaleX, y: y + this.y * scaleY }, rotation );
+        var center = Vector.rotate( { x: x, y: y }, { x: x + this._x * scaleX, y: y + this._y * scaleY }, rotation );
 
         scaleX *= this.scaleX;
         scaleY *= this.scaleY;
@@ -479,8 +478,8 @@ export abstract class Element extends EventDispatcher
      */
     setPosition( x: number, y: number )
         {
-        this.x = x;
-        this.y = y;
+        this._x = x;
+        this._y = y;
 
         CollisionDetection.updateElement( this );
         }
@@ -491,10 +490,46 @@ export abstract class Element extends EventDispatcher
      */
     addToPosition( x: number, y: number )
         {
-        this.x += x;
-        this.y += y;
+        this._x += x;
+        this._y += y;
 
         CollisionDetection.updateElement( this );
+        }
+
+
+    get x()
+        {
+        return this._x;
+        }
+
+
+    get y()
+        {
+        return this._y;
+        }
+
+
+    get width()
+        {
+        return this._width;
+        }
+
+
+    get height()
+        {
+        return this._height;
+        }
+
+
+    get half_width()
+        {
+        return this._half_width;
+        }
+
+
+    get half_height()
+        {
+        return this._half_height;
         }
     }
 }
