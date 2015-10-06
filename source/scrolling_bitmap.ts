@@ -29,15 +29,6 @@ export module ScrollingBitmapArgs
  *         });
  *     Game.addElement( image );
  *
- * Events:
- *
- * - `click` -- `listener( data: { event: MouseEvent; } );`
- * - `mousedown` -- `listener( data: { event: MouseEvent; } );`
- * - `mouseup` -- `listener( data: { event: MouseEvent; } );`
- * - `mousemove` -- `listener( data: { element: Element; } );`
- * - `mouseover` -- `listener( data: { element: Element; } );`
- * - `mouseout` -- `listener( data: { element: Element; } );`
- *
  * Examples -- `clone`, `parallax_scrolling`
  */
 export class ScrollingBitmap extends Bitmap

@@ -25,12 +25,13 @@ export interface ElementArgs extends EventDispatcherArgs
  *
  * Events:
  *
- * - `click` -- `listener( data: { event: MouseEvent; } );`
+ * - `click`     -- `listener( data: { event: MouseEvent; } );`
  * - `mousedown` -- `listener( data: { event: MouseEvent; } );`
- * - `mouseup` -- `listener( data: { event: MouseEvent; } );`
+ * - `mouseup`   -- `listener( data: { event: MouseEvent; } );`
  * - `mousemove` -- `listener( data: { element: Element; } );`
  * - `mouseover` -- `listener( data: { element: Element; } );`
- * - `mouseout` -- `listener( data: { element: Element; } );`
+ * - `mouseout`  -- `listener( data: { element: Element; } );`
+ * - `collision` -- `listener( data: element: Element; collidedWith: Element; bullet?: Bullet; );`
  */
 export abstract class Element extends EventDispatcher
     {

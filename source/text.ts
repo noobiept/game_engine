@@ -27,15 +27,6 @@ export interface TextArgs extends ElementArgs
  *         });
  *     Game.addElement( text );
  *
- * Events:
- *
- * - `click` -- `listener( data: { event: MouseEvent; } );`
- * - `mousedown` -- `listener( data: { event: MouseEvent; } );`
- * - `mouseup` -- `listener( data: { event: MouseEvent; } );`
- * - `mousemove` -- `listener( data: { element: Element; } );`
- * - `mouseover` -- `listener( data: { element: Element; } );`
- * - `mouseout` -- `listener( data: { element: Element; } );`
- *
  * Examples -- `2048`, `clone`, `collision_detection`, `game_loop_callbacks`, `preload`, `snake`
  */
 export class Text extends Element

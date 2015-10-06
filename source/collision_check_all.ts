@@ -83,6 +83,12 @@ export module CollisionDetection
                     }
                 }
             }
+
+
+        clear()
+            {
+            this._elements.length = 0;
+            }
         }
     }
 }

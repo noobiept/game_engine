@@ -261,6 +261,17 @@ export module CollisionDetection
                     }
                 }
             }
+
+
+        clear()
+            {
+            for (var column = 0 ; column < this._grid_size ; column++)
+                {
+                this._grid[ column ].length = 0;
+                }
+
+            this._grid.length = 0;
+            }
         }
     }
 }

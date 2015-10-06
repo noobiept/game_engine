@@ -19,6 +19,38 @@ export enum MovementState
     }
 
 
+/**
+ * Basic Usage:
+ *
+ *     function Unit( args )
+ *         {
+ *         Game.Rectangle.call( this, args );
+ *
+ *         this._has_logic = true;
+ *         this.movement = new Game.Movement({
+ *                 element: this,
+ *                 movementSpeed: 100
+ *             });
+ *         }
+ *
+ *     Game.Utilities.inheritPrototype( Unit, Game.Rectangle );
+ *
+ *     Unit.prototype.logic = function( deltaTime )
+ *         {
+ *         this.movement.logic( deltaTime );
+ *         }
+ *
+ *     var unit = new Unit({
+ *             width: 10,
+ *             height: 10,
+ *             color: 'red'
+ *         });
+ *     Game.addElement( unit );
+ *
+ *     unit.movement.moveAngle( Math.PI / 4 );
+ *
+ * Examples -- `basic_example`, `bullets`, `collision_detection`, `collision_spatial_partition`, `tower_defense`
+ */
 export class Movement
     {
     movement_speed: number;

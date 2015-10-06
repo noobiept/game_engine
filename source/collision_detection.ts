@@ -8,6 +8,7 @@ export interface CollisionDetectionAlgorithm
     add( element: Element );
     remove( element: Element );
     update( element: Element );
+    clear();
     }
 
 
@@ -69,6 +70,16 @@ export module CollisionDetection
 
 
     /**
+     * Remove the collision object. The engine won't work properly after this.
+     */
+    export function clear()
+        {
+        COLLISION.clear();
+        COLLISION = null;
+        }
+
+
+    /**
      * Uses the `Separating Axis Theorem` to determine if two elements have collided.
      *
      * Works for convex polygon shapes.
@@ -118,6 +129,12 @@ export module CollisionDetection
         }
 
 
+    /**
+     * Uses the `Separating Axis Theorem` to determine if two elements have collided.
+     * Checks a list of vertices against another list of vertices (for example for comparing containers, which can have several elements).
+     *
+     * Works for convex polygon shapes.
+     */
     export function polygonPolygonList( list1: Vertices[], list2: Vertices[] )
         {
         for (var a = list1.length - 1 ; a >= 0 ; a--)
@@ -141,6 +158,9 @@ export module CollisionDetection
         }
 
 
+    /**
+     * Check if a point is colliding with a element.
+     */
     export function polygonPoint( vertices: Vertices, point )
         {
         var isInside = false;

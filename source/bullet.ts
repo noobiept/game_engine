@@ -36,13 +36,6 @@ export interface BulletArgs extends ContainerArgs
  *
  * Events:
  *
- * - `click` -- `listener( data: { event: MouseEvent; } );`
- * - `mousedown` -- `listener( data: { event: MouseEvent; } );`
- * - `mouseup` -- `listener( data: { event: MouseEvent; } );`
- * - `mousemove` -- `listener( data: { element: Element; } );`
- * - `mouseover` -- `listener( data: { element: Element; } );`
- * - `mouseout` -- `listener( data: { element: Element; } );`
- * - `collision` -- `listener( data: { element: Bullet; collidedWith: Element; } );`    // only when it has a set target.
  * - `remove` -- `listener( data: { element: Bullet; };`
  */
 export class Bullet extends Container

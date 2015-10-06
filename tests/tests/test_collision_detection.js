@@ -4,6 +4,8 @@ QUnit.module( 'CollisionDetection' );
     // polygonPolygonList //
 QUnit.test( 'polygonPolygonList()', function( assert )
 {
+Game.CollisionDetection.init();
+
 var one = new Game.Rectangle({
         x: 100,
         y: 100,
@@ -52,6 +54,44 @@ for (var a = 0 ; a < tests.length ; a++)
 
     assert.deepEqual( collides, test.collide );
     }
+
+Game.CollisionDetection.clear();
+});
+
+
+    // polygonPoint //
+QUnit.test( 'polygonPoint()', function( assert )
+{
+Game.CollisionDetection.init();
+
+var rect = new Game.Rectangle({
+        width: 10,
+        height: 10,
+        color: 'red'
+    });
+rect.updateVertices( 0, 0, 1, 1, 0 );
+
+var tests = [
+        { x: -5, y: 0, collide: true },
+        { x: -5.1, y: 0, collide: false },
+        { x: 4.9, y: 0, collide: true },
+        { x: 5.1, y: 0, collide: false },
+        { x: 0, y: 4.9, collide: true },
+        { x: 0, y: 5.1, collide: false },
+        { x: 0, y: -5, collide: true },
+        { x: 0, y: -5.1, collide: false }
+    ];
+
+for (var a = 0 ; a < tests.length ; a++)
+    {
+    var info = tests[ a ];
+
+    var collides = Game.CollisionDetection.polygonPoint( rect.vertices, info );
+
+    assert.deepEqual( collides, info.collide );
+    }
+
+Game.CollisionDetection.clear();
 });
 
 

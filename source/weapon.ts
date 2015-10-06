@@ -14,6 +14,38 @@ export interface WeaponArgs
     }
 
 
+/**
+ * Basic Usage:
+ *
+ *     function Unit( args )
+ *         {
+ *         Game.Rectangle.call( this, args );
+ *
+ *         this._has_logic = true;
+ *         this.weapon = new Game.Weapon({
+ *                 element: this,
+ *                 bulletContainer: Game.getCanvas()
+ *             });
+ *         }
+ *
+ *     Game.Utilities.inheritPrototype( Unit, Game.Rectangle );
+ *
+ *     Unit.prototype.logic = function( deltaTime )
+ *         {
+ *         this.weapon.logic( deltaTime );
+ *         }
+ *
+ *     var unit = new Unit({
+ *             width: 10,
+ *             height: 10,
+ *             color: 'red'
+ *         });
+ *     Game.addElement( unit );
+ *
+ *     unit.weapon.fire( Math.PI / 4 );
+ *
+ * Examples -- `bullets`, `collision_detection`, `collision_detection2`, `custom_element`, `tower_defense`
+ */
 export class Weapon
     {
     element: Element;       // element that owns the weapon (the bullets will be fired from its position, etc)

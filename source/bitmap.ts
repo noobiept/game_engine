@@ -20,15 +20,6 @@ export interface BitmapArgs extends ElementArgs
  *         });
  *     Game.addElement( image );
  *
- * Events:
- *
- * - `click` -- `listener( data: { event: MouseEvent; } );`
- * - `mousedown` -- `listener( data: { event: MouseEvent; } );`
- * - `mouseup` -- `listener( data: { event: MouseEvent; } );`
- * - `mousemove` -- `listener( data: { element: Element; } );`
- * - `mouseover` -- `listener( data: { element: Element; } );`
- * - `mouseout` -- `listener( data: { element: Element; } );`
- *
  * Examples -- `clone`, `minesweeper`, `multiple_canvas`, `preload`
  */
 export class Bitmap extends Element
