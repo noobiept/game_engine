@@ -176,7 +176,15 @@ export abstract class Element extends EventDispatcher
      */
     checkCollision( other: Element )
         {
-        return CollisionDetection.polygonPolygonList( this.getVertices(), other.getVertices() );
+        var vertices = this.getVertices();
+        var otherVertices = other.getVertices();
+
+        if ( !vertices || !otherVertices )
+            {
+            return false;
+            }
+
+        return CollisionDetection.polygonPolygonList( vertices, otherVertices );
         }
 
 
