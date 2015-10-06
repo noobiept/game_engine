@@ -242,12 +242,16 @@ export class Weapon
             bullet.y = this.element.y;
             bullet.category = this.element.category;
             bullet.collidesWith = this.element.collidesWith;
-
+            bullet.damage = this.damage;
+            bullet.element = this.element;
             bullet.addEventListener( 'collision', function( data )
                 {
-                _this.element.dispatchEvent( 'collision', {
-                        element: _this.element,
-                        bullet: data.element,
+                var bulletObj = data.element;
+                var associatedElement = bulletObj.element;
+
+                associatedElement.dispatchEvent( 'collision', {
+                        element: associatedElement,
+                        bullet: bulletObj,
                         collidedWith: data.collidedWith
                     });
                 });

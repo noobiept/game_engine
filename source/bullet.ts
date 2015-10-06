@@ -8,6 +8,7 @@ export interface BulletArgs extends ContainerArgs
         // bullet moves in a fixed direction if an angle is given, until its out of the canvas (in radians)
         // or follows a target, if an Element is given instead
     angleOrTarget?: number | Element;
+    damage?: number;
     movementSpeed: number;
     }
 
@@ -41,6 +42,8 @@ export interface BulletArgs extends ContainerArgs
 export class Bullet extends Container
     {
     movement: Movement;
+    damage: number;
+    element: Element;
 
 
     constructor( args: BulletArgs )
@@ -52,10 +55,17 @@ export class Bullet extends Container
             args.angleOrTarget = 0;
             }
 
+        if ( typeof args.damage === 'undefined' )
+            {
+            args.damage = 1;
+            }
+
+        this.damage = args.damage;
         this.movement = new Game.Movement({
                 element: this,
                 movementSpeed: args.movementSpeed
             });
+        this.element = null;
 
             // angle or target argument
         var angleOrTarget = args.angleOrTarget;
@@ -149,7 +159,8 @@ export class Bullet extends Container
                 x: this.x,
                 y: this.y,
                 children: children,
-                movementSpeed: this.movement.movement_speed
+                movementSpeed: this.movement.movement_speed,
+                damage: this.damage
             });
         bullet.opacity = this.opacity;
         bullet.visible = this.visible;
