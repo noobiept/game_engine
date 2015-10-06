@@ -22,6 +22,12 @@ export module Sound
      */
     export function init()
         {
+            // already initialized
+        if ( CTX )
+            {
+            return;
+            }
+
         try {
             CTX = new AudioContext();
             }
@@ -38,16 +44,17 @@ export module Sound
      * Decode audio file data contained in an ArrayBuffer.
      *
      * @param data The audio data.
-     * @param callback Function to be called when the data has been decoded.
+     * @param successCallback Function to be called when the data has been decoded.
+     * @param errorCallback Function to be called in case it fails to decode the audio data.
      */
-    export function decodeAudio( data: ArrayBuffer, callback: (decodedData: AudioBuffer) => any )
+    export function decodeAudio( data: ArrayBuffer, successCallback: (decodedData: AudioBuffer) => any, errorCallback )
         {
         if ( !CTX )
             {
             throw Error( 'AudioContext not supported in this browser.' );
             }
 
-        CTX.decodeAudioData( data, callback );
+        CTX.decodeAudioData( data, successCallback, errorCallback );
         }
 
 
@@ -55,19 +62,28 @@ export module Sound
      * Play a sound.
      *
      * @param audioBuffer The audio buffer of the sound we want to play.
+     * @param loop Specify if the sound is to be played in a loop. Default is false.
+     * @return Whether it was possible to play the sound.
      */
-    export function play( audioBuffer: AudioBuffer )
+    export function play( audioBuffer: AudioBuffer, loop?: boolean )
         {
         if ( !CTX )
             {
-            throw Error( 'AudioContext not supported in this browser.' );
+            return false;
             }
 
         var source = CTX.createBufferSource();
 
+        if ( loop === true )
+            {
+            source.loop = true;
+            }
+
         source.buffer = audioBuffer;
         source.connect( CTX.destination );
         source.start();
+
+        return true;
         }
     }
 }

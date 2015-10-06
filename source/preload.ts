@@ -267,16 +267,17 @@ export class Preload extends EventDispatcher
 
             else if ( type === 'audio' )
                 {
-                Sound.decodeAudio( response, function( audioBuffer )
-                    {
-                    if ( !audioBuffer )
+                Sound.decodeAudio(
+                    response,
+                    function( audioBuffer )
                         {
-                        console.log( 'Error decoding audio file:', id, path );
-                        return;
-                        }
-
-                    _this._loaded( id, audioBuffer );
-                    });
+                        _this._loaded( id, audioBuffer );
+                        },
+                    function( error )
+                        {
+                        console.log( 'Error decoding audio file:', id, path, error );
+                        _this._failed_to_load( id );
+                        });
                 }
 
             else
