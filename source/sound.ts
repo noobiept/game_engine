@@ -3,7 +3,7 @@ module Game
 /**
  * Basic Usage:
  *
- *     var preload = new Game.Preload({ save_global: true });
+ *     var preload = new Game.Preload({ saveGlobal: true });
  *
  *     preload.addEventListener( 'complete', function()
  *         {
@@ -16,6 +16,7 @@ module Game
 export module Sound
     {
     var CTX: AudioContext;
+    var GLOBAL_GAIN: GainNode;
 
     /**
      * Initialize the `Sound` module. Its called in `Game.init()`.
@@ -36,7 +37,12 @@ export module Sound
         catch ( error )
             {
             CTX = null;
+            return;
             }
+
+            // all played sounds will be connected to this global gain node
+        GLOBAL_GAIN = CTX.createGain();
+        GLOBAL_GAIN.connect( CTX.destination );
         }
 
 
@@ -62,28 +68,50 @@ export module Sound
      * Play a sound.
      *
      * @param audioBuffer The audio buffer of the sound we want to play.
-     * @param loop Specify if the sound is to be played in a loop. Default is false.
-     * @return Whether it was possible to play the sound.
+     * @return The source node, or `null` if it wasn't possible to play the sound.
      */
-    export function play( audioBuffer: AudioBuffer, loop?: boolean )
+    export function play( audioBuffer: AudioBuffer )
         {
         if ( !CTX )
             {
-            return false;
+            return null;
             }
 
         var source = CTX.createBufferSource();
 
-        if ( loop === true )
-            {
-            source.loop = true;
-            }
-
         source.buffer = audioBuffer;
-        source.connect( CTX.destination );
+        source.connect( GLOBAL_GAIN );
         source.start();
 
+        return source;
+        }
+
+
+    /**
+     * Sets the global gain/volume of all the sounds played.
+     *
+     * @param gain A number between 0 and 1.
+     * @return If the gain was set or not.
+     */
+    export function setGlobalGain( gain: number )
+        {
+        if ( gain < 0 || gain > 1 )
+            {
+            return false;
+            }
+
+        GLOBAL_GAIN.gain.value = gain;
+
         return true;
+        }
+
+
+    /**
+     * Get the current global gain/volume value (between 0 and 1).
+     */
+    export function getGlobalGain()
+        {
+        return GLOBAL_GAIN.gain.value;
         }
     }
 }
