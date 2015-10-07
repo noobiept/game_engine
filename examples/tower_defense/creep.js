@@ -62,7 +62,7 @@ if ( next.column === this.column &&
      next.line   === this.line )
     {
     Main.addLife( -1 );
-    Game.safeRemove( this );
+    this.remove();
 
         // checks if the game is over
     Main.gameOver();

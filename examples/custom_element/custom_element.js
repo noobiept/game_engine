@@ -39,7 +39,7 @@ unit.addEventListener( 'collision', function( data )
     {
     if ( data.bullet )
         {
-        Game.safeRemove( data.bullet );
+        data.bullet.remove();
         }
 
     console.log( 'Hit!' );

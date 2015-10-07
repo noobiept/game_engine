@@ -22,7 +22,7 @@ one.addEventListener( 'collision', function( data )
     var collidedWith = data.collidedWith;
 
     element.movement.stop();
-    Game.safeRemove( collidedWith );
+    collidedWith.remove();
     });
 one.movement.moveTo( 300, 50 );
 

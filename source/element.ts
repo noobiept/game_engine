@@ -395,7 +395,7 @@ export abstract class Element extends EventDispatcher
 
 
     /**
-     * Remove this element from the either its container or from the canvas.
+     * Mark this element to be removed.
      */
     remove()
         {
@@ -403,19 +403,31 @@ export abstract class Element extends EventDispatcher
             {
             this._removed = true;
 
-            if ( this._container !== null )
-                {
-                this._container.removeChild( this );
-                this._container = null;
-                }
-
-            else
-                {
-                Game.removeElement( this );
-                }
-
-            CollisionDetection.removeElement( this );
+            Game._safeRemove( this );
             }
+        }
+
+
+    /**
+     * Remove this element from either its container or from the canvas.
+     * Don't call this directly, use the `remove()` method instead.
+     */
+    _removeNow()
+        {
+        this._removed = true;
+
+        if ( this._container !== null )
+            {
+            this._container.removeChild( this );
+            this._container = null;
+            }
+
+        else
+            {
+            Game.removeElement( this );
+            }
+
+        CollisionDetection.removeElement( this );
         }
 
 

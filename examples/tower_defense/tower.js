@@ -30,13 +30,13 @@ this.addEventListener( 'collision', function( data )
         if ( !creep._removed )
             {
             Main.addMoney( creep.worth );
-            Game.safeRemove( creep );
+            creep.remove();
             }
         }
 
     if ( data.bullet )
         {
-        Game.safeRemove( data.bullet );
+        data.bullet.remove();
         }
     });
 

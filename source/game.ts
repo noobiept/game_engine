@@ -254,26 +254,11 @@ export function removeElement( element: Element | Element[] )
 /**
  * It can be problematic to remove elements during the logic functions, since the logic functions are called in a loop over all the elements.
  * The elements passed to this function, will only be removed after.
- *
- *     removeChild( element );
- *     removeChild( element1, element2 );
- *     removeChild( [ element1, element2 ] );
- *
- * @param args Either an `Element` or `...Element` or an `Element[]`
+ * Don't call this directly, use the `Element.remove()` method instead.
  */
-export function safeRemove( args: any )
+export function _safeRemove( element: Element )
     {
-    var elements = arguments;
-
-    if ( args instanceof Array )
-        {
-        elements = args;
-        }
-
-    for (var a = elements.length - 1 ; a >= 0 ; a--)
-        {
-        TO_BE_REMOVED.push( elements[ a ] );
-        }
+    TO_BE_REMOVED.push( element );
     }
 
 
@@ -503,7 +488,7 @@ function loop()
         // remove all deferred elements
     for (a = TO_BE_REMOVED.length - 1 ; a >= 0 ; a--)
         {
-        TO_BE_REMOVED[ a ].remove();
+        TO_BE_REMOVED[ a ]._removeNow();
         }
     TO_BE_REMOVED.length = 0;
 

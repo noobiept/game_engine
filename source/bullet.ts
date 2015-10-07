@@ -111,7 +111,7 @@ export class Bullet extends Container
 
         this.movement.follow( target, function()
             {
-            Game.safeRemove( _this );
+            _this.remove();
             });
         }
 
