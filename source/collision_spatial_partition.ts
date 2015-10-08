@@ -197,6 +197,11 @@ export module CollisionDetection
 
                     for( ; element !== null ; element = element.collision_data.next )
                         {
+                        if ( element.isRemoved() )
+                            {
+                            continue;
+                            }
+
                         this.checkElement( element, element.collision_data.next );
 
                             // try neighbor partitions as well
@@ -233,6 +238,11 @@ export module CollisionDetection
             {
             for ( ; other !== null ; other = other.collision_data.next)
                 {
+                if ( other.isRemoved() )
+                    {
+                    continue;
+                    }
+
                 var elementCollidesWithOther = (element.collidesWith & other.category) !== 0;
                 var otherCollidesWithElement = (other.collidesWith & element.category) !== 0;
 

@@ -50,9 +50,19 @@ export module CollisionDetection
                 {
                 var one = elements[ a ];
 
+                if ( one.isRemoved() )
+                    {
+                    continue;
+                    }
+
                 for (var b = a + 1 ; b < length ; b++)
                     {
                     var two = elements[ b ];
+
+                    if ( two.isRemoved() )
+                        {
+                        continue;
+                        }
 
                     var oneCollidesWithTwo = (one.collidesWith & two.category) !== 0;
                     var twoCollidesWithOne = (two.collidesWith & one.category) !== 0;
