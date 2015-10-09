@@ -26,6 +26,16 @@
  */
 module Game
 {
+interface Callback
+    {
+    callback: () => any;
+    delay: number;
+    count: number;
+    isInterval: boolean;
+    removed: boolean;
+    }
+
+
 var ALL_CANVAS: Game.Canvas[] = [];
 var CANVAS_CONTAINER: HTMLDivElement;
 
@@ -40,7 +50,7 @@ var MOUSE_X: number = -1;
 var MOUSE_Y: number = -1;
 var MOUSE_MOVED = false;   // if the mouse moved since the last time we checked
 
-var CALLBACKS: { callback: () => any; delay: number; count: number; isInterval: boolean; }[] = [];
+var CALLBACKS: Callback[] = [];
 
 var TO_BE_REMOVED: Element[] = [];
 
@@ -289,7 +299,8 @@ export function addToGameLoop( callback: () => any, delay: number,  isInterval?:
             callback: callback,
             isInterval: isInterval,
             delay: delay,
-            count: 0
+            count: 0,
+            removed: false
         });
 
     return true;
@@ -310,7 +321,7 @@ export function removeFromGameLoop( callback: () => any )
 
         if ( callInfo.callback === callback )
             {
-            CALLBACKS.splice( a, 1 );
+            callInfo.removed = true;
             return true;
             }
         }
@@ -516,6 +527,12 @@ function callbacks( deltaTime: number )
     for (var a = CALLBACKS.length - 1 ; a >= 0 ; a--)
         {
         var call = CALLBACKS[ a ];
+
+        if ( call.removed )
+            {
+            CALLBACKS.splice( a, 1 );
+            continue;
+            }
 
         if ( call.delay <= 0 )
             {
