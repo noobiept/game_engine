@@ -267,7 +267,7 @@ export class Preload extends EventDispatcher
 
             else if ( type === 'audio' )
                 {
-                Sound.decodeAudio(
+                var isAvailable = Sound.decodeAudio(
                     response,
                     function( audioBuffer )
                         {
@@ -278,6 +278,12 @@ export class Preload extends EventDispatcher
                         console.log( 'Error decoding audio file:', id, path, error );
                         _this._failed_to_load( id );
                         });
+
+                    // in case the 'decodeAudio()' call wasn't possible
+                if ( !isAvailable )
+                    {
+                    _this._failed_to_load( id );
+                    }
                 }
 
             else

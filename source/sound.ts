@@ -1,6 +1,9 @@
 module Game
 {
 /**
+ * Uses the `web audio api` to play the sounds.
+ * If it isn't supported by a browser, the function calls will still go through, but no sound will be played.
+ *
  * Basic Usage:
  *
  *     var preload = new Game.Preload({ saveGlobal: true });
@@ -15,7 +18,7 @@ module Game
  */
 export module Sound
     {
-    var CTX: AudioContext;
+    var CTX: AudioContext = null;
     var GLOBAL_GAIN: GainNode;
 
     /**
@@ -26,7 +29,7 @@ export module Sound
             // already initialized
         if ( CTX )
             {
-            return;
+            return true;
             }
 
         try {
@@ -37,12 +40,14 @@ export module Sound
         catch ( error )
             {
             CTX = null;
-            return;
+            return false;
             }
 
             // all played sounds will be connected to this global gain node
         GLOBAL_GAIN = CTX.createGain();
         GLOBAL_GAIN.connect( CTX.destination );
+
+        return true;
         }
 
 
@@ -57,10 +62,11 @@ export module Sound
         {
         if ( !CTX )
             {
-            throw Error( 'AudioContext not supported in this browser.' );
+            return false;
             }
 
         CTX.decodeAudioData( data, successCallback, errorCallback );
+        return true;
         }
 
 
@@ -95,7 +101,7 @@ export module Sound
      */
     export function setGlobalGain( gain: number )
         {
-        if ( gain < 0 || gain > 1 )
+        if ( !CTX || gain < 0 || gain > 1 )
             {
             return false;
             }
@@ -108,10 +114,31 @@ export module Sound
 
     /**
      * Get the current global gain/volume value (between 0 and 1).
+     * Will return -1 if the sound is not available.
      */
     export function getGlobalGain()
         {
+        if ( !CTX )
+            {
+            return -1;
+            }
+
         return GLOBAL_GAIN.gain.value;
+        }
+
+
+    /**
+     * Tells if the module is working properly or not.
+     * When it isn't, calling the functions (like `Game.Sound.play()`) won't give you an error, but no sound will be played.
+     */
+    export function isAvailable()
+        {
+        if ( CTX )
+            {
+            return true;
+            }
+
+        return false;
         }
     }
 }

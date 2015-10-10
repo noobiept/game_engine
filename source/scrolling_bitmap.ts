@@ -187,26 +187,38 @@ export class ScrollingBitmap extends Bitmap
         ctx.translate( this.x, this.y );
         ctx.scale( this.scaleX, this.scaleY );
         ctx.rotate( this._rotation );
-        ctx.drawImage(
-            this._image,
-            this._source_x + this._ref_position,
-            this._source_y,
-            this._width - this._ref_position,
-            this._height,
-            -this._half_width,
-            -this._half_height,
-            this._width - this._ref_position,
-            this._height );
-        ctx.drawImage(
-            this._image,
-            this._source_x,
-            this._source_y,
-            this._ref_position,
-            this._height,
-            this._half_width - this._ref_position,
-            -this._half_height,
-            this._ref_position,
-            this._height );
+
+        var firstWidth = this._width - this._ref_position;
+        var secondWidth = this._ref_position;
+
+        if ( firstWidth > 0 )
+            {
+            ctx.drawImage(
+                this._image,
+                this._source_x + this._ref_position,
+                this._source_y,
+                firstWidth,
+                this._height,
+                -this._half_width,
+                -this._half_height,
+                this._width - this._ref_position,
+                this._height );
+            }
+
+        if ( secondWidth > 0 )
+            {
+            ctx.drawImage(
+                this._image,
+                this._source_x,
+                this._source_y,
+                secondWidth,
+                this._height,
+                this._half_width - this._ref_position,
+                -this._half_height,
+                this._ref_position,
+                this._height );
+            }
+
         ctx.restore();
         }
 
@@ -222,26 +234,38 @@ export class ScrollingBitmap extends Bitmap
         ctx.translate( this.x, this.y );
         ctx.scale( this.scaleX, this.scaleY );
         ctx.rotate( this._rotation );
-        ctx.drawImage(
-            this._image,
-            this._source_x,
-            this._source_y + this._ref_position,
-            this._width,
-            this._height - this._ref_position,
-            -this._half_width,
-            -this._half_height,
-            this._width,
-            this._height - this._ref_position );
-        ctx.drawImage(
-            this._image,
-            this._source_x,
-            this._source_y,
-            this._width,
-            this._ref_position,
-            -this._half_width,
-            this._half_height - this._ref_position,
-            this._width,
-            this._ref_position );
+
+        var firstHeight = this._height - this._ref_position;
+        var secondHeight = this._ref_position;
+
+        if ( firstHeight > 0 )
+            {
+            ctx.drawImage(
+                this._image,
+                this._source_x,
+                this._source_y + this._ref_position,
+                this._width,
+                firstHeight,
+                -this._half_width,
+                -this._half_height,
+                this._width,
+                this._height - this._ref_position );
+            }
+
+        if ( secondHeight > 0 )
+            {
+            ctx.drawImage(
+                this._image,
+                this._source_x,
+                this._source_y,
+                this._width,
+                secondHeight,
+                -this._half_width,
+                this._half_height - this._ref_position,
+                this._width,
+                this._ref_position );
+            }
+
         ctx.restore();
         }
 

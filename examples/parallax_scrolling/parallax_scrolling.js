@@ -88,12 +88,12 @@ rogue.addEventListener( 'idle', function()
     });
 rogue.addEventListener( 'walk_left', function()
     {
-    frontTrees.setDirection( Game.ScrollingBitmapArgs.Direction.left );
+    frontTrees.setDirection( Game.ScrollingBitmapArgs.Direction.right );
     frontTrees.setInterval( 0.1 );
     });
 rogue.addEventListener( 'walk_right', function()
     {
-    frontTrees.setDirection( Game.ScrollingBitmapArgs.Direction.right );
+    frontTrees.setDirection( Game.ScrollingBitmapArgs.Direction.left );
     frontTrees.setInterval( 0.1 );
     });
 
