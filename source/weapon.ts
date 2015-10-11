@@ -238,7 +238,7 @@ export class Weapon
             // if it happens to be a target, need to make sure it hasn't been removed yet
         if ( typeof angleOrTarget !== 'number' )
             {
-            if ( angleOrTarget.isRemoved() === true )
+            if ( angleOrTarget._removed === true )
                 {
                 return false;
                 }

@@ -33,6 +33,7 @@ Game.addToGameLoop( function()
     // called every second
 Game.addToGameLoop( function()
     {
+    console.log( countFrames );
     countTime++;
     countFrames = 0;
 

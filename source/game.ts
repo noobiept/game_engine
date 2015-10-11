@@ -39,7 +39,8 @@ interface Callback
 var ALL_CANVAS: Game.Canvas[] = [];
 var CANVAS_CONTAINER: HTMLDivElement;
 
-var TIME: number;
+var FRAME_INTERVAL: number; // time between each frame in seconds
+var PREVIOUS_TIME: number;
 var ANIMATION_ID: number;
 var STOP_LOOP = false;
 
@@ -96,6 +97,7 @@ export function init( htmlContainer: HTMLElement, canvasWidth: number, canvasHei
             }
         });
 
+    setFps( 35 );
     startGameLoop();
     }
 
@@ -108,7 +110,7 @@ export function startGameLoop()
     {
     STOP_LOOP = false;
 
-    TIME = new Date().getTime();
+    PREVIOUS_TIME = Date.now();
     loop();
     }
 
@@ -146,6 +148,15 @@ export function disableMouseMoveEvents()
     {
     window.clearInterval( MOUSE_MOVE_ID );
     CANVAS_CONTAINER.removeEventListener( 'mousemove', updateMousePosition );
+    }
+
+
+/**
+ * Specify the frames per second that the engine will try to run at.
+ */
+export function setFps( fps: number )
+    {
+    FRAME_INTERVAL = 1000 / fps;
     }
 
 
@@ -451,13 +462,26 @@ function mouseMoveEvents()
  */
 function loop()
     {
+    if ( !STOP_LOOP )
+        {
+        ANIMATION_ID = window.requestAnimationFrame( loop );
+        }
+
         // find the delta time
-    var now = new Date().getTime();
+    var now = Date.now();
 
-        // time since the last update (in seconds)
-    var delta = (now - TIME) / 1000;
+        // time since the last update (in milliseconds)
+    var delta = now - PREVIOUS_TIME;
 
-    TIME = now;
+    if ( delta < FRAME_INTERVAL )
+        {
+        return;
+        }
+
+    PREVIOUS_TIME = now;
+
+        // use delta in seconds for the game logic
+    delta /= 1000;
 
         // call any function added to the game loop
     callbacks( delta );
@@ -507,12 +531,6 @@ function loop()
     for (a = lastPosition ; a >= 0 ; a--)
         {
         allCanvas[ a ].draw();
-        }
-
-
-    if ( !STOP_LOOP )
-        {
-        ANIMATION_ID = window.requestAnimationFrame( loop );
         }
     }
 

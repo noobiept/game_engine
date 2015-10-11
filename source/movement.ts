@@ -281,7 +281,7 @@ export class Movement
             return;
             }
 
-        if ( target.isRemoved() )
+        if ( target._removed )
             {
             if ( this._move_callback )
                 {

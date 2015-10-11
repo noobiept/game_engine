@@ -50,7 +50,7 @@ export module CollisionDetection
                 {
                 var one = elements[ a ];
 
-                if ( one.isRemoved() )
+                if ( one._removed || one.category === 0 )
                     {
                     continue;
                     }
@@ -59,7 +59,7 @@ export module CollisionDetection
                     {
                     var two = elements[ b ];
 
-                    if ( two.isRemoved() )
+                    if ( two._removed || two.category === 0 )
                         {
                         continue;
                         }

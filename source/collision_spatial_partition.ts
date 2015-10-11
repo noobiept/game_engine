@@ -197,7 +197,7 @@ export module CollisionDetection
 
                     for( ; element !== null ; element = element.collision_data.next )
                         {
-                        if ( element.isRemoved() )
+                        if ( element._removed || element.category === 0 )
                             {
                             continue;
                             }
@@ -238,7 +238,7 @@ export module CollisionDetection
             {
             for ( ; other !== null ; other = other.collision_data.next)
                 {
-                if ( other.isRemoved() )
+                if ( other._removed || other.category === 0 )
                     {
                     continue;
                     }
