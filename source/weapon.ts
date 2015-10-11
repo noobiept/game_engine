@@ -11,6 +11,10 @@ export interface WeaponArgs
     bulletContainer: Container | Canvas;    // where to add the bullet objects
     fireInterval?: number;      // time between each shot
     damage?: number;
+
+        // if these are not given, then the element's are used
+    category?: number;          // category of the bullets
+    collidesWith?: number;      // who the bullets collide with
     }
 
 
@@ -51,6 +55,10 @@ export class Weapon
     element: Element;       // element that owns the weapon (the bullets will be fired from its position, etc)
     damage: number;
     fire_interval: number;  // time between each bullet fire
+
+    category: number;
+    collidesWith: number;
+
     protected _is_ready: boolean;
     protected _fire_count: number;
     protected _bullet_types: Bullet[];  // various bullet types that can be fired
@@ -71,6 +79,18 @@ export class Weapon
             args.fireInterval = 0;
             }
 
+        if ( typeof args.category === 'undefined' )
+            {
+            args.category = args.element.category;
+            }
+
+        if ( typeof args.collidesWith === 'undefined' )
+            {
+            args.collidesWith = args.element.collidesWith;
+            }
+
+        this.category = args.category;
+        this.collidesWith = args.collidesWith;
         this.element = args.element;
         this.damage = args.damage;
         this.fire_interval = args.fireInterval;
@@ -240,8 +260,8 @@ export class Weapon
             {
             bullet.x = this.element.x;
             bullet.y = this.element.y;
-            bullet.category = this.element.category;
-            bullet.collidesWith = this.element.collidesWith;
+            bullet.category = this.category;
+            bullet.collidesWith = this.collidesWith;
             bullet.damage = this.damage;
             bullet.element = this.element;
             bullet.addEventListener( 'collision', function( data )
