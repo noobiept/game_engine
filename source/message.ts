@@ -7,7 +7,7 @@ export interface MessageArgs extends Game.Html.HtmlContainerArgs
     {
     body: any;               // Either a `string`, `HTMLElement`, `Html.HtmlElement` or an `array` with any combination of the types before.
     container: HTMLElement; // where the message is going to be added to
-    buttons?: HTMLElement | HTMLElement[];
+    buttons?: Html.HtmlElement | Html.HtmlElement[];
     timeout?: number;       // remove the message after a certain time (in seconds)
     background?: boolean;   // add a faded background behind the message
     }
