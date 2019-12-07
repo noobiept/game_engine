@@ -1,6 +1,9 @@
 {
     "compilerOptions": {
-        "target": "ES2018"
+        "target": "ES5",
+        "outFile": "build/game_engine.js",
+        "sourceMap": true,
+        "declaration": true
     },
     "include": [ "source/**/*.ts" ]
 }

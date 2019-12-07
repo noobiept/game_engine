@@ -9,18 +9,6 @@ var source = './source/';
 grunt.initConfig({
         pkg: grunt.file.readJSON( 'package.json' ),
 
-            // compile typescript code to javascript
-        ts: {
-            dev: {
-                src: [ PATH.join( source, '**/*.ts' ) ],
-                out: PATH.join( devDest, '<%= pkg.name %>.js' ),
-                options: {
-                    declaration: true,
-                    target: 'es5'
-                }
-            }
-        },
-
         copy: {
                 // copy the .css file
             dev: {
@@ -88,11 +76,10 @@ grunt.initConfig({
 grunt.loadNpmTasks( 'grunt-contrib-copy' );
 grunt.loadNpmTasks( 'grunt-contrib-uglify' );
 grunt.loadNpmTasks( 'grunt-contrib-qunit' );
-grunt.loadNpmTasks( 'grunt-ts' );
 
     // tasks
-grunt.registerTask( 'default', [ 'ts', 'copy:dev' ] );      // dev build
+grunt.registerTask( 'default', [ 'copy:dev' ] );      // dev build
 grunt.registerTask( 'test', [ 'qunit' ] );                  // run the tests
 grunt.registerTask( 'min', [ 'default', 'uglify' ] );       // minimize js
-grunt.registerTask( 'release', [ 'default', 'test', 'uglify', 'doc', 'copy:release' ] ); // release build
+grunt.registerTask( 'release', [ 'default', 'test', 'uglify', 'copy:release' ] ); // release build
 };

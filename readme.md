@@ -22,12 +22,8 @@ Build
 =====
 
 * `npm install` - Install the dependencies.
-* `npm run build` - Development build available in the `/build/output/` directory.
+* `npm run dev` - Run the development build.
+    * Its available in the `/build/` directory.
+    * A local server is started at `localhost:8000/` in the root directory. Open the `examples` directory for something to play with.
 * `npm run docs` - Build the documentation, in the `/docs/` directory.
 * `npm run release` - Build the release version in the `/release/<version>/` directory.
-
-
-Examples
-========
-
-To try out the examples, start a local server at the root path (otherwise the preloading of assets won't work), then go to the `examples` directory.
