@@ -202,7 +202,7 @@ export module Html
          */
         addChild( args: any )
             {
-            var elements = arguments;
+            var elements: IArguments | any[] = arguments;
 
             if ( args instanceof Array )
                 {
@@ -229,7 +229,7 @@ export module Html
          */
         removeChild( args: any )
             {
-            var elements = arguments;
+            var elements: IArguments | any[] = arguments;
 
             if ( args instanceof Array )
                 {
@@ -353,6 +353,7 @@ export module Html
     export interface ButtonArgs extends ValueArgs
         {
         callback?: (button: Button) => any;
+        click_ref?: (event: MouseEvent) => any;
         }
 
 
@@ -365,24 +366,23 @@ export module Html
 
         constructor( args: ButtonArgs )
             {
-            var _this = this;
+            super( args );
 
-
-            if ( typeof this.click_ref === 'undefined' )
-                {
-                this.click_ref = function( event: MouseEvent )
+            if ( typeof args.click_ref === 'undefined') {
+                this.click_ref = ( event: MouseEvent ) =>
                     {
                     if ( args.callback )
                         {
-                        args.callback( _this );
+                        args.callback( this );
                         }
 
                     event.stopPropagation();
                     };
-                }
+            }
 
-                // set properties before this
-            super( args );
+            else {
+                this.click_ref = args.click_ref;
+            }
 
                 // .container only available after super()
             this.container.classList.add( 'Game-Button' );
@@ -436,23 +436,19 @@ export module Html
 
         constructor( args: BooleanArgs )
             {
-            var _this = this;
+            super({
+                ...args,
+                click_ref: ( event: MouseEvent ) => {
+                    this.setValue( !this.value );
 
-            this.click_ref = function( event: MouseEvent )
-                {
-                _this.setValue( !_this.value );
+                    if ( args.callback )
+                        {
+                        args.callback( this );
+                        }
 
-                if ( args.callback )
-                    {
-                    args.callback( _this );
-                    }
-
-                event.stopPropagation();
-                };
-
-
-                // set properties before this
-            super( args );
+                    event.stopPropagation();
+                }
+            });
 
                 // .container only available after super()
             this.container.classList.add( 'Game-Boolean' );
@@ -509,39 +505,35 @@ export module Html
 
         constructor( args: TwoStateArgs )
             {
-            var _this = this;
+            super({
+                ...args,
+                click_ref: ( event: MouseEvent ) => {
+                    if ( this.isValue1 )
+                        {
+                        this.element.innerHTML = args.value2;
+
+                        if ( args.callback )
+                            {
+                            args.callback( this );
+                            }
+                        }
+
+                    else
+                        {
+                        this.element.innerHTML = args.value;
+
+                        if ( args.callback2 )
+                            {
+                            args.callback2( this );
+                            }
+                        }
+
+                    this.isValue1 = !this.isValue1;
+                    event.stopPropagation();
+                }
+            });
 
             this.isValue1 = true;
-            this.click_ref = function( event: MouseEvent )
-                {
-                if ( _this.isValue1 )
-                    {
-                    _this.element.innerHTML = args.value2;
-
-                    if ( args.callback )
-                        {
-                        args.callback( _this );
-                        }
-                    }
-
-                else
-                    {
-                    _this.element.innerHTML = args.value;
-
-                    if ( args.callback2 )
-                        {
-                        args.callback2( _this );
-                        }
-                    }
-
-                _this.isValue1 = !_this.isValue1;
-                event.stopPropagation();
-                };
-
-                // set properties before this
-            super( args );
-
-                // .container only available after super()
             this.container.classList.add( 'Game-TwoState' );
             }
 
@@ -570,6 +562,7 @@ export module Html
 
         constructor( args: MultipleOptionsArgs )
             {
+            super( args );
             var _this = this;
 
             this.click_ref = function()
@@ -590,11 +583,6 @@ export module Html
                     args.callback( _this, position, element );
                     }
                 };
-
-
-                // set properties before this
-            super( args );
-
 
                 // .container only available after super()
             this.elements = [];
@@ -722,8 +710,8 @@ export module Html
 
         constructor( args: RangeArgs )
             {
+            super( args );
             var _this = this;
-
 
             if ( typeof args.step === 'undefined' )
                 {
@@ -763,11 +751,6 @@ export module Html
 
                 _this.value.innerHTML = value.toFixed( _this.number_of_decimals );
                 };
-
-
-                // set properties before this
-            super( args );
-
 
                 // .container only available after super()
             this.input = document.createElement( 'input' );
@@ -871,6 +854,7 @@ export module Html
 
         constructor( args?: TextArgs )
             {
+            super( args );
             var _this = this;
 
             this.button = null;
@@ -880,9 +864,6 @@ export module Html
                 {
                 args = {};
                 }
-
-                // set properties before this
-            super( args );
 
                 // .container only available after super()
                 // add the input element

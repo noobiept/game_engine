@@ -57,7 +57,7 @@ export class Container extends Element
      */
     addChild( elements: any )
         {
-        var children = arguments;
+        var children: IArguments | any[] = arguments;
 
         if ( elements instanceof Array )
             {
@@ -88,7 +88,7 @@ export class Container extends Element
      */
     removeChild( args: any )
         {
-        var children = arguments;
+        var children: IArguments | any[] = arguments;
 
         if ( args instanceof Array )
             {

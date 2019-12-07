@@ -66,7 +66,7 @@ export class Canvas
      */
     addChild( args: any )
         {
-        var elements = arguments;
+        var elements: IArguments | any[] = arguments;
 
         if ( args instanceof Array )
             {
@@ -91,7 +91,7 @@ export class Canvas
      */
     removeChild( args: any )
         {
-        var elements = arguments;
+        var elements: IArguments | any[] = arguments;
         var removed = false;
 
         if ( args instanceof Array )

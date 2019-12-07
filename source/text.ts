@@ -10,8 +10,8 @@ export interface TextArgs extends ElementArgs
     fontFamily?: string;
     fontSize?: number;
     timeout?: number;
-    textAlign?: string;
-    textBaseline?: string;
+    textAlign?: CanvasTextAlign;
+    textBaseline?: CanvasTextBaseline;
     fill?: boolean;
     color?: string;
     }
@@ -31,8 +31,8 @@ export interface TextArgs extends ElementArgs
  */
 export class Text extends Element
     {
-    textAlign: string;
-    textBaseline: string;
+    textAlign: CanvasTextAlign;
+    textBaseline: CanvasTextBaseline;
     fill: boolean;  // fill or stroke text
     color: string;
 
@@ -46,8 +46,6 @@ export class Text extends Element
 
     constructor( args: TextArgs )
         {
-        var _this = this;
-
         if ( typeof args === 'undefined' )
             {
             args = {};
@@ -104,9 +102,9 @@ export class Text extends Element
             {
             var timeout = new Utilities.Timeout();
 
-            timeout.start( function()
+            timeout.start( () =>
                 {
-                _this.remove();
+                this.remove();
                 }, args.timeout * 1000 );
             }
         }
