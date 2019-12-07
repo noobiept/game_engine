@@ -3,8 +3,8 @@ var PATH = require( 'path' );
 module.exports = function( grunt )
 {
 var devDest = 'output/';
-var releaseDest = '../release/<%= pkg.version %>/';
-var source = '../source/';
+var releaseDest = './release/<%= pkg.version %>/';
+var source = './source/';
 
 grunt.initConfig({
         pkg: grunt.file.readJSON( 'package.json' ),
@@ -88,7 +88,7 @@ grunt.initConfig({
         },
 
         qunit: {
-            all: [ '../tests/start.html' ]
+            all: [ './tests/start.html' ]
         }
     });
 
