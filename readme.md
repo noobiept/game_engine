@@ -21,18 +21,13 @@ Is available in [http://game-engine1.herokuapp.com/](http://game-engine1.herokua
 Build
 =====
 
-Uses [gruntjs](http://gruntjs.com/) and [typescript](http://www.typescriptlang.org/) v1.6.
- 
-* `cd build` - Move to the build directory.
-* `npm install` - Install the build dependencies.
-* `grunt` - Development build available in the `/build/output/` directory.
-* `grunt docs` - Build the documentation, in the `/build/documentation/` directory. 
-* `grunt release` - Build the release version in the `/release/<version>/` directory. 
+* `npm install` - Install the dependencies.
+* `npm run build` - Development build available in the `/build/output/` directory.
+* `npm run docs` - Build the documentation, in the `/docs/` directory.
+* `npm run release` - Build the release version in the `/release/<version>/` directory.
 
 
 Examples
 ========
 
-To try out the examples, start a local server at the root path (otherwise the preloading of assets won't work).
-
-For example with python3: `python -m http.server`
+To try out the examples, start a local server at the root path (otherwise the preloading of assets won't work), then go to the `examples` directory.

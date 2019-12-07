@@ -2,7 +2,7 @@ var PATH = require( 'path' );
 
 module.exports = function( grunt )
 {
-var devDest = 'output/';
+var devDest = 'build/output/';
 var releaseDest = './release/<%= pkg.version %>/';
 var source = './source/';
 

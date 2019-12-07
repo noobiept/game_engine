@@ -1,6 +1,8 @@
 node_modules/
 release/
+build/
 examples/_test/
+.tscache/
 source/**/*.js
 info.txt
 .DS_Store
