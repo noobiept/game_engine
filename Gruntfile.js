@@ -76,17 +76,6 @@ grunt.initConfig({
             }
         },
 
-            // build the documentation
-        typedoc: {
-            options: {
-                out: 'documentation/',
-                name: 'Game Engine',
-                mode: 'File',
-                target: 'es5'
-            },
-            src: source
-        },
-
         qunit: {
             all: [ './tests/start.html' ]
         }
@@ -100,12 +89,10 @@ grunt.loadNpmTasks( 'grunt-contrib-copy' );
 grunt.loadNpmTasks( 'grunt-contrib-uglify' );
 grunt.loadNpmTasks( 'grunt-contrib-qunit' );
 grunt.loadNpmTasks( 'grunt-ts' );
-grunt.loadNpmTasks( 'typedoc' );
 
     // tasks
 grunt.registerTask( 'default', [ 'ts', 'copy:dev' ] );      // dev build
 grunt.registerTask( 'test', [ 'qunit' ] );                  // run the tests
-grunt.registerTask( 'doc', [ 'typedoc' ] );                 // build the documentation
 grunt.registerTask( 'min', [ 'default', 'uglify' ] );       // minimize js
 grunt.registerTask( 'release', [ 'default', 'test', 'uglify', 'doc', 'copy:release' ] ); // release build
 };

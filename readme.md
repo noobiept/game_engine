@@ -15,7 +15,7 @@ All the css classes/ids from the engine start with the string `Game-`, so its ea
 Documentation
 =============
 
-Is available in [http://game-engine1.herokuapp.com/](http://game-engine1.herokuapp.com/).
+Is available [in here](docs/README.md).
 
 
 Build

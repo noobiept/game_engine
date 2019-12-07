@@ -20,7 +20,7 @@
         "server": "light-server -s . -p 8000",
         "release": "grunt release",
         "docs": "npm-run-all --serial docs:*",
-        "docs:build": "typedoc --out docs/ source/ --name Utilities --mode file --readme none",
-        "docs:clean": "rimraf docs/"
+        "docs:clean": "rimraf docs/",
+        "docs:build": "typedoc --out docs/ source/ --name \"Game Engine\" --mode file --readme none"
     }
 }
