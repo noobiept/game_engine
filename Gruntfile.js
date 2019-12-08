@@ -2,7 +2,7 @@ var PATH = require( 'path' );
 
 module.exports = function( grunt )
 {
-var devDest = 'build/output/';
+var devDest = 'build/';
 var releaseDest = './release/<%= pkg.version %>/';
 var source = './source/';
 
@@ -68,9 +68,6 @@ grunt.initConfig({
             all: [ './tests/start.html' ]
         }
     });
-
-
-
 
     // load the plug-ins
 grunt.loadNpmTasks( 'grunt-contrib-copy' );

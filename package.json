@@ -16,7 +16,10 @@
     "scripts": {
         "dev": "npm-run-all --parallel tsc server",
         "tsc": "tsc --watch",
-        "build": "grunt",
+        "build": "npm-run-all --serial build:*",
+        "build:clean": "rimraf build/",
+        "build:tsc": "tsc",
+        "build:grunt": "grunt",
         "server": "light-server -s . -p 8000 --quiet",
         "release": "grunt release",
         "test": "grunt test",
