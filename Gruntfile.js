@@ -57,7 +57,7 @@ grunt.initConfig({
         uglify: {
             dev: {
                 files: {
-                    'output/<%= pkg.name %>.min.js': [
+                    'build/<%= pkg.name %>.min.js': [
                         PATH.join( devDest, '<%= pkg.name %>.js' )
                     ]
                 }
