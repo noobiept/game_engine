@@ -1,4 +1,4 @@
-import * as Utilities from "./utilities";
+import * as Utilities from "@drk4/utilities";
 
 /**
  * Basic Usage:
@@ -724,9 +724,7 @@ export class Text extends HtmlElement {
     // setup the callback function
     if (typeof args.callback !== "undefined") {
       this.key_ref = function (event) {
-        var key = event.keyCode;
-
-        if (key === Utilities.KEY_CODE.enter) {
+        if (event.key === "Enter") {
           args.callback(_this);
         }
       };

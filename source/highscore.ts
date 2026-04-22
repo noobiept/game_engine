@@ -1,4 +1,4 @@
-import * as Utilities from "./utilities";
+import * as Utilities from "@drk4/utilities";
 
 /**
  * Basic Usage:

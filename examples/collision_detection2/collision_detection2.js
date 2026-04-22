@@ -54,29 +54,29 @@ window.addEventListener( 'keydown', function( event )
     {
     var step = 0.1;
 
-    switch( event.keyCode )
+    switch( event.key )
         {
-        case Game.Utilities.KEY_CODE.leftArrow:
+        case 'ArrowLeft':
             player.scaleX -= step;
             break;
 
-        case Game.Utilities.KEY_CODE.rightArrow:
+        case 'ArrowRight':
             player.scaleX += step;
             break;
 
-        case Game.Utilities.KEY_CODE.upArrow:
+        case 'ArrowUp':
             player.scaleY -= step;
             break;
 
-        case Game.Utilities.KEY_CODE.downArrow:
+        case 'ArrowDown':
             player.scaleY += step;
             break;
 
-        case Game.Utilities.KEY_CODE.space:
+        case ' ':
             player.weapon.forceFire();
             break;
 
-        case Game.Utilities.KEY_CODE.r:
+        case 'r':
             player.rotation += Math.PI / 6;
             break;
         }

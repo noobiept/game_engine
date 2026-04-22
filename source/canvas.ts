@@ -1,5 +1,5 @@
 import { Element } from "./element";
-import * as Utilities from "./utilities";
+import * as Utilities from "@drk4/utilities";
 
 export interface CanvasArgs {
   width: number;

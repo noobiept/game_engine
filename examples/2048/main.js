@@ -104,30 +104,28 @@ GRID.add( block, position.column, position.line );
 
 function keyEvents( event )
 {
-var key = event.keyCode;
-
-switch( key )
+switch( event.key )
     {
-    case Game.Utilities.KEY_CODE.leftArrow:
-    case Game.Utilities.KEY_CODE.a:
+    case 'ArrowLeft':
+    case 'a':
 
         moveLeft();
         break;
 
-    case Game.Utilities.KEY_CODE.rightArrow:
-    case Game.Utilities.KEY_CODE.d:
+    case 'ArrowRight':
+    case 'd':
 
         moveRight();
         break;
 
-    case Game.Utilities.KEY_CODE.upArrow:
-    case Game.Utilities.KEY_CODE.w:
+    case 'ArrowUp':
+    case 'w':
 
         moveUp();
         break;
 
-    case Game.Utilities.KEY_CODE.downArrow:
-    case Game.Utilities.KEY_CODE.s:
+    case 'ArrowDown':
+    case 's':
 
         moveDown();
         break;

@@ -1,6 +1,6 @@
 import { CollisionDetectionAlgorithm } from "./collision-detection/collision_detection";
 import { Element } from "./element";
-import * as Utilities from "./utilities";
+import * as Utilities from "@drk4/utilities";
 import * as CollisionDetection from "./collision-detection/collision_detection";
 import * as Sound from "./sound";
 import { Canvas } from "./canvas";

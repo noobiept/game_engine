@@ -1,5 +1,5 @@
 import { Element, ElementArgs } from "./element";
-import * as Utilities from "./utilities";
+import * as Utilities from "@drk4/utilities";
 import * as Game from "./game";
 
 export interface TextArgs extends ElementArgs {

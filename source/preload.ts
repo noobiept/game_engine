@@ -1,5 +1,5 @@
 import { EventDispatcher, EventDispatcherArgs } from "./event_dispatcher";
-import * as Utilities from "./utilities";
+import * as Utilities from "@drk4/utilities";
 import * as Sound from "./sound";
 
 export interface PreloadArgs extends EventDispatcherArgs {

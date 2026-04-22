@@ -1,4 +1,4 @@
-import * as Utilities from "./utilities";
+import * as Utilities from "@drk4/utilities";
 import { Element } from "./element";
 import * as Game from "./game";
 

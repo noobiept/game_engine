@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@drk4/utilities':
+        specifier: ^6.3.2
+        version: 6.3.2
     devDependencies:
       qunit:
         specifier: ^2.9.3
@@ -28,6 +32,9 @@ importers:
         version: 8.0.3(@emnapi/core@1.9.1)(@emnapi/runtime@1.9.1)
 
 packages:
+
+  '@drk4/utilities@6.3.2':
+    resolution: {integrity: sha512-CUtw+8/9A7U8mBBSStluZRnzRn4AacNLxW2qw1VlQBZWIgKLNPX3RoB+AKv0a6EmbhoH5sso28bs6b25Chjesw==}
 
   '@emnapi/core@1.9.1':
     resolution: {integrity: sha512-mukuNALVsoix/w1BJwFzwXBN/dHeejQtuVzcDsfOEsdpCumXb/E9j8w11h5S54tT1xhifGfbbSm/ICrObRb3KA==}
@@ -523,6 +530,8 @@ packages:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
 
 snapshots:
+
+  '@drk4/utilities@6.3.2': {}
 
   '@emnapi/core@1.9.1':
     dependencies:

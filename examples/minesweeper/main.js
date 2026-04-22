@@ -125,7 +125,11 @@ var timer = new Game.Html.Value({
     });
 menu.addChild( timer );
 
-TIMER = new Game.Utilities.Timer( timer.element );
+TIMER = new Game.Utilities.Timer({
+        updateElement: {
+            element: timer.element
+        }
+    });
 
 
     // init highscore
@@ -135,9 +139,7 @@ Game.HighScore.init( MAX_SCORES_SAVED, 'minesweeper_high_score', true );
     // setup keyboard shortcuts
 document.body.addEventListener( 'keyup', function( event )
     {
-    var key = event.keyCode;
-
-    if ( key === Game.Utilities.KEY_CODE.space )
+    if ( event.key === ' ' )
         {
         Main.restart();
         }
@@ -365,12 +367,12 @@ if ( HAS_ENDED || !square || square.state === Square.STATE.revealed )
     }
 
 
-if ( button === Game.Utilities.MOUSE_CODE.left )
+if ( button === Game.Utilities.MouseButton.left )
     {
     revealSquare( square );
     }
 
-else if ( button === Game.Utilities.MOUSE_CODE.right )
+else if ( button === Game.Utilities.MouseButton.right )
     {
     if ( square.state === Square.STATE.hidden )
         {

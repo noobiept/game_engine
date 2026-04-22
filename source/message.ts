@@ -1,5 +1,5 @@
 import * as Html from "./html";
-import * as Utilities from "./utilities";
+import * as Utilities from "@drk4/utilities";
 
 export interface MessageArgs extends Html.HtmlContainerArgs {
   body: any; // Either a `string`, `HTMLElement`, `Html.HtmlElement` or an `array` with any combination of the types before.

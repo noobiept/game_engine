@@ -105,30 +105,26 @@ var nextInput = -1;
 
 window.addEventListener( 'keydown', function( event )
     {
-    var key = event.keyCode;
-
-    switch( key )
+    switch( event.key )
         {
-        case Game.Utilities.KEY_CODE.leftArrow:
+        case 'ArrowLeft':
             nextInput = Input.press_leftArrow;
             break;
 
-        case Game.Utilities.KEY_CODE.rightArrow:
+        case 'ArrowRight':
             nextInput = Input.press_rightArrow;
             break;
         }
     });
 window.addEventListener( 'keyup', function( event )
     {
-    var key = event.keyCode;
-
-    switch( key )
+    switch( event.key )
         {
-        case Game.Utilities.KEY_CODE.leftArrow:
+        case 'ArrowLeft':
             nextInput = Input.release_leftArrow;
             break;
 
-        case Game.Utilities.KEY_CODE.rightArrow:
+        case 'ArrowRight':
             nextInput = Input.release_rightArrow;
             break;
         }

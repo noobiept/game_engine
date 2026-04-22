@@ -148,24 +148,22 @@ Game.addToGameLoop( function()
 
 SnakeGame.keyDown = function( event )
 {
-var key = event.keyCode;
-
-if ( key === Game.Utilities.KEY_CODE.a )
+if ( event.key === 'a' )
     {
     SNAKE.changeDirection( Direction.left );
     }
 
-else if ( key === Game.Utilities.KEY_CODE.d )
+else if ( event.key === 'd' )
     {
     SNAKE.changeDirection( Direction.right );
     }
 
-else if ( key === Game.Utilities.KEY_CODE.w )
+else if ( event.key === 'w' )
     {
     SNAKE.changeDirection( Direction.up );
     }
 
-else if ( key === Game.Utilities.KEY_CODE.s )
+else if ( event.key === 's' )
     {
     SNAKE.changeDirection( Direction.down );
     }

@@ -3,7 +3,7 @@ import { Canvas } from "./canvas";
 import { Container } from "./container";
 import { Element } from "./element";
 import { Rectangle } from "./rectangle";
-import * as Utilities from "./utilities";
+import * as Utilities from "@drk4/utilities";
 
 export interface WeaponArgs {
   element: Element; // the associated element
