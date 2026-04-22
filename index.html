@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Game Engine Examples</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        background: #f5f7f8;
+        color: #172026;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+      }
+
+      .app {
+        display: grid;
+        grid-template-columns: minmax(220px, 280px) 1fr;
+        min-height: 100vh;
+      }
+
+      aside {
+        border-right: 1px solid #d7dee2;
+        background: #ffffff;
+        padding: 20px;
+      }
+
+      h1 {
+        margin: 0 0 18px;
+        font-size: 20px;
+        font-weight: 700;
+      }
+
+      nav {
+        display: grid;
+        gap: 6px;
+      }
+
+      button {
+        width: 100%;
+        border: 1px solid transparent;
+        border-radius: 6px;
+        background: transparent;
+        color: inherit;
+        cursor: pointer;
+        font: inherit;
+        padding: 9px 10px;
+        text-align: left;
+      }
+
+      button:hover {
+        background: #edf2f4;
+      }
+
+      button[aria-current="page"] {
+        border-color: #7aa7a5;
+        background: #dcefed;
+      }
+
+      main {
+        display: grid;
+        grid-template-rows: auto 1fr;
+        min-width: 0;
+      }
+
+      header {
+        align-items: center;
+        border-bottom: 1px solid #d7dee2;
+        display: flex;
+        gap: 12px;
+        justify-content: space-between;
+        min-height: 58px;
+        padding: 12px 18px;
+      }
+
+      h2 {
+        font-size: 16px;
+        margin: 0;
+      }
+
+      a {
+        color: #126c64;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      iframe {
+        border: 0;
+        width: 100%;
+        height: 100%;
+        background: #ffffff;
+      }
+
+      @media (max-width: 760px) {
+        .app {
+          grid-template-columns: 1fr;
+          grid-template-rows: auto 1fr;
+        }
+
+        aside {
+          border-right: 0;
+          border-bottom: 1px solid #d7dee2;
+          padding: 14px;
+        }
+
+        nav {
+          grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <aside>
+        <h1>Game Engine Examples</h1>
+        <nav id="examples"></nav>
+      </aside>
+      <main>
+        <header>
+          <h2 id="title"></h2>
+          <a id="open" target="_blank" rel="noreferrer">Open</a>
+        </header>
+        <iframe id="preview" title="Example preview"></iframe>
+      </main>
+    </div>
+
+    <script type="module">
+      const examples = [
+        ["Basic", "/examples/basic_example/basic_example.html"],
+        ["Grid", "/examples/grid/grid.html"],
+        ["Collision", "/examples/collision_detection/collision_detection.html"],
+        ["Spatial Partition", "/examples/collision_spatial_partition/collision_spatial_partition.html"],
+        ["Bullets", "/examples/bullets/bullets.html"],
+        ["Clone", "/examples/clone/clone.html"],
+        ["Custom Element", "/examples/custom_element/custom_element.html"],
+        ["Game Loop", "/examples/game_loop_callbacks/game_loop_callbacks.html"],
+        ["Game Menu", "/examples/game_menu/game_menu.html"],
+        ["Life", "/examples/game_of_life/game_of_life.html"],
+        ["Message", "/examples/message/message.html"],
+        ["Minesweeper", "/examples/minesweeper/minesweeper.html"],
+        ["Mouse Move", "/examples/mouse_move/mouse_move.html"],
+        ["Multiple Canvas", "/examples/multiple_canvas/multiple_canvas.html"],
+        ["Parallax", "/examples/parallax_scrolling/parallax_scrolling.html"],
+        ["Preload", "/examples/preload/preload.html"],
+        ["Preload Error", "/examples/preload_error/preload_error.html"],
+        ["Snake", "/examples/snake/snake.html"],
+        ["Sprite", "/examples/sprite/sprite.html"],
+        ["Tower Defense", "/examples/tower_defense/tower_defense.html"],
+        ["Tween", "/examples/tween/tween.html"],
+        ["2048", "/examples/2048/2048.html"],
+      ];
+
+      const nav = document.querySelector("#examples");
+      const preview = document.querySelector("#preview");
+      const title = document.querySelector("#title");
+      const open = document.querySelector("#open");
+
+      function select(path) {
+        const example = examples.find((item) => item[1] === path) || examples[0];
+        title.textContent = example[0];
+        preview.src = example[1];
+        open.href = example[1];
+        history.replaceState(null, "", "#" + example[1]);
+
+        for (const button of nav.querySelectorAll("button")) {
+          button.setAttribute(
+            "aria-current",
+            button.dataset.path === example[1] ? "page" : "false",
+          );
+        }
+      }
+
+      for (const [name, path] of examples) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.textContent = name;
+        button.dataset.path = path;
+        button.addEventListener("click", () => select(path));
+        nav.appendChild(button);
+      }
+
+      select(location.hash.slice(1) || examples[0][1]);
+    </script>
+  </body>
+</html>

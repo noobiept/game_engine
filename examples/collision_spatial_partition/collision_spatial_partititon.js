@@ -67,65 +67,67 @@ for (var a = 0 ; a < positions.length ; a++)
 };
 
 
-function Blue( x, y )
+class Blue extends Game.Rectangle
 {
-Game.Rectangle.call( this, {
-        x: x,
-        y: y,
-        width: 10,
-        height: 10,
-        color: 'blue',
-        category: CATEGORIES.blue,
-        collidesWith: CATEGORIES.red
-    });
+constructor( x, y )
+    {
+    super({
+            x: x,
+            y: y,
+            width: 10,
+            height: 10,
+            color: 'blue',
+            category: CATEGORIES.blue,
+            collidesWith: CATEGORIES.red
+        });
 
-this._has_logic = true;
-this.movement = new Game.Movement({
-        element: this,
-        movementSpeed: 100
-    });
+    this._has_logic = true;
+    this.movement = new Game.Movement({
+            element: this,
+            movementSpeed: 100
+        });
+    }
+
+
+logic( deltaTime )
+    {
+    this.movement.logic( deltaTime );
+    }
 }
 
-Game.Utilities.inheritPrototype( Blue, Game.Rectangle );
 
-
-Blue.prototype.logic = function( deltaTime )
+class Red extends Game.Rectangle
 {
-this.movement.logic( deltaTime );
-};
+constructor( x, y )
+    {
+    var colorPosition = 0;
 
+    super({
+            x: x,
+            y: y,
+            width: 20,
+            height: 20,
+            color: Red.COLORS[ colorPosition ],
+            category: CATEGORIES.red
+        });
 
-function Red( x, y )
-{
-this.color_position = 0;
-
-Game.Rectangle.call( this, {
-        x: x,
-        y: y,
-        width: 20,
-        height: 20,
-        color: Red.COLORS[ this.color_position ],
-        category: CATEGORIES.red
-    });
-}
-
-Game.Utilities.inheritPrototype( Red, Game.Rectangle );
-
-
-Red.COLORS = [ 'red', 'maroon', 'brown', 'darkred' ];
-
+    this.color_position = colorPosition;
+    }
 
 /**
  * Change to a different shade of red.
  */
-Red.prototype.nextColor = function()
-{
-this.color_position++;
+nextColor()
+    {
+    this.color_position++;
 
 if ( this.color_position >= Red.COLORS.length )
     {
     this.color_position = 0;
     }
 
-this.color = Red.COLORS[ this.color_position ];
-};
+    this.color = Red.COLORS[ this.color_position ];
+    }
+}
+
+Red.COLORS = [ 'red', 'maroon', 'brown', 'darkred' ];

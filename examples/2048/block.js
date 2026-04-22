@@ -1,27 +1,39 @@
 (function(window)
 {
-function Block( args )
+class Block extends Game.Container
 {
-Game.Container.call( this, args );
+constructor( args )
+    {
+    super( args );
 
-var background = new Game.Rectangle({
-        width: Block.size,
-        height: Block.size,
-        color: 'white'
-    });
-var value = new Game.Text({
-        fontSize: Block.fontSize,
-        textAlign: 'center',
-        textBaseline: 'middle'
-    });
+    var background = new Game.Rectangle({
+            width: Block.size,
+            height: Block.size,
+            color: 'white'
+        });
+    var value = new Game.Text({
+            fontSize: Block.fontSize,
+            textAlign: 'center',
+            textBaseline: 'middle'
+        });
 
-this.addChild( background, value );
+    this.addChild( background, value );
 
-this.value = args.value;
-this.background_element = background;
-this.value_element = value;
+    this.value = args.value;
+    this.background_element = background;
+    this.value_element = value;
 
-this.setValue( this.value );
+    this.setValue( this.value );
+    }
+
+setValue( value )
+    {
+    this.value = value;
+
+    var valueStr = value.toString();
+    this.value_element.text = valueStr;
+    this.background_element.color = Block.colors[ valueStr ];
+    }
 }
 
 Block.size = 70;
@@ -38,18 +50,6 @@ Block.colors = {
     '512': 'rgb(255,243,191)',
     '1024': 'rgb(243,150,64)',
     '2048': 'rgb(116,108,255)'
-};
-
-Game.Utilities.inheritPrototype( Block, Game.Container );
-
-
-Block.prototype.setValue = function( value )
-{
-this.value = value;
-
-var valueStr = value.toString();
-this.value_element.text = valueStr;
-this.background_element.color = Block.colors[ valueStr ];
 };
 
 

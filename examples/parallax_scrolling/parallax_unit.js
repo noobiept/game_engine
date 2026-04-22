@@ -6,33 +6,32 @@ var UnitState = {
 };
 
 
-function Unit( x, y, state )
+class Unit extends Game.Sprite
 {
-Game.Sprite.call( this, {
-        x: x,
-        y: y,
-        image: Game.Preload.get( 'rogue' ),
-        frameWidth: 32,
-        frameHeight: 32,
-        interval: 0.3,
-        animations: {
-            idle_left: [ 50, 51, 52, 53, 54, 55, 56, 57, 58, 59 ],
-            idle_right: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ],
-            walk_left: [ 70, 71, 72, 73, 74, 75, 76, 77, 78, 79 ],
-            walk_right: [ 20, 21, 22, 23, 24, 25, 26, 27, 28, 29 ]
-        }
-    });
+constructor( x, y, state )
+    {
+    super({
+            x: x,
+            y: y,
+            image: Game.Preload.get( 'rogue' ),
+            frameWidth: 32,
+            frameHeight: 32,
+            interval: 0.3,
+            animations: {
+                idle_left: [ 50, 51, 52, 53, 54, 55, 56, 57, 58, 59 ],
+                idle_right: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ],
+                walk_left: [ 70, 71, 72, 73, 74, 75, 76, 77, 78, 79 ],
+                walk_right: [ 20, 21, 22, 23, 24, 25, 26, 27, 28, 29 ]
+            }
+        });
 
-this.setState( state );
-}
+    this.setState( state );
+    }
 
 
-Game.Utilities.inheritPrototype( Unit, Game.Sprite );
-
-
-Unit.prototype.handleInput = function( input )
-{
-switch( this.state )
+handleInput( input )
+    {
+    switch( this.state )
     {
     case UnitState.idle_left:
     case UnitState.idle_right:
@@ -71,12 +70,12 @@ switch( this.state )
             }
         break;
     }
-};
+    }
 
 
-Unit.prototype.setState = function( state )
-{
-switch( state )
+setState( state )
+    {
+    switch( state )
     {
     case UnitState.idle_left:
         this.play( 'idle_left' );
@@ -102,5 +101,6 @@ switch( state )
         return;
     }
 
-this.state = state;
-};
+    this.state = state;
+    }
+}

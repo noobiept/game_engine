@@ -1,22 +1,23 @@
-function Unit( args )
+class Unit extends Game.Rectangle
 {
-args.width = 20;
-args.height = 20;
-args.color = 'green';
+constructor( args )
+    {
+    args.width = 20;
+    args.height = 20;
+    args.color = 'green';
 
-Game.Rectangle.call( this, args );
+    super( args );
 
-this._has_logic = true;
-this.weapon = new Game.Weapon({
-        element: this,
-        bulletContainer: Game.getCanvas()
-    });
+    this._has_logic = true;
+    this.weapon = new Game.Weapon({
+            element: this,
+            bulletContainer: Game.getCanvas()
+        });
+    }
+
+
+logic( deltaTime )
+    {
+    this.weapon.logic( deltaTime );
+    }
 }
-
-Game.Utilities.inheritPrototype( Unit, Game.Rectangle );
-
-
-Unit.prototype.logic = function( deltaTime )
-{
-this.weapon.logic( deltaTime );
-};

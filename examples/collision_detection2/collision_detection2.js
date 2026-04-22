@@ -84,44 +84,46 @@ window.addEventListener( 'keydown', function( event )
 };
 
 
-function Player( x, y )
+class Player extends Game.Rectangle
 {
-Game.Rectangle.call( this, {
-        x: x,
-        y: y,
-        width: 10,
-        height: 10,
-        color: 'blue',
-        category: CATEGORIES.player,
-        collidesWith: CATEGORIES.enemy
-    });
+constructor( x, y )
+    {
+    super({
+            x: x,
+            y: y,
+            width: 10,
+            height: 10,
+            color: 'blue',
+            category: CATEGORIES.player,
+            collidesWith: CATEGORIES.enemy
+        });
 
-this._has_logic = true;
-this.weapon = new Game.Weapon({
-        element: this,
-        bulletContainer: Game.getCanvas()
-    });
+    this._has_logic = true;
+    this.weapon = new Game.Weapon({
+            element: this,
+            bulletContainer: Game.getCanvas()
+        });
+    }
+
+
+logic( deltaTime )
+    {
+    this.weapon.logic( deltaTime );
+    }
 }
 
-Game.Utilities.inheritPrototype( Player, Game.Rectangle );
 
-
-Player.prototype.logic = function( deltaTime )
+class Enemy extends Game.Rectangle
 {
-this.weapon.logic( deltaTime );
-};
-
-
-function Enemy( x, y )
-{
-Game.Rectangle.call( this, {
-        x: x,
-        y: y,
-        width: 20,
-        height: 20,
-        color: 'red',
-        category: CATEGORIES.enemy
-    });
+constructor( x, y )
+    {
+    super({
+            x: x,
+            y: y,
+            width: 20,
+            height: 20,
+            color: 'red',
+            category: CATEGORIES.enemy
+        });
+    }
 }
-
-Game.Utilities.inheritPrototype( Enemy, Game.Rectangle );

@@ -68,39 +68,39 @@ unit.weapon.forceFire( target, id );
 };
 
 
-function Unit( args )
+class Unit extends Game.Rectangle
 {
-Game.Rectangle.call( this, args );
-
-this._has_logic = true;
-
-this.movement = new Game.Movement({
-        element: this,
-        movementSpeed: args.movementSpeed
-    });
-
-this.weapon = new Game.Weapon({
-        element: this,
-        bulletContainer: Game.getCanvas()
-    });
-this.addEventListener( 'collision', function( data )
+constructor( args )
     {
-    if ( data.bullet )
+    super( args );
+
+    this._has_logic = true;
+
+    this.movement = new Game.Movement({
+            element: this,
+            movementSpeed: args.movementSpeed
+        });
+
+    this.weapon = new Game.Weapon({
+            element: this,
+            bulletContainer: Game.getCanvas()
+        });
+    this.addEventListener( 'collision', function( data )
         {
-        data.bullet.remove();
-        }
+        if ( data.bullet )
+            {
+            data.bullet.remove();
+            }
 
-    console.log( 'Collision!' );
-    })
+        console.log( 'Collision!' );
+        })
+    }
+
+logic( deltaTime )
+    {
+    this.movement.logic( deltaTime );
+    this.weapon.logic( deltaTime );
+    }
 }
-
-Game.Utilities.inheritPrototype( Unit, Game.Rectangle );
-
-
-Unit.prototype.logic = function( deltaTime )
-{
-this.movement.logic( deltaTime );
-this.weapon.logic( deltaTime );
-};
 
 

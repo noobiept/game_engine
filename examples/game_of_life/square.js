@@ -1,26 +1,26 @@
 (function(window)
 {
-function Square( args )
+class Square extends Game.Rectangle
 {
-if ( typeof args === 'undefined' )
+constructor( args )
+    {
+    if ( typeof args === 'undefined' )
     {
     args = {};
     }
 
-args.width = Square.SIZE;
-args.height = Square.SIZE;
-args.color = 'blue';
+    args.width = Square.SIZE;
+    args.height = Square.SIZE;
+    args.color = 'blue';
 
-Game.Rectangle.call( this, args );
+    super( args );
 
-Game.addElement( this );
+    Game.addElement( this );
+    }
 }
 
 
 Square.SIZE = 20;
-
-Game.Utilities.inheritPrototype( Square, Game.Rectangle );
-
 
 window.Square = Square;
 

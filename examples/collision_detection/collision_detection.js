@@ -80,68 +80,70 @@ Game.addElement( text );
 }
 
 
-function One( x, y )
+class One extends Game.Rectangle
 {
-Game.Rectangle.call( this, {
-        width: 10,
-        height: 10,
-        color: 'blue',
-        category: CATEGORY.friendly,
-        collidesWith: CATEGORY.enemy
-    });
+constructor( x, y )
+    {
+    super({
+            width: 10,
+            height: 10,
+            color: 'blue',
+            category: CATEGORY.friendly,
+            collidesWith: CATEGORY.enemy
+        });
 
-this._has_logic = true;
-this.x = x;
-this.y = y;
+    this._has_logic = true;
+    this.x = x;
+    this.y = y;
 
-this.weapon = new Game.Weapon({
-        element: this,
-        bulletContainer: Game.getCanvas()
-    });
-this.movement = new Game.Movement({
-        element: this,
-        movementSpeed: 100
-    });
+    this.weapon = new Game.Weapon({
+            element: this,
+            bulletContainer: Game.getCanvas()
+        });
+    this.movement = new Game.Movement({
+            element: this,
+            movementSpeed: 100
+        });
 
-Game.addElement( this );
+    Game.addElement( this );
+    }
+
+
+logic( deltaTime )
+    {
+    this.movement.logic( deltaTime );
+    this.weapon.logic( deltaTime );
+    }
 }
 
-Game.Utilities.inheritPrototype( One, Game.Rectangle );
 
-
-One.prototype.logic = function( deltaTime )
+class Two extends Game.Rectangle
 {
-this.movement.logic( deltaTime );
-this.weapon.logic( deltaTime );
-};
+constructor( x, y )
+    {
+    super({
+            width: 10,
+            height: 10,
+            color: 'red',
+            category: CATEGORY.enemy,
+            collidesWith: CATEGORY.friendly
+        });
+
+    this._has_logic = true;
+    this.x = x;
+    this.y = y;
+
+    this.movement = new Game.Movement({
+            element: this,
+            movementSpeed: 100
+        });
+
+    Game.addElement( this );
+    }
 
 
-function Two( x, y )
-{
-Game.Rectangle.call( this, {
-        width: 10,
-        height: 10,
-        color: 'red',
-        category: CATEGORY.enemy,
-        collidesWith: CATEGORY.friendly
-    });
-
-this._has_logic = true;
-this.x = x;
-this.y = y;
-
-this.movement = new Game.Movement({
-        element: this,
-        movementSpeed: 100
-    });
-
-Game.addElement( this );
+logic( deltaTime )
+    {
+    this.movement.logic( deltaTime );
+    }
 }
-
-Game.Utilities.inheritPrototype( Two, Game.Rectangle );
-
-
-Two.prototype.logic = function( deltaTime )
-{
-this.movement.logic( deltaTime );
-};

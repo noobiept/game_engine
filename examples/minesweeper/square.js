@@ -1,52 +1,30 @@
 (function(window)
 {
-function Square( args )
+class Square extends Game.Container
 {
-Game.Container.call( this, args );
+constructor( args )
+    {
+    super( args );
 
-this.value = Square.VALUE.blank;
-this.state = Square.STATE.hidden;
+    this.value = Square.VALUE.blank;
+    this.state = Square.STATE.hidden;
 
-var hidden = Game.Preload.get( 'hidden' );
+    var hidden = Game.Preload.get( 'hidden' );
 
-this.background = new Game.Bitmap({
-        image: hidden
-    });
-this.front = new Game.Bitmap({
-        image: hidden       // will be changed later
-    });
-this.front.visible = false;
+    this.background = new Game.Bitmap({
+            image: hidden
+        });
+    this.front = new Game.Bitmap({
+            image: hidden       // will be changed later
+        });
+    this.front.visible = false;
 
-this.addChild( this.background, this.front );
-}
+    this.addChild( this.background, this.front );
+    }
 
-Game.Utilities.inheritPrototype( Square, Game.Container );
-
-Square.SIZE = 30;
-
-
-/*
-    its an enum, for example:
-        Square.VALUE[ 'blank' ];     // '0'
-        Square.VALUE[ '0' ];         // 'blank'
-
-    The number corresponds to the number of mines around it
-    Or <0 if it is a mine
- */
-Square.VALUE = Game.Utilities.createEnum( [ 'mine', 'blank', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' ], -1 );
-
-
-Square.STATE = {
-    hidden: 0,
-    revealed: 1,
-    question_mark: 2,
-    mine_flag: 3
-};
-
-
-Square.prototype.setState = function( state )
-{
-if ( this.state === state )
+setState( state )
+    {
+    if ( this.state === state )
     {
     return;
     }
@@ -84,14 +62,14 @@ else
     throw new Error( 'Wrong state argument.' );
     }
 
-this.state = state;
-};
+    this.state = state;
+    }
 
 
 
-Square.prototype.setMouseOver = function( yesNo )
-{
-if ( yesNo === true )
+setMouseOver( yesNo )
+    {
+    if ( yesNo === true )
     {
     this.background.image = Game.Preload.get( 'hidden_mouse_over' );
     }
@@ -100,6 +78,28 @@ else
     {
     this.background.image = Game.Preload.get( 'hidden' );
     }
+    }
+}
+
+Square.SIZE = 30;
+
+
+/*
+    its an enum, for example:
+        Square.VALUE[ 'blank' ];     // '0'
+        Square.VALUE[ '0' ];         // 'blank'
+
+    The number corresponds to the number of mines around it
+    Or <0 if it is a mine
+ */
+Square.VALUE = Game.Utilities.createEnum( [ 'mine', 'blank', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' ], -1 );
+
+
+Square.STATE = {
+    hidden: 0,
+    revealed: 1,
+    question_mark: 2,
+    mine_flag: 3
 };
 
 

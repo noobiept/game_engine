@@ -112,23 +112,24 @@ Game.addElement( unit2 );
 /**
  * Make your own unit class, reusing existing classes.
  */
-function Unit( args )
+class Unit extends Game.Container
 {
-Game.Container.call( this, args );
+constructor( args )
+    {
+    super( args );
 
-this.movement = new Game.Movement({
-        element: this,
-        movementSpeed: args.movementSpeed
-    });
+    this.movement = new Game.Movement({
+            element: this,
+            movementSpeed: args.movementSpeed
+        });
+    }
+
+
+logic( deltaTime )
+    {
+    super.logic( deltaTime );
+
+    this.movement.logic( deltaTime );
+    }
 }
-
-Game.Utilities.inheritPrototype( Unit, Game.Container );
-
-
-Unit.prototype.logic = function( deltaTime )
-{
-Game.Container.prototype.logic.call( this, deltaTime );
-
-this.movement.logic( deltaTime );
-};
 

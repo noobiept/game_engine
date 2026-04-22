@@ -1,32 +1,32 @@
-function Tail( args )
+class Tail extends Game.Rectangle
 {
-if ( typeof args.path === 'undefined' )
+constructor( args )
+    {
+    if ( typeof args.path === 'undefined' )
     {
     args.path = [];
     }
 
-args.width = 10;
-args.height = 10;
-args.color = 'green';
+    args.width = 10;
+    args.height = 10;
+    args.color = 'green';
 
-Game.Rectangle.call( this, args );
+    super( args );
 
-this.direction = args.direction;
-this.path = args.path;
-this.column = args.column;
-this.line = args.line;
+    this.direction = args.direction;
+    this.path = args.path;
+    this.column = args.column;
+    this.line = args.line;
 
-Game.addElement( this );
+    Game.addElement( this );
 
-SnakeGame.getGrid().add( this, this.column, this.line );
-}
-
-Game.Utilities.inheritPrototype( Tail, Game.Rectangle );
+    SnakeGame.getGrid().add( this, this.column, this.line );
+    }
 
 
-Tail.prototype.tick = function()
-{
-if ( this.path.length > 0 )
+tick()
+    {
+    if ( this.path.length > 0 )
     {
     var destination = this.path[ 0 ];
 
@@ -74,4 +74,5 @@ else
     {
     SnakeGame.gameOver();
     }
-};
+    }
+}
