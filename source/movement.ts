@@ -203,9 +203,9 @@ export class Movement {
     /**
      * Move continuously in a specific angle.
      *
-     * @angle The angle of the direction. Positive clockwise.
-     * @degrees If the `angle` value is in degrees or radians.
-     * @callback To be called when it reaches the end of the canvas.
+     * @param angle The angle of the direction. Positive clockwise.
+     * @param degrees If the `angle` value is in degrees or radians.
+     * @param callback To be called when it reaches the end of the canvas.
      */
     moveAngle(angle: number, degrees?: boolean, callback?: () => any) {
         if (degrees === true) {
@@ -227,8 +227,8 @@ export class Movement {
     /**
      * Move constantly towards the element's position.
      *
-     * @element The element to follow.
-     * @callback Called when the element that we're following is removed.
+     * @param element The element to follow.
+     * @param callback Called when the element that we're following is removed.
      */
     follow(element: Element, callback?: () => any) {
         this._movement_state = MovementState.follow;

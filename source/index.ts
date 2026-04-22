@@ -26,7 +26,10 @@ export * from "./bullet";
 export * from "./weapon";
 export * from "./message";
 export { CheckAll } from "./collision-detection/collision_check_all";
-export { SpatialPartition } from "./collision-detection/collision_spatial_partition";
+export {
+    SpatialPartition,
+    type SpatialPartitionArgs,
+} from "./collision-detection/collision_spatial_partition";
 export {
     CollisionDetection,
     HighScore,
