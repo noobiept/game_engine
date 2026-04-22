@@ -22,24 +22,24 @@ var GLOBAL_GAIN: GainNode;
  * Initialize the `Sound` module. Its called in `Game.init()`.
  */
 export function init() {
-  // already initialized
-  if (CTX) {
+    // already initialized
+    if (CTX) {
+        return true;
+    }
+
+    try {
+        CTX = new AudioContext();
+    } catch (error) {
+        // AudioContext not supported
+        CTX = null;
+        return false;
+    }
+
+    // all played sounds will be connected to this global gain node
+    GLOBAL_GAIN = CTX.createGain();
+    GLOBAL_GAIN.connect(CTX.destination);
+
     return true;
-  }
-
-  try {
-    CTX = new AudioContext();
-  } catch (error) {
-    // AudioContext not supported
-    CTX = null;
-    return false;
-  }
-
-  // all played sounds will be connected to this global gain node
-  GLOBAL_GAIN = CTX.createGain();
-  GLOBAL_GAIN.connect(CTX.destination);
-
-  return true;
 }
 
 /**
@@ -50,16 +50,16 @@ export function init() {
  * @param errorCallback Function to be called in case it fails to decode the audio data.
  */
 export function decodeAudio(
-  data: ArrayBuffer,
-  successCallback: (decodedData: AudioBuffer) => any,
-  errorCallback,
+    data: ArrayBuffer,
+    successCallback: (decodedData: AudioBuffer) => any,
+    errorCallback,
 ) {
-  if (!CTX) {
-    return false;
-  }
+    if (!CTX) {
+        return false;
+    }
 
-  CTX.decodeAudioData(data, successCallback, errorCallback);
-  return true;
+    CTX.decodeAudioData(data, successCallback, errorCallback);
+    return true;
 }
 
 /**
@@ -69,17 +69,17 @@ export function decodeAudio(
  * @return The source node, or `null` if it wasn't possible to play the sound.
  */
 export function play(audioBuffer: AudioBuffer) {
-  if (!CTX) {
-    return null;
-  }
+    if (!CTX) {
+        return null;
+    }
 
-  var source = CTX.createBufferSource();
+    var source = CTX.createBufferSource();
 
-  source.buffer = audioBuffer;
-  source.connect(GLOBAL_GAIN);
-  source.start();
+    source.buffer = audioBuffer;
+    source.connect(GLOBAL_GAIN);
+    source.start();
 
-  return source;
+    return source;
 }
 
 /**
@@ -89,13 +89,13 @@ export function play(audioBuffer: AudioBuffer) {
  * @return If the gain was set or not.
  */
 export function setGlobalGain(gain: number) {
-  if (!CTX || gain < 0 || gain > 1) {
-    return false;
-  }
+    if (!CTX || gain < 0 || gain > 1) {
+        return false;
+    }
 
-  GLOBAL_GAIN.gain.value = gain;
+    GLOBAL_GAIN.gain.value = gain;
 
-  return true;
+    return true;
 }
 
 /**
@@ -103,11 +103,11 @@ export function setGlobalGain(gain: number) {
  * Will return -1 if the sound is not available.
  */
 export function getGlobalGain() {
-  if (!CTX) {
-    return -1;
-  }
+    if (!CTX) {
+        return -1;
+    }
 
-  return GLOBAL_GAIN.gain.value;
+    return GLOBAL_GAIN.gain.value;
 }
 
 /**
@@ -115,9 +115,9 @@ export function getGlobalGain() {
  * When it isn't, calling the functions (like `Game.Sound.play()`) won't give you an error, but no sound will be played.
  */
 export function isAvailable() {
-  if (CTX) {
-    return true;
-  }
+    if (CTX) {
+        return true;
+    }
 
-  return false;
+    return false;
 }

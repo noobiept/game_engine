@@ -6,124 +6,124 @@ Useful when there's a small number of elements in the game.
 
 ## Hierarchy
 
-* **CheckAll**
+- **CheckAll**
 
 ## Implements
 
-* [CollisionDetectionAlgorithm](../interfaces/game.collisiondetectionalgorithm.md)
+- [CollisionDetectionAlgorithm](../interfaces/game.collisiondetectionalgorithm.md)
 
 ## Index
 
 ### Constructors
 
-* [constructor](game.collisiondetection.checkall.md#constructor)
+- [constructor](game.collisiondetection.checkall.md#constructor)
 
 ### Properties
 
-* [_elements](game.collisiondetection.checkall.md#_elements)
+- [\_elements](game.collisiondetection.checkall.md#_elements)
 
 ### Methods
 
-* [add](game.collisiondetection.checkall.md#add)
-* [checkCollision](game.collisiondetection.checkall.md#checkcollision)
-* [clear](game.collisiondetection.checkall.md#clear)
-* [remove](game.collisiondetection.checkall.md#remove)
-* [update](game.collisiondetection.checkall.md#update)
+- [add](game.collisiondetection.checkall.md#add)
+- [checkCollision](game.collisiondetection.checkall.md#checkcollision)
+- [clear](game.collisiondetection.checkall.md#clear)
+- [remove](game.collisiondetection.checkall.md#remove)
+- [update](game.collisiondetection.checkall.md#update)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new CheckAll**(): *[CheckAll](game.collisiondetection.checkall.md)*
+\+ **new CheckAll**(): _[CheckAll](game.collisiondetection.checkall.md)_
 
-*Defined in [collision_check_all.ts:12](https://github.com/noobiept/game_engine/blob/625c324/source/collision_check_all.ts#L12)*
+_Defined in [collision_check_all.ts:12](https://github.com/noobiept/game_engine/blob/625c324/source/collision_check_all.ts#L12)_
 
-**Returns:** *[CheckAll](game.collisiondetection.checkall.md)*
+**Returns:** _[CheckAll](game.collisiondetection.checkall.md)_
 
 ## Properties
 
-###  _elements
+### \_elements
 
-• **_elements**: *[Element](game.element.md)[]*
+• **\_elements**: _[Element](game.element.md)[]_
 
-*Defined in [collision_check_all.ts:12](https://github.com/noobiept/game_engine/blob/625c324/source/collision_check_all.ts#L12)*
+_Defined in [collision_check_all.ts:12](https://github.com/noobiept/game_engine/blob/625c324/source/collision_check_all.ts#L12)_
 
 ## Methods
 
-###  add
+### add
 
-▸ **add**(`element`: [Element](game.element.md)): *void*
+▸ **add**(`element`: [Element](game.element.md)): _void_
 
-*Implementation of [CollisionDetectionAlgorithm](../interfaces/game.collisiondetectionalgorithm.md)*
+_Implementation of [CollisionDetectionAlgorithm](../interfaces/game.collisiondetectionalgorithm.md)_
 
-*Defined in [collision_check_all.ts:21](https://github.com/noobiept/game_engine/blob/625c324/source/collision_check_all.ts#L21)*
+_Defined in [collision_check_all.ts:21](https://github.com/noobiept/game_engine/blob/625c324/source/collision_check_all.ts#L21)_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`element` | [Element](game.element.md) |
+| Name      | Type                       |
+| --------- | -------------------------- |
+| `element` | [Element](game.element.md) |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  checkCollision
+### checkCollision
 
-▸ **checkCollision**(): *void*
+▸ **checkCollision**(): _void_
 
-*Implementation of [CollisionDetectionAlgorithm](../interfaces/game.collisiondetectionalgorithm.md)*
+_Implementation of [CollisionDetectionAlgorithm](../interfaces/game.collisiondetectionalgorithm.md)_
 
-*Defined in [collision_check_all.ts:44](https://github.com/noobiept/game_engine/blob/625c324/source/collision_check_all.ts#L44)*
+_Defined in [collision_check_all.ts:44](https://github.com/noobiept/game_engine/blob/625c324/source/collision_check_all.ts#L44)_
 
 Checks the collision between all the elements provided.
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  clear
+### clear
 
-▸ **clear**(): *void*
+▸ **clear**(): _void_
 
-*Implementation of [CollisionDetectionAlgorithm](../interfaces/game.collisiondetectionalgorithm.md)*
+_Implementation of [CollisionDetectionAlgorithm](../interfaces/game.collisiondetectionalgorithm.md)_
 
-*Defined in [collision_check_all.ts:98](https://github.com/noobiept/game_engine/blob/625c324/source/collision_check_all.ts#L98)*
+_Defined in [collision_check_all.ts:98](https://github.com/noobiept/game_engine/blob/625c324/source/collision_check_all.ts#L98)_
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  remove
+### remove
 
-▸ **remove**(`element`: [Element](game.element.md)): *void*
+▸ **remove**(`element`: [Element](game.element.md)): _void_
 
-*Implementation of [CollisionDetectionAlgorithm](../interfaces/game.collisiondetectionalgorithm.md)*
+_Implementation of [CollisionDetectionAlgorithm](../interfaces/game.collisiondetectionalgorithm.md)_
 
-*Defined in [collision_check_all.ts:33](https://github.com/noobiept/game_engine/blob/625c324/source/collision_check_all.ts#L33)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`element` | [Element](game.element.md) |
-
-**Returns:** *void*
-
-___
-
-###  update
-
-▸ **update**(`element`: [Element](game.element.md)): *void*
-
-*Implementation of [CollisionDetectionAlgorithm](../interfaces/game.collisiondetectionalgorithm.md)*
-
-*Defined in [collision_check_all.ts:27](https://github.com/noobiept/game_engine/blob/625c324/source/collision_check_all.ts#L27)*
+_Defined in [collision_check_all.ts:33](https://github.com/noobiept/game_engine/blob/625c324/source/collision_check_all.ts#L33)_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`element` | [Element](game.element.md) |
+| Name      | Type                       |
+| --------- | -------------------------- |
+| `element` | [Element](game.element.md) |
 
-**Returns:** *void*
+**Returns:** _void_
+
+---
+
+### update
+
+▸ **update**(`element`: [Element](game.element.md)): _void_
+
+_Implementation of [CollisionDetectionAlgorithm](../interfaces/game.collisiondetectionalgorithm.md)_
+
+_Defined in [collision_check_all.ts:27](https://github.com/noobiept/game_engine/blob/625c324/source/collision_check_all.ts#L27)_
+
+**Parameters:**
+
+| Name      | Type                       |
+| --------- | -------------------------- |
+| `element` | [Element](game.element.md) |
+
+**Returns:** _void_

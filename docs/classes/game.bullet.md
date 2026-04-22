@@ -29,499 +29,499 @@ Events:
 
 ## Hierarchy
 
-  ↳ [Container](game.container.md)
+↳ [Container](game.container.md)
 
-  ↳ **Bullet**
+↳ **Bullet**
 
 ## Index
 
 ### Constructors
 
-* [constructor](game.bullet.md#constructor)
+- [constructor](game.bullet.md#constructor)
 
 ### Properties
 
-* [_children](game.bullet.md#protected-_children)
-* [_container](game.bullet.md#_container)
-* [_half_height](game.bullet.md#protected-_half_height)
-* [_half_width](game.bullet.md#protected-_half_width)
-* [_has_logic](game.bullet.md#_has_logic)
-* [_height](game.bullet.md#protected-_height)
-* [_listeners](game.bullet.md#protected-_listeners)
-* [_removed](game.bullet.md#_removed)
-* [_rotation](game.bullet.md#protected-_rotation)
-* [_width](game.bullet.md#protected-_width)
-* [_x](game.bullet.md#protected-_x)
-* [_y](game.bullet.md#protected-_y)
-* [category](game.bullet.md#category)
-* [collidesWith](game.bullet.md#collideswith)
-* [collision_data](game.bullet.md#collision_data)
-* [damage](game.bullet.md#damage)
-* [element](game.bullet.md#element)
-* [grid_data](game.bullet.md#grid_data)
-* [movement](game.bullet.md#movement)
-* [opacity](game.bullet.md#opacity)
-* [scaleX](game.bullet.md#scalex)
-* [scaleY](game.bullet.md#scaley)
-* [vertices](game.bullet.md#vertices)
-* [visible](game.bullet.md#visible)
+- [\_children](game.bullet.md#protected-_children)
+- [\_container](game.bullet.md#_container)
+- [\_half_height](game.bullet.md#protected-_half_height)
+- [\_half_width](game.bullet.md#protected-_half_width)
+- [\_has_logic](game.bullet.md#_has_logic)
+- [\_height](game.bullet.md#protected-_height)
+- [\_listeners](game.bullet.md#protected-_listeners)
+- [\_removed](game.bullet.md#_removed)
+- [\_rotation](game.bullet.md#protected-_rotation)
+- [\_width](game.bullet.md#protected-_width)
+- [\_x](game.bullet.md#protected-_x)
+- [\_y](game.bullet.md#protected-_y)
+- [category](game.bullet.md#category)
+- [collidesWith](game.bullet.md#collideswith)
+- [collision_data](game.bullet.md#collision_data)
+- [damage](game.bullet.md#damage)
+- [element](game.bullet.md#element)
+- [grid_data](game.bullet.md#grid_data)
+- [movement](game.bullet.md#movement)
+- [opacity](game.bullet.md#opacity)
+- [scaleX](game.bullet.md#scalex)
+- [scaleY](game.bullet.md#scaley)
+- [vertices](game.bullet.md#vertices)
+- [visible](game.bullet.md#visible)
 
 ### Accessors
 
-* [half_height](game.bullet.md#half_height)
-* [half_width](game.bullet.md#half_width)
-* [height](game.bullet.md#height)
-* [rotation](game.bullet.md#rotation)
-* [width](game.bullet.md#width)
-* [x](game.bullet.md#x)
-* [y](game.bullet.md#y)
+- [half_height](game.bullet.md#half_height)
+- [half_width](game.bullet.md#half_width)
+- [height](game.bullet.md#height)
+- [rotation](game.bullet.md#rotation)
+- [width](game.bullet.md#width)
+- [x](game.bullet.md#x)
+- [y](game.bullet.md#y)
 
 ### Methods
 
-* [_removeNow](game.bullet.md#_removenow)
-* [addChild](game.bullet.md#addchild)
-* [addEventListener](game.bullet.md#addeventlistener)
-* [addToPosition](game.bullet.md#addtoposition)
-* [calculateDimensions](game.bullet.md#calculatedimensions)
-* [checkCollision](game.bullet.md#checkcollision)
-* [clone](game.bullet.md#clone)
-* [dispatchEvent](game.bullet.md#dispatchevent)
-* [dispatchMouseClickEvent](game.bullet.md#dispatchmouseclickevent)
-* [dispatchMouseMoveEvent](game.bullet.md#dispatchmousemoveevent)
-* [dispatchMouseOutEvent](game.bullet.md#dispatchmouseoutevent)
-* [dispatchMouseOverEvent](game.bullet.md#dispatchmouseoverevent)
-* [draw](game.bullet.md#draw)
-* [drawElement](game.bullet.md#drawelement)
-* [getAllChildren](game.bullet.md#getallchildren)
-* [getHeight](game.bullet.md#getheight)
-* [getVertices](game.bullet.md#getvertices)
-* [getWidth](game.bullet.md#getwidth)
-* [hasListeners](game.bullet.md#haslisteners)
-* [intersect](game.bullet.md#intersect)
-* [isRemoved](game.bullet.md#isremoved)
-* [logic](game.bullet.md#logic)
-* [mouseClickEvents](game.bullet.md#mouseclickevents)
-* [remove](game.bullet.md#remove)
-* [removeAllChildren](game.bullet.md#removeallchildren)
-* [removeAllEventListeners](game.bullet.md#removealleventlisteners)
-* [removeChild](game.bullet.md#removechild)
-* [removeEventListener](game.bullet.md#removeeventlistener)
-* [rotate](game.bullet.md#rotate)
-* [setAngle](game.bullet.md#setangle)
-* [setDimensions](game.bullet.md#setdimensions)
-* [setHeight](game.bullet.md#setheight)
-* [setPosition](game.bullet.md#setposition)
-* [setTarget](game.bullet.md#settarget)
-* [setWidth](game.bullet.md#setwidth)
-* [toAxisAligned](game.bullet.md#toaxisaligned)
-* [updateVertices](game.bullet.md#updatevertices)
+- [\_removeNow](game.bullet.md#_removenow)
+- [addChild](game.bullet.md#addchild)
+- [addEventListener](game.bullet.md#addeventlistener)
+- [addToPosition](game.bullet.md#addtoposition)
+- [calculateDimensions](game.bullet.md#calculatedimensions)
+- [checkCollision](game.bullet.md#checkcollision)
+- [clone](game.bullet.md#clone)
+- [dispatchEvent](game.bullet.md#dispatchevent)
+- [dispatchMouseClickEvent](game.bullet.md#dispatchmouseclickevent)
+- [dispatchMouseMoveEvent](game.bullet.md#dispatchmousemoveevent)
+- [dispatchMouseOutEvent](game.bullet.md#dispatchmouseoutevent)
+- [dispatchMouseOverEvent](game.bullet.md#dispatchmouseoverevent)
+- [draw](game.bullet.md#draw)
+- [drawElement](game.bullet.md#drawelement)
+- [getAllChildren](game.bullet.md#getallchildren)
+- [getHeight](game.bullet.md#getheight)
+- [getVertices](game.bullet.md#getvertices)
+- [getWidth](game.bullet.md#getwidth)
+- [hasListeners](game.bullet.md#haslisteners)
+- [intersect](game.bullet.md#intersect)
+- [isRemoved](game.bullet.md#isremoved)
+- [logic](game.bullet.md#logic)
+- [mouseClickEvents](game.bullet.md#mouseclickevents)
+- [remove](game.bullet.md#remove)
+- [removeAllChildren](game.bullet.md#removeallchildren)
+- [removeAllEventListeners](game.bullet.md#removealleventlisteners)
+- [removeChild](game.bullet.md#removechild)
+- [removeEventListener](game.bullet.md#removeeventlistener)
+- [rotate](game.bullet.md#rotate)
+- [setAngle](game.bullet.md#setangle)
+- [setDimensions](game.bullet.md#setdimensions)
+- [setHeight](game.bullet.md#setheight)
+- [setPosition](game.bullet.md#setposition)
+- [setTarget](game.bullet.md#settarget)
+- [setWidth](game.bullet.md#setwidth)
+- [toAxisAligned](game.bullet.md#toaxisaligned)
+- [updateVertices](game.bullet.md#updatevertices)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new Bullet**(`args`: [BulletArgs](../interfaces/game.bulletargs.md)): *[Bullet](game.bullet.md)*
+\+ **new Bullet**(`args`: [BulletArgs](../interfaces/game.bulletargs.md)): _[Bullet](game.bullet.md)_
 
-*Overrides [Container](game.container.md).[constructor](game.container.md#constructor)*
+_Overrides [Container](game.container.md).[constructor](game.container.md#constructor)_
 
-*Defined in [bullet.ts:46](https://github.com/noobiept/game_engine/blob/625c324/source/bullet.ts#L46)*
+_Defined in [bullet.ts:46](https://github.com/noobiept/game_engine/blob/625c324/source/bullet.ts#L46)_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`args` | [BulletArgs](../interfaces/game.bulletargs.md) |
+| Name   | Type                                           |
+| ------ | ---------------------------------------------- |
+| `args` | [BulletArgs](../interfaces/game.bulletargs.md) |
 
-**Returns:** *[Bullet](game.bullet.md)*
+**Returns:** _[Bullet](game.bullet.md)_
 
 ## Properties
 
-### `Protected` _children
+### `Protected` \_children
 
-• **_children**: *[Element](game.element.md)[]*
+• **\_children**: _[Element](game.element.md)[]_
 
-*Inherited from [Container](game.container.md).[_children](game.container.md#protected-_children)*
+_Inherited from [Container](game.container.md).[\_children](game.container.md#protected-_children)_
 
-*Defined in [container.ts:31](https://github.com/noobiept/game_engine/blob/625c324/source/container.ts#L31)*
+_Defined in [container.ts:31](https://github.com/noobiept/game_engine/blob/625c324/source/container.ts#L31)_
 
-___
+---
 
-###  _container
+### \_container
 
-• **_container**: *[Container](game.container.md)*
+• **\_container**: _[Container](game.container.md)_
 
-*Inherited from [Element](game.element.md).[_container](game.element.md#_container)*
+_Inherited from [Element](game.element.md).[\_container](game.element.md#_container)_
 
-*Defined in [element.ts:60](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L60)*
+_Defined in [element.ts:60](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L60)_
 
-___
+---
 
-### `Protected` _half_height
+### `Protected` \_half_height
 
-• **_half_height**: *number*
+• **\_half_height**: _number_
 
-*Inherited from [Element](game.element.md).[_half_height](game.element.md#protected-_half_height)*
+_Inherited from [Element](game.element.md).[\_half_height](game.element.md#protected-_half_height)_
 
-*Defined in [element.ts:57](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L57)*
+_Defined in [element.ts:57](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L57)_
 
-___
+---
 
-### `Protected` _half_width
+### `Protected` \_half_width
 
-• **_half_width**: *number*
+• **\_half_width**: _number_
 
-*Inherited from [Element](game.element.md).[_half_width](game.element.md#protected-_half_width)*
+_Inherited from [Element](game.element.md).[\_half_width](game.element.md#protected-_half_width)_
 
-*Defined in [element.ts:56](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L56)*
+_Defined in [element.ts:56](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L56)_
 
-___
+---
 
-###  _has_logic
+### \_has_logic
 
-• **_has_logic**: *boolean*
+• **\_has_logic**: _boolean_
 
-*Inherited from [Element](game.element.md).[_has_logic](game.element.md#_has_logic)*
+_Inherited from [Element](game.element.md).[\_has_logic](game.element.md#_has_logic)_
 
-*Defined in [element.ts:61](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L61)*
+_Defined in [element.ts:61](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L61)_
 
-___
+---
 
-### `Protected` _height
+### `Protected` \_height
 
-• **_height**: *number*
+• **\_height**: _number_
 
-*Inherited from [Element](game.element.md).[_height](game.element.md#protected-_height)*
+_Inherited from [Element](game.element.md).[\_height](game.element.md#protected-_height)_
 
-*Defined in [element.ts:55](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L55)*
+_Defined in [element.ts:55](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L55)_
 
-___
+---
 
-### `Protected` _listeners
+### `Protected` \_listeners
 
-• **_listeners**: *any*
+• **\_listeners**: _any_
 
-*Inherited from [EventDispatcher](game.eventdispatcher.md).[_listeners](game.eventdispatcher.md#protected-_listeners)*
+_Inherited from [EventDispatcher](game.eventdispatcher.md).[\_listeners](game.eventdispatcher.md#protected-_listeners)_
 
-*Defined in [event_dispatcher.ts:16](https://github.com/noobiept/game_engine/blob/625c324/source/event_dispatcher.ts#L16)*
+_Defined in [event_dispatcher.ts:16](https://github.com/noobiept/game_engine/blob/625c324/source/event_dispatcher.ts#L16)_
 
-___
+---
 
-###  _removed
+### \_removed
 
-• **_removed**: *boolean*
+• **\_removed**: _boolean_
 
-*Inherited from [Element](game.element.md).[_removed](game.element.md#_removed)*
+_Inherited from [Element](game.element.md).[\_removed](game.element.md#_removed)_
 
-*Defined in [element.ts:62](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L62)*
+_Defined in [element.ts:62](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L62)_
 
-___
+---
 
-### `Protected` _rotation
+### `Protected` \_rotation
 
-• **_rotation**: *number*
+• **\_rotation**: _number_
 
-*Inherited from [Element](game.element.md).[_rotation](game.element.md#protected-_rotation)*
+_Inherited from [Element](game.element.md).[\_rotation](game.element.md#protected-_rotation)_
 
-*Defined in [element.ts:59](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L59)*
+_Defined in [element.ts:59](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L59)_
 
-___
+---
 
-### `Protected` _width
+### `Protected` \_width
 
-• **_width**: *number*
+• **\_width**: _number_
 
-*Inherited from [Element](game.element.md).[_width](game.element.md#protected-_width)*
+_Inherited from [Element](game.element.md).[\_width](game.element.md#protected-_width)_
 
-*Defined in [element.ts:54](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L54)*
+_Defined in [element.ts:54](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L54)_
 
-___
+---
 
-### `Protected` _x
+### `Protected` \_x
 
-• **_x**: *number*
+• **\_x**: _number_
 
-*Inherited from [Element](game.element.md).[_x](game.element.md#protected-_x)*
+_Inherited from [Element](game.element.md).[\_x](game.element.md#protected-_x)_
 
-*Defined in [element.ts:52](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L52)*
+_Defined in [element.ts:52](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L52)_
 
-___
+---
 
-### `Protected` _y
+### `Protected` \_y
 
-• **_y**: *number*
+• **\_y**: _number_
 
-*Inherited from [Element](game.element.md).[_y](game.element.md#protected-_y)*
+_Inherited from [Element](game.element.md).[\_y](game.element.md#protected-_y)_
 
-*Defined in [element.ts:53](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L53)*
+_Defined in [element.ts:53](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L53)_
 
-___
+---
 
-###  category
+### category
 
-• **category**: *number*
+• **category**: _number_
 
-*Inherited from [Element](game.element.md).[category](game.element.md#category)*
+_Inherited from [Element](game.element.md).[category](game.element.md#category)_
 
-*Defined in [element.ts:46](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L46)*
+_Defined in [element.ts:46](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L46)_
 
-___
+---
 
-###  collidesWith
+### collidesWith
 
-• **collidesWith**: *number*
+• **collidesWith**: _number_
 
-*Inherited from [Element](game.element.md).[collidesWith](game.element.md#collideswith)*
+_Inherited from [Element](game.element.md).[collidesWith](game.element.md#collideswith)_
 
-*Defined in [element.ts:47](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L47)*
+_Defined in [element.ts:47](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L47)_
 
-___
+---
 
-###  collision_data
+### collision_data
 
-• **collision_data**: *any*
+• **collision_data**: _any_
 
-*Inherited from [Element](game.element.md).[collision_data](game.element.md#collision_data)*
+_Inherited from [Element](game.element.md).[collision_data](game.element.md#collision_data)_
 
-*Defined in [element.ts:50](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L50)*
+_Defined in [element.ts:50](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L50)_
 
-___
+---
 
-###  damage
+### damage
 
-• **damage**: *number*
+• **damage**: _number_
 
-*Defined in [bullet.ts:45](https://github.com/noobiept/game_engine/blob/625c324/source/bullet.ts#L45)*
+_Defined in [bullet.ts:45](https://github.com/noobiept/game_engine/blob/625c324/source/bullet.ts#L45)_
 
-___
+---
 
-###  element
+### element
 
-• **element**: *[Element](game.element.md)*
+• **element**: _[Element](game.element.md)_
 
-*Defined in [bullet.ts:46](https://github.com/noobiept/game_engine/blob/625c324/source/bullet.ts#L46)*
+_Defined in [bullet.ts:46](https://github.com/noobiept/game_engine/blob/625c324/source/bullet.ts#L46)_
 
-___
+---
 
-###  grid_data
+### grid_data
 
-• **grid_data**: *any*
+• **grid_data**: _any_
 
-*Inherited from [Element](game.element.md).[grid_data](game.element.md#grid_data)*
+_Inherited from [Element](game.element.md).[grid_data](game.element.md#grid_data)_
 
-*Defined in [element.ts:49](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L49)*
+_Defined in [element.ts:49](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L49)_
 
-___
+---
 
-###  movement
+### movement
 
-• **movement**: *[Movement](game.movement.md)*
+• **movement**: _[Movement](game.movement.md)_
 
-*Defined in [bullet.ts:44](https://github.com/noobiept/game_engine/blob/625c324/source/bullet.ts#L44)*
+_Defined in [bullet.ts:44](https://github.com/noobiept/game_engine/blob/625c324/source/bullet.ts#L44)_
 
-___
+---
 
-###  opacity
+### opacity
 
-• **opacity**: *number*
+• **opacity**: _number_
 
-*Inherited from [Element](game.element.md).[opacity](game.element.md#opacity)*
+_Inherited from [Element](game.element.md).[opacity](game.element.md#opacity)_
 
-*Defined in [element.ts:40](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L40)*
+_Defined in [element.ts:40](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L40)_
 
-___
+---
 
-###  scaleX
+### scaleX
 
-• **scaleX**: *number*
+• **scaleX**: _number_
 
-*Inherited from [Element](game.element.md).[scaleX](game.element.md#scalex)*
+_Inherited from [Element](game.element.md).[scaleX](game.element.md#scalex)_
 
-*Defined in [element.ts:43](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L43)*
+_Defined in [element.ts:43](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L43)_
 
-___
+---
 
-###  scaleY
+### scaleY
 
-• **scaleY**: *number*
+• **scaleY**: _number_
 
-*Inherited from [Element](game.element.md).[scaleY](game.element.md#scaley)*
+_Inherited from [Element](game.element.md).[scaleY](game.element.md#scaley)_
 
-*Defined in [element.ts:44](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L44)*
+_Defined in [element.ts:44](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L44)_
 
-___
+---
 
-###  vertices
+### vertices
 
-• **vertices**: *[Vertices](../modules/game.collisiondetection.md#vertices)*
+• **vertices**: _[Vertices](../modules/game.collisiondetection.md#vertices)_
 
-*Inherited from [Element](game.element.md).[vertices](game.element.md#vertices)*
+_Inherited from [Element](game.element.md).[vertices](game.element.md#vertices)_
 
-*Defined in [element.ts:38](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L38)*
+_Defined in [element.ts:38](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L38)_
 
-___
+---
 
-###  visible
+### visible
 
-• **visible**: *boolean*
+• **visible**: _boolean_
 
-*Inherited from [Element](game.element.md).[visible](game.element.md#visible)*
+_Inherited from [Element](game.element.md).[visible](game.element.md#visible)_
 
-*Defined in [element.ts:41](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L41)*
+_Defined in [element.ts:41](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L41)_
 
 ## Accessors
 
-###  half_height
+### half_height
 
-• **get half_height**(): *number*
+• **get half_height**(): _number_
 
-*Inherited from [Element](game.element.md).[half_height](game.element.md#half_height)*
+_Inherited from [Element](game.element.md).[half_height](game.element.md#half_height)_
 
-*Defined in [element.ts:561](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L561)*
+_Defined in [element.ts:561](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L561)_
 
-**Returns:** *number*
+**Returns:** _number_
 
-___
+---
 
-###  half_width
+### half_width
 
-• **get half_width**(): *number*
+• **get half_width**(): _number_
 
-*Inherited from [Element](game.element.md).[half_width](game.element.md#half_width)*
+_Inherited from [Element](game.element.md).[half_width](game.element.md#half_width)_
 
-*Defined in [element.ts:555](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L555)*
+_Defined in [element.ts:555](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L555)_
 
-**Returns:** *number*
+**Returns:** _number_
 
-___
+---
 
-###  height
+### height
 
-• **get height**(): *number*
+• **get height**(): _number_
 
-*Inherited from [Element](game.element.md).[height](game.element.md#height)*
+_Inherited from [Element](game.element.md).[height](game.element.md#height)_
 
-*Defined in [element.ts:549](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L549)*
+_Defined in [element.ts:549](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L549)_
 
-**Returns:** *number*
+**Returns:** _number_
 
-___
+---
 
-###  rotation
+### rotation
 
-• **get rotation**(): *number*
+• **get rotation**(): _number_
 
-*Inherited from [Element](game.element.md).[rotation](game.element.md#rotation)*
+_Inherited from [Element](game.element.md).[rotation](game.element.md#rotation)_
 
-*Defined in [element.ts:364](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L364)*
+_Defined in [element.ts:364](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L364)_
 
-**Returns:** *number*
-
-Rotation in radians.
-
-• **set rotation**(`angle`: number): *void*
-
-*Inherited from [Element](game.element.md).[rotation](game.element.md#rotation)*
-
-*Defined in [element.ts:373](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L373)*
-
-**Parameters:**
-
-Name | Type | Description |
------- | ------ | ------ |
-`angle` | number | Rotate by a certain angle (in radians).  |
-
-**Returns:** *void*
+**Returns:** _number_
 
 Rotation in radians.
 
-___
+• **set rotation**(`angle`: number): _void_
 
-###  width
+_Inherited from [Element](game.element.md).[rotation](game.element.md#rotation)_
 
-• **get width**(): *number*
-
-*Inherited from [Element](game.element.md).[width](game.element.md#width)*
-
-*Defined in [element.ts:543](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L543)*
-
-**Returns:** *number*
-
-___
-
-###  x
-
-• **get x**(): *number*
-
-*Inherited from [Element](game.element.md).[x](game.element.md#x)*
-
-*Defined in [element.ts:523](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L523)*
-
-**Returns:** *number*
-
-• **set x**(`x`: number): *void*
-
-*Inherited from [Element](game.element.md).[x](game.element.md#x)*
-
-*Defined in [element.ts:515](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L515)*
+_Defined in [element.ts:373](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L373)_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`x` | number |
+| Name    | Type   | Description                             |
+| ------- | ------ | --------------------------------------- |
+| `angle` | number | Rotate by a certain angle (in radians). |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+Rotation in radians.
 
-###  y
+---
 
-• **get y**(): *number*
+### width
 
-*Inherited from [Element](game.element.md).[y](game.element.md#y)*
+• **get width**(): _number_
 
-*Defined in [element.ts:537](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L537)*
+_Inherited from [Element](game.element.md).[width](game.element.md#width)_
 
-**Returns:** *number*
+_Defined in [element.ts:543](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L543)_
 
-• **set y**(`y`: number): *void*
+**Returns:** _number_
 
-*Inherited from [Element](game.element.md).[y](game.element.md#y)*
+---
 
-*Defined in [element.ts:529](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L529)*
+### x
+
+• **get x**(): _number_
+
+_Inherited from [Element](game.element.md).[x](game.element.md#x)_
+
+_Defined in [element.ts:523](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L523)_
+
+**Returns:** _number_
+
+• **set x**(`x`: number): _void_
+
+_Inherited from [Element](game.element.md).[x](game.element.md#x)_
+
+_Defined in [element.ts:515](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L515)_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`y` | number |
+| Name | Type   |
+| ---- | ------ |
+| `x`  | number |
 
-**Returns:** *void*
+**Returns:** _void_
+
+---
+
+### y
+
+• **get y**(): _number_
+
+_Inherited from [Element](game.element.md).[y](game.element.md#y)_
+
+_Defined in [element.ts:537](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L537)_
+
+**Returns:** _number_
+
+• **set y**(`y`: number): _void_
+
+_Inherited from [Element](game.element.md).[y](game.element.md#y)_
+
+_Defined in [element.ts:529](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L529)_
+
+**Parameters:**
+
+| Name | Type   |
+| ---- | ------ |
+| `y`  | number |
+
+**Returns:** _void_
 
 ## Methods
 
-###  _removeNow
+### \_removeNow
 
-▸ **_removeNow**(): *void*
+▸ **\_removeNow**(): _void_
 
-*Inherited from [Element](game.element.md).[_removeNow](game.element.md#_removenow)*
+_Inherited from [Element](game.element.md).[\_removeNow](game.element.md#_removenow)_
 
-*Defined in [element.ts:415](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L415)*
+_Defined in [element.ts:415](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L415)_
 
 Remove this element from either its container or from the canvas.
 Don't call this directly, use the `remove()` method instead.
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  addChild
+### addChild
 
-▸ **addChild**(`elements`: any): *void*
+▸ **addChild**(`elements`: any): _void_
 
-*Inherited from [Container](game.container.md).[addChild](game.container.md#addchild)*
+_Inherited from [Container](game.container.md).[addChild](game.container.md#addchild)_
 
-*Defined in [container.ts:58](https://github.com/noobiept/game_engine/blob/625c324/source/container.ts#L58)*
+_Defined in [container.ts:58](https://github.com/noobiept/game_engine/blob/625c324/source/container.ts#L58)_
 
     addChild( element );
     addChild( element1, element2 );
@@ -529,444 +529,444 @@ ___
 
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`elements` | any | Either `Element` or `...Element` or `Element[]`.  |
+| Name       | Type | Description                                      |
+| ---------- | ---- | ------------------------------------------------ |
+| `elements` | any  | Either `Element` or `...Element` or `Element[]`. |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  addEventListener
+### addEventListener
 
-▸ **addEventListener**(`type`: string, `listener`: function): *boolean*
+▸ **addEventListener**(`type`: string, `listener`: function): _boolean_
 
-*Inherited from [EventDispatcher](game.eventdispatcher.md).[addEventListener](game.eventdispatcher.md#addeventlistener)*
+_Inherited from [EventDispatcher](game.eventdispatcher.md).[addEventListener](game.eventdispatcher.md#addeventlistener)_
 
-*Defined in [event_dispatcher.ts:32](https://github.com/noobiept/game_engine/blob/625c324/source/event_dispatcher.ts#L32)*
+_Defined in [event_dispatcher.ts:32](https://github.com/noobiept/game_engine/blob/625c324/source/event_dispatcher.ts#L32)_
 
 'listener' will receive a 'data' argument when its called.
 What 'data' is, depends on the event type.
 
 **Parameters:**
 
-▪ **type**: *string*
+▪ **type**: _string_
 
 Type of the event.
 
-▪ **listener**: *function*
+▪ **listener**: _function_
 
 A function to be called when the event is dispatched.
 
-▸ (`data`: any): *any*
+▸ (`data`: any): _any_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`data` | any |
+| Name   | Type |
+| ------ | ---- |
+| `data` | any  |
 
-**Returns:** *boolean*
+**Returns:** _boolean_
 
 If it was successfully added.
 
-___
+---
 
-###  addToPosition
+### addToPosition
 
-▸ **addToPosition**(`x`: number, `y`: number): *void*
+▸ **addToPosition**(`x`: number, `y`: number): _void_
 
-*Inherited from [Element](game.element.md).[addToPosition](game.element.md#addtoposition)*
+_Inherited from [Element](game.element.md).[addToPosition](game.element.md#addtoposition)_
 
-*Defined in [element.ts:506](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L506)*
+_Defined in [element.ts:506](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L506)_
 
 Adds to the current position.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`x` | number |
-`y` | number |
+| Name | Type   |
+| ---- | ------ |
+| `x`  | number |
+| `y`  | number |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  calculateDimensions
+### calculateDimensions
 
-▸ **calculateDimensions**(): *void*
+▸ **calculateDimensions**(): _void_
 
-*Inherited from [Container](game.container.md).[calculateDimensions](game.container.md#calculatedimensions)*
+_Inherited from [Container](game.container.md).[calculateDimensions](game.container.md#calculatedimensions)_
 
-*Defined in [container.ts:231](https://github.com/noobiept/game_engine/blob/625c324/source/container.ts#L231)*
+_Defined in [container.ts:231](https://github.com/noobiept/game_engine/blob/625c324/source/container.ts#L231)_
 
 Calculate the width/height of the container (based on the dimensions of the children elements). Doesn't consider the rotations of the elements.
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  checkCollision
+### checkCollision
 
-▸ **checkCollision**(`other`: [Element](game.element.md)): *boolean*
+▸ **checkCollision**(`other`: [Element](game.element.md)): _boolean_
 
-*Inherited from [Element](game.element.md).[checkCollision](game.element.md#checkcollision)*
+_Inherited from [Element](game.element.md).[checkCollision](game.element.md#checkcollision)_
 
-*Defined in [element.ts:177](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L177)*
+_Defined in [element.ts:177](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L177)_
 
 Check collision between two elements.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`other` | [Element](game.element.md) |
+| Name    | Type                       |
+| ------- | -------------------------- |
+| `other` | [Element](game.element.md) |
 
-**Returns:** *boolean*
+**Returns:** _boolean_
 
-___
+---
 
-###  clone
+### clone
 
-▸ **clone**(): *[Bullet](game.bullet.md)‹›*
+▸ **clone**(): _[Bullet](game.bullet.md)‹›_
 
-*Overrides [Container](game.container.md).[clone](game.container.md#clone)*
+_Overrides [Container](game.container.md).[clone](game.container.md#clone)_
 
-*Defined in [bullet.ts:148](https://github.com/noobiept/game_engine/blob/625c324/source/bullet.ts#L148)*
+_Defined in [bullet.ts:148](https://github.com/noobiept/game_engine/blob/625c324/source/bullet.ts#L148)_
 
 Create a clone of this element.
 
-**Returns:** *[Bullet](game.bullet.md)‹›*
+**Returns:** _[Bullet](game.bullet.md)‹›_
 
-___
+---
 
-###  dispatchEvent
+### dispatchEvent
 
-▸ **dispatchEvent**(`type`: string, `data?`: any): *void*
+▸ **dispatchEvent**(`type`: string, `data?`: any): _void_
 
-*Inherited from [EventDispatcher](game.eventdispatcher.md).[dispatchEvent](game.eventdispatcher.md#dispatchevent)*
+_Inherited from [EventDispatcher](game.eventdispatcher.md).[dispatchEvent](game.eventdispatcher.md#dispatchevent)_
 
-*Defined in [event_dispatcher.ts:101](https://github.com/noobiept/game_engine/blob/625c324/source/event_dispatcher.ts#L101)*
+_Defined in [event_dispatcher.ts:101](https://github.com/noobiept/game_engine/blob/625c324/source/event_dispatcher.ts#L101)_
 
 Dispatches an event, which will trigger the listeners of that event.
 
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`type` | string | Type of the event to dispatch. |
-`data?` | any | Data to be sent to every listener.  |
+| Name    | Type   | Description                        |
+| ------- | ------ | ---------------------------------- |
+| `type`  | string | Type of the event to dispatch.     |
+| `data?` | any    | Data to be sent to every listener. |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  dispatchMouseClickEvent
+### dispatchMouseClickEvent
 
-▸ **dispatchMouseClickEvent**(`event`: MouseEvent): *void*
+▸ **dispatchMouseClickEvent**(`event`: MouseEvent): _void_
 
-*Inherited from [Element](game.element.md).[dispatchMouseClickEvent](game.element.md#dispatchmouseclickevent)*
+_Inherited from [Element](game.element.md).[dispatchMouseClickEvent](game.element.md#dispatchmouseclickevent)_
 
-*Defined in [element.ts:245](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L245)*
+_Defined in [element.ts:245](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L245)_
 
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`event` | MouseEvent | Either a mouse up, mouse down or click event.  |
+| Name    | Type       | Description                                   |
+| ------- | ---------- | --------------------------------------------- |
+| `event` | MouseEvent | Either a mouse up, mouse down or click event. |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  dispatchMouseMoveEvent
+### dispatchMouseMoveEvent
 
-▸ **dispatchMouseMoveEvent**(): *void*
+▸ **dispatchMouseMoveEvent**(): _void_
 
-*Inherited from [Element](game.element.md).[dispatchMouseMoveEvent](game.element.md#dispatchmousemoveevent)*
+_Inherited from [Element](game.element.md).[dispatchMouseMoveEvent](game.element.md#dispatchmousemoveevent)_
 
-*Defined in [element.ts:231](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L231)*
+_Defined in [element.ts:231](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L231)_
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  dispatchMouseOutEvent
+### dispatchMouseOutEvent
 
-▸ **dispatchMouseOutEvent**(): *void*
+▸ **dispatchMouseOutEvent**(): _void_
 
-*Inherited from [Element](game.element.md).[dispatchMouseOutEvent](game.element.md#dispatchmouseoutevent)*
+_Inherited from [Element](game.element.md).[dispatchMouseOutEvent](game.element.md#dispatchmouseoutevent)_
 
-*Defined in [element.ts:220](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L220)*
+_Defined in [element.ts:220](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L220)_
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  dispatchMouseOverEvent
+### dispatchMouseOverEvent
 
-▸ **dispatchMouseOverEvent**(): *void*
+▸ **dispatchMouseOverEvent**(): _void_
 
-*Inherited from [Element](game.element.md).[dispatchMouseOverEvent](game.element.md#dispatchmouseoverevent)*
+_Inherited from [Element](game.element.md).[dispatchMouseOverEvent](game.element.md#dispatchmouseoverevent)_
 
-*Defined in [element.ts:209](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L209)*
+_Defined in [element.ts:209](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L209)_
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  draw
+### draw
 
-▸ **draw**(`ctx`: CanvasRenderingContext2D): *void*
+▸ **draw**(`ctx`: CanvasRenderingContext2D): _void_
 
-*Inherited from [Container](game.container.md).[draw](game.container.md#draw)*
+_Inherited from [Container](game.container.md).[draw](game.container.md#draw)_
 
-*Overrides [Element](game.element.md).[draw](game.element.md#draw)*
+_Overrides [Element](game.element.md).[draw](game.element.md#draw)_
 
-*Defined in [container.ts:154](https://github.com/noobiept/game_engine/blob/625c324/source/container.ts#L154)*
+_Defined in [container.ts:154](https://github.com/noobiept/game_engine/blob/625c324/source/container.ts#L154)_
 
 Draw all the elements in the container.
 
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`ctx` | CanvasRenderingContext2D | The canvas rendering context.  |
+| Name  | Type                     | Description                   |
+| ----- | ------------------------ | ----------------------------- |
+| `ctx` | CanvasRenderingContext2D | The canvas rendering context. |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  drawElement
+### drawElement
 
-▸ **drawElement**(`ctx`: CanvasRenderingContext2D): *void*
+▸ **drawElement**(`ctx`: CanvasRenderingContext2D): _void_
 
-*Inherited from [Container](game.container.md).[drawElement](game.container.md#drawelement)*
+_Inherited from [Container](game.container.md).[drawElement](game.container.md#drawelement)_
 
-*Overrides [Element](game.element.md).[drawElement](game.element.md#abstract-drawelement)*
+_Overrides [Element](game.element.md).[drawElement](game.element.md#abstract-drawelement)_
 
-*Defined in [container.ts:184](https://github.com/noobiept/game_engine/blob/625c324/source/container.ts#L184)*
+_Defined in [container.ts:184](https://github.com/noobiept/game_engine/blob/625c324/source/container.ts#L184)_
 
 Normally draws the element, but in the case of the container just draw its children.
 
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`ctx` | CanvasRenderingContext2D | The canvas rendering context.  |
+| Name  | Type                     | Description                   |
+| ----- | ------------------------ | ----------------------------- |
+| `ctx` | CanvasRenderingContext2D | The canvas rendering context. |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  getAllChildren
+### getAllChildren
 
-▸ **getAllChildren**(): *[Element](game.element.md)‹›[]*
+▸ **getAllChildren**(): _[Element](game.element.md)‹›[]_
 
-*Inherited from [Container](game.container.md).[getAllChildren](game.container.md#getallchildren)*
+_Inherited from [Container](game.container.md).[getAllChildren](game.container.md#getallchildren)_
 
-*Defined in [container.ts:133](https://github.com/noobiept/game_engine/blob/625c324/source/container.ts#L133)*
+_Defined in [container.ts:133](https://github.com/noobiept/game_engine/blob/625c324/source/container.ts#L133)_
 
 Get all the children elements.
 
-**Returns:** *[Element](game.element.md)‹›[]*
+**Returns:** _[Element](game.element.md)‹›[]_
 
-___
+---
 
-###  getHeight
+### getHeight
 
-▸ **getHeight**(): *number*
+▸ **getHeight**(): _number_
 
-*Inherited from [Element](game.element.md).[getHeight](game.element.md#getheight)*
+_Inherited from [Element](game.element.md).[getHeight](game.element.md#getheight)_
 
-*Defined in [element.ts:268](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L268)*
+_Defined in [element.ts:268](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L268)_
 
-**Returns:** *number*
+**Returns:** _number_
 
 The element's height. Doesn't consider the rotation.
 
-___
+---
 
-###  getVertices
+### getVertices
 
-▸ **getVertices**(): *any[]*
+▸ **getVertices**(): _any[]_
 
-*Inherited from [Container](game.container.md).[getVertices](game.container.md#getvertices)*
+_Inherited from [Container](game.container.md).[getVertices](game.container.md#getvertices)_
 
-*Overrides [Element](game.element.md).[getVertices](game.element.md#getvertices)*
+_Overrides [Element](game.element.md).[getVertices](game.element.md#getvertices)_
 
-*Defined in [container.ts:375](https://github.com/noobiept/game_engine/blob/625c324/source/container.ts#L375)*
+_Defined in [container.ts:375](https://github.com/noobiept/game_engine/blob/625c324/source/container.ts#L375)_
 
 Get the element vertices points. Assumes its a rectangle.
 
-**Returns:** *any[]*
+**Returns:** _any[]_
 
-___
+---
 
-###  getWidth
+### getWidth
 
-▸ **getWidth**(): *number*
+▸ **getWidth**(): _number_
 
-*Inherited from [Element](game.element.md).[getWidth](game.element.md#getwidth)*
+_Inherited from [Element](game.element.md).[getWidth](game.element.md#getwidth)_
 
-*Defined in [element.ts:259](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L259)*
+_Defined in [element.ts:259](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L259)_
 
-**Returns:** *number*
+**Returns:** _number_
 
 The element's width. Doesn't consider the rotation.
 
-___
+---
 
-###  hasListeners
+### hasListeners
 
-▸ **hasListeners**(`type`: string): *boolean*
+▸ **hasListeners**(`type`: string): _boolean_
 
-*Inherited from [EventDispatcher](game.eventdispatcher.md).[hasListeners](game.eventdispatcher.md#haslisteners)*
+_Inherited from [EventDispatcher](game.eventdispatcher.md).[hasListeners](game.eventdispatcher.md#haslisteners)_
 
-*Defined in [event_dispatcher.ts:121](https://github.com/noobiept/game_engine/blob/625c324/source/event_dispatcher.ts#L121)*
+_Defined in [event_dispatcher.ts:121](https://github.com/noobiept/game_engine/blob/625c324/source/event_dispatcher.ts#L121)_
 
 Check if there are listeners to a particular event type.
 
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`type` | string | The event type to check. |
+| Name   | Type   | Description              |
+| ------ | ------ | ------------------------ |
+| `type` | string | The event type to check. |
 
-**Returns:** *boolean*
+**Returns:** _boolean_
 
 If there are listeners or not.
 
-___
+---
 
-###  intersect
+### intersect
 
-▸ **intersect**(`x`: number, `y`: number): *any[]*
+▸ **intersect**(`x`: number, `y`: number): _any[]_
 
-*Inherited from [Container](game.container.md).[intersect](game.container.md#intersect)*
+_Inherited from [Container](game.container.md).[intersect](game.container.md#intersect)_
 
-*Overrides [Element](game.element.md).[intersect](game.element.md#intersect)*
+_Overrides [Element](game.element.md).[intersect](game.element.md#intersect)_
 
-*Defined in [container.ts:193](https://github.com/noobiept/game_engine/blob/625c324/source/container.ts#L193)*
+_Defined in [container.ts:193](https://github.com/noobiept/game_engine/blob/625c324/source/container.ts#L193)_
 
 Check if the given x/y position intersects with any of this container's children. Returns all the elements it intersects.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`x` | number |
-`y` | number |
+| Name | Type   |
+| ---- | ------ |
+| `x`  | number |
+| `y`  | number |
 
-**Returns:** *any[]*
+**Returns:** _any[]_
 
-___
+---
 
-###  isRemoved
+### isRemoved
 
-▸ **isRemoved**(): *boolean*
+▸ **isRemoved**(): _boolean_
 
-*Inherited from [Element](game.element.md).[isRemoved](game.element.md#isremoved)*
+_Inherited from [Element](game.element.md).[isRemoved](game.element.md#isremoved)_
 
-*Defined in [element.ts:437](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L437)*
+_Defined in [element.ts:437](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L437)_
 
 Tells if this element has already been removed or not.
 
-**Returns:** *boolean*
+**Returns:** _boolean_
 
-___
+---
 
-###  logic
+### logic
 
-▸ **logic**(`deltaTime`: number): *void*
+▸ **logic**(`deltaTime`: number): _void_
 
-*Overrides [Container](game.container.md).[logic](game.container.md#logic)*
+_Overrides [Container](game.container.md).[logic](game.container.md#logic)_
 
-*Defined in [bullet.ts:122](https://github.com/noobiept/game_engine/blob/625c324/source/bullet.ts#L122)*
-
-**Parameters:**
-
-Name | Type | Description |
------- | ------ | ------ |
-`deltaTime` | number | Time elapsed since the last update.  |
-
-**Returns:** *void*
-
-___
-
-###  mouseClickEvents
-
-▸ **mouseClickEvents**(`x`: any, `y`: any, `event`: any): *boolean*
-
-*Inherited from [Container](game.container.md).[mouseClickEvents](game.container.md#mouseclickevents)*
-
-*Overrides [Element](game.element.md).[mouseClickEvents](game.element.md#mouseclickevents)*
-
-*Defined in [container.ts:212](https://github.com/noobiept/game_engine/blob/625c324/source/container.ts#L212)*
+_Defined in [bullet.ts:122](https://github.com/noobiept/game_engine/blob/625c324/source/bullet.ts#L122)_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`x` | any |
-`y` | any |
-`event` | any |
+| Name        | Type   | Description                         |
+| ----------- | ------ | ----------------------------------- |
+| `deltaTime` | number | Time elapsed since the last update. |
 
-**Returns:** *boolean*
+**Returns:** _void_
 
-___
+---
 
-###  remove
+### mouseClickEvents
 
-▸ **remove**(): *void*
+▸ **mouseClickEvents**(`x`: any, `y`: any, `event`: any): _boolean_
 
-*Overrides [Container](game.container.md).[remove](game.container.md#remove)*
+_Inherited from [Container](game.container.md).[mouseClickEvents](game.container.md#mouseclickevents)_
 
-*Defined in [bullet.ts:132](https://github.com/noobiept/game_engine/blob/625c324/source/bullet.ts#L132)*
+_Overrides [Element](game.element.md).[mouseClickEvents](game.element.md#mouseclickevents)_
+
+_Defined in [container.ts:212](https://github.com/noobiept/game_engine/blob/625c324/source/container.ts#L212)_
+
+**Parameters:**
+
+| Name    | Type |
+| ------- | ---- |
+| `x`     | any  |
+| `y`     | any  |
+| `event` | any  |
+
+**Returns:** _boolean_
+
+---
+
+### remove
+
+▸ **remove**(): _void_
+
+_Overrides [Container](game.container.md).[remove](game.container.md#remove)_
+
+_Defined in [bullet.ts:132](https://github.com/noobiept/game_engine/blob/625c324/source/bullet.ts#L132)_
 
 Clear the target reference, before removing.
 Dispatch the `remove` event as well.
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  removeAllChildren
+### removeAllChildren
 
-▸ **removeAllChildren**(): *void*
+▸ **removeAllChildren**(): _void_
 
-*Inherited from [Container](game.container.md).[removeAllChildren](game.container.md#removeallchildren)*
+_Inherited from [Container](game.container.md).[removeAllChildren](game.container.md#removeallchildren)_
 
-*Defined in [container.ts:118](https://github.com/noobiept/game_engine/blob/625c324/source/container.ts#L118)*
+_Defined in [container.ts:118](https://github.com/noobiept/game_engine/blob/625c324/source/container.ts#L118)_
 
 Remove all of this container's children.
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  removeAllEventListeners
+### removeAllEventListeners
 
-▸ **removeAllEventListeners**(): *void*
+▸ **removeAllEventListeners**(): _void_
 
-*Inherited from [EventDispatcher](game.eventdispatcher.md).[removeAllEventListeners](game.eventdispatcher.md#removealleventlisteners)*
+_Inherited from [EventDispatcher](game.eventdispatcher.md).[removeAllEventListeners](game.eventdispatcher.md#removealleventlisteners)_
 
-*Defined in [event_dispatcher.ts:89](https://github.com/noobiept/game_engine/blob/625c324/source/event_dispatcher.ts#L89)*
+_Defined in [event_dispatcher.ts:89](https://github.com/noobiept/game_engine/blob/625c324/source/event_dispatcher.ts#L89)_
 
 Remove all the event listeners.
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  removeChild
+### removeChild
 
-▸ **removeChild**(`args`: any): *void*
+▸ **removeChild**(`args`: any): _void_
 
-*Inherited from [Container](game.container.md).[removeChild](game.container.md#removechild)*
+_Inherited from [Container](game.container.md).[removeChild](game.container.md#removechild)_
 
-*Defined in [container.ts:89](https://github.com/noobiept/game_engine/blob/625c324/source/container.ts#L89)*
+_Defined in [container.ts:89](https://github.com/noobiept/game_engine/blob/625c324/source/container.ts#L89)_
 
     removeChild( element );
     removeChild( element1, element2 );
@@ -974,226 +974,226 @@ ___
 
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`args` | any | Either `Element` or `...Element` or `Element[]`.  |
+| Name   | Type | Description                                      |
+| ------ | ---- | ------------------------------------------------ |
+| `args` | any  | Either `Element` or `...Element` or `Element[]`. |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  removeEventListener
+### removeEventListener
 
-▸ **removeEventListener**(`type`: string, `listener?`: function): *boolean*
+▸ **removeEventListener**(`type`: string, `listener?`: function): _boolean_
 
-*Inherited from [EventDispatcher](game.eventdispatcher.md).[removeEventListener](game.eventdispatcher.md#removeeventlistener)*
+_Inherited from [EventDispatcher](game.eventdispatcher.md).[removeEventListener](game.eventdispatcher.md#removeeventlistener)_
 
-*Defined in [event_dispatcher.ts:60](https://github.com/noobiept/game_engine/blob/625c324/source/event_dispatcher.ts#L60)*
+_Defined in [event_dispatcher.ts:60](https://github.com/noobiept/game_engine/blob/625c324/source/event_dispatcher.ts#L60)_
 
 Removes a specific listener of an event type, or all the listeners for that type (if 'listener' is not provided).
 
 **Parameters:**
 
-▪ **type**: *string*
+▪ **type**: _string_
 
 The event type.
 
-▪`Optional`  **listener**: *function*
+▪`Optional` **listener**: _function_
 
 The listener function to remove. If not provided then remove all the functions associated with the event type.
 
-▸ (`data`: any): *any*
+▸ (`data`: any): _any_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`data` | any |
+| Name   | Type |
+| ------ | ---- |
+| `data` | any  |
 
-**Returns:** *boolean*
+**Returns:** _boolean_
 
 If it was successfully removed.
 
-___
+---
 
-###  rotate
+### rotate
 
-▸ **rotate**(`angle`: number, `degrees?`: boolean): *void*
+▸ **rotate**(`angle`: number, `degrees?`: boolean): _void_
 
-*Inherited from [Element](game.element.md).[rotate](game.element.md#rotate)*
+_Inherited from [Element](game.element.md).[rotate](game.element.md#rotate)_
 
-*Defined in [element.ts:383](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L383)*
+_Defined in [element.ts:383](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L383)_
 
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`angle` | number | Angle of rotation. |
-`degrees?` | boolean | Whether the angle provided is in degrees or radians.  |
+| Name       | Type    | Description                                          |
+| ---------- | ------- | ---------------------------------------------------- |
+| `angle`    | number  | Angle of rotation.                                   |
+| `degrees?` | boolean | Whether the angle provided is in degrees or radians. |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  setAngle
+### setAngle
 
-▸ **setAngle**(`angle`: number): *void*
+▸ **setAngle**(`angle`: number): _void_
 
-*Defined in [bullet.ts:92](https://github.com/noobiept/game_engine/blob/625c324/source/bullet.ts#L92)*
+_Defined in [bullet.ts:92](https://github.com/noobiept/game_engine/blob/625c324/source/bullet.ts#L92)_
 
 The bullet will travel in a set direction, based on the angle given.
 
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`angle` | number | In radians.  |
+| Name    | Type   | Description |
+| ------- | ------ | ----------- |
+| `angle` | number | In radians. |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  setDimensions
+### setDimensions
 
-▸ **setDimensions**(`width`: number, `height`: number): *void*
+▸ **setDimensions**(`width`: number, `height`: number): _void_
 
-*Inherited from [Element](game.element.md).[setDimensions](game.element.md#setdimensions)*
+_Inherited from [Element](game.element.md).[setDimensions](game.element.md#setdimensions)_
 
-*Defined in [element.ts:297](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L297)*
+_Defined in [element.ts:297](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L297)_
 
 Set the width and height at the same time.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`width` | number |
-`height` | number |
+| Name     | Type   |
+| -------- | ------ |
+| `width`  | number |
+| `height` | number |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  setHeight
+### setHeight
 
-▸ **setHeight**(`height`: number): *void*
+▸ **setHeight**(`height`: number): _void_
 
-*Inherited from [Element](game.element.md).[setHeight](game.element.md#setheight)*
+_Inherited from [Element](game.element.md).[setHeight](game.element.md#setheight)_
 
-*Defined in [element.ts:287](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L287)*
+_Defined in [element.ts:287](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L287)_
 
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`height` | number | New height.  |
+| Name     | Type   | Description |
+| -------- | ------ | ----------- |
+| `height` | number | New height. |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  setPosition
+### setPosition
 
-▸ **setPosition**(`x`: number, `y`: number): *void*
+▸ **setPosition**(`x`: number, `y`: number): _void_
 
-*Inherited from [Element](game.element.md).[setPosition](game.element.md#setposition)*
+_Inherited from [Element](game.element.md).[setPosition](game.element.md#setposition)_
 
-*Defined in [element.ts:494](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L494)*
+_Defined in [element.ts:494](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L494)_
 
 Move the unit to the given x/y position.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`x` | number |
-`y` | number |
+| Name | Type   |
+| ---- | ------ |
+| `x`  | number |
+| `y`  | number |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  setTarget
+### setTarget
 
-▸ **setTarget**(`target`: [Element](game.element.md)): *void*
+▸ **setTarget**(`target`: [Element](game.element.md)): _void_
 
-*Defined in [bullet.ts:108](https://github.com/noobiept/game_engine/blob/625c324/source/bullet.ts#L108)*
+_Defined in [bullet.ts:108](https://github.com/noobiept/game_engine/blob/625c324/source/bullet.ts#L108)_
 
 The bullet will follow the target, until it hits.
 
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`target` | [Element](game.element.md) | The element to go to.  |
+| Name     | Type                       | Description           |
+| -------- | -------------------------- | --------------------- |
+| `target` | [Element](game.element.md) | The element to go to. |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  setWidth
+### setWidth
 
-▸ **setWidth**(`width`: number): *void*
+▸ **setWidth**(`width`: number): _void_
 
-*Inherited from [Element](game.element.md).[setWidth](game.element.md#setwidth)*
+_Inherited from [Element](game.element.md).[setWidth](game.element.md#setwidth)_
 
-*Defined in [element.ts:277](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L277)*
+_Defined in [element.ts:277](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L277)_
 
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`width` | number | New width.  |
+| Name    | Type   | Description |
+| ------- | ------ | ----------- |
+| `width` | number | New width.  |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  toAxisAligned
+### toAxisAligned
 
-▸ **toAxisAligned**(): *object*
+▸ **toAxisAligned**(): _object_
 
-*Inherited from [Container](game.container.md).[toAxisAligned](game.container.md#toaxisaligned)*
+_Inherited from [Container](game.container.md).[toAxisAligned](game.container.md#toaxisaligned)_
 
-*Overrides [Element](game.element.md).[toAxisAligned](game.element.md#toaxisaligned)*
+_Overrides [Element](game.element.md).[toAxisAligned](game.element.md#toaxisaligned)_
 
-*Defined in [container.ts:282](https://github.com/noobiept/game_engine/blob/625c324/source/container.ts#L282)*
+_Defined in [container.ts:282](https://github.com/noobiept/game_engine/blob/625c324/source/container.ts#L282)_
 
 Calculates an axis-aligned rectangle from the rotated shape.
 
-**Returns:** *object*
+**Returns:** _object_
 
-* **maxX**: *number* =  maxX
+- **maxX**: _number_ = maxX
 
-* **maxY**: *number* =  maxY
+- **maxY**: _number_ = maxY
 
-* **minX**: *number* =  minX
+- **minX**: _number_ = minX
 
-* **minY**: *number* =  minY
+- **minY**: _number_ = minY
 
-___
+---
 
-###  updateVertices
+### updateVertices
 
-▸ **updateVertices**(`x`: any, `y`: any, `scaleX`: any, `scaleY`: any, `rotation`: any): *void*
+▸ **updateVertices**(`x`: any, `y`: any, `scaleX`: any, `scaleY`: any, `rotation`: any): _void_
 
-*Inherited from [Container](game.container.md).[updateVertices](game.container.md#updatevertices)*
+_Inherited from [Container](game.container.md).[updateVertices](game.container.md#updatevertices)_
 
-*Overrides [Element](game.element.md).[updateVertices](game.element.md#updatevertices)*
+_Overrides [Element](game.element.md).[updateVertices](game.element.md#updatevertices)_
 
-*Defined in [container.ts:356](https://github.com/noobiept/game_engine/blob/625c324/source/container.ts#L356)*
+_Defined in [container.ts:356](https://github.com/noobiept/game_engine/blob/625c324/source/container.ts#L356)_
 
 Get the global vertices points of this element.
 The arguments are the compound values from the parent containers.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`x` | any |
-`y` | any |
-`scaleX` | any |
-`scaleY` | any |
-`rotation` | any |
+| Name       | Type |
+| ---------- | ---- |
+| `x`        | any  |
+| `y`        | any  |
+| `scaleX`   | any  |
+| `scaleY`   | any  |
+| `rotation` | any  |
 
-**Returns:** *void*
+**Returns:** _void_

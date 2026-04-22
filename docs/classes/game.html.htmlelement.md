@@ -6,140 +6,140 @@ Generic html element, serves as base for the rest of the classes.
 
 ## Hierarchy
 
-* **HtmlElement**
+- **HtmlElement**
 
-  ↳ [HtmlContainer](game.html.htmlcontainer.md)
+    ↳ [HtmlContainer](game.html.htmlcontainer.md)
 
-  ↳ [Value](game.html.value.md)
+    ↳ [Value](game.html.value.md)
 
-  ↳ [MultipleOptions](game.html.multipleoptions.md)
+    ↳ [MultipleOptions](game.html.multipleoptions.md)
 
-  ↳ [Range](game.html.range.md)
+    ↳ [Range](game.html.range.md)
 
-  ↳ [Text](game.html.text.md)
+    ↳ [Text](game.html.text.md)
 
 ## Index
 
 ### Constructors
 
-* [constructor](game.html.htmlelement.md#constructor)
+- [constructor](game.html.htmlelement.md#constructor)
 
 ### Properties
 
-* [_is_active](game.html.htmlelement.md#protected-_is_active)
-* [_pre_text](game.html.htmlelement.md#protected-_pre_text)
-* [container](game.html.htmlelement.md#container)
+- [\_is_active](game.html.htmlelement.md#protected-_is_active)
+- [\_pre_text](game.html.htmlelement.md#protected-_pre_text)
+- [container](game.html.htmlelement.md#container)
 
 ### Methods
 
-* [addEvents](game.html.htmlelement.md#addevents)
-* [clear](game.html.htmlelement.md#clear)
-* [isActive](game.html.htmlelement.md#isactive)
-* [removeEvents](game.html.htmlelement.md#removeevents)
-* [setActive](game.html.htmlelement.md#setactive)
+- [addEvents](game.html.htmlelement.md#addevents)
+- [clear](game.html.htmlelement.md#clear)
+- [isActive](game.html.htmlelement.md#isactive)
+- [removeEvents](game.html.htmlelement.md#removeevents)
+- [setActive](game.html.htmlelement.md#setactive)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new HtmlElement**(`args?`: [HtmlElementArgs](../interfaces/game.html.htmlelementargs.md)): *[HtmlElement](game.html.htmlelement.md)*
+\+ **new HtmlElement**(`args?`: [HtmlElementArgs](../interfaces/game.html.htmlelementargs.md)): _[HtmlElement](game.html.htmlelement.md)_
 
-*Defined in [html.ts:39](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L39)*
+_Defined in [html.ts:39](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L39)_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`args?` | [HtmlElementArgs](../interfaces/game.html.htmlelementargs.md) |
+| Name    | Type                                                          |
+| ------- | ------------------------------------------------------------- |
+| `args?` | [HtmlElementArgs](../interfaces/game.html.htmlelementargs.md) |
 
-**Returns:** *[HtmlElement](game.html.htmlelement.md)*
+**Returns:** _[HtmlElement](game.html.htmlelement.md)_
 
 ## Properties
 
-### `Protected` _is_active
+### `Protected` \_is_active
 
-• **_is_active**: *boolean*
+• **\_is_active**: _boolean_
 
-*Defined in [html.ts:38](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L38)*
+_Defined in [html.ts:38](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L38)_
 
-___
+---
 
-### `Protected` _pre_text
+### `Protected` \_pre_text
 
-• **_pre_text**: *HTMLElement*
+• **\_pre_text**: _HTMLElement_
 
-*Defined in [html.ts:39](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L39)*
+_Defined in [html.ts:39](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L39)_
 
-___
+---
 
-###  container
+### container
 
-• **container**: *HTMLElement*
+• **container**: _HTMLElement_
 
-*Defined in [html.ts:37](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L37)*
+_Defined in [html.ts:37](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L37)_
 
 ## Methods
 
-###  addEvents
+### addEvents
 
-▸ **addEvents**(): *void*
+▸ **addEvents**(): _void_
 
-*Defined in [html.ts:136](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L136)*
+_Defined in [html.ts:136](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L136)_
 
 Activates the element's event handlers.
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  clear
+### clear
 
-▸ **clear**(): *void*
+▸ **clear**(): _void_
 
-*Defined in [html.ts:154](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L154)*
+_Defined in [html.ts:154](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L154)_
 
 Calls this to remove the element.
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  isActive
+### isActive
 
-▸ **isActive**(): *boolean*
+▸ **isActive**(): _boolean_
 
-*Defined in [html.ts:127](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L127)*
+_Defined in [html.ts:127](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L127)_
 
 Check if the element is active or not currently.
 
-**Returns:** *boolean*
+**Returns:** _boolean_
 
-___
+---
 
-###  removeEvents
+### removeEvents
 
-▸ **removeEvents**(): *void*
+▸ **removeEvents**(): _void_
 
-*Defined in [html.ts:145](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L145)*
+_Defined in [html.ts:145](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L145)_
 
 Deactivate the element's event handlers.
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  setActive
+### setActive
 
-▸ **setActive**(`yesNo`: boolean): *void*
+▸ **setActive**(`yesNo`: boolean): _void_
 
-*Defined in [html.ts:100](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L100)*
+_Defined in [html.ts:100](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L100)_
 
 When the element is inactive, its events are disabled, and a `.Game-inactive` css class is applied.
 
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`yesNo` | boolean | Whether to set it active or not.  |
+| Name    | Type    | Description                      |
+| ------- | ------- | -------------------------------- |
+| `yesNo` | boolean | Whether to set it active or not. |
 
-**Returns:** *void*
+**Returns:** _void_

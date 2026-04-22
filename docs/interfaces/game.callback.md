@@ -4,58 +4,58 @@
 
 ## Hierarchy
 
-* **Callback**
+- **Callback**
 
 ## Index
 
 ### Properties
 
-* [callback](game.callback.md#callback)
-* [count](game.callback.md#count)
-* [delay](game.callback.md#delay)
-* [isInterval](game.callback.md#isinterval)
-* [removed](game.callback.md#removed)
+- [callback](game.callback.md#callback)
+- [count](game.callback.md#count)
+- [delay](game.callback.md#delay)
+- [isInterval](game.callback.md#isinterval)
+- [removed](game.callback.md#removed)
 
 ## Properties
 
-###  callback
+### callback
 
-• **callback**: *function*
+• **callback**: _function_
 
-*Defined in [game.ts:31](https://github.com/noobiept/game_engine/blob/625c324/source/game.ts#L31)*
+_Defined in [game.ts:31](https://github.com/noobiept/game_engine/blob/625c324/source/game.ts#L31)_
 
 #### Type declaration:
 
-▸ (): *any*
+▸ (): _any_
 
-___
+---
 
-###  count
+### count
 
-• **count**: *number*
+• **count**: _number_
 
-*Defined in [game.ts:33](https://github.com/noobiept/game_engine/blob/625c324/source/game.ts#L33)*
+_Defined in [game.ts:33](https://github.com/noobiept/game_engine/blob/625c324/source/game.ts#L33)_
 
-___
+---
 
-###  delay
+### delay
 
-• **delay**: *number*
+• **delay**: _number_
 
-*Defined in [game.ts:32](https://github.com/noobiept/game_engine/blob/625c324/source/game.ts#L32)*
+_Defined in [game.ts:32](https://github.com/noobiept/game_engine/blob/625c324/source/game.ts#L32)_
 
-___
+---
 
-###  isInterval
+### isInterval
 
-• **isInterval**: *boolean*
+• **isInterval**: _boolean_
 
-*Defined in [game.ts:34](https://github.com/noobiept/game_engine/blob/625c324/source/game.ts#L34)*
+_Defined in [game.ts:34](https://github.com/noobiept/game_engine/blob/625c324/source/game.ts#L34)_
 
-___
+---
 
-###  removed
+### removed
 
-• **removed**: *boolean*
+• **removed**: _boolean_
 
-*Defined in [game.ts:35](https://github.com/noobiept/game_engine/blob/625c324/source/game.ts#L35)*
+_Defined in [game.ts:35](https://github.com/noobiept/game_engine/blob/625c324/source/game.ts#L35)_

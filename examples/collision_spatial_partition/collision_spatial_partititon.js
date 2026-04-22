@@ -1,36 +1,31 @@
 var CATEGORIES = {
     blue: 1,
-    red: 2
+    red: 2,
 };
 
+window.onload = function () {
+    var width = 400;
+    var height = 400;
 
-window.onload = function()
-{
-var width = 400;
-var height = 400;
-
-var collision = new Game.CollisionDetection.SpatialPartition({
+    var collision = new Game.CollisionDetection.SpatialPartition({
         canvasWidth: width,
         canvasHeight: height,
-        partitions: 4
+        partitions: 4,
     });
 
-Game.init( document.body, width, height, collision );
+    Game.init(document.body, width, height, collision);
 
+    var blue = new Blue(10, 50);
+    Game.addElement(blue);
 
-var blue = new Blue( 10, 50 );
-Game.addElement( blue );
+    blue.addEventListener("collision", function (data) {
+        var red = data.collidedWith;
+        red.nextColor();
 
-blue.addEventListener( 'collision', function( data )
-    {
-    var red = data.collidedWith;
-    red.nextColor();
-
-    console.log( 'Collision!' );
+        console.log("Collision!");
     });
 
-
-blue.movement.moveLoop([
+    blue.movement.moveLoop([
         { x: 50, y: 50 },
         { x: 350, y: 50 },
         { x: 350, y: 150 },
@@ -38,11 +33,10 @@ blue.movement.moveLoop([
         { x: 50, y: 250 },
         { x: 350, y: 250 },
         { x: 350, y: 350 },
-        { x: 50, y: 350 }
+        { x: 50, y: 350 },
     ]);
 
-
-var positions = [
+    var positions = [
         { x: 100, y: 50 },
         { x: 200, y: 50 },
         { x: 300, y: 50 },
@@ -54,80 +48,69 @@ var positions = [
         { x: 300, y: 250 },
         { x: 100, y: 350 },
         { x: 200, y: 350 },
-        { x: 300, y: 350 }
+        { x: 300, y: 350 },
     ];
 
-for (var a = 0 ; a < positions.length ; a++)
-    {
-    var position = positions[ a ];
-    var red = new Red( position.x, position.y );
+    for (var a = 0; a < positions.length; a++) {
+        var position = positions[a];
+        var red = new Red(position.x, position.y);
 
-    Game.addElement( red );
+        Game.addElement(red);
     }
 };
 
-
-class Blue extends Game.Rectangle
-{
-constructor( x, y )
-    {
-    super({
+class Blue extends Game.Rectangle {
+    constructor(x, y) {
+        super({
             x: x,
             y: y,
             width: 10,
             height: 10,
-            color: 'blue',
+            color: "blue",
             category: CATEGORIES.blue,
-            collidesWith: CATEGORIES.red
+            collidesWith: CATEGORIES.red,
         });
 
-    this._has_logic = true;
-    this.movement = new Game.Movement({
+        this._has_logic = true;
+        this.movement = new Game.Movement({
             element: this,
-            movementSpeed: 100
+            movementSpeed: 100,
         });
     }
 
-
-logic( deltaTime )
-    {
-    this.movement.logic( deltaTime );
+    logic(deltaTime) {
+        this.movement.logic(deltaTime);
     }
 }
 
+class Red extends Game.Rectangle {
+    constructor(x, y) {
+        var colorPosition = 0;
 
-class Red extends Game.Rectangle
-{
-constructor( x, y )
-    {
-    var colorPosition = 0;
-
-    super({
+        super({
             x: x,
             y: y,
             width: 20,
             height: 20,
-            color: Red.COLORS[ colorPosition ],
-            category: CATEGORIES.red
+            color: Red.COLORS[colorPosition],
+            category: CATEGORIES.red,
         });
 
-    this.color_position = colorPosition;
+        this.color_position = colorPosition;
     }
 
-/**
- * Change to a different shade of red.
- */
-nextColor()
-    {
-    this.color_position++;
+    /**
+     * Change to a different shade of red.
+     */
+    nextColor() {
+        this.color_position++;
 
-if ( this.color_position >= Red.COLORS.length )
-    {
-    this.color_position = 0;
-    }
+        if (this.color_position >= Red.COLORS.length) {
+            this.color_position = 0;
+        }
 
-    this.color = Red.COLORS[ this.color_position ];
+        this.color = Red.COLORS[this.color_position];
     }
 }
 
-Red.COLORS = [ 'red', 'maroon', 'brown', 'darkred' ];
+Red.COLORS = ["red", "maroon", "brown", "darkred"];

@@ -4,27 +4,27 @@
 
 ## Hierarchy
 
-* **MovementArgs**
+- **MovementArgs**
 
 ## Index
 
 ### Properties
 
-* [element](game.movementargs.md#element)
-* [movementSpeed](game.movementargs.md#movementspeed)
+- [element](game.movementargs.md#element)
+- [movementSpeed](game.movementargs.md#movementspeed)
 
 ## Properties
 
-###  element
+### element
 
-• **element**: *[Element](../classes/game.element.md)*
+• **element**: _[Element](../classes/game.element.md)_
 
-*Defined in [movement.ts:7](https://github.com/noobiept/game_engine/blob/625c324/source/movement.ts#L7)*
+_Defined in [movement.ts:7](https://github.com/noobiept/game_engine/blob/625c324/source/movement.ts#L7)_
 
-___
+---
 
-###  movementSpeed
+### movementSpeed
 
-• **movementSpeed**: *number*
+• **movementSpeed**: _number_
 
-*Defined in [movement.ts:8](https://github.com/noobiept/game_engine/blob/625c324/source/movement.ts#L8)*
+_Defined in [movement.ts:8](https://github.com/noobiept/game_engine/blob/625c324/source/movement.ts#L8)_

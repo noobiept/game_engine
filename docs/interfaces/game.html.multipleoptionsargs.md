@@ -4,74 +4,74 @@
 
 ## Hierarchy
 
-* [HtmlElementArgs](game.html.htmlelementargs.md)
+- [HtmlElementArgs](game.html.htmlelementargs.md)
 
-  ↳ **MultipleOptionsArgs**
+    ↳ **MultipleOptionsArgs**
 
 ## Index
 
 ### Properties
 
-* [callback](game.html.multipleoptionsargs.md#optional-callback)
-* [cssClass](game.html.multipleoptionsargs.md#optional-cssclass)
-* [cssId](game.html.multipleoptionsargs.md#optional-cssid)
-* [options](game.html.multipleoptionsargs.md#options)
-* [preText](game.html.multipleoptionsargs.md#optional-pretext)
+- [callback](game.html.multipleoptionsargs.md#optional-callback)
+- [cssClass](game.html.multipleoptionsargs.md#optional-cssclass)
+- [cssId](game.html.multipleoptionsargs.md#optional-cssid)
+- [options](game.html.multipleoptionsargs.md#options)
+- [preText](game.html.multipleoptionsargs.md#optional-pretext)
 
 ## Properties
 
 ### `Optional` callback
 
-• **callback**? : *function*
+• **callback**? : _function_
 
-*Defined in [html.ts:551](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L551)*
+_Defined in [html.ts:551](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L551)_
 
 #### Type declaration:
 
-▸ (`button`: [MultipleOptions](../classes/game.html.multipleoptions.md), `position`: number, `htmlElement`: HTMLElement): *any*
+▸ (`button`: [MultipleOptions](../classes/game.html.multipleoptions.md), `position`: number, `htmlElement`: HTMLElement): _any_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`button` | [MultipleOptions](../classes/game.html.multipleoptions.md) |
-`position` | number |
-`htmlElement` | HTMLElement |
+| Name          | Type                                                       |
+| ------------- | ---------------------------------------------------------- |
+| `button`      | [MultipleOptions](../classes/game.html.multipleoptions.md) |
+| `position`    | number                                                     |
+| `htmlElement` | HTMLElement                                                |
 
-___
+---
 
 ### `Optional` cssClass
 
-• **cssClass**? : *string | string[]*
+• **cssClass**? : _string | string[]_
 
-*Inherited from [HtmlElementArgs](game.html.htmlelementargs.md).[cssClass](game.html.htmlelementargs.md#optional-cssclass)*
+_Inherited from [HtmlElementArgs](game.html.htmlelementargs.md).[cssClass](game.html.htmlelementargs.md#optional-cssclass)_
 
-*Defined in [html.ts:28](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L28)*
+_Defined in [html.ts:28](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L28)_
 
-___
+---
 
 ### `Optional` cssId
 
-• **cssId**? : *string*
+• **cssId**? : _string_
 
-*Inherited from [HtmlElementArgs](game.html.htmlelementargs.md).[cssId](game.html.htmlelementargs.md#optional-cssid)*
+_Inherited from [HtmlElementArgs](game.html.htmlelementargs.md).[cssId](game.html.htmlelementargs.md#optional-cssid)_
 
-*Defined in [html.ts:27](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L27)*
+_Defined in [html.ts:27](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L27)_
 
-___
+---
 
-###  options
+### options
 
-• **options**: *string[]*
+• **options**: _string[]_
 
-*Defined in [html.ts:550](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L550)*
+_Defined in [html.ts:550](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L550)_
 
-___
+---
 
 ### `Optional` preText
 
-• **preText**? : *string*
+• **preText**? : _string_
 
-*Inherited from [HtmlElementArgs](game.html.htmlelementargs.md).[preText](game.html.htmlelementargs.md#optional-pretext)*
+_Inherited from [HtmlElementArgs](game.html.htmlelementargs.md).[preText](game.html.htmlelementargs.md#optional-pretext)_
 
-*Defined in [html.ts:29](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L29)*
+_Defined in [html.ts:29](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L29)_

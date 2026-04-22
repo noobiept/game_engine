@@ -4,73 +4,73 @@
 
 ## Hierarchy
 
-  ↳ [ElementArgs](game.elementargs.md)
+↳ [ElementArgs](game.elementargs.md)
 
-  ↳ **CircleArgs**
+↳ **CircleArgs**
 
 ## Index
 
 ### Properties
 
-* [category](game.circleargs.md#optional-category)
-* [collidesWith](game.circleargs.md#optional-collideswith)
-* [color](game.circleargs.md#color)
-* [radius](game.circleargs.md#radius)
-* [x](game.circleargs.md#optional-x)
-* [y](game.circleargs.md#optional-y)
+- [category](game.circleargs.md#optional-category)
+- [collidesWith](game.circleargs.md#optional-collideswith)
+- [color](game.circleargs.md#color)
+- [radius](game.circleargs.md#radius)
+- [x](game.circleargs.md#optional-x)
+- [y](game.circleargs.md#optional-y)
 
 ## Properties
 
 ### `Optional` category
 
-• **category**? : *number*
+• **category**? : _number_
 
-*Inherited from [ElementArgs](game.elementargs.md).[category](game.elementargs.md#optional-category)*
+_Inherited from [ElementArgs](game.elementargs.md).[category](game.elementargs.md#optional-category)_
 
-*Defined in [element.ts:15](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L15)*
+_Defined in [element.ts:15](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L15)_
 
-___
+---
 
 ### `Optional` collidesWith
 
-• **collidesWith**? : *number*
+• **collidesWith**? : _number_
 
-*Inherited from [ElementArgs](game.elementargs.md).[collidesWith](game.elementargs.md#optional-collideswith)*
+_Inherited from [ElementArgs](game.elementargs.md).[collidesWith](game.elementargs.md#optional-collideswith)_
 
-*Defined in [element.ts:19](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L19)*
+_Defined in [element.ts:19](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L19)_
 
-___
+---
 
-###  color
+### color
 
-• **color**: *string*
+• **color**: _string_
 
-*Defined in [circle.ts:8](https://github.com/noobiept/game_engine/blob/625c324/source/circle.ts#L8)*
+_Defined in [circle.ts:8](https://github.com/noobiept/game_engine/blob/625c324/source/circle.ts#L8)_
 
-___
+---
 
-###  radius
+### radius
 
-• **radius**: *number*
+• **radius**: _number_
 
-*Defined in [circle.ts:7](https://github.com/noobiept/game_engine/blob/625c324/source/circle.ts#L7)*
+_Defined in [circle.ts:7](https://github.com/noobiept/game_engine/blob/625c324/source/circle.ts#L7)_
 
-___
+---
 
 ### `Optional` x
 
-• **x**? : *number*
+• **x**? : _number_
 
-*Inherited from [ElementArgs](game.elementargs.md).[x](game.elementargs.md#optional-x)*
+_Inherited from [ElementArgs](game.elementargs.md).[x](game.elementargs.md#optional-x)_
 
-*Defined in [element.ts:10](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L10)*
+_Defined in [element.ts:10](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L10)_
 
-___
+---
 
 ### `Optional` y
 
-• **y**? : *number*
+• **y**? : _number_
 
-*Inherited from [ElementArgs](game.elementargs.md).[y](game.elementargs.md#optional-y)*
+_Inherited from [ElementArgs](game.elementargs.md).[y](game.elementargs.md#optional-y)_
 
-*Defined in [element.ts:11](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L11)*
+_Defined in [element.ts:11](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L11)_

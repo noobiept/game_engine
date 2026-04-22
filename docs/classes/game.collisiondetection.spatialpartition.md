@@ -21,175 +21,175 @@ Examples -- `collision_spatial_partition`
 
 ## Hierarchy
 
-* **SpatialPartition**
+- **SpatialPartition**
 
 ## Implements
 
-* [CollisionDetectionAlgorithm](../interfaces/game.collisiondetectionalgorithm.md)
+- [CollisionDetectionAlgorithm](../interfaces/game.collisiondetectionalgorithm.md)
 
 ## Index
 
 ### Constructors
 
-* [constructor](game.collisiondetection.spatialpartition.md#constructor)
+- [constructor](game.collisiondetection.spatialpartition.md#constructor)
 
 ### Properties
 
-* [_grid](game.collisiondetection.spatialpartition.md#_grid)
-* [_grid_size](game.collisiondetection.spatialpartition.md#_grid_size)
-* [_partition_height](game.collisiondetection.spatialpartition.md#_partition_height)
-* [_partition_width](game.collisiondetection.spatialpartition.md#_partition_width)
+- [\_grid](game.collisiondetection.spatialpartition.md#_grid)
+- [\_grid_size](game.collisiondetection.spatialpartition.md#_grid_size)
+- [\_partition_height](game.collisiondetection.spatialpartition.md#_partition_height)
+- [\_partition_width](game.collisiondetection.spatialpartition.md#_partition_width)
 
 ### Methods
 
-* [add](game.collisiondetection.spatialpartition.md#add)
-* [checkCollision](game.collisiondetection.spatialpartition.md#checkcollision)
-* [checkElement](game.collisiondetection.spatialpartition.md#checkelement)
-* [clear](game.collisiondetection.spatialpartition.md#clear)
-* [remove](game.collisiondetection.spatialpartition.md#remove)
-* [update](game.collisiondetection.spatialpartition.md#update)
+- [add](game.collisiondetection.spatialpartition.md#add)
+- [checkCollision](game.collisiondetection.spatialpartition.md#checkcollision)
+- [checkElement](game.collisiondetection.spatialpartition.md#checkelement)
+- [clear](game.collisiondetection.spatialpartition.md#clear)
+- [remove](game.collisiondetection.spatialpartition.md#remove)
+- [update](game.collisiondetection.spatialpartition.md#update)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new SpatialPartition**(`args`: [SpatialPartitionArgs](../interfaces/game.collisiondetection.spatialpartitionargs.md)): *[SpatialPartition](game.collisiondetection.spatialpartition.md)*
+\+ **new SpatialPartition**(`args`: [SpatialPartitionArgs](../interfaces/game.collisiondetection.spatialpartitionargs.md)): _[SpatialPartition](game.collisiondetection.spatialpartition.md)_
 
-*Defined in [collision_spatial_partition.ts:39](https://github.com/noobiept/game_engine/blob/625c324/source/collision_spatial_partition.ts#L39)*
+_Defined in [collision_spatial_partition.ts:39](https://github.com/noobiept/game_engine/blob/625c324/source/collision_spatial_partition.ts#L39)_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`args` | [SpatialPartitionArgs](../interfaces/game.collisiondetection.spatialpartitionargs.md) |
+| Name   | Type                                                                                  |
+| ------ | ------------------------------------------------------------------------------------- |
+| `args` | [SpatialPartitionArgs](../interfaces/game.collisiondetection.spatialpartitionargs.md) |
 
-**Returns:** *[SpatialPartition](game.collisiondetection.spatialpartition.md)*
+**Returns:** _[SpatialPartition](game.collisiondetection.spatialpartition.md)_
 
 ## Properties
 
-###  _grid
+### \_grid
 
-• **_grid**: *[Element](game.element.md)[][]*
+• **\_grid**: _[Element](game.element.md)[][]_
 
-*Defined in [collision_spatial_partition.ts:36](https://github.com/noobiept/game_engine/blob/625c324/source/collision_spatial_partition.ts#L36)*
+_Defined in [collision_spatial_partition.ts:36](https://github.com/noobiept/game_engine/blob/625c324/source/collision_spatial_partition.ts#L36)_
 
-___
+---
 
-###  _grid_size
+### \_grid_size
 
-• **_grid_size**: *number*
+• **\_grid_size**: _number_
 
-*Defined in [collision_spatial_partition.ts:37](https://github.com/noobiept/game_engine/blob/625c324/source/collision_spatial_partition.ts#L37)*
+_Defined in [collision_spatial_partition.ts:37](https://github.com/noobiept/game_engine/blob/625c324/source/collision_spatial_partition.ts#L37)_
 
-___
+---
 
-###  _partition_height
+### \_partition_height
 
-• **_partition_height**: *number*
+• **\_partition_height**: _number_
 
-*Defined in [collision_spatial_partition.ts:39](https://github.com/noobiept/game_engine/blob/625c324/source/collision_spatial_partition.ts#L39)*
+_Defined in [collision_spatial_partition.ts:39](https://github.com/noobiept/game_engine/blob/625c324/source/collision_spatial_partition.ts#L39)_
 
-___
+---
 
-###  _partition_width
+### \_partition_width
 
-• **_partition_width**: *number*
+• **\_partition_width**: _number_
 
-*Defined in [collision_spatial_partition.ts:38](https://github.com/noobiept/game_engine/blob/625c324/source/collision_spatial_partition.ts#L38)*
+_Defined in [collision_spatial_partition.ts:38](https://github.com/noobiept/game_engine/blob/625c324/source/collision_spatial_partition.ts#L38)_
 
 ## Methods
 
-###  add
+### add
 
-▸ **add**(`element`: [Element](game.element.md)): *void*
+▸ **add**(`element`: [Element](game.element.md)): _void_
 
-*Implementation of [CollisionDetectionAlgorithm](../interfaces/game.collisiondetectionalgorithm.md)*
+_Implementation of [CollisionDetectionAlgorithm](../interfaces/game.collisiondetectionalgorithm.md)_
 
-*Defined in [collision_spatial_partition.ts:67](https://github.com/noobiept/game_engine/blob/625c324/source/collision_spatial_partition.ts#L67)*
+_Defined in [collision_spatial_partition.ts:67](https://github.com/noobiept/game_engine/blob/625c324/source/collision_spatial_partition.ts#L67)_
 
 Add an element to a partition in the grid, based on its current x/y position.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`element` | [Element](game.element.md) |
+| Name      | Type                       |
+| --------- | -------------------------- |
+| `element` | [Element](game.element.md) |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  checkCollision
+### checkCollision
 
-▸ **checkCollision**(): *void*
+▸ **checkCollision**(): _void_
 
-*Implementation of [CollisionDetectionAlgorithm](../interfaces/game.collisiondetectionalgorithm.md)*
+_Implementation of [CollisionDetectionAlgorithm](../interfaces/game.collisiondetectionalgorithm.md)_
 
-*Defined in [collision_spatial_partition.ts:188](https://github.com/noobiept/game_engine/blob/625c324/source/collision_spatial_partition.ts#L188)*
+_Defined in [collision_spatial_partition.ts:188](https://github.com/noobiept/game_engine/blob/625c324/source/collision_spatial_partition.ts#L188)_
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  checkElement
+### checkElement
 
-▸ **checkElement**(`element`: [Element](game.element.md), `other`: [Element](game.element.md)): *void*
+▸ **checkElement**(`element`: [Element](game.element.md), `other`: [Element](game.element.md)): _void_
 
-*Defined in [collision_spatial_partition.ts:237](https://github.com/noobiept/game_engine/blob/625c324/source/collision_spatial_partition.ts#L237)*
-
-**Parameters:**
-
-Name | Type | Description |
------- | ------ | ------ |
-`element` | [Element](game.element.md) | The element to be compared with. |
-`other` | [Element](game.element.md) | First element of the partition linked list.  |
-
-**Returns:** *void*
-
-___
-
-###  clear
-
-▸ **clear**(): *void*
-
-*Implementation of [CollisionDetectionAlgorithm](../interfaces/game.collisiondetectionalgorithm.md)*
-
-*Defined in [collision_spatial_partition.ts:276](https://github.com/noobiept/game_engine/blob/625c324/source/collision_spatial_partition.ts#L276)*
-
-**Returns:** *void*
-
-___
-
-###  remove
-
-▸ **remove**(`element`: [Element](game.element.md)): *void*
-
-*Implementation of [CollisionDetectionAlgorithm](../interfaces/game.collisiondetectionalgorithm.md)*
-
-*Defined in [collision_spatial_partition.ts:150](https://github.com/noobiept/game_engine/blob/625c324/source/collision_spatial_partition.ts#L150)*
+_Defined in [collision_spatial_partition.ts:237](https://github.com/noobiept/game_engine/blob/625c324/source/collision_spatial_partition.ts#L237)_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`element` | [Element](game.element.md) |
+| Name      | Type                       | Description                                 |
+| --------- | -------------------------- | ------------------------------------------- |
+| `element` | [Element](game.element.md) | The element to be compared with.            |
+| `other`   | [Element](game.element.md) | First element of the partition linked list. |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  update
+### clear
 
-▸ **update**(`element`: [Element](game.element.md)): *void*
+▸ **clear**(): _void_
 
-*Implementation of [CollisionDetectionAlgorithm](../interfaces/game.collisiondetectionalgorithm.md)*
+_Implementation of [CollisionDetectionAlgorithm](../interfaces/game.collisiondetectionalgorithm.md)_
 
-*Defined in [collision_spatial_partition.ts:107](https://github.com/noobiept/game_engine/blob/625c324/source/collision_spatial_partition.ts#L107)*
+_Defined in [collision_spatial_partition.ts:276](https://github.com/noobiept/game_engine/blob/625c324/source/collision_spatial_partition.ts#L276)_
+
+**Returns:** _void_
+
+---
+
+### remove
+
+▸ **remove**(`element`: [Element](game.element.md)): _void_
+
+_Implementation of [CollisionDetectionAlgorithm](../interfaces/game.collisiondetectionalgorithm.md)_
+
+_Defined in [collision_spatial_partition.ts:150](https://github.com/noobiept/game_engine/blob/625c324/source/collision_spatial_partition.ts#L150)_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`element` | [Element](game.element.md) |
+| Name      | Type                       |
+| --------- | -------------------------- |
+| `element` | [Element](game.element.md) |
 
-**Returns:** *void*
+**Returns:** _void_
+
+---
+
+### update
+
+▸ **update**(`element`: [Element](game.element.md)): _void_
+
+_Implementation of [CollisionDetectionAlgorithm](../interfaces/game.collisiondetectionalgorithm.md)_
+
+_Defined in [collision_spatial_partition.ts:107](https://github.com/noobiept/game_engine/blob/625c324/source/collision_spatial_partition.ts#L107)_
+
+**Parameters:**
+
+| Name      | Type                       |
+| --------- | -------------------------- |
+| `element` | [Element](game.element.md) |
+
+**Returns:** _void_

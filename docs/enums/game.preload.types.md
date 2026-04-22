@@ -6,39 +6,39 @@
 
 ### Enumeration members
 
-* [audio](game.preload.types.md#audio)
-* [image](game.preload.types.md#image)
-* [json](game.preload.types.md#json)
-* [text](game.preload.types.md#text)
+- [audio](game.preload.types.md#audio)
+- [image](game.preload.types.md#image)
+- [json](game.preload.types.md#json)
+- [text](game.preload.types.md#text)
 
 ## Enumeration members
 
-###  audio
+### audio
 
 • **audio**:
 
-*Defined in [preload.ts:339](https://github.com/noobiept/game_engine/blob/625c324/source/preload.ts#L339)*
+_Defined in [preload.ts:339](https://github.com/noobiept/game_engine/blob/625c324/source/preload.ts#L339)_
 
-___
+---
 
-###  image
+### image
 
 • **image**:
 
-*Defined in [preload.ts:339](https://github.com/noobiept/game_engine/blob/625c324/source/preload.ts#L339)*
+_Defined in [preload.ts:339](https://github.com/noobiept/game_engine/blob/625c324/source/preload.ts#L339)_
 
-___
+---
 
-###  json
+### json
 
 • **json**:
 
-*Defined in [preload.ts:339](https://github.com/noobiept/game_engine/blob/625c324/source/preload.ts#L339)*
+_Defined in [preload.ts:339](https://github.com/noobiept/game_engine/blob/625c324/source/preload.ts#L339)_
 
-___
+---
 
-###  text
+### text
 
 • **text**:
 
-*Defined in [preload.ts:339](https://github.com/noobiept/game_engine/blob/625c324/source/preload.ts#L339)*
+_Defined in [preload.ts:339](https://github.com/noobiept/game_engine/blob/625c324/source/preload.ts#L339)_

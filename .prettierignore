@@ -1,0 +1,7 @@
+node_modules/
+.pnpm-store/
+build/
+release/
+examples/_test/
+info.txt
+.DS_Store

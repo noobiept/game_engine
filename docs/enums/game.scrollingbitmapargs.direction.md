@@ -6,39 +6,39 @@
 
 ### Enumeration members
 
-* [bottom](game.scrollingbitmapargs.direction.md#bottom)
-* [left](game.scrollingbitmapargs.direction.md#left)
-* [right](game.scrollingbitmapargs.direction.md#right)
-* [top](game.scrollingbitmapargs.direction.md#top)
+- [bottom](game.scrollingbitmapargs.direction.md#bottom)
+- [left](game.scrollingbitmapargs.direction.md#left)
+- [right](game.scrollingbitmapargs.direction.md#right)
+- [top](game.scrollingbitmapargs.direction.md#top)
 
 ## Enumeration members
 
-###  bottom
+### bottom
 
 • **bottom**:
 
-*Defined in [scrolling_bitmap.ts:16](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L16)*
+_Defined in [scrolling_bitmap.ts:16](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L16)_
 
-___
+---
 
-###  left
+### left
 
 • **left**:
 
-*Defined in [scrolling_bitmap.ts:16](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L16)*
+_Defined in [scrolling_bitmap.ts:16](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L16)_
 
-___
+---
 
-###  right
+### right
 
 • **right**:
 
-*Defined in [scrolling_bitmap.ts:16](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L16)*
+_Defined in [scrolling_bitmap.ts:16](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L16)_
 
-___
+---
 
-###  top
+### top
 
 • **top**:
 
-*Defined in [scrolling_bitmap.ts:16](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L16)*
+_Defined in [scrolling_bitmap.ts:16](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L16)_

@@ -6,213 +6,213 @@ Multiple options button.
 
 ## Hierarchy
 
-* [HtmlElement](game.html.htmlelement.md)
+- [HtmlElement](game.html.htmlelement.md)
 
-  ↳ **MultipleOptions**
+    ↳ **MultipleOptions**
 
 ## Index
 
 ### Constructors
 
-* [constructor](game.html.multipleoptions.md#constructor)
+- [constructor](game.html.multipleoptions.md#constructor)
 
 ### Properties
 
-* [_is_active](game.html.multipleoptions.md#protected-_is_active)
-* [_pre_text](game.html.multipleoptions.md#protected-_pre_text)
-* [click_ref](game.html.multipleoptions.md#protected-click_ref)
-* [container](game.html.multipleoptions.md#container)
-* [elements](game.html.multipleoptions.md#protected-elements)
-* [selected](game.html.multipleoptions.md#protected-selected)
+- [\_is_active](game.html.multipleoptions.md#protected-_is_active)
+- [\_pre_text](game.html.multipleoptions.md#protected-_pre_text)
+- [click_ref](game.html.multipleoptions.md#protected-click_ref)
+- [container](game.html.multipleoptions.md#container)
+- [elements](game.html.multipleoptions.md#protected-elements)
+- [selected](game.html.multipleoptions.md#protected-selected)
 
 ### Methods
 
-* [addEvents](game.html.multipleoptions.md#addevents)
-* [clear](game.html.multipleoptions.md#clear)
-* [getValue](game.html.multipleoptions.md#getvalue)
-* [isActive](game.html.multipleoptions.md#isactive)
-* [removeEvents](game.html.multipleoptions.md#removeevents)
-* [select](game.html.multipleoptions.md#select)
-* [setActive](game.html.multipleoptions.md#setactive)
+- [addEvents](game.html.multipleoptions.md#addevents)
+- [clear](game.html.multipleoptions.md#clear)
+- [getValue](game.html.multipleoptions.md#getvalue)
+- [isActive](game.html.multipleoptions.md#isactive)
+- [removeEvents](game.html.multipleoptions.md#removeevents)
+- [select](game.html.multipleoptions.md#select)
+- [setActive](game.html.multipleoptions.md#setactive)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new MultipleOptions**(`args`: [MultipleOptionsArgs](../interfaces/game.html.multipleoptionsargs.md)): *[MultipleOptions](game.html.multipleoptions.md)*
+\+ **new MultipleOptions**(`args`: [MultipleOptionsArgs](../interfaces/game.html.multipleoptionsargs.md)): _[MultipleOptions](game.html.multipleoptions.md)_
 
-*Overrides [HtmlElement](game.html.htmlelement.md).[constructor](game.html.htmlelement.md#constructor)*
+_Overrides [HtmlElement](game.html.htmlelement.md).[constructor](game.html.htmlelement.md#constructor)_
 
-*Defined in [html.ts:561](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L561)*
+_Defined in [html.ts:561](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L561)_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`args` | [MultipleOptionsArgs](../interfaces/game.html.multipleoptionsargs.md) |
+| Name   | Type                                                                  |
+| ------ | --------------------------------------------------------------------- |
+| `args` | [MultipleOptionsArgs](../interfaces/game.html.multipleoptionsargs.md) |
 
-**Returns:** *[MultipleOptions](game.html.multipleoptions.md)*
+**Returns:** _[MultipleOptions](game.html.multipleoptions.md)_
 
 ## Properties
 
-### `Protected` _is_active
+### `Protected` \_is_active
 
-• **_is_active**: *boolean*
+• **\_is_active**: _boolean_
 
-*Inherited from [HtmlElement](game.html.htmlelement.md).[_is_active](game.html.htmlelement.md#protected-_is_active)*
+_Inherited from [HtmlElement](game.html.htmlelement.md).[\_is_active](game.html.htmlelement.md#protected-_is_active)_
 
-*Defined in [html.ts:38](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L38)*
+_Defined in [html.ts:38](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L38)_
 
-___
+---
 
-### `Protected` _pre_text
+### `Protected` \_pre_text
 
-• **_pre_text**: *HTMLElement*
+• **\_pre_text**: _HTMLElement_
 
-*Inherited from [HtmlElement](game.html.htmlelement.md).[_pre_text](game.html.htmlelement.md#protected-_pre_text)*
+_Inherited from [HtmlElement](game.html.htmlelement.md).[\_pre_text](game.html.htmlelement.md#protected-_pre_text)_
 
-*Defined in [html.ts:39](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L39)*
+_Defined in [html.ts:39](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L39)_
 
-___
+---
 
 ### `Protected` click_ref
 
-• **click_ref**: *function*
+• **click_ref**: _function_
 
-*Defined in [html.ts:560](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L560)*
+_Defined in [html.ts:560](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L560)_
 
 #### Type declaration:
 
-▸ (): *any*
+▸ (): _any_
 
-___
+---
 
-###  container
+### container
 
-• **container**: *HTMLElement*
+• **container**: _HTMLElement_
 
-*Inherited from [HtmlElement](game.html.htmlelement.md).[container](game.html.htmlelement.md#container)*
+_Inherited from [HtmlElement](game.html.htmlelement.md).[container](game.html.htmlelement.md#container)_
 
-*Defined in [html.ts:37](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L37)*
+_Defined in [html.ts:37](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L37)_
 
-___
+---
 
 ### `Protected` elements
 
-• **elements**: *HTMLElement[]*
+• **elements**: _HTMLElement[]_
 
-*Defined in [html.ts:559](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L559)*
+_Defined in [html.ts:559](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L559)_
 
-___
+---
 
 ### `Protected` selected
 
-• **selected**: *HTMLElement*
+• **selected**: _HTMLElement_
 
-*Defined in [html.ts:561](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L561)*
+_Defined in [html.ts:561](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L561)_
 
 ## Methods
 
-###  addEvents
+### addEvents
 
-▸ **addEvents**(): *void*
+▸ **addEvents**(): _void_
 
-*Overrides [HtmlElement](game.html.htmlelement.md).[addEvents](game.html.htmlelement.md#addevents)*
+_Overrides [HtmlElement](game.html.htmlelement.md).[addEvents](game.html.htmlelement.md#addevents)_
 
-*Defined in [html.ts:647](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L647)*
+_Defined in [html.ts:647](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L647)_
 
 add the click event handler on the options.
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  clear
+### clear
 
-▸ **clear**(): *void*
+▸ **clear**(): _void_
 
-*Overrides [HtmlElement](game.html.htmlelement.md).[clear](game.html.htmlelement.md#clear)*
+_Overrides [HtmlElement](game.html.htmlelement.md).[clear](game.html.htmlelement.md#clear)_
 
-*Defined in [html.ts:671](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L671)*
+_Defined in [html.ts:671](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L671)_
 
 Clear the object.
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  getValue
+### getValue
 
-▸ **getValue**(): *string*
+▸ **getValue**(): _string_
 
-*Defined in [html.ts:638](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L638)*
+_Defined in [html.ts:638](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L638)_
 
 Get the string value of the currently selected option.
 
-**Returns:** *string*
+**Returns:** _string_
 
-___
+---
 
-###  isActive
+### isActive
 
-▸ **isActive**(): *boolean*
+▸ **isActive**(): _boolean_
 
-*Inherited from [HtmlElement](game.html.htmlelement.md).[isActive](game.html.htmlelement.md#isactive)*
+_Inherited from [HtmlElement](game.html.htmlelement.md).[isActive](game.html.htmlelement.md#isactive)_
 
-*Defined in [html.ts:127](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L127)*
+_Defined in [html.ts:127](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L127)_
 
 Check if the element is active or not currently.
 
-**Returns:** *boolean*
+**Returns:** _boolean_
 
-___
+---
 
-###  removeEvents
+### removeEvents
 
-▸ **removeEvents**(): *void*
+▸ **removeEvents**(): _void_
 
-*Overrides [HtmlElement](game.html.htmlelement.md).[removeEvents](game.html.htmlelement.md#removeevents)*
+_Overrides [HtmlElement](game.html.htmlelement.md).[removeEvents](game.html.htmlelement.md#removeevents)_
 
-*Defined in [html.ts:659](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L659)*
+_Defined in [html.ts:659](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L659)_
 
 Remove the click event handlers from the options elements.
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  select
+### select
 
-▸ **select**(`position`: number): *void*
+▸ **select**(`position`: number): _void_
 
-*Defined in [html.ts:615](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L615)*
+_Defined in [html.ts:615](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L615)_
 
 Select the active option by position.
 
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`position` | number | The position to select.  |
+| Name       | Type   | Description             |
+| ---------- | ------ | ----------------------- |
+| `position` | number | The position to select. |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  setActive
+### setActive
 
-▸ **setActive**(`yesNo`: boolean): *void*
+▸ **setActive**(`yesNo`: boolean): _void_
 
-*Inherited from [HtmlElement](game.html.htmlelement.md).[setActive](game.html.htmlelement.md#setactive)*
+_Inherited from [HtmlElement](game.html.htmlelement.md).[setActive](game.html.htmlelement.md#setactive)_
 
-*Defined in [html.ts:100](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L100)*
+_Defined in [html.ts:100](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L100)_
 
 When the element is inactive, its events are disabled, and a `.Game-inactive` css class is applied.
 
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`yesNo` | boolean | Whether to set it active or not.  |
+| Name    | Type    | Description                      |
+| ------- | ------- | -------------------------------- |
+| `yesNo` | boolean | Whether to set it active or not. |
 
-**Returns:** *void*
+**Returns:** _void_

@@ -4,36 +4,36 @@
 
 ## Hierarchy
 
-* **SpatialPartitionArgs**
+- **SpatialPartitionArgs**
 
 ## Index
 
 ### Properties
 
-* [canvasHeight](game.collisiondetection.spatialpartitionargs.md#canvasheight)
-* [canvasWidth](game.collisiondetection.spatialpartitionargs.md#canvaswidth)
-* [partitions](game.collisiondetection.spatialpartitionargs.md#partitions)
+- [canvasHeight](game.collisiondetection.spatialpartitionargs.md#canvasheight)
+- [canvasWidth](game.collisiondetection.spatialpartitionargs.md#canvaswidth)
+- [partitions](game.collisiondetection.spatialpartitionargs.md#partitions)
 
 ## Properties
 
-###  canvasHeight
+### canvasHeight
 
-• **canvasHeight**: *number*
+• **canvasHeight**: _number_
 
-*Defined in [collision_spatial_partition.ts:11](https://github.com/noobiept/game_engine/blob/625c324/source/collision_spatial_partition.ts#L11)*
+_Defined in [collision_spatial_partition.ts:11](https://github.com/noobiept/game_engine/blob/625c324/source/collision_spatial_partition.ts#L11)_
 
-___
+---
 
-###  canvasWidth
+### canvasWidth
 
-• **canvasWidth**: *number*
+• **canvasWidth**: _number_
 
-*Defined in [collision_spatial_partition.ts:10](https://github.com/noobiept/game_engine/blob/625c324/source/collision_spatial_partition.ts#L10)*
+_Defined in [collision_spatial_partition.ts:10](https://github.com/noobiept/game_engine/blob/625c324/source/collision_spatial_partition.ts#L10)_
 
-___
+---
 
-###  partitions
+### partitions
 
-• **partitions**: *number*
+• **partitions**: _number_
 
-*Defined in [collision_spatial_partition.ts:12](https://github.com/noobiept/game_engine/blob/625c324/source/collision_spatial_partition.ts#L12)*
+_Defined in [collision_spatial_partition.ts:12](https://github.com/noobiept/game_engine/blob/625c324/source/collision_spatial_partition.ts#L12)_

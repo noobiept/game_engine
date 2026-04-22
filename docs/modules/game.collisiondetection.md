@@ -6,249 +6,249 @@
 
 ### Classes
 
-* [CheckAll](../classes/game.collisiondetection.checkall.md)
-* [SpatialPartition](../classes/game.collisiondetection.spatialpartition.md)
+- [CheckAll](../classes/game.collisiondetection.checkall.md)
+- [SpatialPartition](../classes/game.collisiondetection.spatialpartition.md)
 
 ### Interfaces
 
-* [SpatialPartitionArgs](../interfaces/game.collisiondetection.spatialpartitionargs.md)
+- [SpatialPartitionArgs](../interfaces/game.collisiondetection.spatialpartitionargs.md)
 
 ### Type aliases
 
-* [Vertices](game.collisiondetection.md#vertices)
+- [Vertices](game.collisiondetection.md#vertices)
 
 ### Variables
 
-* [COLLISION](game.collisiondetection.md#collision)
+- [COLLISION](game.collisiondetection.md#collision)
 
 ### Functions
 
-* [addElement](game.collisiondetection.md#addelement)
-* [boxBox](game.collisiondetection.md#boxbox)
-* [checkCollision](game.collisiondetection.md#checkcollision)
-* [circleCircle](game.collisiondetection.md#circlecircle)
-* [circlePoint](game.collisiondetection.md#circlepoint)
-* [clear](game.collisiondetection.md#clear)
-* [getAxes](game.collisiondetection.md#getaxes)
-* [init](game.collisiondetection.md#init)
-* [pointBox](game.collisiondetection.md#pointbox)
-* [polygonPoint](game.collisiondetection.md#polygonpoint)
-* [polygonPolygon](game.collisiondetection.md#polygonpolygon)
-* [polygonPolygonList](game.collisiondetection.md#polygonpolygonlist)
-* [projectShapeIntoAxis](game.collisiondetection.md#projectshapeintoaxis)
-* [projectionOverlaps](game.collisiondetection.md#projectionoverlaps)
-* [removeElement](game.collisiondetection.md#removeelement)
-* [updateElement](game.collisiondetection.md#updateelement)
+- [addElement](game.collisiondetection.md#addelement)
+- [boxBox](game.collisiondetection.md#boxbox)
+- [checkCollision](game.collisiondetection.md#checkcollision)
+- [circleCircle](game.collisiondetection.md#circlecircle)
+- [circlePoint](game.collisiondetection.md#circlepoint)
+- [clear](game.collisiondetection.md#clear)
+- [getAxes](game.collisiondetection.md#getaxes)
+- [init](game.collisiondetection.md#init)
+- [pointBox](game.collisiondetection.md#pointbox)
+- [polygonPoint](game.collisiondetection.md#polygonpoint)
+- [polygonPolygon](game.collisiondetection.md#polygonpolygon)
+- [polygonPolygonList](game.collisiondetection.md#polygonpolygonlist)
+- [projectShapeIntoAxis](game.collisiondetection.md#projectshapeintoaxis)
+- [projectionOverlaps](game.collisiondetection.md#projectionoverlaps)
+- [removeElement](game.collisiondetection.md#removeelement)
+- [updateElement](game.collisiondetection.md#updateelement)
 
 ## Type aliases
 
-###  Vertices
+### Vertices
 
-Ƭ **Vertices**: *object[]*
+Ƭ **Vertices**: _object[]_
 
-*Defined in [collision_detection.ts:17](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L17)*
+_Defined in [collision_detection.ts:17](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L17)_
 
 ## Variables
 
-###  COLLISION
+### COLLISION
 
-• **COLLISION**: *[CollisionDetectionAlgorithm](../interfaces/game.collisiondetectionalgorithm.md)*
+• **COLLISION**: _[CollisionDetectionAlgorithm](../interfaces/game.collisiondetectionalgorithm.md)_
 
-*Defined in [collision_detection.ts:19](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L19)*
+_Defined in [collision_detection.ts:19](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L19)_
 
 ## Functions
 
-###  addElement
+### addElement
 
-▸ **addElement**(`element`: [Element](../classes/game.element.md)): *void*
+▸ **addElement**(`element`: [Element](../classes/game.element.md)): _void_
 
-*Defined in [collision_detection.ts:39](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L39)*
+_Defined in [collision_detection.ts:39](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L39)_
 
 Elements added will be considered in the collision detection tests.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`element` | [Element](../classes/game.element.md) |
+| Name      | Type                                  |
+| --------- | ------------------------------------- |
+| `element` | [Element](../classes/game.element.md) |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  boxBox
+### boxBox
 
-▸ **boxBox**(`oneX`: number, `oneY`: number, `oneWidth`: number, `oneHeight`: number, `twoX`: number, `twoY`: number, `twoWidth`: number, `twoHeight`: number): *boolean*
+▸ **boxBox**(`oneX`: number, `oneY`: number, `oneWidth`: number, `oneHeight`: number, `twoX`: number, `twoY`: number, `twoWidth`: number, `twoHeight`: number): _boolean_
 
-*Defined in [collision_detection.ts:278](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L278)*
+_Defined in [collision_detection.ts:278](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L278)_
 
 Detects collision between 2 boxes.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`oneX` | number |
-`oneY` | number |
-`oneWidth` | number |
-`oneHeight` | number |
-`twoX` | number |
-`twoY` | number |
-`twoWidth` | number |
-`twoHeight` | number |
+| Name        | Type   |
+| ----------- | ------ |
+| `oneX`      | number |
+| `oneY`      | number |
+| `oneWidth`  | number |
+| `oneHeight` | number |
+| `twoX`      | number |
+| `twoY`      | number |
+| `twoWidth`  | number |
+| `twoHeight` | number |
 
-**Returns:** *boolean*
+**Returns:** _boolean_
 
-___
+---
 
-###  checkCollision
+### checkCollision
 
-▸ **checkCollision**(): *void*
+▸ **checkCollision**(): _void_
 
-*Defined in [collision_detection.ts:66](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L66)*
+_Defined in [collision_detection.ts:66](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L66)_
 
 Look for collisions between the elements.
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  circleCircle
+### circleCircle
 
-▸ **circleCircle**(`x1`: number, `y1`: number, `radius1`: number, `x2`: number, `y2`: number, `radius2`: number): *boolean*
+▸ **circleCircle**(`x1`: number, `y1`: number, `radius1`: number, `x2`: number, `y2`: number, `radius2`: number): _boolean_
 
-*Defined in [collision_detection.ts:292](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L292)*
+_Defined in [collision_detection.ts:292](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L292)_
 
 Detects collision between two circles.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`x1` | number |
-`y1` | number |
-`radius1` | number |
-`x2` | number |
-`y2` | number |
-`radius2` | number |
+| Name      | Type   |
+| --------- | ------ |
+| `x1`      | number |
+| `y1`      | number |
+| `radius1` | number |
+| `x2`      | number |
+| `y2`      | number |
+| `radius2` | number |
 
-**Returns:** *boolean*
+**Returns:** _boolean_
 
-___
+---
 
-###  circlePoint
+### circlePoint
 
-▸ **circlePoint**(`circleX`: number, `circleY`: number, `circleRadius`: number, `pointX`: number, `pointY`: number): *boolean*
+▸ **circlePoint**(`circleX`: number, `circleY`: number, `circleRadius`: number, `pointX`: number, `pointY`: number): _boolean_
 
-*Defined in [collision_detection.ts:309](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L309)*
+_Defined in [collision_detection.ts:309](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L309)_
 
 Detects collision between a circle and a point.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`circleX` | number |
-`circleY` | number |
-`circleRadius` | number |
-`pointX` | number |
-`pointY` | number |
+| Name           | Type   |
+| -------------- | ------ |
+| `circleX`      | number |
+| `circleY`      | number |
+| `circleRadius` | number |
+| `pointX`       | number |
+| `pointY`       | number |
 
-**Returns:** *boolean*
+**Returns:** _boolean_
 
-___
+---
 
-###  clear
+### clear
 
-▸ **clear**(): *void*
+▸ **clear**(): _void_
 
-*Defined in [collision_detection.ts:75](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L75)*
+_Defined in [collision_detection.ts:75](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L75)_
 
 Remove the collision object. The engine won't work properly after this.
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  getAxes
+### getAxes
 
-▸ **getAxes**(`vertices`: [Vertices](game.collisiondetection.md#vertices)): *any[]*
+▸ **getAxes**(`vertices`: [Vertices](game.collisiondetection.md#vertices)): _any[]_
 
-*Defined in [collision_detection.ts:207](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L207)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`vertices` | [Vertices](game.collisiondetection.md#vertices) |
-
-**Returns:** *any[]*
-
-___
-
-###  init
-
-▸ **init**(`collision?`: [CollisionDetectionAlgorithm](../interfaces/game.collisiondetectionalgorithm.md)): *void*
-
-*Defined in [collision_detection.ts:22](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L22)*
+_Defined in [collision_detection.ts:207](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L207)_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`collision?` | [CollisionDetectionAlgorithm](../interfaces/game.collisiondetectionalgorithm.md) |
+| Name       | Type                                            |
+| ---------- | ----------------------------------------------- |
+| `vertices` | [Vertices](game.collisiondetection.md#vertices) |
 
-**Returns:** *void*
+**Returns:** _any[]_
 
-___
+---
 
-###  pointBox
+### init
 
-▸ **pointBox**(`pointX`: number, `pointY`: number, `boxX`: number, `boxY`: number, `boxWidth`: number, `boxHeight`: number): *boolean*
+▸ **init**(`collision?`: [CollisionDetectionAlgorithm](../interfaces/game.collisiondetectionalgorithm.md)): _void_
 
-*Defined in [collision_detection.ts:329](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L329)*
+_Defined in [collision_detection.ts:22](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L22)_
+
+**Parameters:**
+
+| Name         | Type                                                                             |
+| ------------ | -------------------------------------------------------------------------------- |
+| `collision?` | [CollisionDetectionAlgorithm](../interfaces/game.collisiondetectionalgorithm.md) |
+
+**Returns:** _void_
+
+---
+
+### pointBox
+
+▸ **pointBox**(`pointX`: number, `pointY`: number, `boxX`: number, `boxY`: number, `boxWidth`: number, `boxHeight`: number): _boolean_
+
+_Defined in [collision_detection.ts:329](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L329)_
 
 Detects collision between a point and a box.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`pointX` | number |
-`pointY` | number |
-`boxX` | number |
-`boxY` | number |
-`boxWidth` | number |
-`boxHeight` | number |
+| Name        | Type   |
+| ----------- | ------ |
+| `pointX`    | number |
+| `pointY`    | number |
+| `boxX`      | number |
+| `boxY`      | number |
+| `boxWidth`  | number |
+| `boxHeight` | number |
 
-**Returns:** *boolean*
+**Returns:** _boolean_
 
-___
+---
 
-###  polygonPoint
+### polygonPoint
 
-▸ **polygonPoint**(`vertices`: [Vertices](game.collisiondetection.md#vertices), `point`: any): *boolean*
+▸ **polygonPoint**(`vertices`: [Vertices](game.collisiondetection.md#vertices), `point`: any): _boolean_
 
-*Defined in [collision_detection.ts:164](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L164)*
+_Defined in [collision_detection.ts:164](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L164)_
 
 Check if a point is colliding with a element.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`vertices` | [Vertices](game.collisiondetection.md#vertices) |
-`point` | any |
+| Name       | Type                                            |
+| ---------- | ----------------------------------------------- |
+| `vertices` | [Vertices](game.collisiondetection.md#vertices) |
+| `point`    | any                                             |
 
-**Returns:** *boolean*
+**Returns:** _boolean_
 
-___
+---
 
-###  polygonPolygon
+### polygonPolygon
 
-▸ **polygonPolygon**(`one`: [Vertices](game.collisiondetection.md#vertices), `two`: [Vertices](game.collisiondetection.md#vertices)): *boolean*
+▸ **polygonPolygon**(`one`: [Vertices](game.collisiondetection.md#vertices), `two`: [Vertices](game.collisiondetection.md#vertices)): _boolean_
 
-*Defined in [collision_detection.ts:87](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L87)*
+_Defined in [collision_detection.ts:87](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L87)_
 
 Uses the `Separating Axis Theorem` to determine if two elements have collided.
 
@@ -256,20 +256,20 @@ Works for convex polygon shapes.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`one` | [Vertices](game.collisiondetection.md#vertices) |
-`two` | [Vertices](game.collisiondetection.md#vertices) |
+| Name  | Type                                            |
+| ----- | ----------------------------------------------- |
+| `one` | [Vertices](game.collisiondetection.md#vertices) |
+| `two` | [Vertices](game.collisiondetection.md#vertices) |
 
-**Returns:** *boolean*
+**Returns:** _boolean_
 
-___
+---
 
-###  polygonPolygonList
+### polygonPolygonList
 
-▸ **polygonPolygonList**(`list1`: [Vertices](game.collisiondetection.md#vertices)[], `list2`: [Vertices](game.collisiondetection.md#vertices)[]): *boolean*
+▸ **polygonPolygonList**(`list1`: [Vertices](game.collisiondetection.md#vertices)[], `list2`: [Vertices](game.collisiondetection.md#vertices)[]): _boolean_
 
-*Defined in [collision_detection.ts:138](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L138)*
+_Defined in [collision_detection.ts:138](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L138)_
 
 Uses the `Separating Axis Theorem` to determine if two elements have collided.
 Checks a list of vertices against another list of vertices (for example for comparing containers, which can have several elements).
@@ -278,83 +278,83 @@ Works for convex polygon shapes.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`list1` | [Vertices](game.collisiondetection.md#vertices)[] |
-`list2` | [Vertices](game.collisiondetection.md#vertices)[] |
+| Name    | Type                                              |
+| ------- | ------------------------------------------------- |
+| `list1` | [Vertices](game.collisiondetection.md#vertices)[] |
+| `list2` | [Vertices](game.collisiondetection.md#vertices)[] |
 
-**Returns:** *boolean*
+**Returns:** _boolean_
 
-___
+---
 
-###  projectShapeIntoAxis
+### projectShapeIntoAxis
 
-▸ **projectShapeIntoAxis**(`vertices`: [Vertices](game.collisiondetection.md#vertices), `axis`: [Vector](../interfaces/game.vector.vector.md)): *object*
+▸ **projectShapeIntoAxis**(`vertices`: [Vertices](game.collisiondetection.md#vertices), `axis`: [Vector](../interfaces/game.vector.vector.md)): _object_
 
-*Defined in [collision_detection.ts:239](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L239)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`vertices` | [Vertices](game.collisiondetection.md#vertices) |
-`axis` | [Vector](../interfaces/game.vector.vector.md) |
-
-**Returns:** *object*
-
-* **max**: *number* =  max
-
-* **min**: *number* =  min
-
-___
-
-###  projectionOverlaps
-
-▸ **projectionOverlaps**(`one`: any, `two`: any): *boolean*
-
-*Defined in [collision_detection.ts:267](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L267)*
+_Defined in [collision_detection.ts:239](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L239)_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`one` | any |
-`two` | any |
+| Name       | Type                                            |
+| ---------- | ----------------------------------------------- |
+| `vertices` | [Vertices](game.collisiondetection.md#vertices) |
+| `axis`     | [Vector](../interfaces/game.vector.vector.md)   |
 
-**Returns:** *boolean*
+**Returns:** _object_
 
-___
+- **max**: _number_ = max
 
-###  removeElement
+- **min**: _number_ = min
 
-▸ **removeElement**(`element`: [Element](../classes/game.element.md)): *void*
+---
 
-*Defined in [collision_detection.ts:48](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L48)*
+### projectionOverlaps
+
+▸ **projectionOverlaps**(`one`: any, `two`: any): _boolean_
+
+_Defined in [collision_detection.ts:267](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L267)_
+
+**Parameters:**
+
+| Name  | Type |
+| ----- | ---- |
+| `one` | any  |
+| `two` | any  |
+
+**Returns:** _boolean_
+
+---
+
+### removeElement
+
+▸ **removeElement**(`element`: [Element](../classes/game.element.md)): _void_
+
+_Defined in [collision_detection.ts:48](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L48)_
 
 Remove an element from being considered in the collision detection.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`element` | [Element](../classes/game.element.md) |
+| Name      | Type                                  |
+| --------- | ------------------------------------- |
+| `element` | [Element](../classes/game.element.md) |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  updateElement
+### updateElement
 
-▸ **updateElement**(`element`: [Element](../classes/game.element.md)): *void*
+▸ **updateElement**(`element`: [Element](../classes/game.element.md)): _void_
 
-*Defined in [collision_detection.ts:57](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L57)*
+_Defined in [collision_detection.ts:57](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L57)_
 
 When an element changes its position, need to update the collision detection data structure (in some algorithms).
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`element` | [Element](../classes/game.element.md) |
+| Name      | Type                                  |
+| --------- | ------------------------------------- |
+| `element` | [Element](../classes/game.element.md) |
 
-**Returns:** *void*
+**Returns:** _void_

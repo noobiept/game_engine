@@ -4,55 +4,55 @@
 
 ## Hierarchy
 
-* [HtmlElementArgs](game.html.htmlelementargs.md)
+- [HtmlElementArgs](game.html.htmlelementargs.md)
 
-  ↳ **HtmlContainerArgs**
+    ↳ **HtmlContainerArgs**
 
-  ↳ [MessageArgs](game.messageargs.md)
+    ↳ [MessageArgs](game.messageargs.md)
 
 ## Index
 
 ### Properties
 
-* [children](game.html.htmlcontainerargs.md#optional-children)
-* [cssClass](game.html.htmlcontainerargs.md#optional-cssclass)
-* [cssId](game.html.htmlcontainerargs.md#optional-cssid)
-* [preText](game.html.htmlcontainerargs.md#optional-pretext)
+- [children](game.html.htmlcontainerargs.md#optional-children)
+- [cssClass](game.html.htmlcontainerargs.md#optional-cssclass)
+- [cssId](game.html.htmlcontainerargs.md#optional-cssid)
+- [preText](game.html.htmlcontainerargs.md#optional-pretext)
 
 ## Properties
 
 ### `Optional` children
 
-• **children**? : *[HtmlElement](../classes/game.html.htmlelement.md) | [HtmlElement](../classes/game.html.htmlelement.md)[]*
+• **children**? : _[HtmlElement](../classes/game.html.htmlelement.md) | [HtmlElement](../classes/game.html.htmlelement.md)[]_
 
-*Defined in [html.ts:170](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L170)*
+_Defined in [html.ts:170](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L170)_
 
-___
+---
 
 ### `Optional` cssClass
 
-• **cssClass**? : *string | string[]*
+• **cssClass**? : _string | string[]_
 
-*Inherited from [HtmlElementArgs](game.html.htmlelementargs.md).[cssClass](game.html.htmlelementargs.md#optional-cssclass)*
+_Inherited from [HtmlElementArgs](game.html.htmlelementargs.md).[cssClass](game.html.htmlelementargs.md#optional-cssclass)_
 
-*Defined in [html.ts:28](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L28)*
+_Defined in [html.ts:28](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L28)_
 
-___
+---
 
 ### `Optional` cssId
 
-• **cssId**? : *string*
+• **cssId**? : _string_
 
-*Inherited from [HtmlElementArgs](game.html.htmlelementargs.md).[cssId](game.html.htmlelementargs.md#optional-cssid)*
+_Inherited from [HtmlElementArgs](game.html.htmlelementargs.md).[cssId](game.html.htmlelementargs.md#optional-cssid)_
 
-*Defined in [html.ts:27](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L27)*
+_Defined in [html.ts:27](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L27)_
 
-___
+---
 
 ### `Optional` preText
 
-• **preText**? : *string*
+• **preText**? : _string_
 
-*Inherited from [HtmlElementArgs](game.html.htmlelementargs.md).[preText](game.html.htmlelementargs.md#optional-pretext)*
+_Inherited from [HtmlElementArgs](game.html.htmlelementargs.md).[preText](game.html.htmlelementargs.md#optional-pretext)_
 
-*Defined in [html.ts:29](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L29)*
+_Defined in [html.ts:29](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L29)_

@@ -4,63 +4,63 @@
 
 ## Hierarchy
 
-* **WeaponArgs**
+- **WeaponArgs**
 
 ## Index
 
 ### Properties
 
-* [bulletContainer](game.weaponargs.md#bulletcontainer)
-* [category](game.weaponargs.md#optional-category)
-* [collidesWith](game.weaponargs.md#optional-collideswith)
-* [damage](game.weaponargs.md#optional-damage)
-* [element](game.weaponargs.md#element)
-* [fireInterval](game.weaponargs.md#optional-fireinterval)
+- [bulletContainer](game.weaponargs.md#bulletcontainer)
+- [category](game.weaponargs.md#optional-category)
+- [collidesWith](game.weaponargs.md#optional-collideswith)
+- [damage](game.weaponargs.md#optional-damage)
+- [element](game.weaponargs.md#element)
+- [fireInterval](game.weaponargs.md#optional-fireinterval)
 
 ## Properties
 
-###  bulletContainer
+### bulletContainer
 
-• **bulletContainer**: *[Container](../classes/game.container.md) | [Canvas](../classes/game.canvas.md)*
+• **bulletContainer**: _[Container](../classes/game.container.md) | [Canvas](../classes/game.canvas.md)_
 
-*Defined in [weapon.ts:11](https://github.com/noobiept/game_engine/blob/625c324/source/weapon.ts#L11)*
+_Defined in [weapon.ts:11](https://github.com/noobiept/game_engine/blob/625c324/source/weapon.ts#L11)_
 
-___
+---
 
 ### `Optional` category
 
-• **category**? : *number*
+• **category**? : _number_
 
-*Defined in [weapon.ts:16](https://github.com/noobiept/game_engine/blob/625c324/source/weapon.ts#L16)*
+_Defined in [weapon.ts:16](https://github.com/noobiept/game_engine/blob/625c324/source/weapon.ts#L16)_
 
-___
+---
 
 ### `Optional` collidesWith
 
-• **collidesWith**? : *number*
+• **collidesWith**? : _number_
 
-*Defined in [weapon.ts:17](https://github.com/noobiept/game_engine/blob/625c324/source/weapon.ts#L17)*
+_Defined in [weapon.ts:17](https://github.com/noobiept/game_engine/blob/625c324/source/weapon.ts#L17)_
 
-___
+---
 
 ### `Optional` damage
 
-• **damage**? : *number*
+• **damage**? : _number_
 
-*Defined in [weapon.ts:13](https://github.com/noobiept/game_engine/blob/625c324/source/weapon.ts#L13)*
+_Defined in [weapon.ts:13](https://github.com/noobiept/game_engine/blob/625c324/source/weapon.ts#L13)_
 
-___
+---
 
-###  element
+### element
 
-• **element**: *[Element](../classes/game.element.md)*
+• **element**: _[Element](../classes/game.element.md)_
 
-*Defined in [weapon.ts:10](https://github.com/noobiept/game_engine/blob/625c324/source/weapon.ts#L10)*
+_Defined in [weapon.ts:10](https://github.com/noobiept/game_engine/blob/625c324/source/weapon.ts#L10)_
 
-___
+---
 
 ### `Optional` fireInterval
 
-• **fireInterval**? : *number*
+• **fireInterval**? : _number_
 
-*Defined in [weapon.ts:12](https://github.com/noobiept/game_engine/blob/625c324/source/weapon.ts#L12)*
+_Defined in [weapon.ts:12](https://github.com/noobiept/game_engine/blob/625c324/source/weapon.ts#L12)_

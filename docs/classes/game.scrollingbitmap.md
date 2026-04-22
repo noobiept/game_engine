@@ -16,1269 +16,1269 @@ Examples -- `clone`, `parallax_scrolling`
 
 ## Hierarchy
 
-  ↳ [Bitmap](game.bitmap.md)
+↳ [Bitmap](game.bitmap.md)
 
-  ↳ **ScrollingBitmap**
+↳ **ScrollingBitmap**
 
 ## Index
 
 ### Constructors
 
-* [constructor](game.scrollingbitmap.md#constructor)
+- [constructor](game.scrollingbitmap.md#constructor)
 
 ### Properties
 
-* [_container](game.scrollingbitmap.md#_container)
-* [_count](game.scrollingbitmap.md#protected-_count)
-* [_direction](game.scrollingbitmap.md#protected-_direction)
-* [_half_height](game.scrollingbitmap.md#protected-_half_height)
-* [_half_width](game.scrollingbitmap.md#protected-_half_width)
-* [_has_logic](game.scrollingbitmap.md#_has_logic)
-* [_height](game.scrollingbitmap.md#protected-_height)
-* [_image](game.scrollingbitmap.md#protected-_image)
-* [_interval](game.scrollingbitmap.md#protected-_interval)
-* [_listeners](game.scrollingbitmap.md#protected-_listeners)
-* [_ref_position](game.scrollingbitmap.md#protected-_ref_position)
-* [_removed](game.scrollingbitmap.md#_removed)
-* [_rotation](game.scrollingbitmap.md#protected-_rotation)
-* [_scroll](game.scrollingbitmap.md#protected-_scroll)
-* [_source_x](game.scrollingbitmap.md#protected-_source_x)
-* [_source_y](game.scrollingbitmap.md#protected-_source_y)
-* [_step](game.scrollingbitmap.md#protected-_step)
-* [_width](game.scrollingbitmap.md#protected-_width)
-* [_x](game.scrollingbitmap.md#protected-_x)
-* [_y](game.scrollingbitmap.md#protected-_y)
-* [category](game.scrollingbitmap.md#category)
-* [collidesWith](game.scrollingbitmap.md#collideswith)
-* [collision_data](game.scrollingbitmap.md#collision_data)
-* [grid_data](game.scrollingbitmap.md#grid_data)
-* [opacity](game.scrollingbitmap.md#opacity)
-* [scaleX](game.scrollingbitmap.md#scalex)
-* [scaleY](game.scrollingbitmap.md#scaley)
-* [vertices](game.scrollingbitmap.md#vertices)
-* [visible](game.scrollingbitmap.md#visible)
+- [\_container](game.scrollingbitmap.md#_container)
+- [\_count](game.scrollingbitmap.md#protected-_count)
+- [\_direction](game.scrollingbitmap.md#protected-_direction)
+- [\_half_height](game.scrollingbitmap.md#protected-_half_height)
+- [\_half_width](game.scrollingbitmap.md#protected-_half_width)
+- [\_has_logic](game.scrollingbitmap.md#_has_logic)
+- [\_height](game.scrollingbitmap.md#protected-_height)
+- [\_image](game.scrollingbitmap.md#protected-_image)
+- [\_interval](game.scrollingbitmap.md#protected-_interval)
+- [\_listeners](game.scrollingbitmap.md#protected-_listeners)
+- [\_ref_position](game.scrollingbitmap.md#protected-_ref_position)
+- [\_removed](game.scrollingbitmap.md#_removed)
+- [\_rotation](game.scrollingbitmap.md#protected-_rotation)
+- [\_scroll](game.scrollingbitmap.md#protected-_scroll)
+- [\_source_x](game.scrollingbitmap.md#protected-_source_x)
+- [\_source_y](game.scrollingbitmap.md#protected-_source_y)
+- [\_step](game.scrollingbitmap.md#protected-_step)
+- [\_width](game.scrollingbitmap.md#protected-_width)
+- [\_x](game.scrollingbitmap.md#protected-_x)
+- [\_y](game.scrollingbitmap.md#protected-_y)
+- [category](game.scrollingbitmap.md#category)
+- [collidesWith](game.scrollingbitmap.md#collideswith)
+- [collision_data](game.scrollingbitmap.md#collision_data)
+- [grid_data](game.scrollingbitmap.md#grid_data)
+- [opacity](game.scrollingbitmap.md#opacity)
+- [scaleX](game.scrollingbitmap.md#scalex)
+- [scaleY](game.scrollingbitmap.md#scaley)
+- [vertices](game.scrollingbitmap.md#vertices)
+- [visible](game.scrollingbitmap.md#visible)
 
 ### Accessors
 
-* [half_height](game.scrollingbitmap.md#half_height)
-* [half_width](game.scrollingbitmap.md#half_width)
-* [height](game.scrollingbitmap.md#height)
-* [image](game.scrollingbitmap.md#image)
-* [rotation](game.scrollingbitmap.md#rotation)
-* [width](game.scrollingbitmap.md#width)
-* [x](game.scrollingbitmap.md#x)
-* [y](game.scrollingbitmap.md#y)
+- [half_height](game.scrollingbitmap.md#half_height)
+- [half_width](game.scrollingbitmap.md#half_width)
+- [height](game.scrollingbitmap.md#height)
+- [image](game.scrollingbitmap.md#image)
+- [rotation](game.scrollingbitmap.md#rotation)
+- [width](game.scrollingbitmap.md#width)
+- [x](game.scrollingbitmap.md#x)
+- [y](game.scrollingbitmap.md#y)
 
 ### Methods
 
-* [_draw_horizontal](game.scrollingbitmap.md#protected-_draw_horizontal)
-* [_draw_vertical](game.scrollingbitmap.md#protected-_draw_vertical)
-* [_removeNow](game.scrollingbitmap.md#_removenow)
-* [addEventListener](game.scrollingbitmap.md#addeventlistener)
-* [addToPosition](game.scrollingbitmap.md#addtoposition)
-* [checkCollision](game.scrollingbitmap.md#checkcollision)
-* [clearInterval](game.scrollingbitmap.md#clearinterval)
-* [clone](game.scrollingbitmap.md#clone)
-* [dispatchEvent](game.scrollingbitmap.md#dispatchevent)
-* [dispatchMouseClickEvent](game.scrollingbitmap.md#dispatchmouseclickevent)
-* [dispatchMouseMoveEvent](game.scrollingbitmap.md#dispatchmousemoveevent)
-* [dispatchMouseOutEvent](game.scrollingbitmap.md#dispatchmouseoutevent)
-* [dispatchMouseOverEvent](game.scrollingbitmap.md#dispatchmouseoverevent)
-* [draw](game.scrollingbitmap.md#draw)
-* [drawElement](game.scrollingbitmap.md#drawelement)
-* [getHeight](game.scrollingbitmap.md#getheight)
-* [getVertices](game.scrollingbitmap.md#getvertices)
-* [getWidth](game.scrollingbitmap.md#getwidth)
-* [hasListeners](game.scrollingbitmap.md#haslisteners)
-* [intersect](game.scrollingbitmap.md#intersect)
-* [isRemoved](game.scrollingbitmap.md#isremoved)
-* [logic](game.scrollingbitmap.md#logic)
-* [mouseClickEvents](game.scrollingbitmap.md#mouseclickevents)
-* [remove](game.scrollingbitmap.md#remove)
-* [removeAllEventListeners](game.scrollingbitmap.md#removealleventlisteners)
-* [removeEventListener](game.scrollingbitmap.md#removeeventlistener)
-* [rotate](game.scrollingbitmap.md#rotate)
-* [scroll_bottom](game.scrollingbitmap.md#scroll_bottom)
-* [scroll_left](game.scrollingbitmap.md#scroll_left)
-* [scroll_right](game.scrollingbitmap.md#scroll_right)
-* [scroll_top](game.scrollingbitmap.md#scroll_top)
-* [setDimensions](game.scrollingbitmap.md#setdimensions)
-* [setDirection](game.scrollingbitmap.md#setdirection)
-* [setHeight](game.scrollingbitmap.md#setheight)
-* [setInterval](game.scrollingbitmap.md#setinterval)
-* [setPosition](game.scrollingbitmap.md#setposition)
-* [setStep](game.scrollingbitmap.md#setstep)
-* [setWidth](game.scrollingbitmap.md#setwidth)
-* [toAxisAligned](game.scrollingbitmap.md#toaxisaligned)
-* [updateVertices](game.scrollingbitmap.md#updatevertices)
+- [\_draw_horizontal](game.scrollingbitmap.md#protected-_draw_horizontal)
+- [\_draw_vertical](game.scrollingbitmap.md#protected-_draw_vertical)
+- [\_removeNow](game.scrollingbitmap.md#_removenow)
+- [addEventListener](game.scrollingbitmap.md#addeventlistener)
+- [addToPosition](game.scrollingbitmap.md#addtoposition)
+- [checkCollision](game.scrollingbitmap.md#checkcollision)
+- [clearInterval](game.scrollingbitmap.md#clearinterval)
+- [clone](game.scrollingbitmap.md#clone)
+- [dispatchEvent](game.scrollingbitmap.md#dispatchevent)
+- [dispatchMouseClickEvent](game.scrollingbitmap.md#dispatchmouseclickevent)
+- [dispatchMouseMoveEvent](game.scrollingbitmap.md#dispatchmousemoveevent)
+- [dispatchMouseOutEvent](game.scrollingbitmap.md#dispatchmouseoutevent)
+- [dispatchMouseOverEvent](game.scrollingbitmap.md#dispatchmouseoverevent)
+- [draw](game.scrollingbitmap.md#draw)
+- [drawElement](game.scrollingbitmap.md#drawelement)
+- [getHeight](game.scrollingbitmap.md#getheight)
+- [getVertices](game.scrollingbitmap.md#getvertices)
+- [getWidth](game.scrollingbitmap.md#getwidth)
+- [hasListeners](game.scrollingbitmap.md#haslisteners)
+- [intersect](game.scrollingbitmap.md#intersect)
+- [isRemoved](game.scrollingbitmap.md#isremoved)
+- [logic](game.scrollingbitmap.md#logic)
+- [mouseClickEvents](game.scrollingbitmap.md#mouseclickevents)
+- [remove](game.scrollingbitmap.md#remove)
+- [removeAllEventListeners](game.scrollingbitmap.md#removealleventlisteners)
+- [removeEventListener](game.scrollingbitmap.md#removeeventlistener)
+- [rotate](game.scrollingbitmap.md#rotate)
+- [scroll_bottom](game.scrollingbitmap.md#scroll_bottom)
+- [scroll_left](game.scrollingbitmap.md#scroll_left)
+- [scroll_right](game.scrollingbitmap.md#scroll_right)
+- [scroll_top](game.scrollingbitmap.md#scroll_top)
+- [setDimensions](game.scrollingbitmap.md#setdimensions)
+- [setDirection](game.scrollingbitmap.md#setdirection)
+- [setHeight](game.scrollingbitmap.md#setheight)
+- [setInterval](game.scrollingbitmap.md#setinterval)
+- [setPosition](game.scrollingbitmap.md#setposition)
+- [setStep](game.scrollingbitmap.md#setstep)
+- [setWidth](game.scrollingbitmap.md#setwidth)
+- [toAxisAligned](game.scrollingbitmap.md#toaxisaligned)
+- [updateVertices](game.scrollingbitmap.md#updatevertices)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new ScrollingBitmap**(`args`: [ScrollingBitmapArgs](../modules/game.scrollingbitmapargs.md)): *[ScrollingBitmap](game.scrollingbitmap.md)*
+\+ **new ScrollingBitmap**(`args`: [ScrollingBitmapArgs](../modules/game.scrollingbitmapargs.md)): _[ScrollingBitmap](game.scrollingbitmap.md)_
 
-*Overrides [Bitmap](game.bitmap.md).[constructor](game.bitmap.md#constructor)*
+_Overrides [Bitmap](game.bitmap.md).[constructor](game.bitmap.md#constructor)_
 
-*Defined in [scrolling_bitmap.ts:41](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L41)*
+_Defined in [scrolling_bitmap.ts:41](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L41)_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`args` | [ScrollingBitmapArgs](../modules/game.scrollingbitmapargs.md) |
+| Name   | Type                                                          |
+| ------ | ------------------------------------------------------------- |
+| `args` | [ScrollingBitmapArgs](../modules/game.scrollingbitmapargs.md) |
 
-**Returns:** *[ScrollingBitmap](game.scrollingbitmap.md)*
+**Returns:** _[ScrollingBitmap](game.scrollingbitmap.md)_
 
 ## Properties
 
-###  _container
+### \_container
 
-• **_container**: *[Container](game.container.md)*
+• **\_container**: _[Container](game.container.md)_
 
-*Inherited from [Element](game.element.md).[_container](game.element.md#_container)*
+_Inherited from [Element](game.element.md).[\_container](game.element.md#_container)_
 
-*Defined in [element.ts:60](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L60)*
+_Defined in [element.ts:60](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L60)_
 
-___
+---
 
-### `Protected` _count
+### `Protected` \_count
 
-• **_count**: *number*
+• **\_count**: _number_
 
-*Defined in [scrolling_bitmap.ts:36](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L36)*
+_Defined in [scrolling_bitmap.ts:36](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L36)_
 
-___
+---
 
-### `Protected` _direction
+### `Protected` \_direction
 
-• **_direction**: *[Direction](../enums/game.scrollingbitmapargs.direction.md)*
+• **\_direction**: _[Direction](../enums/game.scrollingbitmapargs.direction.md)_
 
-*Defined in [scrolling_bitmap.ts:40](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L40)*
+_Defined in [scrolling_bitmap.ts:40](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L40)_
 
-___
+---
 
-### `Protected` _half_height
+### `Protected` \_half_height
 
-• **_half_height**: *number*
+• **\_half_height**: _number_
 
-*Inherited from [Element](game.element.md).[_half_height](game.element.md#protected-_half_height)*
+_Inherited from [Element](game.element.md).[\_half_height](game.element.md#protected-_half_height)_
 
-*Defined in [element.ts:57](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L57)*
+_Defined in [element.ts:57](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L57)_
 
-___
+---
 
-### `Protected` _half_width
+### `Protected` \_half_width
 
-• **_half_width**: *number*
+• **\_half_width**: _number_
 
-*Inherited from [Element](game.element.md).[_half_width](game.element.md#protected-_half_width)*
+_Inherited from [Element](game.element.md).[\_half_width](game.element.md#protected-_half_width)_
 
-*Defined in [element.ts:56](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L56)*
+_Defined in [element.ts:56](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L56)_
 
-___
+---
 
-###  _has_logic
+### \_has_logic
 
-• **_has_logic**: *boolean*
+• **\_has_logic**: _boolean_
 
-*Inherited from [Element](game.element.md).[_has_logic](game.element.md#_has_logic)*
+_Inherited from [Element](game.element.md).[\_has_logic](game.element.md#_has_logic)_
 
-*Defined in [element.ts:61](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L61)*
+_Defined in [element.ts:61](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L61)_
 
-___
+---
 
-### `Protected` _height
+### `Protected` \_height
 
-• **_height**: *number*
+• **\_height**: _number_
 
-*Inherited from [Element](game.element.md).[_height](game.element.md#protected-_height)*
+_Inherited from [Element](game.element.md).[\_height](game.element.md#protected-_height)_
 
-*Defined in [element.ts:55](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L55)*
+_Defined in [element.ts:55](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L55)_
 
-___
+---
 
-### `Protected` _image
+### `Protected` \_image
 
-• **_image**: *HTMLImageElement*
+• **\_image**: _HTMLImageElement_
 
-*Inherited from [Bitmap](game.bitmap.md).[_image](game.bitmap.md#protected-_image)*
+_Inherited from [Bitmap](game.bitmap.md).[\_image](game.bitmap.md#protected-_image)_
 
-*Defined in [bitmap.ts:27](https://github.com/noobiept/game_engine/blob/625c324/source/bitmap.ts#L27)*
+_Defined in [bitmap.ts:27](https://github.com/noobiept/game_engine/blob/625c324/source/bitmap.ts#L27)_
 
-___
+---
 
-### `Protected` _interval
+### `Protected` \_interval
 
-• **_interval**: *number*
+• **\_interval**: _number_
 
-*Defined in [scrolling_bitmap.ts:37](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L37)*
+_Defined in [scrolling_bitmap.ts:37](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L37)_
 
-___
+---
 
-### `Protected` _listeners
+### `Protected` \_listeners
 
-• **_listeners**: *any*
+• **\_listeners**: _any_
 
-*Inherited from [EventDispatcher](game.eventdispatcher.md).[_listeners](game.eventdispatcher.md#protected-_listeners)*
+_Inherited from [EventDispatcher](game.eventdispatcher.md).[\_listeners](game.eventdispatcher.md#protected-_listeners)_
 
-*Defined in [event_dispatcher.ts:16](https://github.com/noobiept/game_engine/blob/625c324/source/event_dispatcher.ts#L16)*
+_Defined in [event_dispatcher.ts:16](https://github.com/noobiept/game_engine/blob/625c324/source/event_dispatcher.ts#L16)_
 
-___
+---
 
-### `Protected` _ref_position
+### `Protected` \_ref_position
 
-• **_ref_position**: *number*
+• **\_ref_position**: _number_
 
-*Defined in [scrolling_bitmap.ts:39](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L39)*
+_Defined in [scrolling_bitmap.ts:39](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L39)_
 
-___
+---
 
-###  _removed
+### \_removed
 
-• **_removed**: *boolean*
+• **\_removed**: _boolean_
 
-*Inherited from [Element](game.element.md).[_removed](game.element.md#_removed)*
+_Inherited from [Element](game.element.md).[\_removed](game.element.md#_removed)_
 
-*Defined in [element.ts:62](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L62)*
+_Defined in [element.ts:62](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L62)_
 
-___
+---
 
-### `Protected` _rotation
+### `Protected` \_rotation
 
-• **_rotation**: *number*
+• **\_rotation**: _number_
 
-*Inherited from [Element](game.element.md).[_rotation](game.element.md#protected-_rotation)*
+_Inherited from [Element](game.element.md).[\_rotation](game.element.md#protected-_rotation)_
 
-*Defined in [element.ts:59](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L59)*
+_Defined in [element.ts:59](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L59)_
 
-___
+---
 
-### `Protected` _scroll
+### `Protected` \_scroll
 
-• **_scroll**: *function*
+• **\_scroll**: _function_
 
-*Defined in [scrolling_bitmap.ts:41](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L41)*
+_Defined in [scrolling_bitmap.ts:41](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L41)_
 
 #### Type declaration:
 
-▸ (): *void*
+▸ (): _void_
 
-___
+---
 
-### `Protected` _source_x
+### `Protected` \_source_x
 
-• **_source_x**: *number*
+• **\_source_x**: _number_
 
-*Inherited from [Bitmap](game.bitmap.md).[_source_x](game.bitmap.md#protected-_source_x)*
+_Inherited from [Bitmap](game.bitmap.md).[\_source_x](game.bitmap.md#protected-_source_x)_
 
-*Defined in [bitmap.ts:28](https://github.com/noobiept/game_engine/blob/625c324/source/bitmap.ts#L28)*
+_Defined in [bitmap.ts:28](https://github.com/noobiept/game_engine/blob/625c324/source/bitmap.ts#L28)_
 
-___
+---
 
-### `Protected` _source_y
+### `Protected` \_source_y
 
-• **_source_y**: *number*
+• **\_source_y**: _number_
 
-*Inherited from [Bitmap](game.bitmap.md).[_source_y](game.bitmap.md#protected-_source_y)*
+_Inherited from [Bitmap](game.bitmap.md).[\_source_y](game.bitmap.md#protected-_source_y)_
 
-*Defined in [bitmap.ts:29](https://github.com/noobiept/game_engine/blob/625c324/source/bitmap.ts#L29)*
+_Defined in [bitmap.ts:29](https://github.com/noobiept/game_engine/blob/625c324/source/bitmap.ts#L29)_
 
-___
+---
 
-### `Protected` _step
+### `Protected` \_step
 
-• **_step**: *number*
+• **\_step**: _number_
 
-*Defined in [scrolling_bitmap.ts:38](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L38)*
+_Defined in [scrolling_bitmap.ts:38](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L38)_
 
-___
+---
 
-### `Protected` _width
+### `Protected` \_width
 
-• **_width**: *number*
+• **\_width**: _number_
 
-*Inherited from [Element](game.element.md).[_width](game.element.md#protected-_width)*
+_Inherited from [Element](game.element.md).[\_width](game.element.md#protected-_width)_
 
-*Defined in [element.ts:54](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L54)*
+_Defined in [element.ts:54](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L54)_
 
-___
+---
 
-### `Protected` _x
+### `Protected` \_x
 
-• **_x**: *number*
+• **\_x**: _number_
 
-*Inherited from [Element](game.element.md).[_x](game.element.md#protected-_x)*
+_Inherited from [Element](game.element.md).[\_x](game.element.md#protected-_x)_
 
-*Defined in [element.ts:52](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L52)*
+_Defined in [element.ts:52](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L52)_
 
-___
+---
 
-### `Protected` _y
+### `Protected` \_y
 
-• **_y**: *number*
+• **\_y**: _number_
 
-*Inherited from [Element](game.element.md).[_y](game.element.md#protected-_y)*
+_Inherited from [Element](game.element.md).[\_y](game.element.md#protected-_y)_
 
-*Defined in [element.ts:53](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L53)*
+_Defined in [element.ts:53](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L53)_
 
-___
+---
 
-###  category
+### category
 
-• **category**: *number*
+• **category**: _number_
 
-*Inherited from [Element](game.element.md).[category](game.element.md#category)*
+_Inherited from [Element](game.element.md).[category](game.element.md#category)_
 
-*Defined in [element.ts:46](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L46)*
+_Defined in [element.ts:46](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L46)_
 
-___
+---
 
-###  collidesWith
+### collidesWith
 
-• **collidesWith**: *number*
+• **collidesWith**: _number_
 
-*Inherited from [Element](game.element.md).[collidesWith](game.element.md#collideswith)*
+_Inherited from [Element](game.element.md).[collidesWith](game.element.md#collideswith)_
 
-*Defined in [element.ts:47](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L47)*
+_Defined in [element.ts:47](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L47)_
 
-___
+---
 
-###  collision_data
+### collision_data
 
-• **collision_data**: *any*
+• **collision_data**: _any_
 
-*Inherited from [Element](game.element.md).[collision_data](game.element.md#collision_data)*
+_Inherited from [Element](game.element.md).[collision_data](game.element.md#collision_data)_
 
-*Defined in [element.ts:50](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L50)*
+_Defined in [element.ts:50](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L50)_
 
-___
+---
 
-###  grid_data
+### grid_data
 
-• **grid_data**: *any*
+• **grid_data**: _any_
 
-*Inherited from [Element](game.element.md).[grid_data](game.element.md#grid_data)*
+_Inherited from [Element](game.element.md).[grid_data](game.element.md#grid_data)_
 
-*Defined in [element.ts:49](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L49)*
+_Defined in [element.ts:49](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L49)_
 
-___
+---
 
-###  opacity
+### opacity
 
-• **opacity**: *number*
+• **opacity**: _number_
 
-*Inherited from [Element](game.element.md).[opacity](game.element.md#opacity)*
+_Inherited from [Element](game.element.md).[opacity](game.element.md#opacity)_
 
-*Defined in [element.ts:40](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L40)*
+_Defined in [element.ts:40](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L40)_
 
-___
+---
 
-###  scaleX
+### scaleX
 
-• **scaleX**: *number*
+• **scaleX**: _number_
 
-*Inherited from [Element](game.element.md).[scaleX](game.element.md#scalex)*
+_Inherited from [Element](game.element.md).[scaleX](game.element.md#scalex)_
 
-*Defined in [element.ts:43](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L43)*
+_Defined in [element.ts:43](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L43)_
 
-___
+---
 
-###  scaleY
+### scaleY
 
-• **scaleY**: *number*
+• **scaleY**: _number_
 
-*Inherited from [Element](game.element.md).[scaleY](game.element.md#scaley)*
+_Inherited from [Element](game.element.md).[scaleY](game.element.md#scaley)_
 
-*Defined in [element.ts:44](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L44)*
+_Defined in [element.ts:44](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L44)_
 
-___
+---
 
-###  vertices
+### vertices
 
-• **vertices**: *[Vertices](../modules/game.collisiondetection.md#vertices)*
+• **vertices**: _[Vertices](../modules/game.collisiondetection.md#vertices)_
 
-*Inherited from [Element](game.element.md).[vertices](game.element.md#vertices)*
+_Inherited from [Element](game.element.md).[vertices](game.element.md#vertices)_
 
-*Defined in [element.ts:38](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L38)*
+_Defined in [element.ts:38](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L38)_
 
-___
+---
 
-###  visible
+### visible
 
-• **visible**: *boolean*
+• **visible**: _boolean_
 
-*Inherited from [Element](game.element.md).[visible](game.element.md#visible)*
+_Inherited from [Element](game.element.md).[visible](game.element.md#visible)_
 
-*Defined in [element.ts:41](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L41)*
+_Defined in [element.ts:41](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L41)_
 
 ## Accessors
 
-###  half_height
+### half_height
 
-• **get half_height**(): *number*
+• **get half_height**(): _number_
 
-*Inherited from [Element](game.element.md).[half_height](game.element.md#half_height)*
+_Inherited from [Element](game.element.md).[half_height](game.element.md#half_height)_
 
-*Defined in [element.ts:561](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L561)*
+_Defined in [element.ts:561](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L561)_
 
-**Returns:** *number*
+**Returns:** _number_
 
-___
+---
 
-###  half_width
+### half_width
 
-• **get half_width**(): *number*
+• **get half_width**(): _number_
 
-*Inherited from [Element](game.element.md).[half_width](game.element.md#half_width)*
+_Inherited from [Element](game.element.md).[half_width](game.element.md#half_width)_
 
-*Defined in [element.ts:555](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L555)*
+_Defined in [element.ts:555](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L555)_
 
-**Returns:** *number*
+**Returns:** _number_
 
-___
+---
 
-###  height
+### height
 
-• **get height**(): *number*
+• **get height**(): _number_
 
-*Inherited from [Element](game.element.md).[height](game.element.md#height)*
+_Inherited from [Element](game.element.md).[height](game.element.md#height)_
 
-*Defined in [element.ts:549](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L549)*
+_Defined in [element.ts:549](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L549)_
 
-**Returns:** *number*
+**Returns:** _number_
 
-___
+---
 
-###  image
+### image
 
-• **get image**(): *HTMLImageElement*
+• **get image**(): _HTMLImageElement_
 
-*Inherited from [Bitmap](game.bitmap.md).[image](game.bitmap.md#image)*
+_Inherited from [Bitmap](game.bitmap.md).[image](game.bitmap.md#image)_
 
-*Defined in [bitmap.ts:72](https://github.com/noobiept/game_engine/blob/625c324/source/bitmap.ts#L72)*
+_Defined in [bitmap.ts:72](https://github.com/noobiept/game_engine/blob/625c324/source/bitmap.ts#L72)_
 
-**Returns:** *HTMLImageElement*
+**Returns:** _HTMLImageElement_
 
-• **set image**(`newImage`: HTMLImageElement): *void*
+• **set image**(`newImage`: HTMLImageElement): _void_
 
-*Inherited from [Bitmap](game.bitmap.md).[image](game.bitmap.md#image)*
+_Inherited from [Bitmap](game.bitmap.md).[image](game.bitmap.md#image)_
 
-*Defined in [bitmap.ts:78](https://github.com/noobiept/game_engine/blob/625c324/source/bitmap.ts#L78)*
+_Defined in [bitmap.ts:78](https://github.com/noobiept/game_engine/blob/625c324/source/bitmap.ts#L78)_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`newImage` | HTMLImageElement |
+| Name       | Type             |
+| ---------- | ---------------- |
+| `newImage` | HTMLImageElement |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  rotation
+### rotation
 
-• **get rotation**(): *number*
+• **get rotation**(): _number_
 
-*Inherited from [Element](game.element.md).[rotation](game.element.md#rotation)*
+_Inherited from [Element](game.element.md).[rotation](game.element.md#rotation)_
 
-*Defined in [element.ts:364](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L364)*
+_Defined in [element.ts:364](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L364)_
 
-**Returns:** *number*
+**Returns:** _number_
 
 Rotation in radians.
 
-• **set rotation**(`angle`: number): *void*
+• **set rotation**(`angle`: number): _void_
 
-*Inherited from [Element](game.element.md).[rotation](game.element.md#rotation)*
+_Inherited from [Element](game.element.md).[rotation](game.element.md#rotation)_
 
-*Defined in [element.ts:373](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L373)*
+_Defined in [element.ts:373](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L373)_
 
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`angle` | number | Rotate by a certain angle (in radians).  |
+| Name    | Type   | Description                             |
+| ------- | ------ | --------------------------------------- |
+| `angle` | number | Rotate by a certain angle (in radians). |
 
-**Returns:** *void*
+**Returns:** _void_
 
 Rotation in radians.
 
-___
+---
 
-###  width
+### width
 
-• **get width**(): *number*
+• **get width**(): _number_
 
-*Inherited from [Element](game.element.md).[width](game.element.md#width)*
+_Inherited from [Element](game.element.md).[width](game.element.md#width)_
 
-*Defined in [element.ts:543](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L543)*
+_Defined in [element.ts:543](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L543)_
 
-**Returns:** *number*
+**Returns:** _number_
 
-___
+---
 
-###  x
+### x
 
-• **get x**(): *number*
+• **get x**(): _number_
 
-*Inherited from [Element](game.element.md).[x](game.element.md#x)*
+_Inherited from [Element](game.element.md).[x](game.element.md#x)_
 
-*Defined in [element.ts:523](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L523)*
+_Defined in [element.ts:523](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L523)_
 
-**Returns:** *number*
+**Returns:** _number_
 
-• **set x**(`x`: number): *void*
+• **set x**(`x`: number): _void_
 
-*Inherited from [Element](game.element.md).[x](game.element.md#x)*
+_Inherited from [Element](game.element.md).[x](game.element.md#x)_
 
-*Defined in [element.ts:515](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L515)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`x` | number |
-
-**Returns:** *void*
-
-___
-
-###  y
-
-• **get y**(): *number*
-
-*Inherited from [Element](game.element.md).[y](game.element.md#y)*
-
-*Defined in [element.ts:537](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L537)*
-
-**Returns:** *number*
-
-• **set y**(`y`: number): *void*
-
-*Inherited from [Element](game.element.md).[y](game.element.md#y)*
-
-*Defined in [element.ts:529](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L529)*
+_Defined in [element.ts:515](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L515)_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`y` | number |
+| Name | Type   |
+| ---- | ------ |
+| `x`  | number |
 
-**Returns:** *void*
+**Returns:** _void_
+
+---
+
+### y
+
+• **get y**(): _number_
+
+_Inherited from [Element](game.element.md).[y](game.element.md#y)_
+
+_Defined in [element.ts:537](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L537)_
+
+**Returns:** _number_
+
+• **set y**(`y`: number): _void_
+
+_Inherited from [Element](game.element.md).[y](game.element.md#y)_
+
+_Defined in [element.ts:529](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L529)_
+
+**Parameters:**
+
+| Name | Type   |
+| ---- | ------ |
+| `y`  | number |
+
+**Returns:** _void_
 
 ## Methods
 
-### `Protected` _draw_horizontal
+### `Protected` \_draw_horizontal
 
-▸ **_draw_horizontal**(`ctx`: CanvasRenderingContext2D): *void*
+▸ **\_draw_horizontal**(`ctx`: CanvasRenderingContext2D): _void_
 
-*Defined in [scrolling_bitmap.ts:182](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L182)*
+_Defined in [scrolling_bitmap.ts:182](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L182)_
 
 Used for the horizontal movement (left or right).
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`ctx` | CanvasRenderingContext2D |
+| Name  | Type                     |
+| ----- | ------------------------ |
+| `ctx` | CanvasRenderingContext2D |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-### `Protected` _draw_vertical
+### `Protected` \_draw_vertical
 
-▸ **_draw_vertical**(`ctx`: CanvasRenderingContext2D): *void*
+▸ **\_draw_vertical**(`ctx`: CanvasRenderingContext2D): _void_
 
-*Defined in [scrolling_bitmap.ts:229](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L229)*
+_Defined in [scrolling_bitmap.ts:229](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L229)_
 
 Used for the vertical movement (top or bottom).
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`ctx` | CanvasRenderingContext2D |
+| Name  | Type                     |
+| ----- | ------------------------ |
+| `ctx` | CanvasRenderingContext2D |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  _removeNow
+### \_removeNow
 
-▸ **_removeNow**(): *void*
+▸ **\_removeNow**(): _void_
 
-*Inherited from [Element](game.element.md).[_removeNow](game.element.md#_removenow)*
+_Inherited from [Element](game.element.md).[\_removeNow](game.element.md#_removenow)_
 
-*Defined in [element.ts:415](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L415)*
+_Defined in [element.ts:415](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L415)_
 
 Remove this element from either its container or from the canvas.
 Don't call this directly, use the `remove()` method instead.
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  addEventListener
+### addEventListener
 
-▸ **addEventListener**(`type`: string, `listener`: function): *boolean*
+▸ **addEventListener**(`type`: string, `listener`: function): _boolean_
 
-*Inherited from [EventDispatcher](game.eventdispatcher.md).[addEventListener](game.eventdispatcher.md#addeventlistener)*
+_Inherited from [EventDispatcher](game.eventdispatcher.md).[addEventListener](game.eventdispatcher.md#addeventlistener)_
 
-*Defined in [event_dispatcher.ts:32](https://github.com/noobiept/game_engine/blob/625c324/source/event_dispatcher.ts#L32)*
+_Defined in [event_dispatcher.ts:32](https://github.com/noobiept/game_engine/blob/625c324/source/event_dispatcher.ts#L32)_
 
 'listener' will receive a 'data' argument when its called.
 What 'data' is, depends on the event type.
 
 **Parameters:**
 
-▪ **type**: *string*
+▪ **type**: _string_
 
 Type of the event.
 
-▪ **listener**: *function*
+▪ **listener**: _function_
 
 A function to be called when the event is dispatched.
 
-▸ (`data`: any): *any*
+▸ (`data`: any): _any_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`data` | any |
+| Name   | Type |
+| ------ | ---- |
+| `data` | any  |
 
-**Returns:** *boolean*
+**Returns:** _boolean_
 
 If it was successfully added.
 
-___
+---
 
-###  addToPosition
+### addToPosition
 
-▸ **addToPosition**(`x`: number, `y`: number): *void*
+▸ **addToPosition**(`x`: number, `y`: number): _void_
 
-*Inherited from [Element](game.element.md).[addToPosition](game.element.md#addtoposition)*
+_Inherited from [Element](game.element.md).[addToPosition](game.element.md#addtoposition)_
 
-*Defined in [element.ts:506](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L506)*
+_Defined in [element.ts:506](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L506)_
 
 Adds to the current position.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`x` | number |
-`y` | number |
+| Name | Type   |
+| ---- | ------ |
+| `x`  | number |
+| `y`  | number |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  checkCollision
+### checkCollision
 
-▸ **checkCollision**(`other`: [Element](game.element.md)): *boolean*
+▸ **checkCollision**(`other`: [Element](game.element.md)): _boolean_
 
-*Inherited from [Element](game.element.md).[checkCollision](game.element.md#checkcollision)*
+_Inherited from [Element](game.element.md).[checkCollision](game.element.md#checkcollision)_
 
-*Defined in [element.ts:177](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L177)*
+_Defined in [element.ts:177](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L177)_
 
 Check collision between two elements.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`other` | [Element](game.element.md) |
+| Name    | Type                       |
+| ------- | -------------------------- |
+| `other` | [Element](game.element.md) |
 
-**Returns:** *boolean*
+**Returns:** _boolean_
 
-___
+---
 
-###  clearInterval
+### clearInterval
 
-▸ **clearInterval**(): *void*
+▸ **clearInterval**(): _void_
 
-*Defined in [scrolling_bitmap.ts:117](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L117)*
+_Defined in [scrolling_bitmap.ts:117](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L117)_
 
 Stop the animation.
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  clone
+### clone
 
-▸ **clone**(): *[ScrollingBitmap](game.scrollingbitmap.md)‹›*
+▸ **clone**(): _[ScrollingBitmap](game.scrollingbitmap.md)‹›_
 
-*Overrides [Bitmap](game.bitmap.md).[clone](game.bitmap.md#clone)*
+_Overrides [Bitmap](game.bitmap.md).[clone](game.bitmap.md#clone)_
 
-*Defined in [scrolling_bitmap.ts:291](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L291)*
+_Defined in [scrolling_bitmap.ts:291](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L291)_
 
 Get a copy of this object.
 
-**Returns:** *[ScrollingBitmap](game.scrollingbitmap.md)‹›*
+**Returns:** _[ScrollingBitmap](game.scrollingbitmap.md)‹›_
 
-___
+---
 
-###  dispatchEvent
+### dispatchEvent
 
-▸ **dispatchEvent**(`type`: string, `data?`: any): *void*
+▸ **dispatchEvent**(`type`: string, `data?`: any): _void_
 
-*Inherited from [EventDispatcher](game.eventdispatcher.md).[dispatchEvent](game.eventdispatcher.md#dispatchevent)*
+_Inherited from [EventDispatcher](game.eventdispatcher.md).[dispatchEvent](game.eventdispatcher.md#dispatchevent)_
 
-*Defined in [event_dispatcher.ts:101](https://github.com/noobiept/game_engine/blob/625c324/source/event_dispatcher.ts#L101)*
+_Defined in [event_dispatcher.ts:101](https://github.com/noobiept/game_engine/blob/625c324/source/event_dispatcher.ts#L101)_
 
 Dispatches an event, which will trigger the listeners of that event.
 
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`type` | string | Type of the event to dispatch. |
-`data?` | any | Data to be sent to every listener.  |
+| Name    | Type   | Description                        |
+| ------- | ------ | ---------------------------------- |
+| `type`  | string | Type of the event to dispatch.     |
+| `data?` | any    | Data to be sent to every listener. |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  dispatchMouseClickEvent
+### dispatchMouseClickEvent
 
-▸ **dispatchMouseClickEvent**(`event`: MouseEvent): *void*
+▸ **dispatchMouseClickEvent**(`event`: MouseEvent): _void_
 
-*Inherited from [Element](game.element.md).[dispatchMouseClickEvent](game.element.md#dispatchmouseclickevent)*
+_Inherited from [Element](game.element.md).[dispatchMouseClickEvent](game.element.md#dispatchmouseclickevent)_
 
-*Defined in [element.ts:245](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L245)*
-
-**Parameters:**
-
-Name | Type | Description |
------- | ------ | ------ |
-`event` | MouseEvent | Either a mouse up, mouse down or click event.  |
-
-**Returns:** *void*
-
-___
-
-###  dispatchMouseMoveEvent
-
-▸ **dispatchMouseMoveEvent**(): *void*
-
-*Inherited from [Element](game.element.md).[dispatchMouseMoveEvent](game.element.md#dispatchmousemoveevent)*
-
-*Defined in [element.ts:231](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L231)*
-
-**Returns:** *void*
-
-___
-
-###  dispatchMouseOutEvent
-
-▸ **dispatchMouseOutEvent**(): *void*
-
-*Inherited from [Element](game.element.md).[dispatchMouseOutEvent](game.element.md#dispatchmouseoutevent)*
-
-*Defined in [element.ts:220](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L220)*
-
-**Returns:** *void*
-
-___
-
-###  dispatchMouseOverEvent
-
-▸ **dispatchMouseOverEvent**(): *void*
-
-*Inherited from [Element](game.element.md).[dispatchMouseOverEvent](game.element.md#dispatchmouseoverevent)*
-
-*Defined in [element.ts:209](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L209)*
-
-**Returns:** *void*
-
-___
-
-###  draw
-
-▸ **draw**(`ctx`: CanvasRenderingContext2D): *void*
-
-*Inherited from [Element](game.element.md).[draw](game.element.md#draw)*
-
-*Defined in [element.ts:135](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L135)*
-
-Draws this element, and all of its _children.
+_Defined in [element.ts:245](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L245)_
 
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`ctx` | CanvasRenderingContext2D | Canvas context.  |
+| Name    | Type       | Description                                   |
+| ------- | ---------- | --------------------------------------------- |
+| `event` | MouseEvent | Either a mouse up, mouse down or click event. |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  drawElement
+### dispatchMouseMoveEvent
 
-▸ **drawElement**(`ctx`: any): *void*
+▸ **dispatchMouseMoveEvent**(): _void_
 
-*Inherited from [Bitmap](game.bitmap.md).[drawElement](game.bitmap.md#drawelement)*
+_Inherited from [Element](game.element.md).[dispatchMouseMoveEvent](game.element.md#dispatchmousemoveevent)_
 
-*Overrides [Element](game.element.md).[drawElement](game.element.md#abstract-drawelement)*
+_Defined in [element.ts:231](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L231)_
 
-*Defined in [bitmap.ts:42](https://github.com/noobiept/game_engine/blob/625c324/source/bitmap.ts#L42)*
+**Returns:** _void_
+
+---
+
+### dispatchMouseOutEvent
+
+▸ **dispatchMouseOutEvent**(): _void_
+
+_Inherited from [Element](game.element.md).[dispatchMouseOutEvent](game.element.md#dispatchmouseoutevent)_
+
+_Defined in [element.ts:220](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L220)_
+
+**Returns:** _void_
+
+---
+
+### dispatchMouseOverEvent
+
+▸ **dispatchMouseOverEvent**(): _void_
+
+_Inherited from [Element](game.element.md).[dispatchMouseOverEvent](game.element.md#dispatchmouseoverevent)_
+
+_Defined in [element.ts:209](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L209)_
+
+**Returns:** _void_
+
+---
+
+### draw
+
+▸ **draw**(`ctx`: CanvasRenderingContext2D): _void_
+
+_Inherited from [Element](game.element.md).[draw](game.element.md#draw)_
+
+_Defined in [element.ts:135](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L135)_
+
+Draws this element, and all of its \_children.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`ctx` | any |
+| Name  | Type                     | Description     |
+| ----- | ------------------------ | --------------- |
+| `ctx` | CanvasRenderingContext2D | Canvas context. |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  getHeight
+### drawElement
 
-▸ **getHeight**(): *number*
+▸ **drawElement**(`ctx`: any): _void_
 
-*Inherited from [Element](game.element.md).[getHeight](game.element.md#getheight)*
+_Inherited from [Bitmap](game.bitmap.md).[drawElement](game.bitmap.md#drawelement)_
 
-*Defined in [element.ts:268](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L268)*
+_Overrides [Element](game.element.md).[drawElement](game.element.md#abstract-drawelement)_
 
-**Returns:** *number*
+_Defined in [bitmap.ts:42](https://github.com/noobiept/game_engine/blob/625c324/source/bitmap.ts#L42)_
+
+**Parameters:**
+
+| Name  | Type |
+| ----- | ---- |
+| `ctx` | any  |
+
+**Returns:** _void_
+
+---
+
+### getHeight
+
+▸ **getHeight**(): _number_
+
+_Inherited from [Element](game.element.md).[getHeight](game.element.md#getheight)_
+
+_Defined in [element.ts:268](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L268)_
+
+**Returns:** _number_
 
 The element's height. Doesn't consider the rotation.
 
-___
+---
 
-###  getVertices
+### getVertices
 
-▸ **getVertices**(): *object[][]*
+▸ **getVertices**(): _object[][]_
 
-*Inherited from [Element](game.element.md).[getVertices](game.element.md#getvertices)*
+_Inherited from [Element](game.element.md).[getVertices](game.element.md#getvertices)_
 
-*Defined in [element.ts:480](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L480)*
+_Defined in [element.ts:480](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L480)_
 
 Get the element vertices points. Assumes its a rectangle.
 
-**Returns:** *object[][]*
+**Returns:** _object[][]_
 
-___
+---
 
-###  getWidth
+### getWidth
 
-▸ **getWidth**(): *number*
+▸ **getWidth**(): _number_
 
-*Inherited from [Element](game.element.md).[getWidth](game.element.md#getwidth)*
+_Inherited from [Element](game.element.md).[getWidth](game.element.md#getwidth)_
 
-*Defined in [element.ts:259](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L259)*
+_Defined in [element.ts:259](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L259)_
 
-**Returns:** *number*
+**Returns:** _number_
 
 The element's width. Doesn't consider the rotation.
 
-___
+---
 
-###  hasListeners
+### hasListeners
 
-▸ **hasListeners**(`type`: string): *boolean*
+▸ **hasListeners**(`type`: string): _boolean_
 
-*Inherited from [EventDispatcher](game.eventdispatcher.md).[hasListeners](game.eventdispatcher.md#haslisteners)*
+_Inherited from [EventDispatcher](game.eventdispatcher.md).[hasListeners](game.eventdispatcher.md#haslisteners)_
 
-*Defined in [event_dispatcher.ts:121](https://github.com/noobiept/game_engine/blob/625c324/source/event_dispatcher.ts#L121)*
+_Defined in [event_dispatcher.ts:121](https://github.com/noobiept/game_engine/blob/625c324/source/event_dispatcher.ts#L121)_
 
 Check if there are listeners to a particular event type.
 
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`type` | string | The event type to check. |
+| Name   | Type   | Description              |
+| ------ | ------ | ------------------------ |
+| `type` | string | The event type to check. |
 
-**Returns:** *boolean*
+**Returns:** _boolean_
 
 If there are listeners or not.
 
-___
+---
 
-###  intersect
+### intersect
 
-▸ **intersect**(`refX`: number, `refY`: number): *any[]*
+▸ **intersect**(`refX`: number, `refY`: number): _any[]_
 
-*Inherited from [Element](game.element.md).[intersect](game.element.md#intersect)*
+_Inherited from [Element](game.element.md).[intersect](game.element.md#intersect)_
 
-*Defined in [element.ts:156](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L156)*
+_Defined in [element.ts:156](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L156)_
 
 Check if the element is within the given x/y position.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`refX` | number |
-`refY` | number |
+| Name   | Type   |
+| ------ | ------ |
+| `refX` | number |
+| `refY` | number |
 
-**Returns:** *any[]*
+**Returns:** _any[]_
 
-___
+---
 
-###  isRemoved
+### isRemoved
 
-▸ **isRemoved**(): *boolean*
+▸ **isRemoved**(): _boolean_
 
-*Inherited from [Element](game.element.md).[isRemoved](game.element.md#isremoved)*
+_Inherited from [Element](game.element.md).[isRemoved](game.element.md#isremoved)_
 
-*Defined in [element.ts:437](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L437)*
+_Defined in [element.ts:437](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L437)_
 
 Tells if this element has already been removed or not.
 
-**Returns:** *boolean*
+**Returns:** _boolean_
 
-___
+---
 
-###  logic
+### logic
 
-▸ **logic**(`deltaTime`: number): *void*
+▸ **logic**(`deltaTime`: number): _void_
 
-*Overrides [Element](game.element.md).[logic](game.element.md#logic)*
+_Overrides [Element](game.element.md).[logic](game.element.md#logic)_
 
-*Defined in [scrolling_bitmap.ts:276](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L276)*
+_Defined in [scrolling_bitmap.ts:276](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L276)_
 
 Scroll the image at the given interval.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`deltaTime` | number |
+| Name        | Type   |
+| ----------- | ------ |
+| `deltaTime` | number |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  mouseClickEvents
+### mouseClickEvents
 
-▸ **mouseClickEvents**(`x`: any, `y`: any, `event`: any): *boolean*
+▸ **mouseClickEvents**(`x`: any, `y`: any, `event`: any): _boolean_
 
-*Inherited from [Element](game.element.md).[mouseClickEvents](game.element.md#mouseclickevents)*
+_Inherited from [Element](game.element.md).[mouseClickEvents](game.element.md#mouseclickevents)_
 
-*Defined in [element.ts:191](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L191)*
+_Defined in [element.ts:191](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L191)_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`x` | any |
-`y` | any |
-`event` | any |
+| Name    | Type |
+| ------- | ---- |
+| `x`     | any  |
+| `y`     | any  |
+| `event` | any  |
 
-**Returns:** *boolean*
+**Returns:** _boolean_
 
-___
+---
 
-###  remove
+### remove
 
-▸ **remove**(): *void*
+▸ **remove**(): _void_
 
-*Inherited from [Element](game.element.md).[remove](game.element.md#remove)*
+_Inherited from [Element](game.element.md).[remove](game.element.md#remove)_
 
-*Defined in [element.ts:400](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L400)*
+_Defined in [element.ts:400](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L400)_
 
 Mark this element to be removed.
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  removeAllEventListeners
+### removeAllEventListeners
 
-▸ **removeAllEventListeners**(): *void*
+▸ **removeAllEventListeners**(): _void_
 
-*Inherited from [EventDispatcher](game.eventdispatcher.md).[removeAllEventListeners](game.eventdispatcher.md#removealleventlisteners)*
+_Inherited from [EventDispatcher](game.eventdispatcher.md).[removeAllEventListeners](game.eventdispatcher.md#removealleventlisteners)_
 
-*Defined in [event_dispatcher.ts:89](https://github.com/noobiept/game_engine/blob/625c324/source/event_dispatcher.ts#L89)*
+_Defined in [event_dispatcher.ts:89](https://github.com/noobiept/game_engine/blob/625c324/source/event_dispatcher.ts#L89)_
 
 Remove all the event listeners.
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  removeEventListener
+### removeEventListener
 
-▸ **removeEventListener**(`type`: string, `listener?`: function): *boolean*
+▸ **removeEventListener**(`type`: string, `listener?`: function): _boolean_
 
-*Inherited from [EventDispatcher](game.eventdispatcher.md).[removeEventListener](game.eventdispatcher.md#removeeventlistener)*
+_Inherited from [EventDispatcher](game.eventdispatcher.md).[removeEventListener](game.eventdispatcher.md#removeeventlistener)_
 
-*Defined in [event_dispatcher.ts:60](https://github.com/noobiept/game_engine/blob/625c324/source/event_dispatcher.ts#L60)*
+_Defined in [event_dispatcher.ts:60](https://github.com/noobiept/game_engine/blob/625c324/source/event_dispatcher.ts#L60)_
 
 Removes a specific listener of an event type, or all the listeners for that type (if 'listener' is not provided).
 
 **Parameters:**
 
-▪ **type**: *string*
+▪ **type**: _string_
 
 The event type.
 
-▪`Optional`  **listener**: *function*
+▪`Optional` **listener**: _function_
 
 The listener function to remove. If not provided then remove all the functions associated with the event type.
 
-▸ (`data`: any): *any*
+▸ (`data`: any): _any_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`data` | any |
+| Name   | Type |
+| ------ | ---- |
+| `data` | any  |
 
-**Returns:** *boolean*
+**Returns:** _boolean_
 
 If it was successfully removed.
 
-___
+---
 
-###  rotate
+### rotate
 
-▸ **rotate**(`angle`: number, `degrees?`: boolean): *void*
+▸ **rotate**(`angle`: number, `degrees?`: boolean): _void_
 
-*Inherited from [Element](game.element.md).[rotate](game.element.md#rotate)*
+_Inherited from [Element](game.element.md).[rotate](game.element.md#rotate)_
 
-*Defined in [element.ts:383](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L383)*
+_Defined in [element.ts:383](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L383)_
 
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`angle` | number | Angle of rotation. |
-`degrees?` | boolean | Whether the angle provided is in degrees or radians.  |
+| Name       | Type    | Description                                          |
+| ---------- | ------- | ---------------------------------------------------- |
+| `angle`    | number  | Angle of rotation.                                   |
+| `degrees?` | boolean | Whether the angle provided is in degrees or radians. |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  scroll_bottom
+### scroll_bottom
 
-▸ **scroll_bottom**(): *void*
+▸ **scroll_bottom**(): _void_
 
-*Defined in [scrolling_bitmap.ts:168](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L168)*
+_Defined in [scrolling_bitmap.ts:168](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L168)_
 
 Scroll to the bottom.
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  scroll_left
+### scroll_left
 
-▸ **scroll_left**(): *void*
+▸ **scroll_left**(): _void_
 
-*Defined in [scrolling_bitmap.ts:126](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L126)*
+_Defined in [scrolling_bitmap.ts:126](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L126)_
 
 Scroll to the left.
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  scroll_right
+### scroll_right
 
-▸ **scroll_right**(): *void*
+▸ **scroll_right**(): _void_
 
-*Defined in [scrolling_bitmap.ts:140](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L140)*
+_Defined in [scrolling_bitmap.ts:140](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L140)_
 
 Scroll to the right.
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  scroll_top
+### scroll_top
 
-▸ **scroll_top**(): *void*
+▸ **scroll_top**(): _void_
 
-*Defined in [scrolling_bitmap.ts:154](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L154)*
+_Defined in [scrolling_bitmap.ts:154](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L154)_
 
 Scroll to the top.
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  setDimensions
+### setDimensions
 
-▸ **setDimensions**(`width`: number, `height`: number): *void*
+▸ **setDimensions**(`width`: number, `height`: number): _void_
 
-*Inherited from [Element](game.element.md).[setDimensions](game.element.md#setdimensions)*
+_Inherited from [Element](game.element.md).[setDimensions](game.element.md#setdimensions)_
 
-*Defined in [element.ts:297](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L297)*
+_Defined in [element.ts:297](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L297)_
 
 Set the width and height at the same time.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`width` | number |
-`height` | number |
+| Name     | Type   |
+| -------- | ------ |
+| `width`  | number |
+| `height` | number |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  setDirection
+### setDirection
 
-▸ **setDirection**(`direction`: [Direction](../enums/game.scrollingbitmapargs.direction.md)): *void*
+▸ **setDirection**(`direction`: [Direction](../enums/game.scrollingbitmapargs.direction.md)): _void_
 
-*Defined in [scrolling_bitmap.ts:65](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L65)*
+_Defined in [scrolling_bitmap.ts:65](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L65)_
 
 Set the direction of the scrolling.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`direction` | [Direction](../enums/game.scrollingbitmapargs.direction.md) |
+| Name        | Type                                                        |
+| ----------- | ----------------------------------------------------------- |
+| `direction` | [Direction](../enums/game.scrollingbitmapargs.direction.md) |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  setHeight
+### setHeight
 
-▸ **setHeight**(`height`: number): *void*
+▸ **setHeight**(`height`: number): _void_
 
-*Inherited from [Element](game.element.md).[setHeight](game.element.md#setheight)*
+_Inherited from [Element](game.element.md).[setHeight](game.element.md#setheight)_
 
-*Defined in [element.ts:287](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L287)*
+_Defined in [element.ts:287](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L287)_
 
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`height` | number | New height.  |
+| Name     | Type   | Description |
+| -------- | ------ | ----------- |
+| `height` | number | New height. |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  setInterval
+### setInterval
 
-▸ **setInterval**(`interval`: number): *void*
+▸ **setInterval**(`interval`: number): _void_
 
-*Defined in [scrolling_bitmap.ts:106](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L106)*
+_Defined in [scrolling_bitmap.ts:106](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L106)_
 
 Set an interval between the scroll movements.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`interval` | number |
+| Name       | Type   |
+| ---------- | ------ |
+| `interval` | number |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  setPosition
+### setPosition
 
-▸ **setPosition**(`x`: number, `y`: number): *void*
+▸ **setPosition**(`x`: number, `y`: number): _void_
 
-*Inherited from [Element](game.element.md).[setPosition](game.element.md#setposition)*
+_Inherited from [Element](game.element.md).[setPosition](game.element.md#setposition)_
 
-*Defined in [element.ts:494](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L494)*
+_Defined in [element.ts:494](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L494)_
 
 Move the unit to the given x/y position.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`x` | number |
-`y` | number |
+| Name | Type   |
+| ---- | ------ |
+| `x`  | number |
+| `y`  | number |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  setStep
+### setStep
 
-▸ **setStep**(`step`: number): *void*
+▸ **setStep**(`step`: number): _void_
 
-*Defined in [scrolling_bitmap.ts:97](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L97)*
+_Defined in [scrolling_bitmap.ts:97](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L97)_
 
 Change the step of the animation (how much it scrolls per update).
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`step` | number |
+| Name   | Type   |
+| ------ | ------ |
+| `step` | number |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  setWidth
+### setWidth
 
-▸ **setWidth**(`width`: number): *void*
+▸ **setWidth**(`width`: number): _void_
 
-*Inherited from [Element](game.element.md).[setWidth](game.element.md#setwidth)*
+_Inherited from [Element](game.element.md).[setWidth](game.element.md#setwidth)_
 
-*Defined in [element.ts:277](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L277)*
+_Defined in [element.ts:277](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L277)_
 
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`width` | number | New width.  |
+| Name    | Type   | Description |
+| ------- | ------ | ----------- |
+| `width` | number | New width.  |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  toAxisAligned
+### toAxisAligned
 
-▸ **toAxisAligned**(): *object*
+▸ **toAxisAligned**(): _object_
 
-*Inherited from [Element](game.element.md).[toAxisAligned](game.element.md#toaxisaligned)*
+_Inherited from [Element](game.element.md).[toAxisAligned](game.element.md#toaxisaligned)_
 
-*Defined in [element.ts:309](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L309)*
+_Defined in [element.ts:309](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L309)_
 
 Calculates an axis-aligned rectangle from the rotated shape.
 
-**Returns:** *object*
+**Returns:** _object_
 
-* **maxX**: *number* =  maxX
+- **maxX**: _number_ = maxX
 
-* **maxY**: *number* =  maxY
+- **maxY**: _number_ = maxY
 
-* **minX**: *number* =  minX
+- **minX**: _number_ = minX
 
-* **minY**: *number* =  minY
+- **minY**: _number_ = minY
 
-___
+---
 
-###  updateVertices
+### updateVertices
 
-▸ **updateVertices**(`x`: number, `y`: number, `scaleX`: number, `scaleY`: number, `rotation`: number): *void*
+▸ **updateVertices**(`x`: number, `y`: number, `scaleX`: number, `scaleY`: number, `rotation`: number): _void_
 
-*Inherited from [Element](game.element.md).[updateVertices](game.element.md#updatevertices)*
+_Inherited from [Element](game.element.md).[updateVertices](game.element.md#updatevertices)_
 
-*Defined in [element.ts:453](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L453)*
+_Defined in [element.ts:453](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L453)_
 
 Get the global vertices points of this element.
 The arguments are the compound values from the parent containers.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`x` | number |
-`y` | number |
-`scaleX` | number |
-`scaleY` | number |
-`rotation` | number |
+| Name       | Type   |
+| ---------- | ------ |
+| `x`        | number |
+| `y`        | number |
+| `scaleX`   | number |
+| `scaleY`   | number |
+| `rotation` | number |
 
-**Returns:** *void*
+**Returns:** _void_

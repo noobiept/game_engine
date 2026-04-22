@@ -21,142 +21,142 @@ Examples -- `preload`
 
 ### Variables
 
-* [CTX](game.sound.md#ctx)
-* [GLOBAL_GAIN](game.sound.md#global_gain)
+- [CTX](game.sound.md#ctx)
+- [GLOBAL_GAIN](game.sound.md#global_gain)
 
 ### Functions
 
-* [decodeAudio](game.sound.md#decodeaudio)
-* [getGlobalGain](game.sound.md#getglobalgain)
-* [init](game.sound.md#init)
-* [isAvailable](game.sound.md#isavailable)
-* [play](game.sound.md#play)
-* [setGlobalGain](game.sound.md#setglobalgain)
+- [decodeAudio](game.sound.md#decodeaudio)
+- [getGlobalGain](game.sound.md#getglobalgain)
+- [init](game.sound.md#init)
+- [isAvailable](game.sound.md#isavailable)
+- [play](game.sound.md#play)
+- [setGlobalGain](game.sound.md#setglobalgain)
 
 ## Variables
 
-###  CTX
+### CTX
 
-• **CTX**: *AudioContext* =  null
+• **CTX**: _AudioContext_ = null
 
-*Defined in [sound.ts:21](https://github.com/noobiept/game_engine/blob/625c324/source/sound.ts#L21)*
+_Defined in [sound.ts:21](https://github.com/noobiept/game_engine/blob/625c324/source/sound.ts#L21)_
 
-___
+---
 
-###  GLOBAL_GAIN
+### GLOBAL_GAIN
 
-• **GLOBAL_GAIN**: *GainNode*
+• **GLOBAL_GAIN**: _GainNode_
 
-*Defined in [sound.ts:22](https://github.com/noobiept/game_engine/blob/625c324/source/sound.ts#L22)*
+_Defined in [sound.ts:22](https://github.com/noobiept/game_engine/blob/625c324/source/sound.ts#L22)_
 
 ## Functions
 
-###  decodeAudio
+### decodeAudio
 
-▸ **decodeAudio**(`data`: ArrayBuffer, `successCallback`: function, `errorCallback`: any): *boolean*
+▸ **decodeAudio**(`data`: ArrayBuffer, `successCallback`: function, `errorCallback`: any): _boolean_
 
-*Defined in [sound.ts:61](https://github.com/noobiept/game_engine/blob/625c324/source/sound.ts#L61)*
+_Defined in [sound.ts:61](https://github.com/noobiept/game_engine/blob/625c324/source/sound.ts#L61)_
 
 Decode audio file data contained in an ArrayBuffer.
 
 **Parameters:**
 
-▪ **data**: *ArrayBuffer*
+▪ **data**: _ArrayBuffer_
 
 The audio data.
 
-▪ **successCallback**: *function*
+▪ **successCallback**: _function_
 
 Function to be called when the data has been decoded.
 
-▸ (`decodedData`: AudioBuffer): *any*
+▸ (`decodedData`: AudioBuffer): _any_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`decodedData` | AudioBuffer |
+| Name          | Type        |
+| ------------- | ----------- |
+| `decodedData` | AudioBuffer |
 
-▪ **errorCallback**: *any*
+▪ **errorCallback**: _any_
 
 Function to be called in case it fails to decode the audio data.
 
-**Returns:** *boolean*
+**Returns:** _boolean_
 
-___
+---
 
-###  getGlobalGain
+### getGlobalGain
 
-▸ **getGlobalGain**(): *number*
+▸ **getGlobalGain**(): _number_
 
-*Defined in [sound.ts:119](https://github.com/noobiept/game_engine/blob/625c324/source/sound.ts#L119)*
+_Defined in [sound.ts:119](https://github.com/noobiept/game_engine/blob/625c324/source/sound.ts#L119)_
 
 Get the current global gain/volume value (between 0 and 1).
 Will return -1 if the sound is not available.
 
-**Returns:** *number*
+**Returns:** _number_
 
-___
+---
 
-###  init
+### init
 
-▸ **init**(): *boolean*
+▸ **init**(): _boolean_
 
-*Defined in [sound.ts:27](https://github.com/noobiept/game_engine/blob/625c324/source/sound.ts#L27)*
+_Defined in [sound.ts:27](https://github.com/noobiept/game_engine/blob/625c324/source/sound.ts#L27)_
 
 Initialize the `Sound` module. Its called in `Game.init()`.
 
-**Returns:** *boolean*
+**Returns:** _boolean_
 
-___
+---
 
-###  isAvailable
+### isAvailable
 
-▸ **isAvailable**(): *boolean*
+▸ **isAvailable**(): _boolean_
 
-*Defined in [sound.ts:134](https://github.com/noobiept/game_engine/blob/625c324/source/sound.ts#L134)*
+_Defined in [sound.ts:134](https://github.com/noobiept/game_engine/blob/625c324/source/sound.ts#L134)_
 
 Tells if the module is working properly or not.
 When it isn't, calling the functions (like `Game.Sound.play()`) won't give you an error, but no sound will be played.
 
-**Returns:** *boolean*
+**Returns:** _boolean_
 
-___
+---
 
-###  play
+### play
 
-▸ **play**(`audioBuffer`: AudioBuffer): *AudioBufferSourceNode*
+▸ **play**(`audioBuffer`: AudioBuffer): _AudioBufferSourceNode_
 
-*Defined in [sound.ts:79](https://github.com/noobiept/game_engine/blob/625c324/source/sound.ts#L79)*
+_Defined in [sound.ts:79](https://github.com/noobiept/game_engine/blob/625c324/source/sound.ts#L79)_
 
 Play a sound.
 
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`audioBuffer` | AudioBuffer | The audio buffer of the sound we want to play. |
+| Name          | Type        | Description                                    |
+| ------------- | ----------- | ---------------------------------------------- |
+| `audioBuffer` | AudioBuffer | The audio buffer of the sound we want to play. |
 
-**Returns:** *AudioBufferSourceNode*
+**Returns:** _AudioBufferSourceNode_
 
 The source node, or `null` if it wasn't possible to play the sound.
 
-___
+---
 
-###  setGlobalGain
+### setGlobalGain
 
-▸ **setGlobalGain**(`gain`: number): *boolean*
+▸ **setGlobalGain**(`gain`: number): _boolean_
 
-*Defined in [sound.ts:102](https://github.com/noobiept/game_engine/blob/625c324/source/sound.ts#L102)*
+_Defined in [sound.ts:102](https://github.com/noobiept/game_engine/blob/625c324/source/sound.ts#L102)_
 
 Sets the global gain/volume of all the sounds played.
 
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`gain` | number | A number between 0 and 1. |
+| Name   | Type   | Description               |
+| ------ | ------ | ------------------------- |
+| `gain` | number | A number between 0 and 1. |
 
-**Returns:** *boolean*
+**Returns:** _boolean_
 
 If the gain was set or not.

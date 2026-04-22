@@ -1,72 +1,65 @@
-class Star extends Game.Circle
-{
-constructor( args )
-    {
-    args.color = args.fillColor;
-    args.radius = args.outerRadius;
+class Star extends Game.Circle {
+    constructor(args) {
+        args.color = args.fillColor;
+        args.radius = args.outerRadius;
 
-    super( args );
+        super(args);
 
-    this.fill_color = args.fillColor;
-    this.stroke_color = args.strokeColor;
-    this.outer_radius = args.outerRadius;
-    this.inner_radius = args.innerRadius;
-    this.spikes = args.spikes;
+        this.fill_color = args.fillColor;
+        this.stroke_color = args.strokeColor;
+        this.outer_radius = args.outerRadius;
+        this.inner_radius = args.innerRadius;
+        this.spikes = args.spikes;
     }
 
+    drawElement(ctx) {
+        ctx.save();
+        ctx.globalAlpha *= this.opacity;
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rotation);
 
-drawElement( ctx )
-    {
-    ctx.save();
-    ctx.globalAlpha *= this.opacity;
-    ctx.translate( this.x, this.y );
-    ctx.rotate( this.rotation );
+        var step = Math.PI / this.spikes;
+        var rotation = -Math.PI / 2;
 
-    var step = Math.PI / this.spikes;
-    var rotation = - Math.PI / 2;
+        ctx.beginPath();
+        ctx.moveTo(0, -this.outer_radius);
 
-    ctx.beginPath();
-    ctx.moveTo( 0, -this.outer_radius );
+        var x, y;
 
-    var x, y;
+        for (var a = 0; a < this.spikes; a++) {
+            x = Math.cos(rotation) * this.outer_radius;
+            y = Math.sin(rotation) * this.outer_radius;
 
-    for (var a = 0 ; a < this.spikes ; a++)
-    {
-    x = Math.cos( rotation ) * this.outer_radius;
-    y = Math.sin( rotation ) * this.outer_radius;
+            ctx.lineTo(x, y);
 
-    ctx.lineTo( x, y );
+            rotation += step;
 
-    rotation += step;
+            x = Math.cos(rotation) * this.inner_radius;
+            y = Math.sin(rotation) * this.inner_radius;
 
-    x = Math.cos( rotation ) * this.inner_radius;
-    y = Math.sin( rotation ) * this.inner_radius;
+            ctx.lineTo(x, y);
 
-    ctx.lineTo( x, y );
+            rotation += step;
+        }
 
-    rotation += step;
+        ctx.closePath();
+
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = this.stroke_color;
+        ctx.stroke();
+        ctx.fillStyle = this.fill_color;
+        ctx.fill();
+
+        ctx.restore();
     }
 
-    ctx.closePath();
-
-    ctx.lineWidth = 2;
-    ctx.strokeStyle = this.stroke_color;
-    ctx.stroke();
-    ctx.fillStyle = this.fill_color;
-    ctx.fill();
-
-    ctx.restore();
-    }
-
-
-clone()
-    {
-    return new Star({
+    clone() {
+        return new Star({
             fillColor: this.fill_color,
             strokeColor: this.stroke_color,
             outerRadius: this.outer_radius,
             innerRadius: this.inner_radius,
-            spikes: this.spikes
+            spikes: this.spikes,
         });
     }
 }

@@ -6,4 +6,4 @@
 
 ### Modules
 
-* [Game](modules/game.md)
+- [Game](modules/game.md)

@@ -4,93 +4,93 @@
 
 ## Hierarchy
 
-  ↳ [ContainerArgs](game.containerargs.md)
+↳ [ContainerArgs](game.containerargs.md)
 
-  ↳ **BulletArgs**
+↳ **BulletArgs**
 
 ## Index
 
 ### Properties
 
-* [angleOrTarget](game.bulletargs.md#optional-angleortarget)
-* [category](game.bulletargs.md#optional-category)
-* [children](game.bulletargs.md#optional-children)
-* [collidesWith](game.bulletargs.md#optional-collideswith)
-* [damage](game.bulletargs.md#optional-damage)
-* [movementSpeed](game.bulletargs.md#movementspeed)
-* [x](game.bulletargs.md#optional-x)
-* [y](game.bulletargs.md#optional-y)
+- [angleOrTarget](game.bulletargs.md#optional-angleortarget)
+- [category](game.bulletargs.md#optional-category)
+- [children](game.bulletargs.md#optional-children)
+- [collidesWith](game.bulletargs.md#optional-collideswith)
+- [damage](game.bulletargs.md#optional-damage)
+- [movementSpeed](game.bulletargs.md#movementspeed)
+- [x](game.bulletargs.md#optional-x)
+- [y](game.bulletargs.md#optional-y)
 
 ## Properties
 
 ### `Optional` angleOrTarget
 
-• **angleOrTarget**? : *number | [Element](../classes/game.element.md)*
+• **angleOrTarget**? : _number | [Element](../classes/game.element.md)_
 
-*Defined in [bullet.ts:10](https://github.com/noobiept/game_engine/blob/625c324/source/bullet.ts#L10)*
+_Defined in [bullet.ts:10](https://github.com/noobiept/game_engine/blob/625c324/source/bullet.ts#L10)_
 
-___
+---
 
 ### `Optional` category
 
-• **category**? : *number*
+• **category**? : _number_
 
-*Inherited from [ElementArgs](game.elementargs.md).[category](game.elementargs.md#optional-category)*
+_Inherited from [ElementArgs](game.elementargs.md).[category](game.elementargs.md#optional-category)_
 
-*Defined in [element.ts:15](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L15)*
+_Defined in [element.ts:15](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L15)_
 
-___
+---
 
 ### `Optional` children
 
-• **children**? : *[Element](../classes/game.element.md) | [Element](../classes/game.element.md)[]*
+• **children**? : _[Element](../classes/game.element.md) | [Element](../classes/game.element.md)[]_
 
-*Inherited from [ContainerArgs](game.containerargs.md).[children](game.containerargs.md#optional-children)*
+_Inherited from [ContainerArgs](game.containerargs.md).[children](game.containerargs.md#optional-children)_
 
-*Defined in [container.ts:7](https://github.com/noobiept/game_engine/blob/625c324/source/container.ts#L7)*
+_Defined in [container.ts:7](https://github.com/noobiept/game_engine/blob/625c324/source/container.ts#L7)_
 
-___
+---
 
 ### `Optional` collidesWith
 
-• **collidesWith**? : *number*
+• **collidesWith**? : _number_
 
-*Inherited from [ElementArgs](game.elementargs.md).[collidesWith](game.elementargs.md#optional-collideswith)*
+_Inherited from [ElementArgs](game.elementargs.md).[collidesWith](game.elementargs.md#optional-collideswith)_
 
-*Defined in [element.ts:19](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L19)*
+_Defined in [element.ts:19](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L19)_
 
-___
+---
 
 ### `Optional` damage
 
-• **damage**? : *number*
+• **damage**? : _number_
 
-*Defined in [bullet.ts:11](https://github.com/noobiept/game_engine/blob/625c324/source/bullet.ts#L11)*
+_Defined in [bullet.ts:11](https://github.com/noobiept/game_engine/blob/625c324/source/bullet.ts#L11)_
 
-___
+---
 
-###  movementSpeed
+### movementSpeed
 
-• **movementSpeed**: *number*
+• **movementSpeed**: _number_
 
-*Defined in [bullet.ts:12](https://github.com/noobiept/game_engine/blob/625c324/source/bullet.ts#L12)*
+_Defined in [bullet.ts:12](https://github.com/noobiept/game_engine/blob/625c324/source/bullet.ts#L12)_
 
-___
+---
 
 ### `Optional` x
 
-• **x**? : *number*
+• **x**? : _number_
 
-*Inherited from [ElementArgs](game.elementargs.md).[x](game.elementargs.md#optional-x)*
+_Inherited from [ElementArgs](game.elementargs.md).[x](game.elementargs.md#optional-x)_
 
-*Defined in [element.ts:10](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L10)*
+_Defined in [element.ts:10](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L10)_
 
-___
+---
 
 ### `Optional` y
 
-• **y**? : *number*
+• **y**? : _number_
 
-*Inherited from [ElementArgs](game.elementargs.md).[y](game.elementargs.md#optional-y)*
+_Inherited from [ElementArgs](game.elementargs.md).[y](game.elementargs.md#optional-y)_
 
-*Defined in [element.ts:11](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L11)*
+_Defined in [element.ts:11](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L11)_

@@ -4,29 +4,29 @@
 
 ## Hierarchy
 
-* **GridArgs**
+- **GridArgs**
 
-  ↳ [ElementGridArgs](game.elementgridargs.md)
+    ↳ [ElementGridArgs](game.elementgridargs.md)
 
 ## Index
 
 ### Properties
 
-* [columns](game.gridargs.md#columns)
-* [lines](game.gridargs.md#lines)
+- [columns](game.gridargs.md#columns)
+- [lines](game.gridargs.md#lines)
 
 ## Properties
 
-###  columns
+### columns
 
-• **columns**: *number*
+• **columns**: _number_
 
-*Defined in [grid.ts:7](https://github.com/noobiept/game_engine/blob/625c324/source/grid.ts#L7)*
+_Defined in [grid.ts:7](https://github.com/noobiept/game_engine/blob/625c324/source/grid.ts#L7)_
 
-___
+---
 
-###  lines
+### lines
 
-• **lines**: *number*
+• **lines**: _number_
 
-*Defined in [grid.ts:8](https://github.com/noobiept/game_engine/blob/625c324/source/grid.ts#L8)*
+_Defined in [grid.ts:8](https://github.com/noobiept/game_engine/blob/625c324/source/grid.ts#L8)_

@@ -4,125 +4,125 @@
 
 ## Hierarchy
 
-  ↳ [ButtonArgs](game.html.buttonargs.md)
+↳ [ButtonArgs](game.html.buttonargs.md)
 
-  ↳ **TwoStateArgs**
+↳ **TwoStateArgs**
 
 ## Index
 
 ### Properties
 
-* [callback](game.html.twostateargs.md#optional-callback)
-* [callback2](game.html.twostateargs.md#optional-callback2)
-* [click_ref](game.html.twostateargs.md#optional-click_ref)
-* [cssClass](game.html.twostateargs.md#optional-cssclass)
-* [cssId](game.html.twostateargs.md#optional-cssid)
-* [preText](game.html.twostateargs.md#optional-pretext)
-* [value](game.html.twostateargs.md#value)
-* [value2](game.html.twostateargs.md#value2)
+- [callback](game.html.twostateargs.md#optional-callback)
+- [callback2](game.html.twostateargs.md#optional-callback2)
+- [click_ref](game.html.twostateargs.md#optional-click_ref)
+- [cssClass](game.html.twostateargs.md#optional-cssclass)
+- [cssId](game.html.twostateargs.md#optional-cssid)
+- [preText](game.html.twostateargs.md#optional-pretext)
+- [value](game.html.twostateargs.md#value)
+- [value2](game.html.twostateargs.md#value2)
 
 ## Properties
 
 ### `Optional` callback
 
-• **callback**? : *function*
+• **callback**? : _function_
 
-*Inherited from [ButtonArgs](game.html.buttonargs.md).[callback](game.html.buttonargs.md#optional-callback)*
+_Inherited from [ButtonArgs](game.html.buttonargs.md).[callback](game.html.buttonargs.md#optional-callback)_
 
-*Defined in [html.ts:355](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L355)*
+_Defined in [html.ts:355](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L355)_
 
 #### Type declaration:
 
-▸ (`button`: [Button](../classes/game.html.button.md)): *any*
+▸ (`button`: [Button](../classes/game.html.button.md)): _any_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`button` | [Button](../classes/game.html.button.md) |
+| Name     | Type                                     |
+| -------- | ---------------------------------------- |
+| `button` | [Button](../classes/game.html.button.md) |
 
-___
+---
 
 ### `Optional` callback2
 
-• **callback2**? : *function*
+• **callback2**? : _function_
 
-*Defined in [html.ts:496](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L496)*
+_Defined in [html.ts:496](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L496)_
 
 #### Type declaration:
 
-▸ (`button`: [TwoState](../classes/game.html.twostate.md)): *any*
+▸ (`button`: [TwoState](../classes/game.html.twostate.md)): _any_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`button` | [TwoState](../classes/game.html.twostate.md) |
+| Name     | Type                                         |
+| -------- | -------------------------------------------- |
+| `button` | [TwoState](../classes/game.html.twostate.md) |
 
-___
+---
 
 ### `Optional` click_ref
 
-• **click_ref**? : *function*
+• **click_ref**? : _function_
 
-*Inherited from [ButtonArgs](game.html.buttonargs.md).[click_ref](game.html.buttonargs.md#optional-click_ref)*
+_Inherited from [ButtonArgs](game.html.buttonargs.md).[click_ref](game.html.buttonargs.md#optional-click_ref)_
 
-*Defined in [html.ts:356](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L356)*
+_Defined in [html.ts:356](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L356)_
 
 #### Type declaration:
 
-▸ (`event`: MouseEvent): *any*
+▸ (`event`: MouseEvent): _any_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`event` | MouseEvent |
+| Name    | Type       |
+| ------- | ---------- |
+| `event` | MouseEvent |
 
-___
+---
 
 ### `Optional` cssClass
 
-• **cssClass**? : *string | string[]*
+• **cssClass**? : _string | string[]_
 
-*Inherited from [HtmlElementArgs](game.html.htmlelementargs.md).[cssClass](game.html.htmlelementargs.md#optional-cssclass)*
+_Inherited from [HtmlElementArgs](game.html.htmlelementargs.md).[cssClass](game.html.htmlelementargs.md#optional-cssclass)_
 
-*Defined in [html.ts:28](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L28)*
+_Defined in [html.ts:28](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L28)_
 
-___
+---
 
 ### `Optional` cssId
 
-• **cssId**? : *string*
+• **cssId**? : _string_
 
-*Inherited from [HtmlElementArgs](game.html.htmlelementargs.md).[cssId](game.html.htmlelementargs.md#optional-cssid)*
+_Inherited from [HtmlElementArgs](game.html.htmlelementargs.md).[cssId](game.html.htmlelementargs.md#optional-cssid)_
 
-*Defined in [html.ts:27](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L27)*
+_Defined in [html.ts:27](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L27)_
 
-___
+---
 
 ### `Optional` preText
 
-• **preText**? : *string*
+• **preText**? : _string_
 
-*Inherited from [HtmlElementArgs](game.html.htmlelementargs.md).[preText](game.html.htmlelementargs.md#optional-pretext)*
+_Inherited from [HtmlElementArgs](game.html.htmlelementargs.md).[preText](game.html.htmlelementargs.md#optional-pretext)_
 
-*Defined in [html.ts:29](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L29)*
+_Defined in [html.ts:29](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L29)_
 
-___
+---
 
-###  value
+### value
 
-• **value**: *any*
+• **value**: _any_
 
-*Inherited from [ValueArgs](game.html.valueargs.md).[value](game.html.valueargs.md#value)*
+_Inherited from [ValueArgs](game.html.valueargs.md).[value](game.html.valueargs.md#value)_
 
-*Defined in [html.ts:289](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L289)*
+_Defined in [html.ts:289](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L289)_
 
-___
+---
 
-###  value2
+### value2
 
-• **value2**: *string*
+• **value2**: _string_
 
-*Defined in [html.ts:495](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L495)*
+_Defined in [html.ts:495](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L495)_

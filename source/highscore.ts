@@ -31,28 +31,28 @@ var SORT_F: (a: number, b: number) => number;
  * @param ascending Sort the values in ascending or descending order.
  */
 export function init(
-  maxScoresSaved: number,
-  storageName: string,
-  ascending: boolean,
+    maxScoresSaved: number,
+    storageName: string,
+    ascending: boolean,
 ) {
-  MAX_SCORES_SAVED = maxScoresSaved;
-  STORAGE_NAME = storageName;
+    MAX_SCORES_SAVED = maxScoresSaved;
+    STORAGE_NAME = storageName;
 
-  // lower values first
-  if (ascending === true) {
-    SORT_F = function (a, b) {
-      return a - b;
-    };
-  }
+    // lower values first
+    if (ascending === true) {
+        SORT_F = function (a, b) {
+            return a - b;
+        };
+    }
 
-  // higher values first
-  else {
-    SORT_F = function (a, b) {
-      return b - a;
-    };
-  }
+    // higher values first
+    else {
+        SORT_F = function (a, b) {
+            return b - a;
+        };
+    }
 
-  load();
+    load();
 }
 
 /**
@@ -62,26 +62,26 @@ export function init(
  * @param value The score value.
  */
 export function add(key: string, value: number) {
-  if (typeof SCORES[key] === "undefined") {
-    SCORES[key] = [];
-  }
+    if (typeof SCORES[key] === "undefined") {
+        SCORES[key] = [];
+    }
 
-  // don't add repeated scores
-  if (SCORES[key].indexOf(value) >= 0) {
-    return;
-  }
+    // don't add repeated scores
+    if (SCORES[key].indexOf(value) >= 0) {
+        return;
+    }
 
-  SCORES[key].push(value);
+    SCORES[key].push(value);
 
-  // have the better scores first (better means a lesser value)
-  SCORES[key].sort(SORT_F);
+    // have the better scores first (better means a lesser value)
+    SCORES[key].sort(SORT_F);
 
-  // if we pass the limit, remove one of the lesser scores
-  if (SCORES[key].length > MAX_SCORES_SAVED) {
-    SCORES[key].pop();
-  }
+    // if we pass the limit, remove one of the lesser scores
+    if (SCORES[key].length > MAX_SCORES_SAVED) {
+        SCORES[key].pop();
+    }
 
-  save();
+    save();
 }
 
 /**
@@ -89,32 +89,32 @@ export function add(key: string, value: number) {
  * @return An array with all the scores associated with the provided key.
  */
 export function get(key: string) {
-  return SCORES[key];
+    return SCORES[key];
 }
 
 /**
  * Remove all the scores (clears the `localStorage` as well).
  */
 export function clear() {
-  SCORES = {};
+    SCORES = {};
 
-  localStorage.removeItem(STORAGE_NAME);
+    localStorage.removeItem(STORAGE_NAME);
 }
 
 /**
  * Save the scores object to the `localStorage`. This is already done when you add a score.
  */
 function save() {
-  Utilities.saveObject(STORAGE_NAME, SCORES);
+    Utilities.saveObject(STORAGE_NAME, SCORES);
 }
 
 /**
  * Load the scores from the `localStorage`. Its already done when you call `Game.HighScore.init()`.
  */
 function load() {
-  var scores = Utilities.getObject(STORAGE_NAME);
+    var scores = Utilities.getObject(STORAGE_NAME);
 
-  if (scores) {
-    SCORES = scores;
-  }
+    if (scores) {
+        SCORES = scores;
+    }
 }

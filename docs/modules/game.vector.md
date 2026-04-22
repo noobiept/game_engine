@@ -6,216 +6,216 @@
 
 ### Interfaces
 
-* [Vector](../interfaces/game.vector.vector.md)
+- [Vector](../interfaces/game.vector.vector.md)
 
 ### Functions
 
-* [add](game.vector.md#add)
-* [dotProduct](game.vector.md#dotproduct)
-* [magnitude](game.vector.md#magnitude)
-* [multiply](game.vector.md#multiply)
-* [normalLeft](game.vector.md#normalleft)
-* [normalRight](game.vector.md#normalright)
-* [normalize](game.vector.md#normalize)
-* [projection](game.vector.md#projection)
-* [rotate](game.vector.md#rotate)
-* [subtract](game.vector.md#subtract)
+- [add](game.vector.md#add)
+- [dotProduct](game.vector.md#dotproduct)
+- [magnitude](game.vector.md#magnitude)
+- [multiply](game.vector.md#multiply)
+- [normalLeft](game.vector.md#normalleft)
+- [normalRight](game.vector.md#normalright)
+- [normalize](game.vector.md#normalize)
+- [projection](game.vector.md#projection)
+- [rotate](game.vector.md#rotate)
+- [subtract](game.vector.md#subtract)
 
 ## Functions
 
-###  add
+### add
 
-▸ **add**(`one`: [Vector](../interfaces/game.vector.vector.md), `two`: [Vector](../interfaces/game.vector.vector.md)): *object*
+▸ **add**(`one`: [Vector](../interfaces/game.vector.vector.md), `two`: [Vector](../interfaces/game.vector.vector.md)): _object_
 
-*Defined in [vector.ts:12](https://github.com/noobiept/game_engine/blob/625c324/source/vector.ts#L12)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`one` | [Vector](../interfaces/game.vector.vector.md) |
-`two` | [Vector](../interfaces/game.vector.vector.md) |
-
-**Returns:** *object*
-
-* **x**: *number* =  one.x + two.x
-
-* **y**: *number* =  one.y + two.y
-
-___
-
-###  dotProduct
-
-▸ **dotProduct**(`one`: [Vector](../interfaces/game.vector.vector.md), `two`: [Vector](../interfaces/game.vector.vector.md)): *number*
-
-*Defined in [vector.ts:48](https://github.com/noobiept/game_engine/blob/625c324/source/vector.ts#L48)*
+_Defined in [vector.ts:12](https://github.com/noobiept/game_engine/blob/625c324/source/vector.ts#L12)_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`one` | [Vector](../interfaces/game.vector.vector.md) |
-`two` | [Vector](../interfaces/game.vector.vector.md) |
+| Name  | Type                                          |
+| ----- | --------------------------------------------- |
+| `one` | [Vector](../interfaces/game.vector.vector.md) |
+| `two` | [Vector](../interfaces/game.vector.vector.md) |
 
-**Returns:** *number*
+**Returns:** _object_
 
-___
+- **x**: _number_ = one.x + two.x
 
-###  magnitude
+- **y**: _number_ = one.y + two.y
 
-▸ **magnitude**(`vector`: [Vector](../interfaces/game.vector.vector.md)): *number*
+---
 
-*Defined in [vector.ts:30](https://github.com/noobiept/game_engine/blob/625c324/source/vector.ts#L30)*
+### dotProduct
 
-**Parameters:**
+▸ **dotProduct**(`one`: [Vector](../interfaces/game.vector.vector.md), `two`: [Vector](../interfaces/game.vector.vector.md)): _number_
 
-Name | Type |
------- | ------ |
-`vector` | [Vector](../interfaces/game.vector.vector.md) |
-
-**Returns:** *number*
-
-___
-
-###  multiply
-
-▸ **multiply**(`vector`: [Vector](../interfaces/game.vector.vector.md), `scalar`: number): *object*
-
-*Defined in [vector.ts:39](https://github.com/noobiept/game_engine/blob/625c324/source/vector.ts#L39)*
+_Defined in [vector.ts:48](https://github.com/noobiept/game_engine/blob/625c324/source/vector.ts#L48)_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`vector` | [Vector](../interfaces/game.vector.vector.md) |
-`scalar` | number |
+| Name  | Type                                          |
+| ----- | --------------------------------------------- |
+| `one` | [Vector](../interfaces/game.vector.vector.md) |
+| `two` | [Vector](../interfaces/game.vector.vector.md) |
 
-**Returns:** *object*
+**Returns:** _number_
 
-* **x**: *number* =  vector.x * scalar
+---
 
-* **y**: *number* =  vector.y * scalar
+### magnitude
 
-___
+▸ **magnitude**(`vector`: [Vector](../interfaces/game.vector.vector.md)): _number_
 
-###  normalLeft
-
-▸ **normalLeft**(`vector`: [Vector](../interfaces/game.vector.vector.md)): *object*
-
-*Defined in [vector.ts:70](https://github.com/noobiept/game_engine/blob/625c324/source/vector.ts#L70)*
+_Defined in [vector.ts:30](https://github.com/noobiept/game_engine/blob/625c324/source/vector.ts#L30)_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`vector` | [Vector](../interfaces/game.vector.vector.md) |
+| Name     | Type                                          |
+| -------- | --------------------------------------------- |
+| `vector` | [Vector](../interfaces/game.vector.vector.md) |
 
-**Returns:** *object*
+**Returns:** _number_
 
-* **x**: *number* =  vector.y
+---
 
-* **y**: *number* =  -vector.x
+### multiply
 
-___
+▸ **multiply**(`vector`: [Vector](../interfaces/game.vector.vector.md), `scalar`: number): _object_
 
-###  normalRight
-
-▸ **normalRight**(`vector`: [Vector](../interfaces/game.vector.vector.md)): *object*
-
-*Defined in [vector.ts:79](https://github.com/noobiept/game_engine/blob/625c324/source/vector.ts#L79)*
+_Defined in [vector.ts:39](https://github.com/noobiept/game_engine/blob/625c324/source/vector.ts#L39)_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`vector` | [Vector](../interfaces/game.vector.vector.md) |
+| Name     | Type                                          |
+| -------- | --------------------------------------------- |
+| `vector` | [Vector](../interfaces/game.vector.vector.md) |
+| `scalar` | number                                        |
 
-**Returns:** *object*
+**Returns:** _object_
 
-* **x**: *number* =  -vector.y
+- **x**: _number_ = vector.x \* scalar
 
-* **y**: *number* =  vector.x
+- **y**: _number_ = vector.y \* scalar
 
-___
+---
 
-###  normalize
+### normalLeft
 
-▸ **normalize**(`vector`: [Vector](../interfaces/game.vector.vector.md)): *object*
+▸ **normalLeft**(`vector`: [Vector](../interfaces/game.vector.vector.md)): _object_
 
-*Defined in [vector.ts:88](https://github.com/noobiept/game_engine/blob/625c324/source/vector.ts#L88)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`vector` | [Vector](../interfaces/game.vector.vector.md) |
-
-**Returns:** *object*
-
-* **x**: *number* =  x / length
-
-* **y**: *number* =  y / length
-
-___
-
-###  projection
-
-▸ **projection**(`one`: [Vector](../interfaces/game.vector.vector.md), `two`: [Vector](../interfaces/game.vector.vector.md)): *object*
-
-*Defined in [vector.ts:101](https://github.com/noobiept/game_engine/blob/625c324/source/vector.ts#L101)*
+_Defined in [vector.ts:70](https://github.com/noobiept/game_engine/blob/625c324/source/vector.ts#L70)_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`one` | [Vector](../interfaces/game.vector.vector.md) |
-`two` | [Vector](../interfaces/game.vector.vector.md) |
+| Name     | Type                                          |
+| -------- | --------------------------------------------- |
+| `vector` | [Vector](../interfaces/game.vector.vector.md) |
 
-**Returns:** *object*
+**Returns:** _object_
 
-* **x**: *number* =  dotProd / twoLengthSquared * twoX
+- **x**: _number_ = vector.y
 
-* **y**: *number* =  dotProd / twoLengthSquared * twoY
+- **y**: _number_ = -vector.x
 
-___
+---
 
-###  rotate
+### normalRight
 
-▸ **rotate**(`center`: [Vector](../interfaces/game.vector.vector.md), `vector`: [Vector](../interfaces/game.vector.vector.md), `angle`: number): *object*
+▸ **normalRight**(`vector`: [Vector](../interfaces/game.vector.vector.md)): _object_
 
-*Defined in [vector.ts:54](https://github.com/noobiept/game_engine/blob/625c324/source/vector.ts#L54)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`center` | [Vector](../interfaces/game.vector.vector.md) |
-`vector` | [Vector](../interfaces/game.vector.vector.md) |
-`angle` | number |
-
-**Returns:** *object*
-
-* **x**: *number* =  centerX + diffX * cos - diffY * sin
-
-* **y**: *number* =  centerY + diffX * sin + diffY * cos
-
-___
-
-###  subtract
-
-▸ **subtract**(`one`: [Vector](../interfaces/game.vector.vector.md), `two`: [Vector](../interfaces/game.vector.vector.md)): *object*
-
-*Defined in [vector.ts:21](https://github.com/noobiept/game_engine/blob/625c324/source/vector.ts#L21)*
+_Defined in [vector.ts:79](https://github.com/noobiept/game_engine/blob/625c324/source/vector.ts#L79)_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`one` | [Vector](../interfaces/game.vector.vector.md) |
-`two` | [Vector](../interfaces/game.vector.vector.md) |
+| Name     | Type                                          |
+| -------- | --------------------------------------------- |
+| `vector` | [Vector](../interfaces/game.vector.vector.md) |
 
-**Returns:** *object*
+**Returns:** _object_
 
-* **x**: *number* =  one.x - two.x
+- **x**: _number_ = -vector.y
 
-* **y**: *number* =  one.y - two.y
+- **y**: _number_ = vector.x
+
+---
+
+### normalize
+
+▸ **normalize**(`vector`: [Vector](../interfaces/game.vector.vector.md)): _object_
+
+_Defined in [vector.ts:88](https://github.com/noobiept/game_engine/blob/625c324/source/vector.ts#L88)_
+
+**Parameters:**
+
+| Name     | Type                                          |
+| -------- | --------------------------------------------- |
+| `vector` | [Vector](../interfaces/game.vector.vector.md) |
+
+**Returns:** _object_
+
+- **x**: _number_ = x / length
+
+- **y**: _number_ = y / length
+
+---
+
+### projection
+
+▸ **projection**(`one`: [Vector](../interfaces/game.vector.vector.md), `two`: [Vector](../interfaces/game.vector.vector.md)): _object_
+
+_Defined in [vector.ts:101](https://github.com/noobiept/game_engine/blob/625c324/source/vector.ts#L101)_
+
+**Parameters:**
+
+| Name  | Type                                          |
+| ----- | --------------------------------------------- |
+| `one` | [Vector](../interfaces/game.vector.vector.md) |
+| `two` | [Vector](../interfaces/game.vector.vector.md) |
+
+**Returns:** _object_
+
+- **x**: _number_ = dotProd / twoLengthSquared \* twoX
+
+- **y**: _number_ = dotProd / twoLengthSquared \* twoY
+
+---
+
+### rotate
+
+▸ **rotate**(`center`: [Vector](../interfaces/game.vector.vector.md), `vector`: [Vector](../interfaces/game.vector.vector.md), `angle`: number): _object_
+
+_Defined in [vector.ts:54](https://github.com/noobiept/game_engine/blob/625c324/source/vector.ts#L54)_
+
+**Parameters:**
+
+| Name     | Type                                          |
+| -------- | --------------------------------------------- |
+| `center` | [Vector](../interfaces/game.vector.vector.md) |
+| `vector` | [Vector](../interfaces/game.vector.vector.md) |
+| `angle`  | number                                        |
+
+**Returns:** _object_
+
+- **x**: _number_ = centerX + diffX _ cos - diffY _ sin
+
+- **y**: _number_ = centerY + diffX _ sin + diffY _ cos
+
+---
+
+### subtract
+
+▸ **subtract**(`one`: [Vector](../interfaces/game.vector.vector.md), `two`: [Vector](../interfaces/game.vector.vector.md)): _object_
+
+_Defined in [vector.ts:21](https://github.com/noobiept/game_engine/blob/625c324/source/vector.ts#L21)_
+
+**Parameters:**
+
+| Name  | Type                                          |
+| ----- | --------------------------------------------- |
+| `one` | [Vector](../interfaces/game.vector.vector.md) |
+| `two` | [Vector](../interfaces/game.vector.vector.md) |
+
+**Returns:** _object_
+
+- **x**: _number_ = one.x - two.x
+
+- **y**: _number_ = one.y - two.y

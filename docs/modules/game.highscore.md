@@ -22,154 +22,154 @@ Examples -- `minesweeper`
 
 ### Variables
 
-* [MAX_SCORES_SAVED](game.highscore.md#max_scores_saved)
-* [SCORES](game.highscore.md#scores)
-* [SORT_F](game.highscore.md#sort_f)
-* [STORAGE_NAME](game.highscore.md#storage_name)
+- [MAX_SCORES_SAVED](game.highscore.md#max_scores_saved)
+- [SCORES](game.highscore.md#scores)
+- [SORT_F](game.highscore.md#sort_f)
+- [STORAGE_NAME](game.highscore.md#storage_name)
 
 ### Functions
 
-* [add](game.highscore.md#add)
-* [clear](game.highscore.md#clear)
-* [get](game.highscore.md#get)
-* [init](game.highscore.md#init)
-* [load](game.highscore.md#load)
-* [save](game.highscore.md#save)
+- [add](game.highscore.md#add)
+- [clear](game.highscore.md#clear)
+- [get](game.highscore.md#get)
+- [init](game.highscore.md#init)
+- [load](game.highscore.md#load)
+- [save](game.highscore.md#save)
 
 ## Variables
 
-###  MAX_SCORES_SAVED
+### MAX_SCORES_SAVED
 
-• **MAX_SCORES_SAVED**: *number*
+• **MAX_SCORES_SAVED**: _number_
 
-*Defined in [highscore.ts:25](https://github.com/noobiept/game_engine/blob/625c324/source/highscore.ts#L25)*
+_Defined in [highscore.ts:25](https://github.com/noobiept/game_engine/blob/625c324/source/highscore.ts#L25)_
 
-___
+---
 
-###  SCORES
+### SCORES
 
-• **SCORES**: *object*
+• **SCORES**: _object_
 
-*Defined in [highscore.ts:24](https://github.com/noobiept/game_engine/blob/625c324/source/highscore.ts#L24)*
-
-#### Type declaration:
-
-___
-
-###  SORT_F
-
-• **SORT_F**: *function*
-
-*Defined in [highscore.ts:27](https://github.com/noobiept/game_engine/blob/625c324/source/highscore.ts#L27)*
+_Defined in [highscore.ts:24](https://github.com/noobiept/game_engine/blob/625c324/source/highscore.ts#L24)_
 
 #### Type declaration:
 
-▸ (`a`: number, `b`: number): *number*
+---
+
+### SORT_F
+
+• **SORT_F**: _function_
+
+_Defined in [highscore.ts:27](https://github.com/noobiept/game_engine/blob/625c324/source/highscore.ts#L27)_
+
+#### Type declaration:
+
+▸ (`a`: number, `b`: number): _number_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`a` | number |
-`b` | number |
+| Name | Type   |
+| ---- | ------ |
+| `a`  | number |
+| `b`  | number |
 
-___
+---
 
-###  STORAGE_NAME
+### STORAGE_NAME
 
-• **STORAGE_NAME**: *string*
+• **STORAGE_NAME**: _string_
 
-*Defined in [highscore.ts:26](https://github.com/noobiept/game_engine/blob/625c324/source/highscore.ts#L26)*
+_Defined in [highscore.ts:26](https://github.com/noobiept/game_engine/blob/625c324/source/highscore.ts#L26)_
 
 ## Functions
 
-###  add
+### add
 
-▸ **add**(`key`: string, `value`: number): *void*
+▸ **add**(`key`: string, `value`: number): _void_
 
-*Defined in [highscore.ts:69](https://github.com/noobiept/game_engine/blob/625c324/source/highscore.ts#L69)*
+_Defined in [highscore.ts:69](https://github.com/noobiept/game_engine/blob/625c324/source/highscore.ts#L69)_
 
 Add a score. For example `Game.HighScore.add( 'easy', 5 );`.
 
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`key` | string | The key of the score. |
-`value` | number | The score value.  |
+| Name    | Type   | Description           |
+| ------- | ------ | --------------------- |
+| `key`   | string | The key of the score. |
+| `value` | number | The score value.      |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  clear
+### clear
 
-▸ **clear**(): *void*
+▸ **clear**(): _void_
 
-*Defined in [highscore.ts:113](https://github.com/noobiept/game_engine/blob/625c324/source/highscore.ts#L113)*
+_Defined in [highscore.ts:113](https://github.com/noobiept/game_engine/blob/625c324/source/highscore.ts#L113)_
 
 Remove all the scores (clears the `localStorage` as well).
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  get
+### get
 
-▸ **get**(`key`: string): *any*
+▸ **get**(`key`: string): _any_
 
-*Defined in [highscore.ts:104](https://github.com/noobiept/game_engine/blob/625c324/source/highscore.ts#L104)*
+_Defined in [highscore.ts:104](https://github.com/noobiept/game_engine/blob/625c324/source/highscore.ts#L104)_
 
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`key` | string | The score key. |
+| Name  | Type   | Description    |
+| ----- | ------ | -------------- |
+| `key` | string | The score key. |
 
-**Returns:** *any*
+**Returns:** _any_
 
 An array with all the scores associated with the provided key.
 
-___
+---
 
-###  init
+### init
 
-▸ **init**(`maxScoresSaved`: number, `storageName`: string, `ascending`: boolean): *void*
+▸ **init**(`maxScoresSaved`: number, `storageName`: string, `ascending`: boolean): _void_
 
-*Defined in [highscore.ts:36](https://github.com/noobiept/game_engine/blob/625c324/source/highscore.ts#L36)*
+_Defined in [highscore.ts:36](https://github.com/noobiept/game_engine/blob/625c324/source/highscore.ts#L36)_
 
 Call this before adding scores.
 
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`maxScoresSaved` | number | Total number of scores saved (only the top scores). |
-`storageName` | string | Name to be used when loading/saving to localStorage. |
-`ascending` | boolean | Sort the values in ascending or descending order.  |
+| Name             | Type    | Description                                          |
+| ---------------- | ------- | ---------------------------------------------------- |
+| `maxScoresSaved` | number  | Total number of scores saved (only the top scores).  |
+| `storageName`    | string  | Name to be used when loading/saving to localStorage. |
+| `ascending`      | boolean | Sort the values in ascending or descending order.    |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  load
+### load
 
-▸ **load**(): *void*
+▸ **load**(): _void_
 
-*Defined in [highscore.ts:133](https://github.com/noobiept/game_engine/blob/625c324/source/highscore.ts#L133)*
+_Defined in [highscore.ts:133](https://github.com/noobiept/game_engine/blob/625c324/source/highscore.ts#L133)_
 
 Load the scores from the `localStorage`. Its already done when you call `Game.HighScore.init()`.
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  save
+### save
 
-▸ **save**(): *void*
+▸ **save**(): _void_
 
-*Defined in [highscore.ts:124](https://github.com/noobiept/game_engine/blob/625c324/source/highscore.ts#L124)*
+_Defined in [highscore.ts:124](https://github.com/noobiept/game_engine/blob/625c324/source/highscore.ts#L124)_
 
 Save the scores object to the `localStorage`. This is already done when you add a score.
 
-**Returns:** *void*
+**Returns:** _void_

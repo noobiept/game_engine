@@ -4,27 +4,27 @@
 
 ## Hierarchy
 
-* **CanvasArgs**
+- **CanvasArgs**
 
 ## Index
 
 ### Properties
 
-* [height](game.canvasargs.md#height)
-* [width](game.canvasargs.md#width)
+- [height](game.canvasargs.md#height)
+- [width](game.canvasargs.md#width)
 
 ## Properties
 
-###  height
+### height
 
-• **height**: *number*
+• **height**: _number_
 
-*Defined in [canvas.ts:8](https://github.com/noobiept/game_engine/blob/625c324/source/canvas.ts#L8)*
+_Defined in [canvas.ts:8](https://github.com/noobiept/game_engine/blob/625c324/source/canvas.ts#L8)_
 
-___
+---
 
-###  width
+### width
 
-• **width**: *number*
+• **width**: _number_
 
-*Defined in [canvas.ts:7](https://github.com/noobiept/game_engine/blob/625c324/source/canvas.ts#L7)*
+_Defined in [canvas.ts:7](https://github.com/noobiept/game_engine/blob/625c324/source/canvas.ts#L7)_

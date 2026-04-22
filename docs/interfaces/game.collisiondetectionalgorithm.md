@@ -4,87 +4,87 @@
 
 ## Hierarchy
 
-* **CollisionDetectionAlgorithm**
+- **CollisionDetectionAlgorithm**
 
 ## Implemented by
 
-* [CheckAll](../classes/game.collisiondetection.checkall.md)
-* [SpatialPartition](../classes/game.collisiondetection.spatialpartition.md)
+- [CheckAll](../classes/game.collisiondetection.checkall.md)
+- [SpatialPartition](../classes/game.collisiondetection.spatialpartition.md)
 
 ## Index
 
 ### Methods
 
-* [add](game.collisiondetectionalgorithm.md#add)
-* [checkCollision](game.collisiondetectionalgorithm.md#checkcollision)
-* [clear](game.collisiondetectionalgorithm.md#clear)
-* [remove](game.collisiondetectionalgorithm.md#remove)
-* [update](game.collisiondetectionalgorithm.md#update)
+- [add](game.collisiondetectionalgorithm.md#add)
+- [checkCollision](game.collisiondetectionalgorithm.md#checkcollision)
+- [clear](game.collisiondetectionalgorithm.md#clear)
+- [remove](game.collisiondetectionalgorithm.md#remove)
+- [update](game.collisiondetectionalgorithm.md#update)
 
 ## Methods
 
-###  add
+### add
 
-▸ **add**(`element`: [Element](../classes/game.element.md)): *any*
+▸ **add**(`element`: [Element](../classes/game.element.md)): _any_
 
-*Defined in [collision_detection.ts:8](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L8)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`element` | [Element](../classes/game.element.md) |
-
-**Returns:** *any*
-
-___
-
-###  checkCollision
-
-▸ **checkCollision**(): *any*
-
-*Defined in [collision_detection.ts:7](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L7)*
-
-**Returns:** *any*
-
-___
-
-###  clear
-
-▸ **clear**(): *any*
-
-*Defined in [collision_detection.ts:11](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L11)*
-
-**Returns:** *any*
-
-___
-
-###  remove
-
-▸ **remove**(`element`: [Element](../classes/game.element.md)): *any*
-
-*Defined in [collision_detection.ts:9](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L9)*
+_Defined in [collision_detection.ts:8](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L8)_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`element` | [Element](../classes/game.element.md) |
+| Name      | Type                                  |
+| --------- | ------------------------------------- |
+| `element` | [Element](../classes/game.element.md) |
 
-**Returns:** *any*
+**Returns:** _any_
 
-___
+---
 
-###  update
+### checkCollision
 
-▸ **update**(`element`: [Element](../classes/game.element.md)): *any*
+▸ **checkCollision**(): _any_
 
-*Defined in [collision_detection.ts:10](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L10)*
+_Defined in [collision_detection.ts:7](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L7)_
+
+**Returns:** _any_
+
+---
+
+### clear
+
+▸ **clear**(): _any_
+
+_Defined in [collision_detection.ts:11](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L11)_
+
+**Returns:** _any_
+
+---
+
+### remove
+
+▸ **remove**(`element`: [Element](../classes/game.element.md)): _any_
+
+_Defined in [collision_detection.ts:9](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L9)_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`element` | [Element](../classes/game.element.md) |
+| Name      | Type                                  |
+| --------- | ------------------------------------- |
+| `element` | [Element](../classes/game.element.md) |
 
-**Returns:** *any*
+**Returns:** _any_
+
+---
+
+### update
+
+▸ **update**(`element`: [Element](../classes/game.element.md)): _any_
+
+_Defined in [collision_detection.ts:10](https://github.com/noobiept/game_engine/blob/625c324/source/collision_detection.ts#L10)_
+
+**Parameters:**
+
+| Name      | Type                                  |
+| --------- | ------------------------------------- |
+| `element` | [Element](../classes/game.element.md) |
+
+**Returns:** _any_

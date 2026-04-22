@@ -6,229 +6,229 @@ An html button.
 
 ## Hierarchy
 
-  ↳ [Value](game.html.value.md)
+↳ [Value](game.html.value.md)
 
-  ↳ **Button**
+↳ **Button**
 
-  ↳ [Boolean](game.html.boolean.md)
+↳ [Boolean](game.html.boolean.md)
 
-  ↳ [TwoState](game.html.twostate.md)
+↳ [TwoState](game.html.twostate.md)
 
 ## Index
 
 ### Constructors
 
-* [constructor](game.html.button.md#constructor)
+- [constructor](game.html.button.md#constructor)
 
 ### Properties
 
-* [_is_active](game.html.button.md#protected-_is_active)
-* [_pre_text](game.html.button.md#protected-_pre_text)
-* [click_ref](game.html.button.md#protected-click_ref)
-* [container](game.html.button.md#container)
-* [element](game.html.button.md#element)
-* [value](game.html.button.md#protected-value)
+- [\_is_active](game.html.button.md#protected-_is_active)
+- [\_pre_text](game.html.button.md#protected-_pre_text)
+- [click_ref](game.html.button.md#protected-click_ref)
+- [container](game.html.button.md#container)
+- [element](game.html.button.md#element)
+- [value](game.html.button.md#protected-value)
 
 ### Methods
 
-* [addEvents](game.html.button.md#addevents)
-* [clear](game.html.button.md#clear)
-* [getValue](game.html.button.md#getvalue)
-* [isActive](game.html.button.md#isactive)
-* [removeEvents](game.html.button.md#removeevents)
-* [setActive](game.html.button.md#setactive)
-* [setValue](game.html.button.md#setvalue)
+- [addEvents](game.html.button.md#addevents)
+- [clear](game.html.button.md#clear)
+- [getValue](game.html.button.md#getvalue)
+- [isActive](game.html.button.md#isactive)
+- [removeEvents](game.html.button.md#removeevents)
+- [setActive](game.html.button.md#setactive)
+- [setValue](game.html.button.md#setvalue)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new Button**(`args`: [ButtonArgs](../interfaces/game.html.buttonargs.md)): *[Button](game.html.button.md)*
+\+ **new Button**(`args`: [ButtonArgs](../interfaces/game.html.buttonargs.md)): _[Button](game.html.button.md)_
 
-*Overrides [Value](game.html.value.md).[constructor](game.html.value.md#constructor)*
+_Overrides [Value](game.html.value.md).[constructor](game.html.value.md#constructor)_
 
-*Defined in [html.ts:365](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L365)*
+_Defined in [html.ts:365](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L365)_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`args` | [ButtonArgs](../interfaces/game.html.buttonargs.md) |
+| Name   | Type                                                |
+| ------ | --------------------------------------------------- |
+| `args` | [ButtonArgs](../interfaces/game.html.buttonargs.md) |
 
-**Returns:** *[Button](game.html.button.md)*
+**Returns:** _[Button](game.html.button.md)_
 
 ## Properties
 
-### `Protected` _is_active
+### `Protected` \_is_active
 
-• **_is_active**: *boolean*
+• **\_is_active**: _boolean_
 
-*Inherited from [HtmlElement](game.html.htmlelement.md).[_is_active](game.html.htmlelement.md#protected-_is_active)*
+_Inherited from [HtmlElement](game.html.htmlelement.md).[\_is_active](game.html.htmlelement.md#protected-_is_active)_
 
-*Defined in [html.ts:38](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L38)*
+_Defined in [html.ts:38](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L38)_
 
-___
+---
 
-### `Protected` _pre_text
+### `Protected` \_pre_text
 
-• **_pre_text**: *HTMLElement*
+• **\_pre_text**: _HTMLElement_
 
-*Inherited from [HtmlElement](game.html.htmlelement.md).[_pre_text](game.html.htmlelement.md#protected-_pre_text)*
+_Inherited from [HtmlElement](game.html.htmlelement.md).[\_pre_text](game.html.htmlelement.md#protected-_pre_text)_
 
-*Defined in [html.ts:39](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L39)*
+_Defined in [html.ts:39](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L39)_
 
-___
+---
 
 ### `Protected` click_ref
 
-• **click_ref**: *function*
+• **click_ref**: _function_
 
-*Defined in [html.ts:365](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L365)*
+_Defined in [html.ts:365](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L365)_
 
 #### Type declaration:
 
-▸ (`event`: MouseEvent): *any*
+▸ (`event`: MouseEvent): _any_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`event` | MouseEvent |
+| Name    | Type       |
+| ------- | ---------- |
+| `event` | MouseEvent |
 
-___
+---
 
-###  container
+### container
 
-• **container**: *HTMLElement*
+• **container**: _HTMLElement_
 
-*Inherited from [HtmlElement](game.html.htmlelement.md).[container](game.html.htmlelement.md#container)*
+_Inherited from [HtmlElement](game.html.htmlelement.md).[container](game.html.htmlelement.md#container)_
 
-*Defined in [html.ts:37](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L37)*
+_Defined in [html.ts:37](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L37)_
 
-___
+---
 
-###  element
+### element
 
-• **element**: *HTMLElement*
+• **element**: _HTMLElement_
 
-*Inherited from [Value](game.html.value.md).[element](game.html.value.md#element)*
+_Inherited from [Value](game.html.value.md).[element](game.html.value.md#element)_
 
-*Defined in [html.ts:298](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L298)*
+_Defined in [html.ts:298](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L298)_
 
-___
+---
 
 ### `Protected` value
 
-• **value**: *any*
+• **value**: _any_
 
-*Inherited from [Value](game.html.value.md).[value](game.html.value.md#protected-value)*
+_Inherited from [Value](game.html.value.md).[value](game.html.value.md#protected-value)_
 
-*Defined in [html.ts:297](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L297)*
+_Defined in [html.ts:297](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L297)_
 
 ## Methods
 
-###  addEvents
+### addEvents
 
-▸ **addEvents**(): *void*
+▸ **addEvents**(): _void_
 
-*Overrides [HtmlElement](game.html.htmlelement.md).[addEvents](game.html.htmlelement.md#addevents)*
+_Overrides [HtmlElement](game.html.htmlelement.md).[addEvents](game.html.htmlelement.md#addevents)_
 
-*Defined in [html.ts:396](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L396)*
+_Defined in [html.ts:396](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L396)_
 
 Add the click event handler.
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  clear
+### clear
 
-▸ **clear**(): *void*
+▸ **clear**(): _void_
 
-*Overrides [Value](game.html.value.md).[clear](game.html.value.md#clear)*
+_Overrides [Value](game.html.value.md).[clear](game.html.value.md#clear)_
 
-*Defined in [html.ts:414](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L414)*
+_Defined in [html.ts:414](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L414)_
 
 Clear the object (don't use it after this).
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  getValue
+### getValue
 
-▸ **getValue**(): *any*
+▸ **getValue**(): _any_
 
-*Inherited from [Value](game.html.value.md).[getValue](game.html.value.md#getvalue)*
+_Inherited from [Value](game.html.value.md).[getValue](game.html.value.md#getvalue)_
 
-*Defined in [html.ts:333](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L333)*
+_Defined in [html.ts:333](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L333)_
 
-**Returns:** *any*
+**Returns:** _any_
 
 The current value set.
 
-___
+---
 
-###  isActive
+### isActive
 
-▸ **isActive**(): *boolean*
+▸ **isActive**(): _boolean_
 
-*Inherited from [HtmlElement](game.html.htmlelement.md).[isActive](game.html.htmlelement.md#isactive)*
+_Inherited from [HtmlElement](game.html.htmlelement.md).[isActive](game.html.htmlelement.md#isactive)_
 
-*Defined in [html.ts:127](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L127)*
+_Defined in [html.ts:127](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L127)_
 
 Check if the element is active or not currently.
 
-**Returns:** *boolean*
+**Returns:** _boolean_
 
-___
+---
 
-###  removeEvents
+### removeEvents
 
-▸ **removeEvents**(): *void*
+▸ **removeEvents**(): _void_
 
-*Overrides [HtmlElement](game.html.htmlelement.md).[removeEvents](game.html.htmlelement.md#removeevents)*
+_Overrides [HtmlElement](game.html.htmlelement.md).[removeEvents](game.html.htmlelement.md#removeevents)_
 
-*Defined in [html.ts:405](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L405)*
+_Defined in [html.ts:405](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L405)_
 
 Remove the click event handler.
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  setActive
+### setActive
 
-▸ **setActive**(`yesNo`: boolean): *void*
+▸ **setActive**(`yesNo`: boolean): _void_
 
-*Inherited from [HtmlElement](game.html.htmlelement.md).[setActive](game.html.htmlelement.md#setactive)*
+_Inherited from [HtmlElement](game.html.htmlelement.md).[setActive](game.html.htmlelement.md#setactive)_
 
-*Defined in [html.ts:100](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L100)*
+_Defined in [html.ts:100](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L100)_
 
 When the element is inactive, its events are disabled, and a `.Game-inactive` css class is applied.
 
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`yesNo` | boolean | Whether to set it active or not.  |
+| Name    | Type    | Description                      |
+| ------- | ------- | -------------------------------- |
+| `yesNo` | boolean | Whether to set it active or not. |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  setValue
+### setValue
 
-▸ **setValue**(`value`: any): *void*
+▸ **setValue**(`value`: any): _void_
 
-*Inherited from [Value](game.html.value.md).[setValue](game.html.value.md#setvalue)*
+_Inherited from [Value](game.html.value.md).[setValue](game.html.value.md#setvalue)_
 
-*Defined in [html.ts:318](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L318)*
+_Defined in [html.ts:318](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L318)_
 
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`value` | any | New value to be displayed.  |
+| Name    | Type | Description                |
+| ------- | ---- | -------------------------- |
+| `value` | any  | New value to be displayed. |
 
-**Returns:** *void*
+**Returns:** _void_

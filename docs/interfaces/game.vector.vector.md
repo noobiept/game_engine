@@ -4,27 +4,27 @@
 
 ## Hierarchy
 
-* **Vector**
+- **Vector**
 
 ## Index
 
 ### Properties
 
-* [x](game.vector.vector.md#x)
-* [y](game.vector.vector.md#y)
+- [x](game.vector.vector.md#x)
+- [y](game.vector.vector.md#y)
 
 ## Properties
 
-###  x
+### x
 
-• **x**: *number*
+• **x**: _number_
 
-*Defined in [vector.ts:7](https://github.com/noobiept/game_engine/blob/625c324/source/vector.ts#L7)*
+_Defined in [vector.ts:7](https://github.com/noobiept/game_engine/blob/625c324/source/vector.ts#L7)_
 
-___
+---
 
-###  y
+### y
 
-• **y**: *number*
+• **y**: _number_
 
-*Defined in [vector.ts:8](https://github.com/noobiept/game_engine/blob/625c324/source/vector.ts#L8)*
+_Defined in [vector.ts:8](https://github.com/noobiept/game_engine/blob/625c324/source/vector.ts#L8)_

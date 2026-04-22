@@ -6,48 +6,48 @@
 
 ### Enumeration members
 
-* [angle](game.movementstate.md#angle)
-* [destination](game.movementstate.md#destination)
-* [follow](game.movementstate.md#follow)
-* [loop](game.movementstate.md#loop)
-* [stop](game.movementstate.md#stop)
+- [angle](game.movementstate.md#angle)
+- [destination](game.movementstate.md#destination)
+- [follow](game.movementstate.md#follow)
+- [loop](game.movementstate.md#loop)
+- [stop](game.movementstate.md#stop)
 
 ## Enumeration members
 
-###  angle
+### angle
 
 • **angle**:
 
-*Defined in [movement.ts:15](https://github.com/noobiept/game_engine/blob/625c324/source/movement.ts#L15)*
+_Defined in [movement.ts:15](https://github.com/noobiept/game_engine/blob/625c324/source/movement.ts#L15)_
 
-___
+---
 
-###  destination
+### destination
 
 • **destination**:
 
-*Defined in [movement.ts:16](https://github.com/noobiept/game_engine/blob/625c324/source/movement.ts#L16)*
+_Defined in [movement.ts:16](https://github.com/noobiept/game_engine/blob/625c324/source/movement.ts#L16)_
 
-___
+---
 
-###  follow
+### follow
 
 • **follow**:
 
-*Defined in [movement.ts:18](https://github.com/noobiept/game_engine/blob/625c324/source/movement.ts#L18)*
+_Defined in [movement.ts:18](https://github.com/noobiept/game_engine/blob/625c324/source/movement.ts#L18)_
 
-___
+---
 
-###  loop
+### loop
 
 • **loop**:
 
-*Defined in [movement.ts:17](https://github.com/noobiept/game_engine/blob/625c324/source/movement.ts#L17)*
+_Defined in [movement.ts:17](https://github.com/noobiept/game_engine/blob/625c324/source/movement.ts#L17)_
 
-___
+---
 
-###  stop
+### stop
 
 • **stop**:
 
-*Defined in [movement.ts:14](https://github.com/noobiept/game_engine/blob/625c324/source/movement.ts#L14)*
+_Defined in [movement.ts:14](https://github.com/noobiept/game_engine/blob/625c324/source/movement.ts#L14)_

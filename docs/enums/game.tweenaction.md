@@ -6,30 +6,30 @@
 
 ### Enumeration members
 
-* [call](game.tweenaction.md#call)
-* [properties](game.tweenaction.md#properties)
-* [wait](game.tweenaction.md#wait)
+- [call](game.tweenaction.md#call)
+- [properties](game.tweenaction.md#properties)
+- [wait](game.tweenaction.md#wait)
 
 ## Enumeration members
 
-###  call
+### call
 
 • **call**:
 
-*Defined in [tween.ts:3](https://github.com/noobiept/game_engine/blob/625c324/source/tween.ts#L3)*
+_Defined in [tween.ts:3](https://github.com/noobiept/game_engine/blob/625c324/source/tween.ts#L3)_
 
-___
+---
 
-###  properties
+### properties
 
 • **properties**:
 
-*Defined in [tween.ts:3](https://github.com/noobiept/game_engine/blob/625c324/source/tween.ts#L3)*
+_Defined in [tween.ts:3](https://github.com/noobiept/game_engine/blob/625c324/source/tween.ts#L3)_
 
-___
+---
 
-###  wait
+### wait
 
 • **wait**:
 
-*Defined in [tween.ts:3](https://github.com/noobiept/game_engine/blob/625c324/source/tween.ts#L3)*
+_Defined in [tween.ts:3](https://github.com/noobiept/game_engine/blob/625c324/source/tween.ts#L3)_

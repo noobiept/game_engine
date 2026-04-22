@@ -5,33 +5,33 @@ const packageJson = JSON.parse(readFileSync("package.json", "utf-8"));
 const version = packageJson.version;
 
 function examplesHtmlPlugin() {
-  return {
-    name: "game-engine-examples-html",
-    transformIndexHtml: {
-      order: "pre" as const,
-      handler(html: string, context: { path: string }) {
-        if (!context.path.startsWith("/examples/")) {
-          return html;
-        }
+    return {
+        name: "game-engine-examples-html",
+        transformIndexHtml: {
+            order: "pre" as const,
+            handler(html: string, context: { path: string }) {
+                if (!context.path.startsWith("/examples/")) {
+                    return html;
+                }
 
-        var scripts: string[] = [];
-        var transformed = html.replace(
-          /<script\b[^>]*\bsrc=["']([^"']+)["'][^>]*>\s*<\/script>/gi,
-          function (tag, src) {
-            if (src.indexOf("build/game_engine.js") >= 0) {
-              return "";
-            }
+                var scripts: string[] = [];
+                var transformed = html.replace(
+                    /<script\b[^>]*\bsrc=["']([^"']+)["'][^>]*>\s*<\/script>/gi,
+                    function (tag, src) {
+                        if (src.indexOf("build/game_engine.js") >= 0) {
+                            return "";
+                        }
 
-            scripts.push(src);
-            return "";
-          },
-        );
+                        scripts.push(src);
+                        return "";
+                    },
+                );
 
-        if (scripts.length === 0) {
-          return transformed;
-        }
+                if (scripts.length === 0) {
+                    return transformed;
+                }
 
-        var loader = `
+                var loader = `
         <script type="module">
           import * as Game from "/source/index.ts";
 
@@ -48,24 +48,24 @@ function examplesHtmlPlugin() {
           }
         </script>`;
 
-        return transformed.replace("</head>", loader + "\n</head>");
-      },
-    },
-  };
+                return transformed.replace("</head>", loader + "\n</head>");
+            },
+        },
+    };
 }
 
 export default defineConfig({
-  plugins: [examplesHtmlPlugin()],
-  resolve: {
-    extensions: [".ts", ".mjs", ".js", ".mts", ".jsx", ".tsx", ".json"],
-  },
-  build: {
-    lib: {
-      entry: "source/index.ts",
-      name: "Game",
-      fileName: "game_engine",
-      formats: ["es"],
+    plugins: [examplesHtmlPlugin()],
+    resolve: {
+        extensions: [".ts", ".mjs", ".js", ".mts", ".jsx", ".tsx", ".json"],
     },
-    outDir: `release/${version}`,
-  },
+    build: {
+        lib: {
+            entry: "source/index.ts",
+            name: "Game",
+            fileName: "game_engine",
+            formats: ["es"],
+        },
+        outDir: `release/${version}`,
+    },
 });

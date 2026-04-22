@@ -4,66 +4,66 @@
 
 ## Hierarchy
 
-  ↳ [ElementArgs](game.elementargs.md)
+↳ [ElementArgs](game.elementargs.md)
 
-  ↳ **BitmapArgs**
+↳ **BitmapArgs**
 
-  ↳ [SpriteArgs](game.spriteargs.md)
+↳ [SpriteArgs](game.spriteargs.md)
 
 ## Index
 
 ### Properties
 
-* [category](game.bitmapargs.md#optional-category)
-* [collidesWith](game.bitmapargs.md#optional-collideswith)
-* [image](game.bitmapargs.md#image)
-* [x](game.bitmapargs.md#optional-x)
-* [y](game.bitmapargs.md#optional-y)
+- [category](game.bitmapargs.md#optional-category)
+- [collidesWith](game.bitmapargs.md#optional-collideswith)
+- [image](game.bitmapargs.md#image)
+- [x](game.bitmapargs.md#optional-x)
+- [y](game.bitmapargs.md#optional-y)
 
 ## Properties
 
 ### `Optional` category
 
-• **category**? : *number*
+• **category**? : _number_
 
-*Inherited from [ElementArgs](game.elementargs.md).[category](game.elementargs.md#optional-category)*
+_Inherited from [ElementArgs](game.elementargs.md).[category](game.elementargs.md#optional-category)_
 
-*Defined in [element.ts:15](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L15)*
+_Defined in [element.ts:15](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L15)_
 
-___
+---
 
 ### `Optional` collidesWith
 
-• **collidesWith**? : *number*
+• **collidesWith**? : _number_
 
-*Inherited from [ElementArgs](game.elementargs.md).[collidesWith](game.elementargs.md#optional-collideswith)*
+_Inherited from [ElementArgs](game.elementargs.md).[collidesWith](game.elementargs.md#optional-collideswith)_
 
-*Defined in [element.ts:19](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L19)*
+_Defined in [element.ts:19](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L19)_
 
-___
+---
 
-###  image
+### image
 
-• **image**: *HTMLImageElement*
+• **image**: _HTMLImageElement_
 
-*Defined in [bitmap.ts:7](https://github.com/noobiept/game_engine/blob/625c324/source/bitmap.ts#L7)*
+_Defined in [bitmap.ts:7](https://github.com/noobiept/game_engine/blob/625c324/source/bitmap.ts#L7)_
 
-___
+---
 
 ### `Optional` x
 
-• **x**? : *number*
+• **x**? : _number_
 
-*Inherited from [ElementArgs](game.elementargs.md).[x](game.elementargs.md#optional-x)*
+_Inherited from [ElementArgs](game.elementargs.md).[x](game.elementargs.md#optional-x)_
 
-*Defined in [element.ts:10](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L10)*
+_Defined in [element.ts:10](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L10)_
 
-___
+---
 
 ### `Optional` y
 
-• **y**? : *number*
+• **y**? : _number_
 
-*Inherited from [ElementArgs](game.elementargs.md).[y](game.elementargs.md#optional-y)*
+_Inherited from [ElementArgs](game.elementargs.md).[y](game.elementargs.md#optional-y)_
 
-*Defined in [element.ts:11](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L11)*
+_Defined in [element.ts:11](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L11)_

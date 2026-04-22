@@ -4,91 +4,91 @@
 
 ## Hierarchy
 
-  ↳ [ElementArgs](game.elementargs.md)
+↳ [ElementArgs](game.elementargs.md)
 
-  ↳ **RectangleArgs**
+↳ **RectangleArgs**
 
 ## Index
 
 ### Properties
 
-* [category](game.rectangleargs.md#optional-category)
-* [collidesWith](game.rectangleargs.md#optional-collideswith)
-* [color](game.rectangleargs.md#color)
-* [fill](game.rectangleargs.md#optional-fill)
-* [height](game.rectangleargs.md#height)
-* [width](game.rectangleargs.md#width)
-* [x](game.rectangleargs.md#optional-x)
-* [y](game.rectangleargs.md#optional-y)
+- [category](game.rectangleargs.md#optional-category)
+- [collidesWith](game.rectangleargs.md#optional-collideswith)
+- [color](game.rectangleargs.md#color)
+- [fill](game.rectangleargs.md#optional-fill)
+- [height](game.rectangleargs.md#height)
+- [width](game.rectangleargs.md#width)
+- [x](game.rectangleargs.md#optional-x)
+- [y](game.rectangleargs.md#optional-y)
 
 ## Properties
 
 ### `Optional` category
 
-• **category**? : *number*
+• **category**? : _number_
 
-*Inherited from [ElementArgs](game.elementargs.md).[category](game.elementargs.md#optional-category)*
+_Inherited from [ElementArgs](game.elementargs.md).[category](game.elementargs.md#optional-category)_
 
-*Defined in [element.ts:15](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L15)*
+_Defined in [element.ts:15](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L15)_
 
-___
+---
 
 ### `Optional` collidesWith
 
-• **collidesWith**? : *number*
+• **collidesWith**? : _number_
 
-*Inherited from [ElementArgs](game.elementargs.md).[collidesWith](game.elementargs.md#optional-collideswith)*
+_Inherited from [ElementArgs](game.elementargs.md).[collidesWith](game.elementargs.md#optional-collideswith)_
 
-*Defined in [element.ts:19](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L19)*
+_Defined in [element.ts:19](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L19)_
 
-___
+---
 
-###  color
+### color
 
-• **color**: *string*
+• **color**: _string_
 
-*Defined in [rectangle.ts:9](https://github.com/noobiept/game_engine/blob/625c324/source/rectangle.ts#L9)*
+_Defined in [rectangle.ts:9](https://github.com/noobiept/game_engine/blob/625c324/source/rectangle.ts#L9)_
 
-___
+---
 
 ### `Optional` fill
 
-• **fill**? : *boolean*
+• **fill**? : _boolean_
 
-*Defined in [rectangle.ts:10](https://github.com/noobiept/game_engine/blob/625c324/source/rectangle.ts#L10)*
+_Defined in [rectangle.ts:10](https://github.com/noobiept/game_engine/blob/625c324/source/rectangle.ts#L10)_
 
-___
+---
 
-###  height
+### height
 
-• **height**: *number*
+• **height**: _number_
 
-*Defined in [rectangle.ts:8](https://github.com/noobiept/game_engine/blob/625c324/source/rectangle.ts#L8)*
+_Defined in [rectangle.ts:8](https://github.com/noobiept/game_engine/blob/625c324/source/rectangle.ts#L8)_
 
-___
+---
 
-###  width
+### width
 
-• **width**: *number*
+• **width**: _number_
 
-*Defined in [rectangle.ts:7](https://github.com/noobiept/game_engine/blob/625c324/source/rectangle.ts#L7)*
+_Defined in [rectangle.ts:7](https://github.com/noobiept/game_engine/blob/625c324/source/rectangle.ts#L7)_
 
-___
+---
 
 ### `Optional` x
 
-• **x**? : *number*
+• **x**? : _number_
 
-*Inherited from [ElementArgs](game.elementargs.md).[x](game.elementargs.md#optional-x)*
+_Inherited from [ElementArgs](game.elementargs.md).[x](game.elementargs.md#optional-x)_
 
-*Defined in [element.ts:10](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L10)*
+_Defined in [element.ts:10](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L10)_
 
-___
+---
 
 ### `Optional` y
 
-• **y**? : *number*
+• **y**? : _number_
 
-*Inherited from [ElementArgs](game.elementargs.md).[y](game.elementargs.md#optional-y)*
+_Inherited from [ElementArgs](game.elementargs.md).[y](game.elementargs.md#optional-y)_
 
-*Defined in [element.ts:11](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L11)*
+_Defined in [element.ts:11](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L11)_

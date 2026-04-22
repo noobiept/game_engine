@@ -1,26 +1,29 @@
 {
-  "name": "game_engine",
-  "version": "2.0.0",
-  "type": "module",
-  "packageManager": "pnpm@10.33.0",
-  "devDependencies": {
-    "qunit": "^2.9.3",
-    "rimraf": "^3.0.0",
-    "typedoc": "^0.15.3",
-    "typedoc-plugin-markdown": "^2.2.14",
-    "typescript": "^6.0.2",
-    "vite": "^8.0.3"
-  },
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc --noEmit && vite build --mode production && pnpm run build:types",
-    "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir release/$npm_package_version",
-    "preview": "vite preview",
-    "docs": "pnpm run docs:clean && pnpm run docs:build",
-    "docs:clean": "rimraf docs/",
-    "docs:build": "typedoc --out docs/ source/ --name \"Game Engine\" --mode file --readme none"
-  },
-  "dependencies": {
-    "@drk4/utilities": "^6.3.2"
-  }
+    "name": "game_engine",
+    "version": "2.0.0",
+    "type": "module",
+    "packageManager": "pnpm@10.33.0",
+    "devDependencies": {
+        "prettier": "^3.8.3",
+        "qunit": "^2.9.3",
+        "rimraf": "^3.0.0",
+        "typedoc": "^0.15.3",
+        "typedoc-plugin-markdown": "^2.2.14",
+        "typescript": "^6.0.2",
+        "vite": "^8.0.3"
+    },
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc --noEmit && vite build --mode production && pnpm run build:types",
+        "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir release/$npm_package_version",
+        "preview": "vite preview",
+        "format": "prettier . --write",
+        "format:check": "prettier . --check",
+        "docs": "pnpm run docs:clean && pnpm run docs:build",
+        "docs:clean": "rimraf docs/",
+        "docs:build": "typedoc --out docs/ source/ --name \"Game Engine\" --mode file --readme none"
+    },
+    "dependencies": {
+        "@drk4/utilities": "^6.3.2"
+    }
 }

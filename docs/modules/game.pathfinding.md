@@ -6,16 +6,16 @@
 
 ### Functions
 
-* [breadthFirstSearch](game.pathfinding.md#breadthfirstsearch)
-* [getNeighbors](game.pathfinding.md#getneighbors)
+- [breadthFirstSearch](game.pathfinding.md#breadthfirstsearch)
+- [getNeighbors](game.pathfinding.md#getneighbors)
 
 ## Functions
 
-###  breadthFirstSearch
+### breadthFirstSearch
 
-▸ **breadthFirstSearch**(`map`: number[][], `destination`: object, `positionType`: object): *any[]*
+▸ **breadthFirstSearch**(`map`: number[][], `destination`: object, `positionType`: object): _any[]_
 
-*Defined in [path_finding.ts:43](https://github.com/noobiept/game_engine/blob/625c324/source/path_finding.ts#L43)*
+_Defined in [path_finding.ts:43](https://github.com/noobiept/game_engine/blob/625c324/source/path_finding.ts#L43)_
 
 Calculate the path that an element needs to take to reach the destination, from any valid position.
 
@@ -51,49 +51,49 @@ Examples -- `tower_defense`
 
 **Parameters:**
 
-▪ **map**: *number[][]*
+▪ **map**: _number[][]_
 
 A 2d array, where each value tells if that position is passable/blocked. Its assumed each line will have the same number of columns.
 
-▪ **destination**: *object*
+▪ **destination**: _object_
 
 The destination position.
 
-Name | Type |
------- | ------ |
-`column` | number |
-`line` | number |
+| Name     | Type   |
+| -------- | ------ |
+| `column` | number |
+| `line`   | number |
 
-▪ **positionType**: *object*
+▪ **positionType**: _object_
 
 What value in the `map` represents a passable position and what value represents a blocked position.
 
-Name | Type |
------- | ------ |
-`blocked` | number |
-`passable` | number |
+| Name       | Type   |
+| ---------- | ------ |
+| `blocked`  | number |
+| `passable` | number |
 
-**Returns:** *any[]*
+**Returns:** _any[]_
 
-___
+---
 
-###  getNeighbors
+### getNeighbors
 
-▸ **getNeighbors**(`position`: object, `info`: any): *any[]*
+▸ **getNeighbors**(`position`: object, `info`: any): _any[]_
 
-*Defined in [path_finding.ts:99](https://github.com/noobiept/game_engine/blob/625c324/source/path_finding.ts#L99)*
+_Defined in [path_finding.ts:99](https://github.com/noobiept/game_engine/blob/625c324/source/path_finding.ts#L99)_
 
 Get the neighbor positions (top/bottom/left/right).
 
 **Parameters:**
 
-▪ **position**: *object*
+▪ **position**: _object_
 
-Name | Type |
------- | ------ |
-`column` | number |
-`line` | number |
+| Name     | Type   |
+| -------- | ------ |
+| `column` | number |
+| `line`   | number |
 
-▪ **info**: *any*
+▪ **info**: _any_
 
-**Returns:** *any[]*
+**Returns:** _any[]_

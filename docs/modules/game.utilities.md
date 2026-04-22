@@ -8,438 +8,447 @@ Random collection of utilities functions/classes.
 
 ### Classes
 
-* [Timeout](../classes/game.utilities.timeout.md)
-* [Timer](../classes/game.utilities.timer.md)
+- [Timeout](../classes/game.utilities.timeout.md)
+- [Timer](../classes/game.utilities.timer.md)
 
 ### Functions
 
-* [calculateAngle](game.utilities.md#calculateangle)
-* [calculateDistance](game.utilities.md#calculatedistance)
-* [createEnum](game.utilities.md#createenum)
-* [deepClone](game.utilities.md#deepclone)
-* [getObject](game.utilities.md#getobject)
-* [getRandomFloat](game.utilities.md#getrandomfloat)
-* [getRandomInt](game.utilities.md#getrandomint)
-* [getSeveralRandomInts](game.utilities.md#getseveralrandomints)
-* [inheritPrototype](game.utilities.md#inheritprototype)
-* [isArray](game.utilities.md#isarray)
-* [isBoolean](game.utilities.md#isboolean)
-* [isFunction](game.utilities.md#isfunction)
-* [isInteger](game.utilities.md#isinteger)
-* [isNumber](game.utilities.md#isnumber)
-* [isString](game.utilities.md#isstring)
-* [numberOfDigits](game.utilities.md#numberofdigits)
-* [round](game.utilities.md#round)
-* [saveObject](game.utilities.md#saveobject)
-* [shuffle](game.utilities.md#shuffle)
-* [timeToString](game.utilities.md#timetostring)
-* [toDegrees](game.utilities.md#todegrees)
-* [toRadians](game.utilities.md#toradians)
+- [calculateAngle](game.utilities.md#calculateangle)
+- [calculateDistance](game.utilities.md#calculatedistance)
+- [createEnum](game.utilities.md#createenum)
+- [deepClone](game.utilities.md#deepclone)
+- [getObject](game.utilities.md#getobject)
+- [getRandomFloat](game.utilities.md#getrandomfloat)
+- [getRandomInt](game.utilities.md#getrandomint)
+- [getSeveralRandomInts](game.utilities.md#getseveralrandomints)
+- [inheritPrototype](game.utilities.md#inheritprototype)
+- [isArray](game.utilities.md#isarray)
+- [isBoolean](game.utilities.md#isboolean)
+- [isFunction](game.utilities.md#isfunction)
+- [isInteger](game.utilities.md#isinteger)
+- [isNumber](game.utilities.md#isnumber)
+- [isString](game.utilities.md#isstring)
+- [numberOfDigits](game.utilities.md#numberofdigits)
+- [round](game.utilities.md#round)
+- [saveObject](game.utilities.md#saveobject)
+- [shuffle](game.utilities.md#shuffle)
+- [timeToString](game.utilities.md#timetostring)
+- [toDegrees](game.utilities.md#todegrees)
+- [toRadians](game.utilities.md#toradians)
 
 ### Object literals
 
-* [KEY_CODE](game.utilities.md#key_code)
-* [MOUSE_CODE](game.utilities.md#mouse_code)
+- [KEY_CODE](game.utilities.md#key_code)
+- [MOUSE_CODE](game.utilities.md#mouse_code)
 
 ## Functions
 
-###  calculateAngle
+### calculateAngle
 
-▸ **calculateAngle**(`aX`: number, `aY`: number, `bX`: number, `bY`: number): *number*
+▸ **calculateAngle**(`aX`: number, `aY`: number, `bX`: number, `bY`: number): _number_
 
-*Defined in [utilities.ts:848](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L848)*
+_Defined in [utilities.ts:848](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L848)_
 
 Returns the angle between 2 points in radians.
 Positive in clockwise direction.
 
 Throws an `Error` exception if:
+
 - any of the arguments isn't a number.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`aX` | number |
-`aY` | number |
-`bX` | number |
-`bY` | number |
+| Name | Type   |
+| ---- | ------ |
+| `aX` | number |
+| `aY` | number |
+| `bX` | number |
+| `bY` | number |
 
-**Returns:** *number*
+**Returns:** _number_
 
-___
+---
 
-###  calculateDistance
+### calculateDistance
 
-▸ **calculateDistance**(`aX`: number, `aY`: number, `bX`: number, `bY`: number): *number*
+▸ **calculateDistance**(`aX`: number, `aY`: number, `bX`: number, `bY`: number): _number_
 
-*Defined in [utilities.ts:873](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L873)*
+_Defined in [utilities.ts:873](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L873)_
 
 Distance between 2 points.
 
 Throws an `Error` exception if:
+
 - any of the arguments isn't a number.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`aX` | number |
-`aY` | number |
-`bX` | number |
-`bY` | number |
+| Name | Type   |
+| ---- | ------ |
+| `aX` | number |
+| `aY` | number |
+| `bX` | number |
+| `bY` | number |
 
-**Returns:** *number*
+**Returns:** _number_
 
-___
+---
 
-###  createEnum
+### createEnum
 
-▸ **createEnum**(`values`: string[], `start?`: number): *object*
+▸ **createEnum**(`values`: string[], `start?`: number): _object_
 
-*Defined in [utilities.ts:360](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L360)*
+_Defined in [utilities.ts:360](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L360)_
 
 Enum - A way to associate a string name to a number.
 
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`values` | string[] | The `enum` names. Each name will have an associated number. |
-`start?` | number | Starting number for the first name. The number is incremented by one for the next name.  |
+| Name     | Type     | Description                                                                             |
+| -------- | -------- | --------------------------------------------------------------------------------------- |
+| `values` | string[] | The `enum` names. Each name will have an associated number.                             |
+| `start?` | number   | Starting number for the first name. The number is incremented by one for the next name. |
 
-**Returns:** *object*
+**Returns:** _object_
 
-___
+---
 
-###  deepClone
+### deepClone
 
-▸ **deepClone**(`obj`: any): *any*
+▸ **deepClone**(`obj`: any): _any_
 
-*Defined in [utilities.ts:348](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L348)*
+_Defined in [utilities.ts:348](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L348)_
 
 Returns a deep clone/copy of the object.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`obj` | any |
+| Name  | Type |
+| ----- | ---- |
+| `obj` | any  |
 
-**Returns:** *any*
+**Returns:** _any_
 
-___
+---
 
-###  getObject
+### getObject
 
-▸ **getObject**(`key`: string): *any*
+▸ **getObject**(`key`: string): _any_
 
-*Defined in [utilities.ts:134](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L134)*
+_Defined in [utilities.ts:134](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L134)_
 
 Returns an object that was obtained by parsing (with json) some data that was saved on `localStorage`.
 
 Throws an `Error` exception if:
+
 - `key` is not a string.
 - `key` wasn't found.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`key` | string |
+| Name  | Type   |
+| ----- | ------ |
+| `key` | string |
 
-**Returns:** *any*
+**Returns:** _any_
 
-___
+---
 
-###  getRandomFloat
+### getRandomFloat
 
-▸ **getRandomFloat**(`min`: number, `max`: number): *number*
+▸ **getRandomFloat**(`min`: number, `max`: number): _number_
 
-*Defined in [utilities.ts:229](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L229)*
+_Defined in [utilities.ts:229](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L229)_
 
 Returns a random float number between `min` and `max` (inclusive).
 
 Throws an `Error` exception if:
+
 - either `min` or `max` is not a `number`.
 - the minimum value is bigger than the maximum.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`min` | number |
-`max` | number |
+| Name  | Type   |
+| ----- | ------ |
+| `min` | number |
+| `max` | number |
 
-**Returns:** *number*
+**Returns:** _number_
 
-___
+---
 
-###  getRandomInt
+### getRandomInt
 
-▸ **getRandomInt**(`min`: number, `max`: number): *number*
+▸ **getRandomInt**(`min`: number, `max`: number): _number_
 
-*Defined in [utilities.ts:249](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L249)*
+_Defined in [utilities.ts:249](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L249)_
 
 Returns a random integer number between `min` and `max` (inclusive).
 
 Throws an `Error` exception if:
+
 - `min` or `max` isn't an integer.
 - the minimum value is bigger than the maximum.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`min` | number |
-`max` | number |
+| Name  | Type   |
+| ----- | ------ |
+| `min` | number |
+| `max` | number |
 
-**Returns:** *number*
+**Returns:** _number_
 
-___
+---
 
-###  getSeveralRandomInts
+### getSeveralRandomInts
 
-▸ **getSeveralRandomInts**(`min`: number, `max`: number, `howMany`: number): *number[]*
+▸ **getSeveralRandomInts**(`min`: number, `max`: number, `howMany`: number): _number[]_
 
-*Defined in [utilities.ts:270](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L270)*
+_Defined in [utilities.ts:270](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L270)_
 
 Returns several different random integers, in the range between `min` and `max` (inclusive).
 
 Throws an Error exception if:
+
 - `min`, `max` or `howMany` isn't an integer.
 - the minimum value is bigger than the maximum.
 - the range is less than the number of integers required.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`min` | number |
-`max` | number |
-`howMany` | number |
+| Name      | Type   |
+| --------- | ------ |
+| `min`     | number |
+| `max`     | number |
+| `howMany` | number |
 
-**Returns:** *number[]*
+**Returns:** _number[]_
 
-___
+---
 
-###  inheritPrototype
+### inheritPrototype
 
-▸ **inheritPrototype**(`derivedClass`: Function, `baseClass`: Function): *void*
+▸ **inheritPrototype**(`derivedClass`: Function, `baseClass`: Function): _void_
 
-*Defined in [utilities.ts:394](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L394)*
+_Defined in [utilities.ts:394](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L394)_
 
 Used for `class` inheritance (search for parasitic combination inheritance).
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`derivedClass` | Function |
-`baseClass` | Function |
+| Name           | Type     |
+| -------------- | -------- |
+| `derivedClass` | Function |
+| `baseClass`    | Function |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  isArray
+### isArray
 
-▸ **isArray**(`element`: any): *boolean*
+▸ **isArray**(`element`: any): _boolean_
 
-*Defined in [utilities.ts:169](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L169)*
+_Defined in [utilities.ts:169](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L169)_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`element` | any |
+| Name      | Type |
+| --------- | ---- |
+| `element` | any  |
 
-**Returns:** *boolean*
+**Returns:** _boolean_
 
 If it is an array or not.
 
-___
+---
 
-###  isBoolean
+### isBoolean
 
-▸ **isBoolean**(`element`: any): *boolean*
+▸ **isBoolean**(`element`: any): _boolean_
 
-*Defined in [utilities.ts:178](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L178)*
+_Defined in [utilities.ts:178](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L178)_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`element` | any |
+| Name      | Type |
+| --------- | ---- |
+| `element` | any  |
 
-**Returns:** *boolean*
+**Returns:** _boolean_
 
 If it is a boolean.
 
-___
+---
 
-###  isFunction
+### isFunction
 
-▸ **isFunction**(`element`: any): *boolean*
+▸ **isFunction**(`element`: any): _boolean_
 
-*Defined in [utilities.ts:187](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L187)*
+_Defined in [utilities.ts:187](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L187)_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`element` | any |
+| Name      | Type |
+| --------- | ---- |
+| `element` | any  |
 
-**Returns:** *boolean*
+**Returns:** _boolean_
 
 If it is a function.
 
-___
+---
 
-###  isInteger
+### isInteger
 
-▸ **isInteger**(`value`: any): *boolean*
+▸ **isInteger**(`value`: any): _boolean_
 
-*Defined in [utilities.ts:196](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L196)*
+_Defined in [utilities.ts:196](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L196)_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`value` | any |
+| Name    | Type |
+| ------- | ---- |
+| `value` | any  |
 
-**Returns:** *boolean*
+**Returns:** _boolean_
 
 If it is an integer.
 
-___
+---
 
-###  isNumber
+### isNumber
 
-▸ **isNumber**(`element`: any): *boolean*
+▸ **isNumber**(`element`: any): _boolean_
 
-*Defined in [utilities.ts:205](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L205)*
+_Defined in [utilities.ts:205](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L205)_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`element` | any |
+| Name      | Type |
+| --------- | ---- |
+| `element` | any  |
 
-**Returns:** *boolean*
+**Returns:** _boolean_
 
 If it is a number.
 
-___
+---
 
-###  isString
+### isString
 
-▸ **isString**(`element`: any): *boolean*
+▸ **isString**(`element`: any): _boolean_
 
-*Defined in [utilities.ts:214](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L214)*
+_Defined in [utilities.ts:214](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L214)_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`element` | any |
+| Name      | Type |
+| --------- | ---- |
+| `element` | any  |
 
-**Returns:** *boolean*
+**Returns:** _boolean_
 
 If it is a string.
 
-___
+---
 
-###  numberOfDigits
+### numberOfDigits
 
-▸ **numberOfDigits**(`theNumber`: number): *number*
+▸ **numberOfDigits**(`theNumber`: number): _number_
 
-*Defined in [utilities.ts:304](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L304)*
+_Defined in [utilities.ts:304](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L304)_
 
 Returns the number of digits in a number.
 It doesn't consider the minus signal, nor the dot (in floats) as a digit.
 
 Throws an `Error` exception if:
+
 - the argument is not a number.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`theNumber` | number |
+| Name        | Type   |
+| ----------- | ------ |
+| `theNumber` | number |
 
-**Returns:** *number*
+**Returns:** _number_
 
-___
+---
 
-###  round
+### round
 
-▸ **round**(`num`: number, `dec`: number): *number*
+▸ **round**(`num`: number, `dec`: number): _number_
 
-*Defined in [utilities.ts:330](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L330)*
+_Defined in [utilities.ts:330](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L330)_
 
 Rounds a number to a specified decimal case.
 
 Throws an `Error` exception if:
+
 - `num` isn't a number.
 - `dec` isn't an integer.
 - `dec` is less than 0.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`num` | number |
-`dec` | number |
+| Name  | Type   |
+| ----- | ------ |
+| `num` | number |
+| `dec` | number |
 
-**Returns:** *number*
+**Returns:** _number_
 
-___
+---
 
-###  saveObject
+### saveObject
 
-▸ **saveObject**(`key`: string, `value`: any): *void*
+▸ **saveObject**(`key`: string, `value`: any): _void_
 
-*Defined in [utilities.ts:153](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L153)*
+_Defined in [utilities.ts:153](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L153)_
 
 Saves in the `localStorage` a json string representation of the `value`.
 
 Throws an `Error` exception if:
+
 - `key` is not a `string`.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`key` | string |
-`value` | any |
+| Name    | Type   |
+| ------- | ------ |
+| `key`   | string |
+| `value` | any    |
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  shuffle
+### shuffle
 
-▸ **shuffle**(`array`: any[]): *any[]*
+▸ **shuffle**(`array`: any[]): _any[]_
 
-*Defined in [utilities.ts:13](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L13)*
+_Defined in [utilities.ts:13](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L13)_
 
 Shuffle an array.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`array` | any[] |
+| Name    | Type  |
+| ------- | ----- |
+| `array` | any[] |
 
-**Returns:** *any[]*
+**Returns:** _any[]_
 
-___
+---
 
-###  timeToString
+### timeToString
 
-▸ **timeToString**(`dateMilliseconds`: number, `totalUnits`: number): *string*
+▸ **timeToString**(`dateMilliseconds`: number, `totalUnits`: number): _string_
 
-*Defined in [utilities.ts:419](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L419)*
+_Defined in [utilities.ts:419](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L419)_
 
 Converts a time (in milliseconds) to a string (with the number of days/hours...).
 
@@ -448,453 +457,456 @@ The number of units to be shown can be set (days/hours, or hours/minutes or minu
 The units available are: day/hour/minute/second.
 
 Throws an `Error` exception if:
+
 - the `dateMilliseconds` argument isn't a number.
 
 **Parameters:**
 
-Name | Type | Default |
------- | ------ | ------ |
-`dateMilliseconds` | number | - |
-`totalUnits` | number | 2 |
+| Name               | Type   | Default |
+| ------------------ | ------ | ------- |
+| `dateMilliseconds` | number | -       |
+| `totalUnits`       | number | 2       |
 
-**Returns:** *string*
+**Returns:** _string_
 
-___
+---
 
-###  toDegrees
+### toDegrees
 
-▸ **toDegrees**(`radians`: number): *number*
+▸ **toDegrees**(`radians`: number): _number_
 
-*Defined in [utilities.ts:896](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L896)*
+_Defined in [utilities.ts:896](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L896)_
 
 Converts a number in `radians` to `degrees` and returns it.
 
 Throws an `Error` exception if:
+
 - the argument isn't a number.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`radians` | number |
+| Name      | Type   |
+| --------- | ------ |
+| `radians` | number |
 
-**Returns:** *number*
+**Returns:** _number_
 
-___
+---
 
-###  toRadians
+### toRadians
 
-▸ **toRadians**(`degrees`: number): *number*
+▸ **toRadians**(`degrees`: number): _number_
 
-*Defined in [utilities.ts:913](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L913)*
+_Defined in [utilities.ts:913](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L913)_
 
 Converts a number in `degrees` to `radians` and returns it.
 
 Throws an `Error` exception if:
+
 - the argument isn't a number.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`degrees` | number |
+| Name      | Type   |
+| --------- | ------ |
+| `degrees` | number |
 
-**Returns:** *number*
+**Returns:** _number_
 
 ## Object literals
 
-###  KEY_CODE
+### KEY_CODE
 
-### ▪ **KEY_CODE**: *object*
+### ▪ **KEY_CODE**: _object_
 
-*Defined in [utilities.ts:46](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L46)*
+_Defined in [utilities.ts:46](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L46)_
 
 Numeric code of each key.
 
-###  0
+### 0
 
-• **0**: *number* = 48
+• **0**: _number_ = 48
 
-*Defined in [utilities.ts:61](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L61)*
+_Defined in [utilities.ts:61](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L61)_
 
-###  1
+### 1
 
-• **1**: *number* = 49
+• **1**: _number_ = 49
 
-*Defined in [utilities.ts:62](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L62)*
+_Defined in [utilities.ts:62](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L62)_
 
-###  2
+### 2
 
-• **2**: *number* = 50
+• **2**: _number_ = 50
 
-*Defined in [utilities.ts:63](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L63)*
+_Defined in [utilities.ts:63](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L63)_
 
-###  3
+### 3
 
-• **3**: *number* = 51
+• **3**: _number_ = 51
 
-*Defined in [utilities.ts:64](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L64)*
+_Defined in [utilities.ts:64](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L64)_
 
-###  4
+### 4
 
-• **4**: *number* = 52
+• **4**: _number_ = 52
 
-*Defined in [utilities.ts:65](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L65)*
+_Defined in [utilities.ts:65](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L65)_
 
-###  5
+### 5
 
-• **5**: *number* = 53
+• **5**: _number_ = 53
 
-*Defined in [utilities.ts:66](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L66)*
+_Defined in [utilities.ts:66](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L66)_
 
-###  6
+### 6
 
-• **6**: *number* = 54
+• **6**: _number_ = 54
 
-*Defined in [utilities.ts:67](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L67)*
+_Defined in [utilities.ts:67](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L67)_
 
-###  7
+### 7
 
-• **7**: *number* = 55
+• **7**: _number_ = 55
 
-*Defined in [utilities.ts:68](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L68)*
+_Defined in [utilities.ts:68](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L68)_
 
-###  8
+### 8
 
-• **8**: *number* = 56
+• **8**: _number_ = 56
 
-*Defined in [utilities.ts:69](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L69)*
+_Defined in [utilities.ts:69](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L69)_
 
-###  9
+### 9
 
-• **9**: *number* = 57
+• **9**: _number_ = 57
 
-*Defined in [utilities.ts:70](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L70)*
+_Defined in [utilities.ts:70](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L70)_
 
-###  a
+### a
 
-• **a**: *number* = 65
+• **a**: _number_ = 65
 
-*Defined in [utilities.ts:72](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L72)*
+_Defined in [utilities.ts:72](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L72)_
 
-###  b
+### b
 
-• **b**: *number* = 66
+• **b**: _number_ = 66
 
-*Defined in [utilities.ts:73](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L73)*
+_Defined in [utilities.ts:73](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L73)_
 
-###  backspace
+### backspace
 
-• **backspace**: *number* = 8
+• **backspace**: _number_ = 8
 
-*Defined in [utilities.ts:48](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L48)*
+_Defined in [utilities.ts:48](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L48)_
 
-###  c
+### c
 
-• **c**: *number* = 67
+• **c**: _number_ = 67
 
-*Defined in [utilities.ts:74](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L74)*
+_Defined in [utilities.ts:74](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L74)_
 
-###  d
+### d
 
-• **d**: *number* = 68
+• **d**: _number_ = 68
 
-*Defined in [utilities.ts:75](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L75)*
+_Defined in [utilities.ts:75](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L75)_
 
-###  del
+### del
 
-• **del**: *number* = 46
+• **del**: _number_ = 46
 
-*Defined in [utilities.ts:59](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L59)*
+_Defined in [utilities.ts:59](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L59)_
 
-###  downArrow
+### downArrow
 
-• **downArrow**: *number* = 40
+• **downArrow**: _number_ = 40
 
-*Defined in [utilities.ts:58](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L58)*
+_Defined in [utilities.ts:58](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L58)_
 
-###  e
+### e
 
-• **e**: *number* = 69
+• **e**: _number_ = 69
 
-*Defined in [utilities.ts:76](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L76)*
+_Defined in [utilities.ts:76](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L76)_
 
-###  end
+### end
 
-• **end**: *number* = 35
+• **end**: _number_ = 35
 
-*Defined in [utilities.ts:53](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L53)*
+_Defined in [utilities.ts:53](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L53)_
 
-###  enter
+### enter
 
-• **enter**: *number* = 13
+• **enter**: _number_ = 13
 
-*Defined in [utilities.ts:50](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L50)*
+_Defined in [utilities.ts:50](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L50)_
 
-###  esc
+### esc
 
-• **esc**: *number* = 27
+• **esc**: _number_ = 27
 
-*Defined in [utilities.ts:51](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L51)*
+_Defined in [utilities.ts:51](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L51)_
 
-###  f
+### f
 
-• **f**: *number* = 70
+• **f**: _number_ = 70
 
-*Defined in [utilities.ts:77](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L77)*
+_Defined in [utilities.ts:77](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L77)_
 
-###  f1
+### f1
 
-• **f1**: *number* = 112
+• **f1**: _number_ = 112
 
-*Defined in [utilities.ts:99](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L99)*
+_Defined in [utilities.ts:99](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L99)_
 
-###  f10
+### f10
 
-• **f10**: *number* = 121
+• **f10**: _number_ = 121
 
-*Defined in [utilities.ts:108](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L108)*
+_Defined in [utilities.ts:108](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L108)_
 
-###  f11
+### f11
 
-• **f11**: *number* = 122
+• **f11**: _number_ = 122
 
-*Defined in [utilities.ts:109](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L109)*
+_Defined in [utilities.ts:109](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L109)_
 
-###  f12
+### f12
 
-• **f12**: *number* = 123
+• **f12**: _number_ = 123
 
-*Defined in [utilities.ts:110](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L110)*
+_Defined in [utilities.ts:110](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L110)_
 
-###  f2
+### f2
 
-• **f2**: *number* = 113
+• **f2**: _number_ = 113
 
-*Defined in [utilities.ts:100](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L100)*
+_Defined in [utilities.ts:100](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L100)_
 
-###  f3
+### f3
 
-• **f3**: *number* = 114
+• **f3**: _number_ = 114
 
-*Defined in [utilities.ts:101](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L101)*
+_Defined in [utilities.ts:101](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L101)_
 
-###  f4
+### f4
 
-• **f4**: *number* = 115
+• **f4**: _number_ = 115
 
-*Defined in [utilities.ts:102](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L102)*
+_Defined in [utilities.ts:102](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L102)_
 
-###  f5
+### f5
 
-• **f5**: *number* = 116
+• **f5**: _number_ = 116
 
-*Defined in [utilities.ts:103](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L103)*
+_Defined in [utilities.ts:103](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L103)_
 
-###  f6
+### f6
 
-• **f6**: *number* = 117
+• **f6**: _number_ = 117
 
-*Defined in [utilities.ts:104](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L104)*
+_Defined in [utilities.ts:104](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L104)_
 
-###  f7
+### f7
 
-• **f7**: *number* = 118
+• **f7**: _number_ = 118
 
-*Defined in [utilities.ts:105](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L105)*
+_Defined in [utilities.ts:105](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L105)_
 
-###  f8
+### f8
 
-• **f8**: *number* = 119
+• **f8**: _number_ = 119
 
-*Defined in [utilities.ts:106](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L106)*
+_Defined in [utilities.ts:106](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L106)_
 
-###  f9
+### f9
 
-• **f9**: *number* = 120
+• **f9**: _number_ = 120
 
-*Defined in [utilities.ts:107](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L107)*
+_Defined in [utilities.ts:107](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L107)_
 
-###  g
+### g
 
-• **g**: *number* = 71
+• **g**: _number_ = 71
 
-*Defined in [utilities.ts:78](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L78)*
+_Defined in [utilities.ts:78](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L78)_
 
-###  h
+### h
 
-• **h**: *number* = 72
+• **h**: _number_ = 72
 
-*Defined in [utilities.ts:79](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L79)*
+_Defined in [utilities.ts:79](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L79)_
 
-###  home
+### home
 
-• **home**: *number* = 36
+• **home**: _number_ = 36
 
-*Defined in [utilities.ts:54](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L54)*
+_Defined in [utilities.ts:54](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L54)_
 
-###  i
+### i
 
-• **i**: *number* = 73
+• **i**: _number_ = 73
 
-*Defined in [utilities.ts:80](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L80)*
+_Defined in [utilities.ts:80](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L80)_
 
-###  j
+### j
 
-• **j**: *number* = 74
+• **j**: _number_ = 74
 
-*Defined in [utilities.ts:81](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L81)*
+_Defined in [utilities.ts:81](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L81)_
 
-###  k
+### k
 
-• **k**: *number* = 75
+• **k**: _number_ = 75
 
-*Defined in [utilities.ts:82](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L82)*
+_Defined in [utilities.ts:82](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L82)_
 
-###  l
+### l
 
-• **l**: *number* = 76
+• **l**: _number_ = 76
 
-*Defined in [utilities.ts:83](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L83)*
+_Defined in [utilities.ts:83](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L83)_
 
-###  leftArrow
+### leftArrow
 
-• **leftArrow**: *number* = 37
+• **leftArrow**: _number_ = 37
 
-*Defined in [utilities.ts:55](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L55)*
+_Defined in [utilities.ts:55](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L55)_
 
-###  m
+### m
 
-• **m**: *number* = 77
+• **m**: _number_ = 77
 
-*Defined in [utilities.ts:84](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L84)*
+_Defined in [utilities.ts:84](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L84)_
 
-###  n
+### n
 
-• **n**: *number* = 78
+• **n**: _number_ = 78
 
-*Defined in [utilities.ts:85](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L85)*
+_Defined in [utilities.ts:85](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L85)_
 
-###  o
+### o
 
-• **o**: *number* = 79
+• **o**: _number_ = 79
 
-*Defined in [utilities.ts:86](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L86)*
+_Defined in [utilities.ts:86](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L86)_
 
-###  p
+### p
 
-• **p**: *number* = 80
+• **p**: _number_ = 80
 
-*Defined in [utilities.ts:87](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L87)*
+_Defined in [utilities.ts:87](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L87)_
 
-###  q
+### q
 
-• **q**: *number* = 81
+• **q**: _number_ = 81
 
-*Defined in [utilities.ts:88](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L88)*
+_Defined in [utilities.ts:88](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L88)_
 
-###  r
+### r
 
-• **r**: *number* = 82
+• **r**: _number_ = 82
 
-*Defined in [utilities.ts:89](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L89)*
+_Defined in [utilities.ts:89](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L89)_
 
-###  rightArrow
+### rightArrow
 
-• **rightArrow**: *number* = 39
+• **rightArrow**: _number_ = 39
 
-*Defined in [utilities.ts:57](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L57)*
+_Defined in [utilities.ts:57](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L57)_
 
-###  s
+### s
 
-• **s**: *number* = 83
+• **s**: _number_ = 83
 
-*Defined in [utilities.ts:90](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L90)*
+_Defined in [utilities.ts:90](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L90)_
 
-###  space
+### space
 
-• **space**: *number* = 32
+• **space**: _number_ = 32
 
-*Defined in [utilities.ts:52](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L52)*
+_Defined in [utilities.ts:52](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L52)_
 
-###  t
+### t
 
-• **t**: *number* = 84
+• **t**: _number_ = 84
 
-*Defined in [utilities.ts:91](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L91)*
+_Defined in [utilities.ts:91](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L91)_
 
-###  tab
+### tab
 
-• **tab**: *number* = 9
+• **tab**: _number_ = 9
 
-*Defined in [utilities.ts:49](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L49)*
+_Defined in [utilities.ts:49](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L49)_
 
-###  u
+### u
 
-• **u**: *number* = 85
+• **u**: _number_ = 85
 
-*Defined in [utilities.ts:92](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L92)*
+_Defined in [utilities.ts:92](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L92)_
 
-###  upArrow
+### upArrow
 
-• **upArrow**: *number* = 38
+• **upArrow**: _number_ = 38
 
-*Defined in [utilities.ts:56](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L56)*
+_Defined in [utilities.ts:56](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L56)_
 
-###  v
+### v
 
-• **v**: *number* = 86
+• **v**: _number_ = 86
 
-*Defined in [utilities.ts:93](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L93)*
+_Defined in [utilities.ts:93](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L93)_
 
-###  w
+### w
 
-• **w**: *number* = 87
+• **w**: _number_ = 87
 
-*Defined in [utilities.ts:94](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L94)*
+_Defined in [utilities.ts:94](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L94)_
 
-###  x
+### x
 
-• **x**: *number* = 88
+• **x**: _number_ = 88
 
-*Defined in [utilities.ts:95](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L95)*
+_Defined in [utilities.ts:95](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L95)_
 
-###  y
+### y
 
-• **y**: *number* = 89
+• **y**: _number_ = 89
 
-*Defined in [utilities.ts:96](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L96)*
+_Defined in [utilities.ts:96](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L96)_
 
-###  z
+### z
 
-• **z**: *number* = 90
+• **z**: _number_ = 90
 
-*Defined in [utilities.ts:97](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L97)*
+_Defined in [utilities.ts:97](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L97)_
 
-___
+---
 
-###  MOUSE_CODE
+### MOUSE_CODE
 
-### ▪ **MOUSE_CODE**: *object*
+### ▪ **MOUSE_CODE**: _object_
 
-*Defined in [utilities.ts:118](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L118)*
+_Defined in [utilities.ts:118](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L118)_
 
 Numeric code of each mouse button.
 
-###  left
+### left
 
-• **left**: *number* = 0
+• **left**: _number_ = 0
 
-*Defined in [utilities.ts:119](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L119)*
+_Defined in [utilities.ts:119](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L119)_
 
-###  middle
+### middle
 
-• **middle**: *number* = 1
+• **middle**: _number_ = 1
 
-*Defined in [utilities.ts:120](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L120)*
+_Defined in [utilities.ts:120](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L120)_
 
-###  right
+### right
 
-• **right**: *number* = 2
+• **right**: _number_ = 2
 
-*Defined in [utilities.ts:121](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L121)*
+_Defined in [utilities.ts:121](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L121)_

@@ -6,81 +6,82 @@ Call a function after a certain time has passed. Uses the `window.setTimeout()`.
 
 ## Hierarchy
 
-* **Timeout**
+- **Timeout**
 
 ## Index
 
 ### Constructors
 
-* [constructor](game.utilities.timeout.md#constructor)
+- [constructor](game.utilities.timeout.md#constructor)
 
 ### Properties
 
-* [id](game.utilities.timeout.md#id)
-* [is_active](game.utilities.timeout.md#is_active)
+- [id](game.utilities.timeout.md#id)
+- [is_active](game.utilities.timeout.md#is_active)
 
 ### Methods
 
-* [clear](game.utilities.timeout.md#clear)
-* [start](game.utilities.timeout.md#start)
+- [clear](game.utilities.timeout.md#clear)
+- [start](game.utilities.timeout.md#start)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new Timeout**(): *[Timeout](game.utilities.timeout.md)*
+\+ **new Timeout**(): _[Timeout](game.utilities.timeout.md)_
 
-*Defined in [utilities.ts:532](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L532)*
+_Defined in [utilities.ts:532](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L532)_
 
-**Returns:** *[Timeout](game.utilities.timeout.md)*
+**Returns:** _[Timeout](game.utilities.timeout.md)_
 
 ## Properties
 
-###  id
+### id
 
-• **id**: *number*
+• **id**: _number_
 
-*Defined in [utilities.ts:532](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L532)*
+_Defined in [utilities.ts:532](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L532)_
 
-___
+---
 
-###  is_active
+### is_active
 
-• **is_active**: *boolean*
+• **is_active**: _boolean_
 
-*Defined in [utilities.ts:531](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L531)*
+_Defined in [utilities.ts:531](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L531)_
 
 ## Methods
 
-###  clear
+### clear
 
-▸ **clear**(): *void*
+▸ **clear**(): _void_
 
-*Defined in [utilities.ts:578](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L578)*
+_Defined in [utilities.ts:578](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L578)_
 
 Cancels the timeout.
 
-**Returns:** *void*
+**Returns:** _void_
 
-___
+---
 
-###  start
+### start
 
-▸ **start**(`functionToCall`: Function, `interval`: number): *void*
+▸ **start**(`functionToCall`: Function, `interval`: number): _void_
 
-*Defined in [utilities.ts:548](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L548)*
+_Defined in [utilities.ts:548](https://github.com/noobiept/game_engine/blob/625c324/source/utilities.ts#L548)_
 
 Starts the timeout. If there was an active timeout already, that one is canceled.
 
 Throws an `Error` exception if:
+
 - `functionToCall` isn't a function.
 - `interval` isn't a number.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`functionToCall` | Function |
-`interval` | number |
+| Name             | Type     |
+| ---------------- | -------- |
+| `functionToCall` | Function |
+| `interval`       | number   |
 
-**Returns:** *void*
+**Returns:** _void_

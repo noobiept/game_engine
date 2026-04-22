@@ -4,46 +4,46 @@
 
 ## Hierarchy
 
-* **HtmlElementArgs**
+- **HtmlElementArgs**
 
-  ↳ [HtmlContainerArgs](game.html.htmlcontainerargs.md)
+    ↳ [HtmlContainerArgs](game.html.htmlcontainerargs.md)
 
-  ↳ [ValueArgs](game.html.valueargs.md)
+    ↳ [ValueArgs](game.html.valueargs.md)
 
-  ↳ [MultipleOptionsArgs](game.html.multipleoptionsargs.md)
+    ↳ [MultipleOptionsArgs](game.html.multipleoptionsargs.md)
 
-  ↳ [RangeArgs](game.html.rangeargs.md)
+    ↳ [RangeArgs](game.html.rangeargs.md)
 
-  ↳ [TextArgs](game.html.textargs.md)
+    ↳ [TextArgs](game.html.textargs.md)
 
 ## Index
 
 ### Properties
 
-* [cssClass](game.html.htmlelementargs.md#optional-cssclass)
-* [cssId](game.html.htmlelementargs.md#optional-cssid)
-* [preText](game.html.htmlelementargs.md#optional-pretext)
+- [cssClass](game.html.htmlelementargs.md#optional-cssclass)
+- [cssId](game.html.htmlelementargs.md#optional-cssid)
+- [preText](game.html.htmlelementargs.md#optional-pretext)
 
 ## Properties
 
 ### `Optional` cssClass
 
-• **cssClass**? : *string | string[]*
+• **cssClass**? : _string | string[]_
 
-*Defined in [html.ts:28](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L28)*
+_Defined in [html.ts:28](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L28)_
 
-___
+---
 
 ### `Optional` cssId
 
-• **cssId**? : *string*
+• **cssId**? : _string_
 
-*Defined in [html.ts:27](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L27)*
+_Defined in [html.ts:27](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L27)_
 
-___
+---
 
 ### `Optional` preText
 
-• **preText**? : *string*
+• **preText**? : _string_
 
-*Defined in [html.ts:29](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L29)*
+_Defined in [html.ts:29](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L29)_

@@ -4,10 +4,10 @@
 
 ## Hierarchy
 
-* **EventDispatcherArgs**
+- **EventDispatcherArgs**
 
-  ↳ [ElementArgs](game.elementargs.md)
+    ↳ [ElementArgs](game.elementargs.md)
 
-  ↳ [ElementGridArgs](game.elementgridargs.md)
+    ↳ [ElementGridArgs](game.elementgridargs.md)
 
-  ↳ [PreloadArgs](game.preloadargs.md)
+    ↳ [PreloadArgs](game.preloadargs.md)

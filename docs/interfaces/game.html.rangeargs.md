@@ -4,99 +4,99 @@
 
 ## Hierarchy
 
-* [HtmlElementArgs](game.html.htmlelementargs.md)
+- [HtmlElementArgs](game.html.htmlelementargs.md)
 
-  ↳ **RangeArgs**
+    ↳ **RangeArgs**
 
 ## Index
 
 ### Properties
 
-* [cssClass](game.html.rangeargs.md#optional-cssclass)
-* [cssId](game.html.rangeargs.md#optional-cssid)
-* [max](game.html.rangeargs.md#max)
-* [min](game.html.rangeargs.md#min)
-* [onChange](game.html.rangeargs.md#optional-onchange)
-* [preText](game.html.rangeargs.md#optional-pretext)
-* [step](game.html.rangeargs.md#optional-step)
-* [value](game.html.rangeargs.md#value)
+- [cssClass](game.html.rangeargs.md#optional-cssclass)
+- [cssId](game.html.rangeargs.md#optional-cssid)
+- [max](game.html.rangeargs.md#max)
+- [min](game.html.rangeargs.md#min)
+- [onChange](game.html.rangeargs.md#optional-onchange)
+- [preText](game.html.rangeargs.md#optional-pretext)
+- [step](game.html.rangeargs.md#optional-step)
+- [value](game.html.rangeargs.md#value)
 
 ## Properties
 
 ### `Optional` cssClass
 
-• **cssClass**? : *string | string[]*
+• **cssClass**? : _string | string[]_
 
-*Inherited from [HtmlElementArgs](game.html.htmlelementargs.md).[cssClass](game.html.htmlelementargs.md#optional-cssclass)*
+_Inherited from [HtmlElementArgs](game.html.htmlelementargs.md).[cssClass](game.html.htmlelementargs.md#optional-cssclass)_
 
-*Defined in [html.ts:28](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L28)*
+_Defined in [html.ts:28](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L28)_
 
-___
+---
 
 ### `Optional` cssId
 
-• **cssId**? : *string*
+• **cssId**? : _string_
 
-*Inherited from [HtmlElementArgs](game.html.htmlelementargs.md).[cssId](game.html.htmlelementargs.md#optional-cssid)*
+_Inherited from [HtmlElementArgs](game.html.htmlelementargs.md).[cssId](game.html.htmlelementargs.md#optional-cssid)_
 
-*Defined in [html.ts:27](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L27)*
+_Defined in [html.ts:27](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L27)_
 
-___
+---
 
-###  max
+### max
 
-• **max**: *number*
+• **max**: _number_
 
-*Defined in [html.ts:692](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L692)*
+_Defined in [html.ts:692](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L692)_
 
-___
+---
 
-###  min
+### min
 
-• **min**: *number*
+• **min**: _number_
 
-*Defined in [html.ts:691](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L691)*
+_Defined in [html.ts:691](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L691)_
 
-___
+---
 
 ### `Optional` onChange
 
-• **onChange**? : *function*
+• **onChange**? : _function_
 
-*Defined in [html.ts:695](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L695)*
+_Defined in [html.ts:695](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L695)_
 
 #### Type declaration:
 
-▸ (`button`: [Range](../classes/game.html.range.md)): *any*
+▸ (`button`: [Range](../classes/game.html.range.md)): _any_
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`button` | [Range](../classes/game.html.range.md) |
+| Name     | Type                                   |
+| -------- | -------------------------------------- |
+| `button` | [Range](../classes/game.html.range.md) |
 
-___
+---
 
 ### `Optional` preText
 
-• **preText**? : *string*
+• **preText**? : _string_
 
-*Inherited from [HtmlElementArgs](game.html.htmlelementargs.md).[preText](game.html.htmlelementargs.md#optional-pretext)*
+_Inherited from [HtmlElementArgs](game.html.htmlelementargs.md).[preText](game.html.htmlelementargs.md#optional-pretext)_
 
-*Defined in [html.ts:29](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L29)*
+_Defined in [html.ts:29](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L29)_
 
-___
+---
 
 ### `Optional` step
 
-• **step**? : *number*
+• **step**? : _number_
 
-*Defined in [html.ts:694](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L694)*
+_Defined in [html.ts:694](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L694)_
 
-___
+---
 
-###  value
+### value
 
-• **value**: *number*
+• **value**: _number_
 
-*Defined in [html.ts:693](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L693)*
+_Defined in [html.ts:693](https://github.com/noobiept/game_engine/blob/625c324/source/html.ts#L693)_

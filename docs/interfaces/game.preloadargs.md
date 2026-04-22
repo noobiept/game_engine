@@ -4,20 +4,20 @@
 
 ## Hierarchy
 
-* [EventDispatcherArgs](game.eventdispatcherargs.md)
+- [EventDispatcherArgs](game.eventdispatcherargs.md)
 
-  ↳ **PreloadArgs**
+    ↳ **PreloadArgs**
 
 ## Index
 
 ### Properties
 
-* [saveGlobal](game.preloadargs.md#optional-saveglobal)
+- [saveGlobal](game.preloadargs.md#optional-saveglobal)
 
 ## Properties
 
 ### `Optional` saveGlobal
 
-• **saveGlobal**? : *boolean*
+• **saveGlobal**? : _boolean_
 
-*Defined in [preload.ts:8](https://github.com/noobiept/game_engine/blob/625c324/source/preload.ts#L8)*
+_Defined in [preload.ts:8](https://github.com/noobiept/game_engine/blob/625c324/source/preload.ts#L8)_

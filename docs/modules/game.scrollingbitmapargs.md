@@ -6,89 +6,89 @@
 
 ### Enumerations
 
-* [Direction](../enums/game.scrollingbitmapargs.direction.md)
+- [Direction](../enums/game.scrollingbitmapargs.direction.md)
 
 ### Properties
 
-* [category](game.scrollingbitmapargs.md#optional-category)
-* [collidesWith](game.scrollingbitmapargs.md#optional-collideswith)
-* [direction](game.scrollingbitmapargs.md#direction)
-* [image](game.scrollingbitmapargs.md#image)
-* [interval](game.scrollingbitmapargs.md#optional-interval)
-* [step](game.scrollingbitmapargs.md#step)
-* [x](game.scrollingbitmapargs.md#optional-x)
-* [y](game.scrollingbitmapargs.md#optional-y)
+- [category](game.scrollingbitmapargs.md#optional-category)
+- [collidesWith](game.scrollingbitmapargs.md#optional-collideswith)
+- [direction](game.scrollingbitmapargs.md#direction)
+- [image](game.scrollingbitmapargs.md#image)
+- [interval](game.scrollingbitmapargs.md#optional-interval)
+- [step](game.scrollingbitmapargs.md#step)
+- [x](game.scrollingbitmapargs.md#optional-x)
+- [y](game.scrollingbitmapargs.md#optional-y)
 
 ## Properties
 
 ### `Optional` category
 
-• **category**? : *number*
+• **category**? : _number_
 
-*Inherited from [ElementArgs](../interfaces/game.elementargs.md).[category](../interfaces/game.elementargs.md#optional-category)*
+_Inherited from [ElementArgs](../interfaces/game.elementargs.md).[category](../interfaces/game.elementargs.md#optional-category)_
 
-*Defined in [element.ts:15](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L15)*
+_Defined in [element.ts:15](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L15)_
 
-___
+---
 
 ### `Optional` collidesWith
 
-• **collidesWith**? : *number*
+• **collidesWith**? : _number_
 
-*Inherited from [ElementArgs](../interfaces/game.elementargs.md).[collidesWith](../interfaces/game.elementargs.md#optional-collideswith)*
+_Inherited from [ElementArgs](../interfaces/game.elementargs.md).[collidesWith](../interfaces/game.elementargs.md#optional-collideswith)_
 
-*Defined in [element.ts:19](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L19)*
+_Defined in [element.ts:19](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L19)_
 
-___
+---
 
-###  direction
+### direction
 
-• **direction**: *[Direction](../enums/game.scrollingbitmapargs.direction.md)*
+• **direction**: _[Direction](../enums/game.scrollingbitmapargs.direction.md)_
 
-*Defined in [scrolling_bitmap.ts:7](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L7)*
+_Defined in [scrolling_bitmap.ts:7](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L7)_
 
-___
+---
 
-###  image
+### image
 
-• **image**: *HTMLImageElement*
+• **image**: _HTMLImageElement_
 
-*Inherited from [BitmapArgs](../interfaces/game.bitmapargs.md).[image](../interfaces/game.bitmapargs.md#image)*
+_Inherited from [BitmapArgs](../interfaces/game.bitmapargs.md).[image](../interfaces/game.bitmapargs.md#image)_
 
-*Defined in [bitmap.ts:7](https://github.com/noobiept/game_engine/blob/625c324/source/bitmap.ts#L7)*
+_Defined in [bitmap.ts:7](https://github.com/noobiept/game_engine/blob/625c324/source/bitmap.ts#L7)_
 
-___
+---
 
 ### `Optional` interval
 
-• **interval**? : *number*
+• **interval**? : _number_
 
-*Defined in [scrolling_bitmap.ts:9](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L9)*
+_Defined in [scrolling_bitmap.ts:9](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L9)_
 
-___
+---
 
-###  step
+### step
 
-• **step**: *number*
+• **step**: _number_
 
-*Defined in [scrolling_bitmap.ts:8](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L8)*
+_Defined in [scrolling_bitmap.ts:8](https://github.com/noobiept/game_engine/blob/625c324/source/scrolling_bitmap.ts#L8)_
 
-___
+---
 
 ### `Optional` x
 
-• **x**? : *number*
+• **x**? : _number_
 
-*Inherited from [ElementArgs](../interfaces/game.elementargs.md).[x](../interfaces/game.elementargs.md#optional-x)*
+_Inherited from [ElementArgs](../interfaces/game.elementargs.md).[x](../interfaces/game.elementargs.md#optional-x)_
 
-*Defined in [element.ts:10](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L10)*
+_Defined in [element.ts:10](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L10)_
 
-___
+---
 
 ### `Optional` y
 
-• **y**? : *number*
+• **y**? : _number_
 
-*Inherited from [ElementArgs](../interfaces/game.elementargs.md).[y](../interfaces/game.elementargs.md#optional-y)*
+_Inherited from [ElementArgs](../interfaces/game.elementargs.md).[y](../interfaces/game.elementargs.md#optional-y)_
 
-*Defined in [element.ts:11](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L11)*
+_Defined in [element.ts:11](https://github.com/noobiept/game_engine/blob/625c324/source/element.ts#L11)_
