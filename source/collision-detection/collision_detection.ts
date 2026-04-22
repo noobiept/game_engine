@@ -1,6 +1,9 @@
 import * as Vector from "../vector";
 import { Element } from "../element";
 import { CheckAll } from "./collision_check_all";
+import { SpatialPartition } from "./collision_spatial_partition";
+
+export { CheckAll, SpatialPartition };
 
 export interface CollisionDetectionAlgorithm {
   checkCollision();
