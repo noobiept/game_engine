@@ -162,51 +162,55 @@
         </div>
 
         <script type="module">
+            function getExampleUrl(path) {
+                return `/examples/runner.html?module=${encodeURIComponent(path)}`;
+            }
+
             const examples = [
-                ["Basic", "/examples/basic_example/basic_example.html"],
-                ["Grid", "/examples/grid/grid.html"],
+                ["Basic", "/examples/basic_example/basic_example.ts"],
+                ["Grid", "/examples/grid/grid.ts"],
                 [
                     "Collision",
-                    "/examples/collision_detection/collision_detection.html",
+                    "/examples/collision_detection/collision_detection.ts",
                 ],
                 [
                     "Collision 2",
-                    "/examples/collision_detection2/collision_detection2.html",
+                    "/examples/collision_detection2/collision_detection2.ts",
                 ],
                 [
                     "Spatial Partition",
-                    "/examples/collision_spatial_partition/collision_spatial_partition.html",
+                    "/examples/collision_spatial_partition/collision_spatial_partititon.ts",
                 ],
-                ["Bullets", "/examples/bullets/bullets.html"],
-                ["Clone", "/examples/clone/clone.html"],
+                ["Bullets", "/examples/bullets/bullets.ts"],
+                ["Clone", "/examples/clone/clone.ts"],
                 [
                     "Custom Element",
-                    "/examples/custom_element/custom_element.html",
+                    "/examples/custom_element/custom_element.ts",
                 ],
                 [
                     "Game Loop",
-                    "/examples/game_loop_callbacks/game_loop_callbacks.html",
+                    "/examples/game_loop_callbacks/game_loop_callbacks.ts",
                 ],
-                ["Game Menu", "/examples/game_menu/game_menu.html"],
-                ["Life", "/examples/game_of_life/game_of_life.html"],
-                ["Message", "/examples/message/message.html"],
-                ["Minesweeper", "/examples/minesweeper/minesweeper.html"],
-                ["Mouse Move", "/examples/mouse_move/mouse_move.html"],
+                ["Game Menu", "/examples/game_menu/game_menu.ts"],
+                ["Game of Life", "/examples/game_of_life/main.ts"],
+                ["Message", "/examples/message/message.ts"],
+                ["Minesweeper", "/examples/minesweeper/main.ts"],
+                ["Mouse Move", "/examples/mouse_move/mouse_move.ts"],
                 [
                     "Multiple Canvas",
-                    "/examples/multiple_canvas/multiple_canvas.html",
+                    "/examples/multiple_canvas/multiple_canvas.ts",
                 ],
                 [
                     "Parallax",
-                    "/examples/parallax_scrolling/parallax_scrolling.html",
+                    "/examples/parallax_scrolling/parallax_scrolling.ts",
                 ],
-                ["Preload", "/examples/preload/preload.html"],
-                ["Preload Error", "/examples/preload_error/preload_error.html"],
-                ["Snake", "/examples/snake/snake.html"],
-                ["Sprite", "/examples/sprite/sprite.html"],
-                ["Tower Defense", "/examples/tower_defense/tower_defense.html"],
-                ["Tween", "/examples/tween/tween.html"],
-                ["2048", "/examples/2048/2048.html"],
+                ["Preload", "/examples/preload/preload.ts"],
+                ["Preload Error", "/examples/preload_error/preload_error.ts"],
+                ["Snake", "/examples/snake/main.ts"],
+                ["Sprite", "/examples/sprite/sprite.ts"],
+                ["Tower Defense", "/examples/tower_defense/tower_defense.ts"],
+                ["Tween", "/examples/tween/tween.ts"],
+                ["2048", "/examples/2048/main.ts"],
             ];
 
             const nav = document.querySelector("#examples");
@@ -217,9 +221,10 @@
             function select(path) {
                 const example =
                     examples.find((item) => item[1] === path) || examples[0];
+                const url = getExampleUrl(example[1]);
                 title.textContent = example[0];
-                preview.src = example[1];
-                open.href = example[1];
+                preview.src = url;
+                open.href = url;
                 history.replaceState(null, "", "#" + example[1]);
 
                 for (const button of nav.querySelectorAll("button")) {

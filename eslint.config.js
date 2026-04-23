@@ -7,7 +7,6 @@ export default tseslint.config(
         ignores: [
             "build/",
             "docs/",
-            "examples/",
             "node_modules/",
             "release/",
             "coverage/",
@@ -18,11 +17,21 @@ export default tseslint.config(
     ...[js.configs.recommended, ...tseslint.configs.recommended].map(
         (config) => ({
             ...config,
-            files: ["source/**/*.ts", "tests/**/*.ts", "vite.config.ts"],
+            files: [
+                "source/**/*.ts",
+                "tests/**/*.ts",
+                "examples/**/*.ts",
+                "vite.config.ts",
+            ],
         }),
     ),
     {
-        files: ["source/**/*.ts", "tests/**/*.ts", "vite.config.ts"],
+        files: [
+            "source/**/*.ts",
+            "tests/**/*.ts",
+            "examples/**/*.ts",
+            "vite.config.ts",
+        ],
         languageOptions: {
             ecmaVersion: 2020,
             sourceType: "module",

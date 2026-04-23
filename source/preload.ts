@@ -199,10 +199,17 @@ export class Preload extends EventDispatcher {
 
                 if (type === "image") {
                     var image = new Image();
-                    image.src = window.URL.createObjectURL(response);
+                    var imageUrl = window.URL.createObjectURL(response);
+
+                    image.onerror = function () {
+                        window.URL.revokeObjectURL(imageUrl);
+                        _this._failed_to_load(id);
+                    };
                     image.onload = function () {
+                        window.URL.revokeObjectURL(imageUrl);
                         _this._loaded(id, image);
                     };
+                    image.src = imageUrl;
                 } else if (type === "json") {
                     // for the browsers that don't return the object, but a string instead
                     if (typeof response === "string") {
