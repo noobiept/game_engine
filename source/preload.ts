@@ -329,7 +329,7 @@ export namespace Preload {
         for (var type in EXTENSIONS) {
             var fileType = type as FileType;
 
-            if (EXTENSIONS.hasOwnProperty(type)) {
+            if (Object.prototype.hasOwnProperty.call(EXTENSIONS, type)) {
                 if (
                     typeof extension !== "undefined" &&
                     EXTENSIONS[fileType].indexOf(extension) >= 0
