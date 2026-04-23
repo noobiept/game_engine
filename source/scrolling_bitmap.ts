@@ -30,11 +30,11 @@ export namespace ScrollingBitmapArgs {
  */
 export class ScrollingBitmap extends Bitmap {
     protected _count: number; // interval counter
-    protected _interval: number; // time between the scroll movement
+    protected _interval = 0; // time between the scroll movement
     protected _step: number; // how many pixels it moves per scroll movement
     protected _ref_position: number; // the current image division point position
-    protected _direction: ScrollingBitmapArgs.Direction; // the scrolling direction
-    protected _scroll: () => void;
+    protected _direction = ScrollingBitmapArgs.Direction.left; // the scrolling direction
+    protected _scroll: () => void = this.scroll_left;
 
     constructor(args: ScrollingBitmapArgs) {
         super(args);

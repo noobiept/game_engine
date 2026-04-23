@@ -37,9 +37,9 @@ export interface BulletArgs extends ContainerArgs {
  * - `remove` -- `listener( data: { element: Bullet; };`
  */
 export class Bullet extends Container {
-    movement: Movement;
+    movement: Movement | null;
     damage: number;
-    element: Element;
+    element: Element | null;
 
     constructor(args: BulletArgs) {
         super(args);
@@ -81,7 +81,7 @@ export class Bullet extends Container {
     setAngle(angle: number) {
         var _this = this;
 
-        this.movement.moveAngle(angle, false, function () {
+        this.movement?.moveAngle(angle, false, function () {
             _this.remove();
         });
     }
@@ -94,7 +94,7 @@ export class Bullet extends Container {
     setTarget(target: Element) {
         var _this = this;
 
-        this.movement.follow(target, function () {
+        this.movement?.follow(target, function () {
             _this.remove();
         });
     }
@@ -103,7 +103,7 @@ export class Bullet extends Container {
      * @param deltaTime Time elapsed since the last update.
      */
     logic(deltaTime: number) {
-        this.movement.logic(deltaTime);
+        this.movement?.logic(deltaTime);
     }
 
     /**
@@ -112,7 +112,7 @@ export class Bullet extends Container {
      */
     remove() {
         if (!this._removed) {
-            this.movement.remove();
+            this.movement?.remove();
             this.movement = null;
             this.dispatchEvent("remove", { element: this });
 
@@ -135,7 +135,7 @@ export class Bullet extends Container {
             x: this.x,
             y: this.y,
             children: children,
-            movementSpeed: this.movement.movement_speed,
+            movementSpeed: this.movement?.movement_speed ?? 0,
             damage: this.damage,
         });
         bullet.opacity = this.opacity;

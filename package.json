@@ -15,6 +15,7 @@
     "scripts": {
         "dev": "vite",
         "build": "tsc --noEmit && vite build --mode production && pnpm run build:types",
+        "tsc:w": "tsc --noEmit --watch",
         "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir release/$npm_package_version",
         "preview": "vite preview",
         "test": "vitest run",

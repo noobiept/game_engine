@@ -32,9 +32,9 @@ export interface MessageArgs extends Html.HtmlContainerArgs {
  */
 export class Message extends Html.HtmlContainer {
     protected body: Html.HtmlContainer;
-    protected buttons: Html.HtmlContainer;
-    protected background: HTMLElement;
-    protected timeout: Utilities.Timeout;
+    protected buttons: Html.HtmlContainer | null;
+    protected background: HTMLElement | null;
+    protected timeout: Utilities.Timeout | null;
 
     constructor(args: MessageArgs) {
         super(args);
@@ -102,7 +102,8 @@ export class Message extends Html.HtmlContainer {
         }
 
         if (this.background) {
-            this.container.parentNode.removeChild(this.background);
+            this.container.parentNode?.removeChild(this.background);
+            this.background = null;
         }
 
         super.clear();

@@ -18,22 +18,22 @@ export enum MovementState {
 /**
  * Basic Usage:
  *
- *     function Unit( args )
+ *     class Unit extends Game.Rectangle
  *         {
- *         Game.Rectangle.call( this, args );
+ *         constructor( args )
+ *             {
+ *             super( args );
  *
- *         this._has_logic = true;
- *         this.movement = new Game.Movement({
- *                 element: this,
- *                 movementSpeed: 100
- *             });
- *         }
- *
- *     Game.Utilities.inheritPrototype( Unit, Game.Rectangle );
- *
- *     Unit.prototype.logic = function( deltaTime )
- *         {
- *         this.movement.logic( deltaTime );
+ *             this._has_logic = true;
+ *             this.movement = new Game.Movement({
+ *                     element: this,
+ *                     movementSpeed: 100
+ *                 });
+ *             }
+ *         logic( deltaTime )
+ *             {
+ *             this.movement.logic( deltaTime );
+ *             }
  *         }
  *
  *     var unit = new Unit({
@@ -50,19 +50,19 @@ export enum MovementState {
 export class Movement {
     movement_speed: number;
 
-    protected _element: Element;
+    protected _element: Element | null;
     protected _movement_state: MovementState;
     protected _is_moving: boolean;
     protected _move_x: number;
     protected _move_y: number;
-    protected _move_callback: () => any;
+    protected _move_callback: (() => any) | null;
     protected _destination_x: number;
     protected _destination_y: number;
     protected _is_destination_x_diff_positive: boolean;
     protected _is_destination_y_diff_positive: boolean;
-    protected _path: { x: number; y: number; callback?: () => any }[];
+    protected _path: { x: number; y: number; callback: (() => any) | null }[];
     protected _loop_path_position: number; // when looping a path, to know what is the current position the element is going for (the path array position)
-    protected _follow_target: Element;
+    protected _follow_target: Element | null;
 
     constructor(args: MovementArgs) {
         this.movement_speed = args.movementSpeed;
@@ -85,8 +85,10 @@ export class Movement {
      * Clears any previous path, and forces the element to move to the specified position.
      */
     moveTo(x: number, y: number, callback?: () => any) {
+        var moveCallback: (() => any) | null = callback ?? null;
+
         if (!Utilities.isFunction(callback)) {
-            callback = null;
+            moveCallback = null;
         }
 
         this._movement_state = MovementState.destination;
@@ -94,7 +96,7 @@ export class Movement {
         this._path.push({
             x: x,
             y: y,
-            callback: callback,
+            callback: moveCallback,
         });
 
         this.logic = this.movementPathLogic;
@@ -122,8 +124,14 @@ export class Movement {
         if (next) {
             var x = next.x;
             var y = next.y;
-            var elementX = this._element.x;
-            var elementY = this._element.y;
+            var element = this._element;
+
+            if (element === null) {
+                return false;
+            }
+
+            var elementX = element.x;
+            var elementY = element.y;
 
             this._is_moving = true;
             this._destination_x = x;
@@ -170,19 +178,21 @@ export class Movement {
      * @param callback Optional function to be called when it reaches this position.
      */
     queueMoveTo(x: number, y: number, callback?: () => any) {
+        var moveCallback: (() => any) | null = callback ?? null;
+
         if (!Utilities.isFunction(callback)) {
-            callback = null;
+            moveCallback = null;
         }
 
         if (!this._is_moving) {
-            this.moveTo(x, y, callback);
+            this.moveTo(x, y, moveCallback ?? undefined);
             return;
         }
 
         this._path.push({
             x: x,
             y: y,
-            callback: callback,
+            callback: moveCallback,
         });
     }
 
@@ -193,7 +203,13 @@ export class Movement {
      */
     moveLoop(path: { x: number; y: number; callback?: () => any }[]) {
         this._movement_state = MovementState.loop;
-        this._path = path;
+        this._path = path.map(function (step) {
+            return {
+                x: step.x,
+                y: step.y,
+                callback: step.callback ?? null,
+            };
+        });
         this._loop_path_position = -1; // will be added in .moveToNext() and so will start at the 0 position
 
         this.logic = this.movementPathLogic;
@@ -218,8 +234,10 @@ export class Movement {
         this._move_x = Math.cos(angle) * this.movement_speed;
         this._move_y = Math.sin(angle) * this.movement_speed;
 
-        this._element.rotation = angle;
-        this._move_callback = callback;
+        if (this._element !== null) {
+            this._element.rotation = angle;
+        }
+        this._move_callback = callback ?? null;
 
         this.logic = this.movementAngleLogic;
     }
@@ -234,7 +252,7 @@ export class Movement {
         this._movement_state = MovementState.follow;
         this._follow_target = element;
         this.logic = this.movementFollowLogic;
-        this._move_callback = callback;
+        this._move_callback = callback ?? null;
     }
 
     /**
@@ -257,8 +275,14 @@ export class Movement {
             return;
         }
 
-        var elementX = this._element.x;
-        var elementY = this._element.y;
+        var element = this._element;
+
+        if (element === null) {
+            return;
+        }
+
+        var elementX = element.x;
+        var elementY = element.y;
 
         var angle = Utilities.calculateAngle(
             elementX,
@@ -267,11 +291,11 @@ export class Movement {
             target.y * -1,
         );
 
-        this._element.setPosition(
+        element.setPosition(
             elementX + Math.cos(angle) * this.movement_speed * delta,
             elementY + Math.sin(angle) * this.movement_speed * delta,
         );
-        this._element.rotation = angle;
+        element.rotation = angle;
     }
 
     /**
@@ -283,6 +307,10 @@ export class Movement {
     protected movementAngleLogic(delta: number) {
         if (this._is_moving) {
             var element = this._element;
+
+            if (element === null) {
+                return;
+            }
 
             element.addToPosition(this._move_x * delta, this._move_y * delta);
 
@@ -303,6 +331,10 @@ export class Movement {
     protected movementPathLogic(delta: number) {
         if (this._is_moving) {
             var element = this._element;
+
+            if (element === null) {
+                return;
+            }
 
             element.addToPosition(this._move_x * delta, this._move_y * delta);
 

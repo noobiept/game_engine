@@ -89,7 +89,7 @@ export class Container extends Element {
                 this._children.splice(index, 1);
             }
 
-            element.container = null;
+            element._container = null;
         }
     }
 
@@ -159,8 +159,8 @@ export class Container extends Element {
      * Check if the given x/y position intersects with any of this container's children. Returns all the elements it intersects.
      */
     intersect(x: number, y: number) {
-        var all = [];
-        var elements;
+        var all: Element[] = [];
+        var elements: Element[];
 
         for (var a = this._children.length - 1; a >= 0; a--) {
             elements = this._children[a].intersect(x, y);
@@ -173,7 +173,7 @@ export class Container extends Element {
         return all;
     }
 
-    mouseClickEvents(x, y, event) {
+    mouseClickEvents(x: number, y: number, event: MouseEvent) {
         var found = false;
 
         for (var a = this._children.length - 1; a >= 0; a--) {
@@ -195,6 +195,10 @@ export class Container extends Element {
         }
 
         var firstChild = this._children[0];
+        if (!firstChild) {
+            return;
+        }
+
         var leftMost = firstChild.x;
         var rightMost = firstChild.x + firstChild.width;
         var topMost = firstChild.y;
@@ -287,7 +291,13 @@ export class Container extends Element {
      * Get the global vertices points of this element.
      * The arguments are the compound values from the parent containers.
      */
-    updateVertices(x, y, scaleX, scaleY, rotation) {
+    updateVertices(
+        x: number,
+        y: number,
+        scaleX: number,
+        scaleY: number,
+        rotation: number,
+    ) {
         x += this.x * scaleX;
         y += this.y * scaleY;
 
@@ -304,7 +314,7 @@ export class Container extends Element {
      * Get the element vertices points. Assumes its a rectangle.
      */
     getVertices() {
-        var vertices = [];
+        var vertices: NonNullable<ReturnType<Element["getVertices"]>> = [];
 
         for (var a = this._children.length - 1; a >= 0; a--) {
             var childVertices = this._children[a].getVertices();

@@ -39,7 +39,13 @@ export class Canvas {
     constructor(args: CanvasArgs) {
         this._canvas = document.createElement("canvas");
         this._canvas.className = "Game-Canvas";
-        this._ctx = this._canvas.getContext("2d");
+        var ctx = this._canvas.getContext("2d");
+
+        if (ctx === null) {
+            throw new Error("Unable to create 2D canvas context.");
+        }
+
+        this._ctx = ctx;
 
         this._canvas.width = this._width = args.width;
         this._canvas.height = this._height = args.height;
@@ -106,8 +112,8 @@ export class Canvas {
      * Get all the child elements that are in a given x/y position.
      */
     getChildrenIn(x: number, y: number) {
-        var all = [];
-        var elements;
+        var all: Element[] = [];
+        var elements: Element[];
 
         for (var a = this._children.length - 1; a >= 0; a--) {
             elements = this._children[a].intersect(x, y);

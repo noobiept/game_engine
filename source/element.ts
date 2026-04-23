@@ -33,7 +33,7 @@ export interface ElementArgs extends EventDispatcherArgs {
  * - `collision` -- `listener( data: element: Element; collidedWith: Element; bullet?: Bullet; );`
  */
 export abstract class Element extends EventDispatcher {
-    vertices: Vertices;
+    vertices: Vertices | null;
 
     opacity: number; // value between 0 and 1
     visible: boolean; // whether the element is drawn or not
@@ -55,7 +55,7 @@ export abstract class Element extends EventDispatcher {
     protected _half_height: number;
 
     protected _rotation: number; // in radians (clockwise)
-    _container: Container;
+    _container: Container | null;
     _has_logic: boolean; // to know if we need to run the .logic() method or not
     _removed: boolean; // a reference to this element may be saved in several places, so we need a way to know if its ok to work on the element or not
 
@@ -113,7 +113,7 @@ export abstract class Element extends EventDispatcher {
      *
      * @param ctx Canvas context.
      */
-    abstract drawElement(ctx: CanvasRenderingContext2D);
+    abstract drawElement(ctx: CanvasRenderingContext2D): void;
 
     /**
      * Draws this element, and all of its _children.
@@ -137,14 +137,14 @@ export abstract class Element extends EventDispatcher {
     /**
      * Check if the element is within the given x/y position.
      */
-    intersect(refX: number, refY: number) {
-        var elements = [];
+    intersect(refX: number, refY: number): Element[] {
+        var elements: Element[] = [];
         var vertices = this.vertices;
 
         // check if the vertices were calculated yet (if the element was added this tick/frame, it won't be)
         if (vertices) {
             if (
-                CollisionDetection.polygonPoint(this.vertices, {
+                CollisionDetection.polygonPoint(vertices, {
                     x: refX,
                     y: refY,
                 })
@@ -170,7 +170,7 @@ export abstract class Element extends EventDispatcher {
         return CollisionDetection.polygonPolygonList(vertices, otherVertices);
     }
 
-    mouseClickEvents(x, y, event) {
+    mouseClickEvents(x: number, y: number, event: MouseEvent) {
         if (this.hasListeners(event.type)) {
             var elements = this.intersect(x, y);
 
@@ -263,21 +263,22 @@ export abstract class Element extends EventDispatcher {
      * Calculates an axis-aligned rectangle from the rotated shape.
      */
     toAxisAligned() {
-        var length = this.vertices.length;
+        const vertices = this.vertices;
 
         // hasn't calculated the vertices yet
-        if (length === 0) {
+        if (vertices === null || vertices.length === 0) {
             return null;
         }
 
-        var vertex = this.vertices[0];
+        const length = vertices.length;
+        var vertex = vertices[0];
         var minX = vertex.x;
         var maxX = minX;
         var minY = vertex.y;
         var maxY = minY;
 
         for (var a = 1; a < length; a++) {
-            var vertex = this.vertices[a];
+            var vertex = vertices[a];
             var x = vertex.x;
             var y = vertex.y;
 
@@ -407,7 +408,7 @@ export abstract class Element extends EventDispatcher {
     /**
      * Get the element vertices points. Assumes its a rectangle.
      */
-    getVertices() {
+    getVertices(): Vertices[] | null {
         if (this.vertices) {
             return [this.vertices];
         }

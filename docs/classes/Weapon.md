@@ -10,22 +10,22 @@ Defined in: [source/weapon.ts:51](https://github.com/noobiept/game_engine/blob/9
 
 Basic Usage:
 
-    function Unit( args )
+    class Unit extends Game.Rectangle
         {
-        Game.Rectangle.call( this, args );
+        constructor( args )
+            {
+            super( args );
 
-        this._has_logic = true;
-        this.weapon = new Game.Weapon({
-                element: this,
-                bulletContainer: Game.getCanvas()
-            });
-        }
-
-    Game.Utilities.inheritPrototype( Unit, Game.Rectangle );
-
-    Unit.prototype.logic = function( deltaTime )
-        {
-        this.weapon.logic( deltaTime );
+            this._has_logic = true;
+            this.weapon = new Game.Weapon({
+                    element: this,
+                    bulletContainer: Game.getCanvas()
+                });
+            }
+        logic( deltaTime )
+            {
+            this.weapon.logic( deltaTime );
+            }
         }
 
     var unit = new Unit({

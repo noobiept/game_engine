@@ -4,13 +4,23 @@ export enum TweenAction {
     call,
 }
 
-export interface TweenStep {
-    action: TweenAction;
-    duration?: number;
-    end_properties?: Object;
-    ease?: (value: number) => number;
-    callback?: () => any;
-}
+type TweenProperties = Record<string, number>;
+
+export type TweenStep =
+    | {
+          action: TweenAction.properties;
+          duration: number;
+          end_properties: TweenProperties;
+          ease: (value: number) => number;
+      }
+    | {
+          action: TweenAction.wait;
+          duration: number;
+      }
+    | {
+          action: TweenAction.call;
+          callback: () => any;
+      };
 
 /**
  * Basic Usage:
@@ -36,15 +46,15 @@ export interface TweenStep {
 export class Tween {
     static _tweens: Tween[] = [];
 
-    protected _element: Object;
+    protected _element: Record<string, any>;
     protected _steps: TweenStep[];
-    protected _current_step: TweenStep;
-    protected _start_properties: Object;
+    protected _current_step: TweenStep | null;
+    protected _start_properties: TweenProperties | null;
     protected _count: number;
-    protected _update: (delta: number) => any;
+    protected _update: ((delta: number) => any) | null;
 
     constructor(element: Object) {
-        this._element = element;
+        this._element = element as Record<string, any>;
         this._steps = [];
         this._current_step = null;
         this._start_properties = null;
@@ -69,7 +79,11 @@ export class Tween {
      * @param ease Ease function, that describes how the value of the property will progress between the animation.
      * @return The tween object for chaining.
      */
-    to(properties: Object, duration: number, ease?: (value: number) => number) {
+    to(
+        properties: TweenProperties,
+        duration: number,
+        ease?: (value: number) => number,
+    ) {
         if (typeof ease === "undefined") {
             ease = Tween.Ease.linear;
         }
@@ -143,7 +157,7 @@ export class Tween {
             this._count = 0;
             this._update = this.waitUpdate;
         } else if (step.action === TweenAction.properties) {
-            var startProperties = {};
+            var startProperties: TweenProperties = {};
 
             for (var property in step.end_properties) {
                 startProperties[property] = this._element[property];
@@ -161,7 +175,11 @@ export class Tween {
      * @param deltaTime Time elapsed since the last update.
      */
     protected waitUpdate(deltaTime: number) {
-        var step = this._current_step;
+        const step = this._current_step;
+
+        if (!step || step.action !== TweenAction.wait) {
+            return;
+        }
 
         this._count += deltaTime;
 
@@ -175,8 +193,17 @@ export class Tween {
      *
      * @param deltaTime Time elapsed since the last update.
      */
-    protected propertiesUpdate(deltaTime) {
+    protected propertiesUpdate(deltaTime: number) {
         var step = this._current_step;
+        var startProperties = this._start_properties;
+
+        if (
+            !step ||
+            step.action !== TweenAction.properties ||
+            !startProperties
+        ) {
+            return;
+        }
 
         this._count += deltaTime;
 
@@ -186,7 +213,7 @@ export class Tween {
         var value = step.ease(percentage);
 
         for (var property in step.end_properties) {
-            var start = this._start_properties[property];
+            var start = startProperties[property];
             var end = step.end_properties[property];
 
             this._element[property] = start + (end - start) * value;
@@ -249,7 +276,7 @@ export class Tween {
      */
     static update(deltaTime: number) {
         for (var a = Tween._tweens.length - 1; a >= 0; a--) {
-            Tween._tweens[a]._update(deltaTime);
+            Tween._tweens[a]._update?.(deltaTime);
         }
     }
 }

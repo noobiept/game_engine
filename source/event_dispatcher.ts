@@ -2,11 +2,13 @@ import * as Utilities from "@drk4/utilities";
 
 export interface EventDispatcherArgs {}
 
+type EventListener = (data: any) => any;
+
 /**
  * Base class that provides a way to add/remove listeners, and dispatch events.
  */
 export class EventDispatcher {
-    protected _listeners;
+    protected _listeners: Record<string, EventListener[]>;
 
     constructor(args?: EventDispatcherArgs) {
         this._listeners = {};
@@ -20,7 +22,7 @@ export class EventDispatcher {
      * @param listener A function to be called when the event is dispatched.
      * @return If it was successfully added.
      */
-    addEventListener(type: string, listener: (data: any) => any) {
+    addEventListener(type: string, listener: EventListener) {
         if (!this._listeners[type]) {
             this._listeners[type] = [];
         }
@@ -43,13 +45,13 @@ export class EventDispatcher {
      * @param listener The listener function to remove. If not provided then remove all the functions associated with the event type.
      * @return If it was successfully removed.
      */
-    removeEventListener(type: string, listener?: (data: any) => any) {
+    removeEventListener(type: string, listener?: EventListener) {
         if (this._listeners[type]) {
             if (typeof listener !== "undefined") {
                 var index = this._listeners[type].indexOf(listener);
 
                 if (index >= 0) {
-                    this._listeners.splice(index, 1);
+                    this._listeners[type].splice(index, 1);
                     return true;
                 }
             } else {

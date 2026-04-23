@@ -31,7 +31,7 @@ export interface HtmlElementArgs {
 export class HtmlElement {
     container: HTMLElement;
     protected _is_active: boolean;
-    protected _pre_text: HTMLElement;
+    protected _pre_text: HTMLElement | null;
 
     constructor(args?: HtmlElementArgs) {
         var container = document.createElement("div");
@@ -127,8 +127,8 @@ export class HtmlElement {
             this._pre_text = null;
         }
 
-        this.container.parentNode.removeChild(this.container);
-        this.container = null;
+        this.container.parentNode?.removeChild(this.container);
+        this.container = null!;
     }
 }
 
@@ -279,7 +279,7 @@ export class Value extends HtmlElement {
      */
     clear() {
         this.container.removeChild(this.element);
-        this.element = null;
+        this.element = null!;
         this.value = null;
 
         super.clear();
@@ -336,7 +336,7 @@ export class Button extends Value {
      */
     clear() {
         this.removeEvents();
-        this.click_ref = null;
+        this.click_ref = null!;
 
         super.clear();
     }
@@ -350,8 +350,6 @@ export interface BooleanArgs extends ButtonArgs {
  * A boolean html button (possible values are 'On' or 'Off').
  */
 export class Boolean extends Button {
-    protected value: boolean;
-
     constructor(args: BooleanArgs) {
         super({
             ...args,
@@ -453,8 +451,8 @@ export interface MultipleOptionsArgs extends HtmlElementArgs {
  */
 export class MultipleOptions extends HtmlElement {
     protected elements: HTMLElement[];
-    protected click_ref: () => any;
-    protected selected: HTMLElement;
+    protected click_ref: (this: HTMLElement, event: MouseEvent) => any;
+    protected selected: HTMLElement | null;
 
     constructor(args: MultipleOptionsArgs) {
         super(args);
@@ -521,7 +519,7 @@ export class MultipleOptions extends HtmlElement {
      * Get the string value of the currently selected option.
      */
     getValue() {
-        return this.selected.innerHTML;
+        return this.selected?.innerHTML;
     }
 
     /**
@@ -547,7 +545,7 @@ export class MultipleOptions extends HtmlElement {
      */
     clear() {
         this.removeEvents();
-        this.click_ref = null;
+        this.click_ref = null!;
         this.selected = null;
 
         for (var a = this.elements.length - 1; a >= 0; a--) {
@@ -574,9 +572,9 @@ export interface RangeArgs extends HtmlElementArgs {
 export class Range extends HtmlElement {
     protected value: HTMLElement;
     protected input: HTMLInputElement;
-    protected current_value: number;
-    protected change_ref: (event) => any;
-    protected input_ref: (event) => any;
+    protected current_value = 0;
+    protected change_ref: (event: Event) => any;
+    protected input_ref: (event: Event) => any;
     number_of_decimals: number;
 
     constructor(args: RangeArgs) {
@@ -598,14 +596,17 @@ export class Range extends HtmlElement {
         }
 
         this.change_ref = function (event) {
-            _this.setValue(parseFloat(event.target.value));
+            var target = event.target as HTMLInputElement;
+
+            _this.setValue(parseFloat(target.value));
 
             if (args.onChange) {
                 args.onChange(_this);
             }
         };
         this.input_ref = function (event) {
-            var value = parseFloat(event.target.value);
+            var target = event.target as HTMLInputElement;
+            var value = parseFloat(target.value);
 
             _this.value.innerHTML = value.toFixed(_this.number_of_decimals);
         };
@@ -671,13 +672,13 @@ export class Range extends HtmlElement {
      */
     clear() {
         this.removeEvents();
-        this.change_ref = null;
-        this.input_ref = null;
+        this.change_ref = null!;
+        this.input_ref = null!;
 
         this.container.removeChild(this.value);
         this.container.removeChild(this.input);
-        this.value = null;
-        this.input = null;
+        this.value = null!;
+        this.input = null!;
 
         super.clear();
     }
@@ -694,8 +695,8 @@ export interface TextArgs extends HtmlElementArgs {
  */
 export class Text extends HtmlElement {
     protected input: HTMLInputElement;
-    protected button: Button;
-    protected key_ref: (event) => any;
+    protected button: Button | null;
+    protected key_ref: ((event: KeyboardEvent) => any) | null;
 
     constructor(args?: TextArgs) {
         super(args);
@@ -723,9 +724,9 @@ export class Text extends HtmlElement {
 
         // setup the callback function
         if (typeof args.callback !== "undefined") {
-            this.key_ref = function (event) {
+            this.key_ref = function (event: KeyboardEvent) {
                 if (event.key === "Enter") {
-                    args.callback(_this);
+                    args.callback?.(_this);
                 }
             };
         }
@@ -735,7 +736,7 @@ export class Text extends HtmlElement {
             this.button = new Button({
                 value: args.buttonText,
                 callback: function () {
-                    args.callback(_this);
+                    args.callback?.(_this);
                 },
             });
             this.container.appendChild(this.button.container);
@@ -754,7 +755,9 @@ export class Text extends HtmlElement {
     }
 
     addEvents() {
-        this.input.addEventListener("keyup", this.key_ref);
+        if (this.key_ref) {
+            this.input.addEventListener("keyup", this.key_ref);
+        }
 
         if (this.button) {
             this.button.addEvents();
@@ -762,7 +765,9 @@ export class Text extends HtmlElement {
     }
 
     removeEvents() {
-        this.input.removeEventListener("keyup", this.key_ref);
+        if (this.key_ref) {
+            this.input.removeEventListener("keyup", this.key_ref);
+        }
 
         if (this.button) {
             this.button.removeEvents();
@@ -773,7 +778,7 @@ export class Text extends HtmlElement {
         this.removeEvents();
         this.key_ref = null;
         this.container.removeChild(this.input);
-        this.input = null;
+        this.input = null!;
 
         if (this.button) {
             this.button.clear();

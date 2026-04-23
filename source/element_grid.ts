@@ -39,7 +39,7 @@ export class ElementGrid extends Grid {
     square_size: number;
     ref_x: number;
     ref_y: number;
-    protected _background: Rectangle;
+    protected _background: Rectangle | null;
     events: EventDispatcher; // since typescript doesn't allow multiple class inheritance, we need to deal with the events through a property
 
     constructor(args: ElementGridArgs) {

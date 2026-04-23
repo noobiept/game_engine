@@ -15,8 +15,8 @@
  * Examples -- `preload`
  */
 
-var CTX: AudioContext = null;
-var GLOBAL_GAIN: GainNode;
+var CTX: AudioContext | null = null;
+var GLOBAL_GAIN: GainNode | null = null;
 
 /**
  * Initialize the `Sound` module. Its called in `Game.init()`.
@@ -52,7 +52,7 @@ export function init() {
 export function decodeAudio(
     data: ArrayBuffer,
     successCallback: (decodedData: AudioBuffer) => any,
-    errorCallback,
+    errorCallback: DecodeErrorCallback,
 ) {
     if (!CTX) {
         return false;
@@ -76,7 +76,7 @@ export function play(audioBuffer: AudioBuffer) {
     var source = CTX.createBufferSource();
 
     source.buffer = audioBuffer;
-    source.connect(GLOBAL_GAIN);
+    source.connect(GLOBAL_GAIN as GainNode);
     source.start();
 
     return source;
@@ -89,7 +89,7 @@ export function play(audioBuffer: AudioBuffer) {
  * @return If the gain was set or not.
  */
 export function setGlobalGain(gain: number) {
-    if (!CTX || gain < 0 || gain > 1) {
+    if (!CTX || !GLOBAL_GAIN || gain < 0 || gain > 1) {
         return false;
     }
 
@@ -103,7 +103,7 @@ export function setGlobalGain(gain: number) {
  * Will return -1 if the sound is not available.
  */
 export function getGlobalGain() {
-    if (!CTX) {
+    if (!CTX || !GLOBAL_GAIN) {
         return -1;
     }
 

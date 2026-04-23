@@ -145,7 +145,7 @@ export function setFps(fps: number) {
     FRAME_INTERVAL = 1000 / fps;
 }
 
-function updateMousePosition(event) {
+function updateMousePosition(event: MouseEvent) {
     MOUSE_X = event.clientX;
     MOUSE_Y = event.clientY;
 
@@ -318,8 +318,8 @@ function clickEvents(event: MouseEvent) {
  */
 function mouseMoveEvents() {
     // find all the elements that are under the current x/y position of the mouse
-    var all = [];
-    var elements;
+    var all: Element[] = [];
+    var elements: Element[];
     var a, element;
 
     for (a = ALL_CANVAS.length - 1; a >= 0; a--) {
@@ -412,7 +412,7 @@ function loop() {
     Tween.update(delta);
 
     // get all the canvas that are to be updated on the game loop
-    var allCanvas = [];
+    var allCanvas: Canvas[] = [];
     var a;
 
     for (a = ALL_CANVAS.length - 1; a >= 0; a--) {

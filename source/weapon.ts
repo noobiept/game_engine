@@ -19,22 +19,22 @@ export interface WeaponArgs {
 /**
  * Basic Usage:
  *
- *     function Unit( args )
+ *     class Unit extends Game.Rectangle
  *         {
- *         Game.Rectangle.call( this, args );
+ *         constructor( args )
+ *             {
+ *             super( args );
  *
- *         this._has_logic = true;
- *         this.weapon = new Game.Weapon({
- *                 element: this,
- *                 bulletContainer: Game.getCanvas()
- *             });
- *         }
- *
- *     Game.Utilities.inheritPrototype( Unit, Game.Rectangle );
- *
- *     Unit.prototype.logic = function( deltaTime )
- *         {
- *         this.weapon.logic( deltaTime );
+ *             this._has_logic = true;
+ *             this.weapon = new Game.Weapon({
+ *                     element: this,
+ *                     bulletContainer: Game.getCanvas()
+ *                 });
+ *             }
+ *         logic( deltaTime )
+ *             {
+ *             this.weapon.logic( deltaTime );
+ *             }
  *         }
  *
  *     var unit = new Unit({
@@ -49,7 +49,7 @@ export interface WeaponArgs {
  * Examples -- `bullets`, `collision_detection`, `collision_detection2`, `custom_element`, `tower_defense`
  */
 export class Weapon {
-    element: Element; // element that owns the weapon (the bullets will be fired from its position, etc)
+    element: Element | null; // element that owns the weapon (the bullets will be fired from its position, etc)
     damage: number;
     fire_interval: number; // time between each bullet fire
 
@@ -66,7 +66,8 @@ export class Weapon {
         angleOrTarget: number | Element;
     }[]; // all the firing intervals
     protected _bullets: Bullet[]; // has all the bullets fired by this weapon
-    protected _bullet_container: Container | Canvas; // where to add the bullet objects
+    protected _bullet_container: Container | Canvas | null; // where to add the bullet objects
+    _removed = false;
 
     constructor(args: WeaponArgs) {
         if (typeof args.damage === "undefined") {
@@ -207,6 +208,10 @@ export class Weapon {
      * Returns `false` if it failed to fire a bullet (if the target was already removed).
      */
     protected _fire(angleOrTarget: number | Element, bulletId: number) {
+        if (this._removed) {
+            return false;
+        }
+
         var _this = this;
 
         // if it happens to be a target, need to make sure it hasn't been removed yet
@@ -249,7 +254,7 @@ export class Weapon {
             _this._bullets.splice(index, 1);
         });
 
-        this._bullet_container.addChild(bullet);
+        this._bullet_container?.addChild(bullet);
         this._bullets.push(bullet);
 
         return true;
@@ -300,6 +305,10 @@ export class Weapon {
     }
 
     clone() {
+        if (!this.element || !this._bullet_container) {
+            return;
+        }
+
         var weapon = new Weapon({
             element: this.element,
             bulletContainer: this._bullet_container,
@@ -316,6 +325,10 @@ export class Weapon {
     }
 
     remove() {
+        if (this._removed) {
+            return;
+        }
+
         var a;
 
         // remove the bullet types
@@ -332,5 +345,6 @@ export class Weapon {
         this.element = null;
         this._bullet_intervals.length = 0;
         this._bullet_container = null;
+        this._removed = true;
     }
 }

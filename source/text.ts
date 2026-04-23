@@ -31,12 +31,12 @@ export class Text extends Element {
     fill: boolean; // fill or stroke text
     color: string;
 
-    protected _text: string;
-    protected _font_family: string;
-    protected _font_size: number;
-    protected _font: string; // font_family + font_size
-    protected _timeout: number;
-    protected _lines: string[];
+    protected _text = "";
+    protected _font_family = "monospace";
+    protected _font_size = 20;
+    protected _font = "20px monospace"; // font_family + font_size
+    protected _timeout: number | undefined;
+    protected _lines: string[] = [""];
 
     constructor(args: TextArgs) {
         if (typeof args === "undefined") {

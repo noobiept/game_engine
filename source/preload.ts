@@ -32,7 +32,7 @@ export interface PreloadArgs extends EventDispatcherArgs {
  */
 export class Preload extends EventDispatcher {
     save_global: boolean;
-    protected _data: Object;
+    protected _data: Record<string, any>;
     protected _total_items: number;
     protected _loaded_items: number;
     protected _failed_ids: string[]; // list of the ids that failed to load
@@ -114,7 +114,7 @@ export class Preload extends EventDispatcher {
      * @param event The event to dispatch.
      * @param id The id of the element.
      */
-    protected _on_error(event, id: string) {
+    protected _on_error(event: ProgressEvent<EventTarget>, id: string) {
         this.dispatchEvent("error", { event: event, id: id });
     }
 
@@ -124,7 +124,7 @@ export class Preload extends EventDispatcher {
      * @param event The event to dispatch.
      * @param id The id of the element.
      */
-    protected _on_abort(event, id: string) {
+    protected _on_abort(event: ProgressEvent<EventTarget>, id: string) {
         this.dispatchEvent("abort", { event: event, id: id });
     }
 
@@ -155,12 +155,12 @@ export class Preload extends EventDispatcher {
      * @param typeId Type of the file to load. If not provided then it will try to determine the type from the file extension.
      */
     load(id: string, path: string, typeId?: Preload.TYPES) {
-        var type;
+        var type: Preload.FileType | null;
 
-        if (typeof type === "undefined") {
+        if (typeof typeId === "undefined") {
             type = Preload.getType(path);
         } else {
-            type = Preload.TYPES[typeId];
+            type = Preload.TYPES[typeId] as Preload.FileType;
         }
 
         if (!type) {
@@ -218,10 +218,10 @@ export class Preload extends EventDispatcher {
                 } else if (type === "audio") {
                     var isAvailable = Sound.decodeAudio(
                         response,
-                        function (audioBuffer) {
+                        function (audioBuffer: AudioBuffer) {
                             _this._loaded(id, audioBuffer);
                         },
-                        function (error) {
+                        function (error: DOMException) {
                             console.log(
                                 "Error decoding audio file:",
                                 id,
@@ -286,7 +286,9 @@ export namespace Preload {
     }
 
     // file extensions of each type
-    export const EXTENSIONS = {
+    export type FileType = "image" | "json" | "text" | "audio";
+
+    export const EXTENSIONS: Record<FileType, string[]> = {
         image: ["png", "jpg", "jpeg"],
         json: ["json"],
         text: ["txt"],
@@ -294,7 +296,7 @@ export namespace Preload {
     };
 
     // XMLHttpRequest response type of each file type
-    export const RESPONSE_TYPE = {
+    export const RESPONSE_TYPE: Record<FileType, XMLHttpRequestResponseType> = {
         image: "blob",
         json: "json",
         text: "text",
@@ -303,7 +305,7 @@ export namespace Preload {
 
     // key is the 'id'
     // value is the 'data'
-    export const DATA = {};
+    export const DATA: Record<string, any> = {};
 
     /**
      * Get an element that was saved in the global `DATA` object.
@@ -321,13 +323,18 @@ export namespace Preload {
      * @param file The file name.
      * @return The file type.
      */
-    export function getType(file: string) {
+    export function getType(file: string): FileType | null {
         var extension = file.split(".").pop();
 
         for (var type in EXTENSIONS) {
+            var fileType = type as FileType;
+
             if (EXTENSIONS.hasOwnProperty(type)) {
-                if (EXTENSIONS[type].indexOf(extension) >= 0) {
-                    return type;
+                if (
+                    typeof extension !== "undefined" &&
+                    EXTENSIONS[fileType].indexOf(extension) >= 0
+                ) {
+                    return fileType;
                 }
             }
         }

@@ -6,16 +6,24 @@ import { SpatialPartition } from "./collision_spatial_partition";
 export { CheckAll, SpatialPartition };
 
 export interface CollisionDetectionAlgorithm {
-    checkCollision();
-    add(element: Element);
-    remove(element: Element);
-    update(element: Element);
-    clear();
+    checkCollision(): void;
+    add(element: Element): void;
+    remove(element: Element): void;
+    update(element: Element): void;
+    clear(): void;
 }
 
 export type Vertices = { x: number; y: number }[];
 
-var COLLISION: CollisionDetectionAlgorithm;
+var COLLISION: CollisionDetectionAlgorithm | null = null;
+
+function getCollision() {
+    if (COLLISION === null) {
+        throw new Error("Collision detection has not been initialized.");
+    }
+
+    return COLLISION;
+}
 
 export function init(collision?: CollisionDetectionAlgorithm) {
     if (typeof collision === "undefined") {
@@ -29,35 +37,35 @@ export function init(collision?: CollisionDetectionAlgorithm) {
  * Elements added will be considered in the collision detection tests.
  */
 export function addElement(element: Element) {
-    COLLISION.add(element);
+    getCollision().add(element);
 }
 
 /**
  * Remove an element from being considered in the collision detection.
  */
 export function removeElement(element: Element) {
-    COLLISION.remove(element);
+    getCollision().remove(element);
 }
 
 /**
  * When an element changes its position, need to update the collision detection data structure (in some algorithms).
  */
 export function updateElement(element: Element) {
-    COLLISION.update(element);
+    getCollision().update(element);
 }
 
 /**
  * Look for collisions between the elements.
  */
 export function checkCollision() {
-    COLLISION.checkCollision();
+    getCollision().checkCollision();
 }
 
 /**
  * Remove the collision object. The engine won't work properly after this.
  */
 export function clear() {
-    COLLISION.clear();
+    getCollision().clear();
     COLLISION = null;
 }
 
@@ -131,7 +139,7 @@ export function polygonPolygonList(list1: Vertices[], list2: Vertices[]) {
 /**
  * Check if a point is colliding with a element.
  */
-export function polygonPoint(vertices: Vertices, point) {
+export function polygonPoint(vertices: Vertices, point: Vector.Vector) {
     var isInside = false;
     var minX = vertices[0].x;
     var maxX = minX;
@@ -174,7 +182,7 @@ function getAxes(vertices: Vertices) {
     var verticesLength = vertices.length;
 
     // the number of axes will be the number of vertices
-    var axes = [];
+    var axes: Vector.Vector[] = [];
 
     for (var a = 0; a < verticesLength; a++) {
         // current vertex
@@ -219,7 +227,10 @@ function projectShapeIntoAxis(vertices: Vertices, axis: Vector.Vector) {
     };
 }
 
-function projectionOverlaps(one, two) {
+function projectionOverlaps(
+    one: { min: number; max: number },
+    two: { min: number; max: number },
+) {
     return !(one.min > two.max || two.min > one.max);
 }
 

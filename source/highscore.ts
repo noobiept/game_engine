@@ -18,7 +18,7 @@ import * as Utilities from "@drk4/utilities";
  * Examples -- `minesweeper`
  */
 
-var SCORES = {};
+var SCORES: Record<string, number[]> = {};
 var MAX_SCORES_SAVED: number;
 var STORAGE_NAME: string;
 var SORT_F: (a: number, b: number) => number;
@@ -115,6 +115,6 @@ function load() {
     var scores = Utilities.getObject(STORAGE_NAME);
 
     if (scores) {
-        SCORES = scores;
+        SCORES = scores as Record<string, number[]>;
     }
 }

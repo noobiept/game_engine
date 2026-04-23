@@ -26,7 +26,7 @@ export interface SpatialPartitionArgs {
  * Examples -- `collision_spatial_partition`
  */
 export class SpatialPartition implements CollisionDetectionAlgorithm {
-    _grid: Element[][]; // a grid of linked lists (the first element of the list)
+    _grid: (Element | null)[][]; // a grid of linked lists (the first element of the list)
     _grid_size: number;
     _partition_width: number;
     _partition_height: number;
@@ -211,7 +211,7 @@ export class SpatialPartition implements CollisionDetectionAlgorithm {
      * @param element The element to be compared with.
      * @param other First element of the partition linked list.
      */
-    checkElement(element: Element, other: Element) {
+    checkElement(element: Element, other: Element | null) {
         for (; other !== null; other = other.collision_data.next) {
             if (other._removed || other.category === 0) {
                 continue;

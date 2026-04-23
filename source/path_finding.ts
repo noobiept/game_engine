@@ -1,3 +1,5 @@
+type Position = { column: number; line: number };
+
 /**
  * Calculate the path that an element needs to take to reach the destination, from any valid position.
  *
@@ -38,11 +40,11 @@
  */
 export function breadthFirstSearch(
     map: number[][],
-    destination: { column: number; line: number },
+    destination: Position,
     positionType: { passable: number; blocked: number },
 ) {
-    var frontier = [destination];
-    var cameFrom = [];
+    var frontier: Position[] = [destination];
+    var cameFrom: (Position | null)[][] = [];
 
     // figure out the number of columns/lines of the map array
     // have all the useful information in one object
@@ -67,6 +69,11 @@ export function breadthFirstSearch(
     // go through all the passable positions
     while (frontier.length > 0) {
         var current = frontier.shift();
+
+        if (typeof current === "undefined") {
+            break;
+        }
+
         var neighbors = getNeighbors(current, info);
 
         for (var a = 0; a < neighbors.length; a++) {
@@ -87,8 +94,16 @@ export function breadthFirstSearch(
 /**
  * Get the neighbor positions (top/bottom/left/right).
  */
-function getNeighbors(position: { column: number; line: number }, info) {
-    var neighbors = [];
+function getNeighbors(
+    position: Position,
+    info: {
+        columns: number;
+        lines: number;
+        map: number[][];
+        passableValue: number;
+    },
+) {
+    var neighbors: Position[] = [];
     var column = position.column;
     var line = position.line;
     var map = info.map;

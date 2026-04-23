@@ -10,22 +10,22 @@ Defined in: [source/movement.ts:50](https://github.com/noobiept/game_engine/blob
 
 Basic Usage:
 
-    function Unit( args )
+    class Unit extends Game.Rectangle
         {
-        Game.Rectangle.call( this, args );
+        constructor( args )
+            {
+            super( args );
 
-        this._has_logic = true;
-        this.movement = new Game.Movement({
-                element: this,
-                movementSpeed: 100
-            });
-        }
-
-    Game.Utilities.inheritPrototype( Unit, Game.Rectangle );
-
-    Unit.prototype.logic = function( deltaTime )
-        {
-        this.movement.logic( deltaTime );
+            this._has_logic = true;
+            this.movement = new Game.Movement({
+                    element: this,
+                    movementSpeed: 100
+                });
+            }
+        logic( deltaTime )
+            {
+            this.movement.logic( deltaTime );
+            }
         }
 
     var unit = new Unit({

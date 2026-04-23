@@ -19,7 +19,7 @@ export interface BitmapArgs extends ElementArgs {
  * Examples -- `clone`, `minesweeper`, `multiple_canvas`, `preload`
  */
 export class Bitmap extends Element {
-    protected _image: HTMLImageElement;
+    protected _image!: HTMLImageElement;
     protected _source_x: number;
     protected _source_y: number;
 
@@ -31,7 +31,7 @@ export class Bitmap extends Element {
         this._source_y = 0;
     }
 
-    drawElement(ctx) {
+    drawElement(ctx: CanvasRenderingContext2D) {
         ctx.save();
         ctx.beginPath();
         ctx.globalAlpha *= this.opacity;

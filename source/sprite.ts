@@ -40,7 +40,7 @@ export class Sprite extends Bitmap {
     protected _frames_per_line: number;
 
     protected _animations: { [id: string]: number[] };
-    protected _current_animation: number[];
+    protected _current_animation: number[] | null;
     protected _current_animation_position: number; // position in the array in '_current_animation'
 
     constructor(args: SpriteArgs) {
@@ -55,6 +55,7 @@ export class Sprite extends Bitmap {
 
         this._current_animation_position = 0;
         this._count_interval = 0;
+        this._current_animation = null;
 
         this.setFrame(0);
 
@@ -64,7 +65,7 @@ export class Sprite extends Bitmap {
             this.interval = 1;
         } else {
             this._animations = args.animations;
-            this.interval = args.interval;
+            this.interval = args.interval ?? 1;
         }
     }
 
@@ -101,7 +102,7 @@ export class Sprite extends Bitmap {
             if (reset === true) {
                 this._current_animation_position = 0;
                 this._count_interval = 0;
-                this.setFrame(this._current_animation[0]);
+                this.setFrame(next[0]);
             }
 
             return true;
@@ -113,9 +114,7 @@ export class Sprite extends Bitmap {
 
         this._has_logic = true;
 
-        this.setFrame(
-            this._current_animation[this._current_animation_position],
-        );
+        this.setFrame(next[this._current_animation_position]);
 
         return true;
     }
@@ -134,9 +133,14 @@ export class Sprite extends Bitmap {
         this._current_animation_position++;
 
         if (
+            this._current_animation === null ||
             this._current_animation_position >= this._current_animation.length
         ) {
             this._current_animation_position = 0;
+        }
+
+        if (this._current_animation === null) {
+            return;
         }
 
         this.setFrame(
