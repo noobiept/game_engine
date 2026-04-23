@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import * as Game from "../../source/index";
+import * as Game from "../index";
 
 describe("CollisionDetection", function () {
     // polygonPolygonList //
@@ -134,7 +134,7 @@ describe("CollisionDetection", function () {
             var info = tests[a];
 
             var collides = Game.CollisionDetection.polygonPoint(
-                rect.vertices,
+                rect.vertices!,
                 info,
             );
 

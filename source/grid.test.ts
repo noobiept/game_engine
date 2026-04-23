@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { Grid } from "../../source/grid";
+import { Grid } from "./grid";
 
 describe("Grid", function () {
     test("Initialize a grid.", function () {
@@ -10,13 +10,14 @@ describe("Grid", function () {
             columns: columns,
             lines: lines,
         });
+        var internalGrid = grid as Grid & { _grid: (string | null)[][] };
 
         expect(grid.columns).toEqual(columns);
         expect(grid.lines).toEqual(lines);
 
-        expect(grid._grid.length).toEqual(columns);
-        expect(grid._grid[0].length).toEqual(lines);
-        expect(grid._grid[0][0]).toEqual(null);
+        expect(internalGrid._grid.length).toEqual(columns);
+        expect(internalGrid._grid[0].length).toEqual(lines);
+        expect(internalGrid._grid[0][0]).toEqual(null);
     });
 
     test("add()", function () {
@@ -28,8 +29,8 @@ describe("Grid", function () {
             columns: columns,
             lines: lines,
         });
+        var internalGrid = grid as Grid & { _grid: (string | null)[][] };
 
-        // test some invalid positions
         expect(function () {
             grid.add(value, columns + 10, 0);
         }).toThrow(Error);
@@ -37,7 +38,6 @@ describe("Grid", function () {
             grid.add(value, 0, lines + 10);
         }).toThrow(Error);
 
-        // test valid positions
         var positions = [
             { column: 0, line: 0 },
             { column: Math.floor(columns / 2), line: Math.floor(lines / 2) },
@@ -49,7 +49,7 @@ describe("Grid", function () {
             var line = positions[a].line;
 
             grid.add(value, column, line);
-            expect(grid._grid[column][line]).toEqual(value);
+            expect(internalGrid._grid[column][line]).toEqual(value);
             expect(grid.get(column, line)).toEqual(value);
         }
     });
@@ -63,7 +63,6 @@ describe("Grid", function () {
             lines: lines,
         });
 
-        // test some invalid positions
         expect(function () {
             grid.move(columns + 10, 0, 0, 0);
         }).toThrow(Error);
@@ -71,7 +70,6 @@ describe("Grid", function () {
             grid.move(0, 0, 0, lines + 10);
         }).toThrow(Error);
 
-        // test valid positions
         var value1 = "value1";
         var value2 = "value2";
 
@@ -141,6 +139,8 @@ describe("Grid", function () {
         ];
 
         for (var a = 0; a < invalidPositions.length; a++) {
+            var position = invalidPositions[a];
+
             expect(function () {
                 grid.get(position.column, position.line);
             }).toThrow(Error);
@@ -207,7 +207,6 @@ describe("Grid", function () {
                 expectedColumn: 0,
                 expectedLine: 0,
             },
-
             // upper limit
             {
                 givenColumn: columns,
@@ -227,7 +226,6 @@ describe("Grid", function () {
                 expectedColumn: columns - 1,
                 expectedLine: lines - 1,
             },
-
             // middle
             {
                 givenColumn: middleColumn,
@@ -333,8 +331,6 @@ describe("Grid", function () {
             lines: lines,
         });
 
-        // add a value to every position
-        // the value is a string with the column number and the line number
         for (var column = 0; column < columns; column++) {
             for (var line = 0; line < lines; line++) {
                 grid.add(String(column) + String(line), column, line);
@@ -362,9 +358,7 @@ describe("Grid", function () {
                 line: 5,
                 neighbors: ["44", "45", "46", "54", "56", "64", "65", "66"],
             },
-
             // ---- range 2 ----
-
             {
                 column: 9,
                 line: 9,
