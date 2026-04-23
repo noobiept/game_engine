@@ -62,7 +62,9 @@ runOnLoad(function () {
 });
 
 class Blue extends Game.Rectangle {
-    constructor(x, y) {
+    movement: Game.Movement;
+
+    constructor(x: number, y: number) {
         super({
             x: x,
             y: y,
@@ -80,13 +82,16 @@ class Blue extends Game.Rectangle {
         });
     }
 
-    logic(deltaTime) {
+    logic(deltaTime: number) {
         this.movement.logic(deltaTime);
     }
 }
 
 class Red extends Game.Rectangle {
-    constructor(x, y) {
+    static COLORS = ["red", "maroon", "brown", "darkred"];
+    color_position: number;
+
+    constructor(x: number, y: number) {
         var colorPosition = 0;
 
         super({
@@ -114,5 +119,3 @@ class Red extends Game.Rectangle {
         this.color = Red.COLORS[this.color_position];
     }
 }
-
-Red.COLORS = ["red", "maroon", "brown", "darkred"];

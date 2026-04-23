@@ -1,16 +1,32 @@
 import { Game } from "../shared";
 import { addLife, gameOver, getNextPosition, SQUARE_SIZE } from "./state";
 
+interface CreepArgs extends Omit<
+    Partial<Game.CircleArgs>,
+    "x" | "y" | "radius" | "color"
+> {
+    column: number;
+    line: number;
+    health: number;
+}
+
 export class Creep extends Game.Circle {
-    constructor(args) {
+    health: number;
+    column: number;
+    line: number;
+    worth: number;
+    movement: Game.Movement;
+
+    constructor(args: CreepArgs) {
         var center = SQUARE_SIZE / 2;
 
-        args.x = args.column * SQUARE_SIZE + center;
-        args.y = args.line * SQUARE_SIZE + center;
-        args.radius = 5;
-        args.color = "rgb(150, 0, 24)";
-
-        super(args);
+        super({
+            ...args,
+            x: args.column * SQUARE_SIZE + center,
+            y: args.line * SQUARE_SIZE + center,
+            radius: 5,
+            color: "rgb(150, 0, 24)",
+        });
 
         this.health = args.health;
         this.column = args.column;
@@ -31,7 +47,7 @@ export class Creep extends Game.Circle {
     /**
      * Move to a column/line position. Once it reaches the destination, check to where it needs to go next.
      */
-    moveTo(column, line) {
+    moveTo(column: number, line: number) {
         var center = SQUARE_SIZE / 2;
         var _this = this;
 
@@ -65,7 +81,7 @@ export class Creep extends Game.Circle {
         }
     }
 
-    logic(deltaTime) {
+    logic(deltaTime: number) {
         this.movement.logic(deltaTime);
     }
 }

@@ -1,18 +1,32 @@
 import { Game } from "../shared";
 import { addMoney, SQUARE_SIZE } from "./state";
 
+interface TowerArgs extends Omit<
+    Partial<Game.RectangleArgs>,
+    "x" | "y" | "width" | "height" | "color"
+> {
+    column: number;
+    line: number;
+    bulletContainer: Game.Container | Game.Canvas;
+}
+
 export class Tower extends Game.Rectangle {
-    constructor(args) {
+    static COST = 50;
+    range: number;
+    weapon: Game.Weapon;
+
+    constructor(args: TowerArgs) {
         var width = SQUARE_SIZE;
         var height = SQUARE_SIZE;
 
-        args.x = args.column * SQUARE_SIZE + width / 2;
-        args.y = args.line * SQUARE_SIZE + height / 2;
-        args.width = width;
-        args.height = height;
-        args.color = "purple";
-
-        super(args);
+        super({
+            ...args,
+            x: args.column * SQUARE_SIZE + width / 2,
+            y: args.line * SQUARE_SIZE + height / 2,
+            width: width,
+            height: height,
+            color: "purple",
+        });
 
         this._has_logic = true;
         this.range = 50; // attack range
@@ -48,10 +62,7 @@ export class Tower extends Game.Rectangle {
         });
     }
 
-    logic(deltaTime) {
+    logic(deltaTime: number) {
         this.weapon.logic(deltaTime);
     }
 }
-
-// cost of each tower
-Tower.COST = 50;

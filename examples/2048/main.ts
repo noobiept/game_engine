@@ -1,7 +1,19 @@
 import { Game, runOnLoad } from "../shared";
 import { Block } from "./block";
 
-var Main = {};
+interface MainState {
+    start: () => void;
+    clear: () => void;
+    restart: () => void;
+    addRandomBlock: () => void;
+}
+
+var Main: MainState = {
+    start: function () {},
+    clear: function () {},
+    restart: function () {},
+    addRandomBlock: function () {},
+};
 
 runOnLoad(function () {
     Game.init(document.body, 400, 400);

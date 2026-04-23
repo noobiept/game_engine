@@ -17,6 +17,14 @@
  * Examples -- `game_menu`, `game_of_life`, `message`, `minesweeper`, `tower_defense`
  */
 
+function normalizeChildren(args: (HtmlElement | HtmlElement[])[]) {
+    if (args.length === 1 && args[0] instanceof Array) {
+        return args[0];
+    }
+
+    return args as HtmlElement[];
+}
+
 export interface HtmlElementArgs {
     cssId?: string;
     cssClass?: string | string[];
@@ -160,12 +168,10 @@ export class HtmlContainer extends HtmlElement {
      *
      * @param args `HtmlElement` or `...HtmlElement` or `HtmlElement[]`.
      */
-    addChild(args: any) {
-        var elements: IArguments | any[] = arguments;
-
-        if (args instanceof Array) {
-            elements = args;
-        }
+    addChild(children: HtmlElement | HtmlElement[]): void;
+    addChild(...elements: HtmlElement[]): void;
+    addChild(...args: (HtmlElement | HtmlElement[])[]) {
+        var elements = normalizeChildren(args);
 
         var length = elements.length;
 
@@ -184,12 +190,10 @@ export class HtmlContainer extends HtmlElement {
      *
      * @param args `HtmlElement` or `...HtmlElement` or `HtmlElement[]`.
      */
-    removeChild(args: any) {
-        var elements: IArguments | any[] = arguments;
-
-        if (args instanceof Array) {
-            elements = args;
-        }
+    removeChild(children: HtmlElement | HtmlElement[]): void;
+    removeChild(...elements: HtmlElement[]): void;
+    removeChild(...args: (HtmlElement | HtmlElement[])[]) {
+        var elements = normalizeChildren(args);
 
         var length = elements.length;
 

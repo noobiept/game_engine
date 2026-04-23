@@ -1,6 +1,14 @@
 import { Element } from "./element";
 import * as Utilities from "@drk4/utilities";
 
+function normalizeElements(args: (Element | Element[])[]) {
+    if (args.length === 1 && args[0] instanceof Array) {
+        return args[0];
+    }
+
+    return args as Element[];
+}
+
 export interface CanvasArgs {
     width: number;
     height: number;
@@ -63,12 +71,10 @@ export class Canvas {
      *
      * @param args Either an `Element`, or `...Element` or an `Element[]`
      */
-    addChild(args: any) {
-        var elements: IArguments | any[] = arguments;
-
-        if (args instanceof Array) {
-            elements = args;
-        }
+    addChild(children: Element | Element[]): void;
+    addChild(...elements: Element[]): void;
+    addChild(...args: (Element | Element[])[]) {
+        var elements = normalizeElements(args);
 
         var length = elements.length;
 
@@ -84,13 +90,11 @@ export class Canvas {
      *
      * @param args Either an `Element` or `...Element` or an `Element[]`
      */
-    removeChild(args: any) {
-        var elements: IArguments | any[] = arguments;
+    removeChild(children: Element | Element[]): boolean;
+    removeChild(...elements: Element[]): boolean;
+    removeChild(...args: (Element | Element[])[]) {
+        var elements = normalizeElements(args);
         var removed = false;
-
-        if (args instanceof Array) {
-            elements = args;
-        }
 
         var length = elements.length;
 

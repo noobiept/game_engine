@@ -21,7 +21,7 @@ runOnLoad(function () {
         value: true,
         preText: "State: ",
         callback: function (button) {
-            console.log(button.value);
+            console.log(button.getValue());
         },
     });
     var twoStateButton = new Game.Html.TwoState({

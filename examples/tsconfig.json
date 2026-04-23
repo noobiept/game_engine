@@ -1,0 +1,14 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "rootDir": "..",
+        "noEmit": true,
+        "declaration": false,
+        "sourceMap": false,
+        "moduleDetection": "force",
+        "strict": false,
+        "noImplicitAny": false
+    },
+    "include": ["./**/*.ts", "./**/*.d.ts", "../source/**/*.ts"],
+    "exclude": ["../source/**/*.test.ts"]
+}

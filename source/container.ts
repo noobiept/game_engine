@@ -1,5 +1,13 @@
 import { Element, ElementArgs } from "./element";
 
+function normalizeChildren(args: (Element | Element[])[]) {
+    if (args.length === 1 && args[0] instanceof Array) {
+        return args[0];
+    }
+
+    return args as Element[];
+}
+
 export interface ContainerArgs extends ElementArgs {
     children?: Element | Element[];
 }
@@ -45,12 +53,10 @@ export class Container extends Element {
      *
      * @param elements Either `Element` or `...Element` or `Element[]`.
      */
-    addChild(elements: any) {
-        var children: IArguments | any[] = arguments;
-
-        if (elements instanceof Array) {
-            children = elements;
-        }
+    addChild(children: Element | Element[]): void;
+    addChild(...elements: Element[]): void;
+    addChild(...elements: (Element | Element[])[]) {
+        var children = normalizeChildren(elements);
 
         var length = children.length;
 
@@ -72,12 +78,10 @@ export class Container extends Element {
      *
      * @param args Either `Element` or `...Element` or `Element[]`.
      */
-    removeChild(args: any) {
-        var children: IArguments | any[] = arguments;
-
-        if (args instanceof Array) {
-            children = args;
-        }
+    removeChild(children: Element | Element[]): void;
+    removeChild(...elements: Element[]): void;
+    removeChild(...args: (Element | Element[])[]) {
+        var children = normalizeChildren(args);
 
         var length = children.length;
 

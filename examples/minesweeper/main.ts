@@ -1,7 +1,25 @@
 import { Game, runOnLoad } from "../shared";
 import { Square } from "./square";
 
-var Main = {};
+interface MainState {
+    init: () => void;
+    start: () => void;
+    clear: () => void;
+    restart: () => void;
+    minesAround: (column: number, line: number) => number;
+    selectDifficulty: (difficulty: string) => void;
+}
+
+var Main: MainState = {
+    init: function () {},
+    start: function () {},
+    clear: function () {},
+    restart: function () {},
+    minesAround: function () {
+        return 0;
+    },
+    selectDifficulty: function () {},
+};
 
 runOnLoad(function () {
     Game.init(document.body, 400, 400);

@@ -1,13 +1,25 @@
 import { Game } from "../shared";
 import { getGrid } from "./state";
 
-export class Food extends Game.Rectangle {
-    constructor(args) {
-        args.width = 10;
-        args.height = 10;
-        args.color = "red";
+interface FoodArgs extends Omit<
+    Partial<Game.RectangleArgs>,
+    "width" | "height" | "color"
+> {
+    column: number;
+    line: number;
+}
 
-        super(args);
+export class Food extends Game.Rectangle {
+    column: number;
+    line: number;
+
+    constructor(args: FoodArgs) {
+        super({
+            ...args,
+            width: 10,
+            height: 10,
+            color: "red",
+        });
 
         this.column = args.column;
         this.line = args.line;

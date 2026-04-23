@@ -78,7 +78,9 @@ runOnLoad(function () {
 });
 
 class Player extends Game.Rectangle {
-    constructor(x, y) {
+    weapon: Game.Weapon;
+
+    constructor(x: number, y: number) {
         super({
             x: x,
             y: y,
@@ -96,13 +98,13 @@ class Player extends Game.Rectangle {
         });
     }
 
-    logic(deltaTime) {
+    logic(deltaTime: number) {
         this.weapon.logic(deltaTime);
     }
 }
 
 class Enemy extends Game.Rectangle {
-    constructor(x, y) {
+    constructor(x: number, y: number) {
         super({
             x: x,
             y: y,

@@ -5,17 +5,21 @@ export var Input = {
     press_rightArrow: 1,
     release_leftArrow: 2,
     release_rightArrow: 3,
-};
+} as const;
 
 export var UnitState = {
     idle_left: 0,
     idle_right: 1,
     walk_left: 2,
     walk_right: 3,
-};
+} as const;
+
+type UnitStateValue = (typeof UnitState)[keyof typeof UnitState];
 
 export class Unit extends Game.Sprite {
-    constructor(x, y, state) {
+    state: UnitStateValue;
+
+    constructor(x: number, y: number, state: UnitStateValue) {
         super({
             x: x,
             y: y,
@@ -34,7 +38,7 @@ export class Unit extends Game.Sprite {
         this.setState(state);
     }
 
-    handleInput(input) {
+    handleInput(input: number) {
         switch (this.state) {
             case UnitState.idle_left:
             case UnitState.idle_right:
@@ -63,7 +67,7 @@ export class Unit extends Game.Sprite {
         }
     }
 
-    setState(state) {
+    setState(state: UnitStateValue) {
         switch (state) {
             case UnitState.idle_left:
                 this.play("idle_left");

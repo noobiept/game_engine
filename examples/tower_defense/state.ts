@@ -1,34 +1,45 @@
+export interface GridPosition {
+    column: number;
+    line: number;
+}
+
 export var SQUARE_SIZE = 25;
 
-var GET_NEXT_POSITION = function () {
+var GET_NEXT_POSITION: (column: number, line: number) => GridPosition =
+    function () {
+        throw new Error("Tower defense state not initialized.");
+    };
+var ADD_MONEY: (amount: number) => void = function () {
     throw new Error("Tower defense state not initialized.");
 };
-var ADD_MONEY = function () {
+var ADD_LIFE: (amount: number) => void = function () {
     throw new Error("Tower defense state not initialized.");
 };
-var ADD_LIFE = function () {
-    throw new Error("Tower defense state not initialized.");
-};
-var GAME_OVER = function () {
+var GAME_OVER: () => void = function () {
     throw new Error("Tower defense state not initialized.");
 };
 
-export function setTowerDefenseState(state) {
+export function setTowerDefenseState(state: {
+    getNextPosition: (column: number, line: number) => GridPosition;
+    addMoney: (amount: number) => void;
+    addLife: (amount: number) => void;
+    gameOver: () => void;
+}) {
     GET_NEXT_POSITION = state.getNextPosition;
     ADD_MONEY = state.addMoney;
     ADD_LIFE = state.addLife;
     GAME_OVER = state.gameOver;
 }
 
-export function getNextPosition(column, line) {
+export function getNextPosition(column: number, line: number) {
     return GET_NEXT_POSITION(column, line);
 }
 
-export function addMoney(amount) {
+export function addMoney(amount: number) {
     ADD_MONEY(amount);
 }
 
-export function addLife(amount) {
+export function addLife(amount: number) {
     ADD_LIFE(amount);
 }
 

@@ -18,8 +18,11 @@
     },
     "scripts": {
         "dev": "vite",
-        "build": "tsc --noEmit && vite build --mode production && pnpm run build:types",
-        "tsc:w": "tsc --noEmit --watch",
+        "build": "pnpm run typecheck && vite build --mode production && pnpm run build:types",
+        "tsc:w": "pnpm exec tsc --noEmit --watch -p tsconfig.json",
+        "typecheck": "pnpm exec tsc --noEmit -p tsconfig.json",
+        "typecheck:examples": "pnpm exec tsc --noEmit -p examples/tsconfig.json",
+        "typecheck:all": "pnpm run typecheck && pnpm run typecheck:examples",
         "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir release/$npm_package_version",
         "preview": "vite preview",
         "test": "vitest run",

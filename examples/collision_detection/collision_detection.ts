@@ -59,20 +59,23 @@ runOnLoad(function () {
     seven.weapon.forceFire(0, 0, 3);
 });
 
-function addText(text, x, y) {
-    var text = new Game.Text({
+function addText(text: string, x: number, y: number) {
+    var message = new Game.Text({
         text: text,
         timeout: 1,
     });
-    text.x = x;
-    text.y = y;
-    text.textAlign = "center";
+    message.x = x;
+    message.y = y;
+    message.textAlign = "center";
 
-    Game.addElement(text);
+    Game.addElement(message);
 }
 
 class One extends Game.Rectangle {
-    constructor(x, y) {
+    movement: Game.Movement;
+    weapon: Game.Weapon;
+
+    constructor(x: number, y: number) {
         super({
             width: 10,
             height: 10,
@@ -97,14 +100,16 @@ class One extends Game.Rectangle {
         Game.addElement(this);
     }
 
-    logic(deltaTime) {
+    logic(deltaTime: number) {
         this.movement.logic(deltaTime);
         this.weapon.logic(deltaTime);
     }
 }
 
 class Two extends Game.Rectangle {
-    constructor(x, y) {
+    movement: Game.Movement;
+
+    constructor(x: number, y: number) {
         super({
             width: 10,
             height: 10,
@@ -125,7 +130,7 @@ class Two extends Game.Rectangle {
         Game.addElement(this);
     }
 
-    logic(deltaTime) {
+    logic(deltaTime: number) {
         this.movement.logic(deltaTime);
     }
 }

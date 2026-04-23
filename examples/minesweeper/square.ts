@@ -25,11 +25,15 @@ export class Square extends Game.Container {
         question_mark: 2,
         mine_flag: 3,
     };
+    value: number;
+    state: number;
+    background: Game.Bitmap;
+    front: Game.Bitmap;
 
-    constructor(args) {
+    constructor(args: Game.ContainerArgs = {}) {
         super(args);
 
-        this.value = Square.VALUE.blank;
+        this.value = Square.VALUE.blank as number;
         this.state = Square.STATE.hidden;
 
         var hidden = Game.Preload.get("hidden");
@@ -45,7 +49,7 @@ export class Square extends Game.Container {
         this.addChild(this.background, this.front);
     }
 
-    setState(state) {
+    setState(state: number) {
         if (this.state === state) {
             return;
         }
@@ -54,7 +58,9 @@ export class Square extends Game.Container {
             this.background.image = Game.Preload.get("hidden");
             this.front.visible = false;
         } else if (state === Square.STATE.revealed) {
-            this.background.image = Game.Preload.get(Square.VALUE[this.value]);
+            this.background.image = Game.Preload.get(
+                Square.VALUE[this.value] as string,
+            );
             this.front.visible = false;
         } else if (state === Square.STATE.question_mark) {
             this.background.image = Game.Preload.get("hidden");
@@ -71,7 +77,7 @@ export class Square extends Game.Container {
         this.state = state;
     }
 
-    setMouseOver(yesNo) {
+    setMouseOver(yesNo: boolean) {
         if (yesNo === true) {
             this.background.image = Game.Preload.get("hidden_mouse_over");
         } else {

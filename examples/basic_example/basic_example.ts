@@ -116,8 +116,14 @@ runOnLoad(function () {
 /**
  * Make your own unit class, reusing existing classes.
  */
+interface UnitArgs extends Game.ContainerArgs {
+    movementSpeed: number;
+}
+
 class Unit extends Game.Container {
-    constructor(args) {
+    movement: Game.Movement;
+
+    constructor(args: UnitArgs) {
         super(args);
 
         this.movement = new Game.Movement({
@@ -126,7 +132,7 @@ class Unit extends Game.Container {
         });
     }
 
-    logic(deltaTime) {
+    logic(deltaTime: number) {
         super.logic(deltaTime);
 
         this.movement.logic(deltaTime);

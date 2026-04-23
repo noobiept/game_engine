@@ -1,5 +1,6 @@
 import { Game, runOnLoad } from "../shared";
 import { Creep } from "./creep";
+import { GridPosition } from "./state";
 import { setTowerDefenseState } from "./state";
 import { Terrain } from "./terrain";
 import { Tower } from "./tower";
@@ -8,7 +9,41 @@ runOnLoad(function () {
     Main.init();
 });
 
-export var Main = {};
+interface MainState {
+    SQUARE_SIZE: number;
+    init: () => void;
+    start: () => void;
+    getNextPosition: (column: number, line: number) => GridPosition;
+    restart: () => void;
+    setMoney: (money: number) => void;
+    addMoney: (money: number) => void;
+    getMoney: () => number;
+    setLife: (life: number) => void;
+    addLife: (life: number) => void;
+    getLife: () => number;
+    gameOver: () => void;
+}
+
+export var Main: MainState = {
+    SQUARE_SIZE: 25,
+    init: function () {},
+    start: function () {},
+    getNextPosition: function () {
+        return { column: 0, line: 0 };
+    },
+    restart: function () {},
+    setMoney: function () {},
+    addMoney: function () {},
+    getMoney: function () {
+        return 0;
+    },
+    setLife: function () {},
+    addLife: function () {},
+    getLife: function () {
+        return 0;
+    },
+    gameOver: function () {},
+};
 var MAP_INFO = {
     columns: 16,
     lines: 16,
@@ -64,8 +99,6 @@ var TERRAINS_CONTAINER;
 var BULLETS_CONTAINER;
 var CREEPS_CONTAINER;
 var TOWERS_CONTAINER;
-
-Main.SQUARE_SIZE = 25;
 
 var CATEGORIES = {
     tower: 1,

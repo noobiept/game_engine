@@ -1,7 +1,19 @@
 import { Game, runOnLoad } from "../shared";
 import { Square } from "./square";
 
-var Main = {};
+interface MainState {
+    firstPhase: () => void;
+    secondPhase: () => void;
+    clear: () => void;
+    restart: () => void;
+}
+
+var Main: MainState = {
+    firstPhase: function () {},
+    secondPhase: function () {},
+    clear: function () {},
+    restart: function () {},
+};
 
 runOnLoad(function () {
     Game.init(document.body, 400, 400);

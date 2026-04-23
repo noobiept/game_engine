@@ -67,8 +67,15 @@ runOnLoad(function () {
     unit.weapon.forceFire(target, id);
 });
 
+interface UnitArgs extends Game.RectangleArgs {
+    movementSpeed: number;
+}
+
 class Unit extends Game.Rectangle {
-    constructor(args) {
+    movement: Game.Movement;
+    weapon: Game.Weapon;
+
+    constructor(args: UnitArgs) {
         super(args);
 
         this._has_logic = true;
@@ -91,7 +98,7 @@ class Unit extends Game.Rectangle {
         });
     }
 
-    logic(deltaTime) {
+    logic(deltaTime: number) {
         this.movement.logic(deltaTime);
         this.weapon.logic(deltaTime);
     }

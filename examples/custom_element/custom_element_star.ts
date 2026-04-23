@@ -1,11 +1,26 @@
 import { Game } from "../shared";
 
-export class Star extends Game.Circle {
-    constructor(args) {
-        args.color = args.fillColor;
-        args.radius = args.outerRadius;
+interface StarArgs extends Omit<Game.CircleArgs, "color" | "radius"> {
+    fillColor: string;
+    strokeColor: string;
+    outerRadius: number;
+    innerRadius: number;
+    spikes: number;
+}
 
-        super(args);
+export class Star extends Game.Circle {
+    fill_color: string;
+    stroke_color: string;
+    outer_radius: number;
+    inner_radius: number;
+    spikes: number;
+
+    constructor(args: StarArgs) {
+        super({
+            ...args,
+            color: args.fillColor,
+            radius: args.outerRadius,
+        });
 
         this.fill_color = args.fillColor;
         this.stroke_color = args.strokeColor;
@@ -14,7 +29,7 @@ export class Star extends Game.Circle {
         this.spikes = args.spikes;
     }
 
-    drawElement(ctx) {
+    drawElement(ctx: CanvasRenderingContext2D) {
         ctx.save();
         ctx.globalAlpha *= this.opacity;
         ctx.translate(this.x, this.y);

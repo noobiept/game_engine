@@ -1,20 +1,42 @@
 import { Game } from "../shared";
 import { Direction, gameOver, getGrid } from "./state";
 
+type DirectionValue = (typeof Direction)[keyof typeof Direction];
+
+interface PathStep {
+    column: number;
+    line: number;
+    direction: DirectionValue;
+}
+
+interface TailArgs extends Omit<
+    Partial<Game.RectangleArgs>,
+    "width" | "height" | "color"
+> {
+    column: number;
+    line: number;
+    direction: DirectionValue;
+    path?: PathStep[];
+}
+
 export class Tail extends Game.Rectangle {
-    constructor(args) {
-        if (typeof args.path === "undefined") {
-            args.path = [];
-        }
+    direction: DirectionValue;
+    path: PathStep[];
+    column: number;
+    line: number;
 
-        args.width = 10;
-        args.height = 10;
-        args.color = "green";
+    constructor(args: TailArgs) {
+        var path = args.path ?? [];
 
-        super(args);
+        super({
+            ...args,
+            width: 10,
+            height: 10,
+            color: "green",
+        });
 
         this.direction = args.direction;
-        this.path = args.path;
+        this.path = path;
         this.column = args.column;
         this.line = args.line;
 
