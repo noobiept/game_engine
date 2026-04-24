@@ -79,10 +79,8 @@ export class Bullet extends Container {
      * @param angle In radians.
      */
     setAngle(angle: number) {
-        const _this = this;
-
-        this.movement?.moveAngle(angle, false, function () {
-            _this.remove();
+        this.movement?.moveAngle(angle, false, () => {
+            this.remove();
         });
     }
 
@@ -92,10 +90,8 @@ export class Bullet extends Container {
      * @param target The element to go to.
      */
     setTarget(target: Element) {
-        const _this = this;
-
-        this.movement?.follow(target, function () {
-            _this.remove();
+        this.movement?.follow(target, () => {
+            this.remove();
         });
     }
 

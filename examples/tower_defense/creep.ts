@@ -49,15 +49,14 @@ export class Creep extends Game.Circle {
      */
     moveTo(column: number, line: number) {
         const center = SQUARE_SIZE / 2;
-        const _this = this;
 
         this.movement.moveTo(
             column * SQUARE_SIZE + center,
             line * SQUARE_SIZE + center,
-            function () {
-                _this.column = column;
-                _this.line = line;
-                _this.checkDestination();
+            () => {
+                this.column = column;
+                this.line = line;
+                this.checkDestination();
             },
         );
     }

@@ -75,10 +75,9 @@ export class Message extends Html.HtmlContainer {
 
         if (Utilities.isNumber(args.timeout)) {
             this.timeout = new Utilities.Timeout();
-            const _this = this;
 
-            this.timeout.start(function () {
-                _this.clear();
+            this.timeout.start(() => {
+                this.clear();
             }, args.timeout * 1000);
         }
 

@@ -167,8 +167,6 @@ export class Preload extends EventDispatcher {
             throw new Error("Invalid file type.");
         }
 
-        const _this = this;
-
         this._total_items++;
 
         const request = new XMLHttpRequest();
@@ -177,37 +175,37 @@ export class Preload extends EventDispatcher {
         request.responseType = Preload.RESPONSE_TYPE[type];
 
         // add the request events
-        request.addEventListener("error", function (event) {
-            _this._on_error(event, id);
+        request.addEventListener("error", (event) => {
+            this._on_error(event, id);
         });
-        request.addEventListener("abort", function (event) {
-            _this._on_abort(event, id);
+        request.addEventListener("abort", (event) => {
+            this._on_abort(event, id);
         });
-        request.addEventListener("progress", function (event) {
-            _this._on_progress(event);
+        request.addEventListener("progress", (event) => {
+            this._on_progress(event);
         });
         request.addEventListener(
             "load",
-            function (event) {
+            () => {
                 // failed to load
-                if (this.status !== 200) {
-                    _this._failed_to_load(id);
+                if (request.status !== 200) {
+                    this._failed_to_load(id);
                     return;
                 }
 
-                let response = this.response;
+                let response = request.response;
 
                 if (type === "image") {
                     const image = new Image();
                     const imageUrl = window.URL.createObjectURL(response);
 
-                    image.onerror = function () {
+                    image.onerror = () => {
                         window.URL.revokeObjectURL(imageUrl);
-                        _this._failed_to_load(id);
+                        this._failed_to_load(id);
                     };
-                    image.onload = function () {
+                    image.onload = () => {
                         window.URL.revokeObjectURL(imageUrl);
-                        _this._loaded(id, image);
+                        this._loaded(id, image);
                     };
                     image.src = imageUrl;
                 } else if (type === "json") {
@@ -216,35 +214,35 @@ export class Preload extends EventDispatcher {
                         try {
                             response = JSON.parse(response);
                         } catch (error) {
-                            _this._failed_to_load(id);
+                            this._failed_to_load(id);
                             return;
                         }
                     }
 
-                    _this._loaded(id, response);
+                    this._loaded(id, response);
                 } else if (type === "audio") {
                     const isAvailable = Sound.decodeAudio(
                         response,
-                        function (audioBuffer: AudioBuffer) {
-                            _this._loaded(id, audioBuffer);
+                        (audioBuffer: AudioBuffer) => {
+                            this._loaded(id, audioBuffer);
                         },
-                        function (error: DOMException) {
+                        (error: DOMException) => {
                             console.log(
                                 "Error decoding audio file:",
                                 id,
                                 path,
                                 error,
                             );
-                            _this._failed_to_load(id);
+                            this._failed_to_load(id);
                         },
                     );
 
                     // in case the 'decodeAudio()' call wasn't possible
                     if (!isAvailable) {
-                        _this._failed_to_load(id);
+                        this._failed_to_load(id);
                     }
                 } else {
-                    _this._loaded(id, response);
+                    this._loaded(id, response);
                 }
             },
             false,

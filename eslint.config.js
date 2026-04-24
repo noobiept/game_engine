@@ -4,15 +4,7 @@ import tseslint from "typescript-eslint";
 
 export default tseslint.config(
     {
-        ignores: [
-            "build/",
-            "docs/",
-            "node_modules/",
-            "release/",
-            "coverage/",
-            "source/**/*.js",
-            "tests/**/*.js",
-        ],
+        ignores: ["build/", "docs/", "node_modules/", "release/", "coverage/"],
     },
     ...[js.configs.recommended, ...tseslint.configs.recommended].map(
         (config) => ({
@@ -44,7 +36,6 @@ export default tseslint.config(
             "@typescript-eslint/no-explicit-any": "off",
             "@typescript-eslint/no-empty-object-type": "off",
             "@typescript-eslint/no-namespace": "off",
-            "@typescript-eslint/no-this-alias": "off",
             "@typescript-eslint/no-unused-vars": [
                 "error",
                 {

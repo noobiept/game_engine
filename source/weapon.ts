@@ -212,8 +212,6 @@ export class Weapon {
             return false;
         }
 
-        const _this = this;
-
         // if it happens to be a target, need to make sure it hasn't been removed yet
         if (typeof angleOrTarget !== "number") {
             if (angleOrTarget._removed === true) {
@@ -248,10 +246,10 @@ export class Weapon {
             });
         }
 
-        bullet.addEventListener("remove", function (data) {
-            const index = _this._bullets.indexOf(bullet);
+        bullet.addEventListener("remove", () => {
+            const index = this._bullets.indexOf(bullet);
 
-            _this._bullets.splice(index, 1);
+            this._bullets.splice(index, 1);
         });
 
         this._bullet_container?.addChild(bullet);

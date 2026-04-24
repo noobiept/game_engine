@@ -484,26 +484,25 @@ export interface MultipleOptionsArgs extends HtmlElementArgs {
  */
 export class MultipleOptions extends HtmlElement {
     protected elements: HTMLElement[];
-    protected click_ref: ((this: HTMLElement, event: MouseEvent) => any) | null;
+    protected click_ref: ((event: MouseEvent) => any) | null;
     protected selected: HTMLElement | null;
 
     constructor(args: MultipleOptionsArgs) {
         super(args);
-        const _this = this;
 
-        this.click_ref = function () {
-            const element = this;
+        this.click_ref = (event: MouseEvent) => {
+            const element = event.currentTarget as HTMLElement;
 
-            if (element === _this.selected) {
+            if (element === this.selected) {
                 return;
             }
 
-            const position = _this.elements.indexOf(element);
+            const position = this.elements.indexOf(element);
 
-            _this.select(position);
+            this.select(position);
 
             if (args.callback) {
-                args.callback(_this, position, element);
+                args.callback(this, position, element);
             }
         };
 
@@ -620,7 +619,6 @@ export class Range extends HtmlElement {
 
     constructor(args: RangeArgs) {
         super(args);
-        const _this = this;
 
         if (typeof args.step === "undefined") {
             args.step = 1;
@@ -636,21 +634,21 @@ export class Range extends HtmlElement {
             }
         }
 
-        this.change_ref = function (event) {
+        this.change_ref = (event) => {
             const target = event.target as HTMLInputElement;
 
-            _this.setValue(parseFloat(target.value));
+            this.setValue(parseFloat(target.value));
 
             if (args.onChange) {
-                args.onChange(_this);
+                args.onChange(this);
             }
         };
-        this.input_ref = function (event) {
+        this.input_ref = (event) => {
             const target = event.target as HTMLInputElement;
             const value = parseFloat(target.value);
 
-            if (_this.value) {
-                _this.value.innerHTML = value.toFixed(_this.number_of_decimals);
+            if (this.value) {
+                this.value.innerHTML = value.toFixed(this.number_of_decimals);
             }
         };
 
@@ -763,7 +761,6 @@ export class Text extends HtmlElement {
 
     constructor(args?: TextArgs) {
         super(args);
-        const _this = this;
 
         this.button = null;
         this.key_ref = null;
@@ -787,9 +784,9 @@ export class Text extends HtmlElement {
 
         // setup the callback function
         if (typeof args.callback !== "undefined") {
-            this.key_ref = function (event: KeyboardEvent) {
+            this.key_ref = (event: KeyboardEvent) => {
                 if (event.key === "Enter") {
-                    args.callback?.(_this);
+                    args.callback?.(this);
                 }
             };
         }
@@ -798,8 +795,8 @@ export class Text extends HtmlElement {
         if (typeof args.buttonText !== "undefined") {
             this.button = new Button({
                 value: args.buttonText,
-                callback: function () {
-                    args.callback?.(_this);
+                callback: () => {
+                    args.callback?.(this);
                 },
             });
             if (this.button.container) {
