@@ -262,7 +262,10 @@ export class Grid {
         }
 
         const neighbors = [];
-        const start = this.normalizePosition(refColumn - range, refLine - range);
+        const start = this.normalizePosition(
+            refColumn - range,
+            refLine - range,
+        );
         const end = this.normalizePosition(refColumn + range, refLine + range);
         let value;
 

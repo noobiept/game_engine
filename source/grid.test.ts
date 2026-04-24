@@ -296,10 +296,28 @@ describe("Grid", function () {
         const tries = 20;
 
         for (let a = 0; a < tries; a++) {
-            const position = grid.getRandomPosition();
+            const position = grid.getRandomEmptyPosition();
+
+            if (position === null) {
+                throw new Error("Expected an empty position.");
+            }
 
             expect(grid.isEmpty(position.column, position.line)).toEqual(true);
         }
+    });
+
+    test("getRandomEmptyPosition() returns null when the grid is full", function () {
+        const grid = new Grid({
+            columns: 2,
+            lines: 2,
+        });
+
+        grid.add("00", 0, 0);
+        grid.add("01", 0, 1);
+        grid.add("10", 1, 0);
+        grid.add("11", 1, 1);
+
+        expect(grid.getRandomEmptyPosition()).toEqual(null);
     });
 
     test("getEmptyPositions()", function () {

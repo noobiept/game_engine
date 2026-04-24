@@ -3,6 +3,7 @@ node_modules/
 pnpm-lock.yaml
 build/
 release/
+.claude/
 examples/_test/
 info.txt
 .DS_Store

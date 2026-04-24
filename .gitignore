@@ -1,6 +1,7 @@
 node_modules/
 release/
 build/
+coverage/
 examples/_test/
 .tscache/
 source/**/*.js

@@ -138,7 +138,10 @@ describe("CollisionDetection", function () {
                 throw new Error("Rectangle vertices were not initialized.");
             }
 
-            const collides = Game.CollisionDetection.polygonPoint(vertices, info);
+            const collides = Game.CollisionDetection.polygonPoint(
+                vertices,
+                info,
+            );
 
             expect(collides).toEqual(info.collide);
         }

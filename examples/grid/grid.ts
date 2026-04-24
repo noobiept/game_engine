@@ -30,7 +30,11 @@ runOnLoad(function () {
             height: 10,
             color: "blue",
         });
-        const previous = grid.add(rectangle, normalized.column, normalized.line);
+        const previous = grid.add(
+            rectangle,
+            normalized.column,
+            normalized.line,
+        );
 
         if (previous !== null) {
             Game.removeElement(previous);
