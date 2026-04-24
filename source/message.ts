@@ -136,7 +136,7 @@ export class Message extends Html.HtmlContainer {
             // a string
             else {
                 const bodyElement = document.createElement("div");
-                bodyElement.innerHTML = element;
+                bodyElement.textContent = String(element);
 
                 this.body.container?.appendChild(bodyElement);
             }

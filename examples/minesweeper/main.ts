@@ -120,7 +120,7 @@ runOnLoad(function () {
         const difficulty = new Game.Html.MultipleOptions({
             options: ["beginner", "intermediate", "advanced"],
             callback: function (button, position, htmlElement) {
-                Main.selectDifficulty(htmlElement.innerHTML);
+                Main.selectDifficulty(htmlElement.textContent ?? "");
             },
         });
         menu.addChild(difficulty);
@@ -440,7 +440,7 @@ runOnLoad(function () {
             tr = document.createElement("tr");
 
             td = document.createElement("td");
-            td.innerHTML = difficultyName;
+            td.textContent = difficultyName;
 
             tr.appendChild(td);
 
@@ -454,9 +454,9 @@ runOnLoad(function () {
                 const scoreValue = scores[b];
 
                 if (typeof scoreValue !== "undefined") {
-                    td.innerHTML = scoreValue + "s";
+                    td.textContent = scoreValue + "s";
                 } else {
-                    td.innerHTML = "-";
+                    td.textContent = "-";
                 }
 
                 tr.appendChild(td);

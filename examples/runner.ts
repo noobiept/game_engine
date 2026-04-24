@@ -276,7 +276,7 @@ function setExampleBase(modulePath: string) {
 }
 
 function showError(message: string) {
-    document.body.innerHTML = "";
+    document.body.replaceChildren();
 
     const pre = document.createElement("pre");
 

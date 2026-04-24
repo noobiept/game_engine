@@ -33,7 +33,7 @@ runOnLoad(function () {
         value: "With timeout",
         callback: function (_button) {
             body = document.createElement("div");
-            body.innerHTML = "Timeout!";
+            body.textContent = "Timeout!";
 
             new Game.Message({
                 body: body,
@@ -64,8 +64,8 @@ runOnLoad(function () {
             const element1 = document.createElement("div");
             const element2 = document.createElement("div");
 
-            element1.innerHTML = "Nice message!";
-            element2.innerHTML = "Indeed.";
+            element1.textContent = "Nice message!";
+            element2.textContent = "Indeed.";
 
             body = [element1, element2];
 

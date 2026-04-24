@@ -72,7 +72,7 @@ export class HtmlElement {
                 const preText = document.createElement("span");
 
                 preText.className = "Game-preText";
-                preText.innerHTML = args.preText;
+                preText.textContent = args.preText;
 
                 container.appendChild(preText);
 
@@ -281,7 +281,7 @@ export class Value extends HtmlElement {
 
         this.value = value;
         if (this.element) {
-            this.element.innerHTML = value;
+            this.element.textContent = String(value);
         }
     }
 
@@ -404,11 +404,11 @@ export class Boolean extends Button {
 
         if (value === true) {
             if (this.element) {
-                this.element.innerHTML = "On";
+                this.element.textContent = "On";
             }
         } else {
             if (this.element) {
-                this.element.innerHTML = "Off";
+                this.element.textContent = "Off";
             }
         }
 
@@ -440,7 +440,7 @@ export class TwoState extends Button {
             click_ref: (event: MouseEvent) => {
                 if (this.isValue1) {
                     if (this.element) {
-                        this.element.innerHTML = args.value2;
+                        this.element.textContent = args.value2;
                     }
 
                     if (args.callback) {
@@ -448,7 +448,7 @@ export class TwoState extends Button {
                     }
                 } else {
                     if (this.element) {
-                        this.element.innerHTML = args.value;
+                        this.element.textContent = String(args.value);
                     }
 
                     if (args.callback2) {
@@ -466,7 +466,7 @@ export class TwoState extends Button {
     }
 
     getValue() {
-        return this.element?.innerHTML ?? null;
+        return this.element?.textContent ?? null;
     }
 }
 
@@ -514,7 +514,7 @@ export class MultipleOptions extends HtmlElement {
         for (let a = 0; a < length; a++) {
             const option = document.createElement("span");
 
-            option.innerHTML = args.options[a];
+            option.textContent = args.options[a];
 
             this.container?.appendChild(option);
             this.elements.push(option);
@@ -551,7 +551,7 @@ export class MultipleOptions extends HtmlElement {
      * Get the string value of the currently selected option.
      */
     getValue() {
-        return this.selected?.innerHTML;
+        return this.selected?.textContent ?? undefined;
     }
 
     /**
@@ -648,7 +648,7 @@ export class Range extends HtmlElement {
             const value = parseFloat(target.value);
 
             if (this.value) {
-                this.value.innerHTML = value.toFixed(this.number_of_decimals);
+                this.value.textContent = value.toFixed(this.number_of_decimals);
             }
         };
 
@@ -686,7 +686,7 @@ export class Range extends HtmlElement {
             this.input.value = valueStr;
         }
         if (this.value) {
-            this.value.innerHTML = valueStr;
+            this.value.textContent = valueStr;
         }
     }
 

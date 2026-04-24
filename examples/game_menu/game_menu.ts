@@ -37,7 +37,7 @@ runOnLoad(function () {
     const multipleOptions = new Game.Html.MultipleOptions({
         options: ["One", "Two", "Three"],
         callback: function (button, position, htmlElement) {
-            console.log(position, ":", htmlElement.innerHTML);
+            console.log(position, ":", htmlElement.textContent);
         },
     });
     const range = new Game.Html.Range({
