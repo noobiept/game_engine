@@ -1,8 +1,4 @@
 import { defineConfig } from "vite";
-import { readFileSync } from "fs";
-
-const packageJson = JSON.parse(readFileSync("package.json", "utf-8"));
-const version = packageJson.version;
 
 export default defineConfig({
     test: {
@@ -25,6 +21,6 @@ export default defineConfig({
             fileName: "game_engine",
             formats: ["es"],
         },
-        outDir: `release/${version}`,
+        outDir: "dist",
     },
 });
