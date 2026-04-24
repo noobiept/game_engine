@@ -90,4 +90,30 @@ describe("Tween", function () {
         expect(Tween.getTween(one)).toEqual(null);
         expect(Tween.getTween(two)).toEqual(twoTween);
     });
+
+    test("remove() does not remove another tween when this tween is not active", function () {
+        const activeElement = { x: 0 };
+        const inactiveElement = { x: 0 };
+        const activeTween = new Tween(activeElement).wait(1);
+        const inactiveTween = new Tween(inactiveElement);
+
+        activeTween.start();
+        inactiveTween.remove();
+
+        expect(Tween.getTween(activeElement)).toEqual(activeTween);
+        expect(Tween.getTween(inactiveElement)).toEqual(null);
+    });
+
+    test("start() does not register a tween with no steps", function () {
+        const emptyElement = { x: 0 };
+        const activeElement = { x: 0 };
+        const emptyTween = new Tween(emptyElement);
+        const activeTween = new Tween(activeElement).wait(1);
+
+        activeTween.start();
+        emptyTween.start();
+
+        expect(Tween.getTween(emptyElement)).toEqual(null);
+        expect(Tween.getTween(activeElement)).toEqual(activeTween);
+    });
 });

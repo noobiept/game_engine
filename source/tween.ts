@@ -68,7 +68,9 @@ export class Tween {
     start() {
         this.nextStep();
 
-        Tween._tweens.push(this);
+        if (this._current_step !== null && Tween._tweens.indexOf(this) < 0) {
+            Tween._tweens.push(this);
+        }
     }
 
     /**
@@ -134,7 +136,12 @@ export class Tween {
     remove() {
         const index = Tween._tweens.indexOf(this);
 
-        Tween._tweens.splice(index, 1);
+        if (index >= 0) {
+            Tween._tweens.splice(index, 1);
+        }
+
+        this._current_step = null;
+        this._update = null;
     }
 
     /**
