@@ -14,7 +14,7 @@ runOnLoad(function () {
     const message1_button = new Game.Html.TwoState({
         value: "Add",
         value2: "Remove",
-        callback: function (button) {
+        callback: function (_button) {
             body = "Hello there!";
 
             message1 = new Game.Message({
@@ -22,7 +22,7 @@ runOnLoad(function () {
                 container: container,
             });
         },
-        callback2: function (button) {
+        callback2: function (_button) {
             message1.clear();
         },
     });
@@ -31,7 +31,7 @@ runOnLoad(function () {
     // example 2 - add a message on a timeout, and where the body is an html element
     const message2_button = new Game.Html.Button({
         value: "With timeout",
-        callback: function (button) {
+        callback: function (_button) {
             body = document.createElement("div");
             body.innerHTML = "Timeout!";
 
@@ -47,16 +47,16 @@ runOnLoad(function () {
     // example 3 - add a button component that on click removes the message
     const message3_button = new Game.Html.Button({
         value: "With buttons",
-        callback: function (button) {
+        callback: function (_button) {
             const button1 = new Game.Html.Button({
                 value: "Other",
-                callback: function (button) {
+                callback: function (_button) {
                     console.log("An action!");
                 },
             });
             const button2 = new Game.Html.Button({
                 value: "Close",
-                callback: function (button) {
+                callback: function (_button) {
                     message3.clear();
                 },
             });
@@ -82,7 +82,7 @@ runOnLoad(function () {
     // example 4 - configuration message
     const message4_button = new Game.Html.Button({
         value: "Configuration",
-        callback: function (button) {
+        callback: function (_button) {
             const range = new Game.Html.Range({
                 preText: "Range:",
                 value: 5,
@@ -104,7 +104,7 @@ runOnLoad(function () {
 
             const ok = new Game.Html.Button({
                 value: "Ok",
-                callback: function (button) {
+                callback: function (_button) {
                     console.log(
                         range.getValue(),
                         text.getValue(),
@@ -117,7 +117,7 @@ runOnLoad(function () {
             });
             const cancel = new Game.Html.Button({
                 value: "Cancel",
-                callback: function (button) {
+                callback: function (_button) {
                     message4.clear();
                 },
             });

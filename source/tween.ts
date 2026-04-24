@@ -53,7 +53,7 @@ export class Tween {
     protected _count: number;
     protected _update: ((delta: number) => any) | null;
 
-    constructor(element: Object) {
+    constructor(element: object) {
         this._element = element as Record<string, any>;
         this._steps = [];
         this._current_step = null;
@@ -235,7 +235,7 @@ export class Tween {
      * @param element The element that has a tween animation.
      * @return The associated tween object.
      */
-    static getTween(element: Object) {
+    static getTween(element: object) {
         for (let a = Tween._tweens.length - 1; a >= 0; a--) {
             const tween = Tween._tweens[a];
 
@@ -252,7 +252,7 @@ export class Tween {
      *
      * @param element The element associated with the tweens we want to remove.
      */
-    static removeTweens(element: Object) {
+    static removeTweens(element: object) {
         for (let a = Tween._tweens.length - 1; a >= 0; a--) {
             const tween = Tween._tweens[a];
 

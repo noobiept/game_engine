@@ -25,7 +25,7 @@ runOnLoad(function () {
     Game.init(document.body, 400, 400);
 
     // disable the context menu (when right-clicking)
-    Game.getCanvas().getHtmlCanvasElement().oncontextmenu = function (event) {
+    Game.getCanvas().getHtmlCanvasElement().oncontextmenu = function (_event) {
         return false;
     };
 
@@ -287,7 +287,7 @@ runOnLoad(function () {
 
         try {
             square = GRID.get(position.column, position.line);
-        } catch (error) {
+        } catch {
             return;
         }
 
@@ -330,7 +330,7 @@ runOnLoad(function () {
 
         try {
             square = GRID.get(position.column, position.line);
-        } catch (error) {
+        } catch {
             return;
         }
 
@@ -467,7 +467,7 @@ runOnLoad(function () {
 
         const close = new Game.Html.Button({
             value: "Close",
-            callback: function (button) {
+            callback: function (_button) {
                 highScore.clear();
             },
         });

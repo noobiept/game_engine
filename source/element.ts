@@ -130,7 +130,7 @@ export abstract class Element extends EventDispatcher {
      *
      * @param deltaTime Time elapsed since the last update.
      */
-    logic(deltaTime: number) {
+    logic(_deltaTime: number) {
         // optional
     }
 

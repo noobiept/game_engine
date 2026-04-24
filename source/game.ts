@@ -85,7 +85,7 @@ export function init(
     CANVAS_CONTAINER.addEventListener("mousedown", clickEvents);
     CANVAS_CONTAINER.addEventListener("mouseup", clickEvents);
 
-    document.addEventListener("visibilitychange", function (event) {
+    document.addEventListener("visibilitychange", function (_event) {
         if (document.hidden) {
             stopGameLoop();
         } else {

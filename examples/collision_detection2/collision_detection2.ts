@@ -12,7 +12,7 @@ runOnLoad(function () {
     // add the player
     const player = new Player(200, 200);
 
-    player.addEventListener("collision", function (data) {
+    player.addEventListener("collision", function (_data) {
         console.log("Collision!");
     });
     Game.addElement(player);

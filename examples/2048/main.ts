@@ -448,25 +448,25 @@ runOnLoad(function () {
                 // check all positions around this one
                 try {
                     left = GRID.get(column - 1, line);
-                } catch (error) {
+                } catch {
                     left = null;
                 }
 
                 try {
                     right = GRID.get(column + 1, line);
-                } catch (error) {
+                } catch {
                     right = null;
                 }
 
                 try {
                     up = GRID.get(column, line - 1);
-                } catch (error) {
+                } catch {
                     up = null;
                 }
 
                 try {
                     down = GRID.get(column, line + 1);
-                } catch (error) {
+                } catch {
                     down = null;
                 }
 

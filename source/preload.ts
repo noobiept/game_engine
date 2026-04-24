@@ -213,7 +213,7 @@ export class Preload extends EventDispatcher {
                     if (typeof response === "string") {
                         try {
                             response = JSON.parse(response);
-                        } catch (error) {
+                        } catch {
                             this._failed_to_load(id);
                             return;
                         }

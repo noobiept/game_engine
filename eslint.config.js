@@ -1,8 +1,9 @@
 import js from "@eslint/js";
+import { defineConfig } from "eslint/config";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 
-export default tseslint.config(
+export default defineConfig([
     {
         ignores: ["build/", "docs/", "node_modules/", "release/", "coverage/"],
     },
@@ -34,20 +35,15 @@ export default tseslint.config(
         },
         rules: {
             "@typescript-eslint/no-explicit-any": "off",
-            "@typescript-eslint/no-empty-object-type": "off",
+            "@typescript-eslint/no-non-null-assertion": "error",
             "@typescript-eslint/no-namespace": "off",
             "@typescript-eslint/no-unused-vars": [
                 "error",
                 {
-                    args: "none",
-                    caughtErrors: "none",
-                    varsIgnorePattern: "^_",
+                    argsIgnorePattern: "^_",
+                    caughtErrorsIgnorePattern: "^_",
                 },
             ],
-            "@typescript-eslint/no-non-null-assertion": "error",
-            "@typescript-eslint/no-wrapper-object-types": "off",
-            "no-unused-vars": "off",
-            "prefer-rest-params": "off",
         },
     },
-);
+]);

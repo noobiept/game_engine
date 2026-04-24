@@ -73,7 +73,7 @@ function complete() {
     });
 
     bitmap.rotate(90, true);
-    bitmap.addEventListener("click", function (event) {
+    bitmap.addEventListener("click", function (_event) {
         console.log("bitmap");
     });
 

@@ -29,7 +29,7 @@ export function init() {
 
     try {
         CTX = new AudioContext();
-    } catch (error) {
+    } catch {
         // AudioContext not supported
         CTX = null;
         return false;

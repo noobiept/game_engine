@@ -372,7 +372,7 @@ export class Movement {
      *
      * @param delta Time elapsed since the last update.
      */
-    logic(delta: number) {
+    logic(_delta: number) {
         // empty
     }
 

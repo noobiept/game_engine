@@ -33,7 +33,7 @@ runOnLoad(function () {
         { x: 300, y: 150 },
         { x: 100, y: 150 },
     ]);
-    three.addEventListener("collision", function (data) {
+    three.addEventListener("collision", function (_data) {
         addText("No text here.", four.x, four.y);
     });
 
@@ -45,7 +45,7 @@ runOnLoad(function () {
         { x: 300, y: 250 },
         { x: 100, y: 250 },
     ]);
-    six.addEventListener("collision", function (data) {
+    six.addEventListener("collision", function (_data) {
         addText("Collision!", six.x, six.y);
     });
 
@@ -53,7 +53,7 @@ runOnLoad(function () {
     const seven = new One(150, 350);
     const eight = new Two(250, 350);
 
-    seven.addEventListener("collision", function (data) {
+    seven.addEventListener("collision", function (_data) {
         addText("Bullet collision!", eight.x, eight.y);
     });
     seven.weapon.forceFire(0, 0, 3);

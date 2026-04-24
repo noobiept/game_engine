@@ -1,6 +1,8 @@
 import * as Utilities from "@drk4/utilities";
 
-export interface EventDispatcherArgs {}
+export interface EventDispatcherArgs {
+    readonly _eventDispatcherArgsBrand?: never;
+}
 
 type EventListener = (data: any) => any;
 
@@ -10,7 +12,7 @@ type EventListener = (data: any) => any;
 export class EventDispatcher {
     protected _listeners: Record<string, EventListener[]>;
 
-    constructor(args?: EventDispatcherArgs) {
+    constructor(_args?: EventDispatcherArgs) {
         this._listeners = {};
     }
 

@@ -15,7 +15,7 @@ export class CheckAll implements CollisionDetectionAlgorithm {
         this._elements.push(element);
     }
 
-    update(element: Element) {
+    update(_element: Element) {
         // no need to update
     }
 

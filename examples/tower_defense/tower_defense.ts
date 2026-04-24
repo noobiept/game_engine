@@ -323,7 +323,7 @@ Main.gameOver = function () {
         const container = Game.getCanvasContainer();
         const button = new Game.Html.Button({
             value: "Ok",
-            callback: function (button) {
+            callback: function (_button) {
                 message.clear();
                 clearElements();
                 Game.startGameLoop();

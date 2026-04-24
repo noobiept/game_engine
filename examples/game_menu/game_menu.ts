@@ -27,10 +27,10 @@ runOnLoad(function () {
     const twoStateButton = new Game.Html.TwoState({
         value: "Start",
         value2: "Stop",
-        callback: function (button) {
+        callback: function (_button) {
             console.log("Start!!");
         },
-        callback2: function (button) {
+        callback2: function (_button) {
             console.log("Stop!");
         },
     });
