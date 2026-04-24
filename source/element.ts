@@ -62,10 +62,10 @@ export abstract class Element extends EventDispatcher {
     constructor(args?: ElementArgs) {
         super(args);
 
-        var x = 0;
-        var y = 0;
-        var category = 0;
-        var collidesWith = 0;
+        let x = 0;
+        let y = 0;
+        let category = 0;
+        let collidesWith = 0;
 
         if (typeof args !== "undefined") {
             if (typeof args.x !== "undefined") {
@@ -138,8 +138,8 @@ export abstract class Element extends EventDispatcher {
      * Check if the element is within the given x/y position.
      */
     intersect(refX: number, refY: number): Element[] {
-        var elements: Element[] = [];
-        var vertices = this.vertices;
+        const elements: Element[] = [];
+        const vertices = this.vertices;
 
         // check if the vertices were calculated yet (if the element was added this tick/frame, it won't be)
         if (vertices) {
@@ -160,8 +160,8 @@ export abstract class Element extends EventDispatcher {
      * Check collision between two elements.
      */
     checkCollision(other: Element) {
-        var vertices = this.getVertices();
-        var otherVertices = other.getVertices();
+        const vertices = this.getVertices();
+        const otherVertices = other.getVertices();
 
         if (!vertices || !otherVertices) {
             return false;
@@ -172,7 +172,7 @@ export abstract class Element extends EventDispatcher {
 
     mouseClickEvents(x: number, y: number, event: MouseEvent) {
         if (this.hasListeners(event.type)) {
-            var elements = this.intersect(x, y);
+            const elements = this.intersect(x, y);
 
             if (elements.length > 0) {
                 elements[0].dispatchMouseClickEvent(event);
@@ -271,16 +271,16 @@ export abstract class Element extends EventDispatcher {
         }
 
         const length = vertices.length;
-        var vertex = vertices[0];
-        var minX = vertex.x;
-        var maxX = minX;
-        var minY = vertex.y;
-        var maxY = minY;
+        const firstVertex = vertices[0];
+        let minX = firstVertex.x;
+        let maxX = minX;
+        let minY = firstVertex.y;
+        let maxY = minY;
 
-        for (var a = 1; a < length; a++) {
-            var vertex = vertices[a];
-            var x = vertex.x;
-            var y = vertex.y;
+        for (let a = 1; a < length; a++) {
+            const vertex = vertices[a];
+            const x = vertex.x;
+            const y = vertex.y;
 
             if (x < minX) {
                 minX = x;
@@ -380,7 +380,7 @@ export abstract class Element extends EventDispatcher {
         scaleY: number,
         rotation: number,
     ) {
-        var center = Vector.rotate(
+        const center = Vector.rotate(
             { x: x, y: y },
             { x: x + this._x * scaleX, y: y + this._y * scaleY },
             rotation,
@@ -389,12 +389,12 @@ export abstract class Element extends EventDispatcher {
         scaleX *= this.scaleX;
         scaleY *= this.scaleY;
 
-        var left = center.x - this._half_width * scaleX;
-        var right = center.x + this._half_width * scaleX;
-        var top = center.y - this._half_height * scaleY;
-        var bottom = center.y + this._half_height * scaleY;
+        const left = center.x - this._half_width * scaleX;
+        const right = center.x + this._half_width * scaleX;
+        const top = center.y - this._half_height * scaleY;
+        const bottom = center.y + this._half_height * scaleY;
 
-        var angle = this._rotation + rotation;
+        const angle = this._rotation + rotation;
 
         // in clockwise order
         this.vertices = [

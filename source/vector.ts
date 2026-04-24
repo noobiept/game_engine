@@ -18,8 +18,8 @@ export function subtract(one: Vector, two: Vector) {
 }
 
 export function magnitude(vector: Vector) {
-    var x = vector.x;
-    var y = vector.y;
+    const x = vector.x;
+    const y = vector.y;
 
     return Math.sqrt(x * x + y * y);
 }
@@ -36,12 +36,12 @@ export function dotProduct(one: Vector, two: Vector) {
 }
 
 export function rotate(center: Vector, vector: Vector, angle: number) {
-    var centerX = center.x;
-    var centerY = center.y;
-    var cos = Math.cos(angle);
-    var sin = Math.sin(angle);
-    var diffX = vector.x - centerX;
-    var diffY = vector.y - centerY;
+    const centerX = center.x;
+    const centerY = center.y;
+    const cos = Math.cos(angle);
+    const sin = Math.sin(angle);
+    const diffX = vector.x - centerX;
+    const diffY = vector.y - centerY;
 
     return {
         x: centerX + diffX * cos - diffY * sin,
@@ -64,9 +64,9 @@ export function normalRight(vector: Vector) {
 }
 
 export function normalize(vector: Vector) {
-    var x = vector.x;
-    var y = vector.y;
-    var length = Math.sqrt(x * x + y * y);
+    const x = vector.x;
+    const y = vector.y;
+    const length = Math.sqrt(x * x + y * y);
 
     return {
         x: x / length,
@@ -75,10 +75,10 @@ export function normalize(vector: Vector) {
 }
 
 export function projection(one: Vector, two: Vector) {
-    var dotProd = dotProduct(one, two);
-    var twoX = two.x;
-    var twoY = two.y;
-    var twoLengthSquared = twoX * twoX + twoY * twoY;
+    const dotProd = dotProduct(one, two);
+    const twoX = two.x;
+    const twoY = two.y;
+    const twoLengthSquared = twoX * twoX + twoY * twoY;
 
     return {
         x: (dotProd / twoLengthSquared) * twoX,

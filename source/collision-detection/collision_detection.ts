@@ -15,7 +15,7 @@ export interface CollisionDetectionAlgorithm {
 
 export type Vertices = { x: number; y: number }[];
 
-var COLLISION: CollisionDetectionAlgorithm | null = null;
+let COLLISION: CollisionDetectionAlgorithm | null = null;
 
 function getCollision() {
     if (COLLISION === null) {
@@ -75,12 +75,12 @@ export function clear() {
  * Works for convex polygon shapes.
  */
 export function polygonPolygon(one: Vertices, two: Vertices) {
-    var axes1 = getAxes(one);
-    var axes2 = getAxes(two);
+    const axes1 = getAxes(one);
+    const axes2 = getAxes(two);
 
-    var a;
-    var axis;
-    var projection1, projection2;
+    let a;
+    let axis;
+    let projection1, projection2;
 
     // loop over the axes 1
     for (a = 0; a < axes1.length; a++) {
@@ -119,13 +119,13 @@ export function polygonPolygon(one: Vertices, two: Vertices) {
  * Works for convex polygon shapes.
  */
 export function polygonPolygonList(list1: Vertices[], list2: Vertices[]) {
-    for (var a = list1.length - 1; a >= 0; a--) {
-        var one = list1[a];
+    for (let a = list1.length - 1; a >= 0; a--) {
+        const one = list1[a];
 
-        for (var b = list2.length - 1; b >= 0; b--) {
-            var two = list2[b];
+        for (let b = list2.length - 1; b >= 0; b--) {
+            const two = list2[b];
 
-            var collided = polygonPolygon(one, two);
+            const collided = polygonPolygon(one, two);
 
             if (collided) {
                 return true;
@@ -140,15 +140,15 @@ export function polygonPolygonList(list1: Vertices[], list2: Vertices[]) {
  * Check if a point is colliding with a element.
  */
 export function polygonPoint(vertices: Vertices, point: Vector.Vector) {
-    var isInside = false;
-    var minX = vertices[0].x;
-    var maxX = minX;
-    var minY = vertices[0].y;
-    var maxY = minY;
-    var a, b;
+    let isInside = false;
+    let minX = vertices[0].x;
+    let maxX = minX;
+    let minY = vertices[0].y;
+    let maxY = minY;
+    let a, b;
 
     for (a = 1; a < vertices.length; a++) {
-        var vertex = vertices[a];
+        const vertex = vertices[a];
 
         minX = Math.min(vertex.x, minX);
         maxX = Math.max(vertex.x, maxX);
@@ -179,26 +179,26 @@ export function polygonPoint(vertices: Vertices, point: Vector.Vector) {
 }
 
 function getAxes(vertices: Vertices) {
-    var verticesLength = vertices.length;
+    const verticesLength = vertices.length;
 
     // the number of axes will be the number of vertices
-    var axes: Vector.Vector[] = [];
+    const axes: Vector.Vector[] = [];
 
-    for (var a = 0; a < verticesLength; a++) {
+    for (let a = 0; a < verticesLength; a++) {
         // current vertex
-        var point1 = vertices[a];
+        const point1 = vertices[a];
 
         // next vertex
-        var next = a + 1;
+        let next = a + 1;
 
         if (next >= verticesLength) {
             next = 0;
         }
 
-        var point2 = vertices[next];
+        const point2 = vertices[next];
 
         // subtract the two to get the edge vector
-        var edge = Vector.subtract(point1, point2);
+        const edge = Vector.subtract(point1, point2);
 
         axes[a] = Vector.normalRight(edge);
     }
@@ -208,11 +208,11 @@ function getAxes(vertices: Vertices) {
 
 function projectShapeIntoAxis(vertices: Vertices, axis: Vector.Vector) {
     // project a shape onto an axis
-    var min = Vector.dotProduct(axis, vertices[0]);
-    var max = min;
+    let min = Vector.dotProduct(axis, vertices[0]);
+    let max = min;
 
-    for (var a = 1; a < vertices.length; a++) {
-        var p = Vector.dotProduct(axis, vertices[a]);
+    for (let a = 1; a < vertices.length; a++) {
+        const p = Vector.dotProduct(axis, vertices[a]);
 
         if (p < min) {
             min = p;
@@ -268,8 +268,8 @@ export function circleCircle(
     y2: number,
     radius2: number,
 ) {
-    var distX = x1 - x2;
-    var distY = y1 - y2;
+    const distX = x1 - x2;
+    const distY = y1 - y2;
 
     if (
         Math.pow(distX, 2) + Math.pow(distY, 2) <=
@@ -291,11 +291,11 @@ export function circlePoint(
     pointX: number,
     pointY: number,
 ) {
-    var distanceX = circleX - pointX;
-    var distanceY = circleY - pointY;
+    const distanceX = circleX - pointX;
+    const distanceY = circleY - pointY;
 
     // pythagoras
-    var squareDistance = distanceX * distanceX + distanceY * distanceY;
+    const squareDistance = distanceX * distanceX + distanceY * distanceY;
 
     if (squareDistance <= circleRadius * circleRadius) {
         return true;

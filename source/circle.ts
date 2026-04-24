@@ -55,7 +55,7 @@ export class Circle extends Element {
     }
 
     clone() {
-        var element = new Circle({
+        const element = new Circle({
             x: this.x,
             y: this.y,
             radius: this._radius,

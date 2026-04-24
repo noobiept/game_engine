@@ -60,7 +60,7 @@ export class Bullet extends Container {
         this.element = null;
 
         // angle or target argument
-        var angleOrTarget = args.angleOrTarget;
+        const angleOrTarget = args.angleOrTarget;
 
         // its an angle
         if (typeof angleOrTarget === "number") {
@@ -79,7 +79,7 @@ export class Bullet extends Container {
      * @param angle In radians.
      */
     setAngle(angle: number) {
-        var _this = this;
+        const _this = this;
 
         this.movement?.moveAngle(angle, false, function () {
             _this.remove();
@@ -92,7 +92,7 @@ export class Bullet extends Container {
      * @param target The element to go to.
      */
     setTarget(target: Element) {
-        var _this = this;
+        const _this = this;
 
         this.movement?.follow(target, function () {
             _this.remove();
@@ -124,14 +124,14 @@ export class Bullet extends Container {
      * Create a clone of this element.
      */
     clone() {
-        var children = [];
-        var length = this._children.length;
+        const children = [];
+        const length = this._children.length;
 
-        for (var a = 0; a < length; a++) {
+        for (let a = 0; a < length; a++) {
             children.push(this._children[a].clone());
         }
 
-        var bullet = new Bullet({
+        const bullet = new Bullet({
             x: this.x,
             y: this.y,
             children: children,

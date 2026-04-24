@@ -3,7 +3,7 @@ import { Direction } from "./state";
 import { Tail } from "./tail";
 
 export function Snake(args) {
-    var first = new Tail(args);
+    const first = new Tail(args);
 
     this.tails = [first];
     this.first_tail = first;
@@ -13,10 +13,10 @@ export function Snake(args) {
     Add a new tail at the end of the snake
  */
 Snake.prototype.addTail = function () {
-    var last = this.tails[this.tails.length - 1];
+    const last = this.tails[this.tails.length - 1];
 
-    var column = last.column;
-    var line = last.line;
+    let column = last.column;
+    let line = last.line;
 
     if (last.direction === Direction.left) {
         column++;
@@ -28,7 +28,7 @@ Snake.prototype.addTail = function () {
         line--;
     }
 
-    var tail = new Tail({
+    const tail = new Tail({
         column: column,
         line: line,
         path: Game.Utilities.deepClone(last.path),
@@ -43,7 +43,7 @@ Snake.prototype.getDirection = function () {
 };
 
 Snake.prototype.changeDirection = function (newDirection) {
-    var currentDirection = this.getDirection();
+    const currentDirection = this.getDirection();
 
     // already going that way
     if (currentDirection === newDirection) {
@@ -63,12 +63,12 @@ Snake.prototype.changeDirection = function (newDirection) {
         return;
     }
 
-    var column = this.first_tail.column;
-    var line = this.first_tail.line;
+    const column = this.first_tail.column;
+    const line = this.first_tail.line;
 
-    var length = this.tails.length;
+    const length = this.tails.length;
 
-    for (var a = 0; a < length; a++) {
+    for (let a = 0; a < length; a++) {
         this.tails[a].path.push({
             column: column,
             line: line,
@@ -78,7 +78,7 @@ Snake.prototype.changeDirection = function (newDirection) {
 };
 
 Snake.prototype.remove = function () {
-    for (var a = this.tails.length - 1; a >= 0; a--) {
+    for (let a = this.tails.length - 1; a >= 0; a--) {
         this.tails[a].remove();
     }
 };
@@ -88,9 +88,9 @@ Snake.prototype.getTailSize = function () {
 };
 
 Snake.prototype.tick = function () {
-    var length = this.tails.length;
+    const length = this.tails.length;
 
-    for (var a = 0; a < length; a++) {
+    for (let a = 0; a < length; a++) {
         this.tails[a].tick();
     }
 };

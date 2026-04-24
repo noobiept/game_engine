@@ -84,7 +84,7 @@ export class Text extends Element {
         this._timeout = args.timeout;
 
         if (Utilities.isNumber(args.timeout) && args.timeout > 0) {
-            var timeout = new Utilities.Timeout();
+            const timeout = new Utilities.Timeout();
 
             timeout.start(() => {
                 this.remove();
@@ -108,11 +108,11 @@ export class Text extends Element {
         ctx.textAlign = this.textAlign;
         ctx.textBaseline = this.textBaseline;
 
-        var length = this._lines.length;
+        const length = this._lines.length;
 
         // draw each line
-        for (var a = 0; a < length; a++) {
-            var y = a * this.font_size;
+        for (let a = 0; a < length; a++) {
+            const y = a * this.font_size;
 
             if (this.fill) {
                 ctx.fillStyle = this.color;
@@ -133,14 +133,14 @@ export class Text extends Element {
         this._text = value;
         this._lines = this._text.split("\n");
 
-        var ctx = Game.getCanvas().getCanvasContext();
+        const ctx = Game.getCanvas().getCanvasContext();
 
-        var line = this._lines[0];
-        var highestWidth = ctx.measureText(line).width;
-        var width;
-        var length = this._lines.length;
+        let line = this._lines[0];
+        let highestWidth = ctx.measureText(line).width;
+        let width;
+        const length = this._lines.length;
 
-        for (var a = 1; a < length; a++) {
+        for (let a = 1; a < length; a++) {
             line = this._lines[a];
 
             width = ctx.measureText(line).width;
@@ -197,7 +197,7 @@ export class Text extends Element {
      * @return New cloned text object.
      */
     clone() {
-        var element = new Text({
+        const element = new Text({
             x: this.x,
             y: this.y,
             text: this._text,

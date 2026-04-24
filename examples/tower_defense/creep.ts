@@ -18,7 +18,7 @@ export class Creep extends Game.Circle {
     movement: Game.Movement;
 
     constructor(args: CreepArgs) {
-        var center = SQUARE_SIZE / 2;
+        const center = SQUARE_SIZE / 2;
 
         super({
             ...args,
@@ -48,8 +48,8 @@ export class Creep extends Game.Circle {
      * Move to a column/line position. Once it reaches the destination, check to where it needs to go next.
      */
     moveTo(column: number, line: number) {
-        var center = SQUARE_SIZE / 2;
-        var _this = this;
+        const center = SQUARE_SIZE / 2;
+        const _this = this;
 
         this.movement.moveTo(
             column * SQUARE_SIZE + center,
@@ -67,7 +67,7 @@ export class Creep extends Game.Circle {
      * If it reached the end, then the unit is removed.
      */
     checkDestination() {
-        var next = getNextPosition(this.column, this.line);
+        const next = getNextPosition(this.column, this.line);
 
         // we reached the end
         if (next.column === this.column && next.line === this.line) {

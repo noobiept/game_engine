@@ -48,7 +48,7 @@ export class EventDispatcher {
     removeEventListener(type: string, listener?: EventListener) {
         if (this._listeners[type]) {
             if (typeof listener !== "undefined") {
-                var index = this._listeners[type].indexOf(listener);
+                const index = this._listeners[type].indexOf(listener);
 
                 if (index >= 0) {
                     this._listeners[type].splice(index, 1);
@@ -77,10 +77,10 @@ export class EventDispatcher {
      * @param data Data to be sent to every listener.
      */
     dispatchEvent(type: string, data?: any) {
-        var listeners = this._listeners[type];
+        const listeners = this._listeners[type];
 
         if (listeners) {
-            for (var a = listeners.length - 1; a >= 0; a--) {
+            for (let a = listeners.length - 1; a >= 0; a--) {
                 listeners[a](data);
             }
         }

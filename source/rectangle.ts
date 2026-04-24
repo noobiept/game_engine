@@ -74,7 +74,7 @@ export class Rectangle extends Element {
     }
 
     clone() {
-        var element = new Rectangle({
+        const element = new Rectangle({
             x: this.x,
             y: this.y,
             width: this._width,

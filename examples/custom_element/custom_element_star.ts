@@ -35,15 +35,15 @@ export class Star extends Game.Circle {
         ctx.translate(this.x, this.y);
         ctx.rotate(this.rotation);
 
-        var step = Math.PI / this.spikes;
-        var rotation = -Math.PI / 2;
+        const step = Math.PI / this.spikes;
+        let rotation = -Math.PI / 2;
 
         ctx.beginPath();
         ctx.moveTo(0, -this.outer_radius);
 
-        var x, y;
+        let x, y;
 
-        for (var a = 0; a < this.spikes; a++) {
+        for (let a = 0; a < this.spikes; a++) {
             x = Math.cos(rotation) * this.outer_radius;
             y = Math.sin(rotation) * this.outer_radius;
 

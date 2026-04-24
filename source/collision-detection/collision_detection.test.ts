@@ -6,20 +6,20 @@ describe("CollisionDetection", function () {
     test("polygonPolygonList()", function () {
         Game.CollisionDetection.init();
 
-        var one = new Game.Rectangle({
+        const one = new Game.Rectangle({
             x: 100,
             y: 100,
             width: 20,
             height: 10,
             color: "blue",
         });
-        var two = new Game.Rectangle({
+        const two = new Game.Rectangle({
             width: 10,
             height: 20,
             color: "red",
         });
 
-        var tests = [
+        const tests = [
             { rotation1: 0, rotation2: 0, x2: 100, y2: 115, collide: true },
             { rotation1: 0, rotation2: 0, x2: 100, y2: 116, collide: false },
             { rotation1: 0, rotation2: 0, x2: 100, y2: 84, collide: false },
@@ -86,8 +86,8 @@ describe("CollisionDetection", function () {
             },
         ];
 
-        for (var a = 0; a < tests.length; a++) {
-            var test = tests[a];
+        for (let a = 0; a < tests.length; a++) {
+            const test = tests[a];
 
             one.rotation = test.rotation1;
             two.rotation = test.rotation2;
@@ -97,7 +97,7 @@ describe("CollisionDetection", function () {
             one.updateVertices(0, 0, 1, 1, 0);
             two.updateVertices(0, 0, 1, 1, 0);
 
-            var collides = Game.CollisionDetection.polygonPolygonList(
+            const collides = Game.CollisionDetection.polygonPolygonList(
                 one.getVertices(),
                 two.getVertices(),
             );
@@ -112,14 +112,14 @@ describe("CollisionDetection", function () {
     test("polygonPoint()", function () {
         Game.CollisionDetection.init();
 
-        var rect = new Game.Rectangle({
+        const rect = new Game.Rectangle({
             width: 10,
             height: 10,
             color: "red",
         });
         rect.updateVertices(0, 0, 1, 1, 0);
 
-        var tests = [
+        const tests = [
             { x: -5, y: 0, collide: true },
             { x: -5.1, y: 0, collide: false },
             { x: 4.9, y: 0, collide: true },
@@ -130,13 +130,15 @@ describe("CollisionDetection", function () {
             { x: 0, y: -5.1, collide: false },
         ];
 
-        for (var a = 0; a < tests.length; a++) {
-            var info = tests[a];
+        for (let a = 0; a < tests.length; a++) {
+            const info = tests[a];
+            const vertices = rect.vertices;
 
-            var collides = Game.CollisionDetection.polygonPoint(
-                rect.vertices!,
-                info,
-            );
+            if (vertices === null) {
+                throw new Error("Rectangle vertices were not initialized.");
+            }
+
+            const collides = Game.CollisionDetection.polygonPoint(vertices, info);
 
             expect(collides).toEqual(info.collide);
         }
@@ -146,8 +148,8 @@ describe("CollisionDetection", function () {
 
     // boxBox //
     test("boxBox()", function () {
-        var result;
-        var expected;
+        let result;
+        let expected;
 
         result = Game.CollisionDetection.boxBox(0, 0, 1, 1, 2, 2, 1, 1);
         expected = false;
@@ -167,8 +169,8 @@ describe("CollisionDetection", function () {
 
     // circleCircle //
     test("circleCircle()", function () {
-        var result;
-        var expected;
+        let result;
+        let expected;
 
         result = Game.CollisionDetection.circleCircle(0, 0, 2, 5, 5, 2);
         expected = false;
@@ -188,8 +190,8 @@ describe("CollisionDetection", function () {
 
     // circlePoint //
     test("circlePoint()", function () {
-        var result;
-        var expected;
+        let result;
+        let expected;
 
         result = Game.CollisionDetection.circlePoint(0, 0, 4, 5, 5);
         expected = false;
@@ -209,8 +211,8 @@ describe("CollisionDetection", function () {
 
     // pointBox //
     test("pointBox()", function () {
-        var result;
-        var expected;
+        let result;
+        let expected;
 
         result = Game.CollisionDetection.pointBox(0, 0, 2, 2, 10, 10);
         expected = false;

@@ -36,7 +36,7 @@ export class Square extends Game.Container {
         this.value = Square.VALUE.blank as number;
         this.state = Square.STATE.hidden;
 
-        var hidden = Game.Preload.get("hidden");
+        const hidden = Game.Preload.get("hidden");
 
         this.background = new Game.Bitmap({
             image: hidden,

@@ -16,8 +16,8 @@ export class Tower extends Game.Rectangle {
     weapon: Game.Weapon;
 
     constructor(args: TowerArgs) {
-        var width = SQUARE_SIZE;
-        var height = SQUARE_SIZE;
+        const width = SQUARE_SIZE;
+        const height = SQUARE_SIZE;
 
         super({
             ...args,
@@ -36,8 +36,8 @@ export class Tower extends Game.Rectangle {
 
         // set the 'collision' listener to know when it hits a creep
         this.addEventListener("collision", function (data) {
-            var tower = data.element;
-            var creep = data.collidedWith;
+            const tower = data.element;
+            const creep = data.collidedWith;
 
             creep.health -= tower.weapon.damage;
 

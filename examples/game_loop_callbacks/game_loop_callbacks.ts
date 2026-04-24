@@ -3,12 +3,12 @@ import { Game, runOnLoad } from "../shared";
 runOnLoad(function () {
     Game.init(document.body, 400, 400);
 
-    var time = new Game.Text({
+    const time = new Game.Text({
         x: 200,
         y: 300,
         textAlign: "center",
     });
-    var frame = new Game.Text({
+    const frame = new Game.Text({
         x: 200,
         y: 100,
         textAlign: "center",
@@ -17,8 +17,8 @@ runOnLoad(function () {
     Game.addElement(time);
     Game.addElement(frame);
 
-    var countTime = 0;
-    var countFrames = 0;
+    let countTime = 0;
+    let countFrames = 0;
 
     // called every tick/frame
     Game.addToGameLoop(function () {

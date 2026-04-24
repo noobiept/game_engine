@@ -10,7 +10,7 @@ interface MainState {
     selectDifficulty: (difficulty: string) => void;
 }
 
-var Main: MainState = {
+const Main: MainState = {
     init: function () {},
     start: function () {},
     clear: function () {},
@@ -29,7 +29,7 @@ runOnLoad(function () {
         return false;
     };
 
-    var manifest = [
+    const manifest = [
         { id: "one", path: "one.png" },
         { id: "two", path: "two.png" },
         { id: "three", path: "three.png" },
@@ -46,10 +46,10 @@ runOnLoad(function () {
         { id: "question_mark", path: "question_mark.png" },
     ];
 
-    var preload = new Game.Preload({ saveGlobal: true });
+    const preload = new Game.Preload({ saveGlobal: true });
 
-    var canvasContainer = Game.getCanvasContainer();
-    var loadingMessage = new Game.Message({
+    const canvasContainer = Game.getCanvasContainer();
+    const loadingMessage = new Game.Message({
         body: "Loading..",
         container: canvasContainer,
     });
@@ -68,7 +68,7 @@ runOnLoad(function () {
 });
 
 (function () {
-    var DIFFICULTY = {
+    const DIFFICULTY = {
         beginner: {
             columns: 9,
             lines: 9,
@@ -86,38 +86,38 @@ runOnLoad(function () {
         },
     };
 
-    var GRID;
-    var CURRENT_DIFFICULTY = "beginner";
-    var NUMBER_OF_COLUMNS = DIFFICULTY[CURRENT_DIFFICULTY].columns;
-    var NUMBER_OF_LINES = DIFFICULTY[CURRENT_DIFFICULTY].lines;
-    var NUMBER_OF_MINES = DIFFICULTY[CURRENT_DIFFICULTY].mines;
-    var TIMER;
-    var SELECTED_SQUARE = null;
-    var HAS_ENDED = false;
-    var END_MESSAGE = null;
-    var MAX_SCORES_SAVED = 5;
+    let GRID;
+    let CURRENT_DIFFICULTY = "beginner";
+    let NUMBER_OF_COLUMNS = DIFFICULTY[CURRENT_DIFFICULTY].columns;
+    let NUMBER_OF_LINES = DIFFICULTY[CURRENT_DIFFICULTY].lines;
+    let NUMBER_OF_MINES = DIFFICULTY[CURRENT_DIFFICULTY].mines;
+    let TIMER;
+    let SELECTED_SQUARE = null;
+    let HAS_ENDED = false;
+    let END_MESSAGE = null;
+    const MAX_SCORES_SAVED = 5;
 
     Main.init = function () {
         // add the game menu
-        var menu = new Game.Html.HtmlContainer();
+        const menu = new Game.Html.HtmlContainer();
         document.body.appendChild(menu.container);
 
         // restart button
-        var restart = new Game.Html.Button({
+        const restart = new Game.Html.Button({
             value: "Restart",
             callback: Main.restart,
         });
         menu.addChild(restart);
 
         // show highscores
-        var highscore = new Game.Html.Button({
+        const highscore = new Game.Html.Button({
             value: "Highscore",
             callback: showHighScores,
         });
         menu.addChild(highscore);
 
         // difficulty selection
-        var difficulty = new Game.Html.MultipleOptions({
+        const difficulty = new Game.Html.MultipleOptions({
             options: ["beginner", "intermediate", "advanced"],
             callback: function (button, position, htmlElement) {
                 Main.selectDifficulty(htmlElement.innerHTML);
@@ -126,7 +126,7 @@ runOnLoad(function () {
         menu.addChild(difficulty);
 
         // timer
-        var timer = new Game.Html.Value({
+        const timer = new Game.Html.Value({
             value: 0,
         });
         menu.addChild(timer);
@@ -149,7 +149,7 @@ runOnLoad(function () {
     };
 
     Main.start = function () {
-        var canvas = Game.getCanvas();
+        const canvas = Game.getCanvas();
 
         canvas.updateDimensions(
             NUMBER_OF_COLUMNS * Square.SIZE,
@@ -165,14 +165,14 @@ runOnLoad(function () {
 
         TIMER.start();
 
-        var emptyPositions = GRID.getEmptyPositions();
-        var minesPositions = Game.Utilities.getSeveralRandomInts(
+        const emptyPositions = GRID.getEmptyPositions();
+        const minesPositions = Game.Utilities.getSeveralRandomInts(
             0,
             emptyPositions.length - 1,
             NUMBER_OF_MINES,
         );
-        var square;
-        var column, line;
+        let square;
+        let column, line;
 
         // add all the squares
         for (column = 0; column < NUMBER_OF_COLUMNS; column++) {
@@ -186,9 +186,9 @@ runOnLoad(function () {
         }
 
         // add the mines
-        for (var a = minesPositions.length - 1; a >= 0; a--) {
-            var index = minesPositions[a];
-            var position = emptyPositions[index];
+        for (let a = minesPositions.length - 1; a >= 0; a--) {
+            const index = minesPositions[a];
+            const position = emptyPositions[index];
 
             square = GRID.get(position.column, position.line);
             square.value = Square.VALUE.mine;
@@ -200,7 +200,7 @@ runOnLoad(function () {
                 square = GRID.get(column, line);
 
                 if (square.value !== Square.VALUE.mine) {
-                    var minesAround = Main.minesAround(column, line);
+                    const minesAround = Main.minesAround(column, line);
 
                     square.value = minesAround;
                 }
@@ -212,9 +212,9 @@ runOnLoad(function () {
     };
 
     Main.clear = function () {
-        for (var column = 0; column < GRID.columns; column++) {
-            for (var line = 0; line < GRID.lines; line++) {
-                var square = GRID.get(column, line);
+        for (let column = 0; column < GRID.columns; column++) {
+            for (let line = 0; line < GRID.lines; line++) {
+                const square = GRID.get(column, line);
 
                 if (square) {
                     square.remove();
@@ -244,10 +244,10 @@ runOnLoad(function () {
     };
 
     Main.minesAround = function (column, line) {
-        var neighbors = GRID.getNeighbors(column, line);
-        var count = 0;
+        const neighbors = GRID.getNeighbors(column, line);
+        let count = 0;
 
-        for (var a = neighbors.length - 1; a >= 0; a--) {
+        for (let a = neighbors.length - 1; a >= 0; a--) {
             if (neighbors[a].value === Square.VALUE.mine) {
                 count++;
             }
@@ -257,7 +257,7 @@ runOnLoad(function () {
     };
 
     Main.selectDifficulty = function (difficulty) {
-        var stats = DIFFICULTY[difficulty];
+        const stats = DIFFICULTY[difficulty];
 
         if (!stats) {
             throw new Error("Wrong difficulty value.");
@@ -274,17 +274,19 @@ runOnLoad(function () {
     };
 
     function mouseMove(event) {
-        var canvasRect = Game.getCanvas()
+        const canvasRect = Game.getCanvas()
             .getHtmlCanvasElement()
             .getBoundingClientRect();
 
-        var x = event.clientX - canvasRect.left;
-        var y = event.clientY - canvasRect.top;
+        const x = event.clientX - canvasRect.left;
+        const y = event.clientY - canvasRect.top;
 
-        var position = GRID.toGrid(x, y);
+        const position = GRID.toGrid(x, y);
+
+        let square;
 
         try {
-            var square = GRID.get(position.column, position.line);
+            square = GRID.get(position.column, position.line);
         } catch (error) {
             return;
         }
@@ -314,18 +316,20 @@ runOnLoad(function () {
     }
 
     function mouseClick(event) {
-        var button = event.button;
-        var canvasRect = Game.getCanvas()
+        const button = event.button;
+        const canvasRect = Game.getCanvas()
             .getHtmlCanvasElement()
             .getBoundingClientRect();
 
-        var x = event.clientX - canvasRect.left;
-        var y = event.clientY - canvasRect.top;
+        const x = event.clientX - canvasRect.left;
+        const y = event.clientY - canvasRect.top;
 
-        var position = GRID.toGrid(x, y);
+        const position = GRID.toGrid(x, y);
+
+        let square;
 
         try {
-            var square = GRID.get(position.column, position.line);
+            square = GRID.get(position.column, position.line);
         } catch (error) {
             return;
         }
@@ -368,11 +372,11 @@ runOnLoad(function () {
         }
 
         // check if the game is won (when the un-revealed squares are all mines)
-        var gameWon = true;
+        let gameWon = true;
 
-        for (var column = 0; column < GRID.columns; column++) {
-            for (var line = 0; line < GRID.lines; line++) {
-                var element = GRID.get(column, line);
+        for (let column = 0; column < GRID.columns; column++) {
+            for (let line = 0; line < GRID.lines; line++) {
+                const element = GRID.get(column, line);
 
                 if (
                     element.state !== Square.STATE.revealed &&
@@ -390,13 +394,13 @@ runOnLoad(function () {
     }
 
     function revealAdjacents(square) {
-        var adjacents = GRID.getNeighbors(
+        const adjacents = GRID.getNeighbors(
             square.grid_data.column,
             square.grid_data.line,
         );
 
-        for (var a = adjacents.length - 1; a >= 0; a--) {
-            var adjacent = adjacents[a];
+        for (let a = adjacents.length - 1; a >= 0; a--) {
+            const adjacent = adjacents[a];
 
             if (adjacent.state !== Square.STATE.revealed) {
                 adjacent.setState(Square.STATE.revealed);
@@ -410,9 +414,9 @@ runOnLoad(function () {
     }
 
     function revealAllMines() {
-        for (var column = 0; column < GRID.columns; column++) {
-            for (var line = 0; line < GRID.lines; line++) {
-                var square = GRID.get(column, line);
+        for (let column = 0; column < GRID.columns; column++) {
+            for (let line = 0; line < GRID.lines; line++) {
+                const square = GRID.get(column, line);
 
                 if (square.value === Square.VALUE.mine) {
                     square.setState(Square.STATE.revealed);
@@ -422,17 +426,17 @@ runOnLoad(function () {
     }
 
     function showHighScores() {
-        var canvasContainer = Game.getCanvasContainer();
+        const canvasContainer = Game.getCanvasContainer();
 
-        var difficulties = ["beginner", "intermediate", "advanced"];
-        var length = difficulties.length;
+        const difficulties = ["beginner", "intermediate", "advanced"];
+        const length = difficulties.length;
 
-        var table = document.createElement("table");
-        var tr, td;
+        const table = document.createElement("table");
+        let tr, td;
 
-        for (var a = 0; a < length; a++) {
-            var difficultyName = difficulties[a];
-            var scores = Game.HighScore.get(difficultyName);
+        for (let a = 0; a < length; a++) {
+            const difficultyName = difficulties[a];
+            let scores = Game.HighScore.get(difficultyName);
             tr = document.createElement("tr");
 
             td = document.createElement("td");
@@ -444,10 +448,10 @@ runOnLoad(function () {
                 scores = [];
             }
 
-            for (var b = 0; b < MAX_SCORES_SAVED; b++) {
+            for (let b = 0; b < MAX_SCORES_SAVED; b++) {
                 td = document.createElement("td");
 
-                var scoreValue = scores[b];
+                const scoreValue = scores[b];
 
                 if (typeof scoreValue !== "undefined") {
                     td.innerHTML = scoreValue + "s";
@@ -461,14 +465,14 @@ runOnLoad(function () {
             table.appendChild(tr);
         }
 
-        var close = new Game.Html.Button({
+        const close = new Game.Html.Button({
             value: "Close",
             callback: function (button) {
                 highScore.clear();
             },
         });
 
-        var highScore = new Game.Message({
+        const highScore = new Game.Message({
             body: table,
             container: canvasContainer,
             background: true,
@@ -481,7 +485,7 @@ runOnLoad(function () {
         TIMER.stop();
         revealAllMines();
 
-        var text;
+        let text;
 
         if (hasWon) {
             text = "You Won! " + TIMER.getTimeString() + "!";
@@ -491,9 +495,9 @@ runOnLoad(function () {
             text = "Game Over! You Lost!";
         }
 
-        var canvasContainer = Game.getCanvasContainer();
+        const canvasContainer = Game.getCanvasContainer();
 
-        var restart = new Game.Html.Button({
+        const restart = new Game.Html.Button({
             value: "Restart",
             callback: Main.restart,
         });

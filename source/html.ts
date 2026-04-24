@@ -35,12 +35,12 @@ export interface HtmlElementArgs {
  * Generic html element, serves as base for the rest of the classes.
  */
 export class HtmlElement {
-    container: HTMLElement;
+    container: HTMLElement | null;
     protected _is_active: boolean;
     protected _pre_text: HTMLElement | null;
 
     constructor(args?: HtmlElementArgs) {
-        var container = document.createElement("div");
+        const container = document.createElement("div");
 
         container.className = "Game-Element";
 
@@ -54,14 +54,14 @@ export class HtmlElement {
                 container.id = args.cssId;
             }
 
-            var cssClass = args.cssClass;
+            const cssClass = args.cssClass;
 
             // add optional class/classes
             if (typeof cssClass !== "undefined") {
                 if (typeof cssClass === "string") {
                     container.classList.add(cssClass);
                 } else {
-                    for (var a = cssClass.length - 1; a >= 0; a--) {
+                    for (let a = cssClass.length - 1; a >= 0; a--) {
                         container.classList.add(cssClass[a]);
                     }
                 }
@@ -69,7 +69,7 @@ export class HtmlElement {
 
             // add optional pre text
             if (typeof args.preText !== "undefined") {
-                var preText = document.createElement("span");
+                const preText = document.createElement("span");
 
                 preText.className = "Game-preText";
                 preText.innerHTML = args.preText;
@@ -87,6 +87,12 @@ export class HtmlElement {
      * @param yesNo Whether to set it active or not.
      */
     setActive(yesNo: boolean) {
+        const container = this.container;
+
+        if (container === null) {
+            return;
+        }
+
         // already in that state
         if (yesNo === this._is_active) {
             return;
@@ -94,10 +100,10 @@ export class HtmlElement {
 
         if (yesNo === true) {
             this.addEvents();
-            this.container.classList.remove("Game-inactive");
+            container.classList.remove("Game-inactive");
         } else {
             this.removeEvents();
-            this.container.classList.add("Game-inactive");
+            container.classList.add("Game-inactive");
         }
 
         this._is_active = yesNo;
@@ -128,13 +134,19 @@ export class HtmlElement {
      * Calls this to remove the element.
      */
     clear() {
+        const container = this.container;
+
+        if (container === null) {
+            return;
+        }
+
         if (this._pre_text) {
-            this.container.removeChild(this._pre_text);
+            container.removeChild(this._pre_text);
             this._pre_text = null;
         }
 
-        this.container.parentNode?.removeChild(this.container);
-        this.container = null!;
+        container.parentNode?.removeChild(container);
+        this.container = null;
     }
 }
 
@@ -151,7 +163,7 @@ export class HtmlContainer extends HtmlElement {
     constructor(args?: HtmlContainerArgs) {
         super(args);
 
-        this.container.classList.add("Game-Container");
+        this.container?.classList.add("Game-Container");
         this._children = [];
 
         if (typeof args !== "undefined") {
@@ -171,15 +183,17 @@ export class HtmlContainer extends HtmlElement {
     addChild(children: HtmlElement | HtmlElement[]): void;
     addChild(...elements: HtmlElement[]): void;
     addChild(...args: (HtmlElement | HtmlElement[])[]) {
-        var elements = normalizeChildren(args);
+        const elements = normalizeChildren(args);
 
-        var length = elements.length;
+        const length = elements.length;
 
-        for (var a = 0; a < length; a++) {
-            var child = elements[a];
+        for (let a = 0; a < length; a++) {
+            const child = elements[a];
 
-            this._children.push(child);
-            this.container.appendChild(child.container);
+            if (child.container) {
+                this._children.push(child);
+                this.container?.appendChild(child.container);
+            }
         }
     }
 
@@ -193,14 +207,14 @@ export class HtmlContainer extends HtmlElement {
     removeChild(children: HtmlElement | HtmlElement[]): void;
     removeChild(...elements: HtmlElement[]): void;
     removeChild(...args: (HtmlElement | HtmlElement[])[]) {
-        var elements = normalizeChildren(args);
+        const elements = normalizeChildren(args);
 
-        var length = elements.length;
+        const length = elements.length;
 
-        for (var a = 0; a < length; a++) {
-            var child = elements[a];
+        for (let a = 0; a < length; a++) {
+            const child = elements[a];
 
-            var index = this._children.indexOf(child);
+            const index = this._children.indexOf(child);
 
             if (index >= 0) {
                 this._children.splice(index, 1);
@@ -213,14 +227,14 @@ export class HtmlContainer extends HtmlElement {
      * Remove all children of this container.
      */
     removeAllChildren() {
-        for (var a = this._children.length - 1; a >= 0; a--) {
+        for (let a = this._children.length - 1; a >= 0; a--) {
             this._children[a].clear();
         }
 
         this._children.length = 0;
 
         // there may be other children that are not classes from Game.Html.*, so we just remove the html normally
-        while (this.container.lastChild) {
+        while (this.container?.lastChild) {
             this.container.removeChild(this.container.lastChild);
         }
     }
@@ -243,7 +257,7 @@ export interface ValueArgs extends HtmlElementArgs {
  */
 export class Value extends HtmlElement {
     protected value: any;
-    element: HTMLElement;
+    element: HTMLElement | null;
 
     constructor(args: ValueArgs) {
         // set properties before this
@@ -251,8 +265,8 @@ export class Value extends HtmlElement {
 
         // .container only available after super()
         this.element = document.createElement("span");
-        this.container.appendChild(this.element);
-        this.container.classList.add("Game-Value");
+        this.container?.appendChild(this.element);
+        this.container?.classList.add("Game-Value");
 
         this.setValue(args.value);
     }
@@ -266,7 +280,9 @@ export class Value extends HtmlElement {
         }
 
         this.value = value;
-        this.element.innerHTML = value;
+        if (this.element) {
+            this.element.innerHTML = value;
+        }
     }
 
     /**
@@ -280,8 +296,11 @@ export class Value extends HtmlElement {
      * Clear the object (don't use it after this).
      */
     clear() {
-        this.container.removeChild(this.element);
-        this.element = null!;
+        if (this.container && this.element) {
+            this.container.removeChild(this.element);
+        }
+
+        this.element = null;
         this.value = null;
 
         super.clear();
@@ -297,7 +316,7 @@ export interface ButtonArgs extends ValueArgs {
  * An html button.
  */
 export class Button extends Value {
-    protected click_ref: (event: MouseEvent) => any;
+    protected click_ref: ((event: MouseEvent) => any) | null;
 
     constructor(args: ButtonArgs) {
         super(args);
@@ -315,7 +334,7 @@ export class Button extends Value {
         }
 
         // .container only available after super()
-        this.container.classList.add("Game-Button");
+        this.container?.classList.add("Game-Button");
         this.addEvents();
     }
 
@@ -323,14 +342,18 @@ export class Button extends Value {
      * Add the click event handler.
      */
     addEvents() {
-        this.container.addEventListener("click", this.click_ref);
+        if (this.container && this.click_ref) {
+            this.container.addEventListener("click", this.click_ref);
+        }
     }
 
     /**
      * Remove the click event handler.
      */
     removeEvents() {
-        this.container.removeEventListener("click", this.click_ref);
+        if (this.container && this.click_ref) {
+            this.container.removeEventListener("click", this.click_ref);
+        }
     }
 
     /**
@@ -338,7 +361,7 @@ export class Button extends Value {
      */
     clear() {
         this.removeEvents();
-        this.click_ref = null!;
+        this.click_ref = null;
 
         super.clear();
     }
@@ -367,7 +390,7 @@ export class Boolean extends Button {
         });
 
         // .container only available after super()
-        this.container.classList.add("Game-Boolean");
+        this.container?.classList.add("Game-Boolean");
         this.addEvents();
     }
 
@@ -380,9 +403,13 @@ export class Boolean extends Button {
         }
 
         if (value === true) {
-            this.element.innerHTML = "On";
+            if (this.element) {
+                this.element.innerHTML = "On";
+            }
         } else {
-            this.element.innerHTML = "Off";
+            if (this.element) {
+                this.element.innerHTML = "Off";
+            }
         }
 
         this.value = value;
@@ -412,13 +439,17 @@ export class TwoState extends Button {
             ...args,
             click_ref: (event: MouseEvent) => {
                 if (this.isValue1) {
-                    this.element.innerHTML = args.value2;
+                    if (this.element) {
+                        this.element.innerHTML = args.value2;
+                    }
 
                     if (args.callback) {
                         args.callback(this);
                     }
                 } else {
-                    this.element.innerHTML = args.value;
+                    if (this.element) {
+                        this.element.innerHTML = args.value;
+                    }
 
                     if (args.callback2) {
                         args.callback2(this);
@@ -431,11 +462,11 @@ export class TwoState extends Button {
         });
 
         this.isValue1 = true;
-        this.container.classList.add("Game-TwoState");
+        this.container?.classList.add("Game-TwoState");
     }
 
     getValue() {
-        return this.element.innerHTML;
+        return this.element?.innerHTML ?? null;
     }
 }
 
@@ -453,21 +484,21 @@ export interface MultipleOptionsArgs extends HtmlElementArgs {
  */
 export class MultipleOptions extends HtmlElement {
     protected elements: HTMLElement[];
-    protected click_ref: (this: HTMLElement, event: MouseEvent) => any;
+    protected click_ref: ((this: HTMLElement, event: MouseEvent) => any) | null;
     protected selected: HTMLElement | null;
 
     constructor(args: MultipleOptionsArgs) {
         super(args);
-        var _this = this;
+        const _this = this;
 
         this.click_ref = function () {
-            var element = this;
+            const element = this;
 
             if (element === _this.selected) {
                 return;
             }
 
-            var position = _this.elements.indexOf(element);
+            const position = _this.elements.indexOf(element);
 
             _this.select(position);
 
@@ -479,19 +510,19 @@ export class MultipleOptions extends HtmlElement {
         // .container only available after super()
         this.elements = [];
 
-        var length = args.options.length;
+        const length = args.options.length;
 
-        for (var a = 0; a < length; a++) {
-            var option = document.createElement("span");
+        for (let a = 0; a < length; a++) {
+            const option = document.createElement("span");
 
             option.innerHTML = args.options[a];
 
-            this.container.appendChild(option);
+            this.container?.appendChild(option);
             this.elements.push(option);
         }
 
-        this.container.classList.add("Game-Button");
-        this.container.classList.add("Game-MultipleOptions");
+        this.container?.classList.add("Game-Button");
+        this.container?.classList.add("Game-MultipleOptions");
         this.selected = null;
         this.select(0);
         this.addEvents();
@@ -503,7 +534,7 @@ export class MultipleOptions extends HtmlElement {
      * @param position The position to select.
      */
     select(position: number) {
-        var element = this.elements[position];
+        const element = this.elements[position];
 
         if (!element || element === this.selected) {
             return;
@@ -528,7 +559,11 @@ export class MultipleOptions extends HtmlElement {
      * add the click event handler on the options.
      */
     addEvents() {
-        for (var a = this.elements.length - 1; a >= 0; a--) {
+        if (!this.click_ref) {
+            return;
+        }
+
+        for (let a = this.elements.length - 1; a >= 0; a--) {
             this.elements[a].addEventListener("click", this.click_ref);
         }
     }
@@ -537,7 +572,11 @@ export class MultipleOptions extends HtmlElement {
      * Remove the click event handlers from the options elements.
      */
     removeEvents() {
-        for (var a = this.elements.length - 1; a >= 0; a--) {
+        if (!this.click_ref) {
+            return;
+        }
+
+        for (let a = this.elements.length - 1; a >= 0; a--) {
             this.elements[a].removeEventListener("click", this.click_ref);
         }
     }
@@ -547,11 +586,11 @@ export class MultipleOptions extends HtmlElement {
      */
     clear() {
         this.removeEvents();
-        this.click_ref = null!;
+        this.click_ref = null;
         this.selected = null;
 
-        for (var a = this.elements.length - 1; a >= 0; a--) {
-            this.container.removeChild(this.elements[a]);
+        for (let a = this.elements.length - 1; a >= 0; a--) {
+            this.container?.removeChild(this.elements[a]);
         }
 
         this.elements.length = 0;
@@ -572,23 +611,23 @@ export interface RangeArgs extends HtmlElementArgs {
  * Number range control.
  */
 export class Range extends HtmlElement {
-    protected value: HTMLElement;
-    protected input: HTMLInputElement;
+    protected value: HTMLElement | null;
+    protected input: HTMLInputElement | null;
     protected current_value = 0;
-    protected change_ref: (event: Event) => any;
-    protected input_ref: (event: Event) => any;
+    protected change_ref: ((event: Event) => any) | null;
+    protected input_ref: ((event: Event) => any) | null;
     number_of_decimals: number;
 
     constructor(args: RangeArgs) {
         super(args);
-        var _this = this;
+        const _this = this;
 
         if (typeof args.step === "undefined") {
             args.step = 1;
             this.number_of_decimals = 0;
         } else {
             // find the number of decimals cases
-            var split = args.step.toString().split(".");
+            const split = args.step.toString().split(".");
 
             if (split.length > 1) {
                 this.number_of_decimals = split[1].length;
@@ -598,7 +637,7 @@ export class Range extends HtmlElement {
         }
 
         this.change_ref = function (event) {
-            var target = event.target as HTMLInputElement;
+            const target = event.target as HTMLInputElement;
 
             _this.setValue(parseFloat(target.value));
 
@@ -607,10 +646,12 @@ export class Range extends HtmlElement {
             }
         };
         this.input_ref = function (event) {
-            var target = event.target as HTMLInputElement;
-            var value = parseFloat(target.value);
+            const target = event.target as HTMLInputElement;
+            const value = parseFloat(target.value);
 
-            _this.value.innerHTML = value.toFixed(_this.number_of_decimals);
+            if (_this.value) {
+                _this.value.innerHTML = value.toFixed(_this.number_of_decimals);
+            }
         };
 
         // .container only available after super()
@@ -623,9 +664,9 @@ export class Range extends HtmlElement {
 
         this.value = document.createElement("span");
 
-        this.container.classList.add("Game-Range");
-        this.container.appendChild(this.input);
-        this.container.appendChild(this.value);
+        this.container?.classList.add("Game-Range");
+        this.container?.appendChild(this.input);
+        this.container?.appendChild(this.value);
 
         this.setValue(args.value);
         this.addEvents();
@@ -639,11 +680,16 @@ export class Range extends HtmlElement {
             return;
         }
 
-        var valueStr = value.toFixed(this.number_of_decimals);
+        const valueStr = value.toFixed(this.number_of_decimals);
 
         this.current_value = value;
-        this.input.value = valueStr;
-        this.value.innerHTML = valueStr;
+
+        if (this.input) {
+            this.input.value = valueStr;
+        }
+        if (this.value) {
+            this.value.innerHTML = valueStr;
+        }
     }
 
     /**
@@ -657,16 +703,26 @@ export class Range extends HtmlElement {
      * Add the relevant event handlers.
      */
     addEvents() {
-        this.input.addEventListener("input", this.input_ref);
-        this.input.addEventListener("change", this.change_ref);
+        if (this.input_ref && this.input) {
+            this.input.addEventListener("input", this.input_ref);
+        }
+
+        if (this.change_ref && this.input) {
+            this.input.addEventListener("change", this.change_ref);
+        }
     }
 
     /**
      * Remove the event handlers.
      */
     removeEvents() {
-        this.input.removeEventListener("input", this.input_ref);
-        this.input.removeEventListener("change", this.change_ref);
+        if (this.input_ref && this.input) {
+            this.input.removeEventListener("input", this.input_ref);
+        }
+
+        if (this.change_ref && this.input) {
+            this.input.removeEventListener("change", this.change_ref);
+        }
     }
 
     /**
@@ -674,13 +730,18 @@ export class Range extends HtmlElement {
      */
     clear() {
         this.removeEvents();
-        this.change_ref = null!;
-        this.input_ref = null!;
+        this.change_ref = null;
+        this.input_ref = null;
 
-        this.container.removeChild(this.value);
-        this.container.removeChild(this.input);
-        this.value = null!;
-        this.input = null!;
+        if (this.container && this.value) {
+            this.container.removeChild(this.value);
+            this.value = null;
+        }
+
+        if (this.container && this.input) {
+            this.container.removeChild(this.input);
+            this.input = null;
+        }
 
         super.clear();
     }
@@ -696,13 +757,13 @@ export interface TextArgs extends HtmlElementArgs {
  * Text input control.
  */
 export class Text extends HtmlElement {
-    protected input: HTMLInputElement;
+    protected input: HTMLInputElement | null;
     protected button: Button | null;
     protected key_ref: ((event: KeyboardEvent) => any) | null;
 
     constructor(args?: TextArgs) {
         super(args);
-        var _this = this;
+        const _this = this;
 
         this.button = null;
         this.key_ref = null;
@@ -713,7 +774,7 @@ export class Text extends HtmlElement {
 
         // .container only available after super()
         // add the input element
-        var input = document.createElement("input");
+        const input = document.createElement("input");
 
         input.type = "text";
 
@@ -721,7 +782,7 @@ export class Text extends HtmlElement {
             input.setAttribute("placeholder", args.placeholder);
         }
 
-        this.container.appendChild(input);
+        this.container?.appendChild(input);
         this.input = input;
 
         // setup the callback function
@@ -741,23 +802,27 @@ export class Text extends HtmlElement {
                     args.callback?.(_this);
                 },
             });
-            this.container.appendChild(this.button.container);
+            if (this.button.container) {
+                this.container?.appendChild(this.button.container);
+            }
         }
 
-        this.container.classList.add("Game-Text");
+        this.container?.classList.add("Game-Text");
         this.addEvents();
     }
 
     setValue(value: string) {
-        this.input.value = value;
+        if (this.input) {
+            this.input.value = value;
+        }
     }
 
     getValue() {
-        return this.input.value;
+        return this.input?.value ?? null;
     }
 
     addEvents() {
-        if (this.key_ref) {
+        if (this.key_ref && this.input) {
             this.input.addEventListener("keyup", this.key_ref);
         }
 
@@ -767,7 +832,7 @@ export class Text extends HtmlElement {
     }
 
     removeEvents() {
-        if (this.key_ref) {
+        if (this.key_ref && this.input) {
             this.input.removeEventListener("keyup", this.key_ref);
         }
 
@@ -779,8 +844,10 @@ export class Text extends HtmlElement {
     clear() {
         this.removeEvents();
         this.key_ref = null;
-        this.container.removeChild(this.input);
-        this.input = null!;
+        if (this.container && this.input) {
+            this.container.removeChild(this.input);
+            this.input = null;
+        }
 
         if (this.button) {
             this.button.clear();

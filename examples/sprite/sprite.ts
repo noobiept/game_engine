@@ -3,21 +3,21 @@ import { Game, runOnLoad } from "../shared";
 runOnLoad(function () {
     Game.init(document.body, 400, 400);
 
-    var manifest = [
+    const manifest = [
         { id: "sprite", path: "sprite_example.png" },
         { id: "sprite2", path: "sprite_example2.png" },
     ];
 
-    var preload = new Game.Preload({ saveGlobal: true });
+    const preload = new Game.Preload({ saveGlobal: true });
 
     preload.addEventListener("complete", start);
     preload.loadManifest(manifest, "../assets/sprites/");
 });
 
 function start() {
-    var image = Game.Preload.get("sprite");
+    const image = Game.Preload.get("sprite");
 
-    var sprite = new Game.Sprite({
+    const sprite = new Game.Sprite({
         x: 20,
         y: 20,
         image: image,
@@ -27,7 +27,7 @@ function start() {
 
     sprite.setFrame(1);
 
-    var sprite2 = new Game.Sprite({
+    const sprite2 = new Game.Sprite({
         x: 150,
         y: 150,
         image: image,
@@ -41,7 +41,7 @@ function start() {
     });
     sprite2.play("main");
 
-    var sprite3 = new Game.Sprite({
+    const sprite3 = new Game.Sprite({
         x: 380,
         y: 380,
         image: image,
@@ -54,7 +54,7 @@ function start() {
     });
     sprite3.play("half");
 
-    var sprite4 = new Game.Sprite({
+    const sprite4 = new Game.Sprite({
         x: 250,
         y: 250,
         image: Game.Preload.get("sprite2"),

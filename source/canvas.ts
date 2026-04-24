@@ -47,7 +47,7 @@ export class Canvas {
     constructor(args: CanvasArgs) {
         this._canvas = document.createElement("canvas");
         this._canvas.className = "Game-Canvas";
-        var ctx = this._canvas.getContext("2d");
+        const ctx = this._canvas.getContext("2d");
 
         if (ctx === null) {
             throw new Error("Unable to create 2D canvas context.");
@@ -74,11 +74,11 @@ export class Canvas {
     addChild(children: Element | Element[]): void;
     addChild(...elements: Element[]): void;
     addChild(...args: (Element | Element[])[]) {
-        var elements = normalizeElements(args);
+        const elements = normalizeElements(args);
 
-        var length = elements.length;
+        const length = elements.length;
 
-        for (var a = 0; a < length; a++) {
+        for (let a = 0; a < length; a++) {
             this._children.push(elements[a]);
         }
     }
@@ -93,15 +93,15 @@ export class Canvas {
     removeChild(children: Element | Element[]): boolean;
     removeChild(...elements: Element[]): boolean;
     removeChild(...args: (Element | Element[])[]) {
-        var elements = normalizeElements(args);
-        var removed = false;
+        const elements = normalizeElements(args);
+        let removed = false;
 
-        var length = elements.length;
+        const length = elements.length;
 
-        for (var a = 0; a < length; a++) {
-            var element = elements[a];
+        for (let a = 0; a < length; a++) {
+            const element = elements[a];
 
-            var index = this._children.indexOf(element);
+            const index = this._children.indexOf(element);
 
             if (index >= 0) {
                 this._children.splice(index, 1);
@@ -116,10 +116,10 @@ export class Canvas {
      * Get all the child elements that are in a given x/y position.
      */
     getChildrenIn(x: number, y: number) {
-        var all: Element[] = [];
-        var elements: Element[];
+        let all: Element[] = [];
+        let elements: Element[];
 
-        for (var a = this._children.length - 1; a >= 0; a--) {
+        for (let a = this._children.length - 1; a >= 0; a--) {
             elements = this._children[a].intersect(x, y);
 
             if (elements.length > 0) {
@@ -134,7 +134,7 @@ export class Canvas {
      * Update the vertices of all the children elements. Useful for collision detection for example.
      */
     updateVertices() {
-        for (var a = this._children.length - 1; a >= 0; a--) {
+        for (let a = this._children.length - 1; a >= 0; a--) {
             this._children[a].updateVertices(0, 0, 1, 1, 0);
         }
     }
@@ -145,8 +145,8 @@ export class Canvas {
      * @param deltaTime Time elapsed since the last update.
      */
     logic(deltaTime: number) {
-        for (var a = this._children.length - 1; a >= 0; a--) {
-            var element = this._children[a];
+        for (let a = this._children.length - 1; a >= 0; a--) {
+            const element = this._children[a];
 
             if (element._has_logic === true) {
                 element.logic(deltaTime);
@@ -160,10 +160,10 @@ export class Canvas {
     draw() {
         this._ctx.clearRect(0, 0, this._width, this._height);
 
-        var length = this._children.length;
+        const length = this._children.length;
 
-        for (var a = 0; a < length; a++) {
-            var element = this._children[a];
+        for (let a = 0; a < length; a++) {
+            const element = this._children[a];
 
             if (element.visible) {
                 element.draw(this._ctx);
@@ -177,15 +177,15 @@ export class Canvas {
      * @param event The mouse event triggered.
      */
     mouseClickEvents(event: MouseEvent) {
-        var elements = this._children;
-        var rect = this._canvas.getBoundingClientRect();
+        const elements = this._children;
+        const rect = this._canvas.getBoundingClientRect();
 
-        var x = event.clientX - rect.left;
-        var y = event.clientY - rect.top;
-        var element;
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        let element;
 
         // find the element on the x/y position
-        for (var a = elements.length - 1; a >= 0; a--) {
+        for (let a = elements.length - 1; a >= 0; a--) {
             element = elements[a];
 
             if (element.mouseClickEvents(x, y, event)) {

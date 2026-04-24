@@ -3,14 +3,14 @@ import { Grid } from "./grid";
 
 describe("Grid", function () {
     test("Initialize a grid.", function () {
-        var columns = 5;
-        var lines = 10;
+        const columns = 5;
+        const lines = 10;
 
-        var grid = new Grid({
+        const grid = new Grid({
             columns: columns,
             lines: lines,
         });
-        var internalGrid = grid as Grid & { _grid: (string | null)[][] };
+        const internalGrid = grid as Grid & { _grid: (string | null)[][] };
 
         expect(grid.columns).toEqual(columns);
         expect(grid.lines).toEqual(lines);
@@ -21,15 +21,15 @@ describe("Grid", function () {
     });
 
     test("add()", function () {
-        var columns = 5;
-        var lines = 10;
-        var value = "value";
+        const columns = 5;
+        const lines = 10;
+        const value = "value";
 
-        var grid = new Grid({
+        const grid = new Grid({
             columns: columns,
             lines: lines,
         });
-        var internalGrid = grid as Grid & { _grid: (string | null)[][] };
+        const internalGrid = grid as Grid & { _grid: (string | null)[][] };
 
         expect(function () {
             grid.add(value, columns + 10, 0);
@@ -38,15 +38,15 @@ describe("Grid", function () {
             grid.add(value, 0, lines + 10);
         }).toThrow(Error);
 
-        var positions = [
+        const positions = [
             { column: 0, line: 0 },
             { column: Math.floor(columns / 2), line: Math.floor(lines / 2) },
             { column: columns - 1, line: lines - 1 },
         ];
 
-        for (var a = 0; a < positions.length; a++) {
-            var column = positions[a].column;
-            var line = positions[a].line;
+        for (let a = 0; a < positions.length; a++) {
+            const column = positions[a].column;
+            const line = positions[a].line;
 
             grid.add(value, column, line);
             expect(internalGrid._grid[column][line]).toEqual(value);
@@ -55,10 +55,10 @@ describe("Grid", function () {
     });
 
     test("move()", function () {
-        var columns = 5;
-        var lines = 10;
+        const columns = 5;
+        const lines = 10;
 
-        var grid = new Grid({
+        const grid = new Grid({
             columns: columns,
             lines: lines,
         });
@@ -70,13 +70,13 @@ describe("Grid", function () {
             grid.move(0, 0, 0, lines + 10);
         }).toThrow(Error);
 
-        var value1 = "value1";
-        var value2 = "value2";
+        const value1 = "value1";
+        const value2 = "value2";
 
-        var sourceColumn = 0;
-        var sourceLine = 1;
-        var destColumn = 2;
-        var destLine = 8;
+        const sourceColumn = 0;
+        const sourceLine = 1;
+        const destColumn = 2;
+        const destLine = 8;
 
         grid.add(value1, sourceColumn, sourceLine);
         grid.move(sourceColumn, sourceLine, destColumn, destLine);
@@ -85,7 +85,7 @@ describe("Grid", function () {
         expect(grid.get(destColumn, destLine)).toEqual(value1);
 
         grid.add(value2, sourceColumn, sourceLine);
-        var previous = grid.move(
+        const previous = grid.move(
             destColumn,
             destLine,
             sourceColumn,
@@ -98,11 +98,11 @@ describe("Grid", function () {
     });
 
     test("remove()", function () {
-        var columns = 10;
-        var lines = 5;
-        var value = "value";
+        const columns = 10;
+        const lines = 5;
+        const value = "value";
 
-        var grid = new Grid({
+        const grid = new Grid({
             columns: columns,
             lines: lines,
         });
@@ -111,60 +111,60 @@ describe("Grid", function () {
             grid.remove(columns, lines);
         }).toThrow(Error);
 
-        var column = 6;
-        var line = 3;
+        const column = 6;
+        const line = 3;
 
         grid.add(value, column, line);
 
-        var previous = grid.remove(column, line);
+        const previous = grid.remove(column, line);
 
         expect(previous).toEqual(value);
         expect(grid.get(column, line)).toEqual(null);
     });
 
     test("get()", function () {
-        var columns = 4;
-        var lines = 8;
+        const columns = 4;
+        const lines = 8;
 
-        var grid = new Grid({
+        const grid = new Grid({
             columns: columns,
             lines: lines,
         });
 
-        var invalidPositions = [
+        const invalidPositions = [
             { column: -1, line: 0 },
             { column: 0, line: -1 },
             { column: columns, line: 0 },
             { column: 0, line: lines },
         ];
 
-        for (var a = 0; a < invalidPositions.length; a++) {
-            var position = invalidPositions[a];
+        for (let a = 0; a < invalidPositions.length; a++) {
+            const position = invalidPositions[a];
 
             expect(function () {
                 grid.get(position.column, position.line);
             }).toThrow(Error);
         }
 
-        var value = "value";
-        var column = 2;
-        var line = 3;
+        const value = "value";
+        const column = 2;
+        const line = 3;
 
         grid.add(value, column, line);
         expect(grid.get(column, line)).toEqual(value);
     });
 
     test("isEmpty()", function () {
-        var columns = 3;
-        var lines = 2;
+        const columns = 3;
+        const lines = 2;
 
-        var grid = new Grid({
+        const grid = new Grid({
             columns: columns,
             lines: lines,
         });
 
-        var column = 0;
-        var line = 0;
+        const column = 0;
+        const line = 0;
 
         expect(grid.isEmpty(column, line)).toEqual(true);
 
@@ -176,18 +176,18 @@ describe("Grid", function () {
     });
 
     test("normalizePosition()", function () {
-        var columns = 7;
-        var lines = 3;
+        const columns = 7;
+        const lines = 3;
 
-        var grid = new Grid({
+        const grid = new Grid({
             columns: columns,
             lines: lines,
         });
 
-        var middleColumn = Math.floor(columns / 2);
-        var middleLine = Math.floor(lines / 2);
+        const middleColumn = Math.floor(columns / 2);
+        const middleLine = Math.floor(lines / 2);
 
-        var positions = [
+        const positions = [
             // lower limit
             {
                 givenColumn: -1,
@@ -235,9 +235,9 @@ describe("Grid", function () {
             },
         ];
 
-        for (var a = 0; a < positions.length; a++) {
-            var position = positions[a];
-            var normalized = grid.normalizePosition(
+        for (let a = 0; a < positions.length; a++) {
+            const position = positions[a];
+            const normalized = grid.normalizePosition(
                 position.givenColumn,
                 position.givenLine,
             );
@@ -248,15 +248,15 @@ describe("Grid", function () {
     });
 
     test("isInGrid()", function () {
-        var columns = 3;
-        var lines = 9;
+        const columns = 3;
+        const lines = 9;
 
-        var grid = new Grid({
+        const grid = new Grid({
             columns: columns,
             lines: lines,
         });
 
-        var positions = [
+        const positions = [
             { column: -1, line: 0, expect: false },
             { column: 0, line: -1, expect: false },
             { column: -1, line: -2, expect: false },
@@ -266,54 +266,54 @@ describe("Grid", function () {
             { column: 0, line: lines, expect: false },
         ];
 
-        for (var a = 0; a < positions.length; a++) {
-            var position = positions[a];
-            var result = grid.isInGrid(position.column, position.line);
+        for (let a = 0; a < positions.length; a++) {
+            const position = positions[a];
+            const result = grid.isInGrid(position.column, position.line);
 
             expect(result).toEqual(position.expect);
         }
     });
 
     test("getRandomPosition()", function () {
-        var grid = new Grid({
+        const grid = new Grid({
             columns: 8,
             lines: 4,
         });
-        var tries = 20;
+        const tries = 20;
 
-        for (var a = 0; a < tries; a++) {
-            var position = grid.getRandomPosition();
+        for (let a = 0; a < tries; a++) {
+            const position = grid.getRandomPosition();
 
             expect(grid.isInGrid(position.column, position.line)).toEqual(true);
         }
     });
 
     test("getRandomEmptyPosition()", function () {
-        var grid = new Grid({
+        const grid = new Grid({
             columns: 12,
             lines: 8,
         });
-        var tries = 20;
+        const tries = 20;
 
-        for (var a = 0; a < tries; a++) {
-            var position = grid.getRandomPosition();
+        for (let a = 0; a < tries; a++) {
+            const position = grid.getRandomPosition();
 
             expect(grid.isEmpty(position.column, position.line)).toEqual(true);
         }
     });
 
     test("getEmptyPositions()", function () {
-        var grid = new Grid({
+        const grid = new Grid({
             columns: 2,
             lines: 3,
         });
-        var value = "value";
+        const value = "value";
 
         grid.add(value, 0, 0);
         grid.add(value, 1, 2);
         grid.add(value, 1, 1);
 
-        var emptyPositions = [
+        const emptyPositions = [
             { column: 0, line: 1 },
             { column: 0, line: 2 },
             { column: 1, line: 0 },
@@ -323,21 +323,21 @@ describe("Grid", function () {
     });
 
     test("getNeighbors()", function () {
-        var columns = 10;
-        var lines = 10;
+        const columns = 10;
+        const lines = 10;
 
-        var grid = new Grid({
+        const grid = new Grid({
             columns: columns,
             lines: lines,
         });
 
-        for (var column = 0; column < columns; column++) {
-            for (var line = 0; line < lines; line++) {
+        for (let column = 0; column < columns; column++) {
+            for (let line = 0; line < lines; line++) {
                 grid.add(String(column) + String(line), column, line);
             }
         }
 
-        var positions = [
+        const positions = [
             // ---- range 1 ----
 
             // corner positions
@@ -416,9 +416,9 @@ describe("Grid", function () {
             },
         ];
 
-        for (var a = 0; a < positions.length; a++) {
-            var position = positions[a];
-            var neighbors = grid.getNeighbors(
+        for (let a = 0; a < positions.length; a++) {
+            const position = positions[a];
+            const neighbors = grid.getNeighbors(
                 position.column,
                 position.line,
                 position.range,

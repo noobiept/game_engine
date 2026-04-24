@@ -15,8 +15,8 @@
  * Examples -- `preload`
  */
 
-var CTX: AudioContext | null = null;
-var GLOBAL_GAIN: GainNode | null = null;
+let CTX: AudioContext | null = null;
+let GLOBAL_GAIN: GainNode | null = null;
 
 /**
  * Initialize the `Sound` module. Its called in `Game.init()`.
@@ -73,7 +73,7 @@ export function play(audioBuffer: AudioBuffer) {
         return null;
     }
 
-    var source = CTX.createBufferSource();
+    const source = CTX.createBufferSource();
 
     source.buffer = audioBuffer;
     source.connect(GLOBAL_GAIN as GainNode);

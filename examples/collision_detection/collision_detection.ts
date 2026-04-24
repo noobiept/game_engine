@@ -1,7 +1,7 @@
 import { Game, runOnLoad } from "../shared";
 
 // for collision detection
-var CATEGORY = {
+const CATEGORY = {
     friendly: 1,
     enemy: 2,
 };
@@ -11,14 +11,14 @@ runOnLoad(function () {
 
     // we set 'One' to collide with 'Two', and 'Two' to collide with 'One'
     // example 1 - remove a unit on collision, and stop the other
-    var one = new One(100, 50);
-    var two = new Two(200, 50);
+    const one = new One(100, 50);
+    const two = new Two(200, 50);
 
     one.addEventListener("collision", function (data) {
         addText("Collision!", two.x, two.y);
 
-        var element = data.element;
-        var collidedWith = data.collidedWith;
+        const element = data.element;
+        const collidedWith = data.collidedWith;
 
         element.movement.stop();
         collidedWith.remove();
@@ -26,8 +26,8 @@ runOnLoad(function () {
     one.movement.moveTo(300, 50);
 
     // example 2 - no collision between elements of the same type
-    var three = new One(100, 150);
-    var four = new One(200, 150);
+    const three = new One(100, 150);
+    const four = new One(200, 150);
 
     three.movement.moveLoop([
         { x: 300, y: 150 },
@@ -38,8 +38,8 @@ runOnLoad(function () {
     });
 
     // example 3 - collision occurs between 'One' and 'Two'
-    var five = new One(100, 250);
-    var six = new Two(200, 250);
+    const five = new One(100, 250);
+    const six = new Two(200, 250);
 
     five.movement.moveLoop([
         { x: 300, y: 250 },
@@ -50,8 +50,8 @@ runOnLoad(function () {
     });
 
     // example 4 - bullets respect the collision detection of the unit it was fired from
-    var seven = new One(150, 350);
-    var eight = new Two(250, 350);
+    const seven = new One(150, 350);
+    const eight = new Two(250, 350);
 
     seven.addEventListener("collision", function (data) {
         addText("Bullet collision!", eight.x, eight.y);
@@ -60,7 +60,7 @@ runOnLoad(function () {
 });
 
 function addText(text: string, x: number, y: number) {
-    var message = new Game.Text({
+    const message = new Game.Text({
         text: text,
         timeout: 1,
     });

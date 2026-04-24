@@ -53,7 +53,7 @@ export class Bitmap extends Element {
     }
 
     clone() {
-        var element = new Bitmap({
+        const element = new Bitmap({
             x: this.x,
             y: this.y,
             image: this._image,

@@ -4,11 +4,11 @@ import { Snake } from "./snake";
 import { Tail } from "./tail";
 import { Direction, setGameOver, setGrid } from "./state";
 
-var GRID;
-var SNAKE;
-var ALL_FOOD = [];
-var TAIL_SIZE;
-var COLLISION_CALLBACKS = [];
+let GRID;
+let SNAKE;
+const ALL_FOOD = [];
+let TAIL_SIZE;
+const COLLISION_CALLBACKS = [];
 
 runOnLoad(function () {
     Game.init(document.body, 400, 400);
@@ -17,14 +17,14 @@ runOnLoad(function () {
 });
 
 export function start() {
-    var canvas = Game.getCanvas().getHtmlCanvasElement();
-    var squareSize = 10;
-    var columns = 25;
-    var lines = 25;
+    const canvas = Game.getCanvas().getHtmlCanvasElement();
+    const squareSize = 10;
+    const columns = 25;
+    const lines = 25;
 
     // center the grid
-    var refX = (canvas.width - squareSize * columns) / 2;
-    var refY = (canvas.height - squareSize * lines) / 2;
+    const refX = (canvas.width - squareSize * columns) / 2;
+    const refY = (canvas.height - squareSize * lines) / 2;
 
     GRID = new Game.ElementGrid({
         squareSize: squareSize,
@@ -42,7 +42,7 @@ export function start() {
         direction: Direction.right,
     });
 
-    var fontSize = 20;
+    const fontSize = 20;
 
     TAIL_SIZE = new Game.Text({
         x: 0,
@@ -60,11 +60,11 @@ export function start() {
     updateTailSize();
 
     GRID.events.addEventListener("collision", function (data) {
-        var elementA = data.element;
-        var elementB = data.collidedWith;
+        const elementA = data.element;
+        const elementB = data.collidedWith;
 
-        var constructorA = elementA.constructor;
-        var constructorB = elementB.constructor;
+        const constructorA = elementA.constructor;
+        const constructorB = elementB.constructor;
 
         if (constructorA === Tail) {
             // collision between tails
@@ -100,17 +100,17 @@ export function start() {
         SNAKE.tick();
 
         while (COLLISION_CALLBACKS.length > 0) {
-            var callback = COLLISION_CALLBACKS.pop();
+            const callback = COLLISION_CALLBACKS.pop();
 
             callback();
         }
     }, 0.1);
 
     Game.addToGameLoop(function () {
-        var position = GRID.getRandomEmptyPosition(5);
+        const position = GRID.getRandomEmptyPosition(5);
 
         if (position !== null) {
-            var food = new Food({
+            const food = new Food({
                 column: position.column,
                 line: position.line,
             });
@@ -143,7 +143,7 @@ export function clear() {
 
     COLLISION_CALLBACKS.length = 0;
 
-    for (var a = ALL_FOOD.length - 1; a >= 0; a--) {
+    for (let a = ALL_FOOD.length - 1; a >= 0; a--) {
         ALL_FOOD[a].remove();
     }
 
@@ -159,10 +159,10 @@ export function restart() {
 }
 
 export function gameOver() {
-    var canvas = Game.getCanvas().getHtmlCanvasElement();
-    var fontSize = 20;
+    const canvas = Game.getCanvas().getHtmlCanvasElement();
+    const fontSize = 20;
 
-    var message = new Game.Text({
+    const message = new Game.Text({
         x: canvas.width / 2,
         y: canvas.height - fontSize,
         fontSize: fontSize,

@@ -94,12 +94,12 @@ export class Weapon {
         this._fire_count = 0;
         this._is_ready = true;
 
-        var defaultBulletShape = new Rectangle({
+        const defaultBulletShape = new Rectangle({
             width: 10,
             height: 2,
             color: "blue",
         });
-        var defaultBullet = new Bullet({
+        const defaultBullet = new Bullet({
             angleOrTarget: 0,
             children: defaultBulletShape,
             movementSpeed: 100,
@@ -212,7 +212,7 @@ export class Weapon {
             return false;
         }
 
-        var _this = this;
+        const _this = this;
 
         // if it happens to be a target, need to make sure it hasn't been removed yet
         if (typeof angleOrTarget !== "number") {
@@ -221,7 +221,7 @@ export class Weapon {
             }
         }
 
-        var bullet = this._bullet_types[bulletId].clone();
+        const bullet = this._bullet_types[bulletId].clone();
 
         if (typeof angleOrTarget === "number") {
             bullet.setAngle(angleOrTarget);
@@ -237,8 +237,8 @@ export class Weapon {
             bullet.damage = this.damage;
             bullet.element = this.element;
             bullet.addEventListener("collision", function (data) {
-                var bulletObj = data.element;
-                var associatedElement = bulletObj.element;
+                const bulletObj = data.element;
+                const associatedElement = bulletObj.element;
 
                 associatedElement.dispatchEvent("collision", {
                     element: associatedElement,
@@ -249,7 +249,7 @@ export class Weapon {
         }
 
         bullet.addEventListener("remove", function (data) {
-            var index = _this._bullets.indexOf(bullet);
+            const index = _this._bullets.indexOf(bullet);
 
             _this._bullets.splice(index, 1);
         });
@@ -275,16 +275,16 @@ export class Weapon {
         }
 
         // deal with the bullets that may be set to fire at a set interval
-        var intervals = this._bullet_intervals;
+        const intervals = this._bullet_intervals;
 
         if (intervals.length > 0) {
-            for (var a = intervals.length - 1; a >= 0; a--) {
-                var interval = intervals[a];
+            for (let a = intervals.length - 1; a >= 0; a--) {
+                const interval = intervals[a];
 
                 interval.count += deltaTime;
 
                 if (interval.count >= interval.interval) {
-                    var continueFiring = this.firingPattern(
+                    const continueFiring = this.firingPattern(
                         interval.angleOrTarget,
                         interval.bulletId,
                     );
@@ -309,7 +309,7 @@ export class Weapon {
             return;
         }
 
-        var weapon = new Weapon({
+        const weapon = new Weapon({
             element: this.element,
             bulletContainer: this._bullet_container,
             fireInterval: this.fire_interval,
@@ -317,7 +317,7 @@ export class Weapon {
         });
 
         // starts at 1 to ignore the default type
-        for (var a = 1; a < this._bullet_types.length; a++) {
+        for (let a = 1; a < this._bullet_types.length; a++) {
             weapon._bullet_types.push(this._bullet_types[a].clone());
         }
 
@@ -329,7 +329,7 @@ export class Weapon {
             return;
         }
 
-        var a;
+        let a;
 
         // remove the bullet types
         for (a = this._bullet_types.length - 1; a >= 0; a--) {

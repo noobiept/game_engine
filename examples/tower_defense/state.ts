@@ -3,19 +3,19 @@ export interface GridPosition {
     line: number;
 }
 
-export var SQUARE_SIZE = 25;
+export const SQUARE_SIZE = 25;
 
-var GET_NEXT_POSITION: (column: number, line: number) => GridPosition =
+let GET_NEXT_POSITION: (column: number, line: number) => GridPosition =
     function () {
         throw new Error("Tower defense state not initialized.");
     };
-var ADD_MONEY: (amount: number) => void = function () {
+let ADD_MONEY: (amount: number) => void = function () {
     throw new Error("Tower defense state not initialized.");
 };
-var ADD_LIFE: (amount: number) => void = function () {
+let ADD_LIFE: (amount: number) => void = function () {
     throw new Error("Tower defense state not initialized.");
 };
-var GAME_OVER: () => void = function () {
+let GAME_OVER: () => void = function () {
     throw new Error("Tower defense state not initialized.");
 };
 

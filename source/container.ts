@@ -56,12 +56,12 @@ export class Container extends Element {
     addChild(children: Element | Element[]): void;
     addChild(...elements: Element[]): void;
     addChild(...elements: (Element | Element[])[]) {
-        var children = normalizeChildren(elements);
+        const children = normalizeChildren(elements);
 
-        var length = children.length;
+        const length = children.length;
 
-        for (var a = 0; a < length; a++) {
-            var element = children[a];
+        for (let a = 0; a < length; a++) {
+            const element = children[a];
 
             this._children.push(element);
 
@@ -81,13 +81,13 @@ export class Container extends Element {
     removeChild(children: Element | Element[]): void;
     removeChild(...elements: Element[]): void;
     removeChild(...args: (Element | Element[])[]) {
-        var children = normalizeChildren(args);
+        const children = normalizeChildren(args);
 
-        var length = children.length;
+        const length = children.length;
 
-        for (var a = 0; a < length; a++) {
-            var element = children[a];
-            var index = this._children.indexOf(element);
+        for (let a = 0; a < length; a++) {
+            const element = children[a];
+            const index = this._children.indexOf(element);
 
             if (index >= 0) {
                 this._children.splice(index, 1);
@@ -101,7 +101,7 @@ export class Container extends Element {
      * Remove all of this container's children.
      */
     removeAllChildren() {
-        for (var a = this._children.length - 1; a >= 0; a--) {
+        for (let a = this._children.length - 1; a >= 0; a--) {
             this._children[a]._container = null;
             this._children[a].remove();
         }
@@ -136,10 +136,10 @@ export class Container extends Element {
         ctx.scale(this.scaleX, this.scaleY);
         ctx.rotate(this._rotation);
 
-        var length = this._children.length;
-        var child;
+        const length = this._children.length;
+        let child;
 
-        for (var a = 0; a < length; a++) {
+        for (let a = 0; a < length; a++) {
             child = this._children[a];
 
             if (child.visible) {
@@ -163,10 +163,10 @@ export class Container extends Element {
      * Check if the given x/y position intersects with any of this container's children. Returns all the elements it intersects.
      */
     intersect(x: number, y: number) {
-        var all: Element[] = [];
-        var elements: Element[];
+        let all: Element[] = [];
+        let elements: Element[];
 
-        for (var a = this._children.length - 1; a >= 0; a--) {
+        for (let a = this._children.length - 1; a >= 0; a--) {
             elements = this._children[a].intersect(x, y);
 
             if (elements.length > 0) {
@@ -178,9 +178,9 @@ export class Container extends Element {
     }
 
     mouseClickEvents(x: number, y: number, event: MouseEvent) {
-        var found = false;
+        let found = false;
 
-        for (var a = this._children.length - 1; a >= 0; a--) {
+        for (let a = this._children.length - 1; a >= 0; a--) {
             if (this._children[a].mouseClickEvents(x, y, event)) {
                 found = true;
             }
@@ -198,19 +198,19 @@ export class Container extends Element {
             this._half_width = this._half_height = 0;
         }
 
-        var firstChild = this._children[0];
+        const firstChild = this._children[0];
         if (!firstChild) {
             return;
         }
 
-        var leftMost = firstChild.x;
-        var rightMost = firstChild.x + firstChild.width;
-        var topMost = firstChild.y;
-        var bottomMost = firstChild.y + firstChild.height;
-        var length = this._children.length;
+        let leftMost = firstChild.x;
+        let rightMost = firstChild.x + firstChild.width;
+        let topMost = firstChild.y;
+        let bottomMost = firstChild.y + firstChild.height;
+        const length = this._children.length;
 
-        for (var a = 1; a < length; a++) {
-            var element = this._children[a];
+        for (let a = 1; a < length; a++) {
+            const element = this._children[a];
 
             if (element.x < leftMost) {
                 leftMost = element.x;
@@ -235,19 +235,19 @@ export class Container extends Element {
      * Calculates an axis-aligned rectangle from the rotated shape.
      */
     toAxisAligned() {
-        var length = this._children.length;
+        const length = this._children.length;
 
         if (length === 0) {
             return null;
         }
 
-        var minX = this.x;
-        var maxX = minX;
-        var minY = this.y;
-        var maxY = minY;
+        let minX = this.x;
+        let maxX = minX;
+        let minY = this.y;
+        let maxY = minY;
 
-        for (var a = this._children.length - 1; a >= 0; a--) {
-            var rect = this._children[a].toAxisAligned();
+        for (let a = this._children.length - 1; a >= 0; a--) {
+            const rect = this._children[a].toAxisAligned();
 
             if (rect) {
                 if (rect.minX < minX) {
@@ -282,8 +282,8 @@ export class Container extends Element {
      * @param deltaTime Time elapsed since the last update.
      */
     logic(deltaTime: number) {
-        for (var a = this._children.length - 1; a >= 0; a--) {
-            var element = this._children[a];
+        for (let a = this._children.length - 1; a >= 0; a--) {
+            const element = this._children[a];
 
             if (element._has_logic === true) {
                 element.logic(deltaTime);
@@ -309,7 +309,7 @@ export class Container extends Element {
         scaleY *= this.scaleY;
         rotation += this.rotation;
 
-        for (var a = this._children.length - 1; a >= 0; a--) {
+        for (let a = this._children.length - 1; a >= 0; a--) {
             this._children[a].updateVertices(x, y, scaleX, scaleY, rotation);
         }
     }
@@ -318,10 +318,10 @@ export class Container extends Element {
      * Get the element vertices points. Assumes its a rectangle.
      */
     getVertices() {
-        var vertices: NonNullable<ReturnType<Element["getVertices"]>> = [];
+        let vertices: NonNullable<ReturnType<Element["getVertices"]>> = [];
 
-        for (var a = this._children.length - 1; a >= 0; a--) {
-            var childVertices = this._children[a].getVertices();
+        for (let a = this._children.length - 1; a >= 0; a--) {
+            const childVertices = this._children[a].getVertices();
 
             if (childVertices) {
                 vertices = vertices.concat(childVertices);
@@ -337,14 +337,14 @@ export class Container extends Element {
      * @return A new cloned container.
      */
     clone() {
-        var children = [];
-        var length = this._children.length;
+        const children = [];
+        const length = this._children.length;
 
-        for (var a = 0; a < length; a++) {
+        for (let a = 0; a < length; a++) {
             children.push(this._children[a].clone());
         }
 
-        var container = new Container({
+        const container = new Container({
             x: this.x,
             y: this.y,
             children: children,

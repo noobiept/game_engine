@@ -6,13 +6,13 @@ runOnLoad(function () {
     Game.init(document.body, 400, 400);
 
     // collision categories
-    var categories = {
+    const categories = {
         target: 1,
         unit: 2,
     };
 
     // example 1 -- add a star (custom Circle)
-    var star1 = new Star({
+    const star1 = new Star({
         x: 300,
         y: 200,
         fillColor: "red",
@@ -28,7 +28,7 @@ runOnLoad(function () {
     Game.addElement(star1);
 
     // example 2 - it plays well with other classes (Weapon/Bullet in this example)
-    var unit = new Unit({
+    const unit = new Unit({
         x: 100,
         y: 200,
         category: categories.unit,
@@ -45,18 +45,18 @@ runOnLoad(function () {
     Game.addElement(unit);
 
     // the weapon will shoot a star shaped bullet
-    var star2 = new Star({
+    const star2 = new Star({
         fillColor: "white",
         strokeColor: "black",
         outerRadius: 5,
         innerRadius: 2,
         spikes: 8,
     });
-    var starBullet = new Game.Bullet({
+    const starBullet = new Game.Bullet({
         movementSpeed: 100,
         children: star2,
     });
-    var id = unit.weapon.addBulletType(starBullet);
+    const id = unit.weapon.addBulletType(starBullet);
 
     // fire at a given interval
     unit.weapon.forceFire(star1, id, 1);

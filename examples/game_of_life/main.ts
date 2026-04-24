@@ -8,7 +8,7 @@ interface MainState {
     restart: () => void;
 }
 
-var Main: MainState = {
+const Main: MainState = {
     firstPhase: function () {},
     secondPhase: function () {},
     clear: function () {},
@@ -19,11 +19,11 @@ runOnLoad(function () {
     Game.init(document.body, 400, 400);
 
     // set up the game menu
-    var menu = new Game.Html.HtmlContainer({ cssId: "GameMenu" });
+    const menu = new Game.Html.HtmlContainer({ cssId: "GameMenu" });
 
     document.body.appendChild(menu.container);
 
-    var start = new Game.Html.TwoState({
+    const start = new Game.Html.TwoState({
         cssId: "Start",
         cssClass: "button",
         value: "Start",
@@ -42,13 +42,13 @@ runOnLoad(function () {
 });
 
 (function () {
-    var GRID;
+    let GRID;
 
     /*
     Starts the initial phase where you add some squares
  */
     Main.firstPhase = function () {
-        var canvas = Game.getCanvas().getHtmlCanvasElement();
+        const canvas = Game.getCanvas().getHtmlCanvasElement();
 
         GRID = new Game.ElementGrid({
             squareSize: Square.SIZE,
@@ -64,7 +64,7 @@ runOnLoad(function () {
     Second phase of the game, where based on the initial setup done previously, the game is played out by itself
  */
     Main.secondPhase = function () {
-        var canvas = Game.getCanvas().getHtmlCanvasElement();
+        const canvas = Game.getCanvas().getHtmlCanvasElement();
 
         canvas.removeEventListener("click", clickEvent);
 
@@ -72,15 +72,15 @@ runOnLoad(function () {
     };
 
     function clickEvent(event) {
-        var canvas = Game.getCanvas().getHtmlCanvasElement();
-        var canvasRect = canvas.getBoundingClientRect();
+        const canvas = Game.getCanvas().getHtmlCanvasElement();
+        const canvasRect = canvas.getBoundingClientRect();
 
-        var x = event.clientX - canvasRect.left;
-        var y = event.clientY - canvasRect.top;
+        const x = event.clientX - canvasRect.left;
+        const y = event.clientY - canvasRect.top;
 
-        var gridPosition = GRID.toGrid(x, y);
+        const gridPosition = GRID.toGrid(x, y);
 
-        var previous = GRID.get(gridPosition.column, gridPosition.line);
+        const previous = GRID.get(gridPosition.column, gridPosition.line);
 
         if (previous !== null) {
             removeSquare(previous);
@@ -90,7 +90,7 @@ runOnLoad(function () {
     }
 
     function addSquare(column, line) {
-        var element = new Square();
+        const element = new Square();
 
         GRID.add(element, column, line);
     }
@@ -101,13 +101,13 @@ runOnLoad(function () {
     }
 
     function gameLogic() {
-        var changes = [];
+        const changes = [];
 
-        for (var column = 0; column < GRID.columns; column++) {
-            for (var line = 0; line < GRID.lines; line++) {
-                var square = GRID.get(column, line);
-                var neighbors = GRID.getNeighbors(column, line);
-                var howMany = neighbors.length;
+        for (let column = 0; column < GRID.columns; column++) {
+            for (let line = 0; line < GRID.lines; line++) {
+                const square = GRID.get(column, line);
+                const neighbors = GRID.getNeighbors(column, line);
+                const howMany = neighbors.length;
 
                 if (square !== null) {
                     if (howMany <= 1 || howMany >= 4) {
@@ -129,13 +129,13 @@ runOnLoad(function () {
             }
         }
 
-        for (var a = 0; a < changes.length; a++) {
-            var change = changes[a];
+        for (let a = 0; a < changes.length; a++) {
+            const change = changes[a];
 
             if (change.setAlive === true) {
                 addSquare(change.column, change.line);
             } else {
-                var element = GRID.get(change.column, change.line);
+                const element = GRID.get(change.column, change.line);
 
                 if (element) {
                     removeSquare(element);
@@ -145,9 +145,9 @@ runOnLoad(function () {
     }
 
     Main.clear = function () {
-        for (var column = 0; column < GRID.columns; column++) {
-            for (var line = 0; line < GRID.lines; line++) {
-                var element = GRID.get(column, line);
+        for (let column = 0; column < GRID.columns; column++) {
+            for (let line = 0; line < GRID.lines; line++) {
+                const element = GRID.get(column, line);
 
                 if (element) {
                     element.remove();
@@ -158,7 +158,7 @@ runOnLoad(function () {
         GRID.clear();
         GRID = null;
 
-        var canvas = Game.getCanvas().getHtmlCanvasElement();
+        const canvas = Game.getCanvas().getHtmlCanvasElement();
 
         canvas.removeEventListener("click", clickEvent);
 

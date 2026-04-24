@@ -26,7 +26,7 @@ export class Tail extends Game.Rectangle {
     line: number;
 
     constructor(args: TailArgs) {
-        var path = args.path ?? [];
+        const path = args.path ?? [];
 
         super({
             ...args,
@@ -46,7 +46,7 @@ export class Tail extends Game.Rectangle {
 
     tick() {
         if (this.path.length > 0) {
-            var destination = this.path[0];
+            const destination = this.path[0];
 
             if (
                 this.column === destination.column &&
@@ -57,9 +57,9 @@ export class Tail extends Game.Rectangle {
             }
         }
 
-        var direction = this.direction;
-        var prevColumn = this.column;
-        var prevLine = this.line;
+        const direction = this.direction;
+        const prevColumn = this.column;
+        const prevLine = this.line;
 
         if (direction === Direction.left) {
             this.column--;
@@ -71,7 +71,7 @@ export class Tail extends Game.Rectangle {
             this.line++;
         }
 
-        var grid = getGrid();
+        const grid = getGrid();
 
         if (grid.isInGrid(this.column, this.line)) {
             grid.move(prevColumn, prevLine, this.column, this.line);

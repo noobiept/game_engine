@@ -1,14 +1,14 @@
 import { Game } from "../shared";
 
-export var Direction = {
+export const Direction = {
     left: 0,
     right: 1,
     up: 2,
     down: 3,
 } as const;
 
-var GRID: Game.ElementGrid | null = null;
-var GAME_OVER: () => void = function () {};
+let GRID: Game.ElementGrid | null = null;
+let GAME_OVER: () => void = function () {};
 
 export function setGrid(grid: Game.ElementGrid | null) {
     GRID = grid;

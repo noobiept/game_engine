@@ -1,13 +1,13 @@
 import { Game } from "../shared";
 
-export var Input = {
+export const Input = {
     press_leftArrow: 0,
     press_rightArrow: 1,
     release_leftArrow: 2,
     release_rightArrow: 3,
 } as const;
 
-export var UnitState = {
+export const UnitState = {
     idle_left: 0,
     idle_right: 1,
     walk_left: 2,

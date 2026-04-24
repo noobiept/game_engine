@@ -1,7 +1,7 @@
 import { Game, runOnLoad } from "../shared";
 
 runOnLoad(function () {
-    var manifest = [
+    const manifest = [
         { id: "image", path: "images/ship_one_1.png" },
         { id: "sprite", path: "sprites/sprite_example.png" },
         {
@@ -10,7 +10,7 @@ runOnLoad(function () {
         },
     ];
 
-    var preload = new Game.Preload({ saveGlobal: true });
+    const preload = new Game.Preload({ saveGlobal: true });
 
     preload.addEventListener("complete", start);
     preload.loadManifest(manifest, "../assets/");
@@ -19,10 +19,10 @@ runOnLoad(function () {
 function start() {
     Game.init(document.body, 400, 400);
 
-    var startX = 20;
+    const startX = 20;
 
     // Rectangle
-    var rect = new Game.Rectangle({
+    const rect = new Game.Rectangle({
         x: startX,
         y: 30,
         width: 20,
@@ -39,7 +39,7 @@ function start() {
     animate(rect);
 
     // Circle
-    var circle = new Game.Circle({
+    const circle = new Game.Circle({
         x: startX,
         y: 85,
         radius: 15,
@@ -50,7 +50,7 @@ function start() {
     animate(circle);
 
     // Text
-    var text = new Game.Text({
+    const text = new Game.Text({
         x: startX,
         y: 140,
         text: "Hi!",
@@ -64,7 +64,7 @@ function start() {
     animate(text);
 
     // Bitmap
-    var bitmap = new Game.Bitmap({
+    const bitmap = new Game.Bitmap({
         x: startX,
         y: 195,
         image: Game.Preload.get("image"),
@@ -74,7 +74,7 @@ function start() {
     animate(bitmap);
 
     // Sprite
-    var sprite = new Game.Sprite({
+    const sprite = new Game.Sprite({
         x: startX,
         y: 250,
         image: Game.Preload.get("sprite"),
@@ -86,7 +86,7 @@ function start() {
     animate(sprite);
 
     // ScrollingBitmap
-    var scrolling = new Game.ScrollingBitmap({
+    const scrolling = new Game.ScrollingBitmap({
         x: startX,
         y: 305,
         image: Game.Preload.get("scrolling_bitmap"),
@@ -99,12 +99,12 @@ function start() {
     animate(scrolling);
 
     // Container
-    var containerRect = rect.clone();
+    const containerRect = rect.clone();
 
     containerRect.x = 0;
     containerRect.y = 0;
 
-    var container = new Game.Container({
+    const container = new Game.Container({
         x: startX,
         y: 360,
         children: containerRect,
@@ -115,17 +115,17 @@ function start() {
 }
 
 function animate(element) {
-    var duration = 2;
-    var tween = new Game.Tween(element);
+    const duration = 2;
+    const tween = new Game.Tween(element);
 
     tween
         .to({ x: 380 }, duration)
         .call(function () {
-            var clone = element.clone();
+            const clone = element.clone();
 
             Game.addElement(clone);
 
-            var cloneTween = new Game.Tween(clone);
+            const cloneTween = new Game.Tween(clone);
 
             cloneTween.to({ x: 20 }, duration).start();
         })

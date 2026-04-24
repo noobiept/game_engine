@@ -32,7 +32,7 @@ export class SpatialPartition implements CollisionDetectionAlgorithm {
     _partition_height: number;
 
     constructor(args: SpatialPartitionArgs) {
-        var partitions = args.partitions;
+        const partitions = args.partitions;
 
         this._partition_width = args.canvasWidth / partitions;
         this._partition_height = args.canvasHeight / partitions;
@@ -40,10 +40,10 @@ export class SpatialPartition implements CollisionDetectionAlgorithm {
         this._grid_size = partitions;
         this._grid = [];
 
-        for (var column = 0; column < partitions; column++) {
+        for (let column = 0; column < partitions; column++) {
             this._grid[column] = [];
 
-            for (var line = 0; line < partitions; line++) {
+            for (let line = 0; line < partitions; line++) {
                 this._grid[column][line] = null;
             }
         }
@@ -53,9 +53,9 @@ export class SpatialPartition implements CollisionDetectionAlgorithm {
      * Add an element to a partition in the grid, based on its current x/y position.
      */
     add(element: Element) {
-        var column = Math.floor(element.x / this._partition_width);
-        var line = Math.floor(element.y / this._partition_height);
-        var size = this._grid_size;
+        const column = Math.floor(element.x / this._partition_width);
+        const line = Math.floor(element.y / this._partition_height);
+        const size = this._grid_size;
 
         // added outside the canvas, don't add to any partition
         if (column < 0 || column >= size || line < 0 || line >= size) {
@@ -69,7 +69,7 @@ export class SpatialPartition implements CollisionDetectionAlgorithm {
 
         // add to the partition's linked list in the beginning
         else {
-            var oldFirst = this._grid[column][line];
+            const oldFirst = this._grid[column][line];
 
             this._grid[column][line] = element;
 
@@ -87,10 +87,10 @@ export class SpatialPartition implements CollisionDetectionAlgorithm {
     }
 
     update(element: Element) {
-        var nextColumn = Math.floor(element.x / this._partition_width);
-        var nextLine = Math.floor(element.y / this._partition_height);
-        var collisionData = element.collision_data;
-        var size = this._grid_size;
+        const nextColumn = Math.floor(element.x / this._partition_width);
+        const nextLine = Math.floor(element.y / this._partition_height);
+        const collisionData = element.collision_data;
+        const size = this._grid_size;
 
         if (
             nextColumn !== collisionData.column ||
@@ -110,7 +110,7 @@ export class SpatialPartition implements CollisionDetectionAlgorithm {
                 collisionData.previous = null;
                 collisionData.next = null;
             } else {
-                var oldFirst = this._grid[nextColumn][nextLine];
+                const oldFirst = this._grid[nextColumn][nextLine];
 
                 collisionData.column = nextColumn;
                 collisionData.line = nextLine;
@@ -127,15 +127,15 @@ export class SpatialPartition implements CollisionDetectionAlgorithm {
     }
 
     remove(element: Element) {
-        var collisionData = element.collision_data;
+        const collisionData = element.collision_data;
 
         // its outside the canvas
         if (collisionData.column < 0 || collisionData.line < 0) {
             return;
         }
 
-        var previous = collisionData.previous;
-        var next = collisionData.next;
+        const previous = collisionData.previous;
+        const next = collisionData.next;
 
         if (previous) {
             previous.collision_data.next = next;
@@ -149,7 +149,7 @@ export class SpatialPartition implements CollisionDetectionAlgorithm {
         collisionData.next = null;
 
         // check if this is was the first element on the partition
-        var first = this._grid[collisionData.column][collisionData.line];
+        const first = this._grid[collisionData.column][collisionData.line];
 
         if (first === element) {
             this._grid[collisionData.column][collisionData.line] = next;
@@ -157,11 +157,11 @@ export class SpatialPartition implements CollisionDetectionAlgorithm {
     }
 
     checkCollision() {
-        var gridSize = this._grid_size;
+        const gridSize = this._grid_size;
 
-        for (var column = 0; column < gridSize; column++) {
-            for (var line = 0; line < gridSize; line++) {
-                var element = this._grid[column][line];
+        for (let column = 0; column < gridSize; column++) {
+            for (let line = 0; line < gridSize; line++) {
+                let element = this._grid[column][line];
 
                 for (
                     ;
@@ -217,9 +217,9 @@ export class SpatialPartition implements CollisionDetectionAlgorithm {
                 continue;
             }
 
-            var elementCollidesWithOther =
+            const elementCollidesWithOther =
                 (element.collidesWith & other.category) !== 0;
-            var otherCollidesWithElement =
+            const otherCollidesWithElement =
                 (other.collidesWith & element.category) !== 0;
 
             // check if they can collide with each other
@@ -245,7 +245,7 @@ export class SpatialPartition implements CollisionDetectionAlgorithm {
     }
 
     clear() {
-        for (var column = 0; column < this._grid_size; column++) {
+        for (let column = 0; column < this._grid_size; column++) {
             this._grid[column].length = 0;
         }
 

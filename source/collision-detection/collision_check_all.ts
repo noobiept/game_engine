@@ -20,7 +20,7 @@ export class CheckAll implements CollisionDetectionAlgorithm {
     }
 
     remove(element: Element) {
-        var index = this._elements.indexOf(element);
+        const index = this._elements.indexOf(element);
 
         this._elements.splice(index, 1);
     }
@@ -29,26 +29,26 @@ export class CheckAll implements CollisionDetectionAlgorithm {
      * Checks the collision between all the elements provided.
      */
     checkCollision() {
-        var elements = this._elements;
-        var length = elements.length;
+        const elements = this._elements;
+        const length = elements.length;
 
-        for (var a = 0; a < length - 1; a++) {
-            var one = elements[a];
+        for (let a = 0; a < length - 1; a++) {
+            const one = elements[a];
 
             if (one._removed || one.category === 0) {
                 continue;
             }
 
-            for (var b = a + 1; b < length; b++) {
-                var two = elements[b];
+            for (let b = a + 1; b < length; b++) {
+                const two = elements[b];
 
                 if (two._removed || two.category === 0) {
                     continue;
                 }
 
-                var oneCollidesWithTwo =
+                const oneCollidesWithTwo =
                     (one.collidesWith & two.category) !== 0;
-                var twoCollidesWithOne =
+                const twoCollidesWithOne =
                     (two.collidesWith & one.category) !== 0;
 
                 // check if they can collide with each other

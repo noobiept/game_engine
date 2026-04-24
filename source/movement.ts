@@ -85,7 +85,7 @@ export class Movement {
      * Clears any previous path, and forces the element to move to the specified position.
      */
     moveTo(x: number, y: number, callback?: () => any) {
-        var moveCallback: (() => any) | null = callback ?? null;
+        let moveCallback: (() => any) | null = callback ?? null;
 
         if (!Utilities.isFunction(callback)) {
             moveCallback = null;
@@ -107,7 +107,7 @@ export class Movement {
      * Move to the next position in the path.
      */
     moveToNext() {
-        var next;
+        let next;
 
         if (this._movement_state === MovementState.loop) {
             this._loop_path_position++;
@@ -122,16 +122,16 @@ export class Movement {
         }
 
         if (next) {
-            var x = next.x;
-            var y = next.y;
-            var element = this._element;
+            const x = next.x;
+            const y = next.y;
+            const element = this._element;
 
             if (element === null) {
                 return false;
             }
 
-            var elementX = element.x;
-            var elementY = element.y;
+            const elementX = element.x;
+            const elementY = element.y;
 
             this._is_moving = true;
             this._destination_x = x;
@@ -141,7 +141,7 @@ export class Movement {
             this._is_destination_x_diff_positive = x - elementX > 0;
             this._is_destination_y_diff_positive = y - elementY > 0;
 
-            var angleRads = Utilities.calculateAngle(
+            const angleRads = Utilities.calculateAngle(
                 elementX,
                 elementY * -1,
                 x,
@@ -178,7 +178,7 @@ export class Movement {
      * @param callback Optional function to be called when it reaches this position.
      */
     queueMoveTo(x: number, y: number, callback?: () => any) {
-        var moveCallback: (() => any) | null = callback ?? null;
+        let moveCallback: (() => any) | null = callback ?? null;
 
         if (!Utilities.isFunction(callback)) {
             moveCallback = null;
@@ -259,7 +259,7 @@ export class Movement {
      * Keep moving towards the target element's position.
      */
     protected movementFollowLogic(delta: number) {
-        var target = this._follow_target;
+        const target = this._follow_target;
 
         if (!target) {
             return;
@@ -275,16 +275,16 @@ export class Movement {
             return;
         }
 
-        var element = this._element;
+        const element = this._element;
 
         if (element === null) {
             return;
         }
 
-        var elementX = element.x;
-        var elementY = element.y;
+        const elementX = element.x;
+        const elementY = element.y;
 
-        var angle = Utilities.calculateAngle(
+        const angle = Utilities.calculateAngle(
             elementX,
             elementY * -1,
             target.x,
@@ -306,7 +306,7 @@ export class Movement {
      */
     protected movementAngleLogic(delta: number) {
         if (this._is_moving) {
-            var element = this._element;
+            const element = this._element;
 
             if (element === null) {
                 return;
@@ -330,7 +330,7 @@ export class Movement {
      */
     protected movementPathLogic(delta: number) {
         if (this._is_moving) {
-            var element = this._element;
+            const element = this._element;
 
             if (element === null) {
                 return;
@@ -338,8 +338,8 @@ export class Movement {
 
             element.addToPosition(this._move_x * delta, this._move_y * delta);
 
-            var diffX = this._destination_x - element.x;
-            var diffY = this._destination_y - element.y;
+            let diffX = this._destination_x - element.x;
+            let diffY = this._destination_y - element.y;
 
             // going from a positive difference to a negative
             // we switch the signal so that we only need to check >= 0 below
@@ -356,7 +356,7 @@ export class Movement {
                 element.setPosition(this._destination_x, this._destination_y);
 
                 // save the callback, since its going to be changed in the method below
-                var moveCallback = this._move_callback;
+                const moveCallback = this._move_callback;
                 this.moveToNext();
 
                 // this function is called after the '.moveToNext()', to allow it to cancel the movement, if needed

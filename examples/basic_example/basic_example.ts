@@ -3,36 +3,36 @@ import { Game, runOnLoad } from "../shared";
 runOnLoad(function () {
     Game.init(document.body, 300, 300);
 
-    var container = new Game.Container();
+    const container = new Game.Container();
 
-    var rectSize = 20;
-    var circleRadius = 4;
-    var offset = rectSize / 2;
+    const rectSize = 20;
+    const circleRadius = 4;
+    const offset = rectSize / 2;
 
-    var rect = new Game.Rectangle({
+    const rect = new Game.Rectangle({
         width: rectSize,
         height: rectSize,
         color: "gray",
     });
-    var circle1 = new Game.Circle({
+    const circle1 = new Game.Circle({
         x: -offset,
         y: -offset,
         radius: circleRadius,
         color: "black",
     });
-    var circle2 = new Game.Circle({
+    const circle2 = new Game.Circle({
         x: -offset + rectSize,
         y: -offset + rectSize,
         radius: circleRadius,
         color: "black",
     });
-    var circle3 = new Game.Circle({
+    const circle3 = new Game.Circle({
         x: -offset + rectSize,
         y: -offset,
         radius: circleRadius,
         color: "black",
     });
-    var circle4 = new Game.Circle({
+    const circle4 = new Game.Circle({
         x: -offset,
         y: -offset + rectSize,
         radius: circleRadius,
@@ -55,24 +55,24 @@ runOnLoad(function () {
 
     Game.addElement(container);
 
-    var tween = new Game.Tween(container);
+    const tween = new Game.Tween(container);
 
     tween.to({ opacity: 0.2 }, 2).to({ opacity: 1 }, 2);
     tween.start();
 
-    var unitRect = new Game.Rectangle({
+    const unitRect = new Game.Rectangle({
         width: 10,
         height: 10,
         color: "blue",
     });
-    var unitRect2 = new Game.Rectangle({
+    const unitRect2 = new Game.Rectangle({
         x: 5,
         y: 5,
         width: 10,
         height: 10,
         color: "black",
     });
-    var unit = new Unit({
+    const unit = new Unit({
         x: 5,
         y: 50,
         movementSpeed: 100,
@@ -87,11 +87,11 @@ runOnLoad(function () {
 
     Game.addElement(unit);
 
-    var unit2 = new Unit({
+    const unit2 = new Unit({
         movementSpeed: 50,
     });
 
-    var unit2circle = new Game.Circle({
+    const unit2circle = new Game.Circle({
         radius: 10,
         color: "green",
     });

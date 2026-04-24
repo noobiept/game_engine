@@ -41,7 +41,7 @@ export class Preload extends EventDispatcher {
     constructor(args?: PreloadArgs) {
         super(args);
 
-        var saveGlobal = false;
+        let saveGlobal = false;
 
         if (typeof args !== "undefined") {
             if (Utilities.isBoolean(args.saveGlobal)) {
@@ -134,13 +134,13 @@ export class Preload extends EventDispatcher {
      * @param event The event that was triggered.
      */
     protected _on_progress(event: ProgressEvent) {
-        var fileProgress = 0;
+        let fileProgress = 0;
 
         if (event.lengthComputable) {
             fileProgress = event.loaded / event.total;
         }
 
-        var progress = Math.round(
+        const progress = Math.round(
             ((fileProgress + this._loaded_items) / this._total_items) * 100,
         );
 
@@ -155,7 +155,7 @@ export class Preload extends EventDispatcher {
      * @param typeId Type of the file to load. If not provided then it will try to determine the type from the file extension.
      */
     load(id: string, path: string, typeId?: Preload.TYPES) {
-        var type: Preload.FileType | null;
+        let type: Preload.FileType | null;
 
         if (typeof typeId === "undefined") {
             type = Preload.getType(path);
@@ -167,11 +167,11 @@ export class Preload extends EventDispatcher {
             throw new Error("Invalid file type.");
         }
 
-        var _this = this;
+        const _this = this;
 
         this._total_items++;
 
-        var request = new XMLHttpRequest();
+        const request = new XMLHttpRequest();
 
         request.open("get", path, true);
         request.responseType = Preload.RESPONSE_TYPE[type];
@@ -195,11 +195,11 @@ export class Preload extends EventDispatcher {
                     return;
                 }
 
-                var response = this.response;
+                let response = this.response;
 
                 if (type === "image") {
-                    var image = new Image();
-                    var imageUrl = window.URL.createObjectURL(response);
+                    const image = new Image();
+                    const imageUrl = window.URL.createObjectURL(response);
 
                     image.onerror = function () {
                         window.URL.revokeObjectURL(imageUrl);
@@ -223,7 +223,7 @@ export class Preload extends EventDispatcher {
 
                     _this._loaded(id, response);
                 } else if (type === "audio") {
-                    var isAvailable = Sound.decodeAudio(
+                    const isAvailable = Sound.decodeAudio(
                         response,
                         function (audioBuffer: AudioBuffer) {
                             _this._loaded(id, audioBuffer);
@@ -260,14 +260,14 @@ export class Preload extends EventDispatcher {
      * @param basePath Base path for all the files in the manifest.
      */
     loadManifest(manifest: { id: string; path: string }[], basePath?: string) {
-        var length = manifest.length;
+        const length = manifest.length;
 
         if (typeof basePath === "undefined") {
             basePath = "";
         }
 
-        for (var a = 0; a < length; a++) {
-            var file = manifest[a];
+        for (let a = 0; a < length; a++) {
+            const file = manifest[a];
 
             this.load(file.id, basePath + file.path);
         }
@@ -331,10 +331,10 @@ export namespace Preload {
      * @return The file type.
      */
     export function getType(file: string): FileType | null {
-        var extension = file.split(".").pop();
+        const extension = file.split(".").pop();
 
-        for (var type in EXTENSIONS) {
-            var fileType = type as FileType;
+        for (const type in EXTENSIONS) {
+            const fileType = type as FileType;
 
             if (Object.prototype.hasOwnProperty.call(EXTENSIONS, type)) {
                 if (

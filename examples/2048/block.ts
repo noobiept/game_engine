@@ -27,12 +27,12 @@ export class Block extends Game.Container {
     constructor(args: BlockArgs) {
         super(args);
 
-        var background = new Game.Rectangle({
+        const background = new Game.Rectangle({
             width: Block.size,
             height: Block.size,
             color: "white",
         });
-        var value = new Game.Text({
+        const value = new Game.Text({
             fontSize: Block.fontSize,
             textAlign: "center",
             textBaseline: "middle",
@@ -50,7 +50,7 @@ export class Block extends Game.Container {
     setValue(value: number) {
         this.value = value;
 
-        var valueStr = value.toString();
+        const valueStr = value.toString();
         this.value_element.text = valueStr;
         this.background_element.color = Block.colors[value];
     }

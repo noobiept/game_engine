@@ -3,12 +3,12 @@ import { Game, runOnLoad } from "../shared";
 runOnLoad(function () {
     Game.init(document.body, 400, 400);
 
-    var assetsPath = "../assets/";
+    const assetsPath = "../assets/";
 
     // save to global object (to get the data, use the Game.Preload.get())
     // advantage in not needing to keep track of the preload object
     // disadvantage in that you may overwrite stuff (if you try to add with the same id)
-    var preload = new Game.Preload({ saveGlobal: true });
+    const preload = new Game.Preload({ saveGlobal: true });
 
     preload.addEventListener("complete", complete);
 
@@ -22,9 +22,9 @@ runOnLoad(function () {
     );
 
     // save in object (to get the data, use preload2.get())
-    var preload2 = new Game.Preload();
+    const preload2 = new Game.Preload();
 
-    var manifest = [
+    const manifest = [
         { id: "one", path: "ship_one_1.png" },
         { id: "two", path: "ship_two_1.png" },
         { id: "three", path: "ship_three_1.png" },
@@ -37,21 +37,21 @@ runOnLoad(function () {
         console.log(progress);
     });
     preload2.addEventListener("complete", function () {
-        var one = preload2.get("one");
-        var two = preload2.get("two");
-        var three = preload2.get("three");
+        const one = preload2.get("one");
+        const two = preload2.get("two");
+        const three = preload2.get("three");
 
-        var oneBitmap = new Game.Bitmap({
+        const oneBitmap = new Game.Bitmap({
             x: 50,
             y: 350,
             image: one,
         });
-        var twoBitmap = new Game.Bitmap({
+        const twoBitmap = new Game.Bitmap({
             x: 200,
             y: 350,
             image: two,
         });
-        var threeBitmap = new Game.Bitmap({
+        const threeBitmap = new Game.Bitmap({
             x: 350,
             y: 350,
             image: three,
@@ -66,7 +66,7 @@ runOnLoad(function () {
 
 function complete() {
     // example 1 -- load an image
-    var bitmap = new Game.Bitmap({
+    const bitmap = new Game.Bitmap({
         x: 200,
         y: 200,
         image: Game.Preload.get("mystery_ship"),
@@ -83,9 +83,9 @@ function complete() {
     Game.Sound.play(Game.Preload.get("scumm_bar"));
 
     // example 3 -- load json data
-    var obj = Game.Preload.get("json_test");
+    const obj = Game.Preload.get("json_test");
 
-    var rectangle = new Game.Rectangle({
+    const rectangle = new Game.Rectangle({
         x: obj.x,
         y: obj.y,
         width: obj.width,
@@ -96,7 +96,7 @@ function complete() {
     Game.addElement(rectangle);
 
     // example 4 -- load and display text
-    var textElement = new Game.Text({
+    const textElement = new Game.Text({
         x: 200,
         y: 10,
         text: Game.Preload.get("text_test"),

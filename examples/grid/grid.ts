@@ -3,7 +3,7 @@ import { Game, runOnLoad } from "../shared";
 runOnLoad(function () {
     Game.init(document.body, 400, 400);
 
-    var grid = new Game.ElementGrid({
+    const grid = new Game.ElementGrid({
         squareSize: 10,
         columns: 20,
         lines: 20,
@@ -12,25 +12,25 @@ runOnLoad(function () {
         background: { fill: false, color: "gray" },
     });
 
-    var canvas = Game.getCanvas().getHtmlCanvasElement();
-    var canvasRect = canvas.getBoundingClientRect();
+    const canvas = Game.getCanvas().getHtmlCanvasElement();
+    const canvasRect = canvas.getBoundingClientRect();
 
     canvas.addEventListener("click", function (event) {
-        var x = event.clientX - canvasRect.left;
-        var y = event.clientY - canvasRect.top;
+        const x = event.clientX - canvasRect.left;
+        const y = event.clientY - canvasRect.top;
 
-        var gridPosition = grid.toGrid(x, y);
-        var normalized = grid.normalizePosition(
+        const gridPosition = grid.toGrid(x, y);
+        const normalized = grid.normalizePosition(
             gridPosition.column,
             gridPosition.line,
         );
 
-        var rectangle = new Game.Rectangle({
+        const rectangle = new Game.Rectangle({
             width: 10,
             height: 10,
             color: "blue",
         });
-        var previous = grid.add(rectangle, normalized.column, normalized.line);
+        const previous = grid.add(rectangle, normalized.column, normalized.line);
 
         if (previous !== null) {
             Game.removeElement(previous);

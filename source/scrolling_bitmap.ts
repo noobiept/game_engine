@@ -158,8 +158,8 @@ export class ScrollingBitmap extends Bitmap {
         ctx.scale(this.scaleX, this.scaleY);
         ctx.rotate(this._rotation);
 
-        var firstWidth = this._width - this._ref_position;
-        var secondWidth = this._ref_position;
+        const firstWidth = this._width - this._ref_position;
+        const secondWidth = this._ref_position;
 
         if (firstWidth > 0) {
             ctx.drawImage(
@@ -203,8 +203,8 @@ export class ScrollingBitmap extends Bitmap {
         ctx.scale(this.scaleX, this.scaleY);
         ctx.rotate(this._rotation);
 
-        var firstHeight = this._height - this._ref_position;
-        var secondHeight = this._ref_position;
+        const firstHeight = this._height - this._ref_position;
+        const secondHeight = this._ref_position;
 
         if (firstHeight > 0) {
             ctx.drawImage(
@@ -253,7 +253,7 @@ export class ScrollingBitmap extends Bitmap {
      * Get a copy of this object.
      */
     clone() {
-        var element = new ScrollingBitmap({
+        const element = new ScrollingBitmap({
             x: this.x,
             y: this.y,
             image: this._image,

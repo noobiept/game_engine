@@ -1,22 +1,22 @@
 import { Game, runOnLoad } from "../shared";
 
 runOnLoad(function () {
-    var width = 400;
-    var height = 400;
+    const width = 400;
+    const height = 400;
 
     Game.init(document.body, width, height);
 
-    var categories = {
+    const categories = {
         green: 1,
         red: 2,
     };
 
     // add a unit
-    var size = 10;
-    var centerX = width / 2 - size / 2;
-    var centerY = height / 2 - size / 2;
+    const size = 10;
+    const centerX = width / 2 - size / 2;
+    const centerY = height / 2 - size / 2;
 
-    var unit = new Unit({
+    const unit = new Unit({
         x: centerX,
         y: centerY,
         width: size,
@@ -29,7 +29,7 @@ runOnLoad(function () {
     Game.addElement(unit);
 
     // add a target
-    var target = new Unit({
+    const target = new Unit({
         x: 5,
         y: 5,
         width: 10,
@@ -52,17 +52,17 @@ runOnLoad(function () {
 
     // specify a target
     // fire a different type of bullet
-    var alternateShape = new Game.Rectangle({
+    const alternateShape = new Game.Rectangle({
         width: 10,
         height: 5,
         color: "purple",
     });
-    var bullet = new Game.Bullet({
+    const bullet = new Game.Bullet({
         angleOrTarget: 0,
         children: alternateShape,
         movementSpeed: 100,
     });
-    var id = unit.weapon.addBulletType(bullet);
+    const id = unit.weapon.addBulletType(bullet);
 
     unit.weapon.forceFire(target, id);
 });

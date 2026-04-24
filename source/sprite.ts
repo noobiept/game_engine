@@ -75,8 +75,8 @@ export class Sprite extends Bitmap {
      * @param frame The position of the frame.
      */
     setFrame(frame: number) {
-        var line = Math.floor(frame / this._frames_per_line);
-        var column = frame - line * this._frames_per_line;
+        const line = Math.floor(frame / this._frames_per_line);
+        const column = frame - line * this._frames_per_line;
 
         this._source_x = column * this._width;
         this._source_y = line * this._height;
@@ -90,7 +90,7 @@ export class Sprite extends Bitmap {
      * @return If it was successful.
      */
     play(animationId: string, reset = false) {
-        var next = this._animations[animationId];
+        const next = this._animations[animationId];
 
         // doesnt't exist an animation with the given id
         if (!next) {
@@ -167,7 +167,7 @@ export class Sprite extends Bitmap {
      * @return A cloned sprite object.
      */
     clone() {
-        var element = new Sprite({
+        const element = new Sprite({
             x: this.x,
             y: this.y,
             image: this.image,

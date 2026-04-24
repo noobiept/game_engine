@@ -6,7 +6,7 @@ runOnLoad(function () {
     Game.activateMouseMoveEvents(100);
 
     // rectangle 1
-    var rectangle1 = new Game.Rectangle({
+    const rectangle1 = new Game.Rectangle({
         x: 175,
         y: 200,
         width: 50,
@@ -19,7 +19,7 @@ runOnLoad(function () {
     rectangle1.addEventListener("mouseout", mouseOut);
 
     // rectangle 2
-    var rectangle2 = new Game.Rectangle({
+    const rectangle2 = new Game.Rectangle({
         x: 225,
         y: 200,
         width: 50,
@@ -33,13 +33,13 @@ runOnLoad(function () {
 });
 
 function mouseOver(data) {
-    var element = data.element;
+    const element = data.element;
 
     console.log("Mouse over:", element.color);
 }
 
 function mouseOut(data) {
-    var element = data.element;
+    const element = data.element;
 
     console.log("Mouse out:", element.color);
 }

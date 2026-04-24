@@ -1,7 +1,7 @@
 import { Game, runOnLoad } from "../shared";
 
 runOnLoad(function () {
-    var preload = new Game.Preload({ saveGlobal: true });
+    const preload = new Game.Preload({ saveGlobal: true });
 
     preload.addEventListener("complete", start);
     preload.load(
@@ -11,13 +11,13 @@ runOnLoad(function () {
 });
 
 function start() {
-    var width = 272;
-    var height = 160;
+    const width = 272;
+    const height = 160;
 
     Game.init(document.body, width, height);
 
-    var canvas1 = Game.getCanvas();
-    var canvas2 = new Game.Canvas({
+    const canvas1 = Game.getCanvas();
+    const canvas2 = new Game.Canvas({
         width: width,
         height: height,
     });
@@ -30,7 +30,7 @@ function start() {
     Game.addCanvas(canvas2, 0);
 
     // add the background to canvas2
-    var background = new Game.Bitmap({
+    const background = new Game.Bitmap({
         x: width / 2,
         y: height / 2,
         image: Game.Preload.get("background"),
@@ -39,7 +39,7 @@ function start() {
     canvas2.draw();
 
     // add a rectangle to canvas1. This one will get updated on the game loop (since we didn't change the .update_on_loop property)
-    var rect = new Game.Rectangle({
+    const rect = new Game.Rectangle({
         x: 10,
         y: height - 20,
         width: 20,
@@ -49,7 +49,7 @@ function start() {
     canvas1.addChild(rect);
 
     // move it across the canvas
-    var move = new Game.Tween(rect);
+    const move = new Game.Tween(rect);
 
     move.to(
         {

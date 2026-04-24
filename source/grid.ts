@@ -30,10 +30,10 @@ export class Grid {
     constructor(args: GridArgs) {
         this._grid = [];
 
-        for (var column = 0; column < args.columns; column++) {
+        for (let column = 0; column < args.columns; column++) {
             this._grid[column] = [];
 
-            for (var line = 0; line < args.lines; line++) {
+            for (let line = 0; line < args.lines; line++) {
                 this._grid[column][line] = null;
             }
         }
@@ -56,7 +56,7 @@ export class Grid {
             throw new Error("Invalid column/line position.");
         }
 
-        var previous = this._grid[column][line];
+        const previous = this._grid[column][line];
 
         this._grid[column][line] = value;
 
@@ -86,8 +86,8 @@ export class Grid {
             throw new Error("Invalid column/line position.");
         }
 
-        var value = this._grid[sourceColumn][sourceLine];
-        var previous = this._grid[destinationColumn][destinationLine];
+        const value = this._grid[sourceColumn][sourceLine];
+        const previous = this._grid[destinationColumn][destinationLine];
 
         this._grid[sourceColumn][sourceLine] = null;
         this._grid[destinationColumn][destinationLine] = value;
@@ -108,7 +108,7 @@ export class Grid {
             throw new Error("Invalid column/line position.");
         }
 
-        var value = this._grid[column][line];
+        const value = this._grid[column][line];
 
         this._grid[column][line] = null;
 
@@ -212,10 +212,10 @@ export class Grid {
      * @return A random empty column/line position, or `null` if there aren't any empty positions.
      */
     getRandomEmptyPosition() {
-        var empty = this.getEmptyPositions();
+        const empty = this.getEmptyPositions();
 
         if (empty.length > 0) {
-            var index = Utilities.getRandomInt(0, empty.length - 1);
+            const index = Utilities.getRandomInt(0, empty.length - 1);
 
             return empty[index];
         }
@@ -227,10 +227,10 @@ export class Grid {
      * @return An array with all the empty column/line positions of this grid (the array will be empty if there aren't any empty positions).
      */
     getEmptyPositions() {
-        var emptyPositions = [];
+        const emptyPositions = [];
 
-        for (var column = 0; column < this.columns; column++) {
-            for (var line = 0; line < this.lines; line++) {
+        for (let column = 0; column < this.columns; column++) {
+            for (let line = 0; line < this.lines; line++) {
                 if (this._grid[column][line] === null) {
                     emptyPositions.push({
                         column: column,
@@ -261,13 +261,13 @@ export class Grid {
             range = 1;
         }
 
-        var neighbors = [];
-        var start = this.normalizePosition(refColumn - range, refLine - range);
-        var end = this.normalizePosition(refColumn + range, refLine + range);
-        var value;
+        const neighbors = [];
+        const start = this.normalizePosition(refColumn - range, refLine - range);
+        const end = this.normalizePosition(refColumn + range, refLine + range);
+        let value;
 
-        for (var column = start.column; column <= end.column; column++) {
-            for (var line = start.line; line <= end.line; line++) {
+        for (let column = start.column; column <= end.column; column++) {
+            for (let line = start.line; line <= end.line; line++) {
                 // don't include the reference position
                 if (!(column === refColumn && line === refLine)) {
                     value = this.get(column, line);

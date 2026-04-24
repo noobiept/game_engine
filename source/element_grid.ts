@@ -54,8 +54,8 @@ export class ElementGrid extends Grid {
         }
 
         if (typeof args.background !== "undefined") {
-            var width = args.squareSize * args.columns;
-            var height = args.squareSize * args.lines;
+            const width = args.squareSize * args.columns;
+            const height = args.squareSize * args.lines;
 
             this._background = new Rectangle({
                 x: args.refX + width / 2 - args.squareSize / 2,
@@ -119,8 +119,8 @@ export class ElementGrid extends Grid {
      * @return The previous element that was in that position (or `null` if there wasn't one).
      */
     add(element: Element, column: number, line: number) {
-        var previous = super.add(element, column, line);
-        var canvasPosition = this.toCanvas(column, line);
+        const previous = super.add(element, column, line);
+        const canvasPosition = this.toCanvas(column, line);
 
         element.setPosition(canvasPosition.x, canvasPosition.y);
         element.grid_data = {
@@ -156,7 +156,7 @@ export class ElementGrid extends Grid {
         destLine: number,
         duration?: number,
     ) {
-        var element = this.get(sourceColumn, sourceLine);
+        const element = this.get(sourceColumn, sourceLine);
 
         if (
             element === null ||
@@ -165,14 +165,14 @@ export class ElementGrid extends Grid {
             return null;
         }
 
-        var previous = super.move(
+        const previous = super.move(
             sourceColumn,
             sourceLine,
             destColumn,
             destLine,
         );
 
-        var canvasPosition = this.toCanvas(destColumn, destLine);
+        const canvasPosition = this.toCanvas(destColumn, destLine);
 
         element.grid_data.column = destColumn;
         element.grid_data.line = destLine;
@@ -184,7 +184,7 @@ export class ElementGrid extends Grid {
 
         // use a tween for the animation
         else {
-            var tween = new Tween(element);
+            const tween = new Tween(element);
 
             tween.to(
                 {
@@ -218,7 +218,7 @@ export class ElementGrid extends Grid {
      * @return The element that was removed.
      */
     remove(column: number, line: number) {
-        var element = super.remove(column, line);
+        const element = super.remove(column, line);
 
         if (element !== null) {
             element.grid_data.column = -1;

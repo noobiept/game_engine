@@ -18,10 +18,10 @@ import * as Utilities from "@drk4/utilities";
  * Examples -- `minesweeper`
  */
 
-var SCORES: Record<string, number[]> = {};
-var MAX_SCORES_SAVED: number;
-var STORAGE_NAME: string;
-var SORT_F: (a: number, b: number) => number;
+let SCORES: Record<string, number[]> = {};
+let MAX_SCORES_SAVED: number;
+let STORAGE_NAME: string;
+let SORT_F: (a: number, b: number) => number;
 
 /**
  * Call this before adding scores.
@@ -112,7 +112,7 @@ function save() {
  * Load the scores from the `localStorage`. Its already done when you call `Game.HighScore.init()`.
  */
 function load() {
-    var scores = Utilities.getObject(STORAGE_NAME);
+    const scores = Utilities.getObject(STORAGE_NAME);
 
     if (scores) {
         SCORES = scores as Record<string, number[]>;

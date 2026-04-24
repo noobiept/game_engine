@@ -44,7 +44,7 @@ export class Message extends Html.HtmlContainer {
         });
 
         this.setBody(args.body);
-        this.container.classList.add("Game-Message-container");
+        this.container?.classList.add("Game-Message-container");
         this.addChild(this.body);
 
         this.timeout = null;
@@ -52,7 +52,7 @@ export class Message extends Html.HtmlContainer {
         this.buttons = null;
 
         if (typeof args.buttons !== "undefined") {
-            var buttons;
+            let buttons;
 
             if (args.buttons instanceof Array) {
                 buttons = args.buttons;
@@ -60,13 +60,13 @@ export class Message extends Html.HtmlContainer {
                 buttons = [args.buttons];
             }
 
-            var length = buttons.length;
+            const length = buttons.length;
 
             this.buttons = new Html.HtmlContainer({
                 cssClass: "Game-Message-Buttons",
             });
 
-            for (var a = 0; a < length; a++) {
+            for (let a = 0; a < length; a++) {
                 this.buttons.addChild(buttons[a]);
             }
 
@@ -75,7 +75,7 @@ export class Message extends Html.HtmlContainer {
 
         if (Utilities.isNumber(args.timeout)) {
             this.timeout = new Utilities.Timeout();
-            var _this = this;
+            const _this = this;
 
             this.timeout.start(function () {
                 _this.clear();
@@ -89,7 +89,9 @@ export class Message extends Html.HtmlContainer {
             args.container.appendChild(this.background);
         }
 
-        args.container.appendChild(this.container);
+        if (this.container) {
+            args.container.appendChild(this.container);
+        }
     }
 
     /**
@@ -102,7 +104,7 @@ export class Message extends Html.HtmlContainer {
         }
 
         if (this.background) {
-            this.container.parentNode?.removeChild(this.background);
+            this.container?.parentNode?.removeChild(this.background);
             this.background = null;
         }
 
@@ -121,23 +123,23 @@ export class Message extends Html.HtmlContainer {
             body = [body];
         }
 
-        var length = body.length;
+        const length = body.length;
 
-        for (var a = 0; a < length; a++) {
-            var element = body[a];
+        for (let a = 0; a < length; a++) {
+            const element = body[a];
 
             if (element instanceof Html.HtmlElement) {
                 this.body.addChild(element);
             } else if (element instanceof HTMLElement) {
-                this.body.container.appendChild(element);
+                this.body.container?.appendChild(element);
             }
 
             // a string
             else {
-                var bodyElement = document.createElement("div");
+                const bodyElement = document.createElement("div");
                 bodyElement.innerHTML = element;
 
-                this.body.container.appendChild(bodyElement);
+                this.body.container?.appendChild(bodyElement);
             }
         }
     }

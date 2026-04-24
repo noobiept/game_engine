@@ -1,6 +1,6 @@
 import { Game, runOnLoad } from "../shared";
 
-var CATEGORIES = {
+const CATEGORIES = {
     player: 1,
     enemy: 2,
 };
@@ -10,7 +10,7 @@ runOnLoad(function () {
     Game.activateMouseMoveEvents(50);
 
     // add the player
-    var player = new Player(200, 200);
+    const player = new Player(200, 200);
 
     player.addEventListener("collision", function (data) {
         console.log("Collision!");
@@ -19,9 +19,9 @@ runOnLoad(function () {
 
     // its movement is controlled with the mouse
     Game.addToGameLoop(function () {
-        var position = Game.getMousePosition();
+        const position = Game.getMousePosition();
 
-        var rect = Game.getCanvas()
+        const rect = Game.getCanvas()
             .getHtmlCanvasElement()
             .getBoundingClientRect();
 
@@ -30,24 +30,24 @@ runOnLoad(function () {
     }, 0.05);
 
     // container for the enemy units
-    var enemiesContainer = new Game.Container({
+    const enemiesContainer = new Game.Container({
         x: 100,
         y: 100,
     });
     enemiesContainer.scaleX = 2;
     Game.addElement(enemiesContainer);
 
-    var enemy1 = new Enemy(110, 130);
+    const enemy1 = new Enemy(110, 130);
     enemy1.scaleX = 0.7;
     Game.addElement(enemy1);
 
-    var enemy2 = new Enemy(100, 100);
+    const enemy2 = new Enemy(100, 100);
     enemy2.rotation = -Math.PI / 4;
     enemy2.scaleY = 2;
     enemiesContainer.addChild(enemy2);
 
     window.addEventListener("keydown", function (event) {
-        var step = 0.1;
+        const step = 0.1;
 
         switch (event.key) {
             case "ArrowLeft":

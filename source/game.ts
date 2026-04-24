@@ -34,24 +34,24 @@ interface Callback {
     removed: boolean;
 }
 
-var ALL_CANVAS: Canvas[] = [];
-var CANVAS_CONTAINER: HTMLDivElement;
+const ALL_CANVAS: Canvas[] = [];
+let CANVAS_CONTAINER: HTMLDivElement;
 
-var FRAME_INTERVAL: number; // time between each frame in seconds
-var PREVIOUS_TIME: number;
-var ANIMATION_ID: number;
-var STOP_LOOP = false;
+let FRAME_INTERVAL: number; // time between each frame in seconds
+let PREVIOUS_TIME: number;
+let ANIMATION_ID: number;
+let STOP_LOOP = false;
 
 // mouse move variables
-var MOUSE_MOVE_ID: number;
-var ELEMENTS_UNDER_MOUSE: Element[] = [];
-var MOUSE_X: number = -1;
-var MOUSE_Y: number = -1;
-var MOUSE_MOVED = false; // if the mouse moved since the last time we checked
+let MOUSE_MOVE_ID: number;
+const ELEMENTS_UNDER_MOUSE: Element[] = [];
+let MOUSE_X: number = -1;
+let MOUSE_Y: number = -1;
+let MOUSE_MOVED = false; // if the mouse moved since the last time we checked
 
-var CALLBACKS: Callback[] = [];
+const CALLBACKS: Callback[] = [];
 
-var TO_BE_REMOVED: Element[] = [];
+const TO_BE_REMOVED: Element[] = [];
 
 /**
  * Initialize the canvas/game loop/etc.
@@ -72,7 +72,7 @@ export function init(
 
     htmlContainer.appendChild(CANVAS_CONTAINER);
 
-    var canvas = new Canvas({
+    const canvas = new Canvas({
         width: canvasWidth,
         height: canvasHeight,
     });
@@ -182,7 +182,7 @@ export function addCanvas(canvas: Canvas, position?: number) {
         position = ALL_CANVAS.length;
     }
 
-    var previous = ALL_CANVAS[position];
+    const previous = ALL_CANVAS[position];
 
     ALL_CANVAS.splice(position, 0, canvas);
 
@@ -216,10 +216,10 @@ export function addElement(element: Element | Element[], id?: number) {
  * @return If the element was removed.
  */
 export function removeElement(element: Element | Element[]) {
-    for (var a = ALL_CANVAS.length - 1; a >= 0; a--) {
-        var canvas = ALL_CANVAS[a];
+    for (let a = ALL_CANVAS.length - 1; a >= 0; a--) {
+        const canvas = ALL_CANVAS[a];
 
-        var removed = canvas.removeChild(element);
+        const removed = canvas.removeChild(element);
 
         if (removed) {
             return true;
@@ -279,8 +279,8 @@ export function addToGameLoop(
  * @return If the function was removed or wasn't found.
  */
 export function removeFromGameLoop(callback: () => any) {
-    for (var a = CALLBACKS.length - 1; a >= 0; a--) {
-        var callInfo = CALLBACKS[a];
+    for (let a = CALLBACKS.length - 1; a >= 0; a--) {
+        const callInfo = CALLBACKS[a];
 
         if (callInfo.callback === callback) {
             callInfo.removed = true;
@@ -304,8 +304,8 @@ export function removeAllCallbacks() {
  * @param event The mouse event fired.
  */
 function clickEvents(event: MouseEvent) {
-    for (var a = ALL_CANVAS.length - 1; a >= 0; a--) {
-        var canvas = ALL_CANVAS[a];
+    for (let a = ALL_CANVAS.length - 1; a >= 0; a--) {
+        const canvas = ALL_CANVAS[a];
 
         if (canvas.events_enabled) {
             canvas.mouseClickEvents(event);
@@ -318,18 +318,18 @@ function clickEvents(event: MouseEvent) {
  */
 function mouseMoveEvents() {
     // find all the elements that are under the current x/y position of the mouse
-    var all: Element[] = [];
-    var elements: Element[];
-    var a, element;
+    let all: Element[] = [];
+    let elements: Element[];
+    let a, element;
 
     for (a = ALL_CANVAS.length - 1; a >= 0; a--) {
-        var canvas = ALL_CANVAS[a];
+        const canvas = ALL_CANVAS[a];
 
         if (canvas.events_enabled) {
-            var rect = canvas._canvas.getBoundingClientRect();
+            const rect = canvas._canvas.getBoundingClientRect();
 
-            var x = MOUSE_X - rect.left;
-            var y = MOUSE_Y - rect.top;
+            const x = MOUSE_X - rect.left;
+            const y = MOUSE_Y - rect.top;
 
             elements = canvas.getChildrenIn(x, y);
 
@@ -391,10 +391,10 @@ function loop() {
     }
 
     // find the delta time
-    var now = Date.now();
+    const now = Date.now();
 
     // time since the last update (in milliseconds)
-    var delta = now - PREVIOUS_TIME;
+    let delta = now - PREVIOUS_TIME;
 
     if (delta < FRAME_INTERVAL) {
         return;
@@ -412,11 +412,11 @@ function loop() {
     Tween.update(delta);
 
     // get all the canvas that are to be updated on the game loop
-    var allCanvas: Canvas[] = [];
-    var a;
+    const allCanvas: Canvas[] = [];
+    let a;
 
     for (a = ALL_CANVAS.length - 1; a >= 0; a--) {
-        var canvas = ALL_CANVAS[a];
+        const canvas = ALL_CANVAS[a];
 
         if (canvas.update_on_loop) {
             allCanvas.push(canvas);
@@ -424,7 +424,7 @@ function loop() {
     }
 
     // update the global vertices position of all the elements
-    var lastPosition = allCanvas.length - 1;
+    const lastPosition = allCanvas.length - 1;
 
     for (a = lastPosition; a >= 0; a--) {
         allCanvas[a].updateVertices();
@@ -456,8 +456,8 @@ function loop() {
  * @param deltaTime Time elapsed since the last update.
  */
 function callbacks(deltaTime: number) {
-    for (var a = CALLBACKS.length - 1; a >= 0; a--) {
-        var call = CALLBACKS[a];
+    for (let a = CALLBACKS.length - 1; a >= 0; a--) {
+        const call = CALLBACKS[a];
 
         if (call.removed) {
             CALLBACKS.splice(a, 1);

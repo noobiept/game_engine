@@ -132,7 +132,7 @@ export class Tween {
      * Remove the tween.
      */
     remove() {
-        var index = Tween._tweens.indexOf(this);
+        const index = Tween._tweens.indexOf(this);
 
         Tween._tweens.splice(index, 1);
     }
@@ -141,7 +141,7 @@ export class Tween {
      * Move unto the next step in the tween animation.
      */
     nextStep() {
-        var step = this._steps.shift();
+        const step = this._steps.shift();
 
         if (!step) {
             this.remove();
@@ -157,9 +157,9 @@ export class Tween {
             this._count = 0;
             this._update = this.waitUpdate;
         } else if (step.action === TweenAction.properties) {
-            var startProperties: TweenProperties = {};
+            const startProperties: TweenProperties = {};
 
-            for (var property in step.end_properties) {
+            for (const property in step.end_properties) {
                 startProperties[property] = this._element[property];
             }
 
@@ -194,8 +194,8 @@ export class Tween {
      * @param deltaTime Time elapsed since the last update.
      */
     protected propertiesUpdate(deltaTime: number) {
-        var step = this._current_step;
-        var startProperties = this._start_properties;
+        const step = this._current_step;
+        const startProperties = this._start_properties;
 
         if (
             !step ||
@@ -208,20 +208,20 @@ export class Tween {
         this._count += deltaTime;
 
         // how far into the complete movement we're in
-        var percentage = this._count / step.duration;
+        const percentage = this._count / step.duration;
 
-        var value = step.ease(percentage);
+        const value = step.ease(percentage);
 
-        for (var property in step.end_properties) {
-            var start = startProperties[property];
-            var end = step.end_properties[property];
+        for (const property in step.end_properties) {
+            const start = startProperties[property];
+            const end = step.end_properties[property];
 
             this._element[property] = start + (end - start) * value;
         }
 
         if (this._count >= step.duration) {
             // make sure it ends exactly on the end value
-            for (var property in step.end_properties) {
+            for (const property in step.end_properties) {
                 this._element[property] = step.end_properties[property];
             }
 
@@ -236,8 +236,8 @@ export class Tween {
      * @return The associated tween object.
      */
     static getTween(element: Object) {
-        for (var a = Tween._tweens.length - 1; a >= 0; a--) {
-            var tween = Tween._tweens[a];
+        for (let a = Tween._tweens.length - 1; a >= 0; a--) {
+            const tween = Tween._tweens[a];
 
             if (tween._element === element) {
                 return tween;
@@ -253,8 +253,8 @@ export class Tween {
      * @param element The element associated with the tweens we want to remove.
      */
     static removeTweens(element: Object) {
-        for (var a = Tween._tweens.length - 1; a >= 0; a--) {
-            var tween = Tween._tweens[a];
+        for (let a = Tween._tweens.length - 1; a >= 0; a--) {
+            const tween = Tween._tweens[a];
 
             if (tween._element === element) {
                 Tween._tweens.splice(a, 1);
@@ -275,7 +275,7 @@ export class Tween {
      * @param deltaTime Time elapsed since the last update.
      */
     static update(deltaTime: number) {
-        for (var a = Tween._tweens.length - 1; a >= 0; a--) {
+        for (let a = Tween._tweens.length - 1; a >= 0; a--) {
             Tween._tweens[a]._update?.(deltaTime);
         }
     }

@@ -3,10 +3,10 @@ import { Game, runOnLoad } from "../shared";
 runOnLoad(function () {
     Game.init(document.body, 400, 400);
 
-    var preload = new Game.Preload();
-    var doesntExist = "doesnt_exist.png"; // we'll try to load a file that doesn't exist
+    const preload = new Game.Preload();
+    const doesntExist = "doesnt_exist.png"; // we'll try to load a file that doesn't exist
 
-    var manifest = [
+    const manifest = [
         { id: "one", path: "one.png" },
         { id: "two", path: doesntExist },
         { id: "three", path: "three.png" },
@@ -18,13 +18,13 @@ runOnLoad(function () {
     ];
 
     preload.addEventListener("complete", function (data) {
-        var loaded = data.loaded_ids;
-        var failed = data.failed_ids;
+        const loaded = data.loaded_ids;
+        const failed = data.failed_ids;
 
         // add the images that were successfully loaded
-        for (var a = 0; a < loaded.length; a++) {
-            var image = preload.get(loaded[a]);
-            var bitmap = new Game.Bitmap({
+        for (let a = 0; a < loaded.length; a++) {
+            const image = preload.get(loaded[a]);
+            const bitmap = new Game.Bitmap({
                 x: 20 + a * 50,
                 y: 20 + a * 50,
                 image: image,

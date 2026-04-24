@@ -4,10 +4,10 @@ import { Input, Unit, UnitState } from "./parallax_unit";
 runOnLoad(function () {
     Game.init(document.body, 272, 160);
 
-    var path = "../assets/";
-    var preload = new Game.Preload({ saveGlobal: true });
+    const path = "../assets/";
+    const preload = new Game.Preload({ saveGlobal: true });
 
-    var manifest = [
+    const manifest = [
         {
             id: "back-trees",
             path: "scrolling_bitmap/parallax-forest-back-trees.png",
@@ -28,11 +28,11 @@ runOnLoad(function () {
 });
 
 function start() {
-    var canvas = Game.getCanvas();
-    var centerX = canvas.getWidth() / 2;
-    var centerY = canvas.getHeight() / 2;
+    const canvas = Game.getCanvas();
+    const centerX = canvas.getWidth() / 2;
+    const centerY = canvas.getHeight() / 2;
 
-    var backTrees = new Game.ScrollingBitmap({
+    const backTrees = new Game.ScrollingBitmap({
         x: centerX,
         y: centerY,
         image: Game.Preload.get("back-trees"),
@@ -42,7 +42,7 @@ function start() {
     });
     Game.addElement(backTrees);
 
-    var lights = new Game.ScrollingBitmap({
+    const lights = new Game.ScrollingBitmap({
         x: centerX,
         y: centerY,
         image: Game.Preload.get("lights"),
@@ -52,7 +52,7 @@ function start() {
     });
     Game.addElement(lights);
 
-    var middleTrees = new Game.ScrollingBitmap({
+    const middleTrees = new Game.ScrollingBitmap({
         x: centerX,
         y: centerY,
         image: Game.Preload.get("middle-trees"),
@@ -63,7 +63,7 @@ function start() {
     Game.addElement(middleTrees);
 
     // without an interval, its going to be controlled manually
-    var frontTrees = new Game.ScrollingBitmap({
+    const frontTrees = new Game.ScrollingBitmap({
         x: centerX,
         y: centerY,
         image: Game.Preload.get("front-trees"),
@@ -72,7 +72,7 @@ function start() {
     });
     Game.addElement(frontTrees);
 
-    var rogue = new Unit(centerX, centerY + 50, UnitState.idle_right);
+    const rogue = new Unit(centerX, centerY + 50, UnitState.idle_right);
     Game.addElement(rogue);
 
     // move the front trees based on the unit movement
@@ -89,8 +89,8 @@ function start() {
     });
 
     // by pressing/releasing the left/right arrow key, we can change the state of the game
-    var currentInput = -1;
-    var nextInput = -1;
+    let currentInput = -1;
+    let nextInput = -1;
 
     window.addEventListener("keydown", function (event) {
         switch (event.key) {

@@ -1,15 +1,15 @@
 import { Game, runOnLoad } from "../shared";
 
-var CATEGORIES = {
+const CATEGORIES = {
     blue: 1,
     red: 2,
 };
 
 runOnLoad(function () {
-    var width = 400;
-    var height = 400;
+    const width = 400;
+    const height = 400;
 
-    var collision = new Game.CollisionDetection.SpatialPartition({
+    const collision = new Game.CollisionDetection.SpatialPartition({
         canvasWidth: width,
         canvasHeight: height,
         partitions: 4,
@@ -17,11 +17,11 @@ runOnLoad(function () {
 
     Game.init(document.body, width, height, collision);
 
-    var blue = new Blue(10, 50);
+    const blue = new Blue(10, 50);
     Game.addElement(blue);
 
     blue.addEventListener("collision", function (data) {
-        var red = data.collidedWith;
+        const red = data.collidedWith;
         red.nextColor();
 
         console.log("Collision!");
@@ -38,7 +38,7 @@ runOnLoad(function () {
         { x: 50, y: 350 },
     ]);
 
-    var positions = [
+    const positions = [
         { x: 100, y: 50 },
         { x: 200, y: 50 },
         { x: 300, y: 50 },
@@ -53,9 +53,9 @@ runOnLoad(function () {
         { x: 300, y: 350 },
     ];
 
-    for (var a = 0; a < positions.length; a++) {
-        var position = positions[a];
-        var red = new Red(position.x, position.y);
+    for (let a = 0; a < positions.length; a++) {
+        const position = positions[a];
+        const red = new Red(position.x, position.y);
 
         Game.addElement(red);
     }
@@ -92,7 +92,7 @@ class Red extends Game.Rectangle {
     color_position: number;
 
     constructor(x: number, y: number) {
-        var colorPosition = 0;
+        const colorPosition = 0;
 
         super({
             x: x,
