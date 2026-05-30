@@ -27,7 +27,7 @@ import { Tween } from "./tween";
  *
  */
 interface Callback {
-    callback: () => any;
+    callback: (deltaTime: number) => any;
     delay: number;
     count: number;
     isInterval: boolean;
@@ -243,13 +243,13 @@ export function _safeRemove(element: Element) {
  *
  * Sometimes its useful to add a function call through this, for example when you have code that may remove elements, but its called from an event handler (which may try to process the elements that you removed).
  *
- * @param callback The callback function.
+ * @param callback The callback function. It receives the loop's `deltaTime` (time elapsed since the last update, in seconds).
  * @param delay Time until the function is called. In seconds.
  * @param isInterval If the function is to be called constantly (every passed `delay`), or just one time (a timeout). Default is an interval.
  * @return If it was added successfully.
  */
 export function addToGameLoop(
-    callback: () => any,
+    callback: (deltaTime: number) => any,
     delay: number,
     isInterval?: boolean,
 ) {
@@ -278,7 +278,7 @@ export function addToGameLoop(
  * @param callback The function to remove.
  * @return If the function was removed or wasn't found.
  */
-export function removeFromGameLoop(callback: () => any) {
+export function removeFromGameLoop(callback: (deltaTime: number) => any) {
     for (let a = CALLBACKS.length - 1; a >= 0; a--) {
         const callInfo = CALLBACKS[a];
 
@@ -465,7 +465,7 @@ function callbacks(deltaTime: number) {
         }
 
         if (call.delay <= 0) {
-            call.callback();
+            call.callback(deltaTime);
 
             if (!call.isInterval) {
                 CALLBACKS.splice(a, 1);
@@ -475,7 +475,7 @@ function callbacks(deltaTime: number) {
 
             if (call.count >= call.delay) {
                 call.count = 0;
-                call.callback();
+                call.callback(deltaTime);
 
                 if (!call.isInterval) {
                     CALLBACKS.splice(a, 1);

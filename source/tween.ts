@@ -6,6 +6,11 @@ export enum TweenAction {
 
 type TweenProperties = Record<string, number>;
 
+export interface TweenArgs {
+    // remove any existing tweens on the target before this one is created
+    override?: boolean;
+}
+
 export type TweenStep =
     | {
           action: TweenAction.properties;
@@ -53,7 +58,12 @@ export class Tween {
     protected _count: number;
     protected _update: ((delta: number) => any) | null;
 
-    constructor(element: object) {
+    constructor(element: object, options?: TweenArgs) {
+        // remove any existing tweens on the target (`this` isn't registered yet, so it won't remove itself)
+        if (options?.override) {
+            Tween.removeTweens(element);
+        }
+
         this._element = element as Record<string, any>;
         this._steps = [];
         this._current_step = null;

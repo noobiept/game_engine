@@ -9,6 +9,11 @@ export interface SpriteArgs extends BitmapArgs {
     interval?: number;
 }
 
+export interface SpritePlayOptions {
+    loop?: boolean; // whether the animation loops (default) or plays once
+    reset?: boolean; // when re-playing the current animation, restart it from the first frame
+}
+
 /**
  * Basic usage:
  *
@@ -31,6 +36,17 @@ export interface SpriteArgs extends BitmapArgs {
  *         // or play a specific animation
  *     sprite.play( 'animationName' );
  *
+ *         // play a one-shot animation and do something when it finishes
+ *     sprite.play( 'explosion', { loop: false } );
+ *     sprite.addEventListener( 'animationend', function( data ) {
+ *         data.sprite.remove();
+ *     });
+ *
+ * Events:
+ *
+ * - `animationend` -- `listener( data: { sprite: Sprite; animationId: string; } );`
+ *   Dispatched when a non-looping animation (played with `{ loop: false }`) reaches its last frame.
+ *
  * Examples -- `clone`, `sprite`
  */
 export class Sprite extends Bitmap {
@@ -41,7 +57,9 @@ export class Sprite extends Bitmap {
 
     protected _animations: { [id: string]: number[] };
     protected _current_animation: number[] | null;
+    protected _current_animation_id: string | null;
     protected _current_animation_position: number; // position in the array in '_current_animation'
+    protected _loop: boolean; // whether the current animation loops or plays once
 
     constructor(args: SpriteArgs) {
         super(args);
@@ -56,6 +74,8 @@ export class Sprite extends Bitmap {
         this._current_animation_position = 0;
         this._count_interval = 0;
         this._current_animation = null;
+        this._current_animation_id = null;
+        this._loop = true;
 
         this.setFrame(0);
 
@@ -86,10 +106,12 @@ export class Sprite extends Bitmap {
      * Play a previously set animation.
      *
      * @param animationId The name of the animation.
-     * @param reset When trying to play the current animation again, if we reset the animation (back to the first frame) or do nothing.
+     * @param options Playback options. `loop` (default `true`) controls whether the animation loops or plays
+     *                once (dispatching an `animationend` event on the last frame). `reset` (default `false`)
+     *                restarts the animation from the first frame when its already the current one.
      * @return If it was successful.
      */
-    play(animationId: string, reset = false) {
+    play(animationId: string, options?: SpritePlayOptions) {
         const next = this._animations[animationId];
 
         // doesnt't exist an animation with the given id
@@ -97,8 +119,13 @@ export class Sprite extends Bitmap {
             return false;
         }
 
-        // we're already playing that animation
-        if (next === this._current_animation) {
+        const loop = options?.loop ?? true;
+        const reset = options?.reset ?? false;
+
+        // we're already playing that animation (and it didn't finish yet)
+        if (next === this._current_animation && this._has_logic) {
+            this._loop = loop;
+
             if (reset === true) {
                 this._current_animation_position = 0;
                 this._count_interval = 0;
@@ -109,8 +136,10 @@ export class Sprite extends Bitmap {
         }
 
         this._current_animation = next;
+        this._current_animation_id = animationId;
         this._current_animation_position = 0;
         this._count_interval = 0;
+        this._loop = loop;
 
         this._has_logic = true;
 
@@ -127,20 +156,39 @@ export class Sprite extends Bitmap {
     }
 
     /**
-     * Change to the next frame. If we're on the last frame then it changes to the first one (frame 0).
+     * Change to the next frame.
+     * When looping (the default), wraps back to the first frame after the last one.
+     * When not looping, stops on the last frame and dispatches the `animationend` event.
      */
     nextFrame() {
+        if (this._current_animation === null) {
+            return;
+        }
+
         this._current_animation_position++;
 
         if (
-            this._current_animation === null ||
             this._current_animation_position >= this._current_animation.length
         ) {
-            this._current_animation_position = 0;
-        }
+            if (this._loop) {
+                this._current_animation_position = 0;
+            } else {
+                // stop on the last frame and notify listeners
+                this._current_animation_position =
+                    this._current_animation.length - 1;
+                this._has_logic = false;
 
-        if (this._current_animation === null) {
-            return;
+                this.setFrame(
+                    this._current_animation[this._current_animation_position],
+                );
+
+                this.dispatchEvent("animationend", {
+                    sprite: this,
+                    animationId: this._current_animation_id,
+                });
+
+                return;
+            }
         }
 
         this.setFrame(

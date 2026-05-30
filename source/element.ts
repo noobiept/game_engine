@@ -471,4 +471,33 @@ export abstract class Element extends EventDispatcher {
     get half_height() {
         return this._half_height;
     }
+
+    /**
+     * The position model is center-origin (`x`/`y` is the center). This returns the top-left `x`
+     * (`x - half_width`), which is convenient when porting top-left based games.
+     */
+    get left() {
+        return this._x - this._half_width;
+    }
+
+    /**
+     * The top-left `y` (`y - half_height`). See `left`.
+     */
+    get top() {
+        return this._y - this._half_height;
+    }
+
+    /**
+     * The element's axis-aligned bounding box in top-left form (does not consider rotation or scale).
+     * Unlike `toAxisAligned()` (which is rotation-aware and returns min/max), this is the simple
+     * top-left box that top-left/grid based ports usually want.
+     */
+    getBoundingBox() {
+        return {
+            x: this._x - this._half_width,
+            y: this._y - this._half_height,
+            width: this._width,
+            height: this._height,
+        };
+    }
 }

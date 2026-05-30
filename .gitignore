@@ -8,3 +8,4 @@ examples/_test/
 source/**/*.js
 info.txt
 .DS_Store
+.idea/

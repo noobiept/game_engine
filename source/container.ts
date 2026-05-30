@@ -117,6 +117,55 @@ export class Container extends Element {
     }
 
     /**
+     * Move a child element to the front (drawn on top of the other children).
+     */
+    bringToFront(element: Element) {
+        const index = this._children.indexOf(element);
+
+        if (index < 0) {
+            return;
+        }
+
+        this._children.splice(index, 1);
+        this._children.push(element);
+    }
+
+    /**
+     * Move a child element to the back (drawn behind the other children).
+     */
+    sendToBack(element: Element) {
+        const index = this._children.indexOf(element);
+
+        if (index < 0) {
+            return;
+        }
+
+        this._children.splice(index, 1);
+        this._children.unshift(element);
+    }
+
+    /**
+     * Move a child element to a specific draw position (0 is the back, higher values are more to the front).
+     */
+    setChildIndex(element: Element, index: number) {
+        const current = this._children.indexOf(element);
+
+        if (current < 0) {
+            return;
+        }
+
+        this._children.splice(current, 1);
+
+        if (index < 0) {
+            index = 0;
+        } else if (index > this._children.length) {
+            index = this._children.length;
+        }
+
+        this._children.splice(index, 0, element);
+    }
+
+    /**
      * Make sure the children are removed as well.
      */
     remove() {

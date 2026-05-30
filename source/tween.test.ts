@@ -116,4 +116,36 @@ describe("Tween", function () {
         expect(Tween.getTween(emptyElement)).toEqual(null);
         expect(Tween.getTween(activeElement)).toEqual(activeTween);
     });
+
+    test("override removes existing tweens on the target", function () {
+        const element = { x: 0 };
+
+        const first = new Tween(element).to({ x: 10 }, 1);
+        first.start();
+
+        expect(Tween._tweens).toHaveLength(1);
+        expect(Tween._tweens[0]).toBe(first);
+
+        const second = new Tween(element, { override: true }).to({ x: 20 }, 1);
+        second.start();
+
+        // the first tween was removed, only the new one remains
+        expect(Tween._tweens).toHaveLength(1);
+        expect(Tween._tweens[0]).toBe(second);
+        expect(Tween.getTween(element)).toBe(second);
+    });
+
+    test("override only affects tweens on the same target", function () {
+        const one = { x: 0 };
+        const two = { x: 0 };
+
+        const oneTween = new Tween(one).wait(1);
+        oneTween.start();
+
+        const twoTween = new Tween(two, { override: true }).wait(1);
+        twoTween.start();
+
+        expect(Tween.getTween(one)).toEqual(oneTween);
+        expect(Tween.getTween(two)).toEqual(twoTween);
+    });
 });
