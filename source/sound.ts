@@ -174,6 +174,11 @@ export class SoundInstance {
      * Create and start a new source node at the given buffer offset.
      */
     protected _startSource(offset: number) {
+        // browsers start the audio context suspended until a user gesture, so resume it (if needed) to be audible
+        if (this._ctx.state === "suspended") {
+            this._ctx.resume();
+        }
+
         const source = this._ctx.createBufferSource();
 
         source.buffer = this._buffer;
