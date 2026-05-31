@@ -20,7 +20,30 @@ export interface ElementArgs extends EventDispatcherArgs {
 }
 
 /**
- * Base class for a canvas element. Don't create an object directly.
+ * Base class for a canvas element. Don't create an object directly — use one of the
+ * subclasses (`Rectangle`, `Circle`, `Bitmap`, `Sprite`, `Text`, `Container`, ...).
+ *
+ * All elements share the same basic API: `x`/`y` is the element's **center**, and you can
+ * move, scale, rotate, hide, remove it, and listen to its events.
+ *
+ * Basic Usage:
+ *
+ *     const element = new Game.Rectangle({
+ *             x: 50,
+ *             y: 50,
+ *             width: 20,
+ *             height: 20,
+ *             color: 'red'
+ *         });
+ *     Game.addElement( element );
+ *
+ *     element.x += 10; // move
+ *     element.rotateDegrees( 45 ); // rotate
+ *     element.scaleX = 2; // scale
+ *     element.visible = false; // hide
+ *     element.addEventListener( 'click', function() {
+ *         element.remove();
+ *     });
  *
  * Events:
  *

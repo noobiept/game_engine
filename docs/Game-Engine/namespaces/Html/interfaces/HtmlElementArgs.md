@@ -6,7 +6,7 @@
 
 # Interface: HtmlElementArgs
 
-Defined in: [source/html.ts:28](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L28)
+Defined in: [source/html.ts:28](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/html.ts#L28)
 
 ## Extended by
 
@@ -22,7 +22,7 @@ Defined in: [source/html.ts:28](https://github.com/noobiept/game_engine/blob/4a0
 
 > `optional` **cssClass?**: `string` \| `string`[]
 
-Defined in: [source/html.ts:30](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L30)
+Defined in: [source/html.ts:30](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/html.ts#L30)
 
 ---
 
@@ -30,7 +30,7 @@ Defined in: [source/html.ts:30](https://github.com/noobiept/game_engine/blob/4a0
 
 > `optional` **cssId?**: `string`
 
-Defined in: [source/html.ts:29](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L29)
+Defined in: [source/html.ts:29](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/html.ts#L29)
 
 ---
 
@@ -38,4 +38,4 @@ Defined in: [source/html.ts:29](https://github.com/noobiept/game_engine/blob/4a0
 
 > `optional` **preText?**: `string`
 
-Defined in: [source/html.ts:31](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L31)
+Defined in: [source/html.ts:31](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/html.ts#L31)

@@ -10,7 +10,7 @@ export interface RectangleArgs extends ElementArgs {
 /**
  * Basic Usage:
  *
- *     var rectangle = new Game.Rectangle({
+ *     const rectangle = new Game.Rectangle({
  *             x: 100,
  *             y: 200,
  *             width: 10,

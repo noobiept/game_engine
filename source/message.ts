@@ -12,16 +12,16 @@ export interface MessageArgs extends Html.HtmlContainerArgs {
 /**
  * Basic Usage:
  *
- *     var container = Game.getCanvasContainer();
+ *     const container = Game.getCanvasContainer();
  *
- *     var button = new Game.Html.Button({
+ *     const button = new Game.Html.Button({
  *             value: 'Ok',
  *             callback: function( button )
  *                 {
  *                 message.clear();
  *                 }
  *         });
- *     var message = new Game.Message({
+ *     const message = new Game.Message({
  *             body: 'Hi there!',
  *             container: container,
  *             background: true,

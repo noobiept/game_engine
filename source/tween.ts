@@ -30,7 +30,7 @@ export type TweenStep =
 /**
  * Basic Usage:
  *
- *     var rectangle = new Game.Rectangle({
+ *     const rectangle = new Game.Rectangle({
  *             x: 10,
  *             y: 10,
  *             width: 10,
@@ -39,7 +39,7 @@ export type TweenStep =
  *         });
  *     Game.addElement( rectangle );
  *
- *     var tween = new Game.Tween( rectangle );
+ *     const tween = new Game.Tween( rectangle );
  *
  *     tween.to( { x: 200 }, 2 ).wait( 1 ).call( function()
  *         {

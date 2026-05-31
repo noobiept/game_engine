@@ -8,4 +8,4 @@
 
 > **FileInfoType** = keyof _typeof_ `FileInfo`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/preload/preload.d.ts:33
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/preload/preload.d.ts:33

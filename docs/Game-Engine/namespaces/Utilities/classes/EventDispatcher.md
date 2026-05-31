@@ -6,7 +6,7 @@
 
 # Class: EventDispatcher\<EventType\>
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/event_dispatcher/event_dispatcher.d.ts:19
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/event_dispatcher/event_dispatcher.d.ts:19
 
 Base class that provides a way to add/remove listeners, and dispatch events.
 
@@ -41,7 +41,7 @@ import { EventDispatcher } from '@drk4/utilities';
 
 > **new EventDispatcher**\<`EventType`\>(): `EventDispatcher`\<`EventType`\>
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/event_dispatcher/event_dispatcher.d.ts:21
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/event_dispatcher/event_dispatcher.d.ts:21
 
 #### Returns
 
@@ -53,7 +53,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilitie
 
 > **addEventListener**(`type`, `listener`): `boolean`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/event_dispatcher/event_dispatcher.d.ts:30
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/event_dispatcher/event_dispatcher.d.ts:30
 
 'listener' will receive a 'data' argument when its called.
 What 'data' is, depends on the event type.
@@ -84,7 +84,7 @@ If it was successfully added.
 
 > **dispatchEvent**(`type`, `data?`): `void`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/event_dispatcher/event_dispatcher.d.ts:49
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/event_dispatcher/event_dispatcher.d.ts:49
 
 Dispatches an event, which will trigger the listeners of that event.
 
@@ -112,7 +112,7 @@ Data to be sent to every listener.
 
 > **hasListeners**(`type`): `boolean`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/event_dispatcher/event_dispatcher.d.ts:56
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/event_dispatcher/event_dispatcher.d.ts:56
 
 Check if there are listeners to a particular event type.
 
@@ -136,7 +136,7 @@ If there are listeners or not.
 
 > **removeAllEventListeners**(): `void`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/event_dispatcher/event_dispatcher.d.ts:42
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/event_dispatcher/event_dispatcher.d.ts:42
 
 Remove all the event listeners.
 
@@ -150,7 +150,7 @@ Remove all the event listeners.
 
 > **removeEventListener**(`type`, `listener?`): `boolean`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/event_dispatcher/event_dispatcher.d.ts:38
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/event_dispatcher/event_dispatcher.d.ts:38
 
 Removes a specific listener of an event type, or all the listeners for that type (if 'listener' is not provided).
 

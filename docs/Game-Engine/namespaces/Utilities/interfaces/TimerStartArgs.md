@@ -6,7 +6,7 @@
 
 # Interface: TimerStartArgs
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/timer/timer.d.ts:10
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/timer/timer.d.ts:10
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilitie
 
 > `optional` **countDown?**: `boolean`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/timer/timer.d.ts:15
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/timer/timer.d.ts:15
 
 ---
 
@@ -22,7 +22,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilitie
 
 > `optional` **endValue?**: `number`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/timer/timer.d.ts:12
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/timer/timer.d.ts:12
 
 ---
 
@@ -30,7 +30,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilitie
 
 > `optional` **interval?**: `number`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/timer/timer.d.ts:16
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/timer/timer.d.ts:16
 
 ---
 
@@ -38,7 +38,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilitie
 
 > `optional` **onEnd?**: () => `void`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/timer/timer.d.ts:13
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/timer/timer.d.ts:13
 
 #### Returns
 
@@ -50,7 +50,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilitie
 
 > `optional` **onTick?**: () => `void`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/timer/timer.d.ts:14
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/timer/timer.d.ts:14
 
 #### Returns
 
@@ -62,4 +62,4 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilitie
 
 > `optional` **startValue?**: `number`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/timer/timer.d.ts:11
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/timer/timer.d.ts:11

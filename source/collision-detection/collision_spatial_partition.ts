@@ -13,10 +13,10 @@ export interface SpatialPartitionArgs {
  *
  * Basic Usage:
  *
- *     var width = 400;
- *     var height = 400;
+ *     const width = 400;
+ *     const height = 400;
  *
- *     var collision = new Game.CollisionDetection.SpatialPartition({
+ *     const collision = new Game.CollisionDetection.SpatialPartition({
  *             canvasWidth: width,
  *             canvasHeight: height,
  *             partitions: 10

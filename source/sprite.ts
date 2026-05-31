@@ -17,7 +17,7 @@ export interface SpritePlayOptions {
 /**
  * Basic usage:
  *
- *     var sprite = new Game.Sprite({
+ *     const sprite = new Game.Sprite({
  *             x: 10,
  *             y: 20,
  *             image: Game.Preload.get( 'id' ),

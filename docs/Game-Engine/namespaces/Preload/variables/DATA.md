@@ -8,4 +8,4 @@
 
 > `const` **DATA**: `Record`\<`string`, `any`\> = `{}`
 
-Defined in: [source/preload.ts:313](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/preload.ts#L313)
+Defined in: [source/preload.ts:313](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/preload.ts#L313)

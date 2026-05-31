@@ -19,14 +19,14 @@ export interface CanvasArgs {
  *
  * Basic Usage:
  *
- *     var canvas1 = Game.getCanvas();
- *     var canvas2 = new Game.Canvas({
+ *     const canvas1 = Game.getCanvas();
+ *     const canvas2 = new Game.Canvas({
  *             width: 400,
  *             height: 400
  *         });
  *     Game.addCanvas( canvas2 );
  *
- *     var container = new Game.Container();
+ *     const container = new Game.Container();
  *
  *     canvas2.addChild( container );
  *

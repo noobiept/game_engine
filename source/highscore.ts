@@ -5,12 +5,12 @@ import * as Utilities from "@drk4/utilities";
  *
  *     Game.HighScore.init( 5, 'game_name_high_score', true );
  *
- *     var score = 10;
+ *     const score = 10;
  *     Game.HighScore.add( 'easy', score );
  *
- *     var easyScores = Game.HighScore.get( 'easy' );
+ *     const easyScores = Game.HighScore.get( 'easy' );
  *
- *     for (var a = 0 ; a < easyScores.length ; a++)
+ *     for (let a = 0 ; a < easyScores.length ; a++)
  *         {
  *         console.log( easyScores[ a ] );
  *         }

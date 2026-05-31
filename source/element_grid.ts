@@ -15,14 +15,14 @@ export interface ElementGridArgs extends EventDispatcherArgs, GridArgs {
 /**
  * Basic Usage:
  *
- *     var rectangle = new Game.Rectangle({
+ *     const rectangle = new Game.Rectangle({
  *             width: 10,
  *             height: 10,
  *             color: 'green'
  *         });
  *     Game.addElement( rectangle );
  *
- *     var grid = new Game.ElementGrid({
+ *     const grid = new Game.ElementGrid({
  *             squareSize: 10,
  *             columns: 20,
  *             lines: 20

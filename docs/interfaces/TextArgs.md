@@ -6,7 +6,7 @@
 
 # Interface: TextArgs
 
-Defined in: [source/text.ts:5](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/text.ts#L5)
+Defined in: [source/text.ts:5](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/text.ts#L5)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [source/text.ts:5](https://github.com/noobiept/game_engine/blob/4a0e
 
 > `readonly` `optional` **\_eventDispatcherArgsBrand?**: `undefined`
 
-Defined in: [source/event_dispatcher.ts:4](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/event_dispatcher.ts#L4)
+Defined in: [source/event_dispatcher.ts:4](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/event_dispatcher.ts#L4)
 
 #### Inherited from
 
@@ -30,7 +30,7 @@ Defined in: [source/event_dispatcher.ts:4](https://github.com/noobiept/game_engi
 
 > `optional` **category?**: `number`
 
-Defined in: [source/element.ts:15](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/element.ts#L15)
+Defined in: [source/element.ts:15](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/element.ts#L15)
 
 #### Inherited from
 
@@ -42,7 +42,7 @@ Defined in: [source/element.ts:15](https://github.com/noobiept/game_engine/blob/
 
 > `optional` **collidesWith?**: `number`
 
-Defined in: [source/element.ts:19](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/element.ts#L19)
+Defined in: [source/element.ts:19](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/element.ts#L19)
 
 #### Inherited from
 
@@ -54,7 +54,7 @@ Defined in: [source/element.ts:19](https://github.com/noobiept/game_engine/blob/
 
 > `optional` **color?**: `string`
 
-Defined in: [source/text.ts:13](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/text.ts#L13)
+Defined in: [source/text.ts:13](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/text.ts#L13)
 
 ---
 
@@ -62,7 +62,7 @@ Defined in: [source/text.ts:13](https://github.com/noobiept/game_engine/blob/4a0
 
 > `optional` **fill?**: `boolean`
 
-Defined in: [source/text.ts:12](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/text.ts#L12)
+Defined in: [source/text.ts:12](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/text.ts#L12)
 
 ---
 
@@ -70,7 +70,7 @@ Defined in: [source/text.ts:12](https://github.com/noobiept/game_engine/blob/4a0
 
 > `optional` **fontFamily?**: `string`
 
-Defined in: [source/text.ts:7](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/text.ts#L7)
+Defined in: [source/text.ts:7](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/text.ts#L7)
 
 ---
 
@@ -78,7 +78,7 @@ Defined in: [source/text.ts:7](https://github.com/noobiept/game_engine/blob/4a0e
 
 > `optional` **fontSize?**: `number`
 
-Defined in: [source/text.ts:8](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/text.ts#L8)
+Defined in: [source/text.ts:8](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/text.ts#L8)
 
 ---
 
@@ -86,7 +86,7 @@ Defined in: [source/text.ts:8](https://github.com/noobiept/game_engine/blob/4a0e
 
 > `optional` **text?**: `string`
 
-Defined in: [source/text.ts:6](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/text.ts#L6)
+Defined in: [source/text.ts:6](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/text.ts#L6)
 
 ---
 
@@ -94,7 +94,7 @@ Defined in: [source/text.ts:6](https://github.com/noobiept/game_engine/blob/4a0e
 
 > `optional` **textAlign?**: `CanvasTextAlign`
 
-Defined in: [source/text.ts:10](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/text.ts#L10)
+Defined in: [source/text.ts:10](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/text.ts#L10)
 
 ---
 
@@ -102,7 +102,7 @@ Defined in: [source/text.ts:10](https://github.com/noobiept/game_engine/blob/4a0
 
 > `optional` **textBaseline?**: `CanvasTextBaseline`
 
-Defined in: [source/text.ts:11](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/text.ts#L11)
+Defined in: [source/text.ts:11](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/text.ts#L11)
 
 ---
 
@@ -110,7 +110,7 @@ Defined in: [source/text.ts:11](https://github.com/noobiept/game_engine/blob/4a0
 
 > `optional` **timeout?**: `number`
 
-Defined in: [source/text.ts:9](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/text.ts#L9)
+Defined in: [source/text.ts:9](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/text.ts#L9)
 
 ---
 
@@ -118,7 +118,7 @@ Defined in: [source/text.ts:9](https://github.com/noobiept/game_engine/blob/4a0e
 
 > `optional` **x?**: `number`
 
-Defined in: [source/element.ts:10](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/element.ts#L10)
+Defined in: [source/element.ts:10](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/element.ts#L10)
 
 #### Inherited from
 
@@ -130,7 +130,7 @@ Defined in: [source/element.ts:10](https://github.com/noobiept/game_engine/blob/
 
 > `optional` **y?**: `number`
 
-Defined in: [source/element.ts:11](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/element.ts#L11)
+Defined in: [source/element.ts:11](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/element.ts#L11)
 
 #### Inherited from
 

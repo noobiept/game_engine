@@ -8,6 +8,18 @@ type EventListener = (data: any) => any;
 
 /**
  * Base class that provides a way to add/remove listeners, and dispatch events.
+ * Most engine classes extend it (every `Element`, `Preload`, etc.), which is how
+ * you listen to their events with `addEventListener()`.
+ *
+ * Basic Usage:
+ *
+ *     const dispatcher = new Game.EventDispatcher();
+ *
+ *     dispatcher.addEventListener( 'custom', function( data ) {
+ *         console.log( 'got', data.value );
+ *     });
+ *
+ *     dispatcher.dispatchEvent( 'custom', { value: 42 } );
  */
 export class EventDispatcher {
     protected _listeners: Record<string, EventListener[]>;

@@ -6,7 +6,7 @@
 
 # Enumeration: MouseButton
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/types.d.ts:4
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/types.d.ts:4
 
 Numeric code of each mouse button.
 
@@ -16,7 +16,7 @@ Numeric code of each mouse button.
 
 > **back**: `3`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/types.d.ts:8
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/types.d.ts:8
 
 ---
 
@@ -24,7 +24,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilitie
 
 > **forward**: `4`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/types.d.ts:9
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/types.d.ts:9
 
 ---
 
@@ -32,7 +32,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilitie
 
 > **left**: `0`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/types.d.ts:5
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/types.d.ts:5
 
 ---
 
@@ -40,7 +40,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilitie
 
 > **middle**: `1`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/types.d.ts:6
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/types.d.ts:6
 
 ---
 
@@ -48,4 +48,4 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilitie
 
 > **right**: `2`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/types.d.ts:7
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/types.d.ts:7

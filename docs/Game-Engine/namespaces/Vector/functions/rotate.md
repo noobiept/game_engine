@@ -8,7 +8,7 @@
 
 > **rotate**(`center`, `vector`, `angle`): `object`
 
-Defined in: [source/vector.ts:38](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/vector.ts#L38)
+Defined in: [source/vector.ts:49](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/vector.ts#L49)
 
 ## Parameters
 

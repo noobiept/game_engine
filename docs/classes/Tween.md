@@ -6,11 +6,11 @@
 
 # Class: Tween
 
-Defined in: [source/tween.ts:51](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/tween.ts#L51)
+Defined in: [source/tween.ts:51](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/tween.ts#L51)
 
 Basic Usage:
 
-    var rectangle = new Game.Rectangle({
+    const rectangle = new Game.Rectangle({
             x: 10,
             y: 10,
             width: 10,
@@ -19,7 +19,7 @@ Basic Usage:
         });
     Game.addElement( rectangle );
 
-    var tween = new Game.Tween( rectangle );
+    const tween = new Game.Tween( rectangle );
 
     tween.to( { x: 200 }, 2 ).wait( 1 ).call( function()
         {
@@ -34,7 +34,7 @@ Examples -- `2048`, `basic_example`, `clone`, `multiple_canvas`, `tween`
 
 > **new Tween**(`element`, `options?`): `Tween`
 
-Defined in: [source/tween.ts:61](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/tween.ts#L61)
+Defined in: [source/tween.ts:61](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/tween.ts#L61)
 
 #### Parameters
 
@@ -56,7 +56,7 @@ Defined in: [source/tween.ts:61](https://github.com/noobiept/game_engine/blob/4a
 
 > `protected` **\_count**: `number`
 
-Defined in: [source/tween.ts:58](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/tween.ts#L58)
+Defined in: [source/tween.ts:58](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/tween.ts#L58)
 
 ---
 
@@ -64,7 +64,7 @@ Defined in: [source/tween.ts:58](https://github.com/noobiept/game_engine/blob/4a
 
 > `protected` **\_current_step**: [`TweenStep`](../type-aliases/TweenStep.md) \| `null`
 
-Defined in: [source/tween.ts:56](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/tween.ts#L56)
+Defined in: [source/tween.ts:56](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/tween.ts#L56)
 
 ---
 
@@ -72,7 +72,7 @@ Defined in: [source/tween.ts:56](https://github.com/noobiept/game_engine/blob/4a
 
 > `protected` **\_element**: `Record`\<`string`, `any`\>
 
-Defined in: [source/tween.ts:54](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/tween.ts#L54)
+Defined in: [source/tween.ts:54](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/tween.ts#L54)
 
 ---
 
@@ -80,7 +80,7 @@ Defined in: [source/tween.ts:54](https://github.com/noobiept/game_engine/blob/4a
 
 > `protected` **\_start_properties**: `TweenProperties` \| `null`
 
-Defined in: [source/tween.ts:57](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/tween.ts#L57)
+Defined in: [source/tween.ts:57](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/tween.ts#L57)
 
 ---
 
@@ -88,7 +88,7 @@ Defined in: [source/tween.ts:57](https://github.com/noobiept/game_engine/blob/4a
 
 > `protected` **\_steps**: [`TweenStep`](../type-aliases/TweenStep.md)[]
 
-Defined in: [source/tween.ts:55](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/tween.ts#L55)
+Defined in: [source/tween.ts:55](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/tween.ts#L55)
 
 ---
 
@@ -96,7 +96,7 @@ Defined in: [source/tween.ts:55](https://github.com/noobiept/game_engine/blob/4a
 
 > `protected` **\_update**: ((`delta`) => `any`) \| `null`
 
-Defined in: [source/tween.ts:59](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/tween.ts#L59)
+Defined in: [source/tween.ts:59](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/tween.ts#L59)
 
 ---
 
@@ -104,7 +104,7 @@ Defined in: [source/tween.ts:59](https://github.com/noobiept/game_engine/blob/4a
 
 > `static` **\_tweens**: `Tween`[] = `[]`
 
-Defined in: [source/tween.ts:52](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/tween.ts#L52)
+Defined in: [source/tween.ts:52](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/tween.ts#L52)
 
 ## Methods
 
@@ -112,7 +112,7 @@ Defined in: [source/tween.ts:52](https://github.com/noobiept/game_engine/blob/4a
 
 > **call**(`callback`): `Tween`
 
-Defined in: [source/tween.ts:134](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/tween.ts#L134)
+Defined in: [source/tween.ts:134](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/tween.ts#L134)
 
 Call a given function.
 
@@ -136,7 +136,7 @@ The tween object for chaining.
 
 > **nextStep**(): `void`
 
-Defined in: [source/tween.ts:160](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/tween.ts#L160)
+Defined in: [source/tween.ts:160](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/tween.ts#L160)
 
 Move unto the next step in the tween animation.
 
@@ -150,7 +150,7 @@ Move unto the next step in the tween animation.
 
 > `protected` **propertiesUpdate**(`deltaTime`): `void`
 
-Defined in: [source/tween.ts:213](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/tween.ts#L213)
+Defined in: [source/tween.ts:213](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/tween.ts#L213)
 
 .to() tick logic.
 
@@ -172,7 +172,7 @@ Time elapsed since the last update.
 
 > **remove**(): `void`
 
-Defined in: [source/tween.ts:146](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/tween.ts#L146)
+Defined in: [source/tween.ts:146](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/tween.ts#L146)
 
 Remove the tween.
 
@@ -186,7 +186,7 @@ Remove the tween.
 
 > **start**(): `void`
 
-Defined in: [source/tween.ts:78](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/tween.ts#L78)
+Defined in: [source/tween.ts:78](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/tween.ts#L78)
 
 Start the tween animation.
 
@@ -200,7 +200,7 @@ Start the tween animation.
 
 > **to**(`properties`, `duration`, `ease?`): `Tween`
 
-Defined in: [source/tween.ts:94](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/tween.ts#L94)
+Defined in: [source/tween.ts:94](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/tween.ts#L94)
 
 Set the end value of some properties, and the animation duration.
 
@@ -236,7 +236,7 @@ The tween object for chaining.
 
 > **wait**(`duration`): `Tween`
 
-Defined in: [source/tween.ts:119](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/tween.ts#L119)
+Defined in: [source/tween.ts:119](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/tween.ts#L119)
 
 Wait for some time doing nothing.
 
@@ -260,7 +260,7 @@ The tween object for chaining.
 
 > `protected` **waitUpdate**(`deltaTime`): `void`
 
-Defined in: [source/tween.ts:194](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/tween.ts#L194)
+Defined in: [source/tween.ts:194](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/tween.ts#L194)
 
 .wait() tick logic.
 
@@ -282,7 +282,7 @@ Time elapsed since the last update.
 
 > `static` **getTween**(`element`): `Tween` \| `null`
 
-Defined in: [source/tween.ts:255](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/tween.ts#L255)
+Defined in: [source/tween.ts:255](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/tween.ts#L255)
 
 Returns an existing tween of an element, or null if there's no active tween working on the element.
 
@@ -306,7 +306,7 @@ The associated tween object.
 
 > `static` **removeAll**(): `void`
 
-Defined in: [source/tween.ts:285](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/tween.ts#L285)
+Defined in: [source/tween.ts:285](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/tween.ts#L285)
 
 Remove all the tween animations.
 
@@ -320,7 +320,7 @@ Remove all the tween animations.
 
 > `static` **removeTweens**(`element`): `void`
 
-Defined in: [source/tween.ts:272](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/tween.ts#L272)
+Defined in: [source/tween.ts:272](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/tween.ts#L272)
 
 Remove all the tweens of an element.
 
@@ -342,7 +342,7 @@ The element associated with the tweens we want to remove.
 
 > `static` **update**(`deltaTime`): `void`
 
-Defined in: [source/tween.ts:294](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/tween.ts#L294)
+Defined in: [source/tween.ts:294](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/tween.ts#L294)
 
 Gets called in the game loop, to update all the tween animations.
 

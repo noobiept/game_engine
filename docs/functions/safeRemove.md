@@ -8,7 +8,7 @@
 
 > **\_safeRemove**(`element`): `void`
 
-Defined in: [source/game.ts:241](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/game.ts#L241)
+Defined in: [source/game.ts:241](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/game.ts#L241)
 
 It can be problematic to remove elements during the logic functions, since the logic functions are called in a loop over all the elements.
 The elements passed to this function, will only be removed after.

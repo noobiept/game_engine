@@ -6,7 +6,7 @@
 
 # Enumeration: MovementState
 
-Defined in: [source/movement.ts:10](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/movement.ts#L10)
+Defined in: [source/movement.ts:10](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/movement.ts#L10)
 
 ## Enumeration Members
 
@@ -14,7 +14,7 @@ Defined in: [source/movement.ts:10](https://github.com/noobiept/game_engine/blob
 
 > **angle**: `1`
 
-Defined in: [source/movement.ts:12](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/movement.ts#L12)
+Defined in: [source/movement.ts:12](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/movement.ts#L12)
 
 ---
 
@@ -22,7 +22,7 @@ Defined in: [source/movement.ts:12](https://github.com/noobiept/game_engine/blob
 
 > **destination**: `2`
 
-Defined in: [source/movement.ts:13](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/movement.ts#L13)
+Defined in: [source/movement.ts:13](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/movement.ts#L13)
 
 ---
 
@@ -30,7 +30,7 @@ Defined in: [source/movement.ts:13](https://github.com/noobiept/game_engine/blob
 
 > **follow**: `4`
 
-Defined in: [source/movement.ts:15](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/movement.ts#L15)
+Defined in: [source/movement.ts:15](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/movement.ts#L15)
 
 ---
 
@@ -38,7 +38,7 @@ Defined in: [source/movement.ts:15](https://github.com/noobiept/game_engine/blob
 
 > **loop**: `3`
 
-Defined in: [source/movement.ts:14](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/movement.ts#L14)
+Defined in: [source/movement.ts:14](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/movement.ts#L14)
 
 ---
 
@@ -46,4 +46,4 @@ Defined in: [source/movement.ts:14](https://github.com/noobiept/game_engine/blob
 
 > **stop**: `0`
 
-Defined in: [source/movement.ts:11](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/movement.ts#L11)
+Defined in: [source/movement.ts:11](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/movement.ts#L11)

@@ -11,7 +11,7 @@ import { Tween } from "./tween";
  *
  *     Game.init({ container: document.body, width: 400, height: 400 });
  *
- *     var rect = new Game.Rectangle({
+ *     const rect = new Game.Rectangle({
  *             x: 200,
  *             y: 200,
  *             width: 20,

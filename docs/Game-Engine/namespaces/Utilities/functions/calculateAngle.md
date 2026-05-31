@@ -8,7 +8,7 @@
 
 > **calculateAngle**(`aX`, `aY`, `bX`, `bY`): `number`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/trigonometry/trigonometry.d.ts:5
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/trigonometry/trigonometry.d.ts:5
 
 Returns the angle between 2 points in radians.
 Positive in clockwise direction.

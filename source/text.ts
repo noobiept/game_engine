@@ -16,7 +16,7 @@ export interface TextArgs extends ElementArgs {
 /**
  * Basic Usage:
  *
- *     var text = new Game.Text({
+ *     const text = new Game.Text({
  *             x: 10,
  *             y: 20,
  *             text: 'Hi'

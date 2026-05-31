@@ -37,7 +37,7 @@ export interface WeaponArgs {
  *             }
  *         }
  *
- *     var unit = new Unit({
+ *     const unit = new Unit({
  *             width: 10,
  *             height: 10,
  *             color: 'red'

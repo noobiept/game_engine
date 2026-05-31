@@ -6,7 +6,7 @@
 
 # Class: MultipleOptions
 
-Defined in: [source/html.ts:485](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L485)
+Defined in: [source/html.ts:485](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/html.ts#L485)
 
 Multiple options button.
 
@@ -20,7 +20,7 @@ Multiple options button.
 
 > **new MultipleOptions**(`args`): `MultipleOptions`
 
-Defined in: [source/html.ts:490](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L490)
+Defined in: [source/html.ts:490](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/html.ts#L490)
 
 #### Parameters
 
@@ -42,7 +42,7 @@ Defined in: [source/html.ts:490](https://github.com/noobiept/game_engine/blob/4a
 
 > `protected` **\_is_active**: `boolean`
 
-Defined in: [source/html.ts:39](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L39)
+Defined in: [source/html.ts:39](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/html.ts#L39)
 
 #### Inherited from
 
@@ -54,7 +54,7 @@ Defined in: [source/html.ts:39](https://github.com/noobiept/game_engine/blob/4a0
 
 > `protected` **\_pre_text**: `HTMLElement` \| `null`
 
-Defined in: [source/html.ts:40](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L40)
+Defined in: [source/html.ts:40](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/html.ts#L40)
 
 #### Inherited from
 
@@ -66,7 +66,7 @@ Defined in: [source/html.ts:40](https://github.com/noobiept/game_engine/blob/4a0
 
 > `protected` **click_ref**: ((`event`) => `any`) \| `null`
 
-Defined in: [source/html.ts:487](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L487)
+Defined in: [source/html.ts:487](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/html.ts#L487)
 
 ---
 
@@ -74,7 +74,7 @@ Defined in: [source/html.ts:487](https://github.com/noobiept/game_engine/blob/4a
 
 > **container**: `HTMLElement` \| `null`
 
-Defined in: [source/html.ts:38](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L38)
+Defined in: [source/html.ts:38](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/html.ts#L38)
 
 #### Inherited from
 
@@ -86,7 +86,7 @@ Defined in: [source/html.ts:38](https://github.com/noobiept/game_engine/blob/4a0
 
 > `protected` **elements**: `HTMLElement`[]
 
-Defined in: [source/html.ts:486](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L486)
+Defined in: [source/html.ts:486](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/html.ts#L486)
 
 ---
 
@@ -94,7 +94,7 @@ Defined in: [source/html.ts:486](https://github.com/noobiept/game_engine/blob/4a
 
 > `protected` **selected**: `HTMLElement` \| `null`
 
-Defined in: [source/html.ts:488](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L488)
+Defined in: [source/html.ts:488](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/html.ts#L488)
 
 ## Methods
 
@@ -102,7 +102,7 @@ Defined in: [source/html.ts:488](https://github.com/noobiept/game_engine/blob/4a
 
 > **addEvents**(): `void`
 
-Defined in: [source/html.ts:560](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L560)
+Defined in: [source/html.ts:560](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/html.ts#L560)
 
 add the click event handler on the options.
 
@@ -120,7 +120,7 @@ add the click event handler on the options.
 
 > **clear**(): `void`
 
-Defined in: [source/html.ts:586](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L586)
+Defined in: [source/html.ts:586](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/html.ts#L586)
 
 Clear the object.
 
@@ -138,7 +138,7 @@ Clear the object.
 
 > **getValue**(): `string` \| `undefined`
 
-Defined in: [source/html.ts:553](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L553)
+Defined in: [source/html.ts:553](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/html.ts#L553)
 
 Get the string value of the currently selected option.
 
@@ -152,7 +152,7 @@ Get the string value of the currently selected option.
 
 > **isActive**(): `boolean`
 
-Defined in: [source/html.ts:115](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L115)
+Defined in: [source/html.ts:115](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/html.ts#L115)
 
 Check if the element is active or not currently.
 
@@ -170,7 +170,7 @@ Check if the element is active or not currently.
 
 > **removeEvents**(): `void`
 
-Defined in: [source/html.ts:573](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L573)
+Defined in: [source/html.ts:573](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/html.ts#L573)
 
 Remove the click event handlers from the options elements.
 
@@ -188,7 +188,7 @@ Remove the click event handlers from the options elements.
 
 > **select**(`position`): `void`
 
-Defined in: [source/html.ts:535](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L535)
+Defined in: [source/html.ts:535](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/html.ts#L535)
 
 Select the active option by position.
 
@@ -210,7 +210,7 @@ The position to select.
 
 > **setActive**(`yesNo`): `void`
 
-Defined in: [source/html.ts:89](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L89)
+Defined in: [source/html.ts:89](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/html.ts#L89)
 
 When the element is inactive, its events are disabled, and a `.Game-inactive` css class is applied.
 

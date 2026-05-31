@@ -8,7 +8,7 @@
 
 > **SeparatedTime** = `object`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:1
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:1
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilitie
 
 > **days**: `number`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:2
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:2
 
 ---
 
@@ -24,7 +24,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilitie
 
 > **hours**: `number`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:3
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:3
 
 ---
 
@@ -32,7 +32,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilitie
 
 > **minutes**: `number`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:4
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:4
 
 ---
 
@@ -40,4 +40,4 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilitie
 
 > **seconds**: `number`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:5
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:5

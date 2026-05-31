@@ -6,7 +6,17 @@
 
 # Interface: Vector
 
-Defined in: [source/vector.ts:1](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/vector.ts#L1)
+Defined in: [source/vector.ts:12](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/vector.ts#L12)
+
+A 2d vector (`{ x, y }`), and helper functions to operate on them.
+
+Basic Usage:
+
+    const a = { x: 1, y: 2 };
+    const b = { x: 3, y: 4 };
+
+    const sum = Game.Vector.add( a, b ); // { x: 4, y: 6 }
+    const length = Game.Vector.magnitude( a );
 
 ## Properties
 
@@ -14,7 +24,7 @@ Defined in: [source/vector.ts:1](https://github.com/noobiept/game_engine/blob/4a
 
 > **x**: `number`
 
-Defined in: [source/vector.ts:2](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/vector.ts#L2)
+Defined in: [source/vector.ts:13](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/vector.ts#L13)
 
 ---
 
@@ -22,4 +32,4 @@ Defined in: [source/vector.ts:2](https://github.com/noobiept/game_engine/blob/4a
 
 > **y**: `number`
 
-Defined in: [source/vector.ts:3](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/vector.ts#L3)
+Defined in: [source/vector.ts:14](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/vector.ts#L14)

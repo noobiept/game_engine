@@ -8,7 +8,7 @@
 
 > **UnitDescription** = `object`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:7
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:7
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilitie
 
 > **plural**: `string`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:9
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:9
 
 ---
 
@@ -24,4 +24,4 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilitie
 
 > **single**: `string`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:8
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:8

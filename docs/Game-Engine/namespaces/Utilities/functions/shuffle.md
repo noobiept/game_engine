@@ -8,7 +8,7 @@
 
 > **shuffle**(`array`): `any`[]
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/array/array.d.ts:4
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/array/array.d.ts:4
 
 Shuffle an array.
 

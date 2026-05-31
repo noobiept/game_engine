@@ -10,13 +10,13 @@ export interface GridArgs {
  *
  * Basic Usage:
  *
- *     var grid = new Game.Grid({
+ *     const grid = new Game.Grid({
  *             columns: 20,
  *             lines: 20
  *         });
- *     var value = 100;
- *     var column = 5;
- *     var line = 10;
+ *     const value = 100;
+ *     const column = 5;
+ *     const line = 10;
  *
  *     grid.add( value, column, line );
  *

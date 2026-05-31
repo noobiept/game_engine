@@ -6,7 +6,7 @@
 
 # Enumeration: Direction
 
-Defined in: [source/scrolling_bitmap.ts:10](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/scrolling_bitmap.ts#L10)
+Defined in: [source/scrolling_bitmap.ts:10](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/scrolling_bitmap.ts#L10)
 
 ## Enumeration Members
 
@@ -14,7 +14,7 @@ Defined in: [source/scrolling_bitmap.ts:10](https://github.com/noobiept/game_eng
 
 > **bottom**: `3`
 
-Defined in: [source/scrolling_bitmap.ts:14](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/scrolling_bitmap.ts#L14)
+Defined in: [source/scrolling_bitmap.ts:14](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/scrolling_bitmap.ts#L14)
 
 ---
 
@@ -22,7 +22,7 @@ Defined in: [source/scrolling_bitmap.ts:14](https://github.com/noobiept/game_eng
 
 > **left**: `0`
 
-Defined in: [source/scrolling_bitmap.ts:11](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/scrolling_bitmap.ts#L11)
+Defined in: [source/scrolling_bitmap.ts:11](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/scrolling_bitmap.ts#L11)
 
 ---
 
@@ -30,7 +30,7 @@ Defined in: [source/scrolling_bitmap.ts:11](https://github.com/noobiept/game_eng
 
 > **right**: `1`
 
-Defined in: [source/scrolling_bitmap.ts:12](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/scrolling_bitmap.ts#L12)
+Defined in: [source/scrolling_bitmap.ts:12](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/scrolling_bitmap.ts#L12)
 
 ---
 
@@ -38,4 +38,4 @@ Defined in: [source/scrolling_bitmap.ts:12](https://github.com/noobiept/game_eng
 
 > **top**: `2`
 
-Defined in: [source/scrolling_bitmap.ts:13](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/scrolling_bitmap.ts#L13)
+Defined in: [source/scrolling_bitmap.ts:13](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/scrolling_bitmap.ts#L13)

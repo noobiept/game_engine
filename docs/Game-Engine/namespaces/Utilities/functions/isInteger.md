@@ -8,7 +8,7 @@
 
 > **isInteger**(`value`): `value is number`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/is_type/is_type.d.ts:16
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/is_type/is_type.d.ts:16
 
 ## Parameters
 

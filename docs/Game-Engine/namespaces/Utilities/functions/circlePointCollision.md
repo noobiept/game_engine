@@ -8,7 +8,7 @@
 
 > **circlePointCollision**(`circleX`, `circleY`, `circleRadius`, `pointX`, `pointY`): `boolean`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/collision_detection/collision_detection.d.ts:12
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/collision_detection/collision_detection.d.ts:12
 
 Detects collision between a circle and a point.
 

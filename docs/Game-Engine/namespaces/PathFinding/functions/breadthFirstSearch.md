@@ -8,7 +8,7 @@
 
 > **breadthFirstSearch**(`map`, `destination`, `positionType`): (`Position` \| `null`)[][]
 
-Defined in: [source/path_finding.ts:41](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/path_finding.ts#L41)
+Defined in: [source/path_finding.ts:41](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/path_finding.ts#L41)
 
 Calculate the path that an element needs to take to reach the destination, from any valid position.
 
@@ -17,28 +17,28 @@ We start at the end position, and spread from there.
 
 Basic Usage:
 
-    var map = [
+    const map = [
         [ 1, 1, 0, 0 ],
         [ 0, 1, 0, 0 ],
         [ 0, 1, 1, 1 ],
         [ 0, 0, 0, 1 ]
     ];
-    var destination = {
+    const destination = {
         column: 0,
         line: 0
     };
-    var positionType = {
+    const positionType = {
         passable: 1,
         blocked: 0
     };
 
-    var path = Game.PathFinding.breadthFirstSearch( map, destination, positionType );
+    const path = Game.PathFinding.breadthFirstSearch( map, destination, positionType );
 
         // `path` is a 2d array, where each column/line position tells you where to go next. If it tells to go to the current position, then it means you reached the destination.
         // so for example, the position before the destination
-    var line = 0;
-    var column = 1;
-    var goTo = path[ line ][ column ];   // { column: 0, line: 0 }
+    const line = 0;
+    const column = 1;
+    const goTo = path[ line ][ column ];   // { column: 0, line: 0 }
 
 Examples -- `tower_defense`
 

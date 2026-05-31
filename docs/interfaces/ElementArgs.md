@@ -6,7 +6,7 @@
 
 # Interface: ElementArgs
 
-Defined in: [source/element.ts:9](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/element.ts#L9)
+Defined in: [source/element.ts:9](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/element.ts#L9)
 
 ## Extends
 
@@ -26,7 +26,7 @@ Defined in: [source/element.ts:9](https://github.com/noobiept/game_engine/blob/4
 
 > `readonly` `optional` **\_eventDispatcherArgsBrand?**: `undefined`
 
-Defined in: [source/event_dispatcher.ts:4](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/event_dispatcher.ts#L4)
+Defined in: [source/event_dispatcher.ts:4](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/event_dispatcher.ts#L4)
 
 #### Inherited from
 
@@ -38,7 +38,7 @@ Defined in: [source/event_dispatcher.ts:4](https://github.com/noobiept/game_engi
 
 > `optional` **category?**: `number`
 
-Defined in: [source/element.ts:15](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/element.ts#L15)
+Defined in: [source/element.ts:15](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/element.ts#L15)
 
 ---
 
@@ -46,7 +46,7 @@ Defined in: [source/element.ts:15](https://github.com/noobiept/game_engine/blob/
 
 > `optional` **collidesWith?**: `number`
 
-Defined in: [source/element.ts:19](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/element.ts#L19)
+Defined in: [source/element.ts:19](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/element.ts#L19)
 
 ---
 
@@ -54,7 +54,7 @@ Defined in: [source/element.ts:19](https://github.com/noobiept/game_engine/blob/
 
 > `optional` **x?**: `number`
 
-Defined in: [source/element.ts:10](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/element.ts#L10)
+Defined in: [source/element.ts:10](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/element.ts#L10)
 
 ---
 
@@ -62,4 +62,4 @@ Defined in: [source/element.ts:10](https://github.com/noobiept/game_engine/blob/
 
 > `optional` **y?**: `number`
 
-Defined in: [source/element.ts:11](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/element.ts#L11)
+Defined in: [source/element.ts:11](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/element.ts#L11)

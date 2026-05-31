@@ -9,13 +9,13 @@ export interface PreloadArgs extends EventDispatcherArgs {
 /**
  * Basic Usage:
  *
- *     var preload = new Game.Preload({ saveGlobal: true });
+ *     const preload = new Game.Preload({ saveGlobal: true });
  *
  *     preload.addEventListener( 'complete', completeListener );
  *     preload.load( 'id', 'path_to_file.png' );
  *
  *         // or with a manifest
- *     var manifest = [
+ *     const manifest = [
  *             { id: 'the_id', path: 'path_to_file.png' }
  *         ];
  *     preload.loadManifest( manifest, '' );

@@ -6,7 +6,7 @@
 
 # Interface: TweenArgs
 
-Defined in: [source/tween.ts:9](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/tween.ts#L9)
+Defined in: [source/tween.ts:9](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/tween.ts#L9)
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: [source/tween.ts:9](https://github.com/noobiept/game_engine/blob/4a0
 
 > `optional` **override?**: `boolean`
 
-Defined in: [source/tween.ts:11](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/tween.ts#L11)
+Defined in: [source/tween.ts:11](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/tween.ts#L11)

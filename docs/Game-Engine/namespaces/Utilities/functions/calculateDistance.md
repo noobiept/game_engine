@@ -8,7 +8,7 @@
 
 > **calculateDistance**(`aX`, `aY`, `bX`, `bY`): `number`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/trigonometry/trigonometry.d.ts:9
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/trigonometry/trigonometry.d.ts:9
 
 Distance between 2 points.
 

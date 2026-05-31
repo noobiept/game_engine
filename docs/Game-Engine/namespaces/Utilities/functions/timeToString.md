@@ -8,7 +8,7 @@
 
 > **timeToString**(`args`): `string`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:49
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:49
 
 Converts a time (in milliseconds) to a string (with the number of days/hours...).
 The units available are: day/hour/minute/second.

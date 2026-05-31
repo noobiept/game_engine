@@ -8,7 +8,7 @@
 
 > **pointBoxCollision**(`pointX`, `pointY`, `boxX`, `boxY`, `boxWidth`, `boxHeight`): `boolean`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/collision_detection/collision_detection.d.ts:16
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/collision_detection/collision_detection.d.ts:16
 
 Detects collision between a point and a box.
 

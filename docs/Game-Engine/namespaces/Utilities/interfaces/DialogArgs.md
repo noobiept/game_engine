@@ -6,7 +6,7 @@
 
 # Interface: DialogArgs
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:12
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:12
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilitie
 
 > **body**: `string` \| `HTMLElement`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:14
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:14
 
 ---
 
@@ -22,7 +22,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilitie
 
 > `optional` **buttons?**: [`DialogButtonsArg`](../type-aliases/DialogButtonsArg.md)
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:18
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:18
 
 ---
 
@@ -30,7 +30,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilitie
 
 > `optional` **closeOnOverlay?**: `boolean`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:17
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:17
 
 ---
 
@@ -38,7 +38,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilitie
 
 > `optional` **modal?**: `boolean`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:16
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:16
 
 ---
 
@@ -46,7 +46,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilitie
 
 > `optional` **onClose?**: () => `void`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:15
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:15
 
 #### Returns
 
@@ -58,7 +58,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilitie
 
 > `optional` **position?**: [`DialogPosition`](../enumerations/DialogPosition.md)
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:19
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:19
 
 ---
 
@@ -66,4 +66,4 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilitie
 
 > **title**: `string` \| `HTMLElement`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:13
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:13

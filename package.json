@@ -23,7 +23,7 @@
     "files": [
         "dist/",
         "license.txt",
-        "readme.md",
+        "README.md",
         "CHANGELOG.md"
     ],
     "sideEffects": [

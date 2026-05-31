@@ -13,12 +13,12 @@ export interface BulletArgs extends ContainerArgs {
 /**
  * Basic Usage:
  *
- *     var bulletShape = new Game.Rectangle({
+ *     const bulletShape = new Game.Rectangle({
  *             width: 10,
  *             height: 2,
  *             color: 'blue'
  *         });
- *     var bullet = new Game.Bullet({
+ *     const bullet = new Game.Bullet({
  *             x: 10,
  *             y: 10,
  *             angleOrTarget: 0,

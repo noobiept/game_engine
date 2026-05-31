@@ -6,7 +6,7 @@
 
 # Class: Dialog
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:37
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:37
 
 Create a dialog window with the given message.
 Can be a modal (forces user interaction) or not.
@@ -29,7 +29,7 @@ There's some basic styling available, that you can import in case there's no nee
 
 > **new Dialog**(`args`): `Dialog`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:46
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:46
 
 #### Parameters
 
@@ -47,7 +47,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilitie
 
 > `readonly` **body**: `HTMLElement`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:40
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:40
 
 ---
 
@@ -55,7 +55,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilitie
 
 > `readonly` `optional` **buttons?**: `HTMLElement`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:41
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:41
 
 ---
 
@@ -63,7 +63,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilitie
 
 > `readonly` **container**: `HTMLElement`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:38
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:38
 
 ---
 
@@ -71,7 +71,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilitie
 
 > `readonly` **title**: `HTMLElement`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:39
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:39
 
 ## Methods
 
@@ -79,7 +79,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilitie
 
 > **close**(): `void`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:62
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:62
 
 Remove the dialog from the page.
 
@@ -93,7 +93,7 @@ Remove the dialog from the page.
 
 > **isOpened**(): `boolean`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:66
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:66
 
 Check if the dialog is opened or not.
 
@@ -107,7 +107,7 @@ Check if the dialog is opened or not.
 
 > **open**(): `void`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:58
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:58
 
 Add the dialog to the page.
 
@@ -121,7 +121,7 @@ Add the dialog to the page.
 
 > **setBody**(`content`): `void`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:78
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:78
 
 Change the body of the dialog.
 
@@ -141,7 +141,7 @@ Change the body of the dialog.
 
 > **setTitle**(`content`): `void`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:74
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:74
 
 Change the title of the dialog.
 
@@ -161,7 +161,7 @@ Change the title of the dialog.
 
 > **toggle**(): `void`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:70
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:70
 
 Toggle between the open/close state.
 

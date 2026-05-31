@@ -8,7 +8,7 @@ export interface CircleArgs extends ElementArgs {
 /**
  * Basic Usage:
  *
- *     var circle = new Game.Circle({
+ *     const circle = new Game.Circle({
  *             x: 10,
  *             y: 10,
  *             radius: 5,

@@ -6,7 +6,7 @@
 
 # Interface: InitArgs
 
-Defined in: [source/game.ts:61](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/game.ts#L61)
+Defined in: [source/game.ts:61](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/game.ts#L61)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [source/game.ts:61](https://github.com/noobiept/game_engine/blob/4a0
 
 > `optional` **collision?**: [`CollisionDetectionAlgorithm`](../Game-Engine/namespaces/CollisionDetection/interfaces/CollisionDetectionAlgorithm.md)
 
-Defined in: [source/game.ts:65](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/game.ts#L65)
+Defined in: [source/game.ts:65](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/game.ts#L65)
 
 ---
 
@@ -22,7 +22,7 @@ Defined in: [source/game.ts:65](https://github.com/noobiept/game_engine/blob/4a0
 
 > **container**: `HTMLElement`
 
-Defined in: [source/game.ts:62](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/game.ts#L62)
+Defined in: [source/game.ts:62](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/game.ts#L62)
 
 ---
 
@@ -30,7 +30,7 @@ Defined in: [source/game.ts:62](https://github.com/noobiept/game_engine/blob/4a0
 
 > **height**: `number`
 
-Defined in: [source/game.ts:64](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/game.ts#L64)
+Defined in: [source/game.ts:64](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/game.ts#L64)
 
 ---
 
@@ -38,4 +38,4 @@ Defined in: [source/game.ts:64](https://github.com/noobiept/game_engine/blob/4a0
 
 > **width**: `number`
 
-Defined in: [source/game.ts:63](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/game.ts#L63)
+Defined in: [source/game.ts:63](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/game.ts#L63)

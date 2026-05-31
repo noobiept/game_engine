@@ -6,7 +6,7 @@
 
 # Interface: PreloadArgs
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/preload/preload.d.ts:34
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/preload/preload.d.ts:34
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilitie
 
 > `optional` **saveGlobal?**: `boolean`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/preload/preload.d.ts:35
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/preload/preload.d.ts:35

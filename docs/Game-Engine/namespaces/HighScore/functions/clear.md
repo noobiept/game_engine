@@ -8,7 +8,7 @@
 
 > **clear**(): `void`
 
-Defined in: [source/highscore.ts:98](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/highscore.ts#L98)
+Defined in: [source/highscore.ts:98](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/highscore.ts#L98)
 
 Remove all the scores (clears the `localStorage` as well).
 

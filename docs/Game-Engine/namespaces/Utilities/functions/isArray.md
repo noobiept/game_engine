@@ -6,9 +6,9 @@
 
 # Function: isArray()
 
-> **isArray**(`element`): `boolean`
+> **isArray**(`element`): `element is any[]`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/is_type/is_type.d.ts:4
+Defined in: node_modules/.pnpm/@drk4+utilities@7.0.0/node_modules/@drk4/utilities/build/is_type/is_type.d.ts:4
 
 ## Parameters
 
@@ -18,6 +18,6 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilitie
 
 ## Returns
 
-`boolean`
+`element is any[]`
 
 If it is an array or not.

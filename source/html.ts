@@ -1,9 +1,9 @@
 /**
  * Basic Usage:
  *
- *     var menu = new Game.Html.HtmlContainer();
+ *     const menu = new Game.Html.HtmlContainer();
  *
- *     var button = new Game.Html.Button({
+ *     const button = new Game.Html.Button({
  *             value: 'click here',
  *             callback: function( button )
  *                 {

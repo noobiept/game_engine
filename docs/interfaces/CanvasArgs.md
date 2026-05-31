@@ -6,7 +6,7 @@
 
 # Interface: CanvasArgs
 
-Defined in: [source/canvas.ts:12](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/canvas.ts#L12)
+Defined in: [source/canvas.ts:12](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/canvas.ts#L12)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [source/canvas.ts:12](https://github.com/noobiept/game_engine/blob/4
 
 > **height**: `number`
 
-Defined in: [source/canvas.ts:14](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/canvas.ts#L14)
+Defined in: [source/canvas.ts:14](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/canvas.ts#L14)
 
 ---
 
@@ -22,4 +22,4 @@ Defined in: [source/canvas.ts:14](https://github.com/noobiept/game_engine/blob/4
 
 > **width**: `number`
 
-Defined in: [source/canvas.ts:13](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/canvas.ts#L13)
+Defined in: [source/canvas.ts:13](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/canvas.ts#L13)

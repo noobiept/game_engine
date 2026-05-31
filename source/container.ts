@@ -15,9 +15,9 @@ export interface ContainerArgs extends ElementArgs {
 /**
  * Basic Usage:
  *
- *     var container = new Game.Container();
+ *     const container = new Game.Container();
  *
- *     var rectangle = new Game.Rectangle({
+ *     const rectangle = new Game.Rectangle({
  *             width: 10,
  *             height: 10,
  *             color: 'red'

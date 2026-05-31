@@ -1,3 +1,14 @@
+/**
+ * A 2d vector (`{ x, y }`), and helper functions to operate on them.
+ *
+ * Basic Usage:
+ *
+ *     const a = { x: 1, y: 2 };
+ *     const b = { x: 3, y: 4 };
+ *
+ *     const sum = Game.Vector.add( a, b ); // { x: 4, y: 6 }
+ *     const length = Game.Vector.magnitude( a );
+ */
 export interface Vector {
     x: number;
     y: number;

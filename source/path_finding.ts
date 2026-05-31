@@ -8,28 +8,28 @@ type Position = { column: number; line: number };
  *
  * Basic Usage:
  *
- *     var map = [
+ *     const map = [
  *         [ 1, 1, 0, 0 ],
  *         [ 0, 1, 0, 0 ],
  *         [ 0, 1, 1, 1 ],
  *         [ 0, 0, 0, 1 ]
  *     ];
- *     var destination = {
+ *     const destination = {
  *         column: 0,
  *         line: 0
  *     };
- *     var positionType = {
+ *     const positionType = {
  *         passable: 1,
  *         blocked: 0
  *     };
  *
- *     var path = Game.PathFinding.breadthFirstSearch( map, destination, positionType );
+ *     const path = Game.PathFinding.breadthFirstSearch( map, destination, positionType );
  *
  *         // `path` is a 2d array, where each column/line position tells you where to go next. If it tells to go to the current position, then it means you reached the destination.
  *         // so for example, the position before the destination
- *     var line = 0;
- *     var column = 1;
- *     var goTo = path[ line ][ column ];   // { column: 0, line: 0 }
+ *     const line = 0;
+ *     const column = 1;
+ *     const goTo = path[ line ][ column ];   // { column: 0, line: 0 }
  *
  * Examples -- `tower_defense`
  *

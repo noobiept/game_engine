@@ -8,7 +8,7 @@
 
 > **play**(`audioBuffer`, `options?`): [`SoundInstance`](../classes/SoundInstance.md) \| `null`
 
-Defined in: [source/sound.ts:84](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/sound.ts#L84)
+Defined in: [source/sound.ts:84](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/sound.ts#L84)
 
 Play a sound.
 

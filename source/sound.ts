@@ -4,7 +4,7 @@
  *
  * Basic Usage:
  *
- *     var preload = new Game.Preload({ saveGlobal: true });
+ *     const preload = new Game.Preload({ saveGlobal: true });
  *
  *     preload.addEventListener( 'complete', function()
  *         {
@@ -12,7 +12,7 @@
  *         Game.Sound.play( Game.Preload.get( 'sound' ) );
  *
  *             // or loop it (for example background music) and keep a reference to control it later
- *         var music = Game.Sound.play( Game.Preload.get( 'sound' ), { loop: true, volume: 0.5 } );
+ *         const music = Game.Sound.play( Game.Preload.get( 'sound' ), { loop: true, volume: 0.5 } );
  *         music.pause();
  *         music.resume();
  *         music.stop();

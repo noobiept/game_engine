@@ -6,17 +6,17 @@
 
 # Class: SpatialPartition
 
-Defined in: [source/collision-detection/collision_spatial_partition.ts:28](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/collision-detection/collision_spatial_partition.ts#L28)
+Defined in: [source/collision-detection/collision_spatial_partition.ts:28](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/collision-detection/collision_spatial_partition.ts#L28)
 
 Useful when there's lots of elements in the game.
 Need to make sure no element is bigger than the size of a partition.
 
 Basic Usage:
 
-    var width = 400;
-    var height = 400;
+    const width = 400;
+    const height = 400;
 
-    var collision = new Game.CollisionDetection.SpatialPartition({
+    const collision = new Game.CollisionDetection.SpatialPartition({
             canvasWidth: width,
             canvasHeight: height,
             partitions: 10
@@ -35,7 +35,7 @@ Examples -- `collision_spatial_partition`
 
 > **new SpatialPartition**(`args`): `SpatialPartition`
 
-Defined in: [source/collision-detection/collision_spatial_partition.ts:34](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/collision-detection/collision_spatial_partition.ts#L34)
+Defined in: [source/collision-detection/collision_spatial_partition.ts:34](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/collision-detection/collision_spatial_partition.ts#L34)
 
 #### Parameters
 
@@ -53,7 +53,7 @@ Defined in: [source/collision-detection/collision_spatial_partition.ts:34](https
 
 > **\_grid**: ([`Element`](Element.md) \| `null`)[][]
 
-Defined in: [source/collision-detection/collision_spatial_partition.ts:29](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/collision-detection/collision_spatial_partition.ts#L29)
+Defined in: [source/collision-detection/collision_spatial_partition.ts:29](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/collision-detection/collision_spatial_partition.ts#L29)
 
 ---
 
@@ -61,7 +61,7 @@ Defined in: [source/collision-detection/collision_spatial_partition.ts:29](https
 
 > **\_grid_size**: `number`
 
-Defined in: [source/collision-detection/collision_spatial_partition.ts:30](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/collision-detection/collision_spatial_partition.ts#L30)
+Defined in: [source/collision-detection/collision_spatial_partition.ts:30](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/collision-detection/collision_spatial_partition.ts#L30)
 
 ---
 
@@ -69,7 +69,7 @@ Defined in: [source/collision-detection/collision_spatial_partition.ts:30](https
 
 > **\_partition_height**: `number`
 
-Defined in: [source/collision-detection/collision_spatial_partition.ts:32](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/collision-detection/collision_spatial_partition.ts#L32)
+Defined in: [source/collision-detection/collision_spatial_partition.ts:32](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/collision-detection/collision_spatial_partition.ts#L32)
 
 ---
 
@@ -77,7 +77,7 @@ Defined in: [source/collision-detection/collision_spatial_partition.ts:32](https
 
 > **\_partition_width**: `number`
 
-Defined in: [source/collision-detection/collision_spatial_partition.ts:31](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/collision-detection/collision_spatial_partition.ts#L31)
+Defined in: [source/collision-detection/collision_spatial_partition.ts:31](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/collision-detection/collision_spatial_partition.ts#L31)
 
 ## Methods
 
@@ -85,7 +85,7 @@ Defined in: [source/collision-detection/collision_spatial_partition.ts:31](https
 
 > **add**(`element`): `void`
 
-Defined in: [source/collision-detection/collision_spatial_partition.ts:55](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/collision-detection/collision_spatial_partition.ts#L55)
+Defined in: [source/collision-detection/collision_spatial_partition.ts:55](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/collision-detection/collision_spatial_partition.ts#L55)
 
 Add an element to a partition in the grid, based on its current x/y position.
 
@@ -109,7 +109,7 @@ Add an element to a partition in the grid, based on its current x/y position.
 
 > **checkCollision**(): `void`
 
-Defined in: [source/collision-detection/collision_spatial_partition.ts:159](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/collision-detection/collision_spatial_partition.ts#L159)
+Defined in: [source/collision-detection/collision_spatial_partition.ts:159](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/collision-detection/collision_spatial_partition.ts#L159)
 
 #### Returns
 
@@ -125,7 +125,7 @@ Defined in: [source/collision-detection/collision_spatial_partition.ts:159](http
 
 > **checkElement**(`element`, `other`): `void`
 
-Defined in: [source/collision-detection/collision_spatial_partition.ts:214](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/collision-detection/collision_spatial_partition.ts#L214)
+Defined in: [source/collision-detection/collision_spatial_partition.ts:214](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/collision-detection/collision_spatial_partition.ts#L214)
 
 #### Parameters
 
@@ -151,7 +151,7 @@ First element of the partition linked list.
 
 > **clear**(): `void`
 
-Defined in: [source/collision-detection/collision_spatial_partition.ts:247](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/collision-detection/collision_spatial_partition.ts#L247)
+Defined in: [source/collision-detection/collision_spatial_partition.ts:247](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/collision-detection/collision_spatial_partition.ts#L247)
 
 #### Returns
 
@@ -167,7 +167,7 @@ Defined in: [source/collision-detection/collision_spatial_partition.ts:247](http
 
 > **remove**(`element`): `void`
 
-Defined in: [source/collision-detection/collision_spatial_partition.ts:129](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/collision-detection/collision_spatial_partition.ts#L129)
+Defined in: [source/collision-detection/collision_spatial_partition.ts:129](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/collision-detection/collision_spatial_partition.ts#L129)
 
 #### Parameters
 
@@ -189,7 +189,7 @@ Defined in: [source/collision-detection/collision_spatial_partition.ts:129](http
 
 > **update**(`element`): `void`
 
-Defined in: [source/collision-detection/collision_spatial_partition.ts:89](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/collision-detection/collision_spatial_partition.ts#L89)
+Defined in: [source/collision-detection/collision_spatial_partition.ts:89](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/collision-detection/collision_spatial_partition.ts#L89)
 
 #### Parameters
 
