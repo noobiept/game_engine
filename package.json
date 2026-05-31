@@ -81,6 +81,6 @@
         "docs:build": "typedoc --plugin typedoc-plugin-markdown --out docs/ source/index.ts --name \"Game Engine\" --readme none --formatWithPrettier"
     },
     "dependencies": {
-        "@drk4/utilities": "^6.4.0"
+        "@drk4/utilities": "^7.0.0"
     }
 }

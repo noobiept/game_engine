@@ -1,0 +1,2 @@
+minimumReleaseAgeExclude:
+    - "@drk4/utilities@7.0.0"

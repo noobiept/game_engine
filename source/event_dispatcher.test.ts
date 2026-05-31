@@ -14,6 +14,23 @@ describe("EventDispatcher", function () {
         expect(dispatcher.hasListeners("change")).toEqual(true);
     });
 
+    test("addEventListener() accepts async function listeners", function () {
+        const dispatcher = new EventDispatcher();
+        let called = false;
+        const listener = async function () {
+            called = true;
+        };
+
+        // regression: `isFunction` used to reject async functions, so they
+        // couldn't be registered as listeners
+        expect(dispatcher.addEventListener("change", listener)).toEqual(true);
+        expect(dispatcher.hasListeners("change")).toEqual(true);
+
+        dispatcher.dispatchEvent("change", {});
+
+        expect(called).toEqual(true);
+    });
+
     test("dispatchEvent() calls listeners with data in reverse order", function () {
         const dispatcher = new EventDispatcher();
         const calls: string[] = [];
