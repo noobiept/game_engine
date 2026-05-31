@@ -6,24 +6,6 @@
 
 # Variable: RESPONSE_TYPE
 
-> `const` **RESPONSE_TYPE**: `object`
+> `const` **RESPONSE_TYPE**: `Record`\<[`FileType`](../type-aliases/FileType.md), `XMLHttpRequestResponseType`\>
 
-Defined in: [source/preload.ts:297](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/preload.ts#L297)
-
-## Type Declaration
-
-### audio
-
-> **audio**: `string` = `"arraybuffer"`
-
-### image
-
-> **image**: `string` = `"blob"`
-
-### json
-
-> **json**: `string` = `"json"`
-
-### text
-
-> **text**: `string` = `"text"`
+Defined in: [source/preload.ts:304](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/preload.ts#L304)

@@ -6,15 +6,15 @@
 
 # Interface: CollisionDetectionAlgorithm
 
-Defined in: [source/collision-detection/collision_detection.ts:8](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/collision-detection/collision_detection.ts#L8)
+Defined in: [source/collision-detection/collision_detection.ts:8](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/collision-detection/collision_detection.ts#L8)
 
 ## Methods
 
 ### add()
 
-> **add**(`element`): `any`
+> **add**(`element`): `void`
 
-Defined in: [source/collision-detection/collision_detection.ts:10](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/collision-detection/collision_detection.ts#L10)
+Defined in: [source/collision-detection/collision_detection.ts:10](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/collision-detection/collision_detection.ts#L10)
 
 #### Parameters
 
@@ -24,39 +24,39 @@ Defined in: [source/collision-detection/collision_detection.ts:10](https://githu
 
 #### Returns
 
-`any`
+`void`
 
 ---
 
 ### checkCollision()
 
-> **checkCollision**(): `any`
+> **checkCollision**(): `void`
 
-Defined in: [source/collision-detection/collision_detection.ts:9](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/collision-detection/collision_detection.ts#L9)
+Defined in: [source/collision-detection/collision_detection.ts:9](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/collision-detection/collision_detection.ts#L9)
 
 #### Returns
 
-`any`
+`void`
 
 ---
 
 ### clear()
 
-> **clear**(): `any`
+> **clear**(): `void`
 
-Defined in: [source/collision-detection/collision_detection.ts:13](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/collision-detection/collision_detection.ts#L13)
+Defined in: [source/collision-detection/collision_detection.ts:13](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/collision-detection/collision_detection.ts#L13)
 
 #### Returns
 
-`any`
+`void`
 
 ---
 
 ### remove()
 
-> **remove**(`element`): `any`
+> **remove**(`element`): `void`
 
-Defined in: [source/collision-detection/collision_detection.ts:11](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/collision-detection/collision_detection.ts#L11)
+Defined in: [source/collision-detection/collision_detection.ts:11](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/collision-detection/collision_detection.ts#L11)
 
 #### Parameters
 
@@ -66,15 +66,15 @@ Defined in: [source/collision-detection/collision_detection.ts:11](https://githu
 
 #### Returns
 
-`any`
+`void`
 
 ---
 
 ### update()
 
-> **update**(`element`): `any`
+> **update**(`element`): `void`
 
-Defined in: [source/collision-detection/collision_detection.ts:12](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/collision-detection/collision_detection.ts#L12)
+Defined in: [source/collision-detection/collision_detection.ts:12](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/collision-detection/collision_detection.ts#L12)
 
 #### Parameters
 
@@ -84,4 +84,4 @@ Defined in: [source/collision-detection/collision_detection.ts:12](https://githu
 
 #### Returns
 
-`any`
+`void`

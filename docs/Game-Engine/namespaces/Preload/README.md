@@ -10,6 +10,10 @@
 
 - [TYPES](enumerations/TYPES.md)
 
+## Type Aliases
+
+- [FileType](type-aliases/FileType.md)
+
 ## Variables
 
 - [DATA](variables/DATA.md)

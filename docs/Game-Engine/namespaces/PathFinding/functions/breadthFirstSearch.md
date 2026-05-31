@@ -6,9 +6,9 @@
 
 # Function: breadthFirstSearch()
 
-> **breadthFirstSearch**(`map`, `destination`, `positionType`): `any`[]
+> **breadthFirstSearch**(`map`, `destination`, `positionType`): (`Position` \| `null`)[][]
 
-Defined in: [source/path_finding.ts:39](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/path_finding.ts#L39)
+Defined in: [source/path_finding.ts:41](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/path_finding.ts#L41)
 
 Calculate the path that an element needs to take to reach the destination, from any valid position.
 
@@ -52,15 +52,9 @@ A 2d array, where each value tells if that position is passable/blocked. Its ass
 
 ### destination
 
+`Position`
+
 The destination position.
-
-#### column
-
-`number`
-
-#### line
-
-`number`
 
 ### positionType
 
@@ -76,4 +70,4 @@ What value in the `map` represents a passable position and what value represents
 
 ## Returns
 
-`any`[]
+(`Position` \| `null`)[][]

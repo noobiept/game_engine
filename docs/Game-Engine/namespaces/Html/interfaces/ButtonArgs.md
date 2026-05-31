@@ -6,24 +6,7 @@
 
 # Interface: ButtonArgs
 
-Defined in: [source/html.ts:289](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/html.ts#L289)
-
-Basic Usage:
-
-    var menu = new Game.Html.HtmlContainer();
-
-    var button = new Game.Html.Button({
-            value: 'click here',
-            callback: function( button )
-                {
-                console.log( 'clicked!' );
-                }
-        });
-    menu.addChild( button );
-
-    document.body.appendChild( menu.container );
-
-Examples -- `game_menu`, `game_of_life`, `message`, `minesweeper`, `tower_defense`
+Defined in: [source/html.ts:310](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L310)
 
 ## Extends
 
@@ -40,7 +23,7 @@ Examples -- `game_menu`, `game_of_life`, `message`, `minesweeper`, `tower_defens
 
 > `optional` **callback?**: (`button`) => `any`
 
-Defined in: [source/html.ts:290](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/html.ts#L290)
+Defined in: [source/html.ts:311](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L311)
 
 #### Parameters
 
@@ -58,7 +41,7 @@ Defined in: [source/html.ts:290](https://github.com/noobiept/game_engine/blob/9b
 
 > `optional` **click_ref?**: (`event`) => `any`
 
-Defined in: [source/html.ts:291](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/html.ts#L291)
+Defined in: [source/html.ts:312](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L312)
 
 #### Parameters
 
@@ -76,7 +59,7 @@ Defined in: [source/html.ts:291](https://github.com/noobiept/game_engine/blob/9b
 
 > `optional` **cssClass?**: `string` \| `string`[]
 
-Defined in: [source/html.ts:24](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/html.ts#L24)
+Defined in: [source/html.ts:30](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L30)
 
 #### Inherited from
 
@@ -88,7 +71,7 @@ Defined in: [source/html.ts:24](https://github.com/noobiept/game_engine/blob/9b4
 
 > `optional` **cssId?**: `string`
 
-Defined in: [source/html.ts:23](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/html.ts#L23)
+Defined in: [source/html.ts:29](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L29)
 
 #### Inherited from
 
@@ -100,7 +83,7 @@ Defined in: [source/html.ts:23](https://github.com/noobiept/game_engine/blob/9b4
 
 > `optional` **preText?**: `string`
 
-Defined in: [source/html.ts:25](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/html.ts#L25)
+Defined in: [source/html.ts:31](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L31)
 
 #### Inherited from
 
@@ -112,7 +95,7 @@ Defined in: [source/html.ts:25](https://github.com/noobiept/game_engine/blob/9b4
 
 > **value**: `any`
 
-Defined in: [source/html.ts:236](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/html.ts#L236)
+Defined in: [source/html.ts:252](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L252)
 
 #### Inherited from
 

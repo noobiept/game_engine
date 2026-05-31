@@ -8,7 +8,7 @@
 
 > **decodeAudio**(`data`, `successCallback`, `errorCallback`): `boolean`
 
-Defined in: [source/sound.ts:52](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/sound.ts#L52)
+Defined in: [source/sound.ts:59](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/sound.ts#L59)
 
 Decode audio file data contained in an ArrayBuffer.
 
@@ -28,7 +28,7 @@ Function to be called when the data has been decoded.
 
 ### errorCallback
 
-`any`
+`DecodeErrorCallback`
 
 Function to be called in case it fails to decode the audio data.
 

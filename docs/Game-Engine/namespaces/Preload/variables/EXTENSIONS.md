@@ -6,24 +6,6 @@
 
 # Variable: EXTENSIONS
 
-> `const` **EXTENSIONS**: `object`
+> `const` **EXTENSIONS**: `Record`\<[`FileType`](../type-aliases/FileType.md), `string`[]\>
 
-Defined in: [source/preload.ts:289](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/preload.ts#L289)
-
-## Type Declaration
-
-### audio
-
-> **audio**: `string`[]
-
-### image
-
-> **image**: `string`[]
-
-### json
-
-> **json**: `string`[]
-
-### text
-
-> **text**: `string`[]
+Defined in: [source/preload.ts:296](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/preload.ts#L296)

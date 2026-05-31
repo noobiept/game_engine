@@ -6,7 +6,7 @@
 
 # Class: Timer
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/timer/timer.d.ts:21
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/timer/timer.d.ts:21
 
 Count-up or count-down timer. Can optionally update an html element.
 
@@ -16,7 +16,7 @@ Count-up or count-down timer. Can optionally update an html element.
 
 > **new Timer**(`args?`): `Timer`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/timer/timer.d.ts:33
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/timer/timer.d.ts:33
 
 #### Parameters
 
@@ -34,7 +34,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilitie
 
 > **add**(`time`): `void`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/timer/timer.d.ts:72
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/timer/timer.d.ts:72
 
 Adds time to the current value in the timer. So for example, if the timer is right now at 4 seconds, and we add 1000 (1 second), it jumps to 5 seconds.
 
@@ -56,7 +56,7 @@ In milliseconds.
 
 > **getTimeMilliseconds**(): `number`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/timer/timer.d.ts:84
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/timer/timer.d.ts:84
 
 Returns the time it has passed so far, in milliseconds.
 
@@ -70,7 +70,7 @@ Returns the time it has passed so far, in milliseconds.
 
 > **getTimeSeconds**(): `number`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/timer/timer.d.ts:80
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/timer/timer.d.ts:80
 
 Returns the time it has passed so far, in seconds.
 
@@ -84,7 +84,7 @@ Returns the time it has passed so far, in seconds.
 
 > **getTimeString**(): `string`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/timer/timer.d.ts:76
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/timer/timer.d.ts:76
 
 Returns a string with the time passed so far.
 
@@ -98,7 +98,7 @@ Returns a string with the time passed so far.
 
 > **isActive**(): `boolean`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/timer/timer.d.ts:88
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/timer/timer.d.ts:88
 
 Returns whether the timer is currently active or not.
 
@@ -112,7 +112,7 @@ Returns whether the timer is currently active or not.
 
 > **reset**(): `void`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/timer/timer.d.ts:57
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/timer/timer.d.ts:57
 
 Stops and resets the count.
 
@@ -126,7 +126,7 @@ Stops and resets the count.
 
 > **restart**(): `void`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/timer/timer.d.ts:61
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/timer/timer.d.ts:61
 
 Restart the timer.
 
@@ -140,7 +140,7 @@ Restart the timer.
 
 > **resume**(): `void`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/timer/timer.d.ts:49
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/timer/timer.d.ts:49
 
 Resumes the timer with the same settings/values that were set before it was stopped.
 
@@ -154,7 +154,7 @@ Resumes the timer with the same settings/values that were set before it was stop
 
 > **setUpdateFormat**(`format?`): `void`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/timer/timer.d.ts:62
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/timer/timer.d.ts:62
 
 #### Parameters
 
@@ -172,7 +172,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilitie
 
 > **start**(`args?`): `void`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/timer/timer.d.ts:45
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/timer/timer.d.ts:45
 
 Start counting.
 If no endValue is given, it never stops counting.
@@ -200,7 +200,7 @@ If no endValue is given, it never stops counting.
 
 > **stop**(): `void`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/timer/timer.d.ts:53
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/timer/timer.d.ts:53
 
 Stop counting.
 
@@ -214,7 +214,7 @@ Stop counting.
 
 > **updateHtmlElement**(): `void`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/timer/timer.d.ts:66
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/timer/timer.d.ts:66
 
 Updates the associated html element (if was given) with the current time value.
 

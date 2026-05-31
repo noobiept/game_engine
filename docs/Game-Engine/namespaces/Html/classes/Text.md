@@ -6,7 +6,7 @@
 
 # Class: Text
 
-Defined in: [source/html.ts:695](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/html.ts#L695)
+Defined in: [source/html.ts:757](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L757)
 
 Text input control.
 
@@ -20,7 +20,7 @@ Text input control.
 
 > **new Text**(`args?`): `Text`
 
-Defined in: [source/html.ts:700](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/html.ts#L700)
+Defined in: [source/html.ts:762](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L762)
 
 #### Parameters
 
@@ -42,7 +42,7 @@ Defined in: [source/html.ts:700](https://github.com/noobiept/game_engine/blob/9b
 
 > `protected` **\_is_active**: `boolean`
 
-Defined in: [source/html.ts:33](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/html.ts#L33)
+Defined in: [source/html.ts:39](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L39)
 
 #### Inherited from
 
@@ -52,9 +52,9 @@ Defined in: [source/html.ts:33](https://github.com/noobiept/game_engine/blob/9b4
 
 ### \_pre_text
 
-> `protected` **\_pre_text**: `HTMLElement`
+> `protected` **\_pre_text**: `HTMLElement` \| `null`
 
-Defined in: [source/html.ts:34](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/html.ts#L34)
+Defined in: [source/html.ts:40](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L40)
 
 #### Inherited from
 
@@ -64,17 +64,17 @@ Defined in: [source/html.ts:34](https://github.com/noobiept/game_engine/blob/9b4
 
 ### button
 
-> `protected` **button**: [`Button`](Button.md)
+> `protected` **button**: [`Button`](Button.md) \| `null`
 
-Defined in: [source/html.ts:697](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/html.ts#L697)
+Defined in: [source/html.ts:759](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L759)
 
 ---
 
 ### container
 
-> **container**: `HTMLElement`
+> **container**: `HTMLElement` \| `null`
 
-Defined in: [source/html.ts:32](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/html.ts#L32)
+Defined in: [source/html.ts:38](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L38)
 
 #### Inherited from
 
@@ -84,27 +84,17 @@ Defined in: [source/html.ts:32](https://github.com/noobiept/game_engine/blob/9b4
 
 ### input
 
-> `protected` **input**: `HTMLInputElement`
+> `protected` **input**: `HTMLInputElement` \| `null`
 
-Defined in: [source/html.ts:696](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/html.ts#L696)
+Defined in: [source/html.ts:758](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L758)
 
 ---
 
 ### key_ref
 
-> `protected` **key_ref**: (`event`) => `any`
+> `protected` **key_ref**: ((`event`) => `any`) \| `null`
 
-Defined in: [source/html.ts:698](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/html.ts#L698)
-
-#### Parameters
-
-##### event
-
-`any`
-
-#### Returns
-
-`any`
+Defined in: [source/html.ts:760](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L760)
 
 ## Methods
 
@@ -112,7 +102,7 @@ Defined in: [source/html.ts:698](https://github.com/noobiept/game_engine/blob/9b
 
 > **addEvents**(): `void`
 
-Defined in: [source/html.ts:756](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/html.ts#L756)
+Defined in: [source/html.ts:821](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L821)
 
 Activates the element's event handlers.
 
@@ -130,7 +120,7 @@ Activates the element's event handlers.
 
 > **clear**(): `void`
 
-Defined in: [source/html.ts:772](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/html.ts#L772)
+Defined in: [source/html.ts:841](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L841)
 
 Calls this to remove the element.
 
@@ -146,13 +136,13 @@ Calls this to remove the element.
 
 ### getValue()
 
-> **getValue**(): `string`
+> **getValue**(): `string` \| `null`
 
-Defined in: [source/html.ts:752](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/html.ts#L752)
+Defined in: [source/html.ts:817](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L817)
 
 #### Returns
 
-`string`
+`string` \| `null`
 
 ---
 
@@ -160,7 +150,7 @@ Defined in: [source/html.ts:752](https://github.com/noobiept/game_engine/blob/9b
 
 > **isActive**(): `boolean`
 
-Defined in: [source/html.ts:103](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/html.ts#L103)
+Defined in: [source/html.ts:115](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L115)
 
 Check if the element is active or not currently.
 
@@ -178,7 +168,7 @@ Check if the element is active or not currently.
 
 > **removeEvents**(): `void`
 
-Defined in: [source/html.ts:764](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/html.ts#L764)
+Defined in: [source/html.ts:831](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L831)
 
 Deactivate the element's event handlers.
 
@@ -196,7 +186,7 @@ Deactivate the element's event handlers.
 
 > **setActive**(`yesNo`): `void`
 
-Defined in: [source/html.ts:83](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/html.ts#L83)
+Defined in: [source/html.ts:89](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L89)
 
 When the element is inactive, its events are disabled, and a `.Game-inactive` css class is applied.
 
@@ -222,7 +212,7 @@ Whether to set it active or not.
 
 > **setValue**(`value`): `void`
 
-Defined in: [source/html.ts:748](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/html.ts#L748)
+Defined in: [source/html.ts:811](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/html.ts#L811)
 
 #### Parameters
 

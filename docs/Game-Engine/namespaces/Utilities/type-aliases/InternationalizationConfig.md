@@ -8,7 +8,7 @@
 
 > **InternationalizationConfig** = `object`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:11
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:11
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilitie
 
 > **day**: [`UnitDescription`](UnitDescription.md)
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:12
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:12
 
 ---
 
@@ -24,7 +24,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilitie
 
 > **hour**: [`UnitDescription`](UnitDescription.md)
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:13
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:13
 
 ---
 
@@ -32,7 +32,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilitie
 
 > **minute**: [`UnitDescription`](UnitDescription.md)
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:14
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:14
 
 ---
 
@@ -40,4 +40,4 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilitie
 
 > **second**: [`UnitDescription`](UnitDescription.md)
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:15
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:15

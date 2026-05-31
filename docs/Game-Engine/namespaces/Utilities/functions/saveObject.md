@@ -8,7 +8,7 @@
 
 > **saveObject**(`key`, `value`): `void`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/local_storage/local_storage.d.ts:8
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/local_storage/local_storage.d.ts:8
 
 Saves in the `localStorage` a json string representation of the `value`.
 

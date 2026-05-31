@@ -6,7 +6,7 @@
 
 # Interface: BulletArgs
 
-Defined in: [source/bullet.ts:5](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/bullet.ts#L5)
+Defined in: [source/bullet.ts:5](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/bullet.ts#L5)
 
 ## Extends
 
@@ -14,11 +14,23 @@ Defined in: [source/bullet.ts:5](https://github.com/noobiept/game_engine/blob/9b
 
 ## Properties
 
+### \_eventDispatcherArgsBrand?
+
+> `readonly` `optional` **\_eventDispatcherArgsBrand?**: `undefined`
+
+Defined in: [source/event_dispatcher.ts:4](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/event_dispatcher.ts#L4)
+
+#### Inherited from
+
+[`ContainerArgs`](ContainerArgs.md).[`_eventDispatcherArgsBrand`](ContainerArgs.md#_eventdispatcherargsbrand)
+
+---
+
 ### angleOrTarget?
 
 > `optional` **angleOrTarget?**: `number` \| [`Element`](../classes/Element.md)
 
-Defined in: [source/bullet.ts:8](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/bullet.ts#L8)
+Defined in: [source/bullet.ts:8](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/bullet.ts#L8)
 
 ---
 
@@ -26,7 +38,7 @@ Defined in: [source/bullet.ts:8](https://github.com/noobiept/game_engine/blob/9b
 
 > `optional` **category?**: `number`
 
-Defined in: [source/element.ts:15](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/element.ts#L15)
+Defined in: [source/element.ts:15](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/element.ts#L15)
 
 #### Inherited from
 
@@ -38,7 +50,7 @@ Defined in: [source/element.ts:15](https://github.com/noobiept/game_engine/blob/
 
 > `optional` **children?**: [`Element`](../classes/Element.md) \| [`Element`](../classes/Element.md)[]
 
-Defined in: [source/container.ts:4](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/container.ts#L4)
+Defined in: [source/container.ts:12](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/container.ts#L12)
 
 #### Inherited from
 
@@ -50,7 +62,7 @@ Defined in: [source/container.ts:4](https://github.com/noobiept/game_engine/blob
 
 > `optional` **collidesWith?**: `number`
 
-Defined in: [source/element.ts:19](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/element.ts#L19)
+Defined in: [source/element.ts:19](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/element.ts#L19)
 
 #### Inherited from
 
@@ -62,7 +74,7 @@ Defined in: [source/element.ts:19](https://github.com/noobiept/game_engine/blob/
 
 > `optional` **damage?**: `number`
 
-Defined in: [source/bullet.ts:9](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/bullet.ts#L9)
+Defined in: [source/bullet.ts:9](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/bullet.ts#L9)
 
 ---
 
@@ -70,7 +82,7 @@ Defined in: [source/bullet.ts:9](https://github.com/noobiept/game_engine/blob/9b
 
 > **movementSpeed**: `number`
 
-Defined in: [source/bullet.ts:10](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/bullet.ts#L10)
+Defined in: [source/bullet.ts:10](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/bullet.ts#L10)
 
 ---
 
@@ -78,7 +90,7 @@ Defined in: [source/bullet.ts:10](https://github.com/noobiept/game_engine/blob/9
 
 > `optional` **x?**: `number`
 
-Defined in: [source/element.ts:10](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/element.ts#L10)
+Defined in: [source/element.ts:10](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/element.ts#L10)
 
 #### Inherited from
 
@@ -90,7 +102,7 @@ Defined in: [source/element.ts:10](https://github.com/noobiept/game_engine/blob/
 
 > `optional` **y?**: `number`
 
-Defined in: [source/element.ts:11](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/element.ts#L11)
+Defined in: [source/element.ts:11](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/element.ts#L11)
 
 #### Inherited from
 

@@ -6,7 +6,7 @@
 
 # Class: Weapon
 
-Defined in: [source/weapon.ts:51](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/weapon.ts#L51)
+Defined in: [source/weapon.ts:51](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/weapon.ts#L51)
 
 Basic Usage:
 
@@ -45,7 +45,7 @@ Examples -- `bullets`, `collision_detection`, `collision_detection2`, `custom_el
 
 > **new Weapon**(`args`): `Weapon`
 
-Defined in: [source/weapon.ts:71](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/weapon.ts#L71)
+Defined in: [source/weapon.ts:72](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/weapon.ts#L72)
 
 #### Parameters
 
@@ -61,9 +61,9 @@ Defined in: [source/weapon.ts:71](https://github.com/noobiept/game_engine/blob/9
 
 ### \_bullet_container
 
-> `protected` **\_bullet_container**: [`Container`](Container.md) \| [`Canvas`](Canvas.md)
+> `protected` **\_bullet_container**: [`Container`](Container.md) \| [`Canvas`](Canvas.md) \| `null`
 
-Defined in: [source/weapon.ts:69](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/weapon.ts#L69)
+Defined in: [source/weapon.ts:69](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/weapon.ts#L69)
 
 ---
 
@@ -71,7 +71,7 @@ Defined in: [source/weapon.ts:69](https://github.com/noobiept/game_engine/blob/9
 
 > `protected` **\_bullet_intervals**: `object`[]
 
-Defined in: [source/weapon.ts:62](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/weapon.ts#L62)
+Defined in: [source/weapon.ts:62](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/weapon.ts#L62)
 
 #### angleOrTarget
 
@@ -95,7 +95,7 @@ Defined in: [source/weapon.ts:62](https://github.com/noobiept/game_engine/blob/9
 
 > `protected` **\_bullet_types**: [`Bullet`](Bullet.md)[]
 
-Defined in: [source/weapon.ts:61](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/weapon.ts#L61)
+Defined in: [source/weapon.ts:61](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/weapon.ts#L61)
 
 ---
 
@@ -103,7 +103,7 @@ Defined in: [source/weapon.ts:61](https://github.com/noobiept/game_engine/blob/9
 
 > `protected` **\_bullets**: [`Bullet`](Bullet.md)[]
 
-Defined in: [source/weapon.ts:68](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/weapon.ts#L68)
+Defined in: [source/weapon.ts:68](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/weapon.ts#L68)
 
 ---
 
@@ -111,7 +111,7 @@ Defined in: [source/weapon.ts:68](https://github.com/noobiept/game_engine/blob/9
 
 > `protected` **\_fire_count**: `number`
 
-Defined in: [source/weapon.ts:60](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/weapon.ts#L60)
+Defined in: [source/weapon.ts:60](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/weapon.ts#L60)
 
 ---
 
@@ -119,7 +119,15 @@ Defined in: [source/weapon.ts:60](https://github.com/noobiept/game_engine/blob/9
 
 > `protected` **\_is_ready**: `boolean`
 
-Defined in: [source/weapon.ts:59](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/weapon.ts#L59)
+Defined in: [source/weapon.ts:59](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/weapon.ts#L59)
+
+---
+
+### \_removed
+
+> **\_removed**: `boolean` = `false`
+
+Defined in: [source/weapon.ts:70](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/weapon.ts#L70)
 
 ---
 
@@ -127,7 +135,7 @@ Defined in: [source/weapon.ts:59](https://github.com/noobiept/game_engine/blob/9
 
 > **category**: `number`
 
-Defined in: [source/weapon.ts:56](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/weapon.ts#L56)
+Defined in: [source/weapon.ts:56](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/weapon.ts#L56)
 
 ---
 
@@ -135,7 +143,7 @@ Defined in: [source/weapon.ts:56](https://github.com/noobiept/game_engine/blob/9
 
 > **collidesWith**: `number`
 
-Defined in: [source/weapon.ts:57](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/weapon.ts#L57)
+Defined in: [source/weapon.ts:57](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/weapon.ts#L57)
 
 ---
 
@@ -143,23 +151,23 @@ Defined in: [source/weapon.ts:57](https://github.com/noobiept/game_engine/blob/9
 
 > **damage**: `number`
 
-Defined in: [source/weapon.ts:53](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/weapon.ts#L53)
+Defined in: [source/weapon.ts:53](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/weapon.ts#L53)
 
 ---
 
 ### element
 
-> **element**: [`Element`](Element.md)
+> **element**: [`Element`](Element.md) \| `null`
 
-Defined in: [source/weapon.ts:52](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/weapon.ts#L52)
+Defined in: [source/weapon.ts:52](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/weapon.ts#L52)
 
 ---
 
-### fire_interval
+### fireInterval
 
-> **fire_interval**: `number`
+> **fireInterval**: `number`
 
-Defined in: [source/weapon.ts:54](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/weapon.ts#L54)
+Defined in: [source/weapon.ts:54](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/weapon.ts#L54)
 
 ## Methods
 
@@ -167,7 +175,7 @@ Defined in: [source/weapon.ts:54](https://github.com/noobiept/game_engine/blob/9
 
 > `protected` **\_fire**(`angleOrTarget`, `bulletId`): `boolean`
 
-Defined in: [source/weapon.ts:209](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/weapon.ts#L209)
+Defined in: [source/weapon.ts:210](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/weapon.ts#L210)
 
 Fire a bullet at a certain angle, or towards a specific target.
 
@@ -193,7 +201,7 @@ Returns `false` if it failed to fire a bullet (if the target was already removed
 
 > **addBulletType**(`bullet`): `number`
 
-Defined in: [source/weapon.ts:119](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/weapon.ts#L119)
+Defined in: [source/weapon.ts:120](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/weapon.ts#L120)
 
 A weapon can potentially fire different types of bullets.
 To do so, first need to associate a bullet type to the unit, and then later on specify the bullet type in the `.fire()` or `.forceFire()` call, with the returned id from this function.
@@ -216,13 +224,13 @@ The bullet type id, that identifies this type. Use it when calling `.fire()` or 
 
 ### clone()
 
-> **clone**(): `Weapon`
+> **clone**(): `Weapon` \| `undefined`
 
-Defined in: [source/weapon.ts:302](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/weapon.ts#L302)
+Defined in: [source/weapon.ts:305](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/weapon.ts#L305)
 
 #### Returns
 
-`Weapon`
+`Weapon` \| `undefined`
 
 ---
 
@@ -230,7 +238,7 @@ Defined in: [source/weapon.ts:302](https://github.com/noobiept/game_engine/blob/
 
 > **fire**(`angleOrTarget?`, `bulletId?`): `boolean`
 
-Defined in: [source/weapon.ts:144](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/weapon.ts#L144)
+Defined in: [source/weapon.ts:145](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/weapon.ts#L145)
 
 Respects the firing interval (can only fire a bullet once the weapon is ready (the interval has passed)).
 
@@ -254,7 +262,7 @@ Respects the firing interval (can only fire a bullet once the weapon is ready (t
 
 > **firingPattern**(`angleOrTarget`, `bulletId`): `boolean`
 
-Defined in: [source/weapon.ts:137](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/weapon.ts#L137)
+Defined in: [source/weapon.ts:138](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/weapon.ts#L138)
 
 The firing pattern, for example if it fires one bullet in the given direction, or if it fires one in the direction and two to the sides, etc.
 You can override this in derived classes to easily make different types of weapons.
@@ -280,7 +288,7 @@ The default is to fire a single bullet in the angle/target given.
 
 > **forceFire**(`angleOrTarget?`, `bulletId?`, `interval?`): `boolean`
 
-Defined in: [source/weapon.ts:175](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/weapon.ts#L175)
+Defined in: [source/weapon.ts:176](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/weapon.ts#L176)
 
 Ignores the firing interval (fires immediately).
 Can be set to fire at a given interval.
@@ -315,7 +323,7 @@ If you want to keep firing bullets at the same angle (or same target). Pass a po
 
 > **isReady**(): `boolean`
 
-Defined in: [source/weapon.ts:298](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/weapon.ts#L298)
+Defined in: [source/weapon.ts:301](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/weapon.ts#L301)
 
 #### Returns
 
@@ -327,7 +335,7 @@ Defined in: [source/weapon.ts:298](https://github.com/noobiept/game_engine/blob/
 
 > **logic**(`deltaTime`): `void`
 
-Defined in: [source/weapon.ts:261](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/weapon.ts#L261)
+Defined in: [source/weapon.ts:264](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/weapon.ts#L264)
 
 Deals with the fire interval logic, and with the set intervals logic.
 
@@ -347,7 +355,7 @@ Deals with the fire interval logic, and with the set intervals logic.
 
 > **remove**(): `void`
 
-Defined in: [source/weapon.ts:318](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/weapon.ts#L318)
+Defined in: [source/weapon.ts:325](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/weapon.ts#L325)
 
 #### Returns
 
@@ -359,7 +367,7 @@ Defined in: [source/weapon.ts:318](https://github.com/noobiept/game_engine/blob/
 
 > **stopFiring**(): `void`
 
-Defined in: [source/weapon.ts:128](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/weapon.ts#L128)
+Defined in: [source/weapon.ts:129](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/weapon.ts#L129)
 
 Stop firing bullets (if it was set to fire at a certain interval).
 

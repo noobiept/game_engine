@@ -8,7 +8,7 @@
 
 > **quadraticIn**(`value`): `number`
 
-Defined in: [source/tween.ts:266](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/tween.ts#L266)
+Defined in: [source/tween.ts:310](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/tween.ts#L310)
 
 ## Parameters
 

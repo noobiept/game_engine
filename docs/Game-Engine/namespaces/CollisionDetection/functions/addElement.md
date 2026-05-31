@@ -8,7 +8,7 @@
 
 > **addElement**(`element`): `void`
 
-Defined in: [source/collision-detection/collision_detection.ts:31](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/collision-detection/collision_detection.ts#L31)
+Defined in: [source/collision-detection/collision_detection.ts:39](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/collision-detection/collision_detection.ts#L39)
 
 Elements added will be considered in the collision detection tests.
 

@@ -8,7 +8,7 @@
 
 > **circleCircle**(`x1`, `y1`, `radius1`, `x2`, `y2`, `radius2`): `boolean`
 
-Defined in: [source/collision-detection/collision_detection.ts:252](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/collision-detection/collision_detection.ts#L252)
+Defined in: [source/collision-detection/collision_detection.ts:263](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/collision-detection/collision_detection.ts#L263)
 
 Detects collision between two circles.
 

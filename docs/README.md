@@ -55,7 +55,9 @@
 - [ElementArgs](interfaces/ElementArgs.md)
 - [ElementGridArgs](interfaces/ElementGridArgs.md)
 - [EventDispatcherArgs](interfaces/EventDispatcherArgs.md)
+- [GameLoopOptions](interfaces/GameLoopOptions.md)
 - [GridArgs](interfaces/GridArgs.md)
+- [InitArgs](interfaces/InitArgs.md)
 - [MessageArgs](interfaces/MessageArgs.md)
 - [MovementArgs](interfaces/MovementArgs.md)
 - [PreloadArgs](interfaces/PreloadArgs.md)
@@ -63,9 +65,14 @@
 - [ScrollingBitmapArgs](interfaces/ScrollingBitmapArgs.md)
 - [SpatialPartitionArgs](interfaces/SpatialPartitionArgs.md)
 - [SpriteArgs](interfaces/SpriteArgs.md)
+- [SpritePlayOptions](interfaces/SpritePlayOptions.md)
 - [TextArgs](interfaces/TextArgs.md)
-- [TweenStep](interfaces/TweenStep.md)
+- [TweenArgs](interfaces/TweenArgs.md)
 - [WeaponArgs](interfaces/WeaponArgs.md)
+
+## Type Aliases
+
+- [TweenStep](type-aliases/TweenStep.md)
 
 ## Functions
 

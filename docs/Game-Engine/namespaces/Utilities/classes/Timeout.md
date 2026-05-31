@@ -6,7 +6,7 @@
 
 # Class: Timeout
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/timeout/timeout.d.ts:4
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/timeout/timeout.d.ts:4
 
 Call a function after a certain time has passed. Uses the `window.setTimeout()`.
 
@@ -16,7 +16,7 @@ Call a function after a certain time has passed. Uses the `window.setTimeout()`.
 
 > **new Timeout**(): `Timeout`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/timeout/timeout.d.ts:7
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/timeout/timeout.d.ts:7
 
 #### Returns
 
@@ -28,7 +28,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilitie
 
 > **clear**(): `void`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/timeout/timeout.d.ts:15
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/timeout/timeout.d.ts:15
 
 Cancels the timeout.
 
@@ -42,7 +42,7 @@ Cancels the timeout.
 
 > **isActive**(): `boolean`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/timeout/timeout.d.ts:19
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/timeout/timeout.d.ts:19
 
 Returns whether the timeout is active or not.
 
@@ -56,7 +56,7 @@ Returns whether the timeout is active or not.
 
 > **start**(`functionToCall`, `interval`): `void`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/timeout/timeout.d.ts:11
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/timeout/timeout.d.ts:11
 
 Starts the timeout. If there was an active timeout already, that one is canceled.
 

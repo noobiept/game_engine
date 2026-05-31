@@ -6,7 +6,7 @@
 
 # Class: Preload
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/preload/preload.d.ts:62
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/preload/preload.d.ts:62
 
 Basic Usage:
 import { Preload } from '@drk4/utilities';
@@ -42,7 +42,7 @@ Events:
 
 > **new Preload**(`args?`): `Preload`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/preload/preload.d.ts:76
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/preload/preload.d.ts:76
 
 #### Parameters
 
@@ -64,7 +64,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilitie
 
 > **addEventListener**(`type`, `listener`): `boolean`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/event_dispatcher/event_dispatcher.d.ts:30
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/event_dispatcher/event_dispatcher.d.ts:30
 
 'listener' will receive a 'data' argument when its called.
 What 'data' is, depends on the event type.
@@ -99,7 +99,7 @@ If it was successfully added.
 
 > **dispatchEvent**(`type`, `data?`): `void`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/event_dispatcher/event_dispatcher.d.ts:49
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/event_dispatcher/event_dispatcher.d.ts:49
 
 Dispatches an event, which will trigger the listeners of that event.
 
@@ -131,7 +131,7 @@ Data to be sent to every listener.
 
 > **get**(`id`): `any`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/preload/preload.d.ts:127
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/preload/preload.d.ts:127
 
 Get a previously loaded file.
 
@@ -151,7 +151,7 @@ Get a previously loaded file.
 
 > **hasListeners**(`type`): `boolean`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/event_dispatcher/event_dispatcher.d.ts:56
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/event_dispatcher/event_dispatcher.d.ts:56
 
 Check if there are listeners to a particular event type.
 
@@ -179,7 +179,7 @@ If there are listeners or not.
 
 > **load**(`id`, `path`, `typeId?`): `void`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/preload/preload.d.ts:119
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/preload/preload.d.ts:119
 
 Load a file.
 
@@ -213,7 +213,7 @@ Type of the file to load. If not provided then it will try to determine the type
 
 > **loadManifest**(`manifest`): `void`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/preload/preload.d.ts:123
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/preload/preload.d.ts:123
 
 Load several files.
 
@@ -233,7 +233,7 @@ Load several files.
 
 > **removeAllEventListeners**(): `void`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/event_dispatcher/event_dispatcher.d.ts:42
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/event_dispatcher/event_dispatcher.d.ts:42
 
 Remove all the event listeners.
 
@@ -251,7 +251,7 @@ Remove all the event listeners.
 
 > **removeEventListener**(`type`, `listener?`): `boolean`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/event_dispatcher/event_dispatcher.d.ts:38
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/event_dispatcher/event_dispatcher.d.ts:38
 
 Removes a specific listener of an event type, or all the listeners for that type (if 'listener' is not provided).
 
@@ -285,7 +285,7 @@ If it was successfully removed.
 
 > `static` **get**(`id`): `any`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/preload/preload.d.ts:75
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/preload/preload.d.ts:75
 
 Get an element that was saved in the global `DATA` object.
 

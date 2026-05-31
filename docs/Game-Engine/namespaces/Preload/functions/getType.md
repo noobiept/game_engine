@@ -6,9 +6,9 @@
 
 # Function: getType()
 
-> **getType**(`file`): `string`
+> **getType**(`file`): [`FileType`](../type-aliases/FileType.md) \| `null`
 
-Defined in: [source/preload.ts:324](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/preload.ts#L324)
+Defined in: [source/preload.ts:331](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/preload.ts#L331)
 
 Determine the type of a file based on its extension.
 
@@ -22,6 +22,6 @@ The file name.
 
 ## Returns
 
-`string`
+[`FileType`](../type-aliases/FileType.md) \| `null`
 
 The file type.

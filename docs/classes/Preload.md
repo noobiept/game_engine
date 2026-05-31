@@ -6,7 +6,7 @@
 
 # Class: Preload
 
-Defined in: [source/preload.ts:33](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/preload.ts#L33)
+Defined in: [source/preload.ts:33](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/preload.ts#L33)
 
 Basic Usage:
 
@@ -23,7 +23,7 @@ Basic Usage:
 
 Events:
 
-- `complete` -- `listener( data: { failed_ids: string[]; loaded_ids: string[]; } );`
+- `complete` -- `listener( data: { failedIds: string[]; loadedIds: string[]; } );`
 - `error` -- `listener( data: { id: string; event; } );`
 - `abort` -- `listener( data: { id: string; event; } );`
 - `progress` -- `listener( progress: number );`
@@ -41,7 +41,7 @@ Examples -- `clone`, `minesweeper`, `multiple_canvas`, `preload`, `sprite`
 
 > **new Preload**(`args?`): `Preload`
 
-Defined in: [source/preload.ts:41](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/preload.ts#L41)
+Defined in: [source/preload.ts:41](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/preload.ts#L41)
 
 #### Parameters
 
@@ -61,9 +61,9 @@ Defined in: [source/preload.ts:41](https://github.com/noobiept/game_engine/blob/
 
 ### \_data
 
-> `protected` **\_data**: `Object`
+> `protected` **\_data**: `Record`\<`string`, `any`\>
 
-Defined in: [source/preload.ts:35](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/preload.ts#L35)
+Defined in: [source/preload.ts:35](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/preload.ts#L35)
 
 ---
 
@@ -71,15 +71,15 @@ Defined in: [source/preload.ts:35](https://github.com/noobiept/game_engine/blob/
 
 > `protected` **\_failed_ids**: `string`[]
 
-Defined in: [source/preload.ts:38](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/preload.ts#L38)
+Defined in: [source/preload.ts:38](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/preload.ts#L38)
 
 ---
 
 ### \_listeners
 
-> `protected` **\_listeners**: `any`
+> `protected` **\_listeners**: `Record`\<`string`, `EventListener`[]\>
 
-Defined in: [source/event_dispatcher.ts:9](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/event_dispatcher.ts#L9)
+Defined in: [source/event_dispatcher.ts:13](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/event_dispatcher.ts#L13)
 
 #### Inherited from
 
@@ -91,7 +91,7 @@ Defined in: [source/event_dispatcher.ts:9](https://github.com/noobiept/game_engi
 
 > `protected` **\_loaded_ids**: `string`[]
 
-Defined in: [source/preload.ts:39](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/preload.ts#L39)
+Defined in: [source/preload.ts:39](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/preload.ts#L39)
 
 ---
 
@@ -99,7 +99,7 @@ Defined in: [source/preload.ts:39](https://github.com/noobiept/game_engine/blob/
 
 > `protected` **\_loaded_items**: `number`
 
-Defined in: [source/preload.ts:37](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/preload.ts#L37)
+Defined in: [source/preload.ts:37](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/preload.ts#L37)
 
 ---
 
@@ -107,15 +107,15 @@ Defined in: [source/preload.ts:37](https://github.com/noobiept/game_engine/blob/
 
 > `protected` **\_total_items**: `number`
 
-Defined in: [source/preload.ts:36](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/preload.ts#L36)
+Defined in: [source/preload.ts:36](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/preload.ts#L36)
 
 ---
 
-### save_global
+### saveGlobal
 
-> **save_global**: `boolean`
+> **saveGlobal**: `boolean`
 
-Defined in: [source/preload.ts:34](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/preload.ts#L34)
+Defined in: [source/preload.ts:34](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/preload.ts#L34)
 
 ## Methods
 
@@ -123,7 +123,7 @@ Defined in: [source/preload.ts:34](https://github.com/noobiept/game_engine/blob/
 
 > `protected` **\_failed_to_load**(`id`): `void`
 
-Defined in: [source/preload.ts:86](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/preload.ts#L86)
+Defined in: [source/preload.ts:86](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/preload.ts#L86)
 
 An element failed to load. We'll keep track of its id, to send it later on the 'complete' event.
 
@@ -143,7 +143,7 @@ An element failed to load. We'll keep track of its id, to send it later on the '
 
 > `protected` **\_loaded**(`id`, `data`): `void`
 
-Defined in: [source/preload.ts:66](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/preload.ts#L66)
+Defined in: [source/preload.ts:66](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/preload.ts#L66)
 
 An element just finished being loaded, add it to the `data` object (either the global or the object) and dispatch the relevant events.
 
@@ -171,7 +171,7 @@ Its data.
 
 > `protected` **\_loading_complete**(): `void`
 
-Defined in: [source/preload.ts:98](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/preload.ts#L98)
+Defined in: [source/preload.ts:98](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/preload.ts#L98)
 
 All the elements were dealt with. Dispatch the `complete` event with a list of the loaded ids, and another list with the ids that failed to load as well.
 
@@ -185,7 +185,7 @@ All the elements were dealt with. Dispatch the `complete` event with a list of t
 
 > `protected` **\_on_abort**(`event`, `id`): `void`
 
-Defined in: [source/preload.ts:127](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/preload.ts#L127)
+Defined in: [source/preload.ts:127](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/preload.ts#L127)
 
 Dispatch the `abort` event.
 
@@ -193,7 +193,7 @@ Dispatch the `abort` event.
 
 ##### event
 
-`any`
+`ProgressEvent`\<`EventTarget`\>
 
 The event to dispatch.
 
@@ -213,7 +213,7 @@ The id of the element.
 
 > `protected` **\_on_error**(`event`, `id`): `void`
 
-Defined in: [source/preload.ts:117](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/preload.ts#L117)
+Defined in: [source/preload.ts:117](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/preload.ts#L117)
 
 Dispatch the `error` event.
 
@@ -221,7 +221,7 @@ Dispatch the `error` event.
 
 ##### event
 
-`any`
+`ProgressEvent`\<`EventTarget`\>
 
 The event to dispatch.
 
@@ -241,7 +241,7 @@ The id of the element.
 
 > `protected` **\_on_progress**(`event`): `void`
 
-Defined in: [source/preload.ts:136](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/preload.ts#L136)
+Defined in: [source/preload.ts:136](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/preload.ts#L136)
 
 Dispatch the current progress percentage.
 
@@ -263,7 +263,7 @@ The event that was triggered.
 
 > **addEventListener**(`type`, `listener`): `boolean`
 
-Defined in: [source/event_dispatcher.ts:23](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/event_dispatcher.ts#L23)
+Defined in: [source/event_dispatcher.ts:27](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/event_dispatcher.ts#L27)
 
 'listener' will receive a 'data' argument when its called.
 What 'data' is, depends on the event type.
@@ -278,7 +278,7 @@ Type of the event.
 
 ##### listener
 
-(`data`) => `any`
+`EventListener`
 
 A function to be called when the event is dispatched.
 
@@ -298,7 +298,7 @@ If it was successfully added.
 
 > **dispatchEvent**(`type`, `data?`): `void`
 
-Defined in: [source/event_dispatcher.ts:77](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/event_dispatcher.ts#L77)
+Defined in: [source/event_dispatcher.ts:81](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/event_dispatcher.ts#L81)
 
 Dispatches an event, which will trigger the listeners of that event.
 
@@ -330,7 +330,7 @@ Data to be sent to every listener.
 
 > **get**(`id`): `any`
 
-Defined in: [source/preload.ts:274](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/preload.ts#L274)
+Defined in: [source/preload.ts:279](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/preload.ts#L279)
 
 Get a previously loaded file.
 
@@ -352,7 +352,7 @@ The id of the file.
 
 > **hasListeners**(`type`): `boolean`
 
-Defined in: [source/event_dispatcher.ts:93](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/event_dispatcher.ts#L93)
+Defined in: [source/event_dispatcher.ts:97](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/event_dispatcher.ts#L97)
 
 Check if there are listeners to a particular event type.
 
@@ -380,7 +380,7 @@ If there are listeners or not.
 
 > **load**(`id`, `path`, `typeId?`): `void`
 
-Defined in: [source/preload.ts:157](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/preload.ts#L157)
+Defined in: [source/preload.ts:157](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/preload.ts#L157)
 
 Load a file.
 
@@ -414,7 +414,7 @@ Type of the file to load. If not provided then it will try to determine the type
 
 > **loadManifest**(`manifest`, `basePath?`): `void`
 
-Defined in: [source/preload.ts:255](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/preload.ts#L255)
+Defined in: [source/preload.ts:260](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/preload.ts#L260)
 
 Load several files.
 
@@ -442,7 +442,7 @@ Base path for all the files in the manifest.
 
 > **removeAllEventListeners**(): `void`
 
-Defined in: [source/event_dispatcher.ts:67](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/event_dispatcher.ts#L67)
+Defined in: [source/event_dispatcher.ts:71](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/event_dispatcher.ts#L71)
 
 Remove all the event listeners.
 
@@ -460,7 +460,7 @@ Remove all the event listeners.
 
 > **removeEventListener**(`type`, `listener?`): `boolean`
 
-Defined in: [source/event_dispatcher.ts:46](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/event_dispatcher.ts#L46)
+Defined in: [source/event_dispatcher.ts:50](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/event_dispatcher.ts#L50)
 
 Removes a specific listener of an event type, or all the listeners for that type (if 'listener' is not provided).
 
@@ -474,7 +474,7 @@ The event type.
 
 ##### listener?
 
-(`data`) => `any`
+`EventListener`
 
 The listener function to remove. If not provided then remove all the functions associated with the event type.
 

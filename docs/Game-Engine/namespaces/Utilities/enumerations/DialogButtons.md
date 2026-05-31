@@ -6,7 +6,7 @@
 
 # Enumeration: DialogButtons
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:7
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:7
 
 ## Enumeration Members
 
@@ -14,7 +14,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilitie
 
 > **none**: `0`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:8
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:8
 
 ---
 
@@ -22,4 +22,4 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilitie
 
 > **ok**: `1`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:9
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/dialog/dialog.d.ts:9

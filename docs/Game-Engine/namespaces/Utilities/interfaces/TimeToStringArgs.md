@@ -6,7 +6,7 @@
 
 # Interface: TimeToStringArgs
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:17
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:17
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilitie
 
 > `optional` **format?**: `"string"` \| `"daytime"` \| `"partial_daytime"` \| `"short_string"`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:20
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:20
 
 ---
 
@@ -22,7 +22,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilitie
 
 > `optional` **internationalization?**: [`InternationalizationConfig`](../type-aliases/InternationalizationConfig.md)
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:21
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:21
 
 ---
 
@@ -30,7 +30,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilitie
 
 > **time**: `number`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:18
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:18
 
 ---
 
@@ -38,4 +38,4 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilitie
 
 > `optional` **units?**: `number`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:19
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/time_to_string/time_to_string.d.ts:19

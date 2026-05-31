@@ -8,7 +8,7 @@
 
 > **UpdateElement** = `object`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/timer/timer.d.ts:3
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/timer/timer.d.ts:3
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilitie
 
 > **element**: `HTMLElement`
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/timer/timer.d.ts:4
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/timer/timer.d.ts:4
 
 ---
 
@@ -24,4 +24,4 @@ Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilitie
 
 > `optional` **format?**: [`UpdateFormat`](UpdateFormat.md)
 
-Defined in: node_modules/.pnpm/@drk4+utilities@6.3.2/node_modules/@drk4/utilities/build/timer/timer.d.ts:5
+Defined in: node_modules/.pnpm/@drk4+utilities@6.4.0/node_modules/@drk4/utilities/build/timer/timer.d.ts:5

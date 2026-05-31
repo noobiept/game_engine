@@ -8,7 +8,7 @@
 
 > **removeFromGameLoop**(`callback`): `boolean`
 
-Defined in: [source/game.ts:281](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/game.ts#L281)
+Defined in: [source/game.ts:283](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/game.ts#L283)
 
 Remove a callback from the game loop.
 
@@ -16,7 +16,7 @@ Remove a callback from the game loop.
 
 ### callback
 
-() => `any`
+(`deltaTime`) => `any`
 
 The function to remove.
 

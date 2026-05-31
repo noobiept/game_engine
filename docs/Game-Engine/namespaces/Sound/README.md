@@ -6,6 +6,14 @@
 
 # Sound
 
+## Classes
+
+- [SoundInstance](classes/SoundInstance.md)
+
+## Interfaces
+
+- [PlayOptions](interfaces/PlayOptions.md)
+
 ## Functions
 
 - [decodeAudio](functions/decodeAudio.md)

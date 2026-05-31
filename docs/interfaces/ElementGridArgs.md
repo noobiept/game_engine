@@ -6,7 +6,7 @@
 
 # Interface: ElementGridArgs
 
-Defined in: [source/element_grid.ts:8](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/element_grid.ts#L8)
+Defined in: [source/element_grid.ts:8](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/element_grid.ts#L8)
 
 ## Extends
 
@@ -14,11 +14,23 @@ Defined in: [source/element_grid.ts:8](https://github.com/noobiept/game_engine/b
 
 ## Properties
 
+### \_eventDispatcherArgsBrand?
+
+> `readonly` `optional` **\_eventDispatcherArgsBrand?**: `undefined`
+
+Defined in: [source/event_dispatcher.ts:4](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/event_dispatcher.ts#L4)
+
+#### Inherited from
+
+[`EventDispatcherArgs`](EventDispatcherArgs.md).[`_eventDispatcherArgsBrand`](EventDispatcherArgs.md#_eventdispatcherargsbrand)
+
+---
+
 ### background?
 
 > `optional` **background?**: `object`
 
-Defined in: [source/element_grid.ts:12](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/element_grid.ts#L12)
+Defined in: [source/element_grid.ts:12](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/element_grid.ts#L12)
 
 #### canvasId?
 
@@ -38,7 +50,7 @@ Defined in: [source/element_grid.ts:12](https://github.com/noobiept/game_engine/
 
 > **columns**: `number`
 
-Defined in: [source/grid.ts:4](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/grid.ts#L4)
+Defined in: [source/grid.ts:4](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/grid.ts#L4)
 
 #### Inherited from
 
@@ -50,7 +62,7 @@ Defined in: [source/grid.ts:4](https://github.com/noobiept/game_engine/blob/9b45
 
 > **lines**: `number`
 
-Defined in: [source/grid.ts:5](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/grid.ts#L5)
+Defined in: [source/grid.ts:5](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/grid.ts#L5)
 
 #### Inherited from
 
@@ -62,7 +74,7 @@ Defined in: [source/grid.ts:5](https://github.com/noobiept/game_engine/blob/9b45
 
 > `optional` **refX?**: `number`
 
-Defined in: [source/element_grid.ts:10](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/element_grid.ts#L10)
+Defined in: [source/element_grid.ts:10](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/element_grid.ts#L10)
 
 ---
 
@@ -70,7 +82,7 @@ Defined in: [source/element_grid.ts:10](https://github.com/noobiept/game_engine/
 
 > `optional` **refY?**: `number`
 
-Defined in: [source/element_grid.ts:11](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/element_grid.ts#L11)
+Defined in: [source/element_grid.ts:11](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/element_grid.ts#L11)
 
 ---
 
@@ -78,4 +90,4 @@ Defined in: [source/element_grid.ts:11](https://github.com/noobiept/game_engine/
 
 > **squareSize**: `number`
 
-Defined in: [source/element_grid.ts:9](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/element_grid.ts#L9)
+Defined in: [source/element_grid.ts:9](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/element_grid.ts#L9)

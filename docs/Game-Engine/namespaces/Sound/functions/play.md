@@ -6,9 +6,9 @@
 
 # Function: play()
 
-> **play**(`audioBuffer`): `AudioBufferSourceNode`
+> **play**(`audioBuffer`, `options?`): [`SoundInstance`](../classes/SoundInstance.md) \| `null`
 
-Defined in: [source/sound.ts:71](https://github.com/noobiept/game_engine/blob/9b45d5576126dddaec7019b6861b3dd156542e51/source/sound.ts#L71)
+Defined in: [source/sound.ts:84](https://github.com/noobiept/game_engine/blob/4a0e827671c0abfcc0c124a52b620c1ebc1fa665/source/sound.ts#L84)
 
 Play a sound.
 
@@ -20,8 +20,14 @@ Play a sound.
 
 The audio buffer of the sound we want to play.
 
+### options?
+
+[`PlayOptions`](../interfaces/PlayOptions.md)
+
+Optional playback options (loop and per-sound volume).
+
 ## Returns
 
-`AudioBufferSourceNode`
+[`SoundInstance`](../classes/SoundInstance.md) \| `null`
 
-The source node, or `null` if it wasn't possible to play the sound.
+A `SoundInstance` you can use to control the playback, or `null` if it wasn't possible to play the sound.
