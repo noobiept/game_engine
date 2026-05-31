@@ -131,7 +131,7 @@ export class Bullet extends Container {
             x: this.x,
             y: this.y,
             children: children,
-            movementSpeed: this.movement?.movement_speed ?? 0,
+            movementSpeed: this.movement?.movementSpeed ?? 0,
             damage: this.damage,
         });
         bullet.opacity = this.opacity;

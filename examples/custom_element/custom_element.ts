@@ -3,7 +3,7 @@ import { Star } from "./custom_element_star";
 import { Unit } from "./custom_element_unit";
 
 runOnLoad(function () {
-    Game.init(document.body, 400, 400);
+    Game.init({ container: document.body, width: 400, height: 400 });
 
     // collision categories
     const categories = {

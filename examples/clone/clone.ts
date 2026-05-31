@@ -17,7 +17,7 @@ runOnLoad(function () {
 });
 
 function start() {
-    Game.init(document.body, 400, 400);
+    Game.init({ container: document.body, width: 400, height: 400 });
 
     const startX = 20;
 
@@ -31,7 +31,7 @@ function start() {
     });
     rect.scaleX = 1.2;
     rect.scaleY = 1.6;
-    rect.rotate(45, true);
+    rect.rotateDegrees(45);
     rect.opacity = 0.5;
 
     Game.addElement(rect);
@@ -57,7 +57,7 @@ function start() {
         textAlign: "center",
         textBaseline: "middle",
     });
-    text.rotate(90, true);
+    text.rotateDegrees(90);
 
     Game.addElement(text);
 

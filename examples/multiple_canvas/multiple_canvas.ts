@@ -14,7 +14,7 @@ function start() {
     const width = 272;
     const height = 160;
 
-    Game.init(document.body, width, height);
+    Game.init({ container: document.body, width: width, height: height });
 
     const canvas1 = Game.getCanvas();
     const canvas2 = new Game.Canvas({
@@ -23,8 +23,8 @@ function start() {
     });
 
     // since we only need to draw the background once, no need to keep re-drawing it on the game loop
-    canvas2.update_on_loop = false;
-    canvas2.events_enabled = false;
+    canvas2.updateOnLoop = false;
+    canvas2.eventsEnabled = false;
 
     // add this canvas in the 0 position, which is one most to the back
     Game.addCanvas(canvas2, 0);
@@ -38,7 +38,7 @@ function start() {
     canvas2.addChild(background);
     canvas2.draw();
 
-    // add a rectangle to canvas1. This one will get updated on the game loop (since we didn't change the .update_on_loop property)
+    // add a rectangle to canvas1. This one will get updated on the game loop (since we didn't change the .updateOnLoop property)
     const rect = new Game.Rectangle({
         x: 10,
         y: height - 20,

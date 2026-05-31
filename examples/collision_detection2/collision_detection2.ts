@@ -6,7 +6,7 @@ const CATEGORIES = {
 };
 
 runOnLoad(function () {
-    Game.init(document.body, 400, 400);
+    Game.init({ container: document.body, width: 400, height: 400 });
     Game.activateMouseMoveEvents(50);
 
     // add the player
@@ -18,16 +18,19 @@ runOnLoad(function () {
     Game.addElement(player);
 
     // its movement is controlled with the mouse
-    Game.addToGameLoop(function () {
-        const position = Game.getMousePosition();
+    Game.addToGameLoop(
+        function () {
+            const position = Game.getMousePosition();
 
-        const rect = Game.getCanvas()
-            .getHtmlCanvasElement()
-            .getBoundingClientRect();
+            const rect = Game.getCanvas()
+                .getHtmlCanvasElement()
+                .getBoundingClientRect();
 
-        player.x = position.x - rect.left;
-        player.y = position.y - rect.top;
-    }, 0.05);
+            player.x = position.x - rect.left;
+            player.y = position.y - rect.top;
+        },
+        { delay: 0.05 },
+    );
 
     // container for the enemy units
     const enemiesContainer = new Game.Container({

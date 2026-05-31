@@ -1,7 +1,7 @@
 import { Game, runOnLoad } from "../shared";
 
 runOnLoad(function () {
-    Game.init(document.body, 300, 300);
+    Game.init({ container: document.body, width: 300, height: 300 });
 
     const container = new Game.Container();
 
@@ -42,11 +42,11 @@ runOnLoad(function () {
     container.x = 150 - rectSize / 2;
     container.y = 150 - rectSize / 2;
     container.addChild(rect, circle1, circle2, circle3, circle4);
-    container.rotate(45, true);
+    container.rotateDegrees(45);
     container.addEventListener("click", function () {
         console.log(
-            "container! width:" + container.getWidth(),
-            " height: " + container.getHeight(),
+            "container! width:" + container.width,
+            " height: " + container.height,
         );
     });
     rect.addEventListener("click", function () {

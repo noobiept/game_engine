@@ -22,7 +22,7 @@ export interface PreloadArgs extends EventDispatcherArgs {
  *
  * Events:
  *
- * - `complete` -- `listener( data: { failed_ids: string[]; loaded_ids: string[]; } );`
+ * - `complete` -- `listener( data: { failedIds: string[]; loadedIds: string[]; } );`
  * - `error` -- `listener( data: { id: string; event; } );`
  * - `abort` -- `listener( data: { id: string; event; } );`
  * - `progress` -- `listener( progress: number );`
@@ -31,7 +31,7 @@ export interface PreloadArgs extends EventDispatcherArgs {
  * Examples -- `clone`, `minesweeper`, `multiple_canvas`, `preload`, `sprite`
  */
 export class Preload extends EventDispatcher {
-    save_global: boolean;
+    saveGlobal: boolean;
     protected _data: Record<string, any>;
     protected _total_items: number;
     protected _loaded_items: number;
@@ -51,7 +51,7 @@ export class Preload extends EventDispatcher {
 
         this._total_items = 0;
         this._loaded_items = 0;
-        this.save_global = saveGlobal;
+        this.saveGlobal = saveGlobal;
         this._data = {};
         this._failed_ids = [];
         this._loaded_ids = [];
@@ -64,7 +64,7 @@ export class Preload extends EventDispatcher {
      * @param data Its data.
      */
     protected _loaded(id: string, data: any) {
-        if (this.save_global) {
+        if (this.saveGlobal) {
             Preload.DATA[id] = data;
         } else {
             this._data[id] = data;
@@ -97,8 +97,8 @@ export class Preload extends EventDispatcher {
      */
     protected _loading_complete() {
         this.dispatchEvent("complete", {
-            failed_ids: this._failed_ids,
-            loaded_ids: this._loaded_ids,
+            failedIds: this._failed_ids,
+            loadedIds: this._loaded_ids,
         });
 
         // clear the variables

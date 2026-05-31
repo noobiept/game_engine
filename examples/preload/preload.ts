@@ -1,7 +1,7 @@
 import { Game, runOnLoad } from "../shared";
 
 runOnLoad(function () {
-    Game.init(document.body, 400, 400);
+    Game.init({ container: document.body, width: 400, height: 400 });
 
     const assetsPath = "../assets/";
 
@@ -72,7 +72,7 @@ function complete() {
         image: Game.Preload.get("mystery_ship"),
     });
 
-    bitmap.rotate(90, true);
+    bitmap.rotateDegrees(90);
     bitmap.addEventListener("click", function (_event) {
         console.log("bitmap");
     });

@@ -2,7 +2,7 @@ import { Game, runOnLoad } from "../shared";
 import { Input, Unit, UnitState } from "./parallax_unit";
 
 runOnLoad(function () {
-    Game.init(document.body, 272, 160);
+    Game.init({ container: document.body, width: 272, height: 160 });
 
     const path = "../assets/";
     const preload = new Game.Preload({ saveGlobal: true });
@@ -29,8 +29,8 @@ runOnLoad(function () {
 
 function start() {
     const canvas = Game.getCanvas();
-    const centerX = canvas.getWidth() / 2;
-    const centerY = canvas.getHeight() / 2;
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
 
     const backTrees = new Game.ScrollingBitmap({
         x: centerX,
@@ -116,11 +116,14 @@ function start() {
     });
 
     // handle the input
-    Game.addToGameLoop(function () {
-        if (currentInput !== nextInput) {
-            currentInput = nextInput;
+    Game.addToGameLoop(
+        function () {
+            if (currentInput !== nextInput) {
+                currentInput = nextInput;
 
-            rogue.handleInput(nextInput);
-        }
-    }, 0);
+                rogue.handleInput(nextInput);
+            }
+        },
+        { delay: 0 },
+    );
 }

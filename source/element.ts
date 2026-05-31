@@ -220,36 +220,6 @@ export abstract class Element extends EventDispatcher {
     }
 
     /**
-     * @return The element's width. Doesn't consider the rotation.
-     */
-    getWidth() {
-        return this._width;
-    }
-
-    /**
-     * @return The element's height. Doesn't consider the rotation.
-     */
-    getHeight() {
-        return this._height;
-    }
-
-    /**
-     * @param width New width.
-     */
-    setWidth(width: number) {
-        this._width = width;
-        this._half_width = width / 2;
-    }
-
-    /**
-     * @param height New height.
-     */
-    setHeight(height: number) {
-        this._height = height;
-        this._half_height = height / 2;
-    }
-
-    /**
      * Set the width and height at the same time.
      */
     setDimensions(width: number, height: number) {
@@ -311,22 +281,28 @@ export abstract class Element extends EventDispatcher {
     }
 
     /**
-     * @param angle Rotate by a certain angle (in radians).
+     * @param angle Rotation in radians.
      */
     set rotation(angle: number) {
-        this.rotate(angle, false);
+        this._rotation = angle;
     }
 
     /**
-     * @param angle Angle of rotation.
-     * @param degrees Whether the angle provided is in degrees or radians.
+     * Rotate the element to a given angle, in radians.
+     *
+     * @param radians Rotation in radians.
      */
-    rotate(angle: number, degrees?: boolean) {
-        if (degrees === true) {
-            this._rotation = (Math.PI / 180) * angle;
-        } else {
-            this._rotation = angle;
-        }
+    rotate(radians: number) {
+        this._rotation = radians;
+    }
+
+    /**
+     * Rotate the element to a given angle, in degrees.
+     *
+     * @param degrees Rotation in degrees.
+     */
+    rotateDegrees(degrees: number) {
+        this._rotation = (Math.PI / 180) * degrees;
     }
 
     /**
@@ -460,28 +436,38 @@ export abstract class Element extends EventDispatcher {
         return this._width;
     }
 
+    set width(width: number) {
+        this._width = width;
+        this._half_width = width / 2;
+    }
+
     get height() {
         return this._height;
     }
 
-    get half_width() {
+    set height(height: number) {
+        this._height = height;
+        this._half_height = height / 2;
+    }
+
+    get halfWidth() {
         return this._half_width;
     }
 
-    get half_height() {
+    get halfHeight() {
         return this._half_height;
     }
 
     /**
      * The position model is center-origin (`x`/`y` is the center). This returns the top-left `x`
-     * (`x - half_width`), which is convenient when porting top-left based games.
+     * (`x - halfWidth`), which is convenient when porting top-left based games.
      */
     get left() {
         return this._x - this._half_width;
     }
 
     /**
-     * The top-left `y` (`y - half_height`). See `left`.
+     * The top-left `y` (`y - halfHeight`). See `left`.
      */
     get top() {
         return this._y - this._half_height;

@@ -48,7 +48,7 @@ export enum MovementState {
  * Examples -- `basic_example`, `bullets`, `collision_detection`, `collision_spatial_partition`, `tower_defense`
  */
 export class Movement {
-    movement_speed: number;
+    movementSpeed: number;
 
     protected _element: Element | null;
     protected _movement_state: MovementState;
@@ -65,7 +65,7 @@ export class Movement {
     protected _follow_target: Element | null;
 
     constructor(args: MovementArgs) {
-        this.movement_speed = args.movementSpeed;
+        this.movementSpeed = args.movementSpeed;
         this._element = args.element;
         this._movement_state = MovementState.stop;
         this._is_moving = false;
@@ -148,8 +148,8 @@ export class Movement {
                 y * -1,
             );
 
-            this._move_x = Math.cos(angleRads) * this.movement_speed;
-            this._move_y = Math.sin(angleRads) * this.movement_speed;
+            this._move_x = Math.cos(angleRads) * this.movementSpeed;
+            this._move_y = Math.sin(angleRads) * this.movementSpeed;
 
             return true;
         } else {
@@ -231,8 +231,8 @@ export class Movement {
         this._movement_state = MovementState.angle;
         this._is_moving = true;
 
-        this._move_x = Math.cos(angle) * this.movement_speed;
-        this._move_y = Math.sin(angle) * this.movement_speed;
+        this._move_x = Math.cos(angle) * this.movementSpeed;
+        this._move_y = Math.sin(angle) * this.movementSpeed;
 
         if (this._element !== null) {
             this._element.rotation = angle;
@@ -292,8 +292,8 @@ export class Movement {
         );
 
         element.setPosition(
-            elementX + Math.cos(angle) * this.movement_speed * delta,
-            elementY + Math.sin(angle) * this.movement_speed * delta,
+            elementX + Math.cos(angle) * this.movementSpeed * delta,
+            elementY + Math.sin(angle) * this.movementSpeed * delta,
         );
         element.rotation = angle;
     }

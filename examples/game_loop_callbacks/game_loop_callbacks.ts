@@ -1,7 +1,7 @@
 import { Game, runOnLoad } from "../shared";
 
 runOnLoad(function () {
-    Game.init(document.body, 400, 400);
+    Game.init({ container: document.body, width: 400, height: 400 });
 
     const time = new Game.Text({
         x: 200,
@@ -21,18 +21,24 @@ runOnLoad(function () {
     let countFrames = 0;
 
     // called every tick/frame
-    Game.addToGameLoop(function () {
-        countFrames++;
+    Game.addToGameLoop(
+        function () {
+            countFrames++;
 
-        frame.text = countFrames + " frames";
-    }, 0);
+            frame.text = countFrames + " frames";
+        },
+        { delay: 0 },
+    );
 
     // called every second
-    Game.addToGameLoop(function () {
-        console.log(countFrames);
-        countTime++;
-        countFrames = 0;
+    Game.addToGameLoop(
+        function () {
+            console.log(countFrames);
+            countTime++;
+            countFrames = 0;
 
-        time.text = countTime + " seconds";
-    }, 1);
+            time.text = countTime + " seconds";
+        },
+        { delay: 1 },
+    );
 });

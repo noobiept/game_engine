@@ -34,7 +34,7 @@ export class Text extends Element {
     protected _text = "";
     protected _font_family = "monospace";
     protected _font_size = 20;
-    protected _font = "20px monospace"; // font_family + font_size
+    protected _font = "20px monospace"; // fontFamily + fontSize
     protected _timeout: number | undefined;
     protected _lines: string[] = [""];
 
@@ -75,7 +75,7 @@ export class Text extends Element {
 
         this._font_size = args.fontSize;
         this.text = args.text;
-        this.font_family = args.fontFamily; // this calls the set method that updates ._font as well
+        this.fontFamily = args.fontFamily; // this calls the set method that updates ._font as well
 
         this.color = args.color;
         this.textAlign = args.textAlign;
@@ -112,7 +112,7 @@ export class Text extends Element {
 
         // draw each line
         for (let a = 0; a < length; a++) {
-            const y = a * this.font_size;
+            const y = a * this.fontSize;
 
             if (this.fill) {
                 ctx.fillStyle = this.color;
@@ -151,7 +151,7 @@ export class Text extends Element {
         }
 
         this._width = highestWidth;
-        this._height = this.font_size * length; // 'font_size' not quite the same thing as height, but there's no way to determine the height right now so..
+        this._height = this.fontSize * length; // 'fontSize' not quite the same thing as height, but there's no way to determine the height right now so..
         this._half_width = this._width / 2;
         this._half_height = this._height / 2;
     }
@@ -166,7 +166,7 @@ export class Text extends Element {
     /**
      * @param font Set a new font family.
      */
-    set font_family(font: string) {
+    set fontFamily(font: string) {
         this._font_family = font;
         this._font = this._font_size + "px " + font;
     }
@@ -174,14 +174,14 @@ export class Text extends Element {
     /**
      * @return Current font family.
      */
-    get font_family() {
+    get fontFamily() {
         return this._font_family;
     }
 
     /**
      * @param size New font size.
      */
-    set font_size(size: number) {
+    set fontSize(size: number) {
         this._font_size = size;
         this._font = size + "px " + this._font_family;
     }
@@ -189,7 +189,7 @@ export class Text extends Element {
     /**
      * @return Current font size.
      */
-    get font_size() {
+    get fontSize() {
         return this._font_size;
     }
 

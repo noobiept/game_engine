@@ -21,7 +21,7 @@ export interface SpatialPartitionArgs {
  *             canvasHeight: height,
  *             partitions: 10
  *         });
- *     Game.init( document.body, width, height, collision );
+ *     Game.init({ container: document.body, width, height, collision });
  *
  * Examples -- `collision_spatial_partition`
  */

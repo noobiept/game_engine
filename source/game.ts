@@ -9,7 +9,7 @@ import { Tween } from "./tween";
 /**
  * Basic usage:
  *
- *     Game.init( document.body, 400, 400 );
+ *     Game.init({ container: document.body, width: 400, height: 400 });
  *
  *     var rect = new Game.Rectangle({
  *             x: 200,
@@ -23,7 +23,7 @@ import { Tween } from "./tween";
  *     Game.addToGameLoop( function()
  *         {
  *         console.log( 'hi' );
- *         }, 1 );
+ *         }, { delay: 1 } );
  *
  */
 interface Callback {
@@ -32,6 +32,11 @@ interface Callback {
     count: number;
     isInterval: boolean;
     removed: boolean;
+}
+
+export interface GameLoopOptions {
+    delay?: number; // time (in seconds) until/between calls (default 0, every tick)
+    interval?: boolean; // call repeatedly (every `delay`) vs once like a timeout (default true)
 }
 
 const ALL_CANVAS: Canvas[] = [];
@@ -53,33 +58,32 @@ const CALLBACKS: Callback[] = [];
 
 const TO_BE_REMOVED: Element[] = [];
 
+export interface InitArgs {
+    container: HTMLElement; // the canvas is appended to this html element
+    width: number; // canvas width
+    height: number; // canvas height
+    collision?: CollisionDetectionAlgorithm; // collision detection algorithm (default: the 'CheckAll' algorithm)
+}
+
 /**
  * Initialize the canvas/game loop/etc.
  *
- * @param htmlContainer The canvas is going to be appended to this element.
- * @param canvasWidth Canvas width.
- * @param canvasHeight Canvas height.
- * @param collision Collision detection algorithm object. Default is the 'CheckAll' algorithm.
+ * @param args Initialization options.
  */
-export function init(
-    htmlContainer: HTMLElement,
-    canvasWidth: number,
-    canvasHeight: number,
-    collision?: CollisionDetectionAlgorithm,
-) {
+export function init(args: InitArgs) {
     CANVAS_CONTAINER = document.createElement("div");
     CANVAS_CONTAINER.id = "Game-canvasContainer";
 
-    htmlContainer.appendChild(CANVAS_CONTAINER);
+    args.container.appendChild(CANVAS_CONTAINER);
 
     const canvas = new Canvas({
-        width: canvasWidth,
-        height: canvasHeight,
+        width: args.width,
+        height: args.height,
     });
     addCanvas(canvas);
 
     Sound.init();
-    CollisionDetection.init(collision);
+    CollisionDetection.init(args.collision);
 
     CANVAS_CONTAINER.addEventListener("click", clickEvents);
     CANVAS_CONTAINER.addEventListener("mousedown", clickEvents);
@@ -244,22 +248,20 @@ export function _safeRemove(element: Element) {
  * Sometimes its useful to add a function call through this, for example when you have code that may remove elements, but its called from an event handler (which may try to process the elements that you removed).
  *
  * @param callback The callback function. It receives the loop's `deltaTime` (time elapsed since the last update, in seconds).
- * @param delay Time until the function is called. In seconds.
- * @param isInterval If the function is to be called constantly (every passed `delay`), or just one time (a timeout). Default is an interval.
+ * @param options `delay` is the time (in seconds) until/between calls (default `0`, every tick). `interval` controls whether
+ *                it's called repeatedly (every `delay`) or just once like a timeout (default `true`, an interval).
  * @return If it was added successfully.
  */
 export function addToGameLoop(
     callback: (deltaTime: number) => any,
-    delay: number,
-    isInterval?: boolean,
+    options?: GameLoopOptions,
 ) {
-    if (!Utilities.isFunction(callback) || !Utilities.isNumber(delay)) {
+    if (!Utilities.isFunction(callback)) {
         return false;
     }
 
-    if (isInterval !== false) {
-        isInterval = true;
-    }
+    const delay = options?.delay ?? 0;
+    const isInterval = options?.interval ?? true;
 
     CALLBACKS.push({
         callback: callback,
@@ -307,7 +309,7 @@ function clickEvents(event: MouseEvent) {
     for (let a = ALL_CANVAS.length - 1; a >= 0; a--) {
         const canvas = ALL_CANVAS[a];
 
-        if (canvas.events_enabled) {
+        if (canvas.eventsEnabled) {
             canvas.mouseClickEvents(event);
         }
     }
@@ -325,7 +327,7 @@ function mouseMoveEvents() {
     for (a = ALL_CANVAS.length - 1; a >= 0; a--) {
         const canvas = ALL_CANVAS[a];
 
-        if (canvas.events_enabled) {
+        if (canvas.eventsEnabled) {
             const rect = canvas._canvas.getBoundingClientRect();
 
             const x = MOUSE_X - rect.left;
@@ -418,7 +420,7 @@ function loop() {
     for (a = ALL_CANVAS.length - 1; a >= 0; a--) {
         const canvas = ALL_CANVAS[a];
 
-        if (canvas.update_on_loop) {
+        if (canvas.updateOnLoop) {
             allCanvas.push(canvas);
         }
     }

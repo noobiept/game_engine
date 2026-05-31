@@ -1,7 +1,7 @@
 import { Game, runOnLoad } from "../shared";
 
 runOnLoad(function () {
-    Game.init(document.body, 400, 400);
+    Game.init({ container: document.body, width: 400, height: 400 });
 
     const preload = new Game.Preload();
     const doesntExist = "doesnt_exist.png"; // we'll try to load a file that doesn't exist
@@ -18,8 +18,8 @@ runOnLoad(function () {
     ];
 
     preload.addEventListener("complete", function (data) {
-        const loaded = data.loaded_ids;
-        const failed = data.failed_ids;
+        const loaded = data.loadedIds;
+        const failed = data.failedIds;
 
         // add the images that were successfully loaded
         for (let a = 0; a < loaded.length; a++) {

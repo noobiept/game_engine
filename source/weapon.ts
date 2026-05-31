@@ -51,7 +51,7 @@ export interface WeaponArgs {
 export class Weapon {
     element: Element | null; // element that owns the weapon (the bullets will be fired from its position, etc)
     damage: number;
-    fire_interval: number; // time between each bullet fire
+    fireInterval: number; // time between each bullet fire
 
     category: number;
     collidesWith: number;
@@ -90,7 +90,7 @@ export class Weapon {
         this.collidesWith = args.collidesWith;
         this.element = args.element;
         this.damage = args.damage;
-        this.fire_interval = args.fireInterval;
+        this.fireInterval = args.fireInterval;
         this._fire_count = 0;
         this._is_ready = true;
 
@@ -263,7 +263,7 @@ export class Weapon {
      */
     logic(deltaTime: number) {
         // check if the weapon is ready to be fired
-        if (this._fire_count >= this.fire_interval) {
+        if (this._fire_count >= this.fireInterval) {
             this._is_ready = true;
         }
 
@@ -310,7 +310,7 @@ export class Weapon {
         const weapon = new Weapon({
             element: this.element,
             bulletContainer: this._bullet_container,
-            fireInterval: this.fire_interval,
+            fireInterval: this.fireInterval,
             damage: this.damage,
         });
 

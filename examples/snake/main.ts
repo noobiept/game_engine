@@ -11,7 +11,7 @@ let TAIL_SIZE;
 const COLLISION_CALLBACKS = [];
 
 runOnLoad(function () {
-    Game.init(document.body, 400, 400);
+    Game.init({ container: document.body, width: 400, height: 400 });
     setGameOver(gameOver);
     start();
 });
@@ -96,28 +96,34 @@ export function start() {
         }
     });
 
-    Game.addToGameLoop(function () {
-        SNAKE.tick();
+    Game.addToGameLoop(
+        function () {
+            SNAKE.tick();
 
-        while (COLLISION_CALLBACKS.length > 0) {
-            const callback = COLLISION_CALLBACKS.pop();
+            while (COLLISION_CALLBACKS.length > 0) {
+                const callback = COLLISION_CALLBACKS.pop();
 
-            callback();
-        }
-    }, 0.1);
+                callback();
+            }
+        },
+        { delay: 0.1 },
+    );
 
-    Game.addToGameLoop(function () {
-        const position = GRID.getRandomEmptyPosition(5);
+    Game.addToGameLoop(
+        function () {
+            const position = GRID.getRandomEmptyPosition(5);
 
-        if (position !== null) {
-            const food = new Food({
-                column: position.column,
-                line: position.line,
-            });
+            if (position !== null) {
+                const food = new Food({
+                    column: position.column,
+                    line: position.line,
+                });
 
-            ALL_FOOD.push(food);
-        }
-    }, 1);
+                ALL_FOOD.push(food);
+            }
+        },
+        { delay: 1 },
+    );
 }
 
 export function keyDown(event) {

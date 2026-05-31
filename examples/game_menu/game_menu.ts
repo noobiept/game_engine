@@ -1,7 +1,7 @@
 import { Game, runOnLoad } from "../shared";
 
 runOnLoad(function () {
-    Game.init(document.body, 400, 400);
+    Game.init({ container: document.body, width: 400, height: 400 });
 
     const menu = new Game.Html.HtmlContainer({
         cssId: "Menu",
@@ -65,9 +65,12 @@ runOnLoad(function () {
 
     let count = 0;
 
-    Game.addToGameLoop(function () {
-        count++;
+    Game.addToGameLoop(
+        function () {
+            count++;
 
-        value.setValue(count);
-    }, 1);
+            value.setValue(count);
+        },
+        { delay: 1 },
+    );
 });

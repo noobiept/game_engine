@@ -106,7 +106,7 @@ const CATEGORIES = {
 };
 
 Main.init = function () {
-    Game.init(document.body, 400, 400);
+    Game.init({ container: document.body, width: 400, height: 400 });
 
     TERRAINS_CONTAINER = new Game.Container();
     BULLETS_CONTAINER = new Game.Container();
@@ -187,8 +187,8 @@ Main.start = function () {
     Game.getCanvasContainer().addEventListener("click", addTower);
 
     // add some creeps every second
-    Game.addToGameLoop(addCreeps, 1);
-    Game.addToGameLoop(tick, 0);
+    Game.addToGameLoop(addCreeps, { delay: 1 });
+    Game.addToGameLoop(tick, { delay: 0 });
 };
 
 Main.getNextPosition = function (column, line) {
@@ -361,7 +361,7 @@ function tick() {
                         tower.range,
                         creep.x,
                         creep.y,
-                        creep.getWidth() / 2,
+                        creep.width / 2,
                     )
                 ) {
                     weapon.fire(creep);

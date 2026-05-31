@@ -4,7 +4,7 @@ runOnLoad(function () {
     const width = 400;
     const height = 400;
 
-    Game.init(document.body, width, height);
+    Game.init({ container: document.body, width: width, height: height });
 
     const categories = {
         green: 1,

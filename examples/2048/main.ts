@@ -16,7 +16,7 @@ const Main: MainState = {
 };
 
 runOnLoad(function () {
-    Game.init(document.body, 400, 400);
+    Game.init({ container: document.body, width: 400, height: 400 });
 
     Main.start();
 });
@@ -37,7 +37,7 @@ runOnLoad(function () {
         const gridLength = Block.size * gridSize;
 
         GRID = new Game.ElementGrid({
-            refX: canvas.getWidth() / 2 - gridLength / 2 + Block.size / 2,
+            refX: canvas.width / 2 - gridLength / 2 + Block.size / 2,
             squareSize: Block.size,
             columns: gridSize,
             lines: gridSize,
@@ -386,8 +386,8 @@ runOnLoad(function () {
             const canvas = Game.getCanvas();
 
             const message = new Game.Text({
-                x: canvas.getWidth() / 2,
-                y: canvas.getHeight(),
+                x: canvas.width / 2,
+                y: canvas.height,
                 text: text,
                 textAlign: "center",
                 textBaseline: "bottom",

@@ -15,7 +15,12 @@ runOnLoad(function () {
         partitions: 4,
     });
 
-    Game.init(document.body, width, height, collision);
+    Game.init({
+        container: document.body,
+        width: width,
+        height: height,
+        collision: collision,
+    });
 
     const blue = new Blue(10, 50);
     Game.addElement(blue);

@@ -36,9 +36,9 @@ export interface ElementGridArgs extends EventDispatcherArgs, GridArgs {
  * Examples -- `2048`, `game_of_life`, `grid`, `minesweeper`, `snake`
  */
 export class ElementGrid extends Grid {
-    square_size: number;
-    ref_x: number;
-    ref_y: number;
+    squareSize: number;
+    refX: number;
+    refY: number;
     protected _background: Rectangle | null;
     events: EventDispatcher; // since typescript doesn't allow multiple class inheritance, we need to deal with the events through a property
 
@@ -76,9 +76,9 @@ export class ElementGrid extends Grid {
         }
 
         this.events = new EventDispatcher(args);
-        this.square_size = args.squareSize;
-        this.ref_x = args.refX;
-        this.ref_y = args.refY;
+        this.squareSize = args.squareSize;
+        this.refX = args.refX;
+        this.refY = args.refY;
     }
 
     /**
@@ -90,8 +90,8 @@ export class ElementGrid extends Grid {
      */
     toCanvas(column: number, line: number) {
         return {
-            x: this.ref_x + column * this.square_size,
-            y: this.ref_y + line * this.square_size,
+            x: this.refX + column * this.squareSize,
+            y: this.refY + line * this.squareSize,
         };
     }
 
@@ -104,8 +104,8 @@ export class ElementGrid extends Grid {
      */
     toGrid(x: number, y: number) {
         return {
-            column: Math.round((x - this.ref_x) / this.square_size),
-            line: Math.round((y - this.ref_y) / this.square_size),
+            column: Math.round((x - this.refX) / this.squareSize),
+            line: Math.round((y - this.refY) / this.squareSize),
         };
     }
 
@@ -233,10 +233,10 @@ export class ElementGrid extends Grid {
      */
     getDimensions() {
         return {
-            x: this.ref_x,
-            y: this.ref_y,
-            width: this.square_size * this.columns,
-            height: this.square_size * this.lines,
+            x: this.refX,
+            y: this.refY,
+            width: this.squareSize * this.columns,
+            height: this.squareSize * this.lines,
         };
     }
 

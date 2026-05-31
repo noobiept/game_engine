@@ -41,8 +41,8 @@ export class Canvas {
 
     protected _children: Element[];
 
-    events_enabled: boolean;
-    update_on_loop: boolean; // if it calls the .logic() and .draw() on the game loop (if false, then you need to call it manually)
+    eventsEnabled: boolean;
+    updateOnLoop: boolean; // if it calls the .logic() and .draw() on the game loop (if false, then you need to call it manually)
 
     constructor(args: CanvasArgs) {
         this._canvas = document.createElement("canvas");
@@ -60,8 +60,8 @@ export class Canvas {
 
         this._children = [];
 
-        this.events_enabled = true;
-        this.update_on_loop = true;
+        this.eventsEnabled = true;
+        this.updateOnLoop = true;
     }
 
     /**
@@ -280,16 +280,16 @@ export class Canvas {
     }
 
     /**
-     * @return The canvas width.
+     * The canvas width.
      */
-    getWidth() {
+    get width() {
         return this._width;
     }
 
     /**
-     * @return The canvas height.
+     * The canvas height.
      */
-    getHeight() {
+    get height() {
         return this._height;
     }
 

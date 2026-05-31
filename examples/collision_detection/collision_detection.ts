@@ -7,7 +7,7 @@ const CATEGORY = {
 };
 
 runOnLoad(function () {
-    Game.init(document.body, 400, 400);
+    Game.init({ container: document.body, width: 400, height: 400 });
 
     // we set 'One' to collide with 'Two', and 'Two' to collide with 'One'
     // example 1 - remove a unit on collision, and stop the other

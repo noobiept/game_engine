@@ -16,7 +16,7 @@ const Main: MainState = {
 };
 
 runOnLoad(function () {
-    Game.init(document.body, 400, 400);
+    Game.init({ container: document.body, width: 400, height: 400 });
 
     // set up the game menu
     const menu = new Game.Html.HtmlContainer({ cssId: "GameMenu" });
@@ -68,7 +68,7 @@ runOnLoad(function () {
 
         canvas.removeEventListener("click", clickEvent);
 
-        Game.addToGameLoop(gameLogic, 0.5);
+        Game.addToGameLoop(gameLogic, { delay: 0.5 });
     };
 
     function clickEvent(event) {
