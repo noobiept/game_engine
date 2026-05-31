@@ -18,10 +18,37 @@ All the CSS classes/ids from the engine start with the string `Game-`, so its ea
 
 # Direct Browser Usage
 
-Link the _game_engine.js_ file.
+The package is distributed as an ES module, so you can use it in the browser without a bundler through a `<script type="module">` — either from a CDN or by self-hosting the built file. A plain `<script src>` won't work, and there is no global variable.
 
-You can optionally use the `style.css` for some basic styling, but its not necessary for the engine to work.
-Just something to get you started, and then later on you can use your own styling.
+From a CDN:
+
+```html
+<!-- optional: basic styling for the engine's HTML helpers -->
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@drk4/game-engine/dist/game_engine.css"
+/>
+
+<script type="module">
+    import * as Game from "https://cdn.jsdelivr.net/npm/@drk4/game-engine/dist/game_engine.js";
+
+    Game.init(document.body, 400, 400);
+</script>
+```
+
+Or self-host, by copying `dist/game_engine.js` (and, optionally, `dist/game_engine.css`) from the package and importing the local file:
+
+```html
+<link rel="stylesheet" href="game_engine.css" />
+
+<script type="module">
+    import * as Game from "./game_engine.js";
+
+    Game.init(document.body, 400, 400);
+</script>
+```
+
+The built file is self-contained (its dependencies are bundled in), so no import map is needed. The CSS is optional — it provides basic styling for the engine's HTML helpers.
 
 # Documentation
 

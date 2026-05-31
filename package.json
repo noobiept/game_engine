@@ -1,7 +1,7 @@
 {
     "name": "@drk4/game-engine",
     "displayName": "game-engine",
-    "version": "2.0.0",
+    "version": "3.0.0",
     "description": "A 2D game engine for simple browser games using the HTML canvas.",
     "author": {
         "name": "Pedro Ferreira",
@@ -23,7 +23,8 @@
     "files": [
         "dist/",
         "license.txt",
-        "readme.md"
+        "readme.md",
+        "CHANGELOG.md"
     ],
     "sideEffects": [
         "./dist/game_engine.css"
