@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Releases before `3.0.0` are not tracked here.
 
+## [3.0.1] - 2026-05-31
+
+### Fixed
+
+- `async` functions can now be registered as event listeners
+  (`addEventListener()`). They were previously rejected by the internal
+  `isFunction` check.
+
+### Documentation
+
+- Expanded the README with usage examples — getting started, loading assets,
+  sprites & animation, input, tweens, the game loop, and collision detection.
+- Added and modernized the usage examples shown in the in-code API
+  documentation.
+
 ## [3.0.0] - 2026-05-31
 
 Enhancements to make the engine easier to use for CreateJS-style ports, plus a
@@ -59,4 +74,5 @@ pass of breaking API-consistency cleanups.
 - A suspended `AudioContext` is now resumed automatically when a sound starts,
   so audio becomes audible after the first user interaction.
 
+[3.0.1]: https://github.com/noobiept/game_engine/releases/tag/v3.0.1
 [3.0.0]: https://github.com/noobiept/game_engine/releases/tag/v3.0.0
