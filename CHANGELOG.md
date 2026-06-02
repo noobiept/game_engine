@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Releases before `3.0.0` are not tracked here.
 
+## [3.0.2] - 2026-06-02
+
+### Documentation
+
+- Rewrote the README: clearer introduction with a feature list, npm and pnpm
+  install instructions, the optional stylesheet import, a table of contents,
+  and version/license badges.
+- Expanded the getting-started example into a small playable demo — movement,
+  bounds clamping, live text, and a click tween.
+- Removed the outdated "Direct Browser Usage" and "Build" sections.
+
 ## [3.0.1] - 2026-05-31
 
 ### Fixed
@@ -74,5 +85,6 @@ pass of breaking API-consistency cleanups.
 - A suspended `AudioContext` is now resumed automatically when a sound starts,
   so audio becomes audible after the first user interaction.
 
+[3.0.2]: https://github.com/noobiept/game_engine/releases/tag/v3.0.2
 [3.0.1]: https://github.com/noobiept/game_engine/releases/tag/v3.0.1
 [3.0.0]: https://github.com/noobiept/game_engine/releases/tag/v3.0.0
