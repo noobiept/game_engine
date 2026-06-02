@@ -116,8 +116,16 @@ Game.addToGameLoop(function (deltaTime) {
         const half = player.width / 2;
 
         // Move at a constant speed, kept inside the canvas bounds.
-        player.x = clamp(player.x + (x / length) * SPEED * deltaTime, half, WIDTH - half);
-        player.y = clamp(player.y + (y / length) * SPEED * deltaTime, half, HEIGHT - half);
+        player.x = clamp(
+            player.x + (x / length) * SPEED * deltaTime,
+            half,
+            WIDTH - half,
+        );
+        player.y = clamp(
+            player.y + (y / length) * SPEED * deltaTime,
+            half,
+            HEIGHT - half,
+        );
     }
 
     label.text = `Position: ${Math.round(player.x)}, ${Math.round(player.y)}`;
