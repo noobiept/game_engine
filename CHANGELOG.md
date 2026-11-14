@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Releases before `3.0.0` are not tracked here.
 
+## [Unreleased]
+
+### Changed
+
+- **Breaking**: updated `@drk4/utilities` to v8. It is re-exported as
+  `Utilities`, so its breaking changes reach `Utilities.*`: `Dialog` titles and
+  bodies given as strings are set as plain text instead of HTML, a modal
+  `Dialog` makes the page behind it `inert`, `Utilities.EventDispatcher` calls
+  the listeners in the order they were added, `Utilities.Preload` dispatches
+  `error` for HTTP error statuses and files that can't be parsed or decoded,
+  and `pollUntil`'s `timeout` also limits the checks. See its
+  [changelog](https://github.com/noobiept/utilities/blob/master/CHANGELOG.md).
+  The engine's own `EventDispatcher` and `Preload` are unchanged.
+- Updated the runtimes (Node 26, pnpm 12) and the development dependencies to
+  their latest versions (TypeScript stays on v6, since the tooling doesn't
+  support v7 yet).
+
+### Fixed
+
+- `HighScore.init()` no longer throws when the saved scores aren't valid JSON;
+  it starts with no scores instead.
+
 ## [3.0.2] - 2026-06-02
 
 ### Documentation
@@ -85,6 +107,7 @@ pass of breaking API-consistency cleanups.
 - A suspended `AudioContext` is now resumed automatically when a sound starts,
   so audio becomes audible after the first user interaction.
 
+[Unreleased]: https://github.com/noobiept/game_engine/compare/v3.0.2...HEAD
 [3.0.2]: https://github.com/noobiept/game_engine/releases/tag/v3.0.2
 [3.0.1]: https://github.com/noobiept/game_engine/releases/tag/v3.0.1
 [3.0.0]: https://github.com/noobiept/game_engine/releases/tag/v3.0.0
