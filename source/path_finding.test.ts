@@ -41,3 +41,39 @@ describe("PathFinding", function () {
         expect(path[2][0]).toEqual({ column: 0, line: 2 });
     });
 });
+
+describe("PathFinding destination", function () {
+    const map = [
+        [0, 1, 1],
+        [1, 1, 1],
+    ];
+    const types = { passable: 1, blocked: 0 };
+
+    test("throws when the destination is outside the map", function () {
+        expect(() =>
+            breadthFirstSearch(map, { column: 0, line: 5 }, types),
+        ).toThrow(RangeError);
+        expect(() =>
+            breadthFirstSearch(map, { column: -1, line: 0 }, types),
+        ).toThrow(RangeError);
+        expect(() =>
+            breadthFirstSearch(map, { column: 0.5, line: 0 }, types),
+        ).toThrow(RangeError);
+    });
+
+    test("nothing can reach a blocked destination", function () {
+        const path = breadthFirstSearch(map, { column: 0, line: 0 }, types);
+
+        expect(path.flat().every((position) => position === null)).toBe(true);
+    });
+
+    test("changing the given destination afterwards doesn't change the result", function () {
+        const destination = { column: 2, line: 1 };
+        const path = breadthFirstSearch(map, destination, types);
+
+        destination.column = 0;
+
+        expect(path[1][2]).toEqual({ column: 2, line: 1 });
+        expect(path[1][1]).toEqual({ column: 2, line: 1 });
+    });
+});

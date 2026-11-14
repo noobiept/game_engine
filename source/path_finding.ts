@@ -35,25 +35,43 @@ type Position = { column: number; line: number };
  *
  *
  * @param map A 2d array, where each value tells if that position is passable/blocked. Its assumed each line will have the same number of columns.
- * @param destination The destination position.
+ * @param destination The destination position. Throws a `RangeError` if it's outside the map.
  * @param positionType What value in the `map` represents a passable position and what value represents a blocked position.
+ * @return The next position to take from each position (`null` for the positions that can't reach the destination).
+ *         When the destination itself isn't passable, every position is `null`.
  */
 export function breadthFirstSearch(
     map: number[][],
     destination: Position,
     positionType: { passable: number; blocked: number },
 ) {
-    const frontier: Position[] = [destination];
     const cameFrom: (Position | null)[][] = [];
 
     // figure out the number of columns/lines of the map array
     // have all the useful information in one object
     const info = {
-        columns: map[0].length,
+        columns: map.length > 0 ? map[0].length : 0,
         lines: map.length,
         map: map,
         passableValue: positionType.passable,
     };
+
+    const column = destination.column;
+    const line = destination.line;
+
+    if (
+        !Number.isInteger(column) ||
+        !Number.isInteger(line) ||
+        column < 0 ||
+        column >= info.columns ||
+        line < 0 ||
+        line >= info.lines
+    ) {
+        throw new RangeError("The destination is outside the map.");
+    }
+
+    // a copy, so changing the given object later doesn't change the result
+    const target = { column: column, line: line };
 
     // construct a 2 dimension array, where the value is a column/line position, which tells the creeps where to go next.
     for (let line = 0; line < info.lines; line++) {
@@ -64,16 +82,18 @@ export function breadthFirstSearch(
         }
     }
 
-    cameFrom[destination.line][destination.column] = destination;
+    // nothing can reach a blocked destination
+    if (map[line][column] !== info.passableValue) {
+        return cameFrom;
+    }
+
+    cameFrom[line][column] = target;
 
     // go through all the passable positions
-    while (frontier.length > 0) {
-        const current = frontier.shift();
+    const frontier: Position[] = [target];
 
-        if (typeof current === "undefined") {
-            break;
-        }
-
+    for (let index = 0; index < frontier.length; index++) {
+        const current = frontier[index];
         const neighbors = getNeighbors(current, info);
 
         for (let a = 0; a < neighbors.length; a++) {

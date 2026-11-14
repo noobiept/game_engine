@@ -4,6 +4,22 @@ import * as Sound from "./sound";
 
 export interface PreloadArgs extends EventDispatcherArgs {
     saveGlobal?: boolean; // save to global 'data' object, or to this object's 'data'
+    timeout?: number; // time (in seconds) a file can take to load, before it fails (default 0, no limit)
+}
+
+/**
+ * Data of the `error` event (only the properties that apply to the failure are set).
+ */
+export interface PreloadErrorData {
+    id: string;
+    event?: ProgressEvent; // a network error, or the request took longer than the `timeout`
+    status?: number; // the response had an error status (404, 500, etc)
+    error?: unknown; // the file couldn't be parsed (invalid json) or decoded (images, audio)
+}
+
+// the 2xx statuses, 304 (from the cache) and 0 (the `file://` protocol)
+function isSuccessStatus(status: number) {
+    return (status >= 200 && status < 300) || status === 304 || status === 0;
 }
 
 /**
@@ -23,38 +39,52 @@ export interface PreloadArgs extends EventDispatcherArgs {
  * Events:
  *
  * - `complete` -- `listener( data: { failedIds: string[]; loadedIds: string[]; } );`
- * - `error` -- `listener( data: { id: string; event; } );`
+ *   Dispatched once all the files were dealt with (loaded or failed). More files can be loaded from the listener.
+ * - `error` -- `listener( data: PreloadErrorData );`
+ *   Dispatched for every file that fails to load: network errors and timeouts (`event`), error statuses (`status`), and files that
+ *   can't be parsed or decoded (`error`).
  * - `abort` -- `listener( data: { id: string; event; } );`
  * - `progress` -- `listener( progress: number );`
  * - `fileload` -- `listener( data: { id: string; data: Object; } );`
+ *
+ * The `path` is used as is, so don't build it from untrusted data (a url parameter, user input, etc) without validating it first.
  *
  * Examples -- `clone`, `minesweeper`, `multiple_canvas`, `preload`, `sprite`
  */
 export class Preload extends EventDispatcher {
     saveGlobal: boolean;
+    timeout: number; // time (in seconds) a file can take to load (0 is no limit)
     protected _data: Record<string, any>;
     protected _total_items: number;
     protected _loaded_items: number;
     protected _failed_ids: string[]; // list of the ids that failed to load
     protected _loaded_ids: string[]; // list of the ids that were successfully loaded
+    protected _file_progress: Map<string, number>; // progress (0 to 1) of the files that are loading
 
     constructor(args?: PreloadArgs) {
         super(args);
 
         let saveGlobal = false;
+        let timeout = 0;
 
         if (typeof args !== "undefined") {
             if (Utilities.isBoolean(args.saveGlobal)) {
                 saveGlobal = args.saveGlobal;
+            }
+
+            if (Utilities.isNumber(args.timeout) && args.timeout > 0) {
+                timeout = args.timeout;
             }
         }
 
         this._total_items = 0;
         this._loaded_items = 0;
         this.saveGlobal = saveGlobal;
-        this._data = {};
+        this.timeout = timeout;
+        this._data = Object.create(null);
         this._failed_ids = [];
         this._loaded_ids = [];
+        this._file_progress = new Map();
     }
 
     /**
@@ -70,13 +100,17 @@ export class Preload extends EventDispatcher {
             this._data[id] = data;
         }
 
-        this.dispatchEvent("fileload", { id: id, data: data });
+        // the file still counts as dealt with when a listener throws
+        try {
+            this.dispatchEvent("fileload", { id: id, data: data });
+        } finally {
+            this._file_progress.delete(id);
+            this._loaded_items++;
+            this._loaded_ids.push(id);
 
-        this._loaded_items++;
-        this._loaded_ids.push(id);
-
-        if (this._loaded_items >= this._total_items) {
-            this._loading_complete();
+            if (this._loaded_items >= this._total_items) {
+                this._loading_complete();
+            }
         }
     }
 
@@ -84,6 +118,7 @@ export class Preload extends EventDispatcher {
      * An element failed to load. We'll keep track of its id, to send it later on the 'complete' event.
      */
     protected _failed_to_load(id: string) {
+        this._file_progress.delete(id);
         this._loaded_items++;
         this._failed_ids.push(id);
 
@@ -96,52 +131,75 @@ export class Preload extends EventDispatcher {
      * All the elements were dealt with. Dispatch the `complete` event with a list of the loaded ids, and another list with the ids that failed to load as well.
      */
     protected _loading_complete() {
-        this.dispatchEvent("complete", {
+        const data = {
             failedIds: this._failed_ids,
             loadedIds: this._loaded_ids,
-        });
+        };
 
-        // clear the variables
-        this._failed_ids.length = 0;
-        this._loaded_ids.length = 0;
+        // reset before dispatching, so the listener can load more files
+        this._failed_ids = [];
+        this._loaded_ids = [];
         this._loaded_items = 0;
         this._total_items = 0;
+        this._file_progress.clear();
+
+        this.dispatchEvent("complete", data);
     }
 
     /**
-     * Dispatch the `error` event.
+     * Dispatch the `error` event, and count the file as failed (even if a listener throws).
      *
-     * @param event The event to dispatch.
      * @param id The id of the element.
+     * @param details What went wrong.
      */
-    protected _on_error(event: ProgressEvent<EventTarget>, id: string) {
-        this.dispatchEvent("error", { event: event, id: id });
+    protected _on_error(id: string, details: Omit<PreloadErrorData, "id">) {
+        try {
+            this.dispatchEvent("error", { id: id, ...details });
+        } finally {
+            this._failed_to_load(id);
+        }
     }
 
     /**
-     * Dispatch the `abort` event.
+     * Dispatch the `abort` event, and count the file as failed (even if a listener throws).
      *
      * @param event The event to dispatch.
      * @param id The id of the element.
      */
     protected _on_abort(event: ProgressEvent<EventTarget>, id: string) {
-        this.dispatchEvent("abort", { event: event, id: id });
+        try {
+            this.dispatchEvent("abort", { event: event, id: id });
+        } finally {
+            this._failed_to_load(id);
+        }
     }
 
     /**
-     * Dispatch the current progress percentage.
+     * Dispatch the current progress percentage (of all the files being loaded).
      *
      * @param event The event that was triggered.
+     * @param id The id of the file.
      */
-    protected _on_progress(event: ProgressEvent) {
-        let fileProgress = 0;
+    protected _on_progress(event: ProgressEvent, id: string) {
+        if (this._total_items === 0) {
+            return;
+        }
 
-        if (event.lengthComputable) {
-            fileProgress = event.loaded / event.total;
+        this._file_progress.set(
+            id,
+            event.lengthComputable && event.total > 0
+                ? event.loaded / event.total
+                : 0,
+        );
+
+        let filesProgress = 0;
+
+        for (const value of this._file_progress.values()) {
+            filesProgress += value;
         }
 
         const progress = Math.round(
-            ((fileProgress + this._loaded_items) / this._total_items) * 100,
+            ((filesProgress + this._loaded_items) / this._total_items) * 100,
         );
 
         this.dispatchEvent("progress", progress);
@@ -173,23 +231,27 @@ export class Preload extends EventDispatcher {
 
         request.open("get", path, true);
         request.responseType = Preload.RESPONSE_TYPE[type];
+        request.timeout = this.timeout * 1000;
 
         // add the request events
         request.addEventListener("error", (event) => {
-            this._on_error(event, id);
+            this._on_error(id, { event: event });
+        });
+        request.addEventListener("timeout", (event) => {
+            this._on_error(id, { event: event });
         });
         request.addEventListener("abort", (event) => {
             this._on_abort(event, id);
         });
         request.addEventListener("progress", (event) => {
-            this._on_progress(event);
+            this._on_progress(event, id);
         });
         request.addEventListener(
             "load",
             () => {
                 // failed to load
-                if (request.status !== 200) {
-                    this._failed_to_load(id);
+                if (!isSuccessStatus(request.status)) {
+                    this._on_error(id, { status: request.status });
                     return;
                 }
 
@@ -201,7 +263,9 @@ export class Preload extends EventDispatcher {
 
                     image.onerror = () => {
                         window.URL.revokeObjectURL(imageUrl);
-                        this._failed_to_load(id);
+                        this._on_error(id, {
+                            error: new Error("The image couldn't be decoded."),
+                        });
                     };
                     image.onload = () => {
                         window.URL.revokeObjectURL(imageUrl);
@@ -213,10 +277,18 @@ export class Preload extends EventDispatcher {
                     if (typeof response === "string") {
                         try {
                             response = JSON.parse(response);
-                        } catch {
-                            this._failed_to_load(id);
+                        } catch (error) {
+                            this._on_error(id, { error: error });
                             return;
                         }
+                    }
+
+                    // the browser gives `null` when the content isn't valid json
+                    if (response === null) {
+                        this._on_error(id, {
+                            error: new Error("The file isn't valid json."),
+                        });
+                        return;
                     }
 
                     this._loaded(id, response);
@@ -227,19 +299,15 @@ export class Preload extends EventDispatcher {
                             this._loaded(id, audioBuffer);
                         },
                         (error: DOMException) => {
-                            console.log(
-                                "Error decoding audio file:",
-                                id,
-                                path,
-                                error,
-                            );
-                            this._failed_to_load(id);
+                            this._on_error(id, { error: error });
                         },
                     );
 
                     // in case the 'decodeAudio()' call wasn't possible
                     if (!isAvailable) {
-                        this._failed_to_load(id);
+                        this._on_error(id, {
+                            error: new Error("Audio isn't supported."),
+                        });
                     }
                 } else {
                     this._loaded(id, response);
@@ -310,7 +378,8 @@ export namespace Preload {
 
     // key is the 'id'
     // value is the 'data'
-    export const DATA: Record<string, any> = {};
+    // (without a prototype, so ids like `__proto__` are plain keys)
+    export const DATA: Record<string, any> = Object.create(null);
 
     /**
      * Get an element that was saved in the global `DATA` object.
@@ -323,22 +392,27 @@ export namespace Preload {
     }
 
     /**
-     * Determine the type of a file based on its extension.
+     * Determine the type of a file based on its extension (ignoring the case, and the url's query/hash).
      *
      * @param file The file name.
      * @return The file type.
      */
     export function getType(file: string): FileType | null {
-        const extension = file.split(".").pop();
+        const name = file.split(/[?#]/)[0];
+        const dot = name.lastIndexOf(".");
+
+        // no extension (a dot before the last `/` is part of a folder name)
+        if (dot < 0 || dot < name.lastIndexOf("/")) {
+            return null;
+        }
+
+        const extension = name.slice(dot + 1).toLowerCase();
 
         for (const type in EXTENSIONS) {
             const fileType = type as FileType;
 
             if (Object.prototype.hasOwnProperty.call(EXTENSIONS, type)) {
-                if (
-                    typeof extension !== "undefined" &&
-                    EXTENSIONS[fileType].indexOf(extension) >= 0
-                ) {
+                if (EXTENSIONS[fileType].indexOf(extension) >= 0) {
                     return fileType;
                 }
             }

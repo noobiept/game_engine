@@ -74,10 +74,17 @@ export function normalRight(vector: Vector) {
     };
 }
 
+/**
+ * A vector with the same direction and a length of 1. The zero vector (which has no direction) stays `{ x: 0, y: 0 }`.
+ */
 export function normalize(vector: Vector) {
     const x = vector.x;
     const y = vector.y;
     const length = Math.sqrt(x * x + y * y);
+
+    if (length === 0) {
+        return { x: 0, y: 0 };
+    }
 
     return {
         x: x / length,
@@ -90,6 +97,11 @@ export function projection(one: Vector, two: Vector) {
     const twoX = two.x;
     const twoY = two.y;
     const twoLengthSquared = twoX * twoX + twoY * twoY;
+
+    // can't project onto the zero vector
+    if (twoLengthSquared === 0) {
+        return { x: 0, y: 0 };
+    }
 
     return {
         x: (dotProd / twoLengthSquared) * twoX,

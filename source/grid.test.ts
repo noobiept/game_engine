@@ -446,3 +446,16 @@ describe("Grid", function () {
         }
     });
 });
+
+describe("Grid dimensions", function () {
+    test("throws when the number of columns/lines isn't a positive integer", function () {
+        expect(() => new Grid({ columns: 0, lines: 5 })).toThrow(RangeError);
+        expect(() => new Grid({ columns: 5, lines: -5 })).toThrow(RangeError);
+        expect(() => new Grid({ columns: 0.5, lines: 0.5 })).toThrow(
+            RangeError,
+        );
+        expect(() => new Grid({ columns: NaN, lines: NaN })).toThrow(
+            RangeError,
+        );
+    });
+});

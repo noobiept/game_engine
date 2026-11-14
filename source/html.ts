@@ -56,13 +56,16 @@ export class HtmlElement {
 
             const cssClass = args.cssClass;
 
-            // add optional class/classes
+            // add optional class/classes (a string can have several classes separated by spaces)
             if (typeof cssClass !== "undefined") {
-                if (typeof cssClass === "string") {
-                    container.classList.add(cssClass);
-                } else {
-                    for (let a = cssClass.length - 1; a >= 0; a--) {
-                        container.classList.add(cssClass[a]);
+                const names =
+                    typeof cssClass === "string" ? [cssClass] : cssClass;
+
+                for (const name of names) {
+                    for (const token of name.split(/\s+/)) {
+                        if (token !== "") {
+                            container.classList.add(token);
+                        }
                     }
                 }
             }

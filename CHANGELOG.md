@@ -9,8 +9,24 @@ Releases before `3.0.0` are not tracked here.
 
 ## [Unreleased]
 
+A pass of bug fixes. Some change how existing games behave, so check the
+**Breaking** entries when updating.
+
 ### Changed
 
+- **Breaking**: `Preload` dispatches the `error` event for every file that
+  fails (error statuses, invalid json, files that can't be decoded), with
+  `{ id, event?, status?, error? }`. Any 2xx status, `304` and `0` (`file://`)
+  count as loaded, and the type is taken from the file name ignoring the case
+  and the url's query/hash. The protected `_on_error()` and `_on_progress()`
+  methods take different arguments.
+- **Breaking**: `HighScore.add()` throws before `init()` is called, ignores
+  values that aren't finite numbers, and returns whether the score is in the
+  list. `HighScore.get()` is typed as possibly `undefined`, and `init()` throws
+  when `maxScoresSaved` isn't a positive integer.
+- **Breaking**: `Grid` and `PathFinding.breadthFirstSearch()` throw a
+  `RangeError` for invalid arguments (columns/lines that aren't positive
+  integers, a destination outside the map).
 - **Breaking**: updated `@drk4/utilities` to v8. It is re-exported as
   `Utilities`, so its breaking changes reach `Utilities.*`: `Dialog` titles and
   bodies given as strings are set as plain text instead of HTML, a modal
@@ -19,17 +35,33 @@ Releases before `3.0.0` are not tracked here.
   `error` for HTTP error statuses and files that can't be parsed or decoded,
   and `pollUntil`'s `timeout` also limits the checks. See its
   [changelog](https://github.com/noobiept/utilities/blob/master/CHANGELOG.md).
-  The engine's own `EventDispatcher` and `Preload` are unchanged.
 - Releases are now published to npm from CI, with
   [provenance](https://docs.npmjs.com/generating-provenance-statements).
 - Updated the runtimes (Node 26, pnpm 12) and the development dependencies to
   their latest versions (TypeScript stays on v6, since the tooling doesn't
   support v7 yet).
 
+### Added
+
+- A `timeout` option for `Preload` (in seconds), and the `PreloadErrorData`
+  type for its `error` event.
+
 ### Fixed
 
-- `HighScore.init()` no longer throws when the saved scores aren't valid JSON;
-  it starts with no scores instead.
+- `Vector.normalize()` and `Vector.projection()` with the zero vector gave `NaN`.
+- `Preload` never dispatched `complete` when a file had a network error, was
+  aborted, or a listener threw. The `complete` event's lists were emptied after
+  it was dispatched, loading files from its listener broke the counting, the
+  progress was wrong with several files, and an id like `__proto__` replaced
+  the prototype of the data object.
+- `HighScore` threw on startup when the saved scores weren't valid JSON, saved
+  data of the wrong shape crashed it or lost the scores, a saved list bigger
+  than the limit was never cut, a full storage made `add()` throw, and
+  `get('__proto__')` returned `Object.prototype`.
+- `PathFinding.breadthFirstSearch()` spread from a blocked destination, gave a
+  `TypeError` or wrong paths for a destination outside the map, and its result
+  referenced the given destination object.
+- `HtmlElement` threw for a `cssClass` with spaces.
 
 ## [3.0.2] - 2026-06-02
 

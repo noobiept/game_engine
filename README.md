@@ -165,6 +165,8 @@ preload.loadManifest(
 );
 ```
 
+The `complete` event is dispatched once every file was dealt with, even when some fail. Each failed file also gets an `error` event, and its id is in the `failedIds` of the `complete` event.
+
 ## Sprites and animation
 
 A `Sprite` animates frames from a sprite sheet. Pass `{ loop: false }` to play an animation once; it emits an `animationend` event when it reaches the last frame.

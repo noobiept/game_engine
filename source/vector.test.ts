@@ -46,3 +46,16 @@ describe("Vector", function () {
         expect(normalized.y).toBeCloseTo(0.8);
     });
 });
+
+describe("Vector edge cases", function () {
+    test("normalizing the zero vector gives the zero vector", function () {
+        expect(Vector.normalize({ x: 0, y: 0 })).toEqual({ x: 0, y: 0 });
+    });
+
+    test("projecting onto the zero vector gives the zero vector", function () {
+        expect(Vector.projection({ x: 1, y: 2 }, { x: 0, y: 0 })).toEqual({
+            x: 0,
+            y: 0,
+        });
+    });
+});

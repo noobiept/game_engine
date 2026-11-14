@@ -27,7 +27,21 @@ export class Grid {
     columns: number;
     lines: number;
 
+    /**
+     * Throws a `RangeError` if the number of columns/lines isn't a positive integer.
+     */
     constructor(args: GridArgs) {
+        if (
+            !Number.isInteger(args.columns) ||
+            !Number.isInteger(args.lines) ||
+            args.columns < 1 ||
+            args.lines < 1
+        ) {
+            throw new RangeError(
+                "The number of columns and lines need to be positive integers.",
+            );
+        }
+
         this._grid = [];
 
         for (let column = 0; column < args.columns; column++) {
