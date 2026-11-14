@@ -20,6 +20,8 @@ Releases before `3.0.0` are not tracked here.
   and `pollUntil`'s `timeout` also limits the checks. See its
   [changelog](https://github.com/noobiept/utilities/blob/master/CHANGELOG.md).
   The engine's own `EventDispatcher` and `Preload` are unchanged.
+- Releases are now published to npm from CI, with
+  [provenance](https://docs.npmjs.com/generating-provenance-statements).
 - Updated the runtimes (Node 26, pnpm 12) and the development dependencies to
   their latest versions (TypeScript stays on v6, since the tooling doesn't
   support v7 yet).

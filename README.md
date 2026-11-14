@@ -27,6 +27,7 @@ The full API reference is in [docs/README.md](docs/README.md), and runnable exam
 - [Game loop](#game-loop)
 - [Collision detection](#collision-detection)
 - [Documentation](#documentation)
+- [Release](#release)
 - [License](#license)
 
 ## Install
@@ -285,6 +286,13 @@ Game.init({ container: document.body, width: 400, height: 400, collision });
 The full API reference is available in [docs/README.md](docs/README.md).
 
 There are also many runnable examples in the [examples/](examples/) directory. Inside this repository, run `pnpm run dev` to browse them locally.
+
+## Release
+
+1. Run the checks (`pnpm run format:check`, `pnpm run typecheck:all`, `pnpm run lint`, `pnpm test` and `pnpm run build`), and try the examples (`pnpm run dev`) in the different browsers.
+2. Update the version in `package.json`, the `CHANGELOG.md` and the API reference (`pnpm run docs`), and commit.
+3. Tag the commit and push it (`git tag vX.Y.Z` and `git push origin master vX.Y.Z`).
+4. The `release` workflow stages the package on npm (with provenance), then approve it on [npmjs.com](https://www.npmjs.com/package/@drk4/game-engine) to publish it.
 
 ## License
 
