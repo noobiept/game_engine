@@ -243,6 +243,8 @@ Game.addToGameLoop(function (deltaTime) {
 Game.addToGameLoop(spawnEnemy, { delay: 2 });
 ```
 
+The loop updates at 35 frames per second by default (change it with `Game.setFps()`), and pauses while the page is hidden. To keep a long pause (a slow device, the debugger) from moving the elements a big distance at once, `deltaTime` is limited to `0.25` seconds (change it with `Game.setMaxDeltaTime()`). A loop stopped with `Game.stopGameLoop()` stays stopped until `Game.startGameLoop()` is called.
+
 ## Collision detection
 
 Give elements a `category` bit flag and the categories they should collide with through `collidesWith`. Colliding elements receive a `collision` event.

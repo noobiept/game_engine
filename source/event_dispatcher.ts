@@ -6,10 +6,19 @@ export interface EventDispatcherArgs {
 
 type EventListener = (data: any) => any;
 
+interface ListenerEntry {
+    listener: EventListener;
+    removed: boolean; // so a dispatch that is already running skips it
+}
+
 /**
  * Base class that provides a way to add/remove listeners, and dispatch events.
  * Most engine classes extend it (every `Element`, `Preload`, etc.), which is how
  * you listen to their events with `addEventListener()`.
+ *
+ * The listeners are called in the reverse order they were added (the last one added is called first).
+ * Adding or removing listeners while an event is being dispatched is safe: a listener removed during
+ * a dispatch isn't called anymore, and one added during a dispatch is only called on the next one.
  *
  * Basic Usage:
  *
@@ -22,10 +31,10 @@ type EventListener = (data: any) => any;
  *     dispatcher.dispatchEvent( 'custom', { value: 42 } );
  */
 export class EventDispatcher {
-    protected _listeners: Record<string, EventListener[]>;
+    protected _listeners: Map<string, ListenerEntry[]>;
 
     constructor(_args?: EventDispatcherArgs) {
-        this._listeners = {};
+        this._listeners = new Map();
     }
 
     /**
@@ -34,22 +43,25 @@ export class EventDispatcher {
      *
      * @param type Type of the event.
      * @param listener A function to be called when the event is dispatched.
-     * @return If it was successfully added.
+     * @return If it was successfully added (`false` when it isn't a function, or was already added).
      */
     addEventListener(type: string, listener: EventListener) {
-        if (!this._listeners[type]) {
-            this._listeners[type] = [];
+        if (!Utilities.isFunction(listener)) {
+            return false;
         }
 
-        if (Utilities.isFunction(listener)) {
-            if (this._listeners[type].indexOf(listener) < 0) {
-                this._listeners[type].push(listener);
+        let entries = this._listeners.get(type);
 
-                return true;
-            }
+        if (!entries) {
+            entries = [];
+            this._listeners.set(type, entries);
+        } else if (entries.some((entry) => entry.listener === listener)) {
+            return false;
         }
 
-        return false;
+        entries.push({ listener: listener, removed: false });
+
+        return true;
     }
 
     /**
@@ -60,28 +72,48 @@ export class EventDispatcher {
      * @return If it was successfully removed.
      */
     removeEventListener(type: string, listener?: EventListener) {
-        if (this._listeners[type]) {
-            if (typeof listener !== "undefined") {
-                const index = this._listeners[type].indexOf(listener);
+        const entries = this._listeners.get(type);
 
-                if (index >= 0) {
-                    this._listeners[type].splice(index, 1);
-                    return true;
-                }
-            } else {
-                this._listeners[type] = [];
-                return true;
-            }
+        if (!entries) {
+            return false;
         }
 
-        return false;
+        if (typeof listener === "undefined") {
+            for (const entry of entries) {
+                entry.removed = true;
+            }
+
+            this._listeners.delete(type);
+            return true;
+        }
+
+        const index = entries.findIndex((entry) => entry.listener === listener);
+
+        if (index < 0) {
+            return false;
+        }
+
+        entries[index].removed = true;
+        entries.splice(index, 1);
+
+        if (entries.length === 0) {
+            this._listeners.delete(type);
+        }
+
+        return true;
     }
 
     /**
      * Remove all the event listeners.
      */
     removeAllEventListeners() {
-        this._listeners = {};
+        for (const entries of this._listeners.values()) {
+            for (const entry of entries) {
+                entry.removed = true;
+            }
+        }
+
+        this._listeners.clear();
     }
 
     /**
@@ -91,11 +123,20 @@ export class EventDispatcher {
      * @param data Data to be sent to every listener.
      */
     dispatchEvent(type: string, data?: any) {
-        const listeners = this._listeners[type];
+        const entries = this._listeners.get(type);
 
-        if (listeners) {
-            for (let a = listeners.length - 1; a >= 0; a--) {
-                listeners[a](data);
+        if (!entries) {
+            return;
+        }
+
+        // go through a copy, since the listeners can add/remove listeners while we're calling them
+        const snapshot = entries.slice();
+
+        for (let a = snapshot.length - 1; a >= 0; a--) {
+            const entry = snapshot[a];
+
+            if (!entry.removed) {
+                entry.listener(data);
             }
         }
     }
@@ -107,10 +148,8 @@ export class EventDispatcher {
      * @return If there are listeners or not.
      */
     hasListeners(type: string) {
-        if (this._listeners[type] && this._listeners[type].length > 0) {
-            return true;
-        }
+        const entries = this._listeners.get(type);
 
-        return false;
+        return entries !== undefined && entries.length > 0;
     }
 }

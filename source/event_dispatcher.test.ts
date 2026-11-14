@@ -75,3 +75,88 @@ describe("EventDispatcher", function () {
         expect(dispatcher.hasListeners("submit")).toEqual(false);
     });
 });
+
+describe("EventDispatcher re-entrancy", function () {
+    test("a listener that removes an earlier listener doesn't make another one run twice", function () {
+        const dispatcher = new EventDispatcher();
+        const calls: string[] = [];
+        const first = () => calls.push("first");
+        const second = () => calls.push("second");
+        const third = () => {
+            calls.push("third");
+            dispatcher.removeEventListener("change", first);
+        };
+
+        dispatcher.addEventListener("change", first);
+        dispatcher.addEventListener("change", second);
+        dispatcher.addEventListener("change", third);
+
+        dispatcher.dispatchEvent("change");
+
+        // called in the reverse order they were added, and 'first' was removed before its turn
+        expect(calls).toEqual(["third", "second"]);
+    });
+
+    test("removing all the listeners during a dispatch stops the remaining ones", function () {
+        const dispatcher = new EventDispatcher();
+        const calls: string[] = [];
+
+        dispatcher.addEventListener("change", () => calls.push("first"));
+        dispatcher.addEventListener("change", () => {
+            calls.push("second");
+            dispatcher.removeAllEventListeners();
+        });
+
+        dispatcher.dispatchEvent("change");
+
+        expect(calls).toEqual(["second"]);
+        expect(dispatcher.hasListeners("change")).toBe(false);
+    });
+
+    test("removing the listeners of a type during a dispatch stops the remaining ones", function () {
+        const dispatcher = new EventDispatcher();
+        const calls: string[] = [];
+
+        dispatcher.addEventListener("change", () => calls.push("first"));
+        dispatcher.addEventListener("change", () => {
+            calls.push("second");
+            dispatcher.removeEventListener("change");
+        });
+
+        dispatcher.dispatchEvent("change");
+
+        expect(calls).toEqual(["second"]);
+    });
+
+    test("a listener added during a dispatch is only called on the next one", function () {
+        const dispatcher = new EventDispatcher();
+        const calls: string[] = [];
+        const later = () => calls.push("later");
+
+        dispatcher.addEventListener("change", () => {
+            calls.push("first");
+            dispatcher.addEventListener("change", later);
+        });
+
+        dispatcher.dispatchEvent("change");
+        expect(calls).toEqual(["first"]);
+
+        dispatcher.dispatchEvent("change");
+        expect(calls).toEqual(["first", "later", "first"]);
+    });
+
+    test("event types with the name of an object property work like any other", function () {
+        const dispatcher = new EventDispatcher();
+        const calls: string[] = [];
+
+        expect(dispatcher.hasListeners("constructor")).toBe(false);
+        expect(() => dispatcher.dispatchEvent("constructor")).not.toThrow();
+
+        expect(
+            dispatcher.addEventListener("__proto__", () => calls.push("proto")),
+        ).toBe(true);
+        dispatcher.dispatchEvent("__proto__");
+
+        expect(calls).toEqual(["proto"]);
+    });
+});

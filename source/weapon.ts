@@ -70,27 +70,11 @@ export class Weapon {
     _removed = false;
 
     constructor(args: WeaponArgs) {
-        if (typeof args.damage === "undefined") {
-            args.damage = 1;
-        }
-
-        if (typeof args.fireInterval === "undefined") {
-            args.fireInterval = 0;
-        }
-
-        if (typeof args.category === "undefined") {
-            args.category = args.element.category;
-        }
-
-        if (typeof args.collidesWith === "undefined") {
-            args.collidesWith = args.element.collidesWith;
-        }
-
-        this.category = args.category;
-        this.collidesWith = args.collidesWith;
+        this.category = args.category ?? args.element.category;
+        this.collidesWith = args.collidesWith ?? args.element.collidesWith;
         this.element = args.element;
-        this.damage = args.damage;
-        this.fireInterval = args.fireInterval;
+        this.damage = args.damage ?? 1;
+        this.fireInterval = args.fireInterval ?? 0;
         this._fire_count = 0;
         this._is_ready = true;
 
@@ -144,7 +128,7 @@ export class Weapon {
      */
     fire(angleOrTarget?: number | Element, bulletId?: number) {
         if (this._is_ready) {
-            this._fire_count = 0;
+            // `_fire_count` keeps the time since the weapon got ready (in the last update), so the shots don't drift
             this._is_ready = false;
 
             if (typeof bulletId === "undefined") {
@@ -238,6 +222,11 @@ export class Weapon {
                 const bulletObj = data.element;
                 const associatedElement = bulletObj.element;
 
+                // the element that fired the bullet may have been removed since then
+                if (!associatedElement || associatedElement._removed) {
+                    return;
+                }
+
                 associatedElement.dispatchEvent("collision", {
                     element: associatedElement,
                     bullet: bulletObj,
@@ -249,7 +238,9 @@ export class Weapon {
         bullet.addEventListener("remove", () => {
             const index = this._bullets.indexOf(bullet);
 
-            this._bullets.splice(index, 1);
+            if (index >= 0) {
+                this._bullets.splice(index, 1);
+            }
         });
 
         this._bullet_container?.addChild(bullet);
@@ -262,22 +253,38 @@ export class Weapon {
      * Deals with the fire interval logic, and with the set intervals logic.
      */
     logic(deltaTime: number) {
-        // check if the weapon is ready to be fired
-        if (this._fire_count >= this.fireInterval) {
-            this._is_ready = true;
+        if (!this._is_ready) {
+            this._fire_count += deltaTime;
+
+            // ready to fire again, keep the time past the interval (less than an interval, so it doesn't try to catch up)
+            if (this._fire_count >= this.fireInterval) {
+                this._is_ready = true;
+                this._fire_count =
+                    this.fireInterval > 0
+                        ? (this._fire_count - this.fireInterval) %
+                          this.fireInterval
+                        : 0;
+            }
         }
 
-        // not yet, keep counting
+        // ready, but wasn't fired, so there's no time to keep
         else {
-            this._fire_count += deltaTime;
+            this._fire_count = 0;
         }
 
         // deal with the bullets that may be set to fire at a set interval
         const intervals = this._bullet_intervals;
 
         if (intervals.length > 0) {
-            for (let a = intervals.length - 1; a >= 0; a--) {
-                const interval = intervals[a];
+            // go through a copy, since the firing pattern can change the intervals (calling `stopFiring()` for example)
+            const current = intervals.slice();
+
+            for (let a = current.length - 1; a >= 0; a--) {
+                const interval = current[a];
+
+                if (intervals.indexOf(interval) < 0) {
+                    continue;
+                }
 
                 interval.count += deltaTime;
 
@@ -289,9 +296,18 @@ export class Weapon {
 
                     // if its firing at a target, and the target is not available anymore, stop the interval
                     if (!continueFiring) {
-                        intervals.splice(a, 1);
+                        const index = intervals.indexOf(interval);
+
+                        if (index >= 0) {
+                            intervals.splice(index, 1);
+                        }
                     } else {
-                        interval.count = 0;
+                        // keep the time past the interval (so it doesn't drift), but fire at most once per update
+                        interval.count -= interval.interval;
+
+                        if (interval.count >= interval.interval) {
+                            interval.count %= interval.interval;
+                        }
                     }
                 }
             }

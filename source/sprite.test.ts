@@ -88,3 +88,67 @@ describe("Sprite", function () {
         expect(after).toBe(0);
     });
 });
+
+describe("Sprite timing", function () {
+    beforeEach(function () {
+        // the Element constructor registers with the collision detection module
+        CollisionDetection.init();
+    });
+
+    // 160x40 sheet with 40x40 frames -> 4 frames
+    const wideImage = { width: 160, height: 40 } as unknown as HTMLImageElement;
+
+    // values that are exact in binary floating point, so the sums don't round down
+    function makeWalkSprite() {
+        return new Sprite({
+            image: wideImage,
+            frameWidth: 40,
+            frameHeight: 40,
+            interval: 0.25,
+            animations: {
+                walk: [0, 1, 2, 3],
+            },
+        });
+    }
+
+    function position(sprite: Sprite) {
+        return (sprite as unknown as { _current_animation_position: number })
+            ._current_animation_position;
+    }
+
+    test("keeps the time past the interval, and advances several frames when several intervals passed", function () {
+        const sprite = makeWalkSprite();
+        sprite.play("walk");
+
+        sprite.logic(0.375);
+        expect(position(sprite)).toBe(1);
+
+        // 0.125 left over + 0.375 = 2 intervals
+        sprite.logic(0.375);
+        expect(position(sprite)).toBe(3);
+
+        sprite.logic(0.125);
+        expect(position(sprite)).toBe(3);
+    });
+
+    test("a non-looping animation ends once on its last frame, even when several frames pass at once", function () {
+        const sprite = makeWalkSprite();
+        let ended = 0;
+
+        sprite.addEventListener("animationend", () => ended++);
+        sprite.play("walk", { loop: false });
+        sprite.logic(2);
+
+        expect(position(sprite)).toBe(3);
+        expect(ended).toBe(1);
+        expect(sprite._has_logic).toBe(false);
+    });
+
+    test("play() doesn't accept inherited properties as an animation", function () {
+        const sprite = makeWalkSprite();
+
+        expect(sprite.play("toString")).toBe(false);
+        expect(sprite.play("constructor")).toBe(false);
+        expect(sprite.play("__proto__")).toBe(false);
+    });
+});

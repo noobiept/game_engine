@@ -149,3 +149,95 @@ describe("Tween", function () {
         expect(Tween.getTween(two)).toEqual(twoTween);
     });
 });
+
+describe("Tween timing and removal", function () {
+    beforeEach(function () {
+        Tween.removeAll();
+    });
+
+    test("the time left over from a step is applied to the next one", function () {
+        const element = { x: 0, y: 0 };
+        const tween = new Tween(element).to({ x: 10 }, 1).to({ y: 10 }, 1);
+        tween.start();
+
+        Tween.update(0.75);
+        expect(element).toEqual({ x: 7.5, y: 0 });
+
+        Tween.update(0.75);
+        expect(element).toEqual({ x: 10, y: 5 });
+
+        Tween.update(0.5);
+        expect(element).toEqual({ x: 10, y: 10 });
+        expect(Tween.getTween(element)).toBe(null);
+    });
+
+    test("the time left over from a wait is applied to the next step", function () {
+        const element = { x: 0 };
+
+        new Tween(element).wait(1).to({ x: 10 }, 1).start();
+
+        Tween.update(1.5);
+        expect(element.x).toBe(5);
+    });
+
+    test("a step with no duration goes straight to the end value", function () {
+        const element = { x: 0 };
+
+        new Tween(element).to({ x: 5 }, 0).start();
+        Tween.update(0.016);
+
+        expect(element.x).toBe(5);
+    });
+
+    test("removing all the tweens from a call() step doesn't break the update", function () {
+        const killer = { n: 0 };
+        const other = { n: 0 };
+
+        new Tween(other).to({ n: 1 }, 1).start();
+        new Tween(killer)
+            .call(() => {})
+            .wait(0.1)
+            .call(() => Tween.removeAll())
+            .start();
+
+        expect(() => Tween.update(0.1)).not.toThrow();
+
+        // the tweens were removed, so nothing else changes
+        const value = other.n;
+        Tween.update(0.1);
+        expect(other.n).toBe(value);
+    });
+
+    test("removing a tween updated earlier in the same frame doesn't update another one twice", function () {
+        const first = { n: 0 };
+        const second = { n: 0 };
+
+        // updated last to first: the 'second' tween runs first and removes the 'first' tween
+        new Tween(first).to({ n: 1 }, 1).start();
+        new Tween(second)
+            .wait(0.1)
+            .call(() => Tween.removeTweens(first))
+            .to({ n: 1 }, 1)
+            .start();
+
+        Tween.update(0.1);
+
+        expect(first.n).toBe(0);
+        expect(second.n).toBe(0);
+    });
+
+    test("a tween removed from its own call() step doesn't run the remaining steps", function () {
+        const element = { x: 0 };
+        const tween = new Tween(element);
+
+        tween
+            .call(() => tween.remove())
+            .to({ x: 10 }, 1)
+            .start();
+
+        Tween.update(1);
+
+        expect(element.x).toBe(0);
+        expect(Tween.getTween(element)).toBe(null);
+    });
+});

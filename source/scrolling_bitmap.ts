@@ -244,7 +244,8 @@ export class ScrollingBitmap extends Bitmap {
         this._count += deltaTime;
 
         if (this._count >= this._interval) {
-            this._count = 0;
+            // keep the time past the interval (so it doesn't drift), but scroll at most once per update
+            this._count = this._interval > 0 ? this._count % this._interval : 0;
             this._scroll();
         }
     }

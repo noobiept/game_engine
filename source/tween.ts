@@ -57,6 +57,7 @@ export class Tween {
     protected _start_properties: TweenProperties | null;
     protected _count: number;
     protected _update: ((delta: number) => any) | null;
+    protected _active: boolean; // if it's in the list of tweens being updated
 
     constructor(element: object, options?: TweenArgs) {
         // remove any existing tweens on the target (`this` isn't registered yet, so it won't remove itself)
@@ -70,17 +71,19 @@ export class Tween {
         this._start_properties = null;
         this._count = 0;
         this._update = null;
+        this._active = false;
     }
 
     /**
      * Start the tween animation.
      */
     start() {
-        this.nextStep();
-
-        if (this._current_step !== null && Tween._tweens.indexOf(this) < 0) {
+        if (!this._active) {
+            this._active = true;
             Tween._tweens.push(this);
         }
+
+        this.nextStep();
     }
 
     /**
@@ -141,7 +144,7 @@ export class Tween {
     }
 
     /**
-     * Remove the tween.
+     * Remove the tween (it stops, and the remaining steps aren't run).
      */
     remove() {
         const index = Tween._tweens.indexOf(this);
@@ -150,14 +153,24 @@ export class Tween {
             Tween._tweens.splice(index, 1);
         }
 
+        this._deactivate();
+    }
+
+    /**
+     * Stop updating the tween (when it's taken out of the tweens list).
+     */
+    protected _deactivate() {
+        this._active = false;
         this._current_step = null;
         this._update = null;
     }
 
     /**
      * Move unto the next step in the tween animation.
+     *
+     * @param leftover Time (in seconds) left over from the previous step, which is applied to this step (so the steps don't fall behind).
      */
-    nextStep() {
+    nextStep(leftover = 0) {
         const step = this._steps.shift();
 
         if (!step) {
@@ -169,10 +182,18 @@ export class Tween {
 
         if (step.action === TweenAction.call) {
             step.callback();
-            this.nextStep();
+
+            // the callback may have removed the tween
+            if (this._active) {
+                this.nextStep(leftover);
+            }
         } else if (step.action === TweenAction.wait) {
             this._count = 0;
             this._update = this.waitUpdate;
+
+            if (leftover > 0) {
+                this.waitUpdate(leftover);
+            }
         } else if (step.action === TweenAction.properties) {
             const startProperties: TweenProperties = {};
 
@@ -183,6 +204,10 @@ export class Tween {
             this._start_properties = startProperties;
             this._count = 0;
             this._update = this.propertiesUpdate;
+
+            if (leftover > 0) {
+                this.propertiesUpdate(leftover);
+            }
         }
     }
 
@@ -201,7 +226,7 @@ export class Tween {
         this._count += deltaTime;
 
         if (this._count >= step.duration) {
-            this.nextStep();
+            this.nextStep(this._count - step.duration);
         }
     }
 
@@ -224,6 +249,16 @@ export class Tween {
 
         this._count += deltaTime;
 
+        if (this._count >= step.duration) {
+            // make sure it ends exactly on the end value
+            for (const property in step.end_properties) {
+                this._element[property] = step.end_properties[property];
+            }
+
+            this.nextStep(this._count - step.duration);
+            return;
+        }
+
         // how far into the complete movement we're in
         const percentage = this._count / step.duration;
 
@@ -234,15 +269,6 @@ export class Tween {
             const end = step.end_properties[property];
 
             this._element[property] = start + (end - start) * value;
-        }
-
-        if (this._count >= step.duration) {
-            // make sure it ends exactly on the end value
-            for (const property in step.end_properties) {
-                this._element[property] = step.end_properties[property];
-            }
-
-            this.nextStep();
         }
     }
 
@@ -275,6 +301,7 @@ export class Tween {
 
             if (tween._element === element) {
                 Tween._tweens.splice(a, 1);
+                tween._deactivate();
             }
         }
     }
@@ -283,7 +310,11 @@ export class Tween {
      * Remove all the tween animations.
      */
     static removeAll() {
-        Tween._tweens.length = 0;
+        const tweens = Tween._tweens.splice(0);
+
+        for (const tween of tweens) {
+            tween._deactivate();
+        }
     }
 
     /**
@@ -292,8 +323,16 @@ export class Tween {
      * @param deltaTime Time elapsed since the last update.
      */
     static update(deltaTime: number) {
-        for (let a = Tween._tweens.length - 1; a >= 0; a--) {
-            Tween._tweens[a]._update?.(deltaTime);
+        // go through a copy, since the tweens can add/remove tweens (from a `.call()` step for example)
+        const tweens = Tween._tweens.slice();
+
+        for (let a = tweens.length - 1; a >= 0; a--) {
+            const tween = tweens[a];
+
+            // skip the ones removed in the meantime
+            if (tween._active) {
+                tween._update?.(deltaTime);
+            }
         }
     }
 }

@@ -112,10 +112,16 @@ export class Sprite extends Bitmap {
      * @return If it was successful.
      */
     play(animationId: string, options?: SpritePlayOptions) {
+        // doesnt't exist an animation with the given id (only its own properties, not inherited ones like `toString`)
+        if (
+            !Object.prototype.hasOwnProperty.call(this._animations, animationId)
+        ) {
+            return false;
+        }
+
         const next = this._animations[animationId];
 
-        // doesnt't exist an animation with the given id
-        if (!next) {
+        if (!Array.isArray(next) || next.length === 0) {
             return false;
         }
 
@@ -198,15 +204,44 @@ export class Sprite extends Bitmap {
 
     /**
      * Changes the current sprite frame, based on the interval set.
+     * When more than one interval passed since the last update, it advances that many frames (so the animation keeps its speed).
      *
      * @param deltaTime Time elapsed since the last update.
      */
     logic(deltaTime: number) {
+        const animation = this._current_animation;
+
+        if (animation === null) {
+            return;
+        }
+
+        // no interval, change the frame on every update
+        if (!(this.interval > 0)) {
+            this.nextFrame();
+            return;
+        }
+
         this._count_interval += deltaTime;
 
-        if (this._count_interval >= this.interval) {
-            this._count_interval = 0;
+        if (this._count_interval < this.interval) {
+            return;
+        }
 
+        // keep the time past the interval, so the animation doesn't fall behind
+        let frames = Math.floor(this._count_interval / this.interval);
+        this._count_interval = Math.max(
+            this._count_interval - frames * this.interval,
+            0,
+        );
+
+        // whole loops of the animation end up on the same frame
+        if (this._loop) {
+            frames %= animation.length;
+        }
+
+        // a non-looping animation stops (no logic) once it reaches the last frame
+        while (frames > 0 && this._has_logic) {
+            frames--;
             this.nextFrame();
         }
     }

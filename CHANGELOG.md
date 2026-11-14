@@ -14,6 +14,17 @@ A pass of bug fixes. Some change how existing games behave, so check the
 
 ### Changed
 
+- **Breaking**: the game loop now updates at the set fps. It was rounded down
+  to a fraction of the display's refresh rate (the default 35 fps ran at 30 on
+  a 60Hz display). `deltaTime` is limited to `0.25` seconds, so a long pause
+  doesn't move the elements a big distance at once (see `setMaxDeltaTime()`).
+  `setFps()` throws a `RangeError` for a value that isn't a positive number.
+- **Breaking**: repeating timers keep the time past their interval instead of
+  dropping it, so they no longer run slower than set: game loop callbacks with
+  a `delay`, sprite animations (which advance several frames when several
+  intervals passed), weapon fire intervals, and scrolling bitmaps. Tween steps
+  pass the time left over to the next step. A game loop callback is called at
+  most once per update.
 - **Breaking**: `Preload` dispatches the `error` event for every file that
   fails (error statuses, invalid json, files that can't be decoded), with
   `{ id, event?, status?, error? }`. Any 2xx status, `304` and `0` (`file://`)
@@ -27,6 +38,8 @@ A pass of bug fixes. Some change how existing games behave, so check the
 - **Breaking**: `Grid` and `PathFinding.breadthFirstSearch()` throw a
   `RangeError` for invalid arguments (columns/lines that aren't positive
   integers, a destination outside the map).
+- **Breaking**: `removeFromGameLoop()` removes the callback every time it was
+  added.
 - **Breaking**: updated `@drk4/utilities` to v8. It is re-exported as
   `Utilities`, so its breaking changes reach `Utilities.*`: `Dialog` titles and
   bodies given as strings are set as plain text instead of HTML, a modal
@@ -35,6 +48,9 @@ A pass of bug fixes. Some change how existing games behave, so check the
   `error` for HTTP error statuses and files that can't be parsed or decoded,
   and `pollUntil`'s `timeout` also limits the checks. See its
   [changelog](https://github.com/noobiept/utilities/blob/master/CHANGELOG.md).
+- `Game.init()` can be called again, which replaces the previous game.
+- `disableMouseMoveEvents()` dispatches `mouseout` to the elements that were
+  under the mouse.
 - Releases are now published to npm from CI, with
   [provenance](https://docs.npmjs.com/generating-provenance-statements).
 - Updated the runtimes (Node 26, pnpm 12) and the development dependencies to
@@ -43,12 +59,23 @@ A pass of bug fixes. Some change how existing games behave, so check the
 
 ### Added
 
+- `Game.setMaxDeltaTime()` and `Game.isGameLoopRunning()`.
 - A `timeout` option for `Preload` (in seconds), and the `PreloadErrorData`
   type for its `error` event.
 
 ### Fixed
 
 - `Vector.normalize()` and `Vector.projection()` with the zero vector gave `NaN`.
+- `EventDispatcher` called a listener twice, or after it was removed, when
+  listeners were removed during a dispatch, and event types like `__proto__`
+  or `constructor` threw.
+- `removeAllCallbacks()` and `Tween.removeAll()` called from a callback threw,
+  or updated a tween twice, and a tween removed from its own `.call()` step was
+  left half active.
+- `startGameLoop()` started a second loop when the loop was already running,
+  and a loop stopped with `stopGameLoop()` restarted when the page became
+  visible again. Calling `activateMouseMoveEvents()` twice left an interval
+  running. Elements removed while the loop was stopped were never removed.
 - `Preload` never dispatched `complete` when a file had a network error, was
   aborted, or a listener threw. The `complete` event's lists were emptied after
   it was dispatched, loading files from its listener broke the counting, the
@@ -58,10 +85,15 @@ A pass of bug fixes. Some change how existing games behave, so check the
   data of the wrong shape crashed it or lost the scores, a saved list bigger
   than the limit was never cut, a full storage made `add()` throw, and
   `get('__proto__')` returned `Object.prototype`.
+- `Sprite.play()` accepted inherited properties (like `toString`) as
+  animations.
+- A bullet's collisions were passed on to the element that fired it after that
+  element was removed.
 - `PathFinding.breadthFirstSearch()` spread from a blocked destination, gave a
   `TypeError` or wrong paths for a destination outside the map, and its result
   referenced the given destination object.
 - `HtmlElement` threw for a `cssClass` with spaces.
+- `Weapon` no longer changes the arguments object given to it.
 
 ## [3.0.2] - 2026-06-02
 
