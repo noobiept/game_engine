@@ -55,6 +55,16 @@ import "@drk4/game-engine/style.css";
 
 The stylesheet is exported by the package and maps to the bundled `dist/game_engine.css` file. It provides basic styling for the engine's HTML helpers. Every class and id defined by the engine starts with `Game-`, for example `.Game-Container`, so custom game styles can avoid conflicts easily.
 
+The engine is built on [`@drk4/utilities`](https://www.npmjs.com/package/@drk4/utilities) (dialogs, timers, random numbers, local storage, and more). To use those in your game, install it and import it directly:
+
+```sh
+pnpm add @drk4/utilities
+```
+
+```ts
+import * as Utilities from "@drk4/utilities";
+```
+
 ## Getting started
 
 `Game.init()` creates the canvas, attaches it to the page, and starts the game loop. After that, create elements and add them to the canvas with `Game.addElement()`.
@@ -262,7 +272,7 @@ Game.addToGameLoop(function (deltaTime) {
 Game.addToGameLoop(spawnEnemy, { delay: 2 });
 ```
 
-The loop updates at 35 frames per second by default (change it with `Game.setFps()`), and pauses while the page is hidden. To keep a long pause (a slow device, the debugger) from moving the elements a big distance at once, `deltaTime` is limited to `0.25` seconds (change it with `Game.setMaxDeltaTime()`). A loop stopped with `Game.stopGameLoop()` stays stopped until `Game.startGameLoop()` is called.
+By default the loop updates on every animation frame, which follows the display's refresh rate (60 times per second on most displays). To limit it, use `Game.setFps()`. The loop pauses while the page is hidden. To keep a long pause (a slow device, the debugger) from moving the elements a big distance at once, `deltaTime` is limited to `0.25` seconds (change it with `Game.setMaxDeltaTime()`). A loop stopped with `Game.stopGameLoop()` stays stopped until `Game.startGameLoop()` is called.
 
 ## Collision detection
 

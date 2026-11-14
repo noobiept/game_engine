@@ -1,3 +1,4 @@
+import * as Utilities from "@drk4/utilities";
 import { Game, runOnLoad } from "../shared";
 import { Square } from "./square";
 
@@ -131,7 +132,7 @@ runOnLoad(function () {
         });
         menu.addChild(timer);
 
-        TIMER = new Game.Utilities.Timer({
+        TIMER = new Utilities.Timer({
             updateElement: {
                 element: timer.element,
             },
@@ -166,7 +167,7 @@ runOnLoad(function () {
         TIMER.start();
 
         const emptyPositions = GRID.getEmptyPositions();
-        const minesPositions = Game.Utilities.getSeveralRandomInts(
+        const minesPositions = Utilities.getSeveralRandomInts(
             0,
             emptyPositions.length - 1,
             NUMBER_OF_MINES,
@@ -338,9 +339,9 @@ runOnLoad(function () {
             return;
         }
 
-        if (button === Game.Utilities.MouseButton.left) {
+        if (button === Utilities.MouseButton.left) {
             revealSquare(square);
-        } else if (button === Game.Utilities.MouseButton.right) {
+        } else if (button === Utilities.MouseButton.right) {
             if (square.state === Square.STATE.hidden) {
                 square.setState(Square.STATE.question_mark);
             } else if (square.state === Square.STATE.question_mark) {

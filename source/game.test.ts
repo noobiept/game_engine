@@ -21,6 +21,8 @@ beforeEach(function () {
 
 afterEach(function () {
     Game.stopGameLoop();
+    Game.setFps(Infinity);
+    Game.setMaxDeltaTime(0.25);
     Game.disableMouseMoveEvents();
     Game.removeAllCallbacks();
     vi.useRealTimers();
@@ -40,6 +42,29 @@ function recordUpdates() {
 }
 
 describe("Game loop timing", function () {
+    test("by default updates on every animation frame (at the display's refresh rate)", function () {
+        const deltas = recordUpdates();
+
+        driver.run(60, 60);
+        expect(deltas).toHaveLength(60);
+
+        driver.run(144, 144);
+        expect(deltas).toHaveLength(60 + 144);
+    });
+
+    test("setFps(Infinity) removes the limit", function () {
+        const deltas = recordUpdates();
+
+        Game.setFps(30);
+        driver.run(60);
+        expect(deltas.length).toBeLessThanOrEqual(30);
+
+        Game.setFps(Infinity);
+        deltas.length = 0;
+        driver.run(60);
+        expect(deltas).toHaveLength(60);
+    });
+
     test("updates at the set fps, on a 60Hz display", function () {
         for (const fps of [35, 50, 30]) {
             Game.setFps(fps);
@@ -80,6 +105,7 @@ describe("Game loop timing", function () {
     test("setFps() and setMaxDeltaTime() validate the value", function () {
         expect(() => Game.setFps(0)).toThrow(RangeError);
         expect(() => Game.setFps(NaN)).toThrow(RangeError);
+        expect(() => Game.setFps(Infinity)).not.toThrow();
         expect(() => Game.setMaxDeltaTime(-1)).toThrow(RangeError);
     });
 });
@@ -140,7 +166,7 @@ describe("Starting and stopping the game loop", function () {
         expect(driver.pending).toBe(1);
 
         driver.run(60);
-        expect(deltas.length).toBeLessThanOrEqual(35);
+        expect(deltas).toHaveLength(60);
     });
 
     test("the loop pauses while the page is hidden, and resumes when it's visible", function () {

@@ -44,7 +44,7 @@ let CANVAS_CONTAINER: HTMLDivElement;
 let INITIALIZED = false;
 
 // game loop variables
-let FRAME_INTERVAL = 1000 / 35; // time between each update in milliseconds
+let FRAME_INTERVAL = 0; // least time between updates in milliseconds (0 is no limit, updates on every animation frame)
 let MAX_DELTA_TIME = 0.25; // the longest time step (in seconds) given to the game logic in one update
 let LAST_UPDATE_TIME = 0; // when the last update happened (milliseconds, same clock as `performance.now()`)
 let NEXT_UPDATE_TIME = 0; // when the next update is due
@@ -109,7 +109,6 @@ export function init(args: InitArgs) {
     // adding the same function again doesn't add a second listener
     document.addEventListener("visibilitychange", onVisibilityChange);
 
-    setFps(35);
     startGameLoop();
 }
 
@@ -233,9 +232,11 @@ export function disableMouseMoveEvents() {
 }
 
 /**
- * Specify the frames per second that the engine will try to run at (the game logic is updated and the canvas drawn at this rate).
+ * Limit how many times per second the game is updated (the logic, and drawing the canvas).
+ * By default there's no limit: it's updated on every animation frame, which follows the display's refresh rate (60 times
+ * per second on most displays, more on high refresh rate ones). Pass `Infinity` to remove the limit again.
  *
- * @param fps A positive number.
+ * @param fps A positive number (or `Infinity`).
  */
 export function setFps(fps: number) {
     if (!(fps > 0)) {
@@ -243,6 +244,9 @@ export function setFps(fps: number) {
     }
 
     FRAME_INTERVAL = 1000 / fps;
+
+    // the new rate applies from the last update
+    NEXT_UPDATE_TIME = LAST_UPDATE_TIME + FRAME_INTERVAL;
 }
 
 /**
@@ -530,7 +534,7 @@ function mouseMoveEvents() {
 
 /**
  * The game loop, called on every animation frame.
- * Updates the game at the set fps (see `setFps()`).
+ * Updates the game on every frame, or at the set fps (see `setFps()`).
  *
  * @param now The time of the animation frame (in milliseconds).
  */

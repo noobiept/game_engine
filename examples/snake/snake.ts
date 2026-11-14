@@ -1,4 +1,4 @@
-import { Game } from "../shared";
+import * as Utilities from "@drk4/utilities";
 import { Direction } from "./state";
 import { Tail } from "./tail";
 
@@ -31,7 +31,7 @@ Snake.prototype.addTail = function () {
     const tail = new Tail({
         column: column,
         line: line,
-        path: Game.Utilities.deepClone(last.path),
+        path: Utilities.deepClone(last.path),
         direction: last.direction,
     });
 

@@ -1,9 +1,10 @@
+import * as Utilities from "@drk4/utilities";
 import { Game } from "../shared";
 
 export class Square extends Game.Container {
     static SIZE = 30;
 
-    static VALUE = Game.Utilities.createEnum(
+    static VALUE = Utilities.createEnum(
         [
             "mine",
             "blank",

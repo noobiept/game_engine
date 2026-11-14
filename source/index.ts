@@ -3,7 +3,6 @@ import * as HighScore from "./highscore";
 import * as Html from "./html";
 import * as PathFinding from "./path_finding";
 import * as Sound from "./sound";
-import * as Utilities from "@drk4/utilities";
 import * as Vector from "./vector";
 
 export * from "./game";
@@ -30,12 +29,4 @@ export {
     SpatialPartition,
     type SpatialPartitionArgs,
 } from "./collision-detection/collision_spatial_partition";
-export {
-    CollisionDetection,
-    HighScore,
-    Html,
-    PathFinding,
-    Sound,
-    Utilities,
-    Vector,
-};
+export { CollisionDetection, HighScore, Html, PathFinding, Sound, Vector };

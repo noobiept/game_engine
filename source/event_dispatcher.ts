@@ -16,7 +16,7 @@ interface ListenerEntry {
  * Most engine classes extend it (every `Element`, `Preload`, etc.), which is how
  * you listen to their events with `addEventListener()`.
  *
- * The listeners are called in the reverse order they were added (the last one added is called first).
+ * The listeners are called in the order they were added.
  * Adding or removing listeners while an event is being dispatched is safe: a listener removed during
  * a dispatch isn't called anymore, and one added during a dispatch is only called on the next one.
  *
@@ -130,11 +130,7 @@ export class EventDispatcher {
         }
 
         // go through a copy, since the listeners can add/remove listeners while we're calling them
-        const snapshot = entries.slice();
-
-        for (let a = snapshot.length - 1; a >= 0; a--) {
-            const entry = snapshot[a];
-
+        for (const entry of entries.slice()) {
             if (!entry.removed) {
                 entry.listener(data);
             }

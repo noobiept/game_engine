@@ -1,3 +1,4 @@
+import * as Utilities from "@drk4/utilities";
 import { Game, runOnLoad } from "../shared";
 import { Block } from "./block";
 
@@ -81,10 +82,7 @@ runOnLoad(function () {
             return;
         }
 
-        const valueIndex = Game.Utilities.getRandomInt(
-            0,
-            SPAWN_VALUES.length - 1,
-        );
+        const valueIndex = Utilities.getRandomInt(0, SPAWN_VALUES.length - 1);
 
         const value = SPAWN_VALUES[valueIndex];
 

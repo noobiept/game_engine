@@ -29,11 +29,14 @@ A pass of bug fixes. Some change how existing games behave, so check the
 - **Breaking**: adding an element that is already in a container/canvas moves
   it (it used to end up in both). Adding a removed element, or a container to
   itself or to one of its children, throws.
-- **Breaking**: the game loop now updates at the set fps. It was rounded down
-  to a fraction of the display's refresh rate (the default 35 fps ran at 30 on
-  a 60Hz display). `deltaTime` is limited to `0.25` seconds, so a long pause
+- **Breaking**: by default the game loop updates on every animation frame (at
+  the display's refresh rate), instead of trying to run at 35 fps, which
+  actually ran at 30 on a 60Hz display. `setFps()` limits it, and now keeps to
+  the set rate (it was rounded down to a fraction of the display's refresh
+  rate). `setFps(Infinity)` removes the limit, and `setFps()` throws a
+  `RangeError` for a value that isn't a positive number.
+- **Breaking**: `deltaTime` is limited to `0.25` seconds, so a long pause
   doesn't move the elements a big distance at once (see `setMaxDeltaTime()`).
-  `setFps()` throws a `RangeError` for a value that isn't a positive number.
 - **Breaking**: repeating timers keep the time past their interval instead of
   dropping it, so they no longer run slower than set: game loop callbacks with
   a `delay`, sprite animations (which advance several frames when several
@@ -63,13 +66,14 @@ A pass of bug fixes. Some change how existing games behave, so check the
   isn't a positive integer, or the canvas dimensions aren't positive numbers.
 - **Breaking**: `removeFromGameLoop()` removes the callback every time it was
   added.
-- **Breaking**: updated `@drk4/utilities` to v8. It is re-exported as
-  `Utilities`, so its breaking changes reach `Utilities.*`: `Dialog` titles and
-  bodies given as strings are set as plain text instead of HTML, a modal
-  `Dialog` makes the page behind it `inert`, `Utilities.EventDispatcher` calls
-  the listeners in the order they were added, `Utilities.Preload` dispatches
-  `error` for HTTP error statuses and files that can't be parsed or decoded,
-  and `pollUntil`'s `timeout` also limits the checks. See its
+- **Breaking**: `EventDispatcher` calls the listeners in the order they were
+  added (it used to call them in reverse order), like the DOM and
+  `@drk4/utilities` do.
+- **Breaking**: `@drk4/utilities` is no longer re-exported as
+  `Game.Utilities`. To use it, install `@drk4/utilities` and import it
+  directly. It's updated to v8, which has breaking changes of its own (for
+  example `Dialog` titles and bodies given as strings are set as plain text
+  instead of HTML), see its
   [changelog](https://github.com/noobiept/utilities/blob/master/CHANGELOG.md).
 - `Game.init()` can be called again, which replaces the previous game.
 - `disableMouseMoveEvents()` dispatches `mouseout` to the elements that were
