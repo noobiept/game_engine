@@ -314,6 +314,7 @@ export function addCanvas(canvas: Canvas, position?: number) {
 
 /**
     Adds an element to a canvas. If 'id' is not given, then its added to the first canvas (the one most to the back).
+    An element that is already in a container/canvas is taken out of it first.
 
     @param element Element or Element[] to be added.
     @param id The canvas id.
@@ -333,23 +334,24 @@ export function addElement(element: Element | Element[], id?: number) {
 }
 
 /**
- * For when you don't know in what canvas the element is in. It will try in all the canvas.
+ * Detach elements from wherever they are (their canvas or container), right away. They're no longer drawn, updated or
+ * considered in the collision detection, but they aren't destroyed, so they can be added again later.
+ * To destroy an element, call its `remove()` method instead.
  *
- * @param element Element or Element[] to be removed.
- * @return If the element was removed.
+ * @param element Element or Element[] to be detached.
+ * @return If any of the elements was in a canvas/container (and was detached).
  */
 export function removeElement(element: Element | Element[]) {
-    for (let a = ALL_CANVAS.length - 1; a >= 0; a--) {
-        const canvas = ALL_CANVAS[a];
+    const elements = Array.isArray(element) ? element : [element];
+    let removed = false;
 
-        const removed = canvas.removeChild(element);
-
-        if (removed) {
-            return true;
+    for (const item of elements) {
+        if (item._detachFromParent()) {
+            removed = true;
         }
     }
 
-    return false;
+    return removed;
 }
 
 /**

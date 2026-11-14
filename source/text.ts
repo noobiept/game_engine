@@ -36,6 +36,7 @@ export class Text extends Element {
     protected _font_size = 20;
     protected _font = "20px monospace"; // fontFamily + fontSize
     protected _timeout: number | undefined;
+    protected _timeout_handle: Utilities.Timeout | null = null; // removes the text once the `timeout` passes
     protected _lines: string[] = [""];
 
     constructor(args: TextArgs) {
@@ -87,9 +88,24 @@ export class Text extends Element {
             const timeout = new Utilities.Timeout();
 
             timeout.start(() => {
+                this._timeout_handle = null;
                 this.remove();
             }, args.timeout * 1000);
+
+            this._timeout_handle = timeout;
         }
+    }
+
+    /**
+     * Also cancels the `timeout` (if the text is removed before it).
+     */
+    _removeNow() {
+        if (this._timeout_handle) {
+            this._timeout_handle.clear();
+            this._timeout_handle = null;
+        }
+
+        super._removeNow();
     }
 
     /**
@@ -208,11 +224,7 @@ export class Text extends Element {
             textBaseline: this.textBaseline,
             fill: this.fill,
         });
-        element.opacity = this.opacity;
-        element.visible = this.visible;
-        element.scaleX = this.scaleX;
-        element.scaleY = this.scaleY;
-        element._rotation = this._rotation;
+        this._copyPropertiesTo(element);
 
         return element;
     }

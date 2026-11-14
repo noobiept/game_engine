@@ -28,11 +28,7 @@ export class Rectangle extends Element {
     constructor(args: RectangleArgs) {
         super(args);
 
-        if (typeof args.fill === "undefined") {
-            args.fill = true;
-        }
-
-        this.fill = args.fill;
+        this.fill = args.fill ?? true;
         this._width = args.width;
         this._height = args.height;
         this._half_width = args.width / 2;
@@ -82,11 +78,7 @@ export class Rectangle extends Element {
             color: this.color,
             fill: this.fill,
         });
-        element.opacity = this.opacity;
-        element.visible = this.visible;
-        element.scaleX = this.scaleX;
-        element.scaleY = this.scaleY;
-        element._rotation = this._rotation;
+        this._copyPropertiesTo(element);
 
         return element;
     }

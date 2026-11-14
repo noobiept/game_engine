@@ -1,18 +1,12 @@
-import { beforeEach, describe, expect, test } from "vitest";
+import { describe, expect, test } from "vitest";
 import { Container } from "./container";
 import { Rectangle } from "./rectangle";
-import * as CollisionDetection from "./collision-detection/collision_detection";
 
 function makeRect() {
     return new Rectangle({ width: 1, height: 1, color: "red" });
 }
 
 describe("Container z-order", function () {
-    beforeEach(function () {
-        // the Element constructor registers with the collision detection module
-        CollisionDetection.init();
-    });
-
     test("children keep the order they were added in", function () {
         const container = new Container();
         const a = makeRect();

@@ -1,10 +1,12 @@
 import { Vertices } from "./collision-detection/collision_detection";
-import { Container } from "./container";
+import type { Canvas } from "./canvas";
+import type { Container } from "./container";
 import { EventDispatcher } from "./event_dispatcher";
 import { EventDispatcherArgs } from "./event_dispatcher";
 import * as CollisionDetection from "./collision-detection/collision_detection";
 import * as Vector from "./vector";
 import * as Game from "./game";
+import { Tween } from "./tween";
 
 export interface ElementArgs extends EventDispatcherArgs {
     x?: number;
@@ -45,6 +47,18 @@ export interface ElementArgs extends EventDispatcherArgs {
  *         element.remove();
  *     });
  *
+ * Taking an element out of the game:
+ *
+ * - `element.remove()` **destroys** the element: at the end of the current frame it's taken out of its
+ *   container/canvas and out of the collision detection, and its tweens are stopped. Don't add it again
+ *   afterwards (it throws). Removing a container destroys its children as well.
+ * - `container.removeChild( element )`, `canvas.removeChild( element )` or `Game.removeElement( element )`
+ *   **detach** the element right away: it's no longer drawn, updated or considered in the collision
+ *   detection, but it stays usable, so you can add it again later (to the same or another container/canvas).
+ *
+ * An element only takes part in the collision detection while it's added to a canvas (directly, or through
+ * containers).
+ *
  * Events:
  *
  * - `click`     -- `listener( data: { event: MouseEvent; } );`
@@ -78,7 +92,9 @@ export abstract class Element extends EventDispatcher {
     protected _half_height: number;
 
     protected _rotation: number; // in radians (clockwise)
-    _container: Container | null;
+    _container: Container | null; // the container this element was added to
+    _parent_canvas: Canvas | null; // the canvas this element was added to (directly, not through a container)
+    _attached: boolean; // if it's in a canvas (directly or through containers), which is when it takes part in the collision detection
     _has_logic: boolean; // to know if we need to run the .logic() method or not
     _removed: boolean; // a reference to this element may be saved in several places, so we need a way to know if its ok to work on the element or not
 
@@ -122,13 +138,13 @@ export abstract class Element extends EventDispatcher {
         this.vertices = null;
         this._rotation = 0;
         this._container = null;
+        this._parent_canvas = null;
+        this._attached = false;
         this._has_logic = false;
         this._removed = false;
 
         this.category = category;
         this.collidesWith = collidesWith;
-
-        CollisionDetection.addElement(this);
     }
 
     /**
@@ -329,7 +345,12 @@ export abstract class Element extends EventDispatcher {
     }
 
     /**
-     * Mark this element to be removed.
+     * Destroy this element. It's marked as removed right away (`isRemoved()` returns `true`, and it stops
+     * colliding), and at the end of the current frame it's taken out of its container/canvas and out of the
+     * collision detection, and its tweens are stopped. It's safe to call from the logic/event code.
+     *
+     * A removed element can't be added again. To take an element out of the game and add it back later, use
+     * `removeChild()` on its container/canvas (or `Game.removeElement()`) instead.
      */
     remove() {
         if (!this._removed) {
@@ -340,27 +361,85 @@ export abstract class Element extends EventDispatcher {
     }
 
     /**
-     * Remove this element from either its container or from the canvas.
-     * Don't call this directly, use the `remove()` method instead.
+     * Does the actual removal (see `remove()`). Don't call this directly, use the `remove()` method instead.
      */
     _removeNow() {
         this._removed = true;
+        this._detachFromParent();
 
-        if (this._container !== null) {
-            this._container.removeChild(this);
-            this._container = null;
-        } else {
-            Game.removeElement(this);
-        }
-
-        CollisionDetection.removeElement(this);
+        Tween.removeTweens(this);
     }
 
     /**
-     * Tells if this element has already been removed or not.
+     * Tells if this element was removed (destroyed with `remove()`).
+     * A detached element (with `removeChild()`) isn't removed.
      */
     isRemoved() {
         return this._removed;
+    }
+
+    /**
+     * Take this element out of its container or canvas, if it's in one.
+     *
+     * @return If it was in a container/canvas.
+     */
+    _detachFromParent() {
+        if (this._container !== null) {
+            return this._container.removeChild(this);
+        }
+
+        if (this._parent_canvas !== null) {
+            return this._parent_canvas.removeChild(this);
+        }
+
+        return false;
+    }
+
+    /**
+     * Called when the element becomes part of a canvas (directly or through containers).
+     */
+    _attach() {
+        if (!this._attached) {
+            this._attached = true;
+
+            CollisionDetection.addElement(this);
+        }
+    }
+
+    /**
+     * Called when the element stops being part of a canvas.
+     */
+    _detach() {
+        if (this._attached) {
+            this._attached = false;
+            this.vertices = null; // they're outdated, and are calculated again when added back
+
+            CollisionDetection.removeElement(this);
+        }
+    }
+
+    /**
+     * Throws if this element can't be added to the given parent (a container or canvas).
+     */
+    _checkCanBeAdded() {
+        if (this._removed) {
+            throw new Error(
+                "Can't add an element that was removed with remove(). To take an element out of the game and add it back later, use removeChild() instead.",
+            );
+        }
+    }
+
+    /**
+     * Copy the properties that every element has (opacity, visibility, scale, rotation and collision settings) to a clone.
+     */
+    protected _copyPropertiesTo(element: Element) {
+        element.opacity = this.opacity;
+        element.visible = this.visible;
+        element.scaleX = this.scaleX;
+        element.scaleY = this.scaleY;
+        element._rotation = this._rotation;
+        element.category = this.category;
+        element.collidesWith = this.collidesWith;
     }
 
     /**
@@ -416,13 +495,20 @@ export abstract class Element extends EventDispatcher {
     }
 
     /**
+     * Let the collision detection know the position changed (some algorithms keep track of the positions).
+     */
+    protected _positionChanged() {
+        CollisionDetection.updateElement(this);
+    }
+
+    /**
      * Move the unit to the given x/y position.
      */
     setPosition(x: number, y: number) {
         this._x = x;
         this._y = y;
 
-        CollisionDetection.updateElement(this);
+        this._positionChanged();
     }
 
     /**
@@ -432,13 +518,13 @@ export abstract class Element extends EventDispatcher {
         this._x += x;
         this._y += y;
 
-        CollisionDetection.updateElement(this);
+        this._positionChanged();
     }
 
     set x(x: number) {
         this._x = x;
 
-        CollisionDetection.updateElement(this);
+        this._positionChanged();
     }
 
     get x() {
@@ -448,7 +534,7 @@ export abstract class Element extends EventDispatcher {
     set y(y: number) {
         this._y = y;
 
-        CollisionDetection.updateElement(this);
+        this._positionChanged();
     }
 
     get y() {

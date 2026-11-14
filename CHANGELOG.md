@@ -14,6 +14,21 @@ A pass of bug fixes. Some change how existing games behave, so check the
 
 ### Changed
 
+- **Breaking**: clearer removal of elements. `remove()` **destroys** an
+  element: it stops colliding right away, and at the end of the frame it's
+  taken out of its container/canvas and its tweens are stopped (removing a
+  container destroys its children). `removeChild()`, `removeAllChildren()` and
+  `Game.removeElement()` **detach** an element right away: it's no longer
+  drawn, updated or considered in the collision detection, and it can be added
+  again later. `removeAllChildren()` used to destroy the children,
+  `Game.removeElement()` now also detaches elements that are in a container,
+  and `Container.removeChild()` returns whether an element was detached.
+- **Breaking**: elements only take part in the collision detection while
+  they're in a canvas (directly or through containers), instead of from the
+  moment they're created. Elements can now be created before `Game.init()`.
+- **Breaking**: adding an element that is already in a container/canvas moves
+  it (it used to end up in both). Adding a removed element, or a container to
+  itself or to one of its children, throws.
 - **Breaking**: the game loop now updates at the set fps. It was rounded down
   to a fraction of the display's refresh rate (the default 35 fps ran at 30 on
   a 60Hz display). `deltaTime` is limited to `0.25` seconds, so a long pause
@@ -25,6 +40,12 @@ A pass of bug fixes. Some change how existing games behave, so check the
   intervals passed), weapon fire intervals, and scrolling bitmaps. Tween steps
   pass the time left over to the next step. A game loop callback is called at
   most once per update.
+- **Breaking**: an element that is removed or detached during the logic isn't
+  updated for the rest of that frame, and a removed element doesn't collide
+  with anything else in that frame (both elements of a collision still get
+  the event).
+- **Breaking**: `Circle` collides (and gets the mouse events) as a circle (a
+  16-sided polygon), instead of as its bounding square.
 - **Breaking**: `Preload` dispatches the `error` event for every file that
   fails (error statuses, invalid json, files that can't be decoded), with
   `{ id, event?, status?, error? }`. Any 2xx status, `304` and `0` (`file://`)
@@ -38,6 +59,8 @@ A pass of bug fixes. Some change how existing games behave, so check the
 - **Breaking**: `Grid` and `PathFinding.breadthFirstSearch()` throw a
   `RangeError` for invalid arguments (columns/lines that aren't positive
   integers, a destination outside the map).
+- **Breaking**: `SpatialPartition` throws a `RangeError` when `partitions`
+  isn't a positive integer, or the canvas dimensions aren't positive numbers.
 - **Breaking**: `removeFromGameLoop()` removes the callback every time it was
   added.
 - **Breaking**: updated `@drk4/utilities` to v8. It is re-exported as
@@ -65,13 +88,30 @@ A pass of bug fixes. Some change how existing games behave, so check the
 
 ### Fixed
 
+- Detached elements stayed in the collision detection, as invisible colliders
+  at their last position.
+- Removing an element that wasn't in the collision detection (removed twice,
+  or after a new `Game.init()`) took another element out of it.
+- A removed element came back to the spatial partition when it moved (its
+  tweens kept moving it).
+- Moving or removing elements from a collision listener made the spatial
+  partition skip or repeat collisions, and could make `CheckAll` throw.
+- An element with a `NaN` position crashed the spatial partition.
 - `Vector.normalize()` and `Vector.projection()` with the zero vector gave `NaN`.
+- In the spatial partition, an element whose center was just outside the
+  canvas didn't collide with the elements inside.
+- `clone()` didn't keep the `category`/`collidesWith`, and sprite clones shared
+  the animations.
 - `EventDispatcher` called a listener twice, or after it was removed, when
   listeners were removed during a dispatch, and event types like `__proto__`
   or `constructor` threw.
+- Removing a container from the logic of one of its children threw.
 - `removeAllCallbacks()` and `Tween.removeAll()` called from a callback threw,
   or updated a tween twice, and a tween removed from its own `.call()` step was
   left half active.
+- `Container.removeChild()` with an element that isn't a child broke the link
+  to its real parent, and `calculateDimensions()` gave the wrong size (and
+  wasn't updated when children were removed).
 - `startGameLoop()` started a second loop when the loop was already running,
   and a loop stopped with `stopGameLoop()` restarted when the page became
   visible again. Calling `activateMouseMoveEvents()` twice left an interval
@@ -92,8 +132,10 @@ A pass of bug fixes. Some change how existing games behave, so check the
 - `PathFinding.breadthFirstSearch()` spread from a blocked destination, gave a
   `TypeError` or wrong paths for a destination outside the map, and its result
   referenced the given destination object.
+- A `Text` with a `timeout` couldn't be cleaned up before the timeout.
 - `HtmlElement` threw for a `cssClass` with spaces.
 - `Weapon` no longer changes the arguments object given to it.
+- `Rectangle` and `Bullet` no longer change the arguments object given to them.
 
 ## [3.0.2] - 2026-06-02
 

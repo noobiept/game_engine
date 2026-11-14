@@ -13,6 +13,13 @@ export interface ContainerArgs extends ElementArgs {
 }
 
 /**
+ * Groups elements together: the children are drawn and updated with the container, and are moved, scaled and
+ * rotated with it (their `x`/`y` is relative to the container).
+ *
+ * - `addChild()` adds elements. An element that is already in another container/canvas is moved to this one.
+ * - `removeChild()` and `removeAllChildren()` **detach** elements right away. They stay usable and can be added again.
+ * - `remove()` **destroys** the container and all of its children (see `Element.remove()`).
+ *
  * Basic Usage:
  *
  *     const container = new Game.Container();
@@ -47,9 +54,14 @@ export class Container extends Element {
     }
 
     /**
+     * Add elements to this container (drawn on top of the current children).
+     * An element that is already in a container/canvas is taken out of it first (adding a current child moves it to the front).
+     *
      *     addChild( element );
      *     addChild( element1, element2 );
      *     addChild( [ element1, element2 ] );
+     *
+     * Throws if an element was removed (with `remove()`), or when adding a container to itself or to one of its children.
      *
      * @param elements Either `Element` or `...Element` or `Element[]`.
      */
@@ -58,55 +70,79 @@ export class Container extends Element {
     addChild(...elements: (Element | Element[])[]) {
         const children = normalizeChildren(elements);
 
-        const length = children.length;
+        for (const element of children) {
+            element._checkCanBeAdded();
 
-        for (let a = 0; a < length; a++) {
-            const element = children[a];
+            if (element === this || this._hasAncestor(element)) {
+                throw new Error(
+                    "Can't add a container to itself, or to one of its children.",
+                );
+            }
+
+            element._detachFromParent();
 
             this._children.push(element);
-
             element._container = this;
+
+            if (this._attached) {
+                element._attach();
+            }
         }
 
         this.calculateDimensions();
     }
 
     /**
+     * Detach elements from this container, right away. They're no longer drawn, updated or considered in the collision
+     * detection, but they aren't destroyed, so they can be added again later. Elements that aren't children of this
+     * container are ignored. To destroy an element, call its `remove()` method instead.
+     *
      *     removeChild( element );
      *     removeChild( element1, element2 );
      *     removeChild( [ element1, element2 ] );
      *
      * @param args Either `Element` or `...Element` or `Element[]`.
+     * @return If any of the elements was a child (and was detached).
      */
-    removeChild(children: Element | Element[]): void;
-    removeChild(...elements: Element[]): void;
+    removeChild(children: Element | Element[]): boolean;
+    removeChild(...elements: Element[]): boolean;
     removeChild(...args: (Element | Element[])[]) {
         const children = normalizeChildren(args);
+        let removed = false;
 
-        const length = children.length;
-
-        for (let a = 0; a < length; a++) {
-            const element = children[a];
+        for (const element of children) {
             const index = this._children.indexOf(element);
 
-            if (index >= 0) {
-                this._children.splice(index, 1);
+            if (index < 0) {
+                continue;
             }
 
+            this._children.splice(index, 1);
             element._container = null;
+            element._detach();
+            removed = true;
         }
+
+        if (removed) {
+            this.calculateDimensions();
+        }
+
+        return removed;
     }
 
     /**
-     * Remove all of this container's children.
+     * Detach all of this container's children, right away (see `removeChild()`).
+     * To destroy the container together with its children, call `remove()` instead.
      */
     removeAllChildren() {
-        for (let a = this._children.length - 1; a >= 0; a--) {
-            this._children[a]._container = null;
-            this._children[a].remove();
+        const children = this._children.splice(0);
+
+        for (const element of children) {
+            element._container = null;
+            element._detach();
         }
 
-        this._children.length = 0;
+        this.calculateDimensions();
     }
 
     /**
@@ -114,6 +150,47 @@ export class Container extends Element {
      */
     getAllChildren() {
         return this._children;
+    }
+
+    /**
+     * Tells if the given element is one of the containers this container is in (its parent, the parent's parent, etc).
+     */
+    protected _hasAncestor(element: Element) {
+        let parent = this._container;
+
+        while (parent !== null) {
+            if (parent === element) {
+                return true;
+            }
+
+            parent = parent._container;
+        }
+
+        return false;
+    }
+
+    _attach() {
+        if (this._attached) {
+            return;
+        }
+
+        super._attach();
+
+        for (const child of this._children) {
+            child._attach();
+        }
+    }
+
+    _detach() {
+        if (!this._attached) {
+            return;
+        }
+
+        super._detach();
+
+        for (const child of this._children) {
+            child._detach();
+        }
     }
 
     /**
@@ -166,11 +243,20 @@ export class Container extends Element {
     }
 
     /**
-     * Make sure the children are removed as well.
+     * Destroy the container and all of its children (see `Element.remove()`).
+     * To keep the children, detach them first (with `removeChild()` or `removeAllChildren()`).
      */
     remove() {
-        this.removeAllChildren();
+        if (this._removed) {
+            return;
+        }
+
         super.remove();
+
+        // the children are only taken out at the end of the frame (`_children` can't change while the logic is running)
+        for (const child of this._children.slice()) {
+            child.remove();
+        }
     }
 
     /**
@@ -229,8 +315,16 @@ export class Container extends Element {
     mouseClickEvents(x: number, y: number, event: MouseEvent) {
         let found = false;
 
-        for (let a = this._children.length - 1; a >= 0; a--) {
-            if (this._children[a].mouseClickEvents(x, y, event)) {
+        // go through a copy, since the listeners can add/remove elements
+        const children = this._children.slice();
+
+        for (let a = children.length - 1; a >= 0; a--) {
+            const child = children[a];
+
+            if (
+                child._container === this &&
+                child.mouseClickEvents(x, y, event)
+            ) {
                 found = true;
             }
         }
@@ -239,43 +333,32 @@ export class Container extends Element {
     }
 
     /**
-     * Calculate the width/height of the container (based on the dimensions of the children elements). Doesn't consider the rotations of the elements.
+     * Calculate the width/height of the container, from the area its children cover (each child's `x`/`y` is its center).
+     * Doesn't consider the scale or rotation of the children. It's called automatically when children are added/removed.
      */
     calculateDimensions() {
-        if (this._children.length === 0) {
+        const children = this._children;
+
+        if (children.length === 0) {
             this._width = this._height = 0;
             this._half_width = this._half_height = 0;
-        }
-
-        const firstChild = this._children[0];
-        if (!firstChild) {
             return;
         }
 
-        let leftMost = firstChild.x;
-        let rightMost = firstChild.x + firstChild.width;
-        let topMost = firstChild.y;
-        let bottomMost = firstChild.y + firstChild.height;
-        const length = this._children.length;
+        let left = Infinity;
+        let right = -Infinity;
+        let top = Infinity;
+        let bottom = -Infinity;
 
-        for (let a = 1; a < length; a++) {
-            const element = this._children[a];
-
-            if (element.x < leftMost) {
-                leftMost = element.x;
-            } else if (element.x + element.width > rightMost) {
-                rightMost = element.x + element.width;
-            }
-
-            if (element.y < topMost) {
-                topMost = element.y;
-            } else if (element.y + element.height > bottomMost) {
-                bottomMost = element.y + element.height;
-            }
+        for (const child of children) {
+            left = Math.min(left, child.x - child.halfWidth);
+            right = Math.max(right, child.x + child.halfWidth);
+            top = Math.min(top, child.y - child.halfHeight);
+            bottom = Math.max(bottom, child.y + child.halfHeight);
         }
 
-        this._width = rightMost - leftMost;
-        this._height = bottomMost - topMost;
+        this._width = right - left;
+        this._height = bottom - top;
         this._half_width = this._width / 2;
         this._half_height = this._height / 2;
     }
@@ -331,10 +414,18 @@ export class Container extends Element {
      * @param deltaTime Time elapsed since the last update.
      */
     logic(deltaTime: number) {
-        for (let a = this._children.length - 1; a >= 0; a--) {
-            const element = this._children[a];
+        // go through a copy, since the logic code can add/remove elements
+        const children = this._children.slice();
 
-            if (element._has_logic === true) {
+        for (let a = children.length - 1; a >= 0; a--) {
+            const element = children[a];
+
+            // skip the ones that were detached or removed in the meantime
+            if (
+                element._has_logic === true &&
+                element._container === this &&
+                !element._removed
+            ) {
                 element.logic(deltaTime);
             }
         }
@@ -398,11 +489,7 @@ export class Container extends Element {
             y: this.y,
             children: children,
         });
-        container.opacity = this.opacity;
-        container.visible = this.visible;
-        container.scaleX = this.scaleX;
-        container.scaleY = this.scaleY;
-        container._rotation = this._rotation;
+        this._copyPropertiesTo(container);
 
         return container;
     }

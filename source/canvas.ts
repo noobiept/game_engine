@@ -65,9 +65,14 @@ export class Canvas {
     }
 
     /**
+     * Add elements to this canvas (drawn on top of the current elements).
+     * An element that is already in a container/canvas is taken out of it first (adding a current child moves it to the front).
+     *
      *     addChild( element );
      *     addChild( element1, element2 );
      *     addChild( [ element1, element2 ] );
+     *
+     * Throws if an element was removed (with `remove()`).
      *
      * @param args Either an `Element`, or `...Element` or an `Element[]`
      */
@@ -76,19 +81,27 @@ export class Canvas {
     addChild(...args: (Element | Element[])[]) {
         const elements = normalizeElements(args);
 
-        const length = elements.length;
+        for (const element of elements) {
+            element._checkCanBeAdded();
+            element._detachFromParent();
 
-        for (let a = 0; a < length; a++) {
-            this._children.push(elements[a]);
+            this._children.push(element);
+            element._parent_canvas = this;
+            element._attach();
         }
     }
 
     /**
+     * Detach elements from this canvas, right away. They're no longer drawn, updated or considered in the collision
+     * detection, but they aren't destroyed, so they can be added again later. Elements that aren't directly in this
+     * canvas are ignored. To destroy an element, call its `remove()` method instead.
+     *
      *     removeChild( element );
      *     removeChild( element1, element2 );
      *     removeChild( [ element1, element2 ] );
      *
      * @param args Either an `Element` or `...Element` or an `Element[]`
+     * @return If any of the elements was in this canvas (and was detached).
      */
     removeChild(children: Element | Element[]): boolean;
     removeChild(...elements: Element[]): boolean;
@@ -96,17 +109,17 @@ export class Canvas {
         const elements = normalizeElements(args);
         let removed = false;
 
-        const length = elements.length;
-
-        for (let a = 0; a < length; a++) {
-            const element = elements[a];
-
+        for (const element of elements) {
             const index = this._children.indexOf(element);
 
-            if (index >= 0) {
-                this._children.splice(index, 1);
-                removed = true;
+            if (index < 0) {
+                continue;
             }
+
+            this._children.splice(index, 1);
+            element._parent_canvas = null;
+            element._detach();
+            removed = true;
         }
 
         return removed;
@@ -194,10 +207,18 @@ export class Canvas {
      * @param deltaTime Time elapsed since the last update.
      */
     logic(deltaTime: number) {
-        for (let a = this._children.length - 1; a >= 0; a--) {
-            const element = this._children[a];
+        // go through a copy, since the logic code can add/remove elements
+        const children = this._children.slice();
 
-            if (element._has_logic === true) {
+        for (let a = children.length - 1; a >= 0; a--) {
+            const element = children[a];
+
+            // skip the ones that were detached or removed in the meantime
+            if (
+                element._has_logic === true &&
+                element._parent_canvas === this &&
+                !element._removed
+            ) {
                 element.logic(deltaTime);
             }
         }
@@ -226,18 +247,21 @@ export class Canvas {
      * @param event The mouse event triggered.
      */
     mouseClickEvents(event: MouseEvent) {
-        const elements = this._children;
+        // go through a copy, since the listeners can add/remove elements
+        const elements = this._children.slice();
         const rect = this._canvas.getBoundingClientRect();
 
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
-        let element;
 
         // find the element on the x/y position
         for (let a = elements.length - 1; a >= 0; a--) {
-            element = elements[a];
+            const element = elements[a];
 
-            if (element.mouseClickEvents(x, y, event)) {
+            if (
+                element._parent_canvas === this &&
+                element.mouseClickEvents(x, y, event)
+            ) {
                 break;
             }
         }

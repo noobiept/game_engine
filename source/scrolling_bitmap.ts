@@ -262,11 +262,7 @@ export class ScrollingBitmap extends Bitmap {
             step: this._step,
             interval: this._interval,
         });
-        element.opacity = this.opacity;
-        element.visible = this.visible;
-        element.scaleX = this.scaleX;
-        element.scaleY = this.scaleY;
-        element._rotation = this._rotation;
+        this._copyPropertiesTo(element);
         element._count = this._count;
         element._ref_position = this._ref_position;
 

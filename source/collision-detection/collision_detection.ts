@@ -35,6 +35,8 @@ export function init(collision?: CollisionDetectionAlgorithm) {
 
 /**
  * Elements added will be considered in the collision detection tests.
+ * This is done automatically when an element is added to a canvas (directly or through containers).
+ * Throws if the collision detection wasn't initialized (with `Game.init()`).
  */
 export function addElement(element: Element) {
     getCollision().add(element);
@@ -42,16 +44,19 @@ export function addElement(element: Element) {
 
 /**
  * Remove an element from being considered in the collision detection.
+ * This is done automatically when an element is taken out of a canvas.
  */
 export function removeElement(element: Element) {
-    getCollision().remove(element);
+    // without the collision detection, there's nothing to remove it from
+    COLLISION?.remove(element);
 }
 
 /**
  * When an element changes its position, need to update the collision detection data structure (in some algorithms).
+ * Elements that aren't part of the collision detection are ignored.
  */
 export function updateElement(element: Element) {
-    getCollision().update(element);
+    COLLISION?.update(element);
 }
 
 /**

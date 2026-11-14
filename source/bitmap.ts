@@ -58,11 +58,7 @@ export class Bitmap extends Element {
             y: this.y,
             image: this._image,
         });
-        element.opacity = this.opacity;
-        element.visible = this.visible;
-        element.scaleX = this.scaleX;
-        element.scaleY = this.scaleY;
-        element._rotation = this._rotation;
+        this._copyPropertiesTo(element);
 
         return element;
     }

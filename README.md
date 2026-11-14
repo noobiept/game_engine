@@ -23,6 +23,7 @@ The full API reference is in [docs/README.md](docs/README.md), and runnable exam
 - [Loading assets](#loading-assets)
 - [Sprites and animation](#sprites-and-animation)
 - [Input and events](#input-and-events)
+- [Removing elements](#removing-elements)
 - [Tweens](#tweens)
 - [Game loop](#game-loop)
 - [Collision detection](#collision-detection)
@@ -211,6 +212,24 @@ button.addEventListener("click", function () {
 });
 ```
 
+## Removing elements
+
+There are two ways to take an element out of the game:
+
+- `element.remove()` **destroys** it. It stops colliding right away, and at the end of the current frame it's taken out of its container/canvas and its tweens are stopped. Removing a container destroys its children as well. A removed element can't be added again.
+- `container.removeChild(element)`, `canvas.removeChild(element)` or `Game.removeElement(element)` **detach** it right away. It's no longer drawn, updated or considered in the collision detection, but it stays usable, so you can add it again later (to the same or another container/canvas).
+
+```ts
+// A bullet that hit something is gone for good.
+bullet.remove();
+
+// A paused menu is taken out, and added back later.
+Game.removeElement(menu);
+Game.addElement(menu);
+```
+
+Adding an element that is already in a container/canvas moves it to the new one.
+
 ## Tweens
 
 A `Tween` animates an element's properties over time. Durations are in seconds. Pass `{ override: true }` to cancel any tween already running on the target.
@@ -247,7 +266,7 @@ The loop updates at 35 frames per second by default (change it with `Game.setFps
 
 ## Collision detection
 
-Give elements a `category` bit flag and the categories they should collide with through `collidesWith`. Colliding elements receive a `collision` event.
+Give elements a `category` bit flag and the categories they should collide with through `collidesWith`. Colliding elements receive a `collision` event. Only the elements added to a canvas (directly or through containers) take part in the collision detection.
 
 ```ts
 const PLAYER = 1; // 0b01

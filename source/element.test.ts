@@ -1,13 +1,7 @@
-import { beforeEach, describe, expect, test } from "vitest";
+import { describe, expect, test } from "vitest";
 import { Rectangle } from "./rectangle";
-import * as CollisionDetection from "./collision-detection/collision_detection";
 
 describe("Element top-left bounds", function () {
-    beforeEach(function () {
-        // the Element constructor registers with the collision detection module
-        CollisionDetection.init();
-    });
-
     test("left/top return the top-left corner (center-origin minus half size)", function () {
         const rect = new Rectangle({
             x: 100,

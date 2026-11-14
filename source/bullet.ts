@@ -44,15 +44,7 @@ export class Bullet extends Container {
     constructor(args: BulletArgs) {
         super(args);
 
-        if (typeof args.angleOrTarget === "undefined") {
-            args.angleOrTarget = 0;
-        }
-
-        if (typeof args.damage === "undefined") {
-            args.damage = 1;
-        }
-
-        this.damage = args.damage;
+        this.damage = args.damage ?? 1;
         this.movement = new Movement({
             element: this,
             movementSpeed: args.movementSpeed,
@@ -60,7 +52,7 @@ export class Bullet extends Container {
         this.element = null;
 
         // angle or target argument
-        const angleOrTarget = args.angleOrTarget;
+        const angleOrTarget = args.angleOrTarget ?? 0;
 
         // its an angle
         if (typeof angleOrTarget === "number") {
@@ -134,10 +126,7 @@ export class Bullet extends Container {
             movementSpeed: this.movement?.movementSpeed ?? 0,
             damage: this.damage,
         });
-        bullet.opacity = this.opacity;
-        bullet.visible = this.visible;
-        bullet.scaleX = this.scaleX;
-        bullet.scaleY = this.scaleY;
+        this._copyPropertiesTo(bullet);
 
         return bullet;
     }

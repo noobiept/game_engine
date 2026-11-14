@@ -1,9 +1,8 @@
-import { beforeEach, describe, expect, test } from "vitest";
+import { describe, expect, test } from "vitest";
 import { Bullet } from "./bullet";
 import { Container } from "./container";
 import { Rectangle } from "./rectangle";
 import { Weapon } from "./weapon";
-import * as CollisionDetection from "./collision-detection/collision_detection";
 import { flushMicrotasks } from "../tests/helpers";
 
 function makeWeapon(fireInterval: number) {
@@ -25,11 +24,6 @@ function makeWeapon(fireInterval: number) {
 }
 
 describe("Weapon", function () {
-    beforeEach(function () {
-        // the Element constructor registers with the collision detection module
-        CollisionDetection.init();
-    });
-
     test("fires at the set interval", function () {
         const { weapon } = makeWeapon(0.1);
         let shots = 0;

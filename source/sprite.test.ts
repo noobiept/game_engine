@@ -1,6 +1,5 @@
-import { beforeEach, describe, expect, test } from "vitest";
+import { describe, expect, test } from "vitest";
 import { Sprite } from "./sprite";
-import * as CollisionDetection from "./collision-detection/collision_detection";
 
 // 80x40 sheet with 40x40 frames -> 2 frames per line.
 const image = { width: 80, height: 40 } as unknown as HTMLImageElement;
@@ -19,11 +18,6 @@ function makeSprite() {
 }
 
 describe("Sprite", function () {
-    beforeEach(function () {
-        // the Element constructor registers with the collision detection module
-        CollisionDetection.init();
-    });
-
     test("non-looping animation stops on the last frame and dispatches animationend", function () {
         const sprite = makeSprite();
         const events: { sprite: Sprite; animationId: string }[] = [];
@@ -90,11 +84,6 @@ describe("Sprite", function () {
 });
 
 describe("Sprite timing", function () {
-    beforeEach(function () {
-        // the Element constructor registers with the collision detection module
-        CollisionDetection.init();
-    });
-
     // 160x40 sheet with 40x40 frames -> 4 frames
     const wideImage = { width: 160, height: 40 } as unknown as HTMLImageElement;
 
@@ -150,5 +139,28 @@ describe("Sprite timing", function () {
         expect(sprite.play("toString")).toBe(false);
         expect(sprite.play("constructor")).toBe(false);
         expect(sprite.play("__proto__")).toBe(false);
+    });
+
+    test("clone() keeps the collision settings, and has its own animations", function () {
+        const sprite = new Sprite({
+            image: wideImage,
+            frameWidth: 40,
+            frameHeight: 40,
+            animations: { walk: [0, 1] },
+            category: 2,
+            collidesWith: 4,
+        });
+
+        const clone = sprite.clone();
+        (
+            clone as unknown as { _animations: Record<string, number[]> }
+        )._animations.walk.push(3);
+
+        expect(clone.category).toBe(2);
+        expect(clone.collidesWith).toBe(4);
+        expect(
+            (sprite as unknown as { _animations: Record<string, number[]> })
+                ._animations.walk,
+        ).toEqual([0, 1]);
     });
 });

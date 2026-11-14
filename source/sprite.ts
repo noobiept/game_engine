@@ -9,6 +9,16 @@ export interface SpriteArgs extends BitmapArgs {
     interval?: number;
 }
 
+function copyAnimations(animations: { [id: string]: number[] }) {
+    const copy: { [id: string]: number[] } = {};
+
+    for (const id of Object.keys(animations)) {
+        copy[id] = animations[id].slice();
+    }
+
+    return copy;
+}
+
 export interface SpritePlayOptions {
     loop?: boolean; // whether the animation loops (default) or plays once
     reset?: boolean; // when re-playing the current animation, restart it from the first frame
@@ -256,14 +266,10 @@ export class Sprite extends Bitmap {
             image: this.image,
             frameWidth: this._width,
             frameHeight: this._height,
-            animations: this._animations,
+            animations: copyAnimations(this._animations),
             interval: this.interval,
         });
-        element.opacity = this.opacity;
-        element.visible = this.visible;
-        element.scaleX = this.scaleX;
-        element.scaleY = this.scaleY;
-        element._rotation = this._rotation;
+        this._copyPropertiesTo(element);
 
         return element;
     }
