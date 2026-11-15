@@ -312,9 +312,13 @@ export class Container extends Element {
         return all;
     }
 
+    /**
+     * The front child under the mouse that listens to the event gets it (and it reaches this container through it).
+     * When no child listens to it, this container gets it if the mouse is over one of its children.
+     *
+     * @return If an element got the event.
+     */
     mouseClickEvents(x: number, y: number, event: MouseEvent) {
-        let found = false;
-
         // go through a copy, since the listeners can add/remove elements
         const children = this._children.slice();
 
@@ -325,11 +329,16 @@ export class Container extends Element {
                 child._container === this &&
                 child.mouseClickEvents(x, y, event)
             ) {
-                found = true;
+                return true;
             }
         }
 
-        return found;
+        if (this.hasListeners(event.type) && this.intersect(x, y).length > 0) {
+            this.dispatchMouseClickEvent(event);
+            return true;
+        }
+
+        return false;
     }
 
     /**

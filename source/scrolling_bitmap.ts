@@ -1,5 +1,16 @@
 import { Bitmap, BitmapArgs } from "./bitmap";
 
+/**
+ * Keep a position within `0` and `size` (going past one end continues from the other, keeping the remainder).
+ */
+function wrap(position: number, size: number) {
+    if (!(size > 0)) {
+        return 0;
+    }
+
+    return ((position % size) + size) % size;
+}
+
 export interface ScrollingBitmapArgs extends BitmapArgs {
     direction: ScrollingBitmapArgs.Direction;
     step: number;
@@ -107,44 +118,34 @@ export class ScrollingBitmap extends Bitmap {
      * Scroll to the left.
      */
     scroll_left() {
-        this._ref_position += this._step;
-
-        if (this._ref_position >= this._width) {
-            this._ref_position = 0;
-        }
+        this._ref_position = wrap(this._ref_position + this._step, this._width);
     }
 
     /**
      * Scroll to the right.
      */
     scroll_right() {
-        this._ref_position -= this._step;
-
-        if (this._ref_position < 0) {
-            this._ref_position = this._width;
-        }
+        this._ref_position = wrap(this._ref_position - this._step, this._width);
     }
 
     /**
      * Scroll to the top.
      */
     scroll_top() {
-        this._ref_position += this._step;
-
-        if (this._ref_position >= this._height) {
-            this._ref_position = 0;
-        }
+        this._ref_position = wrap(
+            this._ref_position + this._step,
+            this._height,
+        );
     }
 
     /**
      * Scroll to the bottom.
      */
     scroll_bottom() {
-        this._ref_position -= this._step;
-
-        if (this._ref_position < 0) {
-            this._ref_position = this._height;
-        }
+        this._ref_position = wrap(
+            this._ref_position - this._step,
+            this._height,
+        );
     }
 
     /**

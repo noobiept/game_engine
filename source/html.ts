@@ -597,7 +597,7 @@ export interface RangeArgs extends HtmlElementArgs {
 export class Range extends HtmlElement {
     protected value: HTMLElement | null;
     protected input: HTMLInputElement | null;
-    protected current_value = 0;
+    protected current_value = NaN; // so the first `setValue()` always updates the displayed value
     protected change_ref: ((event: Event) => any) | null;
     protected input_ref: ((event: Event) => any) | null;
     number_of_decimals: number;
@@ -605,8 +605,9 @@ export class Range extends HtmlElement {
     constructor(args: RangeArgs) {
         super(args);
 
+        const step = args.step ?? 1;
+
         if (typeof args.step === "undefined") {
-            args.step = 1;
             this.number_of_decimals = 0;
         } else {
             // find the number of decimals cases
@@ -643,7 +644,7 @@ export class Range extends HtmlElement {
         this.input.min = args.min.toString();
         this.input.max = args.max.toString();
         this.input.value = args.value.toString();
-        this.input.step = args.step.toString();
+        this.input.step = step.toString();
 
         this.value = document.createElement("span");
 

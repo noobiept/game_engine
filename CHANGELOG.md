@@ -151,7 +151,19 @@ the **Breaking** entries when updating.
 - A `Text` with a `timeout` couldn't be cleaned up before the timeout.
 - `HtmlElement` threw for a `cssClass` with spaces.
 - `Weapon` no longer changes the arguments object given to it.
-- `Rectangle` and `Bullet` no longer change the arguments object given to them.
+- `Movement` could miss its destination and keep going (moving left or up near
+  the coordinate `0`, or to the position it was already in), and `follow()`
+  didn't settle on the target once it reached it.
+- A container's click listener didn't get the clicks on its children unless a
+  child listened to them too, and got one per overlapping child. Now only the
+  front child under the mouse gets the click (like the elements of a canvas).
+- `ScrollingBitmap` jumped when the step didn't divide the image size evenly.
+- `Text.clone()` didn't keep the color.
+- `ElementGrid.add()` on a taken position left the replaced element's
+  `grid_data` pointing at that position.
+- `Html.Range` didn't show its value when it started at `0`.
+- `Rectangle`, `Bullet`, `ElementGrid` and `Html.Range` no longer change the
+  arguments object given to them.
 
 ## [3.0.2] - 2026-06-02
 

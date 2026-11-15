@@ -45,40 +45,33 @@ export class ElementGrid extends Grid {
     constructor(args: ElementGridArgs) {
         super(args);
 
-        if (typeof args.refX === "undefined") {
-            args.refX = args.squareSize / 2;
-        }
-
-        if (typeof args.refY === "undefined") {
-            args.refY = args.squareSize / 2;
-        }
+        const refX = args.refX ?? args.squareSize / 2;
+        const refY = args.refY ?? args.squareSize / 2;
 
         if (typeof args.background !== "undefined") {
             const width = args.squareSize * args.columns;
             const height = args.squareSize * args.lines;
 
             this._background = new Rectangle({
-                x: args.refX + width / 2 - args.squareSize / 2,
-                y: args.refY + height / 2 - args.squareSize / 2,
+                x: refX + width / 2 - args.squareSize / 2,
+                y: refY + height / 2 - args.squareSize / 2,
                 width: width,
                 height: height,
                 color: args.background.color,
                 fill: args.background.fill,
             });
 
-            if (typeof args.background.canvasId === "undefined") {
-                args.background.canvasId = 0;
-            }
-
-            Game.getCanvas(args.background.canvasId).addChild(this._background);
+            Game.getCanvas(args.background.canvasId ?? 0).addChild(
+                this._background,
+            );
         } else {
             this._background = null;
         }
 
         this.events = new EventDispatcher(args);
         this.squareSize = args.squareSize;
-        this.refX = args.refX;
-        this.refY = args.refY;
+        this.refX = refX;
+        this.refY = refY;
     }
 
     /**
@@ -128,7 +121,11 @@ export class ElementGrid extends Grid {
             line: line,
         };
 
-        if (previous !== null) {
+        if (previous !== null && previous !== element) {
+            // it's no longer in the grid
+            previous.grid_data.column = -1;
+            previous.grid_data.line = -1;
+
             this.events.dispatchEvent("collision", {
                 element: element,
                 collidedWith: previous,

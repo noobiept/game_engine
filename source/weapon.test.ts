@@ -96,3 +96,109 @@ describe("Weapon", function () {
         expect(collisions).toBe(1);
     });
 });
+
+describe("Weapon bullets", function () {
+    test("the bullets start at the owner, with the weapon's collision settings and damage", function () {
+        const { owner, bullets, weapon } = makeWeapon(0);
+        owner.x = 30;
+        owner.y = 40;
+        weapon.damage = 5;
+
+        weapon.fire(0);
+        const bullet = bullets.getAllChildren()[0] as Bullet;
+
+        expect([bullet.x, bullet.y]).toEqual([30, 40]);
+        expect(bullet.category).toBe(1);
+        expect(bullet.collidesWith).toBe(2);
+        expect(bullet.damage).toBe(5);
+        expect(bullet.element).toBe(owner);
+    });
+
+    test("fires the bullet types added with addBulletType()", function () {
+        const { bullets, weapon } = makeWeapon(0);
+        const shape = new Rectangle({ width: 4, height: 4, color: "yellow" });
+        const type = weapon.addBulletType(
+            new Bullet({ children: shape, movementSpeed: 50 }),
+        );
+
+        expect(type).toBe(1);
+
+        weapon.fire(0, type);
+        const bullet = bullets.getAllChildren()[0] as Bullet;
+        const child = bullet.getAllChildren()[0] as Rectangle;
+
+        expect(child.color).toBe("yellow");
+        expect(bullet.movement?.movementSpeed).toBe(50);
+    });
+
+    test("firing at a destroyed target fails, and stops a repeating fire at it", async function () {
+        const { bullets, weapon } = makeWeapon(0);
+        const target = new Rectangle({
+            x: 100,
+            width: 10,
+            height: 10,
+            color: "red",
+        });
+
+        weapon.forceFire(target, 0, 0.1);
+        expect(bullets.getAllChildren()).toHaveLength(1);
+
+        target.destroy();
+        await flushMicrotasks();
+
+        for (let a = 0; a < 10; a++) {
+            weapon.logic(0.1);
+        }
+
+        expect(bullets.getAllChildren()).toHaveLength(1);
+        expect(weapon.fire(target)).toBe(false);
+    });
+
+    test("stopFiring() stops the repeating fire", function () {
+        const { bullets, weapon } = makeWeapon(0);
+
+        weapon.forceFire(0, 0, 0.1);
+        weapon.stopFiring();
+
+        for (let a = 0; a < 10; a++) {
+            weapon.logic(0.1);
+        }
+
+        expect(bullets.getAllChildren()).toHaveLength(1);
+    });
+
+    test("clone() keeps the settings and the bullet types", function () {
+        const { owner, bullets, weapon } = makeWeapon(0.5);
+        weapon.damage = 3;
+        weapon.addBulletType(
+            new Bullet({
+                children: new Rectangle({ width: 1, height: 1, color: "red" }),
+                movementSpeed: 10,
+            }),
+        );
+
+        const clone = weapon.clone();
+
+        expect(clone?.element).toBe(owner);
+        expect(clone?.fireInterval).toBe(0.5);
+        expect(clone?.damage).toBe(3);
+
+        clone?.fire(0, 1);
+        const bullet = bullets.getAllChildren()[0] as Bullet;
+        expect(bullet.movement?.movementSpeed).toBe(10);
+    });
+
+    test("a destroyed weapon doesn't fire, and leaves the bullets already fired", async function () {
+        const { bullets, weapon } = makeWeapon(0);
+
+        weapon.fire(0);
+        weapon.destroy();
+        await flushMicrotasks();
+
+        expect(weapon.element).toBe(null);
+        expect(weapon.fire(0)).toBe(false);
+        expect(weapon.forceFire(0)).toBe(false);
+        expect(bullets.getAllChildren()).toHaveLength(1);
+        expect(weapon.clone()).toBe(undefined);
+    });
+});

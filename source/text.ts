@@ -223,6 +223,7 @@ export class Text extends Element {
             textAlign: this.textAlign,
             textBaseline: this.textBaseline,
             fill: this.fill,
+            color: this.color,
         });
         this._copyPropertiesTo(element);
 

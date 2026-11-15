@@ -2,6 +2,7 @@ import { vi } from "vitest";
 
 /**
  * jsdom doesn't implement the canvas 2d context, so give the canvas elements one that does nothing.
+ * `measureText()` gives 10 pixels per character.
  */
 export function stubCanvasContext() {
     const context = new Proxy(
@@ -9,7 +10,7 @@ export function stubCanvasContext() {
         {
             get(_target, property) {
                 if (property === "measureText") {
-                    return () => ({ width: 0 });
+                    return (text: string) => ({ width: text.length * 10 });
                 }
 
                 return () => {};

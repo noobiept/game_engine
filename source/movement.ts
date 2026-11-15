@@ -58,8 +58,6 @@ export class Movement {
     protected _move_callback: (() => any) | null;
     protected _destination_x: number;
     protected _destination_y: number;
-    protected _is_destination_x_diff_positive: boolean;
-    protected _is_destination_y_diff_positive: boolean;
     protected _path: { x: number; y: number; callback: (() => any) | null }[];
     protected _loop_path_position: number; // when looping a path, to know what is the current position the element is going for (the path array position)
     protected _follow_target: Element | null;
@@ -76,8 +74,6 @@ export class Movement {
         this._destination_y = 0;
         this._path = [];
         this._loop_path_position = 0;
-        this._is_destination_x_diff_positive = false;
-        this._is_destination_y_diff_positive = false;
         this._follow_target = null;
     }
 
@@ -122,34 +118,14 @@ export class Movement {
         }
 
         if (next) {
-            const x = next.x;
-            const y = next.y;
-            const element = this._element;
-
-            if (element === null) {
+            if (this._element === null) {
                 return false;
             }
 
-            const elementX = element.x;
-            const elementY = element.y;
-
             this._is_moving = true;
-            this._destination_x = x;
-            this._destination_y = y;
+            this._destination_x = next.x;
+            this._destination_y = next.y;
             this._move_callback = next.callback;
-
-            this._is_destination_x_diff_positive = x - elementX > 0;
-            this._is_destination_y_diff_positive = y - elementY > 0;
-
-            const angleRads = Utilities.calculateAngle(
-                elementX,
-                elementY * -1,
-                x,
-                y * -1,
-            );
-
-            this._move_x = Math.cos(angleRads) * this.movementSpeed;
-            this._move_y = Math.sin(angleRads) * this.movementSpeed;
 
             return true;
         } else {
@@ -281,21 +257,20 @@ export class Movement {
             return;
         }
 
-        const elementX = element.x;
-        const elementY = element.y;
+        // face the target (keeps the current rotation once it's on top of it)
+        if (element.x !== target.x || element.y !== target.y) {
+            element.rotation = Math.atan2(
+                target.y - element.y,
+                target.x - element.x,
+            );
+        }
 
-        const angle = Utilities.calculateAngle(
-            elementX,
-            elementY * -1,
+        this._moveTowards(
+            element,
             target.x,
-            target.y * -1,
+            target.y,
+            this.movementSpeed * delta,
         );
-
-        element.setPosition(
-            elementX + Math.cos(angle) * this.movementSpeed * delta,
-            elementY + Math.sin(angle) * this.movementSpeed * delta,
-        );
-        element.rotation = angle;
     }
 
     /**
@@ -329,42 +304,57 @@ export class Movement {
      * @param delta Time elapsed since the last update.
      */
     protected movementPathLogic(delta: number) {
-        if (this._is_moving) {
-            const element = this._element;
+        const element = this._element;
 
-            if (element === null) {
-                return;
-            }
+        if (!this._is_moving || element === null) {
+            return;
+        }
 
-            element.addToPosition(this._move_x * delta, this._move_y * delta);
+        const reached = this._moveTowards(
+            element,
+            this._destination_x,
+            this._destination_y,
+            this.movementSpeed * delta,
+        );
 
-            let diffX = this._destination_x - element.x;
-            let diffY = this._destination_y - element.y;
+        if (reached) {
+            // save the callback, since its going to be changed in the method below
+            const moveCallback = this._move_callback;
+            this.moveToNext();
 
-            // going from a positive difference to a negative
-            // we switch the signal so that we only need to check >= 0 below
-            if (this._is_destination_x_diff_positive) {
-                diffX *= -1;
-            }
-
-            if (this._is_destination_y_diff_positive) {
-                diffY *= -1;
-            }
-
-            // means we reached the destination
-            if (diffX >= 0 && diffY >= 0) {
-                element.setPosition(this._destination_x, this._destination_y);
-
-                // save the callback, since its going to be changed in the method below
-                const moveCallback = this._move_callback;
-                this.moveToNext();
-
-                // this function is called after the '.moveToNext()', to allow it to cancel the movement, if needed
-                if (moveCallback) {
-                    moveCallback();
-                }
+            // this function is called after the '.moveToNext()', to allow it to cancel the movement, if needed
+            if (moveCallback) {
+                moveCallback();
             }
         }
+    }
+
+    /**
+     * Move the element a distance towards a position (the direction is calculated every time, so it doesn't drift away).
+     *
+     * @return If it reached the position (it's placed exactly on it, instead of going past it).
+     */
+    protected _moveTowards(
+        element: Element,
+        x: number,
+        y: number,
+        distance: number,
+    ) {
+        const diffX = x - element.x;
+        const diffY = y - element.y;
+        const remaining = Math.sqrt(diffX * diffX + diffY * diffY);
+
+        if (remaining <= distance) {
+            element.setPosition(x, y);
+            return true;
+        }
+
+        element.addToPosition(
+            (diffX / remaining) * distance,
+            (diffY / remaining) * distance,
+        );
+
+        return false;
     }
 
     /**
