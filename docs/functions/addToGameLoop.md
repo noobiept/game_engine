@@ -8,7 +8,7 @@
 
 > **addToGameLoop**(`callback`, `options?`): `boolean`
 
-Defined in: [game.ts:407](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/game.ts#L407)
+Defined in: [game.ts:407](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/game.ts#L407)
 
 Adds a callback function to be called at a certain timeout/interval (or every tick) in the game loop (before the draw phase).
 

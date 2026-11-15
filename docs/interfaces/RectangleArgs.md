@@ -6,7 +6,7 @@
 
 # Interface: RectangleArgs
 
-Defined in: [rectangle.ts:3](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/rectangle.ts#L3)
+Defined in: [rectangle.ts:3](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/rectangle.ts#L3)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [rectangle.ts:3](https://github.com/noobiept/game_engine/blob/3dc50a
 
 > `readonly` `optional` **\_eventDispatcherArgsBrand?**: `undefined`
 
-Defined in: [event\_dispatcher.ts:4](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/event_dispatcher.ts#L4)
+Defined in: [event\_dispatcher.ts:4](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/event_dispatcher.ts#L4)
 
 #### Inherited from
 
@@ -30,7 +30,7 @@ Defined in: [event\_dispatcher.ts:4](https://github.com/noobiept/game_engine/blo
 
 > `optional` **category?**: `number`
 
-Defined in: [element.ts:17](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/element.ts#L17)
+Defined in: [element.ts:17](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/element.ts#L17)
 
 #### Inherited from
 
@@ -42,7 +42,7 @@ Defined in: [element.ts:17](https://github.com/noobiept/game_engine/blob/3dc50a9
 
 > `optional` **collidesWith?**: `number`
 
-Defined in: [element.ts:21](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/element.ts#L21)
+Defined in: [element.ts:21](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/element.ts#L21)
 
 #### Inherited from
 
@@ -54,7 +54,7 @@ Defined in: [element.ts:21](https://github.com/noobiept/game_engine/blob/3dc50a9
 
 > **color**: `string`
 
-Defined in: [rectangle.ts:6](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/rectangle.ts#L6)
+Defined in: [rectangle.ts:6](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/rectangle.ts#L6)
 
 ---
 
@@ -62,7 +62,7 @@ Defined in: [rectangle.ts:6](https://github.com/noobiept/game_engine/blob/3dc50a
 
 > `optional` **fill?**: `boolean`
 
-Defined in: [rectangle.ts:7](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/rectangle.ts#L7)
+Defined in: [rectangle.ts:7](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/rectangle.ts#L7)
 
 ---
 
@@ -70,7 +70,7 @@ Defined in: [rectangle.ts:7](https://github.com/noobiept/game_engine/blob/3dc50a
 
 > **height**: `number`
 
-Defined in: [rectangle.ts:5](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/rectangle.ts#L5)
+Defined in: [rectangle.ts:5](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/rectangle.ts#L5)
 
 ---
 
@@ -78,7 +78,7 @@ Defined in: [rectangle.ts:5](https://github.com/noobiept/game_engine/blob/3dc50a
 
 > **width**: `number`
 
-Defined in: [rectangle.ts:4](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/rectangle.ts#L4)
+Defined in: [rectangle.ts:4](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/rectangle.ts#L4)
 
 ---
 
@@ -86,7 +86,7 @@ Defined in: [rectangle.ts:4](https://github.com/noobiept/game_engine/blob/3dc50a
 
 > `optional` **x?**: `number`
 
-Defined in: [element.ts:12](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/element.ts#L12)
+Defined in: [element.ts:12](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/element.ts#L12)
 
 #### Inherited from
 
@@ -98,7 +98,7 @@ Defined in: [element.ts:12](https://github.com/noobiept/game_engine/blob/3dc50a9
 
 > `optional` **y?**: `number`
 
-Defined in: [element.ts:13](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/element.ts#L13)
+Defined in: [element.ts:13](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/element.ts#L13)
 
 #### Inherited from
 

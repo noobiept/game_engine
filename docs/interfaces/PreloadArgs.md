@@ -6,7 +6,7 @@
 
 # Interface: PreloadArgs
 
-Defined in: [preload.ts:5](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/preload.ts#L5)
+Defined in: [preload.ts:5](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/preload.ts#L5)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [preload.ts:5](https://github.com/noobiept/game_engine/blob/3dc50a91
 
 > `readonly` `optional` **\_eventDispatcherArgsBrand?**: `undefined`
 
-Defined in: [event\_dispatcher.ts:4](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/event_dispatcher.ts#L4)
+Defined in: [event\_dispatcher.ts:4](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/event_dispatcher.ts#L4)
 
 #### Inherited from
 
@@ -30,7 +30,7 @@ Defined in: [event\_dispatcher.ts:4](https://github.com/noobiept/game_engine/blo
 
 > `optional` **saveGlobal?**: `boolean`
 
-Defined in: [preload.ts:6](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/preload.ts#L6)
+Defined in: [preload.ts:6](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/preload.ts#L6)
 
 ---
 
@@ -38,4 +38,4 @@ Defined in: [preload.ts:6](https://github.com/noobiept/game_engine/blob/3dc50a91
 
 > `optional` **timeout?**: `number`
 
-Defined in: [preload.ts:7](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/preload.ts#L7)
+Defined in: [preload.ts:7](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/preload.ts#L7)

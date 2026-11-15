@@ -8,7 +8,7 @@
 
 > **setFps**(`fps`): `void`
 
-Defined in: [game.ts:241](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/game.ts#L241)
+Defined in: [game.ts:241](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/game.ts#L241)
 
 Limit how many times per second the game is updated (the logic, and drawing the canvas).
 By default there's no limit: it's updated on every animation frame, which follows the display's refresh rate (60 times

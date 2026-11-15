@@ -6,7 +6,7 @@
 
 # Class: Movement
 
-Defined in: [movement.ts:50](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/movement.ts#L50)
+Defined in: [movement.ts:50](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/movement.ts#L50)
 
 Basic Usage:
 
@@ -45,7 +45,7 @@ Examples -- `basic_example`, `bullets`, `collision_detection`, `collision_spatia
 
 > **new Movement**(`args`): `Movement`
 
-Defined in: [movement.ts:67](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/movement.ts#L67)
+Defined in: [movement.ts:65](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/movement.ts#L65)
 
 #### Parameters
 
@@ -63,7 +63,7 @@ Defined in: [movement.ts:67](https://github.com/noobiept/game_engine/blob/3dc50a
 
 > `protected` **\_destination\_x**: `number`
 
-Defined in: [movement.ts:59](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/movement.ts#L59)
+Defined in: [movement.ts:59](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/movement.ts#L59)
 
 ---
 
@@ -71,7 +71,7 @@ Defined in: [movement.ts:59](https://github.com/noobiept/game_engine/blob/3dc50a
 
 > `protected` **\_destination\_y**: `number`
 
-Defined in: [movement.ts:60](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/movement.ts#L60)
+Defined in: [movement.ts:60](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/movement.ts#L60)
 
 ---
 
@@ -79,7 +79,7 @@ Defined in: [movement.ts:60](https://github.com/noobiept/game_engine/blob/3dc50a
 
 > `protected` **\_element**: [`Element`](Element.md) \| `null`
 
-Defined in: [movement.ts:53](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/movement.ts#L53)
+Defined in: [movement.ts:53](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/movement.ts#L53)
 
 ---
 
@@ -87,23 +87,7 @@ Defined in: [movement.ts:53](https://github.com/noobiept/game_engine/blob/3dc50a
 
 > `protected` **\_follow\_target**: [`Element`](Element.md) \| `null`
 
-Defined in: [movement.ts:65](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/movement.ts#L65)
-
----
-
-### \_is\_destination\_x\_diff\_positive
-
-> `protected` **\_is\_destination\_x\_diff\_positive**: `boolean`
-
-Defined in: [movement.ts:61](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/movement.ts#L61)
-
----
-
-### \_is\_destination\_y\_diff\_positive
-
-> `protected` **\_is\_destination\_y\_diff\_positive**: `boolean`
-
-Defined in: [movement.ts:62](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/movement.ts#L62)
+Defined in: [movement.ts:63](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/movement.ts#L63)
 
 ---
 
@@ -111,7 +95,7 @@ Defined in: [movement.ts:62](https://github.com/noobiept/game_engine/blob/3dc50a
 
 > `protected` **\_is\_moving**: `boolean`
 
-Defined in: [movement.ts:55](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/movement.ts#L55)
+Defined in: [movement.ts:55](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/movement.ts#L55)
 
 ---
 
@@ -119,7 +103,7 @@ Defined in: [movement.ts:55](https://github.com/noobiept/game_engine/blob/3dc50a
 
 > `protected` **\_loop\_path\_position**: `number`
 
-Defined in: [movement.ts:64](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/movement.ts#L64)
+Defined in: [movement.ts:62](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/movement.ts#L62)
 
 ---
 
@@ -127,7 +111,7 @@ Defined in: [movement.ts:64](https://github.com/noobiept/game_engine/blob/3dc50a
 
 > `protected` **\_move\_callback**: (() => `any`) \| `null`
 
-Defined in: [movement.ts:58](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/movement.ts#L58)
+Defined in: [movement.ts:58](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/movement.ts#L58)
 
 ---
 
@@ -135,7 +119,7 @@ Defined in: [movement.ts:58](https://github.com/noobiept/game_engine/blob/3dc50a
 
 > `protected` **\_move\_x**: `number`
 
-Defined in: [movement.ts:56](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/movement.ts#L56)
+Defined in: [movement.ts:56](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/movement.ts#L56)
 
 ---
 
@@ -143,7 +127,7 @@ Defined in: [movement.ts:56](https://github.com/noobiept/game_engine/blob/3dc50a
 
 > `protected` **\_move\_y**: `number`
 
-Defined in: [movement.ts:57](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/movement.ts#L57)
+Defined in: [movement.ts:57](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/movement.ts#L57)
 
 ---
 
@@ -151,7 +135,7 @@ Defined in: [movement.ts:57](https://github.com/noobiept/game_engine/blob/3dc50a
 
 > `protected` **\_movement\_state**: [`MovementState`](../enumerations/MovementState.md)
 
-Defined in: [movement.ts:54](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/movement.ts#L54)
+Defined in: [movement.ts:54](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/movement.ts#L54)
 
 ---
 
@@ -159,7 +143,7 @@ Defined in: [movement.ts:54](https://github.com/noobiept/game_engine/blob/3dc50a
 
 > `protected` **\_path**: `object`[]
 
-Defined in: [movement.ts:63](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/movement.ts#L63)
+Defined in: [movement.ts:61](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/movement.ts#L61)
 
 #### callback
 
@@ -179,15 +163,49 @@ Defined in: [movement.ts:63](https://github.com/noobiept/game_engine/blob/3dc50a
 
 > **movementSpeed**: `number`
 
-Defined in: [movement.ts:51](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/movement.ts#L51)
+Defined in: [movement.ts:51](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/movement.ts#L51)
 
 ## Methods
+
+### \_moveTowards()
+
+> `protected` **\_moveTowards**(`element`, `x`, `y`, `distance`): `boolean`
+
+Defined in: [movement.ts:337](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/movement.ts#L337)
+
+Move the element a distance towards a position (the direction is calculated every time, so it doesn't drift away).
+
+#### Parameters
+
+##### element
+
+[`Element`](Element.md)
+
+##### x
+
+`number`
+
+##### y
+
+`number`
+
+##### distance
+
+`number`
+
+#### Returns
+
+`boolean`
+
+If it reached the position (it's placed exactly on it, instead of going past it).
+
+---
 
 ### destroy()
 
 > **destroy**(): `void`
 
-Defined in: [movement.ts:382](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/movement.ts#L382)
+Defined in: [movement.ts:372](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/movement.ts#L372)
 
 Destroy the movement object (it stops, and lets go of the element).
 
@@ -201,7 +219,7 @@ Destroy the movement object (it stops, and lets go of the element).
 
 > **follow**(`element`, `callback?`): `void`
 
-Defined in: [movement.ts:251](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/movement.ts#L251)
+Defined in: [movement.ts:227](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/movement.ts#L227)
 
 Move constantly towards the element's position.
 
@@ -229,7 +247,7 @@ Called when the element that we're following is destroyed.
 
 > **logic**(`_delta`): `void`
 
-Defined in: [movement.ts:375](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/movement.ts#L375)
+Defined in: [movement.ts:365](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/movement.ts#L365)
 
 Its called in every update. This is going to be assigned to a different movement logic method, depending on the current movement type.
 
@@ -249,7 +267,7 @@ Its called in every update. This is going to be assigned to a different movement
 
 > **moveAngle**(`angle`, `degrees?`, `callback?`): `void`
 
-Defined in: [movement.ts:226](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/movement.ts#L226)
+Defined in: [movement.ts:202](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/movement.ts#L202)
 
 Move continuously in a specific angle.
 
@@ -283,7 +301,7 @@ To be called when it reaches the end of the canvas.
 
 > **moveLoop**(`path`): `void`
 
-Defined in: [movement.ts:204](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/movement.ts#L204)
+Defined in: [movement.ts:180](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/movement.ts#L180)
 
 Move continuously between the positions in the path.
 
@@ -305,7 +323,7 @@ The path of the movement.
 
 > `protected` **movementAngleLogic**(`delta`): `void`
 
-Defined in: [movement.ts:307](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/movement.ts#L307)
+Defined in: [movement.ts:282](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/movement.ts#L282)
 
 Deals with movement in a certain direction/angle.
 Calls the function callback when it reaches the end of the canvas.
@@ -328,7 +346,7 @@ Time elapsed since the last update.
 
 > `protected` **movementFollowLogic**(`delta`): `void`
 
-Defined in: [movement.ts:261](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/movement.ts#L261)
+Defined in: [movement.ts:237](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/movement.ts#L237)
 
 Keep moving towards the target element's position.
 
@@ -348,7 +366,7 @@ Keep moving towards the target element's position.
 
 > `protected` **movementPathLogic**(`delta`): `void`
 
-Defined in: [movement.ts:331](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/movement.ts#L331)
+Defined in: [movement.ts:306](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/movement.ts#L306)
 
 Deals with movement to a x/y position.
 Calls the function callback when it reaches the destination.
@@ -371,7 +389,7 @@ Time elapsed since the last update.
 
 > **moveTo**(`x`, `y`, `callback?`): `void`
 
-Defined in: [movement.ts:87](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/movement.ts#L87)
+Defined in: [movement.ts:83](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/movement.ts#L83)
 
 Clears any previous path, and forces the element to move to the specified position.
 
@@ -399,7 +417,7 @@ Clears any previous path, and forces the element to move to the specified positi
 
 > **moveToNext**(): `boolean`
 
-Defined in: [movement.ts:109](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/movement.ts#L109)
+Defined in: [movement.ts:105](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/movement.ts#L105)
 
 Move to the next position in the path.
 
@@ -413,7 +431,7 @@ Move to the next position in the path.
 
 > **queueMoveTo**(`x`, `y`, `callback?`): `void`
 
-Defined in: [movement.ts:180](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/movement.ts#L180)
+Defined in: [movement.ts:156](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/movement.ts#L156)
 
 Add a x/y position to the movement queue.
 
@@ -447,7 +465,7 @@ Optional function to be called when it reaches this position.
 
 > **stop**(): `void`
 
-Defined in: [movement.ts:165](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/movement.ts#L165)
+Defined in: [movement.ts:141](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/movement.ts#L141)
 
 Stop moving.
 

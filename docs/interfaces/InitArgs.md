@@ -6,7 +6,7 @@
 
 # Interface: InitArgs
 
-Defined in: [game.ts:67](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/game.ts#L67)
+Defined in: [game.ts:67](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/game.ts#L67)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [game.ts:67](https://github.com/noobiept/game_engine/blob/3dc50a91cd
 
 > `optional` **collision?**: [`CollisionDetectionAlgorithm`](../Game-Engine/namespaces/CollisionDetection/interfaces/CollisionDetectionAlgorithm.md)
 
-Defined in: [game.ts:71](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/game.ts#L71)
+Defined in: [game.ts:71](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/game.ts#L71)
 
 ---
 
@@ -22,7 +22,7 @@ Defined in: [game.ts:71](https://github.com/noobiept/game_engine/blob/3dc50a91cd
 
 > **container**: `HTMLElement`
 
-Defined in: [game.ts:68](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/game.ts#L68)
+Defined in: [game.ts:68](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/game.ts#L68)
 
 ---
 
@@ -30,7 +30,7 @@ Defined in: [game.ts:68](https://github.com/noobiept/game_engine/blob/3dc50a91cd
 
 > **height**: `number`
 
-Defined in: [game.ts:70](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/game.ts#L70)
+Defined in: [game.ts:70](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/game.ts#L70)
 
 ---
 
@@ -38,4 +38,4 @@ Defined in: [game.ts:70](https://github.com/noobiept/game_engine/blob/3dc50a91cd
 
 > **width**: `number`
 
-Defined in: [game.ts:69](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/game.ts#L69)
+Defined in: [game.ts:69](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/game.ts#L69)

@@ -6,7 +6,7 @@
 
 # Interface: ValueArgs
 
-Defined in: [html.ts:254](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/html.ts#L254)
+Defined in: [html.ts:254](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/html.ts#L254)
 
 ## Extends
 
@@ -22,7 +22,7 @@ Defined in: [html.ts:254](https://github.com/noobiept/game_engine/blob/3dc50a91c
 
 > `optional` **cssClass?**: `string` \| `string`[]
 
-Defined in: [html.ts:30](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/html.ts#L30)
+Defined in: [html.ts:30](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/html.ts#L30)
 
 #### Inherited from
 
@@ -34,7 +34,7 @@ Defined in: [html.ts:30](https://github.com/noobiept/game_engine/blob/3dc50a91cd
 
 > `optional` **cssId?**: `string`
 
-Defined in: [html.ts:29](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/html.ts#L29)
+Defined in: [html.ts:29](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/html.ts#L29)
 
 #### Inherited from
 
@@ -46,7 +46,7 @@ Defined in: [html.ts:29](https://github.com/noobiept/game_engine/blob/3dc50a91cd
 
 > `optional` **preText?**: `string`
 
-Defined in: [html.ts:31](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/html.ts#L31)
+Defined in: [html.ts:31](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/html.ts#L31)
 
 #### Inherited from
 
@@ -58,4 +58,4 @@ Defined in: [html.ts:31](https://github.com/noobiept/game_engine/blob/3dc50a91cd
 
 > **value**: `any`
 
-Defined in: [html.ts:255](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/html.ts#L255)
+Defined in: [html.ts:255](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/html.ts#L255)

@@ -8,7 +8,7 @@
 
 > **add**(`key`, `value`): `boolean`
 
-Defined in: [highscore.ts:78](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/highscore.ts#L78)
+Defined in: [highscore.ts:78](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/highscore.ts#L78)
 
 Add a score. For example `Game.HighScore.add( 'easy', 5 );`.
 Throws if `init()` wasn't called yet.
