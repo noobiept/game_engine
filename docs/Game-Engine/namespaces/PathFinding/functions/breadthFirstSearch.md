@@ -8,7 +8,7 @@
 
 > **breadthFirstSearch**(`map`, `destination`, `positionType`): (`Position` \| `null`)[][]
 
-Defined in: [path\_finding.ts:43](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/path_finding.ts#L43)
+Defined in: [path\_finding.ts:43](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/path_finding.ts#L43)
 
 Calculate the path that an element needs to take to reach the destination, from any valid position.
 

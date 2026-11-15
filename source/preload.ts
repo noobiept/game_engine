@@ -17,6 +17,25 @@ export interface PreloadErrorData {
     error?: unknown; // the file couldn't be parsed (invalid json) or decoded (images, audio)
 }
 
+/**
+ * Data of the `complete` event.
+ */
+export interface PreloadCompleteData {
+    failedIds: string[]; // the files that couldn't be loaded (check it before starting the game)
+    loadedIds: string[];
+}
+
+/**
+ * The events of `Preload`, and the data their listeners get.
+ */
+export interface PreloadEvents {
+    complete: PreloadCompleteData;
+    error: PreloadErrorData;
+    abort: { id: string; event: ProgressEvent };
+    progress: number; // the percentage of all the files being loaded (0 to 100)
+    fileload: { id: string; data: any };
+}
+
 // the 2xx statuses, 304 (from the cache) and 0 (the `file://` protocol)
 function isSuccessStatus(status: number) {
     return (status >= 200 && status < 300) || status === 304 || status === 0;
@@ -27,7 +46,11 @@ function isSuccessStatus(status: number) {
  *
  *     const preload = new Game.Preload({ saveGlobal: true });
  *
- *     preload.addEventListener( 'complete', completeListener );
+ *     preload.addEventListener( 'complete', function( data ) {
+ *         if ( data.failedIds.length > 0 ) {
+ *             // show an error, instead of starting the game with missing files
+ *         }
+ *     });
  *     preload.load( 'id', 'path_to_file.png' );
  *
  *         // or with a manifest
@@ -36,14 +59,14 @@ function isSuccessStatus(status: number) {
  *         ];
  *     preload.loadManifest( manifest, '' );
  *
- * Events:
+ * Events (the listeners are typed, see `PreloadEvents`):
  *
- * - `complete` -- `listener( data: { failedIds: string[]; loadedIds: string[]; } );`
+ * - `complete` -- `listener( data: PreloadCompleteData );`
  *   Dispatched once all the files were dealt with (loaded or failed). More files can be loaded from the listener.
  * - `error` -- `listener( data: PreloadErrorData );`
  *   Dispatched for every file that fails to load: network errors and timeouts (`event`), error statuses (`status`), and files that
  *   can't be parsed or decoded (`error`).
- * - `abort` -- `listener( data: { id: string; event; } );`
+ * - `abort` -- `listener( data: { id: string; event: ProgressEvent; } );`
  * - `progress` -- `listener( progress: number );`
  * - `fileload` -- `listener( data: { id: string; data: Object; } );`
  *
@@ -115,6 +138,30 @@ export class Preload extends EventDispatcher {
     }
 
     /**
+     * Add a listener to one of the events (see `PreloadEvents` for the data each one gets).
+     *
+     * @return If it was successfully added (`false` when it isn't a function, or was already added).
+     */
+    override addEventListener<K extends keyof PreloadEvents>(
+        type: K,
+        listener: (data: PreloadEvents[K]) => any,
+    ) {
+        return super.addEventListener(type, listener);
+    }
+
+    /**
+     * Remove a listener of an event, or all its listeners (when `listener` isn't given).
+     *
+     * @return If it was successfully removed.
+     */
+    override removeEventListener<K extends keyof PreloadEvents>(
+        type: K,
+        listener?: (data: PreloadEvents[K]) => any,
+    ) {
+        return super.removeEventListener(type, listener);
+    }
+
+    /**
      * An element failed to load. We'll keep track of its id, to send it later on the 'complete' event.
      */
     protected _failed_to_load(id: string) {
@@ -131,7 +178,7 @@ export class Preload extends EventDispatcher {
      * All the elements were dealt with. Dispatch the `complete` event with a list of the loaded ids, and another list with the ids that failed to load as well.
      */
     protected _loading_complete() {
-        const data = {
+        const data: PreloadCompleteData = {
             failedIds: this._failed_ids,
             loadedIds: this._loaded_ids,
         };

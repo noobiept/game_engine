@@ -8,6 +8,39 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Releases before `3.0.0` are not tracked here. To update a game from v3 to v4,
 see the [migration guide](MIGRATION.md).
 
+## [4.2.0] - 2026-11-15
+
+Improvements from updating a second game to v4 (one that wraps the engine's
+elements instead of extending them): game loop events, typed `Preload` events,
+random intervals with `Cooldown`, and a more complete migration guide.
+
+### Added
+
+- `Game.addEventListener()` and `Game.removeEventListener()`, with the `pause`
+  and `resume` events of the game loop (dispatched when the page is hidden or
+  visible again, and for `stopGameLoop()`/`startGameLoop()`), to stop what runs
+  outside of the loop with the game (a timer in the page, music, timeouts).
+- `Cooldown.restart(nextInterval)`, for intervals that change each time (a
+  random spawn time). It keeps the time past the interval that ended, which
+  setting `interval` before `restart()` didn't.
+- The `PreloadCompleteData` and `PreloadEvents` types.
+
+### Changed
+
+- `Preload.addEventListener()` and `removeEventListener()` are typed: the event
+  name has to be one of `Preload`'s, and the listener gets that event's data
+  (it was `any`). A wrong event name, or a wrong property of the data (like
+  `failed_ids` instead of `failedIds`), no longer compiles.
+- The `setFps()` documentation and the 4.0.0 entry below say what v3's
+  `setFps()` actually did (it ran well below the set rate, for example about 40
+  updates per second for `setFps(60)` on a 60Hz display), and that the time
+  between updates varies when the rate doesn't divide the display's refresh
+  rate.
+- The migration guide covers more: installing the latest 4.x, games that wrap
+  the engine's elements, games that called `setFps()`, steps that happen once
+  per timer, translating counters to a `Cooldown`, `Game.Preload`'s
+  `failedIds`, the utilities' `Timer`, and testing with automation tools.
+
 ## [4.1.0] - 2026-11-15
 
 Improvements from updating a game to v4: a way to destroy a container's
@@ -85,9 +118,12 @@ the **Breaking** entries when updating.
 - **Breaking**: by default the game loop updates on every animation frame (at
   the display's refresh rate), instead of trying to run at 35 fps, which
   actually ran at 30 on a 60Hz display. `setFps()` limits it, and now keeps to
-  the set rate (it was rounded down to a fraction of the display's refresh
-  rate). `setFps(Infinity)` removes the limit, and `setFps()` throws a
-  `RangeError` for a value that isn't a positive number.
+  the set rate. It used to run well below it: it skipped every animation frame
+  that came less than `1000 / fps` milliseconds (in whole milliseconds) after
+  the last update, so on a 60Hz display `setFps(60)` ran at about 40 updates
+  per second and `setFps(30)` at 20. A game that called `setFps(60)` updates
+  50% more often in v4. `setFps(Infinity)` removes the limit, and `setFps()`
+  throws a `RangeError` for a value that isn't a positive number.
 - **Breaking**: `deltaTime` is limited to `0.25` seconds, so a long pause
   doesn't move the elements a big distance at once (see `setMaxDeltaTime()`).
 - **Breaking**: repeating timers keep the time past their interval instead of
@@ -295,6 +331,7 @@ pass of breaking API-consistency cleanups.
 - A suspended `AudioContext` is now resumed automatically when a sound starts,
   so audio becomes audible after the first user interaction.
 
+[4.2.0]: https://github.com/noobiept/game_engine/releases/tag/v4.2.0
 [4.1.0]: https://github.com/noobiept/game_engine/releases/tag/v4.1.0
 [4.0.0]: https://github.com/noobiept/game_engine/releases/tag/v4.0.0
 [3.0.2]: https://github.com/noobiept/game_engine/releases/tag/v3.0.2

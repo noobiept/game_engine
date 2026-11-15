@@ -118,6 +118,73 @@ describe("Cooldown", function () {
         expect(cooldown.remaining).toBeLessThanOrEqual(0.01);
     });
 
+    test("restart( nextInterval ) keeps the time past the interval that ended", function () {
+        const shorter = new Cooldown(1, { ready: false });
+
+        shorter.update(1.01);
+        shorter.restart(0.4);
+
+        expect(shorter.interval).toBe(0.4);
+        expect(shorter.remaining).toBeCloseTo(0.39);
+
+        const longer = new Cooldown(1, { ready: false });
+
+        longer.update(1.25);
+        longer.restart(2);
+
+        expect(longer.remaining).toBeCloseTo(1.75);
+    });
+
+    test("restart( nextInterval ) keeps less than the next interval (ready at most once per update)", function () {
+        const cooldown = new Cooldown(1, { ready: false });
+
+        cooldown.update(1.5);
+        cooldown.restart(0.4);
+
+        expect(cooldown.isReady()).toBe(false);
+        expect(cooldown.remaining).toBeCloseTo(0.3);
+
+        cooldown.update(0.3);
+        cooldown.restart(0);
+        expect(cooldown.isReady()).toBe(true);
+    });
+
+    test("restart( nextInterval ) keeps to the rate with intervals that change each time", function () {
+        const intervals = [1, 1.5, 2, 2.5]; // 7 seconds for the 4 of them
+
+        for (const refreshRate of [30, 60, 144]) {
+            const cooldown = new Cooldown(intervals[0], { ready: false });
+            let uses = 0;
+            let time = 0;
+            let frame = 0;
+
+            while (time < 70) {
+                const deltaTime =
+                    (1 / refreshRate) * (1 + 0.1 * Math.sin(frame++));
+                time += deltaTime;
+
+                cooldown.update(deltaTime);
+
+                if (cooldown.isReady()) {
+                    uses++;
+                    cooldown.restart(intervals[uses % intervals.length]);
+                }
+            }
+
+            expect(uses).toBe(40);
+        }
+    });
+
+    test("restart( nextInterval ) throws a RangeError for an invalid interval (without changing anything)", function () {
+        const cooldown = new Cooldown(1, { ready: false });
+
+        cooldown.update(1.25);
+
+        expect(() => cooldown.restart(-1)).toThrow(RangeError);
+        expect(cooldown.interval).toBe(1);
+        expect(cooldown.isReady()).toBe(true);
+    });
+
     test("restart() before it's ready waits a whole interval again", function () {
         const cooldown = new Cooldown(1, { ready: false });
 

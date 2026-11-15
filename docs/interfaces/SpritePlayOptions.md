@@ -6,7 +6,7 @@
 
 # Interface: SpritePlayOptions
 
-Defined in: [sprite.ts:22](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/sprite.ts#L22)
+Defined in: [sprite.ts:22](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/sprite.ts#L22)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [sprite.ts:22](https://github.com/noobiept/game_engine/blob/4f5a7e30
 
 > `optional` **loop?**: `boolean`
 
-Defined in: [sprite.ts:23](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/sprite.ts#L23)
+Defined in: [sprite.ts:23](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/sprite.ts#L23)
 
 ---
 
@@ -22,4 +22,4 @@ Defined in: [sprite.ts:23](https://github.com/noobiept/game_engine/blob/4f5a7e30
 
 > `optional` **reset?**: `boolean`
 
-Defined in: [sprite.ts:24](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/sprite.ts#L24)
+Defined in: [sprite.ts:24](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/sprite.ts#L24)

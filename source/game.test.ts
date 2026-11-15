@@ -245,6 +245,78 @@ describe("Starting and stopping the game loop", function () {
     });
 });
 
+describe("Game loop events (pause/resume)", function () {
+    /**
+     * Record the pause/resume events, with whether the loop was running when each was dispatched.
+     */
+    function recordEvents() {
+        const events: string[] = [];
+        const pause = () =>
+            events.push(
+                `pause:${Game.isGameLoopRunning() ? "running" : "stopped"}`,
+            );
+        const resume = () =>
+            events.push(
+                `resume:${Game.isGameLoopRunning() ? "running" : "stopped"}`,
+            );
+
+        Game.addEventListener("pause", pause);
+        Game.addEventListener("resume", resume);
+
+        return {
+            events,
+            remove() {
+                Game.removeEventListener("pause", pause);
+                Game.removeEventListener("resume", resume);
+            },
+        };
+    }
+
+    test("pause and resume when the page is hidden and visible again", function () {
+        const { events, remove } = recordEvents();
+
+        setDocumentHidden(true);
+        setDocumentHidden(true);
+        setDocumentHidden(false);
+
+        expect(events).toEqual(["pause:stopped", "resume:running"]);
+        remove();
+    });
+
+    test("pause and resume with stopGameLoop() and startGameLoop() (only when the state changes)", function () {
+        const { events, remove } = recordEvents();
+
+        Game.stopGameLoop();
+        Game.stopGameLoop();
+        setDocumentHidden(true);
+        setDocumentHidden(false);
+        Game.startGameLoop();
+        Game.startGameLoop();
+
+        expect(events).toEqual(["pause:stopped", "resume:running"]);
+        remove();
+    });
+
+    test("init() resumes the loop, and the listeners are kept when it's called again", function () {
+        const { events, remove } = recordEvents();
+
+        Game.init({ container: document.body, width: 100, height: 100 });
+
+        expect(events).toEqual(["pause:stopped", "resume:running"]);
+        remove();
+    });
+
+    test("removeEventListener() stops the events", function () {
+        const { events, remove } = recordEvents();
+
+        remove();
+        Game.stopGameLoop();
+        Game.startGameLoop();
+
+        expect(events).toEqual([]);
+    });
+});
+
 describe("Mouse move events", function () {
     test("activating them again doesn't leave an interval behind", function () {
         vi.useFakeTimers({ toFake: ["setInterval", "clearInterval"] });

@@ -8,7 +8,7 @@
 
 > **setGlobalGain**(`gain`): `boolean`
 
-Defined in: [sound.ts:98](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/sound.ts#L98)
+Defined in: [sound.ts:98](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/sound.ts#L98)
 
 Sets the global gain/volume of all the sounds played.
 

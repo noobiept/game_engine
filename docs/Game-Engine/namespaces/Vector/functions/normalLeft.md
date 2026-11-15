@@ -8,7 +8,7 @@
 
 > **normalLeft**(`vector`): `object`
 
-Defined in: [vector.ts:63](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/vector.ts#L63)
+Defined in: [vector.ts:63](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/vector.ts#L63)
 
 ## Parameters
 

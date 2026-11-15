@@ -1,5 +1,6 @@
 import { CollisionDetectionAlgorithm } from "./collision-detection/collision_detection";
 import { Element } from "./element";
+import { EventDispatcher } from "./event_dispatcher";
 import * as Utilities from "@drk4/utilities";
 import * as CollisionDetection from "./collision-detection/collision_detection";
 import * as Sound from "./sound";
@@ -39,7 +40,16 @@ export interface GameLoopOptions {
     interval?: boolean; // call repeatedly (every `delay`) vs once like a timeout (default true)
 }
 
+/**
+ * The events of the game loop (see `Game.addEventListener()`). Their listeners don't get any data.
+ */
+export interface GameEvents {
+    pause: void; // the loop stopped (the page was hidden, or `stopGameLoop()` was called)
+    resume: void; // the loop is running again (the page is visible again, `startGameLoop()`, or `init()`)
+}
+
 const ALL_CANVAS: Canvas[] = [];
+const EVENTS = new EventDispatcher();
 let CANVAS_CONTAINER: HTMLDivElement;
 let INITIALIZED = false;
 
@@ -162,6 +172,41 @@ export function isGameLoopRunning() {
     return ANIMATION_ID !== null;
 }
 
+/**
+ * Listen to the game loop stopping and starting again, for what runs outside of it but should stop with the game: a
+ * timer shown in the page, music played through your own `AudioContext`, a `setTimeout()`, etc.
+ *
+ * - `pause` -- the loop stopped: the page was hidden, or `stopGameLoop()` was called.
+ * - `resume` -- the loop is running again: the page is visible again, or `startGameLoop()` was called (and when
+ *   `init()` starts it).
+ *
+ * The listeners are called right after the loop stopped/started (`isGameLoopRunning()` already tells the new state),
+ * and they're kept when `init()` is called again.
+ *
+ *     Game.addEventListener( 'pause', () => music.suspend() );
+ *     Game.addEventListener( 'resume', () => music.resume() );
+ *
+ * @return If it was successfully added (`false` when it isn't a function, or was already added).
+ */
+export function addEventListener<K extends keyof GameEvents>(
+    type: K,
+    listener: () => any,
+) {
+    return EVENTS.addEventListener(type, listener);
+}
+
+/**
+ * Remove a listener of a game loop event (see `addEventListener()`), or all its listeners (when `listener` isn't given).
+ *
+ * @return If it was successfully removed.
+ */
+export function removeEventListener<K extends keyof GameEvents>(
+    type: K,
+    listener?: () => any,
+) {
+    return EVENTS.removeEventListener(type, listener);
+}
+
 function resumeLoop() {
     // already running
     if (ANIMATION_ID !== null) {
@@ -173,12 +218,16 @@ function resumeLoop() {
     LAST_UPDATE_TIME = now;
     NEXT_UPDATE_TIME = now + FRAME_INTERVAL;
     ANIMATION_ID = window.requestAnimationFrame(loop);
+
+    EVENTS.dispatchEvent("resume");
 }
 
 function pauseLoop() {
     if (ANIMATION_ID !== null) {
         window.cancelAnimationFrame(ANIMATION_ID);
         ANIMATION_ID = null;
+
+        EVENTS.dispatchEvent("pause");
     }
 }
 
@@ -236,8 +285,14 @@ export function disableMouseMoveEvents() {
  * By default there's no limit: it's updated on every animation frame, which follows the display's refresh rate (60 times
  * per second on most displays, more on high refresh rate ones). Pass `Infinity` to remove the limit again.
  *
- * `setFps(30)` gets close to the timing of v3 of the engine (which aimed for 35 updates per second, and ran at 30 on a
- * 60Hz display). It's a stopgap while updating a game whose balance depends on that.
+ * The updates happen on animation frames, so when the rate doesn't divide the display's refresh rate, the time between
+ * them varies to keep to the rate on average (`setFps(60)` on a 144Hz display updates every 2 or 3 frames, so
+ * `deltaTime` is about 0.014 or 0.021 seconds).
+ *
+ * In v3 of the engine, the loop ran below the set rate: it skipped every animation frame that came less than
+ * `1000 / fps` milliseconds (counted in whole milliseconds) after the last update. On a 60Hz display, the default
+ * (35) ran at 30 updates per second, `setFps(60)` at about 40, and `setFps(30)` at 20. To keep a v3 game's timing
+ * while updating it, set the rate it actually ran at (`setFps(30)` for a game that didn't call `setFps()`).
  *
  * @param fps A positive number (or `Infinity`).
  */

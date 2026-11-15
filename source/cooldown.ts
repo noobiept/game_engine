@@ -43,6 +43,13 @@ export interface CooldownOptions {
  *
  *     // a timer that waits the interval before it's ready the first time
  *     const spawn = new Game.Cooldown( 2, { ready: false } );
+ *
+ *     // a random interval each time (pass it to `restart()`, so the time past the interval that ended is kept)
+ *     if ( spawn.isReady() )
+ *         {
+ *         spawn.restart( Utilities.getRandomFloat( 1, 3 ) );
+ *         spawnEnemy();
+ *         }
  */
 export class Cooldown {
     protected _interval: number;
@@ -99,18 +106,31 @@ export class Cooldown {
      * Start a new interval, for when the action happens.
      * When it's ready, it keeps the time past the interval (less than an interval, so it's ready at most once per
      * update), so the next use isn't late. When it's called before it's ready, it waits a whole interval again.
+     *
+     * @param nextInterval The interval to wait next, for intervals that change each time (a random spawn time, for
+     *                     example). The time past the interval that ended is worked out first, then it's kept for the
+     *                     next one. Setting `interval` before calling `restart()` would compare the time to the new
+     *                     interval instead. Throws a `RangeError` for a value that isn't a number `>= 0`.
      */
-    restart() {
+    restart(nextInterval?: number) {
+        const next =
+            nextInterval === undefined
+                ? this._interval
+                : validateInterval(nextInterval);
         const past = this._elapsed - this._interval;
 
         // when it waited (wasn't used in the update it got ready), the time past the interval was spent waiting
-        this._elapsed =
+        const kept =
             !this._waiting &&
             past > 0 &&
             this._interval > 0 &&
             this._interval !== Infinity
                 ? past % this._interval
                 : 0;
+
+        // less than the next interval as well, so it's ready at most once per update
+        this._elapsed = next > 0 ? kept % next : 0;
+        this._interval = next;
         this._waiting = false;
     }
 }

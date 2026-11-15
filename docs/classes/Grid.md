@@ -6,7 +6,7 @@
 
 # Class: Grid
 
-Defined in: [grid.ts:25](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/grid.ts#L25)
+Defined in: [grid.ts:25](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/grid.ts#L25)
 
 Generic grid, to hold any value in a 2d array. Values are added/retrieved by a column/line position.
 
@@ -34,7 +34,7 @@ Examples -- `tower_defense`
 
 > **new Grid**(`args`): `Grid`
 
-Defined in: [grid.ts:33](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/grid.ts#L33)
+Defined in: [grid.ts:33](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/grid.ts#L33)
 
 Throws a `RangeError` if the number of columns/lines isn't a positive integer.
 
@@ -54,7 +54,7 @@ Throws a `RangeError` if the number of columns/lines isn't a positive integer.
 
 > `protected` **\_grid**: `any`[][]
 
-Defined in: [grid.ts:26](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/grid.ts#L26)
+Defined in: [grid.ts:26](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/grid.ts#L26)
 
 ---
 
@@ -62,7 +62,7 @@ Defined in: [grid.ts:26](https://github.com/noobiept/game_engine/blob/4f5a7e30f6
 
 > **columns**: `number`
 
-Defined in: [grid.ts:27](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/grid.ts#L27)
+Defined in: [grid.ts:27](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/grid.ts#L27)
 
 ---
 
@@ -70,7 +70,7 @@ Defined in: [grid.ts:27](https://github.com/noobiept/game_engine/blob/4f5a7e30f6
 
 > **lines**: `number`
 
-Defined in: [grid.ts:28](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/grid.ts#L28)
+Defined in: [grid.ts:28](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/grid.ts#L28)
 
 ## Methods
 
@@ -78,7 +78,7 @@ Defined in: [grid.ts:28](https://github.com/noobiept/game_engine/blob/4f5a7e30f6
 
 > **add**(`value`, `column`, `line`): `any`
 
-Defined in: [grid.ts:68](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/grid.ts#L68)
+Defined in: [grid.ts:68](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/grid.ts#L68)
 
 Adds a value to a given column/line position.
 Throws an exception if its an invalid column/line position.
@@ -115,7 +115,7 @@ The previous value.
 
 > **get**(`column`, `line`): `any`
 
-Defined in: [grid.ts:140](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/grid.ts#L140)
+Defined in: [grid.ts:140](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/grid.ts#L140)
 
 Get the value from a column/line position of the grid.
 Throws an exception if its an invalid column/line position.
@@ -146,7 +146,7 @@ The value on that position. The default value is `null`, so if there was no valu
 
 > **getEmptyPositions**(): `object`[]
 
-Defined in: [grid.ts:243](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/grid.ts#L243)
+Defined in: [grid.ts:243](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/grid.ts#L243)
 
 #### Returns
 
@@ -160,7 +160,7 @@ An array with all the empty column/line positions of this grid (the array will b
 
 > **getNeighbors**(`refColumn`, `refLine`, `range?`): `any`[]
 
-Defined in: [grid.ts:269](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/grid.ts#L269)
+Defined in: [grid.ts:269](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/grid.ts#L269)
 
 Get the neighbor values around the given position.
 Throws an exception if the reference position is invalid.
@@ -197,7 +197,7 @@ The neighbor values.
 
 > **getRandomEmptyPosition**(): \{ `column`: `number`; `line`: `number`; \} \| `null`
 
-Defined in: [grid.ts:228](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/grid.ts#L228)
+Defined in: [grid.ts:228](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/grid.ts#L228)
 
 #### Returns
 
@@ -211,7 +211,7 @@ A random empty column/line position, or `null` if there aren't any empty positio
 
 > **getRandomPosition**(): `object`
 
-Defined in: [grid.ts:218](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/grid.ts#L218)
+Defined in: [grid.ts:218](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/grid.ts#L218)
 
 #### Returns
 
@@ -233,7 +233,7 @@ A random column/line position that is within the grid's dimensions.
 
 > **isEmpty**(`column`, `line`): `boolean`
 
-Defined in: [grid.ts:156](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/grid.ts#L156)
+Defined in: [grid.ts:156](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/grid.ts#L156)
 
 Check if a given position is empty. A position is considered empty if it has the value `null`.
 Throws an exception if its an invalid column/line position.
@@ -264,7 +264,7 @@ If the position is empty or not.
 
 > **isInGrid**(`column`, `line`): `boolean`
 
-Defined in: [grid.ts:202](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/grid.ts#L202)
+Defined in: [grid.ts:202](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/grid.ts#L202)
 
 Checks if a given column/line position is within the grid's dimensions.
 
@@ -294,7 +294,7 @@ If this position is valid for this grid (is within it).
 
 > **move**(`sourceColumn`, `sourceLine`, `destinationColumn`, `destinationLine`): `any`
 
-Defined in: [grid.ts:90](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/grid.ts#L90)
+Defined in: [grid.ts:90](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/grid.ts#L90)
 
 Move an value from one position to another.
 Throws an exception if any of the positions are invalid.
@@ -337,7 +337,7 @@ The previous value that was on the destination position.
 
 > **normalizePosition**(`column`, `line`): `object`
 
-Defined in: [grid.ts:176](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/grid.ts#L176)
+Defined in: [grid.ts:176](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/grid.ts#L176)
 
 Makes sure the position is within the grid's dimensions.
 For example if you pass a column that is <0 then it will return a column with value 0 (since you can't have negative columns).
@@ -376,7 +376,7 @@ The column/line position that is guaranteed to be within the grid's dimensions.
 
 > **remove**(`column`, `line`): `any`
 
-Defined in: [grid.ts:120](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/grid.ts#L120)
+Defined in: [grid.ts:120](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/grid.ts#L120)
 
 Remove a value from the grid.
 Throws an exception if its an invalid column/line position.

@@ -8,7 +8,7 @@
 
 > **polygonPolygonList**(`list1`, `list2`): `boolean`
 
-Defined in: [collision-detection/collision\_detection.ts:126](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/collision-detection/collision_detection.ts#L126)
+Defined in: [collision-detection/collision\_detection.ts:126](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/collision-detection/collision_detection.ts#L126)
 
 Uses the `Separating Axis Theorem` to determine if two elements have collided.
 Checks a list of vertices against another list of vertices (for example for comparing containers, which can have several elements).

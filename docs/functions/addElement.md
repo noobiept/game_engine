@@ -8,7 +8,7 @@
 
 > **addElement**(`element`, `id?`): `void`
 
-Defined in: [game.ts:329](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/game.ts#L329)
+Defined in: [game.ts:384](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/game.ts#L384)
 
 Adds an element to a canvas. If 'id' is not given, then its added to the first canvas (the one most to the back).
 An element that is already in a container/canvas is taken out of it first.

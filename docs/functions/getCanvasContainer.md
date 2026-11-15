@@ -8,7 +8,7 @@
 
 > **getCanvasContainer**(): `HTMLDivElement`
 
-Defined in: [game.ts:669](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/game.ts#L669)
+Defined in: [game.ts:724](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/game.ts#L724)
 
 ## Returns
 

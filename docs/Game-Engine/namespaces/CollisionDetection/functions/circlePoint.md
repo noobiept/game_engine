@@ -8,7 +8,7 @@
 
 > **circlePoint**(`circleX`, `circleY`, `circleRadius`, `pointX`, `pointY`): `boolean`
 
-Defined in: [collision-detection/collision\_detection.ts:292](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/collision-detection/collision_detection.ts#L292)
+Defined in: [collision-detection/collision\_detection.ts:292](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/collision-detection/collision_detection.ts#L292)
 
 Detects collision between a circle and a point.
 

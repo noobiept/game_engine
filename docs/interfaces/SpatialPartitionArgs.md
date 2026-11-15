@@ -6,7 +6,7 @@
 
 # Interface: SpatialPartitionArgs
 
-Defined in: [collision-detection/collision\_spatial\_partition.ts:4](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/collision-detection/collision_spatial_partition.ts#L4)
+Defined in: [collision-detection/collision\_spatial\_partition.ts:4](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/collision-detection/collision_spatial_partition.ts#L4)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [collision-detection/collision\_spatial\_partition.ts:4](https://git
 
 > **canvasHeight**: `number`
 
-Defined in: [collision-detection/collision\_spatial\_partition.ts:6](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/collision-detection/collision_spatial_partition.ts#L6)
+Defined in: [collision-detection/collision\_spatial\_partition.ts:6](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/collision-detection/collision_spatial_partition.ts#L6)
 
 ---
 
@@ -22,7 +22,7 @@ Defined in: [collision-detection/collision\_spatial\_partition.ts:6](https://git
 
 > **canvasWidth**: `number`
 
-Defined in: [collision-detection/collision\_spatial\_partition.ts:5](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/collision-detection/collision_spatial_partition.ts#L5)
+Defined in: [collision-detection/collision\_spatial\_partition.ts:5](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/collision-detection/collision_spatial_partition.ts#L5)
 
 ---
 
@@ -30,4 +30,4 @@ Defined in: [collision-detection/collision\_spatial\_partition.ts:5](https://git
 
 > **partitions**: `number`
 
-Defined in: [collision-detection/collision\_spatial\_partition.ts:7](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/collision-detection/collision_spatial_partition.ts#L7)
+Defined in: [collision-detection/collision\_spatial\_partition.ts:7](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/collision-detection/collision_spatial_partition.ts#L7)

@@ -8,7 +8,7 @@
 
 > **removeElement**(`element`): `boolean`
 
-Defined in: [game.ts:351](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/game.ts#L351)
+Defined in: [game.ts:406](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/game.ts#L406)
 
 Detach elements from wherever they are (their canvas or container), right away. They're no longer drawn, updated or
 considered in the collision detection, but they aren't destroyed, so they can be added again later.

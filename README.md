@@ -170,7 +170,12 @@ Use `Preload` to load images, audio, JSON, and text files. With `saveGlobal: tru
 ```ts
 const preload = new Game.Preload({ saveGlobal: true });
 
-preload.addEventListener("complete", function () {
+preload.addEventListener("complete", function (data) {
+    if (data.failedIds.length > 0) {
+        console.error("Couldn't load:", data.failedIds);
+        return;
+    }
+
     const ship = new Game.Bitmap({
         x: 200,
         y: 200,
@@ -191,7 +196,7 @@ preload.loadManifest(
 );
 ```
 
-The `complete` event is dispatched once every file was dealt with, even when some fail. Each failed file also gets an `error` event, and its id is in the `failedIds` of the `complete` event.
+The `complete` event is dispatched once every file was dealt with, even when some fail, so check its `failedIds` before starting. Each failed file also gets an `error` event. The listeners are typed (see `PreloadEvents`), so a wrong event name or data property doesn't compile.
 
 ## Sprites and animation
 
@@ -290,7 +295,7 @@ Game.addToGameLoop(function (deltaTime) {
 Game.addToGameLoop(spawnEnemy, { delay: 2 });
 ```
 
-For a timer that belongs to an element (an attack, health regeneration), use a `Game.Cooldown` in the element's `logic()`, so it pauses with the game. It keeps to the interval whatever the frame rate is, and doesn't build up time while it waits to be used:
+For a timer that belongs to an element (an attack, health regeneration), use a `Game.Cooldown` in the element's `logic()`, so it pauses with the game. It keeps to the interval whatever the frame rate is, and doesn't build up time while it waits to be used. For an interval that changes each time (a random spawn time), pass the next one to `restart()`:
 
 ```ts
 class Tower extends Game.Rectangle {
@@ -315,6 +320,13 @@ class Tower extends Game.Rectangle {
 ```
 
 By default the loop updates on every animation frame, which follows the display's refresh rate (60 times per second on most displays). To limit it, use `Game.setFps()`. The loop pauses while the page is hidden. To keep a long pause (a slow device, the debugger) from moving the elements a big distance at once, `deltaTime` is limited to `0.25` seconds (change it with `Game.setMaxDeltaTime()`). A loop stopped with `Game.stopGameLoop()` stays stopped until `Game.startGameLoop()` is called.
+
+What runs outside of the loop doesn't stop with it: a timer shown in the page, music played through your own `AudioContext`, a `setTimeout()`. To stop those with the game, listen to the loop's `pause` and `resume` events (dispatched for a hidden page and for `stopGameLoop()`/`startGameLoop()`):
+
+```ts
+Game.addEventListener("pause", () => hudTimer.stop());
+Game.addEventListener("resume", () => hudTimer.start());
+```
 
 ## Collision detection
 

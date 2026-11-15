@@ -8,7 +8,7 @@
 
 > **Vertices** = `object`[]
 
-Defined in: [collision-detection/collision\_detection.ts:16](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/collision-detection/collision_detection.ts#L16)
+Defined in: [collision-detection/collision\_detection.ts:16](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/collision-detection/collision_detection.ts#L16)
 
 ## Type Declaration
 

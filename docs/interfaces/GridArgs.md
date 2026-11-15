@@ -6,7 +6,7 @@
 
 # Interface: GridArgs
 
-Defined in: [grid.ts:3](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/grid.ts#L3)
+Defined in: [grid.ts:3](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/grid.ts#L3)
 
 ## Extended by
 
@@ -18,7 +18,7 @@ Defined in: [grid.ts:3](https://github.com/noobiept/game_engine/blob/4f5a7e30f6f
 
 > **columns**: `number`
 
-Defined in: [grid.ts:4](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/grid.ts#L4)
+Defined in: [grid.ts:4](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/grid.ts#L4)
 
 ---
 
@@ -26,4 +26,4 @@ Defined in: [grid.ts:4](https://github.com/noobiept/game_engine/blob/4f5a7e30f6f
 
 > **lines**: `number`
 
-Defined in: [grid.ts:5](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/grid.ts#L5)
+Defined in: [grid.ts:5](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/grid.ts#L5)

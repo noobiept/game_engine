@@ -6,7 +6,7 @@
 
 # Interface: PreloadErrorData
 
-Defined in: [preload.ts:13](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/preload.ts#L13)
+Defined in: [preload.ts:13](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/preload.ts#L13)
 
 Data of the `error` event (only the properties that apply to the failure are set).
 
@@ -16,7 +16,7 @@ Data of the `error` event (only the properties that apply to the failure are set
 
 > `optional` **error?**: `unknown`
 
-Defined in: [preload.ts:17](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/preload.ts#L17)
+Defined in: [preload.ts:17](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/preload.ts#L17)
 
 ---
 
@@ -24,7 +24,7 @@ Defined in: [preload.ts:17](https://github.com/noobiept/game_engine/blob/4f5a7e3
 
 > `optional` **event?**: `ProgressEvent`\<`EventTarget`\>
 
-Defined in: [preload.ts:15](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/preload.ts#L15)
+Defined in: [preload.ts:15](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/preload.ts#L15)
 
 ---
 
@@ -32,7 +32,7 @@ Defined in: [preload.ts:15](https://github.com/noobiept/game_engine/blob/4f5a7e3
 
 > **id**: `string`
 
-Defined in: [preload.ts:14](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/preload.ts#L14)
+Defined in: [preload.ts:14](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/preload.ts#L14)
 
 ---
 
@@ -40,4 +40,4 @@ Defined in: [preload.ts:14](https://github.com/noobiept/game_engine/blob/4f5a7e3
 
 > `optional` **status?**: `number`
 
-Defined in: [preload.ts:16](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/preload.ts#L16)
+Defined in: [preload.ts:16](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/preload.ts#L16)

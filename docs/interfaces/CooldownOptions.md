@@ -6,7 +6,7 @@
 
 # Interface: CooldownOptions
 
-Defined in: cooldown.ts:1
+Defined in: [cooldown.ts:1](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/cooldown.ts#L1)
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: cooldown.ts:1
 
 > `optional` **ready?**: `boolean`
 
-Defined in: cooldown.ts:2
+Defined in: [cooldown.ts:2](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/cooldown.ts#L2)

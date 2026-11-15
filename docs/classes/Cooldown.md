@@ -6,7 +6,7 @@
 
 # Class: Cooldown
 
-Defined in: cooldown.ts:47
+Defined in: [cooldown.ts:54](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/cooldown.ts#L54)
 
 A timer for an action that can only happen once per interval (an attack, a spawn, health regeneration), which keeps
 to the interval like the engine's own timers do (game loop callbacks with a `delay`, weapons, sprite animations):
@@ -49,13 +49,20 @@ Basic Usage:
     // a timer that waits the interval before it's ready the first time
     const spawn = new Game.Cooldown( 2, { ready: false } );
 
+    // a random interval each time (pass it to `restart()`, so the time past the interval that ended is kept)
+    if ( spawn.isReady() )
+        {
+        spawn.restart( Utilities.getRandomFloat( 1, 3 ) );
+        spawnEnemy();
+        }
+
 ## Constructors
 
 ### Constructor
 
 > **new Cooldown**(`interval`, `options?`): `Cooldown`
 
-Defined in: cooldown.ts:56
+Defined in: [cooldown.ts:63](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/cooldown.ts#L63)
 
 #### Parameters
 
@@ -81,7 +88,7 @@ The time between uses, a number `>= 0` (`Infinity` never gets ready again once u
 
 > `protected` **\_elapsed**: `number`
 
-Defined in: cooldown.ts:49
+Defined in: [cooldown.ts:56](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/cooldown.ts#L56)
 
 ---
 
@@ -89,7 +96,7 @@ Defined in: cooldown.ts:49
 
 > `protected` **\_interval**: `number`
 
-Defined in: cooldown.ts:48
+Defined in: [cooldown.ts:55](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/cooldown.ts#L55)
 
 ---
 
@@ -97,7 +104,7 @@ Defined in: cooldown.ts:48
 
 > `protected` **\_waiting**: `boolean`
 
-Defined in: cooldown.ts:50
+Defined in: [cooldown.ts:57](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/cooldown.ts#L57)
 
 ## Accessors
 
@@ -107,7 +114,7 @@ Defined in: cooldown.ts:50
 
 > **get** **interval**(): `number`
 
-Defined in: cooldown.ts:65
+Defined in: [cooldown.ts:72](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/cooldown.ts#L72)
 
 The time between uses. Changing it applies to the current interval (it uses the time that already passed).
 
@@ -119,7 +126,7 @@ The time between uses. Changing it applies to the current interval (it uses the 
 
 > **set** **interval**(`interval`): `void`
 
-Defined in: cooldown.ts:69
+Defined in: [cooldown.ts:76](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/cooldown.ts#L76)
 
 ##### Parameters
 
@@ -139,7 +146,7 @@ Defined in: cooldown.ts:69
 
 > **get** **remaining**(): `number`
 
-Defined in: cooldown.ts:76
+Defined in: [cooldown.ts:83](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/cooldown.ts#L83)
 
 Time left until it's ready (`0` when it's ready).
 
@@ -153,7 +160,7 @@ Time left until it's ready (`0` when it's ready).
 
 > **isReady**(): `boolean`
 
-Defined in: cooldown.ts:94
+Defined in: [cooldown.ts:101](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/cooldown.ts#L101)
 
 If the interval has passed (it can be used).
 
@@ -165,13 +172,24 @@ If the interval has passed (it can be used).
 
 ### restart()
 
-> **restart**(): `void`
+> **restart**(`nextInterval?`): `void`
 
-Defined in: cooldown.ts:103
+Defined in: [cooldown.ts:115](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/cooldown.ts#L115)
 
 Start a new interval, for when the action happens.
 When it's ready, it keeps the time past the interval (less than an interval, so it's ready at most once per
 update), so the next use isn't late. When it's called before it's ready, it waits a whole interval again.
+
+#### Parameters
+
+##### nextInterval?
+
+`number`
+
+The interval to wait next, for intervals that change each time (a random spawn time, for
+example). The time past the interval that ended is worked out first, then it's kept for the
+next one. Setting `interval` before calling `restart()` would compare the time to the new
+interval instead. Throws a `RangeError` for a value that isn't a number `>= 0`.
 
 #### Returns
 
@@ -183,7 +201,7 @@ update), so the next use isn't late. When it's called before it's ready, it wait
 
 > **update**(`deltaTime`): `void`
 
-Defined in: cooldown.ts:86
+Defined in: [cooldown.ts:93](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/cooldown.ts#L93)
 
 Count the time that passed (call it on every update, with the update's `deltaTime`).
 

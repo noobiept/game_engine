@@ -6,7 +6,7 @@
 
 # Interface: MovementArgs
 
-Defined in: [movement.ts:5](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/movement.ts#L5)
+Defined in: [movement.ts:5](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/movement.ts#L5)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [movement.ts:5](https://github.com/noobiept/game_engine/blob/4f5a7e3
 
 > **element**: [`Element`](../classes/Element.md)
 
-Defined in: [movement.ts:6](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/movement.ts#L6)
+Defined in: [movement.ts:6](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/movement.ts#L6)
 
 ---
 
@@ -22,4 +22,4 @@ Defined in: [movement.ts:6](https://github.com/noobiept/game_engine/blob/4f5a7e3
 
 > **movementSpeed**: `number`
 
-Defined in: [movement.ts:7](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/movement.ts#L7)
+Defined in: [movement.ts:7](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/movement.ts#L7)
