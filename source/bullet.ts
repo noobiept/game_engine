@@ -90,7 +90,7 @@ export class Bullet extends Container {
     /**
      * @param deltaTime Time elapsed since the last update.
      */
-    logic(deltaTime: number) {
+    override logic(deltaTime: number) {
         this.movement?.logic(deltaTime);
     }
 
@@ -98,7 +98,7 @@ export class Bullet extends Container {
      * Clear the target reference, before removing.
      * Dispatch the `destroy` event as well.
      */
-    destroy() {
+    override destroy() {
         if (!this._destroyed) {
             this.movement?.destroy();
             this.movement = null;
@@ -111,7 +111,7 @@ export class Bullet extends Container {
     /**
      * Create a clone of this element.
      */
-    clone() {
+    override clone() {
         const children = [];
         const length = this._children.length;
 

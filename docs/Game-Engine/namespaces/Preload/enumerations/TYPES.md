@@ -6,7 +6,7 @@
 
 # Enumeration: TYPES
 
-Defined in: [preload.ts:354](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/preload.ts#L354)
+Defined in: [preload.ts:354](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/preload.ts#L354)
 
 ## Enumeration Members
 
@@ -14,7 +14,7 @@ Defined in: [preload.ts:354](https://github.com/noobiept/game_engine/blob/43702b
 
 > **audio**: `3`
 
-Defined in: [preload.ts:358](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/preload.ts#L358)
+Defined in: [preload.ts:358](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/preload.ts#L358)
 
 ---
 
@@ -22,7 +22,7 @@ Defined in: [preload.ts:358](https://github.com/noobiept/game_engine/blob/43702b
 
 > **image**: `0`
 
-Defined in: [preload.ts:355](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/preload.ts#L355)
+Defined in: [preload.ts:355](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/preload.ts#L355)
 
 ---
 
@@ -30,7 +30,7 @@ Defined in: [preload.ts:355](https://github.com/noobiept/game_engine/blob/43702b
 
 > **json**: `1`
 
-Defined in: [preload.ts:356](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/preload.ts#L356)
+Defined in: [preload.ts:356](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/preload.ts#L356)
 
 ---
 
@@ -38,4 +38,4 @@ Defined in: [preload.ts:356](https://github.com/noobiept/game_engine/blob/43702b
 
 > **text**: `2`
 
-Defined in: [preload.ts:357](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/preload.ts#L357)
+Defined in: [preload.ts:357](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/preload.ts#L357)

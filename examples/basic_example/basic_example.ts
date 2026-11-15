@@ -132,7 +132,7 @@ class Unit extends Game.Container {
         });
     }
 
-    logic(deltaTime: number) {
+    override logic(deltaTime: number) {
         super.logic(deltaTime);
 
         this.movement.logic(deltaTime);

@@ -8,7 +8,7 @@
 
 > **\_safeDestroy**(`element`): `void`
 
-Defined in: [game.ts:367](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/game.ts#L367)
+Defined in: [game.ts:373](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/game.ts#L373)
 
 It can be problematic to destroy elements during the logic functions, since the logic functions are called in a loop over all the elements.
 The elements passed to this function, will only be destroyed after (at the end of the current game loop update, or once the

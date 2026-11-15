@@ -1,9 +1,13 @@
 import { Element } from "./element";
 import * as Utilities from "@drk4/utilities";
 
-function normalizeElements(args: (Element | Element[])[]) {
-    if (args.length === 1 && args[0] instanceof Array) {
-        return args[0];
+/**
+ * Get the elements given as `Element`, `...Element` or `Element[]`, in a new array (the given array can be one that
+ * changes while the elements are added/removed, like the `getAllChildren()` of the same canvas).
+ */
+function normalizeElements(args: (Element | readonly Element[])[]): Element[] {
+    if (args.length === 1 && Array.isArray(args[0])) {
+        return (args[0] as readonly Element[]).slice();
     }
 
     return args as Element[];
@@ -76,9 +80,9 @@ export class Canvas {
      *
      * @param args Either an `Element`, or `...Element` or an `Element[]`
      */
-    addChild(children: Element | Element[]): void;
+    addChild(children: Element | readonly Element[]): void;
     addChild(...elements: Element[]): void;
-    addChild(...args: (Element | Element[])[]) {
+    addChild(...args: (Element | readonly Element[])[]) {
         const elements = normalizeElements(args);
 
         for (const element of elements) {
@@ -103,9 +107,9 @@ export class Canvas {
      * @param args Either an `Element` or `...Element` or an `Element[]`
      * @return If any of the elements was in this canvas (and was detached).
      */
-    removeChild(children: Element | Element[]): boolean;
+    removeChild(children: Element | readonly Element[]): boolean;
     removeChild(...elements: Element[]): boolean;
-    removeChild(...args: (Element | Element[])[]) {
+    removeChild(...args: (Element | readonly Element[])[]) {
         const elements = normalizeElements(args);
         let removed = false;
 
@@ -332,9 +336,11 @@ export class Canvas {
     }
 
     /**
-     * @return The elements added to this canvas.
+     * @return The elements added to this canvas (in the drawing order, from the back to the front). It's the canvas'
+     *         own list, so it changes when elements are added/removed. Copy it (with `slice()`) to keep the current
+     *         elements.
      */
-    getAllChildren() {
+    getAllChildren(): readonly Element[] {
         return this._children;
     }
 }

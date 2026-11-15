@@ -20,7 +20,7 @@ export class Unit extends Game.Rectangle {
         });
     }
 
-    logic(deltaTime: number) {
+    override logic(deltaTime: number) {
         this.weapon.logic(deltaTime);
     }
 }

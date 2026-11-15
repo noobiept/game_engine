@@ -208,10 +208,11 @@ function clear() {
 }
 
 function clearElements() {
-    TERRAINS_CONTAINER.removeAllChildren();
-    BULLETS_CONTAINER.removeAllChildren();
-    CREEPS_CONTAINER.removeAllChildren();
-    TOWERS_CONTAINER.removeAllChildren();
+    // the containers stay (they set the drawing order), but the level's elements are thrown away
+    TERRAINS_CONTAINER.destroyAllChildren();
+    BULLETS_CONTAINER.destroyAllChildren();
+    CREEPS_CONTAINER.destroyAllChildren();
+    TOWERS_CONTAINER.destroyAllChildren();
 }
 
 function clearListeners() {

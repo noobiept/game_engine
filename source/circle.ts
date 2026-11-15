@@ -51,7 +51,7 @@ export class Circle extends Element {
      * Get the global vertices points of this element (a polygon close to the circle).
      * The arguments are the compound values from the parent containers.
      */
-    updateVertices(
+    override updateVertices(
         x: number,
         y: number,
         scaleX: number,

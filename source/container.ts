@@ -1,15 +1,19 @@
 import { Element, ElementArgs } from "./element";
 
-function normalizeChildren(args: (Element | Element[])[]) {
-    if (args.length === 1 && args[0] instanceof Array) {
-        return args[0];
+/**
+ * Get the elements given as `Element`, `...Element` or `Element[]`, in a new array (the given array can be one that
+ * changes while the elements are added/removed, like the `getAllChildren()` of the same container).
+ */
+function normalizeChildren(args: (Element | readonly Element[])[]): Element[] {
+    if (args.length === 1 && Array.isArray(args[0])) {
+        return (args[0] as readonly Element[]).slice();
     }
 
     return args as Element[];
 }
 
 export interface ContainerArgs extends ElementArgs {
-    children?: Element | Element[];
+    children?: Element | readonly Element[];
 }
 
 /**
@@ -18,7 +22,8 @@ export interface ContainerArgs extends ElementArgs {
  *
  * - `addChild()` adds elements. An element that is already in another container/canvas is moved to this one.
  * - `removeChild()` and `removeAllChildren()` **detach** elements right away. They stay usable and can be added again.
- * - `destroy()` **destroys** the container and all of its children (see `Element.destroy()`).
+ * - `destroyAllChildren()` **destroys** all the children, but keeps the container (see `Element.destroy()`).
+ * - `destroy()` **destroys** the container and all of its children.
  *
  * Basic Usage:
  *
@@ -65,9 +70,9 @@ export class Container extends Element {
      *
      * @param elements Either `Element` or `...Element` or `Element[]`.
      */
-    addChild(children: Element | Element[]): void;
+    addChild(children: Element | readonly Element[]): void;
     addChild(...elements: Element[]): void;
-    addChild(...elements: (Element | Element[])[]) {
+    addChild(...elements: (Element | readonly Element[])[]) {
         const children = normalizeChildren(elements);
 
         for (const element of children) {
@@ -104,9 +109,9 @@ export class Container extends Element {
      * @param args Either `Element` or `...Element` or `Element[]`.
      * @return If any of the elements was a child (and was detached).
      */
-    removeChild(children: Element | Element[]): boolean;
+    removeChild(children: Element | readonly Element[]): boolean;
     removeChild(...elements: Element[]): boolean;
-    removeChild(...args: (Element | Element[])[]) {
+    removeChild(...args: (Element | readonly Element[])[]) {
         const children = normalizeChildren(args);
         let removed = false;
 
@@ -132,7 +137,7 @@ export class Container extends Element {
 
     /**
      * Detach all of this container's children, right away (see `removeChild()`).
-     * To destroy the container together with its children, call `destroy()` instead.
+     * To destroy the children instead, call `destroyAllChildren()` (or `destroy()` to destroy the container as well).
      */
     removeAllChildren() {
         const children = this._children.splice(0);
@@ -146,9 +151,25 @@ export class Container extends Element {
     }
 
     /**
-     * Get all the children elements.
+     * Destroy all of this container's children (see `Element.destroy()`), but keep the container. Useful when the
+     * container stays in the game, for example a layer that sets the drawing order, and its elements are thrown away
+     * (when restarting a level).
+     *
+     * Like `destroy()`, the children stop colliding right away, but they're only taken out of the container at the end
+     * of the frame (until then they're still in `getAllChildren()`).
      */
-    getAllChildren() {
+    destroyAllChildren() {
+        for (const child of this._children.slice()) {
+            child.destroy();
+        }
+    }
+
+    /**
+     * Get all the children elements (in the drawing order, from the back to the front).
+     * It's the container's own list, so it changes when children are added/removed. Copy it (with `slice()`) to keep
+     * the current children.
+     */
+    getAllChildren(): readonly Element[] {
         return this._children;
     }
 
@@ -169,7 +190,7 @@ export class Container extends Element {
         return false;
     }
 
-    _attach() {
+    override _attach() {
         if (this._attached) {
             return;
         }
@@ -181,7 +202,7 @@ export class Container extends Element {
         }
     }
 
-    _detach() {
+    override _detach() {
         if (!this._attached) {
             return;
         }
@@ -246,7 +267,7 @@ export class Container extends Element {
      * Destroy the container and all of its children (see `Element.destroy()`).
      * To keep the children, detach them first (with `removeChild()` or `removeAllChildren()`).
      */
-    destroy() {
+    override destroy() {
         if (this._destroyed) {
             return;
         }
@@ -264,7 +285,7 @@ export class Container extends Element {
      *
      * @param ctx The canvas rendering context.
      */
-    draw(ctx: CanvasRenderingContext2D) {
+    override draw(ctx: CanvasRenderingContext2D) {
         ctx.save();
         ctx.globalAlpha *= this.opacity;
         ctx.translate(this.x, this.y);
@@ -297,7 +318,7 @@ export class Container extends Element {
     /**
      * Check if the given x/y position intersects with any of this container's children. Returns all the elements it intersects.
      */
-    intersect(x: number, y: number) {
+    override intersect(x: number, y: number) {
         let all: Element[] = [];
         let elements: Element[];
 
@@ -318,7 +339,7 @@ export class Container extends Element {
      *
      * @return If an element got the event.
      */
-    mouseClickEvents(x: number, y: number, event: MouseEvent) {
+    override mouseClickEvents(x: number, y: number, event: MouseEvent) {
         // go through a copy, since the listeners can add/remove elements
         const children = this._children.slice();
 
@@ -375,7 +396,7 @@ export class Container extends Element {
     /**
      * Calculates an axis-aligned rectangle from the rotated shape.
      */
-    toAxisAligned() {
+    override toAxisAligned() {
         const length = this._children.length;
 
         if (length === 0) {
@@ -422,7 +443,7 @@ export class Container extends Element {
      *
      * @param deltaTime Time elapsed since the last update.
      */
-    logic(deltaTime: number) {
+    override logic(deltaTime: number) {
         // go through a copy, since the logic code can add/remove elements
         const children = this._children.slice();
 
@@ -444,7 +465,7 @@ export class Container extends Element {
      * Get the global vertices points of this element.
      * The arguments are the compound values from the parent containers.
      */
-    updateVertices(
+    override updateVertices(
         x: number,
         y: number,
         scaleX: number,
@@ -466,7 +487,7 @@ export class Container extends Element {
     /**
      * Get the element vertices points. Assumes its a rectangle.
      */
-    getVertices() {
+    override getVertices() {
         let vertices: NonNullable<ReturnType<Element["getVertices"]>> = [];
 
         for (let a = this._children.length - 1; a >= 0; a--) {

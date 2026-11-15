@@ -6,7 +6,7 @@
 
 # Enumeration: Direction
 
-Defined in: [scrolling\_bitmap.ts:21](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/scrolling_bitmap.ts#L21)
+Defined in: [scrolling\_bitmap.ts:21](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/scrolling_bitmap.ts#L21)
 
 ## Enumeration Members
 
@@ -14,7 +14,7 @@ Defined in: [scrolling\_bitmap.ts:21](https://github.com/noobiept/game_engine/bl
 
 > **bottom**: `3`
 
-Defined in: [scrolling\_bitmap.ts:25](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/scrolling_bitmap.ts#L25)
+Defined in: [scrolling\_bitmap.ts:25](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/scrolling_bitmap.ts#L25)
 
 ---
 
@@ -22,7 +22,7 @@ Defined in: [scrolling\_bitmap.ts:25](https://github.com/noobiept/game_engine/bl
 
 > **left**: `0`
 
-Defined in: [scrolling\_bitmap.ts:22](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/scrolling_bitmap.ts#L22)
+Defined in: [scrolling\_bitmap.ts:22](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/scrolling_bitmap.ts#L22)
 
 ---
 
@@ -30,7 +30,7 @@ Defined in: [scrolling\_bitmap.ts:22](https://github.com/noobiept/game_engine/bl
 
 > **right**: `1`
 
-Defined in: [scrolling\_bitmap.ts:23](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/scrolling_bitmap.ts#L23)
+Defined in: [scrolling\_bitmap.ts:23](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/scrolling_bitmap.ts#L23)
 
 ---
 
@@ -38,4 +38,4 @@ Defined in: [scrolling\_bitmap.ts:23](https://github.com/noobiept/game_engine/bl
 
 > **top**: `2`
 
-Defined in: [scrolling\_bitmap.ts:24](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/scrolling_bitmap.ts#L24)
+Defined in: [scrolling\_bitmap.ts:24](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/scrolling_bitmap.ts#L24)

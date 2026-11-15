@@ -125,6 +125,30 @@ describe("Detaching elements (removeChild)", function () {
         expect(countCollisions(canvas, player, wall)).toBe(2);
     });
 
+    test("removeChild()/addChild()/Game.removeElement() work with the getAllChildren() array that they change", function () {
+        const children = [makeRect(), makeRect(), makeRect(), makeRect()];
+        const container = new Container({ children });
+        const other = new Container();
+        canvas.addChild(container, other);
+
+        other.addChild(container.getAllChildren());
+
+        expect(container.getAllChildren()).toHaveLength(0);
+        expect(other.getAllChildren()).toEqual(children);
+
+        expect(other.removeChild(other.getAllChildren())).toBe(true);
+        expect(other.getAllChildren()).toHaveLength(0);
+        expect(collision._elements).toEqual([container, other]);
+
+        canvas.addChild(children);
+        expect(Game.removeElement(canvas.getAllChildren())).toBe(true);
+        expect(canvas.getAllChildren()).toHaveLength(0);
+
+        canvas.addChild(children);
+        expect(canvas.removeChild(canvas.getAllChildren())).toBe(true);
+        expect(canvas.getAllChildren()).toHaveLength(0);
+    });
+
     test("detaching a container detaches its children from the collision detection", function () {
         const { player, wall } = makePlayerAndWall();
         const container = new Container({ children: wall });
@@ -251,6 +275,37 @@ describe("Destroying elements (destroy)", function () {
 
         expect(canvas.getAllChildren()).toHaveLength(0);
         expect(collision._elements).toHaveLength(0);
+    });
+
+    test("destroyAllChildren() destroys the children, but keeps the container", async function () {
+        const { player, wall } = makePlayerAndWall();
+        const nested = new Container({ children: makeRect() });
+        const container = new Container({ children: [wall, nested] });
+        canvas.addChild(player, container);
+        new Tween(wall).to({ x: 100 }, 1).start();
+
+        container.destroyAllChildren();
+
+        expect(container.isDestroyed()).toBe(false);
+        expect(wall.isDestroyed()).toBe(true);
+        expect(nested.isDestroyed()).toBe(true);
+        expect(nested.getAllChildren()[0].isDestroyed()).toBe(true);
+        expect(countCollisions(canvas, player, wall)).toBe(0);
+
+        // like destroy(), they're taken out at the end of the frame (once the current code finishes, without the loop)
+        expect(container.getAllChildren()).toHaveLength(2);
+
+        await flushMicrotasks();
+
+        expect(container.getAllChildren()).toHaveLength(0);
+        expect(canvas.getAllChildren()).toEqual([player, container]);
+        expect(collision._elements).toEqual([player, container]);
+        expect(Tween.getTween(wall)).toBe(null);
+
+        // the container can still be used
+        const other = makeRect(WALL, PLAYER);
+        container.addChild(other);
+        expect(countCollisions(canvas, player, other)).toBe(2);
     });
 
     test("a child can destroy its container during the logic", function () {

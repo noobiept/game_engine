@@ -111,7 +111,7 @@ export class ElementGrid extends Grid {
      * @param line The line position.
      * @return The previous element that was in that position (or `null` if there wasn't one).
      */
-    add(element: Element, column: number, line: number) {
+    override add(element: Element, column: number, line: number) {
         const previous = super.add(element, column, line);
         const canvasPosition = this.toCanvas(column, line);
 
@@ -146,7 +146,7 @@ export class ElementGrid extends Grid {
      * @param duration If duration >0, then a tween animation is going to be applied to the movement.
      * @return The previous element that was in the destination position (or null if there wasn't one).
      */
-    move(
+    override move(
         sourceColumn: number,
         sourceLine: number,
         destColumn: number,
@@ -214,7 +214,7 @@ export class ElementGrid extends Grid {
      * @param line The line position.
      * @return The element that was removed.
      */
-    remove(column: number, line: number) {
+    override remove(column: number, line: number) {
         const element = super.remove(column, line);
 
         if (element !== null) {

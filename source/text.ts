@@ -99,7 +99,7 @@ export class Text extends Element {
     /**
      * Also cancels the `timeout` (if the text is destroyed before it).
      */
-    _destroyNow() {
+    override _destroyNow() {
         if (this._timeout_handle) {
             this._timeout_handle.clear();
             this._timeout_handle = null;

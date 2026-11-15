@@ -56,6 +56,31 @@ describe("Weapon", function () {
         expect(weapon.fire(0)).toBe(false);
     });
 
+    test("changing the fireInterval uses the time since the last shot", function () {
+        const { weapon } = makeWeapon(1);
+
+        expect(weapon.fire(0)).toBe(true);
+        weapon.logic(0.5);
+        expect(weapon.isReady()).toBe(false);
+
+        weapon.fireInterval = 0.25;
+        expect(weapon.isReady()).toBe(true);
+        expect(weapon.fire(0)).toBe(true);
+
+        // waiting to fire counts as well
+        weapon.logic(0.25);
+        weapon.logic(0.25);
+        weapon.fireInterval = 0.5;
+        expect(weapon.fire(0)).toBe(true);
+    });
+
+    test("throws a RangeError for a fireInterval that isn't a number >= 0", function () {
+        expect(() => makeWeapon(-1)).toThrow(RangeError);
+
+        const { weapon } = makeWeapon(1);
+        expect(() => (weapon.fireInterval = NaN)).toThrow(RangeError);
+    });
+
     test("forceFire() with an interval keeps to it", function () {
         const { weapon, bullets } = makeWeapon(0);
 

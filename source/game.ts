@@ -126,7 +126,7 @@ function teardown() {
     CANVAS_CONTAINER.remove();
 
     for (const canvas of ALL_CANVAS) {
-        canvas.removeChild(canvas.getAllChildren().slice());
+        canvas.removeChild(canvas.getAllChildren());
     }
 
     ALL_CANVAS.length = 0;
@@ -236,6 +236,9 @@ export function disableMouseMoveEvents() {
  * By default there's no limit: it's updated on every animation frame, which follows the display's refresh rate (60 times
  * per second on most displays, more on high refresh rate ones). Pass `Infinity` to remove the limit again.
  *
+ * `setFps(30)` gets close to the timing of v3 of the engine (which aimed for 35 updates per second, and ran at 30 on a
+ * 60Hz display). It's a stopgap while updating a game whose balance depends on that.
+ *
  * @param fps A positive number (or `Infinity`).
  */
 export function setFps(fps: number) {
@@ -323,7 +326,7 @@ export function addCanvas(canvas: Canvas, position?: number) {
     @param element Element or Element[] to be added.
     @param id The canvas id.
  */
-export function addElement(element: Element | Element[], id?: number) {
+export function addElement(element: Element | readonly Element[], id?: number) {
     if (typeof id === "undefined") {
         id = 0;
     }
@@ -345,8 +348,11 @@ export function addElement(element: Element | Element[], id?: number) {
  * @param element Element or Element[] to be detached.
  * @return If any of the elements was in a canvas/container (and was detached).
  */
-export function removeElement(element: Element | Element[]) {
-    const elements = Array.isArray(element) ? element : [element];
+export function removeElement(element: Element | readonly Element[]) {
+    // a copy, since the given array can change while the elements are detached (a container's `getAllChildren()`)
+    const elements = Array.isArray(element)
+        ? (element as readonly Element[]).slice()
+        : [element as Element];
     let removed = false;
 
     for (const item of elements) {

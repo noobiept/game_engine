@@ -23,6 +23,7 @@ export * from "./text";
 export * from "./tween";
 export * from "./bullet";
 export * from "./weapon";
+export * from "./cooldown";
 export * from "./message";
 export { CheckAll } from "./collision-detection/collision_check_all";
 export {

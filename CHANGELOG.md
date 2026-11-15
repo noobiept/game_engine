@@ -5,7 +5,53 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-Releases before `3.0.0` are not tracked here.
+Releases before `3.0.0` are not tracked here. To update a game from v3 to v4,
+see the [migration guide](MIGRATION.md).
+
+## [4.1.0] - 2026-11-15
+
+Improvements from updating a game to v4: a way to destroy a container's
+children, a cooldown timer for game code, and a v3 to v4
+[migration guide](MIGRATION.md).
+
+### Added
+
+- `Container.destroyAllChildren()`, which destroys all the children but keeps
+  the container (for a layer that sets the drawing order, for example).
+- `Game.Cooldown`, a timer for an action that can only happen once per
+  interval (an attack, a spawn, health regeneration). It keeps the time past
+  the interval like the engine's own timers do, so the rate doesn't depend on
+  the display, and doesn't build up time while it waits to be used.
+- A [migration guide](MIGRATION.md) for updating a game from v3 to v4
+  (included in the npm package).
+
+### Changed
+
+- `getAllChildren()` (of `Container` and `Canvas`) is typed as returning a
+  `readonly Element[]`, since it's the container's own list. Code that changes
+  it, or passes it to a function that takes an `Element[]`, has to copy it
+  first (with `slice()`), which TypeScript now reports.
+- `Weapon` uses a `Cooldown` for its fire interval (the protected `_is_ready`
+  and `_fire_count` are replaced by `_cooldown`). `fireInterval` throws a
+  `RangeError` for a value that isn't a number `>= 0`, and changing it applies
+  to the current interval, also when the weapon is ready (it uses the time
+  since the last shot).
+- The engine is type checked with `noImplicitOverride` (as are the examples),
+  which the README now recommends for games: when a new version renames a
+  method, the compiler reports the game's overrides of it.
+- The `setFps()` documentation says that `setFps(30)` gets close to v3's
+  timing.
+- The 4.0.0 entry for the container size fix is moved to **Changed** and
+  marked as **Breaking**, since it changes how existing games behave.
+- The `tower_defense` example destroys the level's elements when restarting
+  (it detached them), and its towers and creeps destroy their weapon and
+  movement.
+
+### Fixed
+
+- Passing a container's own `getAllChildren()` to its `removeChild()`, to
+  another container's `addChild()`, or to `Game.removeElement()`, skipped every
+  other element (the list changed while it was gone through).
 
 ## [4.0.0] - 2026-11-15
 
@@ -56,6 +102,12 @@ the **Breaking** entries when updating.
   get the event).
 - **Breaking**: `Circle` collides (and gets the mouse events) as a circle (a
   16-sided polygon), instead of as its bounding square.
+- **Breaking**: a container's `width`/`height` (`calculateDimensions()`)
+  covers its children correctly. It treated each child's `x`/`y` as its
+  top-left corner (it's the center), so the size was off whenever the children
+  weren't all at the same position (a container with a 10×10 sprite and a
+  health bar above it measured 15×17 instead of 10×13). Check the game logic
+  that uses a container's size (hit radiuses, range checks, health bars).
 - **Breaking**: `Preload` dispatches the `error` event for every file that
   fails (error statuses, invalid json, files that can't be decoded), with
   `{ id, event?, status?, error? }`. Any 2xx status, `304` and `0` (`file://`)
@@ -126,8 +178,8 @@ the **Breaking** entries when updating.
   or updated a tween twice, and a tween removed from its own `.call()` step was
   left half active.
 - `Container.removeChild()` with an element that isn't a child broke the link
-  to its real parent, and `calculateDimensions()` gave the wrong size (and
-  wasn't updated when children were removed).
+  to its real parent, and a container's size wasn't updated when children were
+  removed.
 - `startGameLoop()` started a second loop when the loop was already running,
   and a loop stopped with `stopGameLoop()` restarted when the page became
   visible again. Calling `activateMouseMoveEvents()` twice left an interval
@@ -243,6 +295,7 @@ pass of breaking API-consistency cleanups.
 - A suspended `AudioContext` is now resumed automatically when a sound starts,
   so audio becomes audible after the first user interaction.
 
+[4.1.0]: https://github.com/noobiept/game_engine/releases/tag/v4.1.0
 [4.0.0]: https://github.com/noobiept/game_engine/releases/tag/v4.0.0
 [3.0.2]: https://github.com/noobiept/game_engine/releases/tag/v3.0.2
 [3.0.1]: https://github.com/noobiept/game_engine/releases/tag/v3.0.1

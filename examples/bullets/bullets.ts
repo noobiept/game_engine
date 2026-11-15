@@ -98,7 +98,7 @@ class Unit extends Game.Rectangle {
         });
     }
 
-    logic(deltaTime: number) {
+    override logic(deltaTime: number) {
         this.movement.logic(deltaTime);
         this.weapon.logic(deltaTime);
     }

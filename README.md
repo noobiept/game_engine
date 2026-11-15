@@ -19,6 +19,7 @@ The full API reference is in [docs/README.md](docs/README.md), and runnable exam
 ## Contents
 
 - [Install](#install)
+- [Upgrading](#upgrading)
 - [Getting started](#getting-started)
 - [Loading assets](#loading-assets)
 - [Sprites and animation](#sprites-and-animation)
@@ -64,6 +65,20 @@ pnpm add @drk4/utilities
 ```ts
 import * as Utilities from "@drk4/utilities";
 ```
+
+When your game extends the engine's classes, enable [`noImplicitOverride`](https://www.typescriptlang.org/tsconfig/#noImplicitOverride) in your `tsconfig.json`. Overriding a method then requires the `override` keyword, so when a new version of the engine renames a method, the compiler reports your overrides of it (instead of keeping them as new methods that the engine never calls).
+
+```json
+{
+    "compilerOptions": {
+        "noImplicitOverride": true
+    }
+}
+```
+
+## Upgrading
+
+The changes in each version are in the [changelog](CHANGELOG.md). To update a game from v3 to v4, follow the [migration guide](MIGRATION.md).
 
 ## Getting started
 
@@ -236,6 +251,9 @@ bullet.destroy();
 // A paused menu is taken out, and added back later.
 Game.removeElement(menu);
 Game.addElement(menu);
+
+// Restarting a level: the layer stays (it sets the drawing order), its elements are thrown away.
+enemiesLayer.destroyAllChildren();
 ```
 
 Adding an element that is already in a container/canvas moves it to the new one.
@@ -270,6 +288,30 @@ Game.addToGameLoop(function (deltaTime) {
 
 // Every 2 seconds.
 Game.addToGameLoop(spawnEnemy, { delay: 2 });
+```
+
+For a timer that belongs to an element (an attack, health regeneration), use a `Game.Cooldown` in the element's `logic()`, so it pauses with the game. It keeps to the interval whatever the frame rate is, and doesn't build up time while it waits to be used:
+
+```ts
+class Tower extends Game.Rectangle {
+    attack = new Game.Cooldown(0.5); // Twice per second.
+
+    constructor(args: Game.RectangleArgs) {
+        super(args);
+        this._has_logic = true; // Call logic() on every update.
+    }
+
+    override logic(deltaTime: number) {
+        this.attack.update(deltaTime);
+
+        const target = findTarget(this);
+
+        if (target && this.attack.isReady()) {
+            this.attack.restart();
+            shoot(this, target);
+        }
+    }
+}
 ```
 
 By default the loop updates on every animation frame, which follows the display's refresh rate (60 times per second on most displays). To limit it, use `Game.setFps()`. The loop pauses while the page is hidden. To keep a long pause (a slow device, the debugger) from moving the elements a big distance at once, `deltaTime` is limited to `0.25` seconds (change it with `Game.setMaxDeltaTime()`). A loop stopped with `Game.stopGameLoop()` stays stopped until `Game.startGameLoop()` is called.

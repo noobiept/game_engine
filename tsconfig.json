@@ -4,6 +4,7 @@
         "module": "esnext",
         "moduleResolution": "bundler",
         "strict": true,
+        "noImplicitOverride": true,
         "rootDir": "source",
         "sourceMap": true,
         "declaration": true

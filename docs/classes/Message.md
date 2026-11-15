@@ -6,7 +6,7 @@
 
 # Class: Message
 
-Defined in: [message.ts:33](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/message.ts#L33)
+Defined in: [message.ts:33](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/message.ts#L33)
 
 Basic Usage:
 
@@ -38,7 +38,7 @@ Examples -- `message`, `minesweeper`
 
 > **new Message**(`args`): `Message`
 
-Defined in: [message.ts:39](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/message.ts#L39)
+Defined in: [message.ts:39](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/message.ts#L39)
 
 #### Parameters
 
@@ -60,7 +60,7 @@ Defined in: [message.ts:39](https://github.com/noobiept/game_engine/blob/43702b3
 
 > `protected` **\_children**: [`HtmlElement`](../Game-Engine/namespaces/Html/classes/HtmlElement.md)[]
 
-Defined in: [html.ts:163](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/html.ts#L163)
+Defined in: [html.ts:163](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/html.ts#L163)
 
 #### Inherited from
 
@@ -72,7 +72,7 @@ Defined in: [html.ts:163](https://github.com/noobiept/game_engine/blob/43702b390
 
 > `protected` **\_cleared**: `boolean`
 
-Defined in: [html.ts:41](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/html.ts#L41)
+Defined in: [html.ts:41](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/html.ts#L41)
 
 #### Inherited from
 
@@ -84,7 +84,7 @@ Defined in: [html.ts:41](https://github.com/noobiept/game_engine/blob/43702b3908
 
 > `protected` **\_is\_active**: `boolean`
 
-Defined in: [html.ts:39](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/html.ts#L39)
+Defined in: [html.ts:39](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/html.ts#L39)
 
 #### Inherited from
 
@@ -96,7 +96,7 @@ Defined in: [html.ts:39](https://github.com/noobiept/game_engine/blob/43702b3908
 
 > `protected` **\_pre\_text**: `HTMLElement` \| `null`
 
-Defined in: [html.ts:40](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/html.ts#L40)
+Defined in: [html.ts:40](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/html.ts#L40)
 
 #### Inherited from
 
@@ -108,7 +108,7 @@ Defined in: [html.ts:40](https://github.com/noobiept/game_engine/blob/43702b3908
 
 > `protected` **background**: `HTMLElement` \| `null`
 
-Defined in: [message.ts:36](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/message.ts#L36)
+Defined in: [message.ts:36](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/message.ts#L36)
 
 ---
 
@@ -116,7 +116,7 @@ Defined in: [message.ts:36](https://github.com/noobiept/game_engine/blob/43702b3
 
 > `protected` **body**: [`HtmlContainer`](../Game-Engine/namespaces/Html/classes/HtmlContainer.md)
 
-Defined in: [message.ts:34](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/message.ts#L34)
+Defined in: [message.ts:34](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/message.ts#L34)
 
 ---
 
@@ -124,7 +124,7 @@ Defined in: [message.ts:34](https://github.com/noobiept/game_engine/blob/43702b3
 
 > `protected` **buttons**: [`HtmlContainer`](../Game-Engine/namespaces/Html/classes/HtmlContainer.md) \| `null`
 
-Defined in: [message.ts:35](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/message.ts#L35)
+Defined in: [message.ts:35](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/message.ts#L35)
 
 ---
 
@@ -132,7 +132,7 @@ Defined in: [message.ts:35](https://github.com/noobiept/game_engine/blob/43702b3
 
 > **container**: `HTMLElement`
 
-Defined in: [html.ts:38](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/html.ts#L38)
+Defined in: [html.ts:38](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/html.ts#L38)
 
 #### Inherited from
 
@@ -144,7 +144,7 @@ Defined in: [html.ts:38](https://github.com/noobiept/game_engine/blob/43702b3908
 
 > `protected` **timeout**: `Timeout` \| `null`
 
-Defined in: [message.ts:37](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/message.ts#L37)
+Defined in: [message.ts:37](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/message.ts#L37)
 
 ## Methods
 
@@ -154,7 +154,7 @@ Defined in: [message.ts:37](https://github.com/noobiept/game_engine/blob/43702b3
 
 > **addChild**(`children`): `void`
 
-Defined in: [html.ts:185](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/html.ts#L185)
+Defined in: [html.ts:185](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/html.ts#L185)
 
 addChild( element );
 addChild( element1, element2 );
@@ -178,7 +178,7 @@ addChild( [ element1, element2 ] );
 
 > **addChild**(...`elements`): `void`
 
-Defined in: [html.ts:186](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/html.ts#L186)
+Defined in: [html.ts:186](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/html.ts#L186)
 
 addChild( element );
 addChild( element1, element2 );
@@ -204,7 +204,7 @@ addChild( [ element1, element2 ] );
 
 > **addEvents**(): `void`
 
-Defined in: [html.ts:123](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/html.ts#L123)
+Defined in: [html.ts:123](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/html.ts#L123)
 
 Activates the element's event handlers.
 
@@ -222,7 +222,7 @@ Activates the element's event handlers.
 
 > **clear**(): `void`
 
-Defined in: [message.ts:97](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/message.ts#L97)
+Defined in: [message.ts:97](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/message.ts#L97)
 
 Remove the message.
 
@@ -240,7 +240,7 @@ Remove the message.
 
 > **isActive**(): `boolean`
 
-Defined in: [html.ts:116](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/html.ts#L116)
+Defined in: [html.ts:116](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/html.ts#L116)
 
 Check if the element is active or not currently.
 
@@ -258,7 +258,7 @@ Check if the element is active or not currently.
 
 > **isCleared**(): `boolean`
 
-Defined in: [html.ts:150](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/html.ts#L150)
+Defined in: [html.ts:150](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/html.ts#L150)
 
 Tells if the element was cleared (with `clear()`).
 
@@ -276,7 +276,7 @@ Tells if the element was cleared (with `clear()`).
 
 > **removeAllChildren**(): `void`
 
-Defined in: [html.ts:232](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/html.ts#L232)
+Defined in: [html.ts:232](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/html.ts#L232)
 
 Remove all children of this container.
 
@@ -296,7 +296,7 @@ Remove all children of this container.
 
 > **removeChild**(`children`): `void`
 
-Defined in: [html.ts:210](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/html.ts#L210)
+Defined in: [html.ts:210](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/html.ts#L210)
 
 removeChild( element );
 removeChild( element1, element2 );
@@ -320,7 +320,7 @@ removeChild( [ element1, element2 ] );
 
 > **removeChild**(...`elements`): `void`
 
-Defined in: [html.ts:211](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/html.ts#L211)
+Defined in: [html.ts:211](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/html.ts#L211)
 
 removeChild( element );
 removeChild( element1, element2 );
@@ -346,7 +346,7 @@ removeChild( [ element1, element2 ] );
 
 > **removeEvents**(): `void`
 
-Defined in: [html.ts:130](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/html.ts#L130)
+Defined in: [html.ts:130](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/html.ts#L130)
 
 Deactivate the element's event handlers.
 
@@ -364,7 +364,7 @@ Deactivate the element's event handlers.
 
 > **setActive**(`yesNo`): `void`
 
-Defined in: [html.ts:94](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/html.ts#L94)
+Defined in: [html.ts:94](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/html.ts#L94)
 
 When the element is inactive, its events are disabled, and a `.Game-inactive` css class is applied.
 
@@ -390,7 +390,7 @@ Whether to set it active or not.
 
 > **setBody**(`body`): `void`
 
-Defined in: [message.ts:114](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/message.ts#L114)
+Defined in: [message.ts:114](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/message.ts#L114)
 
 #### Parameters
 

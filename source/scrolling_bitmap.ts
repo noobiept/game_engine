@@ -241,7 +241,7 @@ export class ScrollingBitmap extends Bitmap {
     /**
      * Scroll the image at the given interval.
      */
-    logic(deltaTime: number) {
+    override logic(deltaTime: number) {
         this._count += deltaTime;
 
         if (this._count >= this._interval) {
@@ -254,7 +254,7 @@ export class ScrollingBitmap extends Bitmap {
     /**
      * Get a copy of this object.
      */
-    clone() {
+    override clone() {
         const element = new ScrollingBitmap({
             x: this.x,
             y: this.y,

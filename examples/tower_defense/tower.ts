@@ -62,7 +62,12 @@ export class Tower extends Game.Rectangle {
         });
     }
 
-    logic(deltaTime: number) {
+    override logic(deltaTime: number) {
         this.weapon.logic(deltaTime);
+    }
+
+    override destroy() {
+        super.destroy();
+        this.weapon.destroy();
     }
 }

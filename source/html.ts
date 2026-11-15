@@ -245,7 +245,7 @@ export class HtmlContainer extends HtmlElement {
     /**
      * Removes the container, plus all of its children (can't use the container after this).
      */
-    clear() {
+    override clear() {
         this.removeAllChildren();
         super.clear();
     }
@@ -296,7 +296,7 @@ export class Value extends HtmlElement {
     /**
      * Clear the object (don't use it after this).
      */
-    clear() {
+    override clear() {
         this.element.remove();
         this.value = null;
 
@@ -338,7 +338,7 @@ export class Button extends Value {
     /**
      * Add the click event handler.
      */
-    addEvents() {
+    override addEvents() {
         if (this.click_ref) {
             this.container.addEventListener("click", this.click_ref);
         }
@@ -347,7 +347,7 @@ export class Button extends Value {
     /**
      * Remove the click event handler.
      */
-    removeEvents() {
+    override removeEvents() {
         if (this.click_ref) {
             this.container.removeEventListener("click", this.click_ref);
         }
@@ -356,7 +356,7 @@ export class Button extends Value {
     /**
      * Clear the object (don't use it after this).
      */
-    clear() {
+    override clear() {
         this.removeEvents();
         this.click_ref = null;
 
@@ -394,7 +394,7 @@ export class Boolean extends Button {
     /**
      * @param value New value of the button. When the value is `true`, the display text is 'On`, and when the value is `false`, the display text will be `Off`.
      */
-    setValue(value: boolean) {
+    override setValue(value: boolean) {
         if (value === this.value) {
             return;
         }
@@ -407,7 +407,7 @@ export class Boolean extends Button {
     /**
      * @return The current value that is set.
      */
-    getValue() {
+    override getValue() {
         return this.value;
     }
 }
@@ -450,7 +450,7 @@ export class TwoState extends Button {
         this.container.classList.add("Game-TwoState");
     }
 
-    getValue() {
+    override getValue() {
         return this.element.textContent;
     }
 }
@@ -542,7 +542,7 @@ export class MultipleOptions extends HtmlElement {
     /**
      * add the click event handler on the options.
      */
-    addEvents() {
+    override addEvents() {
         if (!this.click_ref) {
             return;
         }
@@ -555,7 +555,7 @@ export class MultipleOptions extends HtmlElement {
     /**
      * Remove the click event handlers from the options elements.
      */
-    removeEvents() {
+    override removeEvents() {
         if (!this.click_ref) {
             return;
         }
@@ -568,7 +568,7 @@ export class MultipleOptions extends HtmlElement {
     /**
      * Clear the object.
      */
-    clear() {
+    override clear() {
         this.removeEvents();
         this.click_ref = null;
         this.selected = null;
@@ -686,7 +686,7 @@ export class Range extends HtmlElement {
     /**
      * Add the relevant event handlers.
      */
-    addEvents() {
+    override addEvents() {
         if (this.input_ref && this.input) {
             this.input.addEventListener("input", this.input_ref);
         }
@@ -699,7 +699,7 @@ export class Range extends HtmlElement {
     /**
      * Remove the event handlers.
      */
-    removeEvents() {
+    override removeEvents() {
         if (this.input_ref && this.input) {
             this.input.removeEventListener("input", this.input_ref);
         }
@@ -712,7 +712,7 @@ export class Range extends HtmlElement {
     /**
      * Clear the object.
      */
-    clear() {
+    override clear() {
         this.removeEvents();
         this.change_ref = null;
         this.input_ref = null;
@@ -802,7 +802,7 @@ export class Text extends HtmlElement {
         return this.input?.value ?? null;
     }
 
-    addEvents() {
+    override addEvents() {
         if (this.key_ref && this.input) {
             this.input.addEventListener("keyup", this.key_ref);
         }
@@ -812,7 +812,7 @@ export class Text extends HtmlElement {
         }
     }
 
-    removeEvents() {
+    override removeEvents() {
         if (this.key_ref && this.input) {
             this.input.removeEventListener("keyup", this.key_ref);
         }
@@ -822,7 +822,7 @@ export class Text extends HtmlElement {
         }
     }
 
-    clear() {
+    override clear() {
         this.removeEvents();
         this.key_ref = null;
         if (this.input) {

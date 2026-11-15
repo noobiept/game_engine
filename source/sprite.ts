@@ -218,7 +218,7 @@ export class Sprite extends Bitmap {
      *
      * @param deltaTime Time elapsed since the last update.
      */
-    logic(deltaTime: number) {
+    override logic(deltaTime: number) {
         const animation = this._current_animation;
 
         if (animation === null) {
@@ -259,7 +259,7 @@ export class Sprite extends Bitmap {
     /**
      * @return A cloned sprite object.
      */
-    clone() {
+    override clone() {
         const element = new Sprite({
             x: this.x,
             y: this.y,

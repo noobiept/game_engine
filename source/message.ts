@@ -94,7 +94,7 @@ export class Message extends Html.HtmlContainer {
     /**
      * Remove the message.
      */
-    clear() {
+    override clear() {
         if (this.timeout) {
             this.timeout.clear();
             this.timeout = null;

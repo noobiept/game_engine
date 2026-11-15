@@ -80,7 +80,12 @@ export class Creep extends Game.Circle {
         }
     }
 
-    logic(deltaTime: number) {
+    override logic(deltaTime: number) {
         this.movement.logic(deltaTime);
+    }
+
+    override destroy() {
+        super.destroy();
+        this.movement.destroy();
     }
 }

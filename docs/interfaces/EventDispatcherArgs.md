@@ -6,7 +6,7 @@
 
 # Interface: EventDispatcherArgs
 
-Defined in: [event\_dispatcher.ts:3](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/event_dispatcher.ts#L3)
+Defined in: [event\_dispatcher.ts:3](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/event_dispatcher.ts#L3)
 
 ## Extended by
 
@@ -20,4 +20,4 @@ Defined in: [event\_dispatcher.ts:3](https://github.com/noobiept/game_engine/blo
 
 > `readonly` `optional` **\_eventDispatcherArgsBrand?**: `undefined`
 
-Defined in: [event\_dispatcher.ts:4](https://github.com/noobiept/game_engine/blob/43702b390861b14fb9476d9f8eb9c3355d1b2a7b/source/event_dispatcher.ts#L4)
+Defined in: [event\_dispatcher.ts:4](https://github.com/noobiept/game_engine/blob/4f5a7e30f6ff074036cf0b7be71db6467d0f4969/source/event_dispatcher.ts#L4)

@@ -1,6 +1,7 @@
 import { Bullet } from "./bullet";
 import { Canvas } from "./canvas";
 import { Container } from "./container";
+import { Cooldown } from "./cooldown";
 import { Element } from "./element";
 import { Rectangle } from "./rectangle";
 import * as Utilities from "@drk4/utilities";
@@ -8,7 +9,7 @@ import * as Utilities from "@drk4/utilities";
 export interface WeaponArgs {
     element: Element; // the associated element
     bulletContainer: Container | Canvas; // where to add the bullet objects
-    fireInterval?: number; // time between each shot
+    fireInterval?: number; // time between each shot (in seconds, default 0)
     damage?: number;
 
     // if these are not given, then the element's are used
@@ -51,13 +52,11 @@ export interface WeaponArgs {
 export class Weapon {
     element: Element | null; // element that owns the weapon (the bullets will be fired from its position, etc)
     damage: number;
-    fireInterval: number; // time between each bullet fire
 
     category: number;
     collidesWith: number;
 
-    protected _is_ready: boolean;
-    protected _fire_count: number;
+    protected _cooldown: Cooldown; // the time between each bullet fire
     protected _bullet_types: Bullet[]; // various bullet types that can be fired
     protected _bullet_intervals: {
         count: number;
@@ -74,9 +73,7 @@ export class Weapon {
         this.collidesWith = args.collidesWith ?? args.element.collidesWith;
         this.element = args.element;
         this.damage = args.damage ?? 1;
-        this.fireInterval = args.fireInterval ?? 0;
-        this._fire_count = 0;
-        this._is_ready = true;
+        this._cooldown = new Cooldown(args.fireInterval ?? 0);
 
         const defaultBulletShape = new Rectangle({
             width: 10,
@@ -92,6 +89,18 @@ export class Weapon {
         this._bullet_intervals = [];
         this._bullet_container = args.bulletContainer;
         this._bullets = [];
+    }
+
+    /**
+     * The time between each shot with `fire()` (in seconds). Changing it applies to the current interval (it uses the
+     * time since the last shot). Throws a `RangeError` for a value that isn't a number `>= 0`.
+     */
+    get fireInterval() {
+        return this._cooldown.interval;
+    }
+
+    set fireInterval(interval: number) {
+        this._cooldown.interval = interval;
     }
 
     /**
@@ -127,9 +136,9 @@ export class Weapon {
      * Respects the firing interval (can only fire a bullet once the weapon is ready (the interval has passed)).
      */
     fire(angleOrTarget?: number | Element, bulletId?: number) {
-        if (this._is_ready) {
-            // `_fire_count` keeps the time since the weapon got ready (in the last update), so the shots don't drift
-            this._is_ready = false;
+        if (this._cooldown.isReady()) {
+            // keeps the time past the interval (when it got ready in the last update), so the shots don't drift
+            this._cooldown.restart();
 
             if (typeof bulletId === "undefined") {
                 bulletId = 0;
@@ -253,24 +262,7 @@ export class Weapon {
      * Deals with the fire interval logic, and with the set intervals logic.
      */
     logic(deltaTime: number) {
-        if (!this._is_ready) {
-            this._fire_count += deltaTime;
-
-            // ready to fire again, keep the time past the interval (less than an interval, so it doesn't try to catch up)
-            if (this._fire_count >= this.fireInterval) {
-                this._is_ready = true;
-                this._fire_count =
-                    this.fireInterval > 0
-                        ? (this._fire_count - this.fireInterval) %
-                          this.fireInterval
-                        : 0;
-            }
-        }
-
-        // ready, but wasn't fired, so there's no time to keep
-        else {
-            this._fire_count = 0;
-        }
+        this._cooldown.update(deltaTime);
 
         // deal with the bullets that may be set to fire at a set interval
         const intervals = this._bullet_intervals;
@@ -314,8 +306,11 @@ export class Weapon {
         }
     }
 
+    /**
+     * If the fire interval has passed since the last shot (`fire()` can fire).
+     */
     isReady() {
-        return this._is_ready;
+        return this._cooldown.isReady();
     }
 
     clone() {

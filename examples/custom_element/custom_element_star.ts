@@ -29,7 +29,7 @@ export class Star extends Game.Circle {
         this.spikes = args.spikes;
     }
 
-    drawElement(ctx: CanvasRenderingContext2D) {
+    override drawElement(ctx: CanvasRenderingContext2D) {
         ctx.save();
         ctx.globalAlpha *= this.opacity;
         ctx.translate(this.x, this.y);
@@ -70,7 +70,7 @@ export class Star extends Game.Circle {
         ctx.restore();
     }
 
-    clone() {
+    override clone() {
         return new Star({
             fillColor: this.fill_color,
             strokeColor: this.stroke_color,

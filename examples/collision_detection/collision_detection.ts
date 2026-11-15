@@ -100,7 +100,7 @@ class One extends Game.Rectangle {
         Game.addElement(this);
     }
 
-    logic(deltaTime: number) {
+    override logic(deltaTime: number) {
         this.movement.logic(deltaTime);
         this.weapon.logic(deltaTime);
     }
@@ -130,7 +130,7 @@ class Two extends Game.Rectangle {
         Game.addElement(this);
     }
 
-    logic(deltaTime: number) {
+    override logic(deltaTime: number) {
         this.movement.logic(deltaTime);
     }
 }
