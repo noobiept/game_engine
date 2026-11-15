@@ -8,9 +8,12 @@
 
 > **init**(`args`): `void`
 
-Defined in: [source/game.ts:73](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/game.ts#L73)
+Defined in: [game.ts:82](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/game.ts#L82)
 
 Initialize the canvas/game loop/etc.
+
+Calling it again replaces the previous game: its canvas are taken out of the page (and their elements are detached),
+and a new canvas/collision detection is set up. The game loop callbacks and the tweens are kept.
 
 ## Parameters
 

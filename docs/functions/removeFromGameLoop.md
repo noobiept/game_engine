@@ -8,9 +8,9 @@
 
 > **removeFromGameLoop**(`callback`): `boolean`
 
-Defined in: [source/game.ts:283](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/game.ts#L283)
+Defined in: [game.ts:435](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/game.ts#L435)
 
-Remove a callback from the game loop.
+Remove a callback from the game loop (every time it was added).
 
 ## Parameters
 

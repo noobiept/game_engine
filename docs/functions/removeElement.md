@@ -8,9 +8,11 @@
 
 > **removeElement**(`element`): `boolean`
 
-Defined in: [source/game.ts:222](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/game.ts#L222)
+Defined in: [game.ts:348](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/game.ts#L348)
 
-For when you don't know in what canvas the element is in. It will try in all the canvas.
+Detach elements from wherever they are (their canvas or container), right away. They're no longer drawn, updated or
+considered in the collision detection, but they aren't destroyed, so they can be added again later.
+To destroy an element, call its `destroy()` method instead.
 
 ## Parameters
 
@@ -18,10 +20,10 @@ For when you don't know in what canvas the element is in. It will try in all the
 
 [`Element`](../classes/Element.md) \| [`Element`](../classes/Element.md)[]
 
-Element or Element[] to be removed.
+Element or Element[] to be detached.
 
 ## Returns
 
 `boolean`
 
-If the element was removed.
+If any of the elements was in a canvas/container (and was detached).

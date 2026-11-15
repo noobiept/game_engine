@@ -14,7 +14,6 @@
 - [ScrollingBitmapArgs](Game-Engine/namespaces/ScrollingBitmapArgs/README.md)
 - [Sound](Game-Engine/namespaces/Sound/README.md)
 - [Tween](Game-Engine/namespaces/Tween/README.md)
-- [Utilities](Game-Engine/namespaces/Utilities/README.md)
 - [Vector](Game-Engine/namespaces/Vector/README.md)
 
 ## Enumerations
@@ -61,6 +60,7 @@
 - [MessageArgs](interfaces/MessageArgs.md)
 - [MovementArgs](interfaces/MovementArgs.md)
 - [PreloadArgs](interfaces/PreloadArgs.md)
+- [PreloadErrorData](interfaces/PreloadErrorData.md)
 - [RectangleArgs](interfaces/RectangleArgs.md)
 - [ScrollingBitmapArgs](interfaces/ScrollingBitmapArgs.md)
 - [SpatialPartitionArgs](interfaces/SpatialPartitionArgs.md)
@@ -76,7 +76,7 @@
 
 ## Functions
 
-- [\_safeRemove](functions/safeRemove.md)
+- [\_safeDestroy](functions/safeDestroy.md)
 - [activateMouseMoveEvents](functions/activateMouseMoveEvents.md)
 - [addCanvas](functions/addCanvas.md)
 - [addElement](functions/addElement.md)
@@ -86,9 +86,11 @@
 - [getCanvasContainer](functions/getCanvasContainer.md)
 - [getMousePosition](functions/getMousePosition.md)
 - [init](functions/init.md)
+- [isGameLoopRunning](functions/isGameLoopRunning.md)
 - [removeAllCallbacks](functions/removeAllCallbacks.md)
 - [removeElement](functions/removeElement.md)
 - [removeFromGameLoop](functions/removeFromGameLoop.md)
 - [setFps](functions/setFps.md)
+- [setMaxDeltaTime](functions/setMaxDeltaTime.md)
 - [startGameLoop](functions/startGameLoop.md)
 - [stopGameLoop](functions/stopGameLoop.md)

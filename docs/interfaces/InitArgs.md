@@ -6,7 +6,7 @@
 
 # Interface: InitArgs
 
-Defined in: [source/game.ts:61](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/game.ts#L61)
+Defined in: [game.ts:67](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/game.ts#L67)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [source/game.ts:61](https://github.com/noobiept/game_engine/blob/664
 
 > `optional` **collision?**: [`CollisionDetectionAlgorithm`](../Game-Engine/namespaces/CollisionDetection/interfaces/CollisionDetectionAlgorithm.md)
 
-Defined in: [source/game.ts:65](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/game.ts#L65)
+Defined in: [game.ts:71](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/game.ts#L71)
 
 ---
 
@@ -22,7 +22,7 @@ Defined in: [source/game.ts:65](https://github.com/noobiept/game_engine/blob/664
 
 > **container**: `HTMLElement`
 
-Defined in: [source/game.ts:62](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/game.ts#L62)
+Defined in: [game.ts:68](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/game.ts#L68)
 
 ---
 
@@ -30,7 +30,7 @@ Defined in: [source/game.ts:62](https://github.com/noobiept/game_engine/blob/664
 
 > **height**: `number`
 
-Defined in: [source/game.ts:64](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/game.ts#L64)
+Defined in: [game.ts:70](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/game.ts#L70)
 
 ---
 
@@ -38,4 +38,4 @@ Defined in: [source/game.ts:64](https://github.com/noobiept/game_engine/blob/664
 
 > **width**: `number`
 
-Defined in: [source/game.ts:63](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/game.ts#L63)
+Defined in: [game.ts:69](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/game.ts#L69)

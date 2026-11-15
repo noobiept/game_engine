@@ -8,7 +8,7 @@
 
 > **breadthFirstSearch**(`map`, `destination`, `positionType`): (`Position` \| `null`)[][]
 
-Defined in: [source/path_finding.ts:41](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/path_finding.ts#L41)
+Defined in: [path\_finding.ts:43](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/path_finding.ts#L43)
 
 Calculate the path that an element needs to take to reach the destination, from any valid position.
 
@@ -54,7 +54,7 @@ A 2d array, where each value tells if that position is passable/blocked. Its ass
 
 `Position`
 
-The destination position.
+The destination position. Throws a `RangeError` if it's outside the map.
 
 ### positionType
 
@@ -71,3 +71,6 @@ What value in the `map` represents a passable position and what value represents
 ## Returns
 
 (`Position` \| `null`)[][]
+
+The next position to take from each position (`null` for the positions that can't reach the destination).
+When the destination itself isn't passable, every position is `null`.

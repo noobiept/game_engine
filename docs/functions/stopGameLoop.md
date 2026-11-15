@@ -8,9 +8,10 @@
 
 > **stopGameLoop**(): `void`
 
-Defined in: [source/game.ts:118](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/game.ts#L118)
+Defined in: [game.ts:152](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/game.ts#L152)
 
 Stops the game loop (that means there's no redrawn of the canvas, callbacks in the game loop being called, tween loop, etc).
+The loop stays stopped until `startGameLoop()` is called (it isn't restarted when the page becomes visible again).
 
 ## Returns
 

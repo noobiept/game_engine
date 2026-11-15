@@ -6,9 +6,9 @@
 
 # Function: get()
 
-> **get**(`key`): `number`[]
+> **get**(`key`): `number`[] \| `undefined`
 
-Defined in: [source/highscore.ts:91](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/highscore.ts#L91)
+Defined in: [highscore.ts:115](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/highscore.ts#L115)
 
 ## Parameters
 
@@ -20,6 +20,6 @@ The score key.
 
 ## Returns
 
-`number`[]
+`number`[] \| `undefined`
 
 An array with all the scores associated with the provided key.

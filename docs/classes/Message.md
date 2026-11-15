@@ -6,7 +6,7 @@
 
 # Class: Message
 
-Defined in: [source/message.ts:33](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/message.ts#L33)
+Defined in: [message.ts:33](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/message.ts#L33)
 
 Basic Usage:
 
@@ -38,7 +38,7 @@ Examples -- `message`, `minesweeper`
 
 > **new Message**(`args`): `Message`
 
-Defined in: [source/message.ts:39](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/message.ts#L39)
+Defined in: [message.ts:39](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/message.ts#L39)
 
 #### Parameters
 
@@ -60,7 +60,7 @@ Defined in: [source/message.ts:39](https://github.com/noobiept/game_engine/blob/
 
 > `protected` **\_children**: [`HtmlElement`](../Game-Engine/namespaces/Html/classes/HtmlElement.md)[]
 
-Defined in: [source/html.ts:161](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/html.ts#L161)
+Defined in: [html.ts:163](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/html.ts#L163)
 
 #### Inherited from
 
@@ -68,11 +68,23 @@ Defined in: [source/html.ts:161](https://github.com/noobiept/game_engine/blob/66
 
 ---
 
-### \_is_active
+### \_cleared
 
-> `protected` **\_is_active**: `boolean`
+> `protected` **\_cleared**: `boolean`
 
-Defined in: [source/html.ts:39](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/html.ts#L39)
+Defined in: [html.ts:41](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/html.ts#L41)
+
+#### Inherited from
+
+[`HtmlContainer`](../Game-Engine/namespaces/Html/classes/HtmlContainer.md).[`_cleared`](../Game-Engine/namespaces/Html/classes/HtmlContainer.md#_cleared)
+
+---
+
+### \_is\_active
+
+> `protected` **\_is\_active**: `boolean`
+
+Defined in: [html.ts:39](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/html.ts#L39)
 
 #### Inherited from
 
@@ -80,11 +92,11 @@ Defined in: [source/html.ts:39](https://github.com/noobiept/game_engine/blob/664
 
 ---
 
-### \_pre_text
+### \_pre\_text
 
-> `protected` **\_pre_text**: `HTMLElement` \| `null`
+> `protected` **\_pre\_text**: `HTMLElement` \| `null`
 
-Defined in: [source/html.ts:40](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/html.ts#L40)
+Defined in: [html.ts:40](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/html.ts#L40)
 
 #### Inherited from
 
@@ -96,7 +108,7 @@ Defined in: [source/html.ts:40](https://github.com/noobiept/game_engine/blob/664
 
 > `protected` **background**: `HTMLElement` \| `null`
 
-Defined in: [source/message.ts:36](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/message.ts#L36)
+Defined in: [message.ts:36](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/message.ts#L36)
 
 ---
 
@@ -104,7 +116,7 @@ Defined in: [source/message.ts:36](https://github.com/noobiept/game_engine/blob/
 
 > `protected` **body**: [`HtmlContainer`](../Game-Engine/namespaces/Html/classes/HtmlContainer.md)
 
-Defined in: [source/message.ts:34](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/message.ts#L34)
+Defined in: [message.ts:34](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/message.ts#L34)
 
 ---
 
@@ -112,15 +124,15 @@ Defined in: [source/message.ts:34](https://github.com/noobiept/game_engine/blob/
 
 > `protected` **buttons**: [`HtmlContainer`](../Game-Engine/namespaces/Html/classes/HtmlContainer.md) \| `null`
 
-Defined in: [source/message.ts:35](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/message.ts#L35)
+Defined in: [message.ts:35](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/message.ts#L35)
 
 ---
 
 ### container
 
-> **container**: `HTMLElement` \| `null`
+> **container**: `HTMLElement`
 
-Defined in: [source/html.ts:38](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/html.ts#L38)
+Defined in: [html.ts:38](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/html.ts#L38)
 
 #### Inherited from
 
@@ -130,9 +142,9 @@ Defined in: [source/html.ts:38](https://github.com/noobiept/game_engine/blob/664
 
 ### timeout
 
-> `protected` **timeout**: [`Timeout`](../Game-Engine/namespaces/Utilities/classes/Timeout.md) \| `null`
+> `protected` **timeout**: `Timeout` \| `null`
 
-Defined in: [source/message.ts:37](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/message.ts#L37)
+Defined in: [message.ts:37](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/message.ts#L37)
 
 ## Methods
 
@@ -142,7 +154,7 @@ Defined in: [source/message.ts:37](https://github.com/noobiept/game_engine/blob/
 
 > **addChild**(`children`): `void`
 
-Defined in: [source/html.ts:183](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/html.ts#L183)
+Defined in: [html.ts:185](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/html.ts#L185)
 
 addChild( element );
 addChild( element1, element2 );
@@ -166,7 +178,7 @@ addChild( [ element1, element2 ] );
 
 > **addChild**(...`elements`): `void`
 
-Defined in: [source/html.ts:184](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/html.ts#L184)
+Defined in: [html.ts:186](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/html.ts#L186)
 
 addChild( element );
 addChild( element1, element2 );
@@ -192,7 +204,7 @@ addChild( [ element1, element2 ] );
 
 > **addEvents**(): `void`
 
-Defined in: [source/html.ts:122](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/html.ts#L122)
+Defined in: [html.ts:123](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/html.ts#L123)
 
 Activates the element's event handlers.
 
@@ -210,7 +222,7 @@ Activates the element's event handlers.
 
 > **clear**(): `void`
 
-Defined in: [source/message.ts:99](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/message.ts#L99)
+Defined in: [message.ts:97](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/message.ts#L97)
 
 Remove the message.
 
@@ -228,7 +240,7 @@ Remove the message.
 
 > **isActive**(): `boolean`
 
-Defined in: [source/html.ts:115](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/html.ts#L115)
+Defined in: [html.ts:116](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/html.ts#L116)
 
 Check if the element is active or not currently.
 
@@ -242,11 +254,29 @@ Check if the element is active or not currently.
 
 ---
 
+### isCleared()
+
+> **isCleared**(): `boolean`
+
+Defined in: [html.ts:150](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/html.ts#L150)
+
+Tells if the element was cleared (with `clear()`).
+
+#### Returns
+
+`boolean`
+
+#### Inherited from
+
+[`HtmlContainer`](../Game-Engine/namespaces/Html/classes/HtmlContainer.md).[`isCleared`](../Game-Engine/namespaces/Html/classes/HtmlContainer.md#iscleared)
+
+---
+
 ### removeAllChildren()
 
 > **removeAllChildren**(): `void`
 
-Defined in: [source/html.ts:229](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/html.ts#L229)
+Defined in: [html.ts:232](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/html.ts#L232)
 
 Remove all children of this container.
 
@@ -266,7 +296,7 @@ Remove all children of this container.
 
 > **removeChild**(`children`): `void`
 
-Defined in: [source/html.ts:207](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/html.ts#L207)
+Defined in: [html.ts:210](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/html.ts#L210)
 
 removeChild( element );
 removeChild( element1, element2 );
@@ -290,7 +320,7 @@ removeChild( [ element1, element2 ] );
 
 > **removeChild**(...`elements`): `void`
 
-Defined in: [source/html.ts:208](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/html.ts#L208)
+Defined in: [html.ts:211](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/html.ts#L211)
 
 removeChild( element );
 removeChild( element1, element2 );
@@ -316,7 +346,7 @@ removeChild( [ element1, element2 ] );
 
 > **removeEvents**(): `void`
 
-Defined in: [source/html.ts:129](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/html.ts#L129)
+Defined in: [html.ts:130](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/html.ts#L130)
 
 Deactivate the element's event handlers.
 
@@ -334,7 +364,7 @@ Deactivate the element's event handlers.
 
 > **setActive**(`yesNo`): `void`
 
-Defined in: [source/html.ts:89](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/html.ts#L89)
+Defined in: [html.ts:94](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/html.ts#L94)
 
 When the element is inactive, its events are disabled, and a `.Game-inactive` css class is applied.
 
@@ -360,7 +390,7 @@ Whether to set it active or not.
 
 > **setBody**(`body`): `void`
 
-Defined in: [source/message.ts:116](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/message.ts#L116)
+Defined in: [message.ts:114](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/message.ts#L114)
 
 #### Parameters
 

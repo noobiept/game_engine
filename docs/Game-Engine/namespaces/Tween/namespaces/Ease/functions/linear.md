@@ -8,7 +8,7 @@
 
 > **linear**(`value`): `number`
 
-Defined in: [source/tween.ts:306](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/tween.ts#L306)
+Defined in: [tween.ts:345](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/tween.ts#L345)
 
 ## Parameters
 

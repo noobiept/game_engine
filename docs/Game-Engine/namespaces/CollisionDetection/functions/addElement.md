@@ -8,9 +8,11 @@
 
 > **addElement**(`element`): `void`
 
-Defined in: [source/collision-detection/collision_detection.ts:39](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/collision-detection/collision_detection.ts#L39)
+Defined in: [collision-detection/collision\_detection.ts:41](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/collision-detection/collision_detection.ts#L41)
 
 Elements added will be considered in the collision detection tests.
+This is done automatically when an element is added to a canvas (directly or through containers).
+Throws if the collision detection wasn't initialized (with `Game.init()`).
 
 ## Parameters
 

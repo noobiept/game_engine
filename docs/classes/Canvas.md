@@ -6,7 +6,7 @@
 
 # Class: Canvas
 
-Defined in: [source/canvas.ts:35](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/canvas.ts#L35)
+Defined in: [canvas.ts:35](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/canvas.ts#L35)
 
 When you call `Game.init()`, a canvas is already added, which you can use to add elements. If you need more than one canvas, then you can create a new canvas object and add to the game.
 
@@ -31,7 +31,7 @@ Examples -- `multiple_canvas`
 
 > **new Canvas**(`args`): `Canvas`
 
-Defined in: [source/canvas.ts:47](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/canvas.ts#L47)
+Defined in: [canvas.ts:47](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/canvas.ts#L47)
 
 #### Parameters
 
@@ -49,7 +49,7 @@ Defined in: [source/canvas.ts:47](https://github.com/noobiept/game_engine/blob/6
 
 > **\_canvas**: `HTMLCanvasElement`
 
-Defined in: [source/canvas.ts:36](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/canvas.ts#L36)
+Defined in: [canvas.ts:36](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/canvas.ts#L36)
 
 ---
 
@@ -57,7 +57,7 @@ Defined in: [source/canvas.ts:36](https://github.com/noobiept/game_engine/blob/6
 
 > `protected` **\_children**: [`Element`](Element.md)[]
 
-Defined in: [source/canvas.ts:42](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/canvas.ts#L42)
+Defined in: [canvas.ts:42](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/canvas.ts#L42)
 
 ---
 
@@ -65,7 +65,7 @@ Defined in: [source/canvas.ts:42](https://github.com/noobiept/game_engine/blob/6
 
 > `protected` **\_ctx**: `CanvasRenderingContext2D`
 
-Defined in: [source/canvas.ts:37](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/canvas.ts#L37)
+Defined in: [canvas.ts:37](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/canvas.ts#L37)
 
 ---
 
@@ -73,7 +73,7 @@ Defined in: [source/canvas.ts:37](https://github.com/noobiept/game_engine/blob/6
 
 > `protected` **\_height**: `number`
 
-Defined in: [source/canvas.ts:40](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/canvas.ts#L40)
+Defined in: [canvas.ts:40](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/canvas.ts#L40)
 
 ---
 
@@ -81,7 +81,7 @@ Defined in: [source/canvas.ts:40](https://github.com/noobiept/game_engine/blob/6
 
 > `protected` **\_width**: `number`
 
-Defined in: [source/canvas.ts:39](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/canvas.ts#L39)
+Defined in: [canvas.ts:39](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/canvas.ts#L39)
 
 ---
 
@@ -89,7 +89,7 @@ Defined in: [source/canvas.ts:39](https://github.com/noobiept/game_engine/blob/6
 
 > **eventsEnabled**: `boolean`
 
-Defined in: [source/canvas.ts:44](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/canvas.ts#L44)
+Defined in: [canvas.ts:44](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/canvas.ts#L44)
 
 ---
 
@@ -97,7 +97,7 @@ Defined in: [source/canvas.ts:44](https://github.com/noobiept/game_engine/blob/6
 
 > **updateOnLoop**: `boolean`
 
-Defined in: [source/canvas.ts:45](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/canvas.ts#L45)
+Defined in: [canvas.ts:45](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/canvas.ts#L45)
 
 ## Accessors
 
@@ -107,7 +107,7 @@ Defined in: [source/canvas.ts:45](https://github.com/noobiept/game_engine/blob/6
 
 > **get** **height**(): `number`
 
-Defined in: [source/canvas.ts:292](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/canvas.ts#L292)
+Defined in: [canvas.ts:316](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/canvas.ts#L316)
 
 The canvas height.
 
@@ -123,7 +123,7 @@ The canvas height.
 
 > **get** **width**(): `number`
 
-Defined in: [source/canvas.ts:285](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/canvas.ts#L285)
+Defined in: [canvas.ts:309](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/canvas.ts#L309)
 
 The canvas width.
 
@@ -139,11 +139,16 @@ The canvas width.
 
 > **addChild**(`children`): `void`
 
-Defined in: [source/canvas.ts:74](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/canvas.ts#L74)
+Defined in: [canvas.ts:79](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/canvas.ts#L79)
 
-addChild( element );
-addChild( element1, element2 );
-addChild( [ element1, element2 ] );
+Add elements to this canvas (drawn on top of the current elements).
+An element that is already in a container/canvas is taken out of it first (adding a current child moves it to the front).
+
+    addChild( element );
+    addChild( element1, element2 );
+    addChild( [ element1, element2 ] );
+
+Throws if an element was destroyed (with `destroy()`).
 
 ##### Parameters
 
@@ -159,11 +164,16 @@ addChild( [ element1, element2 ] );
 
 > **addChild**(...`elements`): `void`
 
-Defined in: [source/canvas.ts:75](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/canvas.ts#L75)
+Defined in: [canvas.ts:80](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/canvas.ts#L80)
 
-addChild( element );
-addChild( element1, element2 );
-addChild( [ element1, element2 ] );
+Add elements to this canvas (drawn on top of the current elements).
+An element that is already in a container/canvas is taken out of it first (adding a current child moves it to the front).
+
+    addChild( element );
+    addChild( element1, element2 );
+    addChild( [ element1, element2 ] );
+
+Throws if an element was destroyed (with `destroy()`).
 
 ##### Parameters
 
@@ -181,7 +191,7 @@ addChild( [ element1, element2 ] );
 
 > **bringToFront**(`element`): `void`
 
-Defined in: [source/canvas.ts:118](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/canvas.ts#L118)
+Defined in: [canvas.ts:131](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/canvas.ts#L131)
 
 Move an element to the front (drawn on top of the other elements).
 
@@ -201,7 +211,7 @@ Move an element to the front (drawn on top of the other elements).
 
 > **draw**(): `void`
 
-Defined in: [source/canvas.ts:209](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/canvas.ts#L209)
+Defined in: [canvas.ts:230](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/canvas.ts#L230)
 
 Draw all the elements added to the canvas.
 
@@ -215,7 +225,7 @@ Draw all the elements added to the canvas.
 
 > **getAllChildren**(): [`Element`](Element.md)[]
 
-Defined in: [source/canvas.ts:313](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/canvas.ts#L313)
+Defined in: [canvas.ts:337](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/canvas.ts#L337)
 
 #### Returns
 
@@ -229,7 +239,7 @@ The elements added to this canvas.
 
 > **getCanvasContext**(): `CanvasRenderingContext2D`
 
-Defined in: [source/canvas.ts:306](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/canvas.ts#L306)
+Defined in: [canvas.ts:330](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/canvas.ts#L330)
 
 #### Returns
 
@@ -243,7 +253,7 @@ The 2d canvas rendering context object.
 
 > **getChildrenIn**(`x`, `y`): [`Element`](Element.md)[]
 
-Defined in: [source/canvas.ts:167](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/canvas.ts#L167)
+Defined in: [canvas.ts:180](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/canvas.ts#L180)
 
 Get all the child elements that are in a given x/y position.
 
@@ -267,7 +277,7 @@ Get all the child elements that are in a given x/y position.
 
 > **getHtmlCanvasElement**(): `HTMLCanvasElement`
 
-Defined in: [source/canvas.ts:299](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/canvas.ts#L299)
+Defined in: [canvas.ts:323](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/canvas.ts#L323)
 
 #### Returns
 
@@ -281,7 +291,7 @@ The canvas html element.
 
 > **getRandomPosition**(): `object`
 
-Defined in: [source/canvas.ts:262](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/canvas.ts#L262)
+Defined in: [canvas.ts:286](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/canvas.ts#L286)
 
 Get a random x/y position that is within the canvas.
 
@@ -305,7 +315,7 @@ The random x/y position.
 
 > **isInCanvas**(`x`, `y`): `boolean`
 
-Defined in: [source/canvas.ts:274](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/canvas.ts#L274)
+Defined in: [canvas.ts:298](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/canvas.ts#L298)
 
 #### Parameters
 
@@ -333,7 +343,7 @@ If this position is located inside the canvas or not.
 
 > **logic**(`deltaTime`): `void`
 
-Defined in: [source/canvas.ts:196](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/canvas.ts#L196)
+Defined in: [canvas.ts:209](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/canvas.ts#L209)
 
 Call the logic of the elements added to this canvas (normally on the game loop).
 
@@ -355,7 +365,7 @@ Time elapsed since the last update.
 
 > **mouseClickEvents**(`event`): `void`
 
-Defined in: [source/canvas.ts:228](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/canvas.ts#L228)
+Defined in: [canvas.ts:249](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/canvas.ts#L249)
 
 Receives a mouse event. Move it along to this canvas elements, to see if there's an element that has listeners to it.
 
@@ -379,11 +389,15 @@ The mouse event triggered.
 
 > **removeChild**(`children`): `boolean`
 
-Defined in: [source/canvas.ts:93](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/canvas.ts#L93)
+Defined in: [canvas.ts:106](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/canvas.ts#L106)
 
-removeChild( element );
-removeChild( element1, element2 );
-removeChild( [ element1, element2 ] );
+Detach elements from this canvas, right away. They're no longer drawn, updated or considered in the collision
+detection, but they aren't destroyed, so they can be added again later. Elements that aren't directly in this
+canvas are ignored. To destroy an element, call its `destroy()` method instead.
+
+    removeChild( element );
+    removeChild( element1, element2 );
+    removeChild( [ element1, element2 ] );
 
 ##### Parameters
 
@@ -395,15 +409,21 @@ removeChild( [ element1, element2 ] );
 
 `boolean`
 
+If any of the elements was in this canvas (and was detached).
+
 #### Call Signature
 
 > **removeChild**(...`elements`): `boolean`
 
-Defined in: [source/canvas.ts:94](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/canvas.ts#L94)
+Defined in: [canvas.ts:107](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/canvas.ts#L107)
 
-removeChild( element );
-removeChild( element1, element2 );
-removeChild( [ element1, element2 ] );
+Detach elements from this canvas, right away. They're no longer drawn, updated or considered in the collision
+detection, but they aren't destroyed, so they can be added again later. Elements that aren't directly in this
+canvas are ignored. To destroy an element, call its `destroy()` method instead.
+
+    removeChild( element );
+    removeChild( element1, element2 );
+    removeChild( [ element1, element2 ] );
 
 ##### Parameters
 
@@ -415,13 +435,15 @@ removeChild( [ element1, element2 ] );
 
 `boolean`
 
+If any of the elements was in this canvas (and was detached).
+
 ---
 
 ### sendToBack()
 
 > **sendToBack**(`element`): `void`
 
-Defined in: [source/canvas.ts:132](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/canvas.ts#L132)
+Defined in: [canvas.ts:145](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/canvas.ts#L145)
 
 Move an element to the back (drawn behind the other elements).
 
@@ -441,7 +463,7 @@ Move an element to the back (drawn behind the other elements).
 
 > **setChildIndex**(`element`, `index`): `void`
 
-Defined in: [source/canvas.ts:146](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/canvas.ts#L146)
+Defined in: [canvas.ts:159](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/canvas.ts#L159)
 
 Move an element to a specific draw position (0 is the back, higher values are more to the front).
 
@@ -465,7 +487,7 @@ Move an element to a specific draw position (0 is the back, higher values are mo
 
 > **updateDimensions**(`width`, `height`): `void`
 
-Defined in: [source/canvas.ts:252](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/canvas.ts#L252)
+Defined in: [canvas.ts:276](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/canvas.ts#L276)
 
 Change the canvas dimensions (width/height).
 
@@ -493,7 +515,7 @@ The new Height.
 
 > **updateVertices**(): `void`
 
-Defined in: [source/canvas.ts:185](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/canvas.ts#L185)
+Defined in: [canvas.ts:198](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/canvas.ts#L198)
 
 Update the vertices of all the children elements. Useful for collision detection for example.
 

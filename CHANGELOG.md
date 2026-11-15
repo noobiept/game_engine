@@ -7,10 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Releases before `3.0.0` are not tracked here.
 
-## [Unreleased]
+## [4.0.0] - 2026-11-15
 
-A pass of bug fixes. Some change how existing games behave, so check the
-**Breaking** entries when updating.
+A major release with a pass of bug fixes and a few API changes for clarity:
+`remove()` is now `destroy()`, `removeChild()` detaches an element (so it can
+be added again), and `@drk4/utilities` is imported directly instead of through
+`Game.Utilities`. Many of the fixes change how existing games behave, so check
+the **Breaking** entries when updating.
 
 ### Changed
 
@@ -228,7 +231,7 @@ pass of breaking API-consistency cleanups.
 - A suspended `AudioContext` is now resumed automatically when a sound starts,
   so audio becomes audible after the first user interaction.
 
-[Unreleased]: https://github.com/noobiept/game_engine/compare/v3.0.2...HEAD
+[4.0.0]: https://github.com/noobiept/game_engine/releases/tag/v4.0.0
 [3.0.2]: https://github.com/noobiept/game_engine/releases/tag/v3.0.2
 [3.0.1]: https://github.com/noobiept/game_engine/releases/tag/v3.0.1
 [3.0.0]: https://github.com/noobiept/game_engine/releases/tag/v3.0.0

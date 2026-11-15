@@ -8,11 +8,13 @@
 
 > **addToGameLoop**(`callback`, `options?`): `boolean`
 
-Defined in: [source/game.ts:255](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/game.ts#L255)
+Defined in: [game.ts:407](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/game.ts#L407)
 
 Adds a callback function to be called at a certain timeout/interval (or every tick) in the game loop (before the draw phase).
 
 Sometimes its useful to add a function call through this, for example when you have code that may remove elements, but its called from an event handler (which may try to process the elements that you removed).
+
+A callback is called at most once per update. When the `delay` is shorter than the time between updates, it's called on every update.
 
 ## Parameters
 

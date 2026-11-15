@@ -6,7 +6,7 @@
 
 # Enumeration: TweenAction
 
-Defined in: [source/tween.ts:1](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/tween.ts#L1)
+Defined in: [tween.ts:1](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/tween.ts#L1)
 
 ## Enumeration Members
 
@@ -14,7 +14,7 @@ Defined in: [source/tween.ts:1](https://github.com/noobiept/game_engine/blob/664
 
 > **call**: `2`
 
-Defined in: [source/tween.ts:4](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/tween.ts#L4)
+Defined in: [tween.ts:4](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/tween.ts#L4)
 
 ---
 
@@ -22,7 +22,7 @@ Defined in: [source/tween.ts:4](https://github.com/noobiept/game_engine/blob/664
 
 > **properties**: `0`
 
-Defined in: [source/tween.ts:2](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/tween.ts#L2)
+Defined in: [tween.ts:2](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/tween.ts#L2)
 
 ---
 
@@ -30,4 +30,4 @@ Defined in: [source/tween.ts:2](https://github.com/noobiept/game_engine/blob/664
 
 > **wait**: `1`
 
-Defined in: [source/tween.ts:3](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/tween.ts#L3)
+Defined in: [tween.ts:3](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/tween.ts#L3)

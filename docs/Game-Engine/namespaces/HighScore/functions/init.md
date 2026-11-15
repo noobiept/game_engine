@@ -8,7 +8,7 @@
 
 > **init**(`maxScoresSaved`, `storageName`, `ascending`): `void`
 
-Defined in: [source/highscore.ts:33](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/highscore.ts#L33)
+Defined in: [highscore.ts:39](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/highscore.ts#L39)
 
 Call this before adding scores.
 
@@ -18,7 +18,7 @@ Call this before adding scores.
 
 `number`
 
-Total number of scores saved (only the top scores).
+Total number of scores saved (only the top scores). A positive integer.
 
 ### storageName
 

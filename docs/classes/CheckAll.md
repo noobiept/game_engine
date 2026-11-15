@@ -6,9 +6,9 @@
 
 # Class: CheckAll
 
-Defined in: [source/collision-detection/collision_check_all.ts:7](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/collision-detection/collision_check_all.ts#L7)
+Defined in: [collision-detection/collision\_check\_all.ts:7](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/collision-detection/collision_check_all.ts#L7)
 
-Useful when there's a small number of elements in the game.
+Checks every pair of elements. Useful when there's a small number of elements in the game.
 
 ## Implements
 
@@ -20,7 +20,7 @@ Useful when there's a small number of elements in the game.
 
 > **new CheckAll**(): `CheckAll`
 
-Defined in: [source/collision-detection/collision_check_all.ts:10](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/collision-detection/collision_check_all.ts#L10)
+Defined in: [collision-detection/collision\_check\_all.ts:11](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/collision-detection/collision_check_all.ts#L11)
 
 #### Returns
 
@@ -32,15 +32,43 @@ Defined in: [source/collision-detection/collision_check_all.ts:10](https://githu
 
 > **\_elements**: [`Element`](Element.md)[]
 
-Defined in: [source/collision-detection/collision_check_all.ts:8](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/collision-detection/collision_check_all.ts#L8)
+Defined in: [collision-detection/collision\_check\_all.ts:8](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/collision-detection/collision_check_all.ts#L8)
+
+---
+
+### \_registered
+
+> `protected` **\_registered**: `Set`\<[`Element`](Element.md)\>
+
+Defined in: [collision-detection/collision\_check\_all.ts:9](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/collision-detection/collision_check_all.ts#L9)
 
 ## Methods
+
+### \_canCollide()
+
+> `protected` **\_canCollide**(`element`): `boolean`
+
+Defined in: [collision-detection/collision\_check\_all.ts:100](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/collision-detection/collision_check_all.ts#L100)
+
+If the element is still part of the collision detection (it may have been removed by a collision listener).
+
+#### Parameters
+
+##### element
+
+[`Element`](Element.md)
+
+#### Returns
+
+`boolean`
+
+---
 
 ### add()
 
 > **add**(`element`): `void`
 
-Defined in: [source/collision-detection/collision_check_all.ts:14](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/collision-detection/collision_check_all.ts#L14)
+Defined in: [collision-detection/collision\_check\_all.ts:16](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/collision-detection/collision_check_all.ts#L16)
 
 #### Parameters
 
@@ -62,7 +90,7 @@ Defined in: [source/collision-detection/collision_check_all.ts:14](https://githu
 
 > **checkCollision**(): `void`
 
-Defined in: [source/collision-detection/collision_check_all.ts:31](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/collision-detection/collision_check_all.ts#L31)
+Defined in: [collision-detection/collision\_check\_all.ts:44](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/collision-detection/collision_check_all.ts#L44)
 
 Checks the collision between all the elements provided.
 
@@ -80,7 +108,7 @@ Checks the collision between all the elements provided.
 
 > **clear**(): `void`
 
-Defined in: [source/collision-detection/collision_check_all.ts:77](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/collision-detection/collision_check_all.ts#L77)
+Defined in: [collision-detection/collision\_check\_all.ts:108](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/collision-detection/collision_check_all.ts#L108)
 
 #### Returns
 
@@ -96,7 +124,7 @@ Defined in: [source/collision-detection/collision_check_all.ts:77](https://githu
 
 > **remove**(`element`): `void`
 
-Defined in: [source/collision-detection/collision_check_all.ts:22](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/collision-detection/collision_check_all.ts#L22)
+Defined in: [collision-detection/collision\_check\_all.ts:29](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/collision-detection/collision_check_all.ts#L29)
 
 #### Parameters
 
@@ -118,7 +146,7 @@ Defined in: [source/collision-detection/collision_check_all.ts:22](https://githu
 
 > **update**(`_element`): `void`
 
-Defined in: [source/collision-detection/collision_check_all.ts:18](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/collision-detection/collision_check_all.ts#L18)
+Defined in: [collision-detection/collision\_check\_all.ts:25](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/collision-detection/collision_check_all.ts#L25)
 
 #### Parameters
 

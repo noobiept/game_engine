@@ -6,7 +6,7 @@
 
 # Interface: ScrollingBitmapArgs
 
-Defined in: [source/scrolling_bitmap.ts:3](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/scrolling_bitmap.ts#L3)
+Defined in: [scrolling\_bitmap.ts:3](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/scrolling_bitmap.ts#L3)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [source/scrolling_bitmap.ts:3](https://github.com/noobiept/game_engi
 
 > `readonly` `optional` **\_eventDispatcherArgsBrand?**: `undefined`
 
-Defined in: [source/event_dispatcher.ts:4](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/event_dispatcher.ts#L4)
+Defined in: [event\_dispatcher.ts:4](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/event_dispatcher.ts#L4)
 
 #### Inherited from
 
@@ -30,7 +30,7 @@ Defined in: [source/event_dispatcher.ts:4](https://github.com/noobiept/game_engi
 
 > `optional` **category?**: `number`
 
-Defined in: [source/element.ts:15](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/element.ts#L15)
+Defined in: [element.ts:17](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/element.ts#L17)
 
 #### Inherited from
 
@@ -42,7 +42,7 @@ Defined in: [source/element.ts:15](https://github.com/noobiept/game_engine/blob/
 
 > `optional` **collidesWith?**: `number`
 
-Defined in: [source/element.ts:19](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/element.ts#L19)
+Defined in: [element.ts:21](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/element.ts#L21)
 
 #### Inherited from
 
@@ -54,7 +54,7 @@ Defined in: [source/element.ts:19](https://github.com/noobiept/game_engine/blob/
 
 > **direction**: [`Direction`](../Game-Engine/namespaces/ScrollingBitmapArgs/enumerations/Direction.md)
 
-Defined in: [source/scrolling_bitmap.ts:4](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/scrolling_bitmap.ts#L4)
+Defined in: [scrolling\_bitmap.ts:4](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/scrolling_bitmap.ts#L4)
 
 ---
 
@@ -62,7 +62,7 @@ Defined in: [source/scrolling_bitmap.ts:4](https://github.com/noobiept/game_engi
 
 > **image**: `HTMLImageElement`
 
-Defined in: [source/bitmap.ts:4](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/bitmap.ts#L4)
+Defined in: [bitmap.ts:4](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/bitmap.ts#L4)
 
 #### Inherited from
 
@@ -74,7 +74,7 @@ Defined in: [source/bitmap.ts:4](https://github.com/noobiept/game_engine/blob/66
 
 > `optional` **interval?**: `number`
 
-Defined in: [source/scrolling_bitmap.ts:6](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/scrolling_bitmap.ts#L6)
+Defined in: [scrolling\_bitmap.ts:6](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/scrolling_bitmap.ts#L6)
 
 ---
 
@@ -82,7 +82,7 @@ Defined in: [source/scrolling_bitmap.ts:6](https://github.com/noobiept/game_engi
 
 > **step**: `number`
 
-Defined in: [source/scrolling_bitmap.ts:5](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/scrolling_bitmap.ts#L5)
+Defined in: [scrolling\_bitmap.ts:5](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/scrolling_bitmap.ts#L5)
 
 ---
 
@@ -90,7 +90,7 @@ Defined in: [source/scrolling_bitmap.ts:5](https://github.com/noobiept/game_engi
 
 > `optional` **x?**: `number`
 
-Defined in: [source/element.ts:10](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/element.ts#L10)
+Defined in: [element.ts:12](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/element.ts#L12)
 
 #### Inherited from
 
@@ -102,7 +102,7 @@ Defined in: [source/element.ts:10](https://github.com/noobiept/game_engine/blob/
 
 > `optional` **y?**: `number`
 
-Defined in: [source/element.ts:11](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/element.ts#L11)
+Defined in: [element.ts:13](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/element.ts#L13)
 
 #### Inherited from
 

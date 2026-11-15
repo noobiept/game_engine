@@ -2,10 +2,10 @@
 
 ---
 
-[Game Engine](../../../../README.md) / [Preload](../README.md) / RESPONSE_TYPE
+[Game Engine](../../../../README.md) / [Preload](../README.md) / RESPONSE\_TYPE
 
-# Variable: RESPONSE_TYPE
+# Variable: RESPONSE\_TYPE
 
-> `const` **RESPONSE_TYPE**: `Record`\<[`FileType`](../type-aliases/FileType.md), `XMLHttpRequestResponseType`\>
+> `const` **RESPONSE\_TYPE**: `Record`\<[`FileType`](../type-aliases/FileType.md), `XMLHttpRequestResponseType`\>
 
-Defined in: [source/preload.ts:304](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/preload.ts#L304)
+Defined in: [preload.ts:372](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/preload.ts#L372)

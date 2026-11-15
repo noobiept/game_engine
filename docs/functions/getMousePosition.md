@@ -8,7 +8,7 @@
 
 > **getMousePosition**(): `object`
 
-Defined in: [source/game.ts:500](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/game.ts#L500)
+Defined in: [game.ts:670](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/game.ts#L670)
 
 Return the current mouse position (in the client area, not the canvas).
 

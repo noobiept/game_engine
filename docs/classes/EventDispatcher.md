@@ -6,11 +6,15 @@
 
 # Class: EventDispatcher
 
-Defined in: [source/event_dispatcher.ts:24](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/event_dispatcher.ts#L24)
+Defined in: [event\_dispatcher.ts:33](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/event_dispatcher.ts#L33)
 
 Base class that provides a way to add/remove listeners, and dispatch events.
 Most engine classes extend it (every `Element`, `Preload`, etc.), which is how
 you listen to their events with `addEventListener()`.
+
+The listeners are called in the order they were added.
+Adding or removing listeners while an event is being dispatched is safe: a listener removed during
+a dispatch isn't called anymore, and one added during a dispatch is only called on the next one.
 
 Basic Usage:
 
@@ -33,7 +37,7 @@ Basic Usage:
 
 > **new EventDispatcher**(`_args?`): `EventDispatcher`
 
-Defined in: [source/event_dispatcher.ts:27](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/event_dispatcher.ts#L27)
+Defined in: [event\_dispatcher.ts:36](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/event_dispatcher.ts#L36)
 
 #### Parameters
 
@@ -49,9 +53,9 @@ Defined in: [source/event_dispatcher.ts:27](https://github.com/noobiept/game_eng
 
 ### \_listeners
 
-> `protected` **\_listeners**: `Record`\<`string`, `EventListener`[]\>
+> `protected` **\_listeners**: `Map`\<`string`, `ListenerEntry`[]\>
 
-Defined in: [source/event_dispatcher.ts:25](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/event_dispatcher.ts#L25)
+Defined in: [event\_dispatcher.ts:34](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/event_dispatcher.ts#L34)
 
 ## Methods
 
@@ -59,7 +63,7 @@ Defined in: [source/event_dispatcher.ts:25](https://github.com/noobiept/game_eng
 
 > **addEventListener**(`type`, `listener`): `boolean`
 
-Defined in: [source/event_dispatcher.ts:39](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/event_dispatcher.ts#L39)
+Defined in: [event\_dispatcher.ts:48](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/event_dispatcher.ts#L48)
 
 'listener' will receive a 'data' argument when its called.
 What 'data' is, depends on the event type.
@@ -82,7 +86,7 @@ A function to be called when the event is dispatched.
 
 `boolean`
 
-If it was successfully added.
+If it was successfully added (`false` when it isn't a function, or was already added).
 
 ---
 
@@ -90,7 +94,7 @@ If it was successfully added.
 
 > **dispatchEvent**(`type`, `data?`): `void`
 
-Defined in: [source/event_dispatcher.ts:93](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/event_dispatcher.ts#L93)
+Defined in: [event\_dispatcher.ts:125](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/event_dispatcher.ts#L125)
 
 Dispatches an event, which will trigger the listeners of that event.
 
@@ -118,7 +122,7 @@ Data to be sent to every listener.
 
 > **hasListeners**(`type`): `boolean`
 
-Defined in: [source/event_dispatcher.ts:109](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/event_dispatcher.ts#L109)
+Defined in: [event\_dispatcher.ts:146](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/event_dispatcher.ts#L146)
 
 Check if there are listeners to a particular event type.
 
@@ -142,7 +146,7 @@ If there are listeners or not.
 
 > **removeAllEventListeners**(): `void`
 
-Defined in: [source/event_dispatcher.ts:83](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/event_dispatcher.ts#L83)
+Defined in: [event\_dispatcher.ts:109](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/event_dispatcher.ts#L109)
 
 Remove all the event listeners.
 
@@ -156,7 +160,7 @@ Remove all the event listeners.
 
 > **removeEventListener**(`type`, `listener?`): `boolean`
 
-Defined in: [source/event_dispatcher.ts:62](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/event_dispatcher.ts#L62)
+Defined in: [event\_dispatcher.ts:74](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/event_dispatcher.ts#L74)
 
 Removes a specific listener of an event type, or all the listeners for that type (if 'listener' is not provided).
 

@@ -6,7 +6,7 @@
 
 # Interface: GameLoopOptions
 
-Defined in: [source/game.ts:37](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/game.ts#L37)
+Defined in: [game.ts:37](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/game.ts#L37)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [source/game.ts:37](https://github.com/noobiept/game_engine/blob/664
 
 > `optional` **delay?**: `number`
 
-Defined in: [source/game.ts:38](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/game.ts#L38)
+Defined in: [game.ts:38](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/game.ts#L38)
 
 ---
 
@@ -22,4 +22,4 @@ Defined in: [source/game.ts:38](https://github.com/noobiept/game_engine/blob/664
 
 > `optional` **interval?**: `boolean`
 
-Defined in: [source/game.ts:39](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/game.ts#L39)
+Defined in: [game.ts:39](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/game.ts#L39)

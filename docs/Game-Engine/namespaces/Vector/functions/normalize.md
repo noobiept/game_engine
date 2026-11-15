@@ -8,7 +8,9 @@
 
 > **normalize**(`vector`): `object`
 
-Defined in: [source/vector.ts:77](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/vector.ts#L77)
+Defined in: [vector.ts:80](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/vector.ts#L80)
+
+A vector with the same direction and a length of 1. The zero vector (which has no direction) stays `{ x: 0, y: 0 }`.
 
 ## Parameters
 
@@ -22,8 +24,8 @@ Defined in: [source/vector.ts:77](https://github.com/noobiept/game_engine/blob/6
 
 ### x
 
-> **x**: `number`
+> **x**: `number` = `0`
 
 ### y
 
-> **y**: `number`
+> **y**: `number` = `0`

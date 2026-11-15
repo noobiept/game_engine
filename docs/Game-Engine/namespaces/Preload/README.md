@@ -18,7 +18,7 @@
 
 - [DATA](variables/DATA.md)
 - [EXTENSIONS](variables/EXTENSIONS.md)
-- [RESPONSE_TYPE](variables/RESPONSE_TYPE.md)
+- [RESPONSE\_TYPE](variables/RESPONSE_TYPE.md)
 
 ## Functions
 

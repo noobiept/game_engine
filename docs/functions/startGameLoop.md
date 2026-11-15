@@ -8,10 +8,11 @@
 
 > **startGameLoop**(): `void`
 
-Defined in: [source/game.ts:108](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/game.ts#L108)
+Defined in: [game.ts:140](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/game.ts#L140)
 
 Starts the game loop. This is called automatically when you initialize the engine (Game.init()).
 Only useful when you manually stop the loop (with Game.stopGameLoop()) and need to restart it later.
+Does nothing if the loop is already running, or before `init()` is called. While the page is hidden, the loop only starts once it becomes visible.
 
 ## Returns
 

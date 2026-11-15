@@ -6,15 +6,15 @@
 
 # Interface: WeaponArgs
 
-Defined in: [source/weapon.ts:8](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/weapon.ts#L8)
+Defined in: [weapon.ts:8](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/weapon.ts#L8)
 
 ## Properties
 
 ### bulletContainer
 
-> **bulletContainer**: [`Container`](../classes/Container.md) \| [`Canvas`](../classes/Canvas.md)
+> **bulletContainer**: [`Canvas`](../classes/Canvas.md) \| [`Container`](../classes/Container.md)
 
-Defined in: [source/weapon.ts:10](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/weapon.ts#L10)
+Defined in: [weapon.ts:10](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/weapon.ts#L10)
 
 ---
 
@@ -22,7 +22,7 @@ Defined in: [source/weapon.ts:10](https://github.com/noobiept/game_engine/blob/6
 
 > `optional` **category?**: `number`
 
-Defined in: [source/weapon.ts:15](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/weapon.ts#L15)
+Defined in: [weapon.ts:15](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/weapon.ts#L15)
 
 ---
 
@@ -30,7 +30,7 @@ Defined in: [source/weapon.ts:15](https://github.com/noobiept/game_engine/blob/6
 
 > `optional` **collidesWith?**: `number`
 
-Defined in: [source/weapon.ts:16](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/weapon.ts#L16)
+Defined in: [weapon.ts:16](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/weapon.ts#L16)
 
 ---
 
@@ -38,7 +38,7 @@ Defined in: [source/weapon.ts:16](https://github.com/noobiept/game_engine/blob/6
 
 > `optional` **damage?**: `number`
 
-Defined in: [source/weapon.ts:12](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/weapon.ts#L12)
+Defined in: [weapon.ts:12](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/weapon.ts#L12)
 
 ---
 
@@ -46,7 +46,7 @@ Defined in: [source/weapon.ts:12](https://github.com/noobiept/game_engine/blob/6
 
 > **element**: [`Element`](../classes/Element.md)
 
-Defined in: [source/weapon.ts:9](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/weapon.ts#L9)
+Defined in: [weapon.ts:9](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/weapon.ts#L9)
 
 ---
 
@@ -54,4 +54,4 @@ Defined in: [source/weapon.ts:9](https://github.com/noobiept/game_engine/blob/66
 
 > `optional` **fireInterval?**: `number`
 
-Defined in: [source/weapon.ts:11](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/weapon.ts#L11)
+Defined in: [weapon.ts:11](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/weapon.ts#L11)

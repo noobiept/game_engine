@@ -8,9 +8,10 @@
 
 > **removeElement**(`element`): `void`
 
-Defined in: [source/collision-detection/collision_detection.ts:46](https://github.com/noobiept/game_engine/blob/6648114222a49e0e7ff0d3918a64154ad4a513fa/source/collision-detection/collision_detection.ts#L46)
+Defined in: [collision-detection/collision\_detection.ts:49](https://github.com/noobiept/game_engine/blob/3dc50a91cd21bd5572819c26cdd85377e737ed99/source/collision-detection/collision_detection.ts#L49)
 
 Remove an element from being considered in the collision detection.
+This is done automatically when an element is taken out of a canvas.
 
 ## Parameters
 
