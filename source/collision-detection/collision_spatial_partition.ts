@@ -287,7 +287,7 @@ export class SpatialPartition implements CollisionDetectionAlgorithm {
     protected _canCollide(element: Element) {
         return (
             element.category !== 0 &&
-            !element._removed &&
+            !element._destroyed &&
             element.collision_data.registered
         );
     }

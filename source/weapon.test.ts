@@ -70,7 +70,7 @@ describe("Weapon", function () {
         expect(bullets.getAllChildren().length).toBeLessThanOrEqual(102);
     });
 
-    test("the collisions of a bullet aren't passed on to a removed owner", async function () {
+    test("the collisions of a bullet aren't passed on to a destroyed owner", async function () {
         const { owner, bullets, weapon } = makeWeapon(0);
         let collisions = 0;
 
@@ -86,7 +86,7 @@ describe("Weapon", function () {
         });
         expect(collisions).toBe(1);
 
-        owner.remove();
+        owner.destroy();
         await flushMicrotasks();
 
         bullet.dispatchEvent("collision", {

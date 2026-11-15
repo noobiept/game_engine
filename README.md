@@ -195,9 +195,9 @@ const explosion = new Game.Sprite({
 
 Game.addElement(explosion);
 
-// Play once, then remove itself when finished.
+// Play once, then destroy itself when finished.
 explosion.addEventListener("animationend", function (data) {
-    data.sprite.remove();
+    data.sprite.destroy();
 });
 explosion.play("boom", { loop: false });
 ```
@@ -226,12 +226,12 @@ button.addEventListener("click", function () {
 
 There are two ways to take an element out of the game:
 
-- `element.remove()` **destroys** it. It stops colliding right away, and at the end of the current frame it's taken out of its container/canvas and its tweens are stopped. Removing a container destroys its children as well. A removed element can't be added again.
+- `element.destroy()` **destroys** it. It stops colliding right away, and at the end of the current frame it's taken out of its container/canvas and its tweens are stopped. Destroying a container destroys its children as well. A destroyed element can't be added again.
 - `container.removeChild(element)`, `canvas.removeChild(element)` or `Game.removeElement(element)` **detach** it right away. It's no longer drawn, updated or considered in the collision detection, but it stays usable, so you can add it again later (to the same or another container/canvas).
 
 ```ts
 // A bullet that hit something is gone for good.
-bullet.remove();
+bullet.destroy();
 
 // A paused menu is taken out, and added back later.
 Game.removeElement(menu);

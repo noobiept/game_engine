@@ -218,7 +218,7 @@ runOnLoad(function () {
                 const square = GRID.get(column, line);
 
                 if (square) {
-                    square.remove();
+                    square.destroy();
                 }
             }
         }

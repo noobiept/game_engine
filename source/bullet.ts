@@ -25,16 +25,16 @@ export interface BulletArgs extends ContainerArgs {
  *             movementSpeed: 100
  *         });
  *     bullet.addChild( bulletShape );
- *     bullet.addEventListener( 'remove', function( data )
+ *     bullet.addEventListener( 'destroy', function( data )
  *         {
- *         console.log( 'Bullet removed!' );
+ *         console.log( 'Bullet destroyed!' );
  *         });
  *
  *     Game.addElement( bullet );
  *
  * Events:
  *
- * - `remove` -- `listener( data: { element: Bullet; };`
+ * - `destroy` -- `listener( data: { element: Bullet; };` (when the bullet is destroyed)
  */
 export class Bullet extends Container {
     movement: Movement | null;
@@ -72,7 +72,7 @@ export class Bullet extends Container {
      */
     setAngle(angle: number) {
         this.movement?.moveAngle(angle, false, () => {
-            this.remove();
+            this.destroy();
         });
     }
 
@@ -83,7 +83,7 @@ export class Bullet extends Container {
      */
     setTarget(target: Element) {
         this.movement?.follow(target, () => {
-            this.remove();
+            this.destroy();
         });
     }
 
@@ -96,15 +96,15 @@ export class Bullet extends Container {
 
     /**
      * Clear the target reference, before removing.
-     * Dispatch the `remove` event as well.
+     * Dispatch the `destroy` event as well.
      */
-    remove() {
-        if (!this._removed) {
-            this.movement?.remove();
+    destroy() {
+        if (!this._destroyed) {
+            this.movement?.destroy();
             this.movement = null;
-            this.dispatchEvent("remove", { element: this });
+            this.dispatchEvent("destroy", { element: this });
 
-            super.remove();
+            super.destroy();
         }
     }
 

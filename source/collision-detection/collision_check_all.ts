@@ -100,7 +100,7 @@ export class CheckAll implements CollisionDetectionAlgorithm {
     protected _canCollide(element: Element) {
         return (
             element.category !== 0 &&
-            !element._removed &&
+            !element._destroyed &&
             this._registered.has(element)
         );
     }

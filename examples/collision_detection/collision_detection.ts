@@ -21,7 +21,7 @@ runOnLoad(function () {
         const collidedWith = data.collidedWith;
 
         element.movement.stop();
-        collidedWith.remove();
+        collidedWith.destroy();
     });
     one.movement.moveTo(300, 50);
 

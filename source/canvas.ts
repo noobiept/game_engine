@@ -72,7 +72,7 @@ export class Canvas {
      *     addChild( element1, element2 );
      *     addChild( [ element1, element2 ] );
      *
-     * Throws if an element was removed (with `remove()`).
+     * Throws if an element was destroyed (with `destroy()`).
      *
      * @param args Either an `Element`, or `...Element` or an `Element[]`
      */
@@ -94,7 +94,7 @@ export class Canvas {
     /**
      * Detach elements from this canvas, right away. They're no longer drawn, updated or considered in the collision
      * detection, but they aren't destroyed, so they can be added again later. Elements that aren't directly in this
-     * canvas are ignored. To destroy an element, call its `remove()` method instead.
+     * canvas are ignored. To destroy an element, call its `destroy()` method instead.
      *
      *     removeChild( element );
      *     removeChild( element1, element2 );
@@ -213,11 +213,11 @@ export class Canvas {
         for (let a = children.length - 1; a >= 0; a--) {
             const element = children[a];
 
-            // skip the ones that were detached or removed in the meantime
+            // skip the ones that were detached or destroyed in the meantime
             if (
                 element._has_logic === true &&
                 element._parent_canvas === this &&
-                !element._removed
+                !element._destroyed
             ) {
                 element.logic(deltaTime);
             }

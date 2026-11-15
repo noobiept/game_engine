@@ -18,7 +18,7 @@ export interface ContainerArgs extends ElementArgs {
  *
  * - `addChild()` adds elements. An element that is already in another container/canvas is moved to this one.
  * - `removeChild()` and `removeAllChildren()` **detach** elements right away. They stay usable and can be added again.
- * - `remove()` **destroys** the container and all of its children (see `Element.remove()`).
+ * - `destroy()` **destroys** the container and all of its children (see `Element.destroy()`).
  *
  * Basic Usage:
  *
@@ -61,7 +61,7 @@ export class Container extends Element {
      *     addChild( element1, element2 );
      *     addChild( [ element1, element2 ] );
      *
-     * Throws if an element was removed (with `remove()`), or when adding a container to itself or to one of its children.
+     * Throws if an element was destroyed (with `destroy()`), or when adding a container to itself or to one of its children.
      *
      * @param elements Either `Element` or `...Element` or `Element[]`.
      */
@@ -95,7 +95,7 @@ export class Container extends Element {
     /**
      * Detach elements from this container, right away. They're no longer drawn, updated or considered in the collision
      * detection, but they aren't destroyed, so they can be added again later. Elements that aren't children of this
-     * container are ignored. To destroy an element, call its `remove()` method instead.
+     * container are ignored. To destroy an element, call its `destroy()` method instead.
      *
      *     removeChild( element );
      *     removeChild( element1, element2 );
@@ -132,7 +132,7 @@ export class Container extends Element {
 
     /**
      * Detach all of this container's children, right away (see `removeChild()`).
-     * To destroy the container together with its children, call `remove()` instead.
+     * To destroy the container together with its children, call `destroy()` instead.
      */
     removeAllChildren() {
         const children = this._children.splice(0);
@@ -243,19 +243,19 @@ export class Container extends Element {
     }
 
     /**
-     * Destroy the container and all of its children (see `Element.remove()`).
+     * Destroy the container and all of its children (see `Element.destroy()`).
      * To keep the children, detach them first (with `removeChild()` or `removeAllChildren()`).
      */
-    remove() {
-        if (this._removed) {
+    destroy() {
+        if (this._destroyed) {
             return;
         }
 
-        super.remove();
+        super.destroy();
 
         // the children are only taken out at the end of the frame (`_children` can't change while the logic is running)
         for (const child of this._children.slice()) {
-            child.remove();
+            child.destroy();
         }
     }
 
@@ -420,11 +420,11 @@ export class Container extends Element {
         for (let a = children.length - 1; a >= 0; a--) {
             const element = children[a];
 
-            // skip the ones that were detached or removed in the meantime
+            // skip the ones that were detached or destroyed in the meantime
             if (
                 element._has_logic === true &&
                 element._container === this &&
-                !element._removed
+                !element._destroyed
             ) {
                 element.logic(deltaTime);
             }

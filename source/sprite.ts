@@ -49,7 +49,7 @@ export interface SpritePlayOptions {
  *         // play a one-shot animation and do something when it finishes
  *     sprite.play( 'explosion', { loop: false } );
  *     sprite.addEventListener( 'animationend', function( data ) {
- *         data.sprite.remove();
+ *         data.sprite.destroy();
  *     });
  *
  * Events:

@@ -80,7 +80,7 @@ export function start() {
             else if (constructorB === Food) {
                 COLLISION_CALLBACKS.push(function () {
                     SNAKE.addTail();
-                    elementB.remove();
+                    elementB.destroy();
                     updateTailSize();
                 });
             }
@@ -90,7 +90,7 @@ export function start() {
         else {
             COLLISION_CALLBACKS.push(function () {
                 SNAKE.addTail();
-                elementA.remove();
+                elementA.destroy();
                 updateTailSize();
             });
         }
@@ -139,18 +139,18 @@ export function keyDown(event) {
 }
 
 export function clear() {
-    SNAKE.remove();
+    SNAKE.destroy();
     SNAKE = null;
     GRID.clear();
     GRID = null;
     setGrid(null);
-    TAIL_SIZE.remove();
+    TAIL_SIZE.destroy();
     TAIL_SIZE = null;
 
     COLLISION_CALLBACKS.length = 0;
 
     for (let a = ALL_FOOD.length - 1; a >= 0; a--) {
-        ALL_FOOD[a].remove();
+        ALL_FOOD[a].destroy();
     }
 
     ALL_FOOD.length = 0;

@@ -192,25 +192,25 @@ describe("Starting and stopping the game loop", function () {
         expect(Game.isGameLoopRunning()).toBe(true);
     });
 
-    test("elements removed while the loop is stopped are still removed", async function () {
+    test("elements destroyed while the loop is stopped are still taken out", async function () {
         const rect = new Rectangle({ width: 1, height: 1, color: "red" });
         Game.addElement(rect);
         Game.stopGameLoop();
 
-        rect.remove();
+        rect.destroy();
         await flushMicrotasks();
 
         expect(Game.getCanvas().getAllChildren()).toHaveLength(0);
     });
 
-    test("elements removed during an update are taken out at the end of it", function () {
+    test("elements destroyed during an update are taken out at the end of it", function () {
         const rect = new Rectangle({ width: 1, height: 1, color: "red" });
         let inCanvasDuringUpdate: boolean | null = null;
 
         Game.addElement(rect);
         Game.addToGameLoop(
             () => {
-                rect.remove();
+                rect.destroy();
                 inCanvasDuringUpdate = Game.getCanvas()
                     .getAllChildren()
                     .includes(rect);

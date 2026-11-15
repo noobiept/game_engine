@@ -246,7 +246,7 @@ export class Movement {
      * Move constantly towards the element's position.
      *
      * @param element The element to follow.
-     * @param callback Called when the element that we're following is removed.
+     * @param callback Called when the element that we're following is destroyed.
      */
     follow(element: Element, callback?: () => any) {
         this._movement_state = MovementState.follow;
@@ -265,7 +265,7 @@ export class Movement {
             return;
         }
 
-        if (target._removed) {
+        if (target._destroyed) {
             if (this._move_callback) {
                 this._move_callback();
             } else {
@@ -377,9 +377,9 @@ export class Movement {
     }
 
     /**
-     * Clear the movement object.
+     * Destroy the movement object (it stops, and lets go of the element).
      */
-    remove() {
+    destroy() {
         this.stop();
         this._element = null;
     }

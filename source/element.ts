@@ -26,7 +26,7 @@ export interface ElementArgs extends EventDispatcherArgs {
  * subclasses (`Rectangle`, `Circle`, `Bitmap`, `Sprite`, `Text`, `Container`, ...).
  *
  * All elements share the same basic API: `x`/`y` is the element's **center**, and you can
- * move, scale, rotate, hide, remove it, and listen to its events.
+ * move, scale, rotate, hide, destroy it, and listen to its events.
  *
  * Basic Usage:
  *
@@ -44,14 +44,14 @@ export interface ElementArgs extends EventDispatcherArgs {
  *     element.scaleX = 2; // scale
  *     element.visible = false; // hide
  *     element.addEventListener( 'click', function() {
- *         element.remove();
+ *         element.destroy();
  *     });
  *
  * Taking an element out of the game:
  *
- * - `element.remove()` **destroys** the element: at the end of the current frame it's taken out of its
+ * - `element.destroy()` **destroys** the element: at the end of the current frame it's taken out of its
  *   container/canvas and out of the collision detection, and its tweens are stopped. Don't add it again
- *   afterwards (it throws). Removing a container destroys its children as well.
+ *   afterwards (it throws). Destroying a container destroys its children as well.
  * - `container.removeChild( element )`, `canvas.removeChild( element )` or `Game.removeElement( element )`
  *   **detach** the element right away: it's no longer drawn, updated or considered in the collision
  *   detection, but it stays usable, so you can add it again later (to the same or another container/canvas).
@@ -96,7 +96,7 @@ export abstract class Element extends EventDispatcher {
     _parent_canvas: Canvas | null; // the canvas this element was added to (directly, not through a container)
     _attached: boolean; // if it's in a canvas (directly or through containers), which is when it takes part in the collision detection
     _has_logic: boolean; // to know if we need to run the .logic() method or not
-    _removed: boolean; // a reference to this element may be saved in several places, so we need a way to know if its ok to work on the element or not
+    _destroyed: boolean; // a reference to this element may be saved in several places, so we need a way to know if its ok to work on the element or not
 
     constructor(args?: ElementArgs) {
         super(args);
@@ -141,7 +141,7 @@ export abstract class Element extends EventDispatcher {
         this._parent_canvas = null;
         this._attached = false;
         this._has_logic = false;
-        this._removed = false;
+        this._destroyed = false;
 
         this.category = category;
         this.collidesWith = collidesWith;
@@ -345,37 +345,37 @@ export abstract class Element extends EventDispatcher {
     }
 
     /**
-     * Destroy this element. It's marked as removed right away (`isRemoved()` returns `true`, and it stops
+     * Destroy this element. It's marked as destroyed right away (`isDestroyed()` returns `true`, and it stops
      * colliding), and at the end of the current frame it's taken out of its container/canvas and out of the
      * collision detection, and its tweens are stopped. It's safe to call from the logic/event code.
      *
-     * A removed element can't be added again. To take an element out of the game and add it back later, use
+     * A destroyed element can't be added again. To take an element out of the game and add it back later, use
      * `removeChild()` on its container/canvas (or `Game.removeElement()`) instead.
      */
-    remove() {
-        if (!this._removed) {
-            this._removed = true;
+    destroy() {
+        if (!this._destroyed) {
+            this._destroyed = true;
 
-            Game._safeRemove(this);
+            Game._safeDestroy(this);
         }
     }
 
     /**
-     * Does the actual removal (see `remove()`). Don't call this directly, use the `remove()` method instead.
+     * Does the actual destruction (see `destroy()`). Don't call this directly, use the `destroy()` method instead.
      */
-    _removeNow() {
-        this._removed = true;
+    _destroyNow() {
+        this._destroyed = true;
         this._detachFromParent();
 
         Tween.removeTweens(this);
     }
 
     /**
-     * Tells if this element was removed (destroyed with `remove()`).
-     * A detached element (with `removeChild()`) isn't removed.
+     * Tells if this element was destroyed (with `destroy()`).
+     * A detached element (with `removeChild()`) isn't destroyed.
      */
-    isRemoved() {
-        return this._removed;
+    isDestroyed() {
+        return this._destroyed;
     }
 
     /**
@@ -422,9 +422,9 @@ export abstract class Element extends EventDispatcher {
      * Throws if this element can't be added to the given parent (a container or canvas).
      */
     _checkCanBeAdded() {
-        if (this._removed) {
+        if (this._destroyed) {
             throw new Error(
-                "Can't add an element that was removed with remove(). To take an element out of the game and add it back later, use removeChild() instead.",
+                "Can't add an element that was destroyed. To take an element out of the game and add it back later, use removeChild() instead of destroy().",
             );
         }
     }

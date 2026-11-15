@@ -31,6 +31,16 @@ runOnLoad(function () {
     const REMOVE_DURATION = 0.1;
     const ADD_DURATION = 0.5;
 
+    /**
+     * Fade out a block that was combined into another, then destroy it.
+     */
+    function removeBlock(block) {
+        new Game.Tween(block)
+            .to({ opacity: 0 }, REMOVE_DURATION)
+            .call(() => block.destroy())
+            .start();
+    }
+
     Main.start = function () {
         const canvas = Game.getCanvas();
 
@@ -61,7 +71,7 @@ runOnLoad(function () {
                 const element = GRID.get(column, line);
 
                 if (element) {
-                    element.remove();
+                    element.destroy();
                 }
             }
         }
@@ -150,7 +160,7 @@ runOnLoad(function () {
                                 firstBlock.grid_data.column,
                                 firstBlock.grid_data.line,
                             );
-                            firstBlock.remove(REMOVE_DURATION);
+                            removeBlock(firstBlock);
                             break; // only one combination per line
                         } else {
                             firstBlock = block;
@@ -210,7 +220,7 @@ runOnLoad(function () {
                                 firstBlock.grid_data.column,
                                 firstBlock.grid_data.line,
                             );
-                            firstBlock.remove(REMOVE_DURATION);
+                            removeBlock(firstBlock);
                             break; // only one combination per line
                         } else {
                             firstBlock = block;
@@ -270,7 +280,7 @@ runOnLoad(function () {
                                 firstBlock.grid_data.column,
                                 firstBlock.grid_data.line,
                             );
-                            firstBlock.remove(REMOVE_DURATION);
+                            removeBlock(firstBlock);
                             break; // only one combination per line
                         } else {
                             firstBlock = block;
@@ -330,7 +340,7 @@ runOnLoad(function () {
                                 firstBlock.grid_data.column,
                                 firstBlock.grid_data.line,
                             );
-                            firstBlock.remove(REMOVE_DURATION);
+                            removeBlock(firstBlock);
                             break; // only one combination per line
                         } else {
                             firstBlock = block;

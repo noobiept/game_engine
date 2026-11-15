@@ -71,7 +71,7 @@ export class Creep extends Game.Circle {
         // we reached the end
         if (next.column === this.column && next.line === this.line) {
             addLife(-1);
-            this.remove();
+            this.destroy();
 
             // checks if the game is over
             gameOver();

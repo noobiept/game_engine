@@ -150,7 +150,7 @@ runOnLoad(function () {
                 const element = GRID.get(column, line);
 
                 if (element) {
-                    element.remove();
+                    element.destroy();
                 }
             }
         }

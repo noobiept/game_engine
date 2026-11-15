@@ -77,9 +77,9 @@ Snake.prototype.changeDirection = function (newDirection) {
     }
 };
 
-Snake.prototype.remove = function () {
+Snake.prototype.destroy = function () {
     for (let a = this.tails.length - 1; a >= 0; a--) {
-        this.tails[a].remove();
+        this.tails[a].destroy();
     }
 };
 

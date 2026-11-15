@@ -70,7 +70,7 @@ function spawnExplosion(x: number, y: number) {
         console.log(
             `animation '${data.animationId}' finished, removing the sprite`,
         );
-        data.sprite.remove();
+        data.sprite.destroy();
     });
 
     // loop: false -> plays once and dispatches 'animationend' on the last frame

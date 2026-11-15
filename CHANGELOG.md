@@ -14,20 +14,24 @@ A pass of bug fixes. Some change how existing games behave, so check the
 
 ### Changed
 
-- **Breaking**: clearer removal of elements. `remove()` **destroys** an
-  element: it stops colliding right away, and at the end of the frame it's
-  taken out of its container/canvas and its tweens are stopped (removing a
-  container destroys its children). `removeChild()`, `removeAllChildren()` and
-  `Game.removeElement()` **detach** an element right away: it's no longer
-  drawn, updated or considered in the collision detection, and it can be added
-  again later. `removeAllChildren()` used to destroy the children,
-  `Game.removeElement()` now also detaches elements that are in a container,
-  and `Container.removeChild()` returns whether an element was detached.
+- **Breaking**: clearer removal of elements, in line with PixiJS. `remove()`
+  is renamed `destroy()` (and `isRemoved()` is `isDestroyed()`), which
+  **destroys** an element: it stops colliding right away, and at the end of the
+  frame it's taken out of its container/canvas and its tweens are stopped
+  (destroying a container destroys its children). `removeChild()`,
+  `removeAllChildren()` and `Game.removeElement()` **detach** an element right
+  away: it's no longer drawn, updated or considered in the collision detection,
+  and it can be added again later. `removeAllChildren()` used to destroy the
+  children, `Game.removeElement()` now also detaches elements that are in a
+  container, and `Container.removeChild()` returns whether an element was
+  detached.
+- **Breaking**: `Weapon.remove()` and `Movement.remove()` are renamed
+  `destroy()`, and the `Bullet` event `remove` is renamed `destroy`.
 - **Breaking**: elements only take part in the collision detection while
   they're in a canvas (directly or through containers), instead of from the
   moment they're created. Elements can now be created before `Game.init()`.
 - **Breaking**: adding an element that is already in a container/canvas moves
-  it (it used to end up in both). Adding a removed element, or a container to
+  it (it used to end up in both). Adding a destroyed element, or a container to
   itself or to one of its children, throws.
 - **Breaking**: by default the game loop updates on every animation frame (at
   the display's refresh rate), instead of trying to run at 35 fps, which
@@ -43,10 +47,10 @@ A pass of bug fixes. Some change how existing games behave, so check the
   intervals passed), weapon fire intervals, and scrolling bitmaps. Tween steps
   pass the time left over to the next step. A game loop callback is called at
   most once per update.
-- **Breaking**: an element that is removed or detached during the logic isn't
-  updated for the rest of that frame, and a removed element doesn't collide
-  with anything else in that frame (both elements of a collision still get
-  the event).
+- **Breaking**: an element that is destroyed or detached during the logic
+  isn't updated for the rest of that frame, and a destroyed element doesn't
+  collide with anything else in that frame (both elements of a collision still
+  get the event).
 - **Breaking**: `Circle` collides (and gets the mouse events) as a circle (a
   16-sided polygon), instead of as its bounding square.
 - **Breaking**: `Preload` dispatches the `error` event for every file that
@@ -96,7 +100,7 @@ A pass of bug fixes. Some change how existing games behave, so check the
   at their last position.
 - Removing an element that wasn't in the collision detection (removed twice,
   or after a new `Game.init()`) took another element out of it.
-- A removed element came back to the spatial partition when it moved (its
+- A destroyed element came back to the spatial partition when it moved (its
   tweens kept moving it).
 - Moving or removing elements from a collision listener made the spatial
   partition skip or repeat collisions, and could make `CheckAll` throw.
@@ -109,7 +113,7 @@ A pass of bug fixes. Some change how existing games behave, so check the
 - `EventDispatcher` called a listener twice, or after it was removed, when
   listeners were removed during a dispatch, and event types like `__proto__`
   or `constructor` threw.
-- Removing a container from the logic of one of its children threw.
+- Destroying a container from the logic of one of its children threw.
 - `removeAllCallbacks()` and `Tween.removeAll()` called from a callback threw,
   or updated a tween twice, and a tween removed from its own `.call()` step was
   left half active.
@@ -119,7 +123,7 @@ A pass of bug fixes. Some change how existing games behave, so check the
 - `startGameLoop()` started a second loop when the loop was already running,
   and a loop stopped with `stopGameLoop()` restarted when the page became
   visible again. Calling `activateMouseMoveEvents()` twice left an interval
-  running. Elements removed while the loop was stopped were never removed.
+  running. Elements destroyed while the loop was stopped were never taken out.
 - `Preload` never dispatched `complete` when a file had a network error, was
   aborted, or a listener threw. The `complete` event's lists were emptied after
   it was dispatched, loading files from its listener broke the counting, the
@@ -132,7 +136,7 @@ A pass of bug fixes. Some change how existing games behave, so check the
 - `Sprite.play()` accepted inherited properties (like `toString`) as
   animations.
 - A bullet's collisions were passed on to the element that fired it after that
-  element was removed.
+  element was destroyed.
 - `PathFinding.breadthFirstSearch()` spread from a blocked destination, gave a
   `TypeError` or wrong paths for a destination outside the map, and its result
   referenced the given destination object.

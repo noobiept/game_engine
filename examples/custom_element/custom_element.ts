@@ -37,7 +37,7 @@ runOnLoad(function () {
 
     unit.addEventListener("collision", function (data) {
         if (data.bullet) {
-            data.bullet.remove();
+            data.bullet.destroy();
         }
 
         console.log("Hit!");

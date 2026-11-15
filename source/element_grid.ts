@@ -246,7 +246,7 @@ export class ElementGrid extends Grid {
      */
     clear() {
         if (this._background !== null) {
-            this._background.remove();
+            this._background.destroy();
         }
     }
 }

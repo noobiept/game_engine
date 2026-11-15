@@ -91,7 +91,7 @@ class Unit extends Game.Rectangle {
         });
         this.addEventListener("collision", function (data) {
             if (data.bullet) {
-                data.bullet.remove();
+                data.bullet.destroy();
             }
 
             console.log("Collision!");

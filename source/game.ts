@@ -61,8 +61,8 @@ let MOUSE_MOVED = false; // if the mouse moved since the last time we checked
 
 const CALLBACKS: Callback[] = [];
 
-const TO_BE_REMOVED: Element[] = [];
-let REMOVAL_SCHEDULED = false;
+const TO_BE_DESTROYED: Element[] = [];
+let DESTROY_SCHEDULED = false;
 
 export interface InitArgs {
     container: HTMLElement; // the canvas is appended to this html element
@@ -118,7 +118,7 @@ export function init(args: InitArgs) {
 function teardown() {
     pauseLoop();
     disableMouseMoveEvents();
-    flushRemovals();
+    flushDestroyed();
 
     CANVAS_CONTAINER.removeEventListener("click", clickEvents);
     CANVAS_CONTAINER.removeEventListener("mousedown", clickEvents);
@@ -340,7 +340,7 @@ export function addElement(element: Element | Element[], id?: number) {
 /**
  * Detach elements from wherever they are (their canvas or container), right away. They're no longer drawn, updated or
  * considered in the collision detection, but they aren't destroyed, so they can be added again later.
- * To destroy an element, call its `remove()` method instead.
+ * To destroy an element, call its `destroy()` method instead.
  *
  * @param element Element or Element[] to be detached.
  * @return If any of the elements was in a canvas/container (and was detached).
@@ -359,36 +359,36 @@ export function removeElement(element: Element | Element[]) {
 }
 
 /**
- * It can be problematic to remove elements during the logic functions, since the logic functions are called in a loop over all the elements.
- * The elements passed to this function, will only be removed after (at the end of the current game loop update, or once the
+ * It can be problematic to destroy elements during the logic functions, since the logic functions are called in a loop over all the elements.
+ * The elements passed to this function, will only be destroyed after (at the end of the current game loop update, or once the
  * current code finishes when the game loop isn't running).
- * Don't call this directly, use the `Element.remove()` method instead.
+ * Don't call this directly, use the `Element.destroy()` method instead.
  */
-export function _safeRemove(element: Element) {
-    TO_BE_REMOVED.push(element);
+export function _safeDestroy(element: Element) {
+    TO_BE_DESTROYED.push(element);
 
-    // without the game loop running there's no update to do the removal, so do it once the current code finishes
-    if (ANIMATION_ID === null && !REMOVAL_SCHEDULED) {
-        REMOVAL_SCHEDULED = true;
+    // without the game loop running there's no update to do it, so do it once the current code finishes
+    if (ANIMATION_ID === null && !DESTROY_SCHEDULED) {
+        DESTROY_SCHEDULED = true;
 
         queueMicrotask(function () {
-            REMOVAL_SCHEDULED = false;
+            DESTROY_SCHEDULED = false;
 
             if (ANIMATION_ID === null) {
-                flushRemovals();
+                flushDestroyed();
             }
         });
     }
 }
 
 /**
- * Remove the elements that were marked to be removed (with `Element.remove()`).
+ * Destroy the elements that were marked to be destroyed (with `Element.destroy()`).
  */
-function flushRemovals() {
-    const elements = TO_BE_REMOVED.splice(0);
+function flushDestroyed() {
+    const elements = TO_BE_DESTROYED.splice(0);
 
     for (let a = elements.length - 1; a >= 0; a--) {
-        elements[a]._removeNow();
+        elements[a]._destroyNow();
     }
 }
 
@@ -598,8 +598,8 @@ function update(deltaTime: number) {
     // run the collision detection
     CollisionDetection.checkCollision();
 
-    // remove all deferred elements
-    flushRemovals();
+    // destroy the deferred elements
+    flushDestroyed();
 
     // draw all the elements to the canvas
     for (a = lastPosition; a >= 0; a--) {

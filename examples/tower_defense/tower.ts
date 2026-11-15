@@ -42,14 +42,14 @@ export class Tower extends Game.Rectangle {
             creep.health -= tower.weapon.damage;
 
             if (creep.health <= 0) {
-                if (!creep._removed) {
+                if (!creep.isDestroyed()) {
                     addMoney(creep.worth);
-                    creep.remove();
+                    creep.destroy();
                 }
             }
 
             if (data.bullet) {
-                data.bullet.remove();
+                data.bullet.destroy();
             }
         });
 

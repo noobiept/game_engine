@@ -67,7 +67,7 @@ export class Weapon {
     }[]; // all the firing intervals
     protected _bullets: Bullet[]; // has all the bullets fired by this weapon
     protected _bullet_container: Container | Canvas | null; // where to add the bullet objects
-    _removed = false;
+    _destroyed = false;
 
     constructor(args: WeaponArgs) {
         this.category = args.category ?? args.element.category;
@@ -189,16 +189,16 @@ export class Weapon {
     /**
      * Fire a bullet at a certain angle, or towards a specific target.
      *
-     * Returns `false` if it failed to fire a bullet (if the target was already removed).
+     * Returns `false` if it failed to fire a bullet (if the target was already destroyed).
      */
     protected _fire(angleOrTarget: number | Element, bulletId: number) {
-        if (this._removed) {
+        if (this._destroyed) {
             return false;
         }
 
-        // if it happens to be a target, need to make sure it hasn't been removed yet
+        // if it happens to be a target, need to make sure it hasn't been destroyed yet
         if (typeof angleOrTarget !== "number") {
-            if (angleOrTarget._removed === true) {
+            if (angleOrTarget._destroyed === true) {
                 return false;
             }
         }
@@ -222,8 +222,8 @@ export class Weapon {
                 const bulletObj = data.element;
                 const associatedElement = bulletObj.element;
 
-                // the element that fired the bullet may have been removed since then
-                if (!associatedElement || associatedElement._removed) {
+                // the element that fired the bullet may have been destroyed since then
+                if (!associatedElement || associatedElement._destroyed) {
                     return;
                 }
 
@@ -235,7 +235,7 @@ export class Weapon {
             });
         }
 
-        bullet.addEventListener("remove", () => {
+        bullet.addEventListener("destroy", () => {
             const index = this._bullets.indexOf(bullet);
 
             if (index >= 0) {
@@ -338,27 +338,27 @@ export class Weapon {
         return weapon;
     }
 
-    remove() {
-        if (this._removed) {
+    destroy() {
+        if (this._destroyed) {
             return;
         }
 
         let a;
 
-        // remove the bullet types
+        // destroy the bullet types
         for (a = this._bullet_types.length - 1; a >= 0; a--) {
-            this._bullet_types[a].remove();
+            this._bullet_types[a].destroy();
         }
         this._bullet_types.length = 0;
 
         // clear the bullets array
-        // don't remove the actual bullets (let them hit their targets/go out of bounds)
+        // don't destroy the actual bullets (let them hit their targets/go out of bounds)
         this._bullets.length = 0;
 
         // clear other variables
         this.element = null;
         this._bullet_intervals.length = 0;
         this._bullet_container = null;
-        this._removed = true;
+        this._destroyed = true;
     }
 }

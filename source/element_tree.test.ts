@@ -80,7 +80,7 @@ describe("Detaching elements (removeChild)", function () {
         expect(countCollisions(canvas, player, wall)).toBe(2);
 
         expect(canvas.removeChild(wall)).toBe(true);
-        expect(wall.isRemoved()).toBe(false);
+        expect(wall.isDestroyed()).toBe(false);
         expect(canvas.getAllChildren()).not.toContain(wall);
         expect(countCollisions(canvas, player, wall)).toBe(0);
 
@@ -118,7 +118,7 @@ describe("Detaching elements (removeChild)", function () {
         container.removeAllChildren();
 
         expect(container.getAllChildren()).toHaveLength(0);
-        expect(wall.isRemoved()).toBe(false);
+        expect(wall.isDestroyed()).toBe(false);
         expect(countCollisions(canvas, player, wall)).toBe(0);
 
         container.addChild(wall);
@@ -203,11 +203,11 @@ describe("Adding elements", function () {
         expect(() => child.addChild(parent)).toThrow();
     });
 
-    test("a removed element can't be added again", async function () {
+    test("a destroyed element can't be added again", async function () {
         const rect = makeRect();
         canvas.addChild(rect);
 
-        rect.remove();
+        rect.destroy();
 
         expect(() => canvas.addChild(rect)).toThrow(/removeChild/);
         expect(() => new Container().addChild(rect)).toThrow();
@@ -216,18 +216,18 @@ describe("Adding elements", function () {
     });
 });
 
-describe("Destroying elements (remove)", function () {
-    test("remove() stops the collisions right away, and takes the element out once the current code finishes", async function () {
+describe("Destroying elements (destroy)", function () {
+    test("destroy() stops the collisions right away, and takes the element out once the current code finishes", async function () {
         const { player, wall } = makePlayerAndWall();
         canvas.addChild(player, wall);
         new Tween(wall).to({ x: 100 }, 1).start();
 
-        wall.remove();
+        wall.destroy();
 
-        expect(wall.isRemoved()).toBe(true);
+        expect(wall.isDestroyed()).toBe(true);
         expect(countCollisions(canvas, player, wall)).toBe(0);
 
-        // the game loop isn't running, so it's removed once the current code finishes
+        // the game loop isn't running, so it's taken out once the current code finishes
         await flushMicrotasks();
 
         expect(canvas.getAllChildren()).toEqual([player]);
@@ -235,17 +235,17 @@ describe("Destroying elements (remove)", function () {
         expect(Tween.getTween(wall)).toBe(null);
     });
 
-    test("removing a container destroys its children", async function () {
+    test("destroying a container destroys its children", async function () {
         const child = makeRect();
         const nested = new Container({ children: makeRect() });
         const container = new Container({ children: [child, nested] });
         canvas.addChild(container);
 
-        container.remove();
+        container.destroy();
 
-        expect(child.isRemoved()).toBe(true);
-        expect(nested.isRemoved()).toBe(true);
-        expect(nested.getAllChildren()[0].isRemoved()).toBe(true);
+        expect(child.isDestroyed()).toBe(true);
+        expect(nested.isDestroyed()).toBe(true);
+        expect(nested.getAllChildren()[0].isDestroyed()).toBe(true);
 
         await flushMicrotasks();
 
@@ -253,7 +253,7 @@ describe("Destroying elements (remove)", function () {
         expect(collision._elements).toHaveLength(0);
     });
 
-    test("a child can remove its container during the logic", function () {
+    test("a child can destroy its container during the logic", function () {
         const container = new Container();
         const updated: string[] = [];
 
@@ -267,7 +267,7 @@ describe("Destroying elements (remove)", function () {
                 updated.push(this.name);
 
                 if (this.name === "killer") {
-                    container.remove();
+                    container.destroy();
                 }
             }
         }
@@ -277,7 +277,7 @@ describe("Destroying elements (remove)", function () {
 
         expect(() => canvas.logic(0.1)).not.toThrow();
 
-        // the children are updated last to first, and once the container is removed its children aren't updated anymore
+        // the children are updated last to first, and once the container is destroyed its children aren't updated anymore
         expect(updated).toEqual(["killer"]);
     });
 

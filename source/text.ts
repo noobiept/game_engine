@@ -36,7 +36,7 @@ export class Text extends Element {
     protected _font_size = 20;
     protected _font = "20px monospace"; // fontFamily + fontSize
     protected _timeout: number | undefined;
-    protected _timeout_handle: Utilities.Timeout | null = null; // removes the text once the `timeout` passes
+    protected _timeout_handle: Utilities.Timeout | null = null; // destroys the text once the `timeout` passes
     protected _lines: string[] = [""];
 
     constructor(args: TextArgs) {
@@ -89,7 +89,7 @@ export class Text extends Element {
 
             timeout.start(() => {
                 this._timeout_handle = null;
-                this.remove();
+                this.destroy();
             }, args.timeout * 1000);
 
             this._timeout_handle = timeout;
@@ -97,15 +97,15 @@ export class Text extends Element {
     }
 
     /**
-     * Also cancels the `timeout` (if the text is removed before it).
+     * Also cancels the `timeout` (if the text is destroyed before it).
      */
-    _removeNow() {
+    _destroyNow() {
         if (this._timeout_handle) {
             this._timeout_handle.clear();
             this._timeout_handle = null;
         }
 
-        super._removeNow();
+        super._destroyNow();
     }
 
     /**
