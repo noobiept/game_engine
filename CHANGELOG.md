@@ -63,6 +63,10 @@ A pass of bug fixes. Some change how existing games behave, so check the
   values that aren't finite numbers, and returns whether the score is in the
   list. `HighScore.get()` is typed as possibly `undefined`, and `init()` throws
   when `maxScoresSaved` isn't a positive integer.
+- **Breaking**: the `container` of the `Html` elements (and the `element` of
+  `Html.Value`) is always set: it was typed as possibly `null`, since `clear()`
+  set it to `null`. `clear()` now takes it out of the page, and the new
+  `isCleared()` tells if it was called.
 - **Breaking**: `Grid` and `PathFinding.breadthFirstSearch()` throw a
   `RangeError` for invalid arguments (columns/lines that aren't positive
   integers, a destination outside the map).
@@ -91,6 +95,7 @@ A pass of bug fixes. Some change how existing games behave, so check the
 ### Added
 
 - `Game.setMaxDeltaTime()` and `Game.isGameLoopRunning()`.
+- `isCleared()` on the `Html` elements.
 - A `timeout` option for `Preload` (in seconds), and the `PreloadErrorData`
   type for its `error` event.
 

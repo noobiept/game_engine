@@ -10,7 +10,7 @@ runOnLoad(function () {
     document.body.appendChild(menu.container);
 
     // example 1 - add/remove a message
-    let message1;
+    let message1: Game.Message | null = null;
     const message1_button = new Game.Html.TwoState({
         value: "Add",
         value2: "Remove",
@@ -23,7 +23,7 @@ runOnLoad(function () {
             });
         },
         callback2: function (_button) {
-            message1.clear();
+            message1?.clear();
         },
     });
     menu.addChild(message1_button);

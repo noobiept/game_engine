@@ -42,7 +42,7 @@ runOnLoad(function () {
 });
 
 (function () {
-    let GRID;
+    let GRID: Game.ElementGrid;
 
     /*
     Starts the initial phase where you add some squares
@@ -71,7 +71,7 @@ runOnLoad(function () {
         Game.addToGameLoop(gameLogic, { delay: 0.5 });
     };
 
-    function clickEvent(event) {
+    function clickEvent(event: MouseEvent) {
         const canvas = Game.getCanvas().getHtmlCanvasElement();
         const canvasRect = canvas.getBoundingClientRect();
 
@@ -89,13 +89,13 @@ runOnLoad(function () {
         }
     }
 
-    function addSquare(column, line) {
+    function addSquare(column: number, line: number) {
         const element = new Square();
 
         GRID.add(element, column, line);
     }
 
-    function removeSquare(square) {
+    function removeSquare(square: Square) {
         GRID.remove(square.grid_data.column, square.grid_data.line);
         Game.removeElement(square);
     }
@@ -156,7 +156,6 @@ runOnLoad(function () {
         }
 
         GRID.clear();
-        GRID = null;
 
         const canvas = Game.getCanvas().getHtmlCanvasElement();
 

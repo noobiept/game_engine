@@ -87,15 +87,21 @@ runOnLoad(function () {
         },
     };
 
-    let GRID;
-    let CURRENT_DIFFICULTY = "beginner";
+    type Difficulty = keyof typeof DIFFICULTY;
+
+    function isDifficulty(value: string): value is Difficulty {
+        return Object.prototype.hasOwnProperty.call(DIFFICULTY, value);
+    }
+
+    let GRID: Game.ElementGrid;
+    let CURRENT_DIFFICULTY: Difficulty = "beginner";
     let NUMBER_OF_COLUMNS = DIFFICULTY[CURRENT_DIFFICULTY].columns;
     let NUMBER_OF_LINES = DIFFICULTY[CURRENT_DIFFICULTY].lines;
     let NUMBER_OF_MINES = DIFFICULTY[CURRENT_DIFFICULTY].mines;
-    let TIMER;
-    let SELECTED_SQUARE = null;
+    let TIMER: Utilities.Timer;
+    let SELECTED_SQUARE: Square | null = null;
     let HAS_ENDED = false;
-    let END_MESSAGE = null;
+    let END_MESSAGE: Game.Message | null = null;
     const MAX_SCORES_SAVED = 5;
 
     Main.init = function () {
@@ -224,7 +230,6 @@ runOnLoad(function () {
         }
 
         GRID.clear();
-        GRID = null;
 
         SELECTED_SQUARE = null;
 
@@ -258,11 +263,11 @@ runOnLoad(function () {
     };
 
     Main.selectDifficulty = function (difficulty) {
-        const stats = DIFFICULTY[difficulty];
-
-        if (!stats) {
+        if (!isDifficulty(difficulty)) {
             throw new Error("Wrong difficulty value.");
         }
+
+        const stats = DIFFICULTY[difficulty];
 
         Main.clear();
 
@@ -274,7 +279,7 @@ runOnLoad(function () {
         Main.start();
     };
 
-    function mouseMove(event) {
+    function mouseMove(event: MouseEvent) {
         const canvasRect = Game.getCanvas()
             .getHtmlCanvasElement()
             .getBoundingClientRect();
@@ -316,7 +321,7 @@ runOnLoad(function () {
         }
     }
 
-    function mouseClick(event) {
+    function mouseClick(event: MouseEvent) {
         const button = event.button;
         const canvasRect = Game.getCanvas()
             .getHtmlCanvasElement()
@@ -355,7 +360,7 @@ runOnLoad(function () {
         }
     }
 
-    function revealSquare(square) {
+    function revealSquare(square: Square) {
         if (square.state === Square.STATE.revealed) {
             return;
         }
@@ -394,7 +399,7 @@ runOnLoad(function () {
         }
     }
 
-    function revealAdjacents(square) {
+    function revealAdjacents(square: Square) {
         const adjacents = GRID.getNeighbors(
             square.grid_data.column,
             square.grid_data.line,
@@ -481,7 +486,7 @@ runOnLoad(function () {
         });
     }
 
-    function gameOver(hasWon) {
+    function gameOver(hasWon: boolean) {
         HAS_ENDED = true;
         TIMER.stop();
         revealAllMines();

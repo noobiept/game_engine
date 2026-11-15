@@ -4,11 +4,11 @@ import { Snake } from "./snake";
 import { Tail } from "./tail";
 import { Direction, setGameOver, setGrid } from "./state";
 
-let GRID;
-let SNAKE;
-const ALL_FOOD = [];
-let TAIL_SIZE;
-const COLLISION_CALLBACKS = [];
+let GRID: Game.ElementGrid;
+let SNAKE: Snake;
+const ALL_FOOD: Food[] = [];
+let TAIL_SIZE: Game.Text;
+const COLLISION_CALLBACKS: (() => void)[] = [];
 
 runOnLoad(function () {
     Game.init({ container: document.body, width: 400, height: 400 });
@@ -100,10 +100,12 @@ export function start() {
         function () {
             SNAKE.tick();
 
-            while (COLLISION_CALLBACKS.length > 0) {
-                const callback = COLLISION_CALLBACKS.pop();
+            // one at a time, since a callback can restart the game (which clears the list)
+            let callback = COLLISION_CALLBACKS.pop();
 
+            while (callback) {
                 callback();
+                callback = COLLISION_CALLBACKS.pop();
             }
         },
         { delay: 0.1 },
@@ -111,7 +113,7 @@ export function start() {
 
     Game.addToGameLoop(
         function () {
-            const position = GRID.getRandomEmptyPosition(5);
+            const position = GRID.getRandomEmptyPosition();
 
             if (position !== null) {
                 const food = new Food({
@@ -126,7 +128,7 @@ export function start() {
     );
 }
 
-export function keyDown(event) {
+export function keyDown(event: KeyboardEvent) {
     if (event.key === "a") {
         SNAKE.changeDirection(Direction.left);
     } else if (event.key === "d") {
@@ -140,12 +142,9 @@ export function keyDown(event) {
 
 export function clear() {
     SNAKE.destroy();
-    SNAKE = null;
     GRID.clear();
-    GRID = null;
     setGrid(null);
     TAIL_SIZE.destroy();
-    TAIL_SIZE = null;
 
     COLLISION_CALLBACKS.length = 0;
 

@@ -32,13 +32,13 @@ runOnLoad(function () {
     rectangle2.addEventListener("mouseout", mouseOut);
 });
 
-function mouseOver(data) {
+function mouseOver(data: { element: Game.Rectangle }) {
     const element = data.element;
 
     console.log("Mouse over:", element.color);
 }
 
-function mouseOut(data) {
+function mouseOut(data: { element: Game.Rectangle }) {
     const element = data.element;
 
     console.log("Mouse out:", element.color);

@@ -114,7 +114,7 @@ function start() {
     animate(container);
 }
 
-function animate(element) {
+function animate(element: Game.Element) {
     const duration = 2;
     const tween = new Game.Tween(element);
 

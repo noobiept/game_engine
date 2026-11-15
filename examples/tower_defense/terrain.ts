@@ -2,17 +2,18 @@ import { Game } from "../shared";
 import { SQUARE_SIZE } from "./state";
 
 export class Terrain extends Game.Rectangle {
-    constructor(args) {
-        args.color = "black"; // random color, since the 'color' argument is required for 'Game.Rectangle'
-        args.width = SQUARE_SIZE;
-        args.height = SQUARE_SIZE;
-
-        super(args);
+    constructor(args: { x: number; y: number }) {
+        super({
+            ...args,
+            color: "black", // the color is set by `setPassable()`, but it's required by 'Game.Rectangle'
+            width: SQUARE_SIZE,
+            height: SQUARE_SIZE,
+        });
 
         this.setPassable(0);
     }
 
-    setPassable(passable) {
+    setPassable(passable: number) {
         if (passable !== 0) {
             this.color = "rgb(100, 100, 100)";
         } else {

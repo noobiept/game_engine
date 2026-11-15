@@ -35,6 +35,7 @@ export class Unit extends Game.Sprite {
             },
         });
 
+        this.state = state;
         this.setState(state);
     }
 

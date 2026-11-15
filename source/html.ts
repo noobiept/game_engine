@@ -35,9 +35,10 @@ export interface HtmlElementArgs {
  * Generic html element, serves as base for the rest of the classes.
  */
 export class HtmlElement {
-    container: HTMLElement | null;
+    container: HTMLElement;
     protected _is_active: boolean;
     protected _pre_text: HTMLElement | null;
+    protected _cleared: boolean; // `clear()` was called (the element can't be used anymore)
 
     constructor(args?: HtmlElementArgs) {
         const container = document.createElement("div");
@@ -47,6 +48,7 @@ export class HtmlElement {
         this.container = container;
         this._is_active = true;
         this._pre_text = null;
+        this._cleared = false;
 
         if (typeof args !== "undefined") {
             // add an optional id
@@ -92,10 +94,6 @@ export class HtmlElement {
     setActive(yesNo: boolean) {
         const container = this.container;
 
-        if (container === null) {
-            return;
-        }
-
         // already in that state
         if (yesNo === this._is_active) {
             return;
@@ -137,19 +135,20 @@ export class HtmlElement {
      * Calls this to remove the element.
      */
     clear() {
-        const container = this.container;
-
-        if (container === null) {
-            return;
-        }
-
         if (this._pre_text) {
-            container.removeChild(this._pre_text);
+            this._pre_text.remove();
             this._pre_text = null;
         }
 
-        container.parentNode?.removeChild(container);
-        this.container = null;
+        this.container.remove();
+        this._cleared = true;
+    }
+
+    /**
+     * Tells if the element was cleared (with `clear()`).
+     */
+    isCleared() {
+        return this._cleared;
     }
 }
 
@@ -166,7 +165,7 @@ export class HtmlContainer extends HtmlElement {
     constructor(args?: HtmlContainerArgs) {
         super(args);
 
-        this.container?.classList.add("Game-Container");
+        this.container.classList.add("Game-Container");
         this._children = [];
 
         if (typeof args !== "undefined") {
@@ -193,9 +192,10 @@ export class HtmlContainer extends HtmlElement {
         for (let a = 0; a < length; a++) {
             const child = elements[a];
 
-            if (child.container) {
+            // a cleared element can't be used anymore
+            if (!child.isCleared()) {
                 this._children.push(child);
-                this.container?.appendChild(child.container);
+                this.container.appendChild(child.container);
             }
         }
     }
@@ -237,7 +237,7 @@ export class HtmlContainer extends HtmlElement {
         this._children.length = 0;
 
         // there may be other children that are not classes from Game.Html.*, so we just remove the html normally
-        while (this.container?.lastChild) {
+        while (this.container.lastChild) {
             this.container.removeChild(this.container.lastChild);
         }
     }
@@ -260,7 +260,7 @@ export interface ValueArgs extends HtmlElementArgs {
  */
 export class Value extends HtmlElement {
     protected value: any;
-    element: HTMLElement | null;
+    element: HTMLElement;
 
     constructor(args: ValueArgs) {
         // set properties before this
@@ -268,8 +268,8 @@ export class Value extends HtmlElement {
 
         // .container only available after super()
         this.element = document.createElement("span");
-        this.container?.appendChild(this.element);
-        this.container?.classList.add("Game-Value");
+        this.container.appendChild(this.element);
+        this.container.classList.add("Game-Value");
 
         this.setValue(args.value);
     }
@@ -283,9 +283,7 @@ export class Value extends HtmlElement {
         }
 
         this.value = value;
-        if (this.element) {
-            this.element.textContent = String(value);
-        }
+        this.element.textContent = String(value);
     }
 
     /**
@@ -299,11 +297,7 @@ export class Value extends HtmlElement {
      * Clear the object (don't use it after this).
      */
     clear() {
-        if (this.container && this.element) {
-            this.container.removeChild(this.element);
-        }
-
-        this.element = null;
+        this.element.remove();
         this.value = null;
 
         super.clear();
@@ -337,7 +331,7 @@ export class Button extends Value {
         }
 
         // .container only available after super()
-        this.container?.classList.add("Game-Button");
+        this.container.classList.add("Game-Button");
         this.addEvents();
     }
 
@@ -345,7 +339,7 @@ export class Button extends Value {
      * Add the click event handler.
      */
     addEvents() {
-        if (this.container && this.click_ref) {
+        if (this.click_ref) {
             this.container.addEventListener("click", this.click_ref);
         }
     }
@@ -354,7 +348,7 @@ export class Button extends Value {
      * Remove the click event handler.
      */
     removeEvents() {
-        if (this.container && this.click_ref) {
+        if (this.click_ref) {
             this.container.removeEventListener("click", this.click_ref);
         }
     }
@@ -393,7 +387,7 @@ export class Boolean extends Button {
         });
 
         // .container only available after super()
-        this.container?.classList.add("Game-Boolean");
+        this.container.classList.add("Game-Boolean");
         this.addEvents();
     }
 
@@ -405,15 +399,7 @@ export class Boolean extends Button {
             return;
         }
 
-        if (value === true) {
-            if (this.element) {
-                this.element.textContent = "On";
-            }
-        } else {
-            if (this.element) {
-                this.element.textContent = "Off";
-            }
-        }
+        this.element.textContent = value === true ? "On" : "Off";
 
         this.value = value;
     }
@@ -442,17 +428,13 @@ export class TwoState extends Button {
             ...args,
             click_ref: (event: MouseEvent) => {
                 if (this.isValue1) {
-                    if (this.element) {
-                        this.element.textContent = args.value2;
-                    }
+                    this.element.textContent = args.value2;
 
                     if (args.callback) {
                         args.callback(this);
                     }
                 } else {
-                    if (this.element) {
-                        this.element.textContent = String(args.value);
-                    }
+                    this.element.textContent = String(args.value);
 
                     if (args.callback2) {
                         args.callback2(this);
@@ -465,11 +447,11 @@ export class TwoState extends Button {
         });
 
         this.isValue1 = true;
-        this.container?.classList.add("Game-TwoState");
+        this.container.classList.add("Game-TwoState");
     }
 
     getValue() {
-        return this.element?.textContent ?? null;
+        return this.element.textContent;
     }
 }
 
@@ -519,12 +501,12 @@ export class MultipleOptions extends HtmlElement {
 
             option.textContent = args.options[a];
 
-            this.container?.appendChild(option);
+            this.container.appendChild(option);
             this.elements.push(option);
         }
 
-        this.container?.classList.add("Game-Button");
-        this.container?.classList.add("Game-MultipleOptions");
+        this.container.classList.add("Game-Button");
+        this.container.classList.add("Game-MultipleOptions");
         this.selected = null;
         this.select(0);
         this.addEvents();
@@ -592,7 +574,7 @@ export class MultipleOptions extends HtmlElement {
         this.selected = null;
 
         for (let a = this.elements.length - 1; a >= 0; a--) {
-            this.container?.removeChild(this.elements[a]);
+            this.elements[a].remove();
         }
 
         this.elements.length = 0;
@@ -665,9 +647,9 @@ export class Range extends HtmlElement {
 
         this.value = document.createElement("span");
 
-        this.container?.classList.add("Game-Range");
-        this.container?.appendChild(this.input);
-        this.container?.appendChild(this.value);
+        this.container.classList.add("Game-Range");
+        this.container.appendChild(this.input);
+        this.container.appendChild(this.value);
 
         this.setValue(args.value);
         this.addEvents();
@@ -734,13 +716,13 @@ export class Range extends HtmlElement {
         this.change_ref = null;
         this.input_ref = null;
 
-        if (this.container && this.value) {
-            this.container.removeChild(this.value);
+        if (this.value) {
+            this.value.remove();
             this.value = null;
         }
 
-        if (this.container && this.input) {
-            this.container.removeChild(this.input);
+        if (this.input) {
+            this.input.remove();
             this.input = null;
         }
 
@@ -782,7 +764,7 @@ export class Text extends HtmlElement {
             input.setAttribute("placeholder", args.placeholder);
         }
 
-        this.container?.appendChild(input);
+        this.container.appendChild(input);
         this.input = input;
 
         // setup the callback function
@@ -802,12 +784,10 @@ export class Text extends HtmlElement {
                     args.callback?.(this);
                 },
             });
-            if (this.button.container) {
-                this.container?.appendChild(this.button.container);
-            }
+            this.container.appendChild(this.button.container);
         }
 
-        this.container?.classList.add("Game-Text");
+        this.container.classList.add("Game-Text");
         this.addEvents();
     }
 
@@ -844,8 +824,8 @@ export class Text extends HtmlElement {
     clear() {
         this.removeEvents();
         this.key_ref = null;
-        if (this.container && this.input) {
-            this.container.removeChild(this.input);
+        if (this.input) {
+            this.input.remove();
             this.input = null;
         }
 

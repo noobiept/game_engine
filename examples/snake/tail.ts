@@ -1,7 +1,7 @@
 import { Game } from "../shared";
 import { Direction, gameOver, getGrid } from "./state";
 
-type DirectionValue = (typeof Direction)[keyof typeof Direction];
+export type DirectionValue = (typeof Direction)[keyof typeof Direction];
 
 interface PathStep {
     column: number;
@@ -9,7 +9,7 @@ interface PathStep {
     direction: DirectionValue;
 }
 
-interface TailArgs extends Omit<
+export interface TailArgs extends Omit<
     Partial<Game.RectangleArgs>,
     "width" | "height" | "color"
 > {

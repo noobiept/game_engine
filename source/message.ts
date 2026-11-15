@@ -44,7 +44,7 @@ export class Message extends Html.HtmlContainer {
         });
 
         this.setBody(args.body);
-        this.container?.classList.add("Game-Message-container");
+        this.container.classList.add("Game-Message-container");
         this.addChild(this.body);
 
         this.timeout = null;
@@ -88,9 +88,7 @@ export class Message extends Html.HtmlContainer {
             args.container.appendChild(this.background);
         }
 
-        if (this.container) {
-            args.container.appendChild(this.container);
-        }
+        args.container.appendChild(this.container);
     }
 
     /**
@@ -103,7 +101,7 @@ export class Message extends Html.HtmlContainer {
         }
 
         if (this.background) {
-            this.container?.parentNode?.removeChild(this.background);
+            this.background.remove();
             this.background = null;
         }
 
@@ -130,7 +128,7 @@ export class Message extends Html.HtmlContainer {
             if (element instanceof Html.HtmlElement) {
                 this.body.addChild(element);
             } else if (element instanceof HTMLElement) {
-                this.body.container?.appendChild(element);
+                this.body.container.appendChild(element);
             }
 
             // a string
@@ -138,7 +136,7 @@ export class Message extends Html.HtmlContainer {
                 const bodyElement = document.createElement("div");
                 bodyElement.textContent = String(element);
 
-                this.body.container?.appendChild(bodyElement);
+                this.body.container.appendChild(bodyElement);
             }
         }
     }

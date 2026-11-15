@@ -87,18 +87,18 @@ const MAP_INFO = {
     ],
 };
 
-let PATH; // has the path that the creeps need to do to reach the destination
-let MENU_MONEY; // reference to the menu element that shows/holds the current money value
-let MENU_LIFE; // reference to the menu element that shows/holds the current life value
-let MENU_RESTART;
-let TOWER_GRID; // keeps track of where the towers are added
-let CREEP_HEALTH; // health of the next creeps to be added (it changes overtime)
+let PATH: ReturnType<typeof Game.PathFinding.breadthFirstSearch>; // has the path that the creeps need to do to reach the destination
+let MENU_MONEY: Game.Html.Value; // reference to the menu element that shows/holds the current money value
+let MENU_LIFE: Game.Html.Value; // reference to the menu element that shows/holds the current life value
+let MENU_RESTART: Game.Html.Button;
+let TOWER_GRID: Game.Grid; // keeps track of where the towers are added
+let CREEP_HEALTH: number; // health of the next creeps to be added (it changes overtime)
 
 // top level container for all the elements
-let TERRAINS_CONTAINER;
-let BULLETS_CONTAINER;
-let CREEPS_CONTAINER;
-let TOWERS_CONTAINER;
+let TERRAINS_CONTAINER: Game.Container;
+let BULLETS_CONTAINER: Game.Container;
+let CREEPS_CONTAINER: Game.Container;
+let TOWERS_CONTAINER: Game.Container;
 
 const CATEGORIES = {
     tower: 1,
@@ -192,7 +192,14 @@ Main.start = function () {
 };
 
 Main.getNextPosition = function (column, line) {
-    return PATH[line][column];
+    const next = PATH[line][column];
+
+    // the creeps only walk on the path, which always leads to the destination
+    if (next === null) {
+        throw new Error(`There's no path from the position ${column}x${line}.`);
+    }
+
+    return next;
 };
 
 function clear() {
@@ -242,7 +249,7 @@ function addCreeps() {
 /**
  * Add a tower on click event.
  */
-function addTower(event) {
+function addTower(event: MouseEvent) {
     // check if we have the necessary money
     if (Main.getMoney() < Tower.COST) {
         return;
@@ -341,7 +348,9 @@ Main.gameOver = function () {
 };
 
 function tick() {
-    const towers = TOWERS_CONTAINER.getAllChildren();
+    const towers = TOWERS_CONTAINER.getAllChildren().filter(
+        (element): element is Tower => element instanceof Tower,
+    );
     const creeps = CREEPS_CONTAINER.getAllChildren();
 
     // towers will attack a creep that is within its range

@@ -24,7 +24,7 @@ runOnLoad(function () {
 
 (function () {
     const SPAWN_VALUES = [2, 4];
-    let GRID;
+    let GRID: Game.ElementGrid;
 
     // duration of the animation
     const MOVE_DURATION = 0.1;
@@ -34,7 +34,7 @@ runOnLoad(function () {
     /**
      * Fade out a block that was combined into another, then destroy it.
      */
-    function removeBlock(block) {
+    function removeBlock(block: Block) {
         new Game.Tween(block)
             .to({ opacity: 0 }, REMOVE_DURATION)
             .call(() => block.destroy())
@@ -77,7 +77,6 @@ runOnLoad(function () {
         }
 
         GRID.clear();
-        GRID = null;
     };
 
     Main.restart = function () {
@@ -111,7 +110,7 @@ runOnLoad(function () {
         GRID.add(block, position.column, position.line);
     };
 
-    function keyEvents(event) {
+    function keyEvents(event: KeyboardEvent) {
         switch (event.key) {
             case "ArrowLeft":
             case "a":
