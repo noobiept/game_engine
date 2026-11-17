@@ -22,7 +22,7 @@ function copyAnimations(animations: { [id: string]: number[] }) {
 export interface SpritePlayOptions {
     loop?: boolean; // whether the animation loops (default) or plays once
     reset?: boolean; // when re-playing the current animation, restart it from the first frame
-    destroyOnEnd?: boolean; // with `loop: false`, destroy the sprite once the animation ends (for one-shot effects, like an explosion)
+    destroyOnEnd?: boolean; // with `loop: false`, destroy the sprite once the animation ends (for one-shot effects, like an explosion), unless an `animationend` listener plays another animation
 }
 
 /**
@@ -204,12 +204,16 @@ export class Sprite extends Bitmap {
                     this._current_animation[this._current_animation_position],
                 );
 
+                // the option of the animation that ended (a listener can play another one)
+                const destroy = this._destroy_on_end;
+
                 this.dispatchEvent("animationend", {
                     sprite: this,
                     animationId: this._current_animation_id,
                 });
 
-                if (this._destroy_on_end) {
+                // unless a listener started another animation
+                if (destroy && !this._has_logic) {
                     this.destroy();
                 }
 

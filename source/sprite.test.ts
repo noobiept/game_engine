@@ -56,6 +56,40 @@ describe("Sprite", function () {
         expect(sprite.isDestroyed()).toBe(true);
     });
 
+    test("destroyOnEnd belongs to the animation that ended (a listener can play the next one)", function () {
+        // the next one-shot animation destroys the sprite at its own end
+        const sprite = makeSprite();
+        let ended = 0;
+
+        sprite.addEventListener("animationend", () => {
+            ended++;
+
+            if (ended === 1) {
+                sprite.play("once", { loop: false, destroyOnEnd: true });
+            }
+        });
+        sprite.play("once", { loop: false });
+
+        sprite.logic(0.1);
+        sprite.logic(0.1);
+        expect(ended).toBe(1);
+        expect(sprite.isDestroyed()).toBe(false);
+
+        sprite.logic(0.1);
+        sprite.logic(0.1);
+        expect(ended).toBe(2);
+        expect(sprite.isDestroyed()).toBe(true);
+
+        // a listener that plays another animation keeps the sprite
+        const other = makeSprite();
+
+        other.addEventListener("animationend", () => other.play("loopAnim"));
+        other.play("once", { loop: false, destroyOnEnd: true });
+        other.logic(0.1);
+        other.logic(0.1);
+        expect(other.isDestroyed()).toBe(false);
+    });
+
     test("looping animation wraps around without dispatching animationend", function () {
         const sprite = makeSprite();
         const events: unknown[] = [];
