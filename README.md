@@ -268,6 +268,8 @@ enemiesLayer.destroyAllChildren();
 
 Adding an element that is already in a container/canvas moves it to the new one.
 
+The elements are positioned by their center (`x`/`y`). To position them by an edge, set `left`, `top`, `right` or `bottom`.
+
 ## Tweens
 
 A `Tween` animates an element's properties over time. Durations are in seconds. Pass `{ override: true }` to cancel any tween already running on the target.

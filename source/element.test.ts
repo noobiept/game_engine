@@ -16,6 +16,28 @@ describe("Element top-left bounds", function () {
         expect(rect.top).toBe(45); // 50 - 10 / 2
     });
 
+    test("left/top/right/bottom can be set, which moves the element", function () {
+        const rect = new Rectangle({
+            x: 100,
+            y: 50,
+            width: 20,
+            height: 10,
+            color: "red",
+        });
+
+        rect.left = 0;
+        rect.top = 0;
+        expect([rect.x, rect.y]).toEqual([10, 5]);
+
+        expect(rect.right).toBe(20);
+        expect(rect.bottom).toBe(10);
+
+        rect.right = 200;
+        rect.bottom = 100;
+        expect([rect.x, rect.y]).toEqual([190, 95]);
+        expect([rect.left, rect.top]).toEqual([180, 90]);
+    });
+
     test("getBoundingBox returns a top-left box", function () {
         const rect = new Rectangle({
             x: 100,

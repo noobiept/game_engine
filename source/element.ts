@@ -571,18 +571,49 @@ export abstract class Element extends EventDispatcher {
     }
 
     /**
-     * The position model is center-origin (`x`/`y` is the center). This returns the top-left `x`
-     * (`x - halfWidth`), which is convenient when porting top-left based games.
+     * The position model is center-origin (`x`/`y` is the center). `left` is the `x` of the left edge
+     * (`x - halfWidth`), and setting it moves the element so its left edge is there. With `top`, `right` and
+     * `bottom`, it's convenient for top-left based games. They don't consider the rotation or scale.
      */
     get left() {
         return this._x - this._half_width;
     }
 
+    set left(left: number) {
+        this.x = left + this._half_width;
+    }
+
     /**
-     * The top-left `y` (`y - halfHeight`). See `left`.
+     * The `y` of the top edge (`y - halfHeight`). See `left`.
      */
     get top() {
         return this._y - this._half_height;
+    }
+
+    set top(top: number) {
+        this.y = top + this._half_height;
+    }
+
+    /**
+     * The `x` of the right edge (`x + halfWidth`). See `left`.
+     */
+    get right() {
+        return this._x + this._half_width;
+    }
+
+    set right(right: number) {
+        this.x = right - this._half_width;
+    }
+
+    /**
+     * The `y` of the bottom edge (`y + halfHeight`). See `left`.
+     */
+    get bottom() {
+        return this._y + this._half_height;
+    }
+
+    set bottom(bottom: number) {
+        this.y = bottom - this._half_height;
     }
 
     /**
