@@ -25,6 +25,7 @@ export * from "./bullet";
 export * from "./weapon";
 export * from "./cooldown";
 export * from "./game_time";
+export { Keyboard, type KeyboardKeys, type KeyboardOptions } from "./keyboard";
 export * from "./message";
 export { CheckAll } from "./collision-detection/collision_check_all";
 export {

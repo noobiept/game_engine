@@ -1,6 +1,7 @@
 import { CollisionDetectionAlgorithm } from "./collision-detection/collision_detection";
 import { Element } from "./element";
 import { EventDispatcher } from "./event_dispatcher";
+import * as Keyboard from "./keyboard";
 import * as Utilities from "@drk4/utilities";
 import * as CollisionDetection from "./collision-detection/collision_detection";
 import * as Sound from "./sound";
@@ -221,6 +222,7 @@ function resumeLoop() {
     NEXT_UPDATE_TIME = now + FRAME_INTERVAL;
     ANIMATION_ID = window.requestAnimationFrame(loop);
 
+    Keyboard._onLoopResume();
     EVENTS.dispatchEvent("resume");
 }
 
@@ -229,6 +231,7 @@ function pauseLoop() {
         window.cancelAnimationFrame(ANIMATION_ID);
         ANIMATION_ID = null;
 
+        Keyboard._onLoopPause();
         EVENTS.dispatchEvent("pause");
     }
 }
@@ -696,6 +699,9 @@ function update(deltaTime: number) {
     for (a = lastPosition; a >= 0; a--) {
         allCanvas[a].draw();
     }
+
+    // the key presses/releases were seen by this update
+    Keyboard._endUpdate();
 }
 
 /**

@@ -96,7 +96,13 @@ const SPEED = 180; // Player movement, in pixels per second.
 
 Game.init({ container: document.body, width: WIDTH, height: HEIGHT });
 
-const keys = new Set<string>();
+// Name the actions, and bind keys to them (the arrows or WASD).
+const controls = new Game.Keyboard({
+    left: ["ArrowLeft", "KeyA"],
+    right: ["ArrowRight", "KeyD"],
+    up: ["ArrowUp", "KeyW"],
+    down: ["ArrowDown", "KeyS"],
+});
 
 const player = new Game.Rectangle({
     x: WIDTH / 2, // x/y is the center of the element.
@@ -109,19 +115,11 @@ const player = new Game.Rectangle({
 const label = new Game.Text({
     x: 16,
     y: 16,
-    text: "Move with arrow keys",
+    text: "Move with the arrows or WASD",
     fontSize: 18,
 });
 
 Game.addElement([player, label]);
-
-window.addEventListener("keydown", function (event) {
-    keys.add(event.key);
-});
-
-window.addEventListener("keyup", function (event) {
-    keys.delete(event.key);
-});
 
 player.addEventListener("click", function () {
     new Game.Tween(player, { override: true })
@@ -133,10 +131,10 @@ Game.addToGameLoop(function (deltaTime) {
     let x = 0;
     let y = 0;
 
-    if (keys.has("ArrowLeft")) x -= 1;
-    if (keys.has("ArrowRight")) x += 1;
-    if (keys.has("ArrowUp")) y -= 1;
-    if (keys.has("ArrowDown")) y += 1;
+    if (controls.isHeld("left")) x -= 1;
+    if (controls.isHeld("right")) x += 1;
+    if (controls.isHeld("up")) y -= 1;
+    if (controls.isHeld("down")) y += 1;
 
     if (x !== 0 || y !== 0) {
         const length = Math.hypot(x, y);
@@ -243,6 +241,29 @@ button.addEventListener("click", function () {
     console.log("clicked!");
 });
 ```
+
+For the keyboard, name the game's actions and bind keys to them once, with `Game.Keyboard`. The game code then only asks about the actions:
+
+```ts
+const controls = new Game.Keyboard({
+    left: ["ArrowLeft", "KeyA"],
+    right: ["ArrowRight", "KeyD"],
+    fire: "Space",
+});
+
+Game.addToGameLoop(function (deltaTime) {
+    if (controls.isHeld("left")) {
+        player.x -= 100 * deltaTime;
+    }
+
+    // True for one update, even for a quick tap between two updates.
+    if (controls.wasPressed("fire")) {
+        player.fire();
+    }
+});
+```
+
+The keys are `KeyboardEvent.code` values, which name a key by its position on the keyboard (`KeyW` is where W is on a US keyboard, and where Z is on a French one), so the controls stay in place with any layout. The action names are checked by TypeScript. The keys are let go when the window loses the focus or the game loop pauses, keys typed in form fields are ignored, and the bound keys don't scroll the page. Change the keys with `controls.setKeys()` (for an options screen).
 
 ## Removing elements
 
