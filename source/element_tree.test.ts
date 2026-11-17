@@ -259,6 +259,25 @@ describe("Destroying elements (destroy)", function () {
         expect(Tween.getTween(wall)).toBe(null);
     });
 
+    test("destroy() stops the tweens right away (a .call() step doesn't run in that frame)", function () {
+        const container = new Container({ children: makeRect() });
+        const child = container.getAllChildren()[0];
+        let calls = 0;
+
+        canvas.addChild(container);
+        new Tween(child)
+            .to({ x: 100 }, 0.1)
+            .call(() => calls++)
+            .start();
+
+        // destroying the container destroys the child as well
+        container.destroy();
+        Tween.update(0.2);
+
+        expect(calls).toBe(0);
+        expect(Tween.getTween(child)).toBe(null);
+    });
+
     test("destroying a container destroys its children", async function () {
         const child = makeRect();
         const nested = new Container({ children: makeRect() });

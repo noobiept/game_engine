@@ -12,6 +12,9 @@ see the [migration guide](MIGRATION.md).
 
 ### Changed
 
+- `destroy()` stops the element's tweens right away, instead of at the end of
+  the frame, so a tween's `.call()` no longer runs for an element destroyed
+  earlier in that frame.
 - A `Cooldown` keeps the time past an interval of `0`, and doesn't count an
   interval that just started (`{ ready: false }`, or `restart()`) as waiting
   in its first update. A timer with a first delay of `0` (then

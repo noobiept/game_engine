@@ -345,9 +345,10 @@ export abstract class Element extends EventDispatcher {
     }
 
     /**
-     * Destroy this element. It's marked as destroyed right away (`isDestroyed()` returns `true`, and it stops
-     * colliding), and at the end of the current frame it's taken out of its container/canvas and out of the
-     * collision detection, and its tweens are stopped. It's safe to call from the logic/event code.
+     * Destroy this element. Right away, it's marked as destroyed (`isDestroyed()` returns `true`), it stops colliding,
+     * and its tweens are stopped (so a tween's `.call()` doesn't run for it anymore). At the end of the current frame
+     * it's taken out of its container/canvas and out of the collision detection. It's safe to call from the
+     * logic/event code.
      *
      * A destroyed element can't be added again. To take an element out of the game and add it back later, use
      * `removeChild()` on its container/canvas (or `Game.removeElement()`) instead.
@@ -356,6 +357,7 @@ export abstract class Element extends EventDispatcher {
         if (!this._destroyed) {
             this._destroyed = true;
 
+            Tween.removeTweens(this);
             Game._safeDestroy(this);
         }
     }
@@ -367,6 +369,7 @@ export abstract class Element extends EventDispatcher {
         this._destroyed = true;
         this._detachFromParent();
 
+        // the tweens added since `destroy()`
         Tween.removeTweens(this);
     }
 
