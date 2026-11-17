@@ -8,7 +8,7 @@
 
 > **get**(`id`): `any`
 
-Defined in: [preload.ts:437](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/preload.ts#L437)
+Defined in: [source/preload.ts:574](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/preload.ts#L574)
 
 Get an element that was saved in the global `DATA` object.
 

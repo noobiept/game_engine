@@ -6,7 +6,7 @@
 
 # Interface: ValueArgs
 
-Defined in: [html.ts:254](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/html.ts#L254)
+Defined in: [source/html.ts:254](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/html.ts#L254)
 
 ## Extends
 
@@ -22,7 +22,7 @@ Defined in: [html.ts:254](https://github.com/noobiept/game_engine/blob/d69d3f29f
 
 > `optional` **cssClass?**: `string` \| `string`[]
 
-Defined in: [html.ts:30](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/html.ts#L30)
+Defined in: [source/html.ts:30](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/html.ts#L30)
 
 #### Inherited from
 
@@ -34,7 +34,7 @@ Defined in: [html.ts:30](https://github.com/noobiept/game_engine/blob/d69d3f29ff
 
 > `optional` **cssId?**: `string`
 
-Defined in: [html.ts:29](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/html.ts#L29)
+Defined in: [source/html.ts:29](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/html.ts#L29)
 
 #### Inherited from
 
@@ -46,7 +46,7 @@ Defined in: [html.ts:29](https://github.com/noobiept/game_engine/blob/d69d3f29ff
 
 > `optional` **preText?**: `string`
 
-Defined in: [html.ts:31](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/html.ts#L31)
+Defined in: [source/html.ts:31](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/html.ts#L31)
 
 #### Inherited from
 
@@ -58,4 +58,4 @@ Defined in: [html.ts:31](https://github.com/noobiept/game_engine/blob/d69d3f29ff
 
 > **value**: `any`
 
-Defined in: [html.ts:255](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/html.ts#L255)
+Defined in: [source/html.ts:255](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/html.ts#L255)

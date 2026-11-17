@@ -8,7 +8,7 @@
 
 > **init**(`args`): `void`
 
-Defined in: [game.ts:92](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/game.ts#L92)
+Defined in: [source/game.ts:97](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/game.ts#L97)
 
 Initialize the canvas/game loop/etc.
 

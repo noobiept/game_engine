@@ -6,7 +6,7 @@
 
 # Class: EventDispatcher
 
-Defined in: [event\_dispatcher.ts:33](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/event_dispatcher.ts#L33)
+Defined in: [source/event\_dispatcher.ts:33](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/event_dispatcher.ts#L33)
 
 Base class that provides a way to add/remove listeners, and dispatch events.
 Most engine classes extend it (every `Element`, `Preload`, etc.), which is how
@@ -37,7 +37,7 @@ Basic Usage:
 
 > **new EventDispatcher**(`_args?`): `EventDispatcher`
 
-Defined in: [event\_dispatcher.ts:36](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/event_dispatcher.ts#L36)
+Defined in: [source/event\_dispatcher.ts:36](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/event_dispatcher.ts#L36)
 
 #### Parameters
 
@@ -55,7 +55,7 @@ Defined in: [event\_dispatcher.ts:36](https://github.com/noobiept/game_engine/bl
 
 > `protected` **\_listeners**: `Map`\<`string`, `ListenerEntry`[]\>
 
-Defined in: [event\_dispatcher.ts:34](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/event_dispatcher.ts#L34)
+Defined in: [source/event\_dispatcher.ts:34](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/event_dispatcher.ts#L34)
 
 ## Methods
 
@@ -63,7 +63,7 @@ Defined in: [event\_dispatcher.ts:34](https://github.com/noobiept/game_engine/bl
 
 > **addEventListener**(`type`, `listener`): `boolean`
 
-Defined in: [event\_dispatcher.ts:48](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/event_dispatcher.ts#L48)
+Defined in: [source/event\_dispatcher.ts:48](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/event_dispatcher.ts#L48)
 
 'listener' will receive a 'data' argument when its called.
 What 'data' is, depends on the event type.
@@ -94,7 +94,7 @@ If it was successfully added (`false` when it isn't a function, or was already a
 
 > **dispatchEvent**(`type`, `data?`): `void`
 
-Defined in: [event\_dispatcher.ts:125](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/event_dispatcher.ts#L125)
+Defined in: [source/event\_dispatcher.ts:125](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/event_dispatcher.ts#L125)
 
 Dispatches an event, which will trigger the listeners of that event.
 
@@ -122,7 +122,7 @@ Data to be sent to every listener.
 
 > **hasListeners**(`type`): `boolean`
 
-Defined in: [event\_dispatcher.ts:146](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/event_dispatcher.ts#L146)
+Defined in: [source/event\_dispatcher.ts:146](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/event_dispatcher.ts#L146)
 
 Check if there are listeners to a particular event type.
 
@@ -146,7 +146,7 @@ If there are listeners or not.
 
 > **removeAllEventListeners**(): `void`
 
-Defined in: [event\_dispatcher.ts:109](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/event_dispatcher.ts#L109)
+Defined in: [source/event\_dispatcher.ts:109](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/event_dispatcher.ts#L109)
 
 Remove all the event listeners.
 
@@ -160,7 +160,7 @@ Remove all the event listeners.
 
 > **removeEventListener**(`type`, `listener?`): `boolean`
 
-Defined in: [event\_dispatcher.ts:74](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/event_dispatcher.ts#L74)
+Defined in: [source/event\_dispatcher.ts:74](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/event_dispatcher.ts#L74)
 
 Removes a specific listener of an event type, or all the listeners for that type (if 'listener' is not provided).
 

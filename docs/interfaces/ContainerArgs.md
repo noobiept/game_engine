@@ -6,7 +6,7 @@
 
 # Interface: ContainerArgs
 
-Defined in: [container.ts:15](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/container.ts#L15)
+Defined in: [source/container.ts:15](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/container.ts#L15)
 
 ## Extends
 
@@ -22,7 +22,7 @@ Defined in: [container.ts:15](https://github.com/noobiept/game_engine/blob/d69d3
 
 > `readonly` `optional` **\_eventDispatcherArgsBrand?**: `undefined`
 
-Defined in: [event\_dispatcher.ts:4](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/event_dispatcher.ts#L4)
+Defined in: [source/event\_dispatcher.ts:4](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/event_dispatcher.ts#L4)
 
 #### Inherited from
 
@@ -34,7 +34,7 @@ Defined in: [event\_dispatcher.ts:4](https://github.com/noobiept/game_engine/blo
 
 > `optional` **category?**: `number`
 
-Defined in: [element.ts:17](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/element.ts#L17)
+Defined in: [source/element.ts:17](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L17)
 
 #### Inherited from
 
@@ -46,7 +46,7 @@ Defined in: [element.ts:17](https://github.com/noobiept/game_engine/blob/d69d3f2
 
 > `optional` **children?**: [`Element`](../classes/Element.md) \| readonly [`Element`](../classes/Element.md)[]
 
-Defined in: [container.ts:16](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/container.ts#L16)
+Defined in: [source/container.ts:16](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/container.ts#L16)
 
 ---
 
@@ -54,7 +54,7 @@ Defined in: [container.ts:16](https://github.com/noobiept/game_engine/blob/d69d3
 
 > `optional` **collidesWith?**: `number`
 
-Defined in: [element.ts:21](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/element.ts#L21)
+Defined in: [source/element.ts:21](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L21)
 
 #### Inherited from
 
@@ -66,7 +66,7 @@ Defined in: [element.ts:21](https://github.com/noobiept/game_engine/blob/d69d3f2
 
 > `optional` **x?**: `number`
 
-Defined in: [element.ts:12](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/element.ts#L12)
+Defined in: [source/element.ts:12](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L12)
 
 #### Inherited from
 
@@ -78,7 +78,7 @@ Defined in: [element.ts:12](https://github.com/noobiept/game_engine/blob/d69d3f2
 
 > `optional` **y?**: `number`
 
-Defined in: [element.ts:13](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/element.ts#L13)
+Defined in: [source/element.ts:13](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L13)
 
 #### Inherited from
 

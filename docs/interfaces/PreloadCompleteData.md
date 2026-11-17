@@ -6,7 +6,7 @@
 
 # Interface: PreloadCompleteData
 
-Defined in: [preload.ts:23](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/preload.ts#L23)
+Defined in: [source/preload.ts:23](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/preload.ts#L23)
 
 Data of the `complete` event.
 
@@ -16,7 +16,7 @@ Data of the `complete` event.
 
 > **failedIds**: `string`[]
 
-Defined in: [preload.ts:24](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/preload.ts#L24)
+Defined in: [source/preload.ts:24](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/preload.ts#L24)
 
 ---
 
@@ -24,4 +24,4 @@ Defined in: [preload.ts:24](https://github.com/noobiept/game_engine/blob/d69d3f2
 
 > **loadedIds**: `string`[]
 
-Defined in: [preload.ts:25](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/preload.ts#L25)
+Defined in: [source/preload.ts:25](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/preload.ts#L25)

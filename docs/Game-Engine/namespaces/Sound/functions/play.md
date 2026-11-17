@@ -8,7 +8,7 @@
 
 > **play**(`audioBuffer`, `options?`): [`SoundInstance`](../classes/SoundInstance.md) \| `null`
 
-Defined in: [sound.ts:84](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/sound.ts#L84)
+Defined in: [source/sound.ts:148](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/sound.ts#L148)
 
 Play a sound.
 
@@ -30,4 +30,5 @@ Optional playback options (loop and per-sound volume).
 
 [`SoundInstance`](../classes/SoundInstance.md) \| `null`
 
-A `SoundInstance` you can use to control the playback, or `null` if it wasn't possible to play the sound.
+A `SoundInstance` you can use to control the playback, or `null` if it wasn't possible to play the sound
+(audio isn't available, or `audioBuffer` isn't an audio buffer, like for a file that failed to load).

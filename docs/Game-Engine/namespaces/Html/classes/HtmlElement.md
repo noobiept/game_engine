@@ -6,7 +6,7 @@
 
 # Class: HtmlElement
 
-Defined in: [html.ts:37](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/html.ts#L37)
+Defined in: [source/html.ts:37](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/html.ts#L37)
 
 Generic html element, serves as base for the rest of the classes.
 
@@ -24,7 +24,7 @@ Generic html element, serves as base for the rest of the classes.
 
 > **new HtmlElement**(`args?`): `HtmlElement`
 
-Defined in: [html.ts:43](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/html.ts#L43)
+Defined in: [source/html.ts:43](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/html.ts#L43)
 
 #### Parameters
 
@@ -42,7 +42,7 @@ Defined in: [html.ts:43](https://github.com/noobiept/game_engine/blob/d69d3f29ff
 
 > `protected` **\_cleared**: `boolean`
 
-Defined in: [html.ts:41](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/html.ts#L41)
+Defined in: [source/html.ts:41](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/html.ts#L41)
 
 ---
 
@@ -50,7 +50,7 @@ Defined in: [html.ts:41](https://github.com/noobiept/game_engine/blob/d69d3f29ff
 
 > `protected` **\_is\_active**: `boolean`
 
-Defined in: [html.ts:39](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/html.ts#L39)
+Defined in: [source/html.ts:39](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/html.ts#L39)
 
 ---
 
@@ -58,7 +58,7 @@ Defined in: [html.ts:39](https://github.com/noobiept/game_engine/blob/d69d3f29ff
 
 > `protected` **\_pre\_text**: `HTMLElement` \| `null`
 
-Defined in: [html.ts:40](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/html.ts#L40)
+Defined in: [source/html.ts:40](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/html.ts#L40)
 
 ---
 
@@ -66,7 +66,7 @@ Defined in: [html.ts:40](https://github.com/noobiept/game_engine/blob/d69d3f29ff
 
 > **container**: `HTMLElement`
 
-Defined in: [html.ts:38](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/html.ts#L38)
+Defined in: [source/html.ts:38](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/html.ts#L38)
 
 ## Methods
 
@@ -74,7 +74,7 @@ Defined in: [html.ts:38](https://github.com/noobiept/game_engine/blob/d69d3f29ff
 
 > **addEvents**(): `void`
 
-Defined in: [html.ts:123](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/html.ts#L123)
+Defined in: [source/html.ts:123](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/html.ts#L123)
 
 Activates the element's event handlers.
 
@@ -88,7 +88,7 @@ Activates the element's event handlers.
 
 > **clear**(): `void`
 
-Defined in: [html.ts:137](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/html.ts#L137)
+Defined in: [source/html.ts:137](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/html.ts#L137)
 
 Calls this to remove the element.
 
@@ -102,7 +102,7 @@ Calls this to remove the element.
 
 > **isActive**(): `boolean`
 
-Defined in: [html.ts:116](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/html.ts#L116)
+Defined in: [source/html.ts:116](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/html.ts#L116)
 
 Check if the element is active or not currently.
 
@@ -116,7 +116,7 @@ Check if the element is active or not currently.
 
 > **isCleared**(): `boolean`
 
-Defined in: [html.ts:150](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/html.ts#L150)
+Defined in: [source/html.ts:150](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/html.ts#L150)
 
 Tells if the element was cleared (with `clear()`).
 
@@ -130,7 +130,7 @@ Tells if the element was cleared (with `clear()`).
 
 > **removeEvents**(): `void`
 
-Defined in: [html.ts:130](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/html.ts#L130)
+Defined in: [source/html.ts:130](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/html.ts#L130)
 
 Deactivate the element's event handlers.
 
@@ -144,7 +144,7 @@ Deactivate the element's event handlers.
 
 > **setActive**(`yesNo`): `void`
 
-Defined in: [html.ts:94](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/html.ts#L94)
+Defined in: [source/html.ts:94](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/html.ts#L94)
 
 When the element is inactive, its events are disabled, and a `.Game-inactive` css class is applied.
 

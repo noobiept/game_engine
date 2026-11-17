@@ -8,7 +8,7 @@
 
 > **magnitude**(`vector`): `number`
 
-Defined in: [vector.ts:31](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/vector.ts#L31)
+Defined in: [source/vector.ts:31](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/vector.ts#L31)
 
 ## Parameters
 

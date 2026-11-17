@@ -8,7 +8,7 @@
 
 > **setMaxDeltaTime**(`seconds`): `void`
 
-Defined in: [game.ts:317](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/game.ts#L317)
+Defined in: [source/game.ts:378](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/game.ts#L378)
 
 Set the longest time step (in seconds) given to the game logic in one update (default `0.25`).
 When an update takes longer than this (a slow device, the debugger was paused, etc), the game slows down instead of

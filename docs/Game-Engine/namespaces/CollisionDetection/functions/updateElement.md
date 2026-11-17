@@ -8,7 +8,7 @@
 
 > **updateElement**(`element`): `void`
 
-Defined in: [collision-detection/collision\_detection.ts:58](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/collision-detection/collision_detection.ts#L58)
+Defined in: [source/collision-detection/collision\_detection.ts:58](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/collision-detection/collision_detection.ts#L58)
 
 When an element changes its position, need to update the collision detection data structure (in some algorithms).
 Elements that aren't part of the collision detection are ignored.

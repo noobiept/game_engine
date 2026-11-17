@@ -8,7 +8,7 @@
 
 > **getType**(`file`): [`FileType`](../type-aliases/FileType.md) \| `null`
 
-Defined in: [preload.ts:447](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/preload.ts#L447)
+Defined in: [source/preload.ts:614](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/preload.ts#L614)
 
 Determine the type of a file based on its extension (ignoring the case, and the url's query/hash).
 

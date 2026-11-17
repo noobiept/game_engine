@@ -6,7 +6,7 @@
 
 # Interface: PreloadEvents
 
-Defined in: [preload.ts:31](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/preload.ts#L31)
+Defined in: [source/preload.ts:77](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/preload.ts#L77)
 
 The events of `Preload`, and the data their listeners get.
 
@@ -16,7 +16,7 @@ The events of `Preload`, and the data their listeners get.
 
 > **abort**: `object`
 
-Defined in: [preload.ts:34](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/preload.ts#L34)
+Defined in: [source/preload.ts:80](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/preload.ts#L80)
 
 #### event
 
@@ -32,7 +32,7 @@ Defined in: [preload.ts:34](https://github.com/noobiept/game_engine/blob/d69d3f2
 
 > **complete**: [`PreloadCompleteData`](PreloadCompleteData.md)
 
-Defined in: [preload.ts:32](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/preload.ts#L32)
+Defined in: [source/preload.ts:78](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/preload.ts#L78)
 
 ---
 
@@ -40,7 +40,7 @@ Defined in: [preload.ts:32](https://github.com/noobiept/game_engine/blob/d69d3f2
 
 > **error**: [`PreloadErrorData`](PreloadErrorData.md)
 
-Defined in: [preload.ts:33](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/preload.ts#L33)
+Defined in: [source/preload.ts:79](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/preload.ts#L79)
 
 ---
 
@@ -48,7 +48,7 @@ Defined in: [preload.ts:33](https://github.com/noobiept/game_engine/blob/d69d3f2
 
 > **fileload**: `object`
 
-Defined in: [preload.ts:36](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/preload.ts#L36)
+Defined in: [source/preload.ts:82](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/preload.ts#L82)
 
 #### data
 
@@ -64,4 +64,4 @@ Defined in: [preload.ts:36](https://github.com/noobiept/game_engine/blob/d69d3f2
 
 > **progress**: `number`
 
-Defined in: [preload.ts:35](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/preload.ts#L35)
+Defined in: [source/preload.ts:81](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/preload.ts#L81)

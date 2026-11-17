@@ -8,11 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Releases before `3.0.0` are not tracked here. To update a game from v3 to v4,
 see the [migration guide](MIGRATION.md).
 
-## [Unreleased]
+## [4.3.0] - 2026-11-17
 
-Improvements from updating a third game to v4: sounds that pause while the page
-is hidden, game time for timeouts and measured times, safer loading, tweens
-that stop as soon as their element is destroyed, and a few conveniences.
+Improvements from updating a third game to v4: a fixed update rate (with smooth
+drawing at any refresh rate), keyboard controls with named actions, sounds that
+pause while the page is hidden, game time for timeouts and measured times,
+safer loading, tweens that stop as soon as their element is destroyed, and a
+few conveniences (`overlaps()`, `Game.step()`, positioning by the edges).
 
 ### Added
 
@@ -406,7 +408,7 @@ pass of breaking API-consistency cleanups.
 - A suspended `AudioContext` is now resumed automatically when a sound starts,
   so audio becomes audible after the first user interaction.
 
-[Unreleased]: https://github.com/noobiept/game_engine/compare/v4.2.0...HEAD
+[4.3.0]: https://github.com/noobiept/game_engine/releases/tag/v4.3.0
 [4.2.0]: https://github.com/noobiept/game_engine/releases/tag/v4.2.0
 [4.1.0]: https://github.com/noobiept/game_engine/releases/tag/v4.1.0
 [4.0.0]: https://github.com/noobiept/game_engine/releases/tag/v4.0.0

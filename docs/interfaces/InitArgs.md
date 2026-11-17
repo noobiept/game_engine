@@ -6,7 +6,7 @@
 
 # Interface: InitArgs
 
-Defined in: [game.ts:77](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/game.ts#L77)
+Defined in: [source/game.ts:82](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/game.ts#L82)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [game.ts:77](https://github.com/noobiept/game_engine/blob/d69d3f29ff
 
 > `optional` **collision?**: [`CollisionDetectionAlgorithm`](../Game-Engine/namespaces/CollisionDetection/interfaces/CollisionDetectionAlgorithm.md)
 
-Defined in: [game.ts:81](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/game.ts#L81)
+Defined in: [source/game.ts:86](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/game.ts#L86)
 
 ---
 
@@ -22,7 +22,7 @@ Defined in: [game.ts:81](https://github.com/noobiept/game_engine/blob/d69d3f29ff
 
 > **container**: `HTMLElement`
 
-Defined in: [game.ts:78](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/game.ts#L78)
+Defined in: [source/game.ts:83](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/game.ts#L83)
 
 ---
 
@@ -30,7 +30,7 @@ Defined in: [game.ts:78](https://github.com/noobiept/game_engine/blob/d69d3f29ff
 
 > **height**: `number`
 
-Defined in: [game.ts:80](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/game.ts#L80)
+Defined in: [source/game.ts:85](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/game.ts#L85)
 
 ---
 
@@ -38,4 +38,4 @@ Defined in: [game.ts:80](https://github.com/noobiept/game_engine/blob/d69d3f29ff
 
 > **width**: `number`
 
-Defined in: [game.ts:79](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/game.ts#L79)
+Defined in: [source/game.ts:84](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/game.ts#L84)

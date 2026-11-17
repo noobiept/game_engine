@@ -23,4 +23,8 @@
 ## Functions
 
 - [get](functions/get.md)
+- [getAudio](functions/getAudio.md)
+- [getImage](functions/getImage.md)
+- [getJson](functions/getJson.md)
+- [getText](functions/getText.md)
 - [getType](functions/getType.md)

@@ -8,7 +8,7 @@
 
 > **isAvailable**(): `boolean`
 
-Defined in: [sound.ts:124](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/sound.ts#L124)
+Defined in: [source/sound.ts:204](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/sound.ts#L204)
 
 Tells if the module is working properly or not.
 When it isn't, calling the functions (like `Game.Sound.play()`) won't give you an error, but no sound will be played.

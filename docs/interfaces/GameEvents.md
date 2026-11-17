@@ -6,7 +6,7 @@
 
 # Interface: GameEvents
 
-Defined in: [game.ts:46](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/game.ts#L46)
+Defined in: [source/game.ts:47](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/game.ts#L47)
 
 The events of the game loop (see `Game.addEventListener()`). Their listeners don't get any data.
 
@@ -16,7 +16,7 @@ The events of the game loop (see `Game.addEventListener()`). Their listeners don
 
 > **pause**: `void`
 
-Defined in: [game.ts:47](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/game.ts#L47)
+Defined in: [source/game.ts:48](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/game.ts#L48)
 
 ---
 
@@ -24,4 +24,4 @@ Defined in: [game.ts:47](https://github.com/noobiept/game_engine/blob/d69d3f29ff
 
 > **resume**: `void`
 
-Defined in: [game.ts:48](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/game.ts#L48)
+Defined in: [source/game.ts:49](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/game.ts#L49)

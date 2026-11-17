@@ -6,7 +6,7 @@
 
 # Interface: Vector
 
-Defined in: [vector.ts:12](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/vector.ts#L12)
+Defined in: [source/vector.ts:12](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/vector.ts#L12)
 
 A 2d vector (`{ x, y }`), and helper functions to operate on them.
 
@@ -24,7 +24,7 @@ Basic Usage:
 
 > **x**: `number`
 
-Defined in: [vector.ts:13](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/vector.ts#L13)
+Defined in: [source/vector.ts:13](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/vector.ts#L13)
 
 ---
 
@@ -32,4 +32,4 @@ Defined in: [vector.ts:13](https://github.com/noobiept/game_engine/blob/d69d3f29
 
 > **y**: `number`
 
-Defined in: [vector.ts:14](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/vector.ts#L14)
+Defined in: [source/vector.ts:14](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/vector.ts#L14)

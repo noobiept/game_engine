@@ -19,6 +19,8 @@
 - [decodeAudio](functions/decodeAudio.md)
 - [getGlobalGain](functions/getGlobalGain.md)
 - [init](functions/init.md)
+- [isAudioBuffer](functions/isAudioBuffer.md)
 - [isAvailable](functions/isAvailable.md)
 - [play](functions/play.md)
 - [setGlobalGain](functions/setGlobalGain.md)
+- [setPauseWhenHidden](functions/setPauseWhenHidden.md)

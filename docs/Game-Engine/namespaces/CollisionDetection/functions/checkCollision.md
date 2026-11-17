@@ -8,7 +8,7 @@
 
 > **checkCollision**(): `void`
 
-Defined in: [collision-detection/collision\_detection.ts:65](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/collision-detection/collision_detection.ts#L65)
+Defined in: [source/collision-detection/collision\_detection.ts:65](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/collision-detection/collision_detection.ts#L65)
 
 Look for collisions between the elements.
 

@@ -8,10 +8,12 @@
 
 > **addEventListener**\<`K`\>(`type`, `listener`): `boolean`
 
-Defined in: [game.ts:191](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/game.ts#L191)
+Defined in: [source/game.ts:198](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/game.ts#L198)
 
-Listen to the game loop stopping and starting again, for what runs outside of it but should stop with the game: a
-timer shown in the page, music played through your own `AudioContext`, a `setTimeout()`, etc.
+Listen to the game loop stopping and starting again, for what runs outside of it but should stop with the game:
+music played through your own `AudioContext`, or the engine's sounds when the game is paused with `stopGameLoop()`
+(they already pause while the page is hidden). For a timeout or a time measured in the game, `Game.Timeout` and
+`Game.Stopwatch` already run on the loop.
 
 - `pause` -- the loop stopped: the page was hidden, or `stopGameLoop()` was called.
 - `resume` -- the loop is running again: the page is visible again, or `startGameLoop()` was called (and when
@@ -20,7 +22,7 @@ timer shown in the page, music played through your own `AudioContext`, a `setTim
 The listeners are called right after the loop stopped/started (`isGameLoopRunning()` already tells the new state),
 and they're kept when `init()` is called again.
 
-    Game.addEventListener( 'pause', () => music.suspend() );
+    Game.addEventListener( 'pause', () => music.pause() );
     Game.addEventListener( 'resume', () => music.resume() );
 
 ## Type Parameters

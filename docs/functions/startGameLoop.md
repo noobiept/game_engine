@@ -8,7 +8,7 @@
 
 > **startGameLoop**(): `void`
 
-Defined in: [game.ts:150](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/game.ts#L150)
+Defined in: [source/game.ts:155](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/game.ts#L155)
 
 Starts the game loop. This is called automatically when you initialize the engine (Game.init()).
 Only useful when you manually stop the loop (with Game.stopGameLoop()) and need to restart it later.

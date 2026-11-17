@@ -6,7 +6,7 @@
 
 # Class: Cooldown
 
-Defined in: [cooldown.ts:54](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/cooldown.ts#L54)
+Defined in: [source/cooldown.ts:54](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/cooldown.ts#L54)
 
 A timer for an action that can only happen once per interval (an attack, a spawn, health regeneration), which keeps
 to the interval like the engine's own timers do (game loop callbacks with a `delay`, weapons, sprite animations):
@@ -62,7 +62,7 @@ Basic Usage:
 
 > **new Cooldown**(`interval`, `options?`): `Cooldown`
 
-Defined in: [cooldown.ts:63](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/cooldown.ts#L63)
+Defined in: [source/cooldown.ts:64](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/cooldown.ts#L64)
 
 #### Parameters
 
@@ -88,7 +88,15 @@ The time between uses, a number `>= 0` (`Infinity` never gets ready again once u
 
 > `protected` **\_elapsed**: `number`
 
-Defined in: [cooldown.ts:56](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/cooldown.ts#L56)
+Defined in: [source/cooldown.ts:56](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/cooldown.ts#L56)
+
+---
+
+### \_fresh
+
+> `protected` **\_fresh**: `boolean`
+
+Defined in: [source/cooldown.ts:58](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/cooldown.ts#L58)
 
 ---
 
@@ -96,7 +104,7 @@ Defined in: [cooldown.ts:56](https://github.com/noobiept/game_engine/blob/d69d3f
 
 > `protected` **\_interval**: `number`
 
-Defined in: [cooldown.ts:55](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/cooldown.ts#L55)
+Defined in: [source/cooldown.ts:55](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/cooldown.ts#L55)
 
 ---
 
@@ -104,7 +112,7 @@ Defined in: [cooldown.ts:55](https://github.com/noobiept/game_engine/blob/d69d3f
 
 > `protected` **\_waiting**: `boolean`
 
-Defined in: [cooldown.ts:57](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/cooldown.ts#L57)
+Defined in: [source/cooldown.ts:57](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/cooldown.ts#L57)
 
 ## Accessors
 
@@ -114,7 +122,7 @@ Defined in: [cooldown.ts:57](https://github.com/noobiept/game_engine/blob/d69d3f
 
 > **get** **interval**(): `number`
 
-Defined in: [cooldown.ts:72](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/cooldown.ts#L72)
+Defined in: [source/cooldown.ts:74](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/cooldown.ts#L74)
 
 The time between uses. Changing it applies to the current interval (it uses the time that already passed).
 
@@ -126,7 +134,7 @@ The time between uses. Changing it applies to the current interval (it uses the 
 
 > **set** **interval**(`interval`): `void`
 
-Defined in: [cooldown.ts:76](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/cooldown.ts#L76)
+Defined in: [source/cooldown.ts:78](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/cooldown.ts#L78)
 
 ##### Parameters
 
@@ -146,7 +154,7 @@ Defined in: [cooldown.ts:76](https://github.com/noobiept/game_engine/blob/d69d3f
 
 > **get** **remaining**(): `number`
 
-Defined in: [cooldown.ts:83](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/cooldown.ts#L83)
+Defined in: [source/cooldown.ts:85](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/cooldown.ts#L85)
 
 Time left until it's ready (`0` when it's ready).
 
@@ -160,7 +168,7 @@ Time left until it's ready (`0` when it's ready).
 
 > **isReady**(): `boolean`
 
-Defined in: [cooldown.ts:101](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/cooldown.ts#L101)
+Defined in: [source/cooldown.ts:105](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/cooldown.ts#L105)
 
 If the interval has passed (it can be used).
 
@@ -174,7 +182,7 @@ If the interval has passed (it can be used).
 
 > **restart**(`nextInterval?`): `void`
 
-Defined in: [cooldown.ts:115](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/cooldown.ts#L115)
+Defined in: [source/cooldown.ts:119](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/cooldown.ts#L119)
 
 Start a new interval, for when the action happens.
 When it's ready, it keeps the time past the interval (less than an interval, so it's ready at most once per
@@ -201,7 +209,7 @@ interval instead. Throws a `RangeError` for a value that isn't a number `>= 0`.
 
 > **update**(`deltaTime`): `void`
 
-Defined in: [cooldown.ts:93](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/cooldown.ts#L93)
+Defined in: [source/cooldown.ts:95](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/cooldown.ts#L95)
 
 Count the time that passed (call it on every update, with the update's `deltaTime`).
 

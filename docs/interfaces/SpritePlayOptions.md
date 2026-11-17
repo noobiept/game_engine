@@ -6,15 +6,23 @@
 
 # Interface: SpritePlayOptions
 
-Defined in: [sprite.ts:22](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/sprite.ts#L22)
+Defined in: [source/sprite.ts:22](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/sprite.ts#L22)
 
 ## Properties
+
+### destroyOnEnd?
+
+> `optional` **destroyOnEnd?**: `boolean`
+
+Defined in: [source/sprite.ts:25](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/sprite.ts#L25)
+
+---
 
 ### loop?
 
 > `optional` **loop?**: `boolean`
 
-Defined in: [sprite.ts:23](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/sprite.ts#L23)
+Defined in: [source/sprite.ts:23](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/sprite.ts#L23)
 
 ---
 
@@ -22,4 +30,4 @@ Defined in: [sprite.ts:23](https://github.com/noobiept/game_engine/blob/d69d3f29
 
 > `optional` **reset?**: `boolean`
 
-Defined in: [sprite.ts:24](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/sprite.ts#L24)
+Defined in: [source/sprite.ts:24](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/sprite.ts#L24)

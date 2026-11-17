@@ -6,7 +6,7 @@
 
 # Interface: MessageArgs
 
-Defined in: [message.ts:4](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/message.ts#L4)
+Defined in: [source/message.ts:4](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/message.ts#L4)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [message.ts:4](https://github.com/noobiept/game_engine/blob/d69d3f29
 
 > `optional` **background?**: `boolean`
 
-Defined in: [message.ts:9](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/message.ts#L9)
+Defined in: [source/message.ts:9](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/message.ts#L9)
 
 ---
 
@@ -26,7 +26,7 @@ Defined in: [message.ts:9](https://github.com/noobiept/game_engine/blob/d69d3f29
 
 > **body**: `any`
 
-Defined in: [message.ts:5](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/message.ts#L5)
+Defined in: [source/message.ts:5](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/message.ts#L5)
 
 ---
 
@@ -34,7 +34,7 @@ Defined in: [message.ts:5](https://github.com/noobiept/game_engine/blob/d69d3f29
 
 > `optional` **buttons?**: [`HtmlElement`](../Game-Engine/namespaces/Html/classes/HtmlElement.md) \| [`HtmlElement`](../Game-Engine/namespaces/Html/classes/HtmlElement.md)[]
 
-Defined in: [message.ts:7](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/message.ts#L7)
+Defined in: [source/message.ts:7](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/message.ts#L7)
 
 ---
 
@@ -42,7 +42,7 @@ Defined in: [message.ts:7](https://github.com/noobiept/game_engine/blob/d69d3f29
 
 > `optional` **children?**: [`HtmlElement`](../Game-Engine/namespaces/Html/classes/HtmlElement.md) \| [`HtmlElement`](../Game-Engine/namespaces/Html/classes/HtmlElement.md)[]
 
-Defined in: [html.ts:156](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/html.ts#L156)
+Defined in: [source/html.ts:156](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/html.ts#L156)
 
 #### Inherited from
 
@@ -54,7 +54,7 @@ Defined in: [html.ts:156](https://github.com/noobiept/game_engine/blob/d69d3f29f
 
 > **container**: `HTMLElement`
 
-Defined in: [message.ts:6](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/message.ts#L6)
+Defined in: [source/message.ts:6](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/message.ts#L6)
 
 ---
 
@@ -62,7 +62,7 @@ Defined in: [message.ts:6](https://github.com/noobiept/game_engine/blob/d69d3f29
 
 > `optional` **cssClass?**: `string` \| `string`[]
 
-Defined in: [html.ts:30](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/html.ts#L30)
+Defined in: [source/html.ts:30](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/html.ts#L30)
 
 #### Inherited from
 
@@ -74,7 +74,7 @@ Defined in: [html.ts:30](https://github.com/noobiept/game_engine/blob/d69d3f29ff
 
 > `optional` **cssId?**: `string`
 
-Defined in: [html.ts:29](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/html.ts#L29)
+Defined in: [source/html.ts:29](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/html.ts#L29)
 
 #### Inherited from
 
@@ -86,7 +86,7 @@ Defined in: [html.ts:29](https://github.com/noobiept/game_engine/blob/d69d3f29ff
 
 > `optional` **preText?**: `string`
 
-Defined in: [html.ts:31](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/html.ts#L31)
+Defined in: [source/html.ts:31](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/html.ts#L31)
 
 #### Inherited from
 
@@ -98,4 +98,4 @@ Defined in: [html.ts:31](https://github.com/noobiept/game_engine/blob/d69d3f29ff
 
 > `optional` **timeout?**: `number`
 
-Defined in: [message.ts:8](https://github.com/noobiept/game_engine/blob/d69d3f29ffdf3fedbadde541ad2f355bad7ec496/source/message.ts#L8)
+Defined in: [source/message.ts:8](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/message.ts#L8)
