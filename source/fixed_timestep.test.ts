@@ -141,6 +141,42 @@ describe("Game.setFixedTimestep()", function () {
         expect(drawn[drawn.length - 1].x).toBe(50);
     });
 
+    test("turning the fixed timestep on again draws the elements where they are (not from where they were then)", function () {
+        const rect = new Rectangle({ width: 10, height: 10, color: "red" });
+
+        Game.addElement(rect);
+        Game.setFixedTimestep(1 / 30);
+        driver.run(8, 120);
+
+        // moved a long way while it was off
+        Game.setFixedTimestep(null);
+        Game.addToGameLoop(() => (rect.x = 500));
+        driver.run(4, 120);
+
+        Game.setFixedTimestep(1 / 30);
+        drawn.length = 0;
+        driver.run(2, 120); // no step yet
+
+        expect(drawn.map((draw) => draw.x)).toEqual([500, 500]);
+    });
+
+    test("the drawing doesn't jump back when the loop resumes", function () {
+        const rect = new Rectangle({ width: 10, height: 10, color: "red" });
+
+        Game.addElement(rect);
+        Game.setFixedTimestep(1 / 30);
+        Game.addToGameLoop(() => (rect.x += 1));
+
+        driver.run(11, 120); // ends between two steps
+        const beforePause = drawn[drawn.length - 1].x;
+
+        setDocumentHidden(true);
+        setDocumentHidden(false);
+        driver.run(1, 120);
+
+        expect(drawn[drawn.length - 1].x).toBeGreaterThanOrEqual(beforePause);
+    });
+
     test("the rotation is drawn the short way around", function () {
         const rect = new Rectangle({ width: 10, height: 10, color: "red" });
         let step = 0;

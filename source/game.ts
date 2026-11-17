@@ -222,7 +222,7 @@ function resumeLoop() {
 
     const now = performance.now();
 
-    ACCUMULATOR = 0;
+    // the time that was left from before the pause is kept (less than a step), so the drawing continues from where it was
     LAST_UPDATE_TIME = now;
     NEXT_UPDATE_TIME = now + FRAME_INTERVAL;
     ANIMATION_ID = window.requestAnimationFrame(loop);
@@ -348,6 +348,9 @@ export function setFixedTimestep(seconds: number | null) {
 
     FIXED_TIMESTEP = seconds;
     ACCUMULATOR = 0;
+
+    // draw the elements where they are until the next step (their saved state can be from long ago)
+    savePrevious();
 }
 
 /**
@@ -717,6 +720,8 @@ export function step(deltaTime: number) {
         );
     }
 
+    // like a step of the loop with a fixed timestep (so the drawing between steps starts from here)
+    savePrevious();
     update(deltaTime);
 }
 
