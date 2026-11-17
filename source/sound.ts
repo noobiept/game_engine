@@ -19,6 +19,9 @@
  *         });
  *     preload.load( 'sound', 'path_to_file.ogg' );
  *
+ * Browsers only play audio after the user interacted with the page, so the sounds played before that (the music, when
+ * the game starts) start on the first key press, click or touch.
+ *
  * The sounds pause while the page is hidden (like the game loop), see `setPauseWhenHidden()`. They keep playing when
  * the loop is stopped with `Game.stopGameLoop()`. To pause them then too, use the loop's `pause`/`resume` events
  * (`Game.addEventListener()`).
@@ -30,6 +33,8 @@ let CTX: AudioContext | null = null;
 let GLOBAL_GAIN: GainNode | null = null;
 let PAUSE_WHEN_HIDDEN = true;
 let RESUME_WHEN_VISIBLE = false; // the audio context was suspended (or kept suspended) because the page is hidden
+let WAITING_FOR_GESTURE = false; // the audio context is suspended until the user interacts with the page (autoplay)
+const GESTURE_EVENTS = ["pointerdown", "keydown", "touchend", "click"];
 
 /**
  * Initialize the `Sound` module. Its called in `Game.init()`.
@@ -55,7 +60,60 @@ export function init() {
     document.addEventListener("visibilitychange", onVisibilityChange);
     onVisibilityChange();
 
+    if (CTX.state === "suspended") {
+        waitForGesture();
+    }
+
     return true;
+}
+
+/**
+ * Browsers keep the audio context suspended until the user interacts with the page (their autoplay policy), so it's
+ * resumed on the first key press, click or touch: the sounds played before then (the music, when the game starts)
+ * start at that moment, without the game listening to the first key press itself.
+ */
+function waitForGesture() {
+    if (WAITING_FOR_GESTURE) {
+        return;
+    }
+
+    WAITING_FOR_GESTURE = true;
+
+    for (const type of GESTURE_EVENTS) {
+        window.addEventListener(type, onGesture, true);
+    }
+}
+
+function stopWaitingForGesture() {
+    WAITING_FOR_GESTURE = false;
+
+    for (const type of GESTURE_EVENTS) {
+        window.removeEventListener(type, onGesture, true);
+    }
+}
+
+function onGesture() {
+    const ctx = CTX;
+
+    if (!ctx || ctx.state !== "suspended") {
+        stopWaitingForGesture();
+        return;
+    }
+
+    // the sounds pause while the page is hidden
+    if (PAUSE_WHEN_HIDDEN && document.hidden) {
+        return;
+    }
+
+    // some keys don't count as an interaction (escape), so it waits until the context actually runs
+    ctx.resume().then(
+        () => {
+            if (ctx.state === "running") {
+                stopWaitingForGesture();
+            }
+        },
+        () => {},
+    );
 }
 
 /**

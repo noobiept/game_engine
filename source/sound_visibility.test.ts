@@ -7,8 +7,10 @@ import { setDocumentHidden } from "../tests/helpers";
  */
 class FakeAudioContext {
     static last: FakeAudioContext;
+    static initialState: "running" | "suspended" = "running";
+    static autoplayAllowed = true; // if `resume()` works (browsers only allow it after the user interacted with the page)
 
-    state: "running" | "suspended" = "running";
+    state: "running" | "suspended" = FakeAudioContext.initialState;
     currentTime = 0;
     destination = {};
     calls: string[] = [];
@@ -40,7 +42,11 @@ class FakeAudioContext {
 
     resume() {
         this.calls.push("resume");
-        this.state = "running";
+
+        if (FakeAudioContext.autoplayAllowed) {
+            this.state = "running";
+        }
+
         return Promise.resolve();
     }
 }
@@ -55,13 +61,14 @@ async function initSound(state: "running" | "suspended" = "running") {
 
     const Sound = await import("./sound");
 
+    FakeAudioContext.initialState = state;
     Sound.init();
-    FakeAudioContext.last.state = state;
 
     return { Sound, ctx: FakeAudioContext.last };
 }
 
 beforeEach(function () {
+    FakeAudioContext.autoplayAllowed = true;
     setDocumentHidden(false);
     vi.stubGlobal("AudioContext", FakeAudioContext);
 });
@@ -147,5 +154,48 @@ describe("Sound while the page is hidden", function () {
 
         expect(Sound.play(lookalike)).toBe(null);
         expect(Preload.getAudio("lookalike")).toBe(undefined);
+    });
+});
+
+describe("Sound before the user interacts with the page", function () {
+    test("a context suspended by the autoplay policy is resumed on the first key press, click or touch", async function () {
+        FakeAudioContext.autoplayAllowed = false;
+        const { Sound, ctx } = await initSound("suspended");
+
+        // the music starts with the game, before any interaction
+        Sound.play(BUFFER, { loop: true });
+        expect(ctx.state).toBe("suspended");
+
+        // the browser allows audio once the player presses a key
+        FakeAudioContext.autoplayAllowed = true;
+        window.dispatchEvent(new KeyboardEvent("keydown", { code: "Space" }));
+        expect(ctx.state).toBe("running");
+
+        // it doesn't wait for more interactions
+        await Promise.resolve();
+        const calls = ctx.calls.length;
+
+        window.dispatchEvent(new MouseEvent("click"));
+        expect(ctx.calls).toHaveLength(calls);
+    });
+
+    test("a press that doesn't count as an interaction (escape) leaves it waiting for the next one", async function () {
+        FakeAudioContext.autoplayAllowed = false;
+        const { ctx } = await initSound("suspended");
+
+        window.dispatchEvent(new KeyboardEvent("keydown", { code: "Escape" }));
+        await Promise.resolve();
+        expect(ctx.state).toBe("suspended");
+
+        FakeAudioContext.autoplayAllowed = true;
+        window.dispatchEvent(new PointerEvent("pointerdown"));
+        expect(ctx.state).toBe("running");
+    });
+
+    test("a context that already runs doesn't wait for an interaction", async function () {
+        const { ctx } = await initSound("running");
+
+        window.dispatchEvent(new KeyboardEvent("keydown", { code: "Space" }));
+        expect(ctx.calls).toEqual([]);
     });
 });

@@ -25,6 +25,9 @@ see the [migration guide](MIGRATION.md).
 
 ### Changed
 
+- The sounds played before the player interacted with the page (browsers keep
+  the audio suspended until then) start on the first key press, click or
+  touch, so a game doesn't need a listener of its own to start its music.
 - The package is built in three files: `game_engine.js` (the main entry),
   `testing.js`, and `engine.js` (the engine's code, which both use, so the
   testing helpers reset the engine that the game uses).

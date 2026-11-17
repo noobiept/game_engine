@@ -204,7 +204,7 @@ loadAssets();
 
 `loadManifest()` returns a promise that resolves once every file was dealt with, or rejects with a `Game.PreloadError` when a file that isn't `optional` fails, so a missing file is an error instead of a game that starts without it. Get the files the game can't run without with `requireImage()`, `requireAudio()`, `requireJson<T>()` or `requireText()`, which throw an error naming the id when there's no such file (after `loadManifest()` resolved, that can only be a wrong id). Get the optional ones with `getImage()`, `getAudio()`, `getJson<T>()` or `getText()`, which return `undefined` for a file that wasn't loaded (`get()` returns `any`). There are also events: `complete` once every file was dealt with (with `failedIds` and `loadedIds`), and `error` for each file that fails. Their listeners are typed (see `PreloadEvents`).
 
-The sounds pause while the page is hidden, like the game loop (see `Game.Sound.setPauseWhenHidden()`).
+The sounds pause while the page is hidden, like the game loop (see `Game.Sound.setPauseWhenHidden()`). Browsers only play audio after the player interacts with the page, so the sounds played before that (the music, when the game starts) start on the first key press, click or touch.
 
 ## Sprites and animation
 
