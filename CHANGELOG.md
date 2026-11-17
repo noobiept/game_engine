@@ -28,6 +28,8 @@ see the [migration guide](MIGRATION.md).
   (for tests of a game's timing).
 - Setters for `left` and `top`, and `right`/`bottom` (getters and setters), to
   position an element by its edges.
+- A `destroyOnEnd` option for `Sprite.play()`, which destroys the sprite once a
+  non-looping animation ends.
 
 ### Changed
 

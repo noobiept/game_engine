@@ -22,6 +22,7 @@ function copyAnimations(animations: { [id: string]: number[] }) {
 export interface SpritePlayOptions {
     loop?: boolean; // whether the animation loops (default) or plays once
     reset?: boolean; // when re-playing the current animation, restart it from the first frame
+    destroyOnEnd?: boolean; // with `loop: false`, destroy the sprite once the animation ends (for one-shot effects, like an explosion)
 }
 
 /**
@@ -48,6 +49,7 @@ export interface SpritePlayOptions {
  *
  *         // play a one-shot animation and do something when it finishes
  *     sprite.play( 'explosion', { loop: false } );
+ *     sprite.play( 'explosion', { loop: false, destroyOnEnd: true } ); // a one-shot effect that goes away by itself
  *     sprite.addEventListener( 'animationend', function( data ) {
  *         data.sprite.destroy();
  *     });
@@ -70,6 +72,7 @@ export class Sprite extends Bitmap {
     protected _current_animation_id: string | null;
     protected _current_animation_position: number; // position in the array in '_current_animation'
     protected _loop: boolean; // whether the current animation loops or plays once
+    protected _destroy_on_end = false; // destroy the sprite once a non-looping animation ends
 
     constructor(args: SpriteArgs) {
         super(args);
@@ -118,7 +121,8 @@ export class Sprite extends Bitmap {
      * @param animationId The name of the animation.
      * @param options Playback options. `loop` (default `true`) controls whether the animation loops or plays
      *                once (dispatching an `animationend` event on the last frame). `reset` (default `false`)
-     *                restarts the animation from the first frame when its already the current one.
+     *                restarts the animation from the first frame when its already the current one. `destroyOnEnd`
+     *                (default `false`) destroys the sprite when a non-looping animation ends (after `animationend`).
      * @return If it was successful.
      */
     play(animationId: string, options?: SpritePlayOptions) {
@@ -137,6 +141,8 @@ export class Sprite extends Bitmap {
 
         const loop = options?.loop ?? true;
         const reset = options?.reset ?? false;
+
+        this._destroy_on_end = options?.destroyOnEnd ?? false;
 
         // we're already playing that animation (and it didn't finish yet)
         if (next === this._current_animation && this._has_logic) {
@@ -202,6 +208,10 @@ export class Sprite extends Bitmap {
                     sprite: this,
                     animationId: this._current_animation_id,
                 });
+
+                if (this._destroy_on_end) {
+                    this.destroy();
+                }
 
                 return;
             }

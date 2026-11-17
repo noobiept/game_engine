@@ -205,7 +205,7 @@ The sounds pause while the page is hidden, like the game loop (see `Game.Sound.s
 
 ## Sprites and animation
 
-A `Sprite` animates frames from a sprite sheet. Pass `{ loop: false }` to play an animation once; it emits an `animationend` event when it reaches the last frame.
+A `Sprite` animates frames from a sprite sheet. Pass `{ loop: false }` to play an animation once; it emits an `animationend` event when it reaches the last frame. Add `destroyOnEnd: true` to destroy the sprite then (for one-shot effects).
 
 ```ts
 const explosion = new Game.Sprite({
@@ -221,10 +221,7 @@ const explosion = new Game.Sprite({
 Game.addElement(explosion);
 
 // Play once, then destroy itself when finished.
-explosion.addEventListener("animationend", function (data) {
-    data.sprite.destroy();
-});
-explosion.play("boom", { loop: false });
+explosion.play("boom", { loop: false, destroyOnEnd: true });
 ```
 
 ## Input and events

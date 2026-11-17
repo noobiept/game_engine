@@ -39,6 +39,23 @@ describe("Sprite", function () {
         expect(sprite._has_logic).toBe(false);
     });
 
+    test("destroyOnEnd destroys the sprite once a non-looping animation ends (after animationend)", function () {
+        const sprite = makeSprite();
+        let destroyedOnEnd: boolean | null = null;
+
+        sprite.addEventListener("animationend", () => {
+            destroyedOnEnd = sprite.isDestroyed();
+        });
+        sprite.play("once", { loop: false, destroyOnEnd: true });
+
+        sprite.logic(0.1);
+        expect(sprite.isDestroyed()).toBe(false);
+
+        sprite.logic(0.1);
+        expect(destroyedOnEnd).toBe(false);
+        expect(sprite.isDestroyed()).toBe(true);
+    });
+
     test("looping animation wraps around without dispatching animationend", function () {
         const sprite = makeSprite();
         const events: unknown[] = [];
