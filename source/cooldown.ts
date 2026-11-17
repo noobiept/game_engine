@@ -55,6 +55,7 @@ export class Cooldown {
     protected _interval: number;
     protected _elapsed: number; // time since the interval started (it's ready once it reaches the interval)
     protected _waiting: boolean; // it was already ready before the last update (so there's no time past the interval to keep)
+    protected _fresh: boolean; // no update since the current interval started (with `{ ready: false }` or `restart()`)
 
     /**
      * @param interval The time between uses, a number `>= 0` (`Infinity` never gets ready again once used).
@@ -64,6 +65,7 @@ export class Cooldown {
         this._interval = validateInterval(interval);
         this._elapsed = options?.ready === false ? 0 : this._interval;
         this._waiting = false;
+        this._fresh = options?.ready === false;
     }
 
     /**
@@ -91,7 +93,9 @@ export class Cooldown {
      * for longer, the next interval starts when it's used.
      */
     update(deltaTime: number) {
-        this._waiting = this.isReady();
+        // ready since an earlier update (an interval of `0` is ready when it starts, but that isn't waiting)
+        this._waiting = this.isReady() && !this._fresh;
+        this._fresh = false;
         this._elapsed += deltaTime;
     }
 
@@ -120,18 +124,18 @@ export class Cooldown {
         const past = this._elapsed - this._interval;
 
         // when it waited (wasn't used in the update it got ready), the time past the interval was spent waiting
-        const kept =
-            !this._waiting &&
-            past > 0 &&
-            this._interval > 0 &&
-            this._interval !== Infinity
-                ? past % this._interval
-                : 0;
+        let kept = 0;
+
+        if (!this._waiting && past > 0) {
+            // with an interval of `0`, all the time since it started is past the interval
+            kept = this._interval > 0 ? past % this._interval : past;
+        }
 
         // less than the next interval as well, so it's ready at most once per update
-        this._elapsed = next > 0 ? kept % next : 0;
+        this._elapsed = next > 0 && next !== Infinity ? kept % next : 0;
         this._interval = next;
         this._waiting = false;
+        this._fresh = true;
     }
 }
 

@@ -185,6 +185,77 @@ describe("Cooldown", function () {
         expect(cooldown.isReady()).toBe(true);
     });
 
+    test("an interval of 0 keeps the time since it started (a first delay of 0, then a different interval)", function () {
+        // ready right away, but it only started, so it isn't waiting
+        const start = new Cooldown(0, { ready: false });
+
+        start.update(0.25);
+        start.restart(1);
+        expect(start.remaining).toBeCloseTo(0.75);
+
+        // the same after restart( 0 )
+        const restarted = new Cooldown(1, { ready: false });
+
+        restarted.update(1);
+        restarted.restart(0);
+        expect(restarted.isReady()).toBe(true);
+
+        restarted.update(0.25);
+        restarted.restart(0.5);
+        expect(restarted.remaining).toBeCloseTo(0.25);
+
+        // but one that was ready before an update (and wasn't used) waited, and keeps nothing
+        restarted.update(0.25);
+        restarted.update(0.25);
+        restarted.update(0.25);
+        restarted.restart(0.5);
+        expect(restarted.remaining).toBe(0.5);
+    });
+
+    test("{ ready: true } with an interval of 0 doesn't keep the time of the first update", function () {
+        const cooldown = new Cooldown(0);
+
+        cooldown.update(0.25);
+        cooldown.restart(1);
+        expect(cooldown.remaining).toBe(1);
+    });
+
+    test("timers with different first delays keep the same spacing (a lane that starts at 0, and one at 0.5)", function () {
+        for (const refreshRate of [30, 144]) {
+            const lanes = [0, 0.5].map(
+                (start) => new Cooldown(start, { ready: false }),
+            );
+            const spawns: number[][] = [[], []];
+            let time = 0;
+
+            for (let frame = 0; frame < refreshRate * 10; frame++) {
+                const deltaTime = 1 / refreshRate;
+                time += deltaTime;
+
+                lanes.forEach((lane, index) => {
+                    lane.update(deltaTime);
+
+                    if (lane.isReady()) {
+                        spawns[index].push(time);
+                        lane.restart(1);
+                    }
+                });
+            }
+
+            // each spawn happens on the first update after its time (0, 1, 2, ... and 0.5, 1.5, 2.5, ...)
+            spawns.forEach((times, index) => {
+                times.forEach((spawnTime, spawn) => {
+                    const due = index * 0.5 + spawn;
+
+                    expect(spawnTime - due).toBeGreaterThanOrEqual(-1e-9);
+                    expect(spawnTime - due).toBeLessThan(
+                        1 / refreshRate + 1e-9,
+                    );
+                });
+            });
+        }
+    });
+
     test("restart() before it's ready waits a whole interval again", function () {
         const cooldown = new Cooldown(1, { ready: false });
 

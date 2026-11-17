@@ -8,6 +8,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Releases before `3.0.0` are not tracked here. To update a game from v3 to v4,
 see the [migration guide](MIGRATION.md).
 
+## [Unreleased]
+
+### Changed
+
+- A `Cooldown` keeps the time past an interval of `0`, and doesn't count an
+  interval that just started (`{ ready: false }`, or `restart()`) as waiting
+  in its first update. A timer with a first delay of `0` (then
+  `restart(interval)`) was one update late on every use.
+
 ## [4.2.0] - 2026-11-15
 
 Improvements from updating a second game to v4 (one that wraps the engine's
@@ -331,6 +340,7 @@ pass of breaking API-consistency cleanups.
 - A suspended `AudioContext` is now resumed automatically when a sound starts,
   so audio becomes audible after the first user interaction.
 
+[Unreleased]: https://github.com/noobiept/game_engine/compare/v4.2.0...HEAD
 [4.2.0]: https://github.com/noobiept/game_engine/releases/tag/v4.2.0
 [4.1.0]: https://github.com/noobiept/game_engine/releases/tag/v4.1.0
 [4.0.0]: https://github.com/noobiept/game_engine/releases/tag/v4.0.0
