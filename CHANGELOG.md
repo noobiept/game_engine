@@ -36,7 +36,8 @@ that stop as soon as their element is destroyed, and a few conveniences.
   any layout or `Shift`), a quick tap between two updates isn't lost,
   auto-repeat is ignored, the keys are let go when the window loses the focus
   or the loop pauses, keys typed in form fields are ignored, and the bound keys
-  don't scroll the page. `setKeys()` changes the keys of an action.
+  don't scroll the page (the browser's shortcuts, with ctrl, cmd or alt held,
+  keep working). `setKeys()` changes the keys of an action.
 - `Game.Timeout` and `Game.Stopwatch`, which count game time (they run on the
   game loop, so they pause with it): a timeout with the methods of the
   utilities' `Timeout` (in seconds), and a stopwatch to measure a time that is
