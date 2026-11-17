@@ -31,7 +31,14 @@ TypeScript's [`noImplicitOverride`](https://www.typescriptlang.org/tsconfig/#noI
 pnpm add @drk4/game-engine@^4.3.0 @drk4/utilities@^8.0.0
 ```
 
-Then check the version that was installed (`pnpm list @drk4/game-engine`). With pnpm's `minimumReleaseAge` setting, releases newer than that age aren't installed, and pnpm can install an older 4.x instead of failing. To update within that time, add both packages to `minimumReleaseAgeExclude` in `pnpm-workspace.yaml` (and run your formatter on that file, since pnpm writes it in its own style). Releases older than that age don't need an entry, so remove the ones left over from earlier updates.
+Then check the version that was installed (`pnpm list @drk4/game-engine`). With pnpm's `minimumReleaseAge` setting, releases newer than that age aren't installed right away:
+
+- pnpm 12 adds the packages to `minimumReleaseAgeExclude` in `pnpm-workspace.yaml` by itself, and installs them (with `minimumReleaseAgeStrict`, it asks first).
+- Older versions of pnpm can install an older 4.x instead of failing. Add both packages to `minimumReleaseAgeExclude` by hand to update within that time.
+
+Either way, run your formatter on `pnpm-workspace.yaml` afterwards (pnpm writes it in its own style), and remove the entries left over from earlier updates (releases older than that age don't need one).
+
+Right after a release, npm can list the new version a minute before its files can be downloaded, and the install then fails (with pnpm, `ERR_PNPM_TARBALL_SIBLING_FETCH_FAILED`). Try again a minute later.
 
 Then replace `Game.Utilities` with a direct import:
 
@@ -184,4 +191,22 @@ The utilities have breaking changes of their own (see [its changelog](https://gi
 - Play the game at the refresh rates players have (60 and 120 or 144Hz), since the timing is what changed the most.
 - Browsers driven by automation tools (like Playwright) run the animation frames at a rate that depends on the setup: 30Hz on some, the display's rate on others. Measure it (from a few `requestAnimationFrame` timestamps) before drawing conclusions about timing.
 - Automation tools can keep every page visible, so switching tabs doesn't hide the page. To test what happens while the page is hidden, override `document.hidden` and dispatch a `visibilitychange` event, which is what the engine listens to.
-- To check the timing in unit tests, stop the loop (`Game.stopGameLoop()`) and update the game by hand with `Game.step(deltaTime)` (added in v4.3.0), at the rates players have. `@drk4/game-engine/testing` has the setup for that: `stubCanvasContext()` and `stubAnimationFrames()` for jsdom, and `resetGame()` between the tests (see the README).
+- To check the timing in unit tests, stop the loop (`Game.stopGameLoop()`) and update the game by hand with `Game.step(deltaTime)` (added in v4.3.0), at the rates players have. `@drk4/game-engine/testing` (added in v4.4.0) has the setup for that: `stubCanvasContext()` and `stubAnimationFrames()` for jsdom, and `resetGame()` between the tests (see the README).
+
+## Updating from an earlier v4
+
+The steps above are for a game on v3. A game already on v4 can skip them, and check what the later versions make unnecessary in it (every change is in the [changelog](CHANGELOG.md)):
+
+- **v4.1**: `Game.Cooldown` replaces hand-written timers (section 6), and `destroyAllChildren()` a loop that destroys a container's children.
+- **v4.2**: the game loop's `pause`/`resume` events, `Cooldown.restart(nextInterval)` for intervals that change each time, and typed `Preload` listeners.
+- **v4.3**:
+    - The engine's sounds pause while the page is hidden. Remove the game's own pausing of them on a hidden page (doing both pauses them twice).
+    - `destroy()` stops the element's tweens right away, so a `Tween.removeTweens()` next to it isn't needed.
+    - `Sound.play()` returns `null` for a file that failed to load, so the checks before it aren't needed.
+    - `Game.Timeout` and `Game.Stopwatch` replace the utilities' `Timeout` and `Timer` for what should pause with the game.
+    - `Game.Keyboard` replaces the game's own keyboard handling, `overlaps()` its own collision checks, `left`/`top`/`right`/`bottom` the conversions from the center, and `destroyOnEnd` the `animationend` listeners that destroy a one-shot sprite. `setFixedTimestep()` makes the game behave the same on every display, and `Game.step()` makes it testable.
+- **v4.4**:
+    - The sounds played before the player interacted with the page start on the first key press, click or touch. Remove the game's own listener that starts the music on the first key press.
+    - `requireImage()` and the other `require*()` getters replace a game's own helper that checks what `getImage()` returns (or the `!` after it).
+    - `@drk4/game-engine/testing` replaces a copy of the canvas stub, and resetting the engine by hand between tests.
+    - With a fixed timestep, the timers of a whole number of steps fire on that step. Tests that allowed for an extra step can be exact.

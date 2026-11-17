@@ -483,6 +483,7 @@ There are also many runnable examples in the [examples/](examples/) directory. I
 2. Update the version in `package.json`, the `CHANGELOG.md` and the API reference (`pnpm run docs`), and commit.
 3. Tag the commit and push it (`git tag vX.Y.Z` and `git push origin master vX.Y.Z`).
 4. The `release` workflow stages the package on npm (with provenance), then approve it on [npmjs.com](https://www.npmjs.com/package/@drk4/game-engine) to publish it.
+5. Before announcing it, check that it installs: npm can list a new version a minute before its files can be downloaded.
 
 ## License
 
