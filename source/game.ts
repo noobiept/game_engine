@@ -571,6 +571,15 @@ export function removeFromGameLoop(callback: (deltaTime: number) => any) {
 }
 
 /**
+ * Tells if a callback is in the game loop (it was added, and wasn't removed or called as a timeout).
+ */
+export function _hasCallback(callback: (deltaTime: number) => any) {
+    return CALLBACKS.some(
+        (call) => call.callback === callback && !call.removed,
+    );
+}
+
+/**
  * Remove all the callbacks from the game loop (including the ones of the `Timeout` and `Stopwatch` objects).
  */
 export function removeAllCallbacks() {

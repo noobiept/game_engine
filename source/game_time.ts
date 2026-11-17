@@ -52,7 +52,8 @@ export class Timeout {
      * If it was started and wasn't called (or canceled) yet.
      */
     isActive() {
-        return this._call !== null;
+        // `Game.removeAllCallbacks()` takes it out of the game loop as well
+        return this._call !== null && Game._hasCallback(this._call);
     }
 }
 
@@ -116,6 +117,7 @@ export class Stopwatch {
      * If it's counting.
      */
     isRunning() {
-        return this._running;
+        // `Game.removeAllCallbacks()` takes it out of the game loop as well
+        return this._running && Game._hasCallback(this._tick);
     }
 }

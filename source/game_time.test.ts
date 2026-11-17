@@ -82,6 +82,22 @@ describe("Game.Timeout", function () {
         expect(calls).toBe(1);
     });
 
+    test("isn't active after removeAllCallbacks() (and can be started again)", function () {
+        const timeout = new Timeout();
+        let calls = 0;
+
+        timeout.start(() => calls++, 1);
+        Game.removeAllCallbacks();
+        expect(timeout.isActive()).toBe(false);
+
+        if (!timeout.isActive()) {
+            timeout.start(() => calls++, 1);
+        }
+
+        Game.step(1);
+        expect(calls).toBe(1);
+    });
+
     test("throws a RangeError for a time that isn't a number >= 0", function () {
         expect(() => new Timeout().start(() => {}, -1)).toThrow(RangeError);
     });
@@ -119,6 +135,7 @@ describe("Game.Stopwatch", function () {
         Game.removeAllCallbacks();
         Game.step(1);
         expect(stopwatch.getTime()).toBe(0);
+        expect(stopwatch.isRunning()).toBe(false);
 
         stopwatch.start();
         Game.step(1);
