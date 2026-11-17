@@ -1,4 +1,5 @@
 import { describe, expect, test } from "vitest";
+import { Circle } from "./circle";
 import { Container } from "./container";
 import { Rectangle } from "./rectangle";
 
@@ -168,5 +169,77 @@ describe("Element geometry and events", function () {
             "inner:out",
             "child:out",
         ]);
+    });
+});
+
+function square(x: number, y: number, size = 10) {
+    return new Rectangle({ x, y, width: size, height: size, color: "red" });
+}
+
+describe("Element.overlaps()", function () {
+    test("uses the current positions (not the ones from the start of the update)", function () {
+        const player = square(0, 0);
+        const car = square(100, 0);
+
+        expect(player.overlaps(car)).toBe(false);
+
+        car.x = 5;
+        expect(player.overlaps(car)).toBe(true);
+        expect(car.overlaps(player)).toBe(true);
+
+        car.x = 100;
+        expect(player.overlaps(car)).toBe(false);
+    });
+
+    test("considers the position, scale and rotation of the containers", function () {
+        const child = square(10, 0); // 30x30 once scaled, from 115 to 145 (x) and -15 to 15 (y)
+        const container = new Container({ x: 100, children: child });
+
+        container.scaleX = 3;
+        container.scaleY = 3;
+
+        expect(square(130, 0).overlaps(child)).toBe(true); // the center of the child
+        expect(square(130, 30).overlaps(child)).toBe(false); // below it
+        expect(square(100, 0).overlaps(child)).toBe(false); // left of it
+        expect(child.overlaps(square(150, 0))).toBe(true); // touches its right part
+
+        // a rotated container turns its children around its position
+        const arm = square(50, 0);
+        const holder = new Container({ x: 100, y: 100, children: arm });
+
+        expect(square(150, 100).overlaps(arm)).toBe(true);
+
+        holder.rotation = Math.PI / 2; // the arm now points down
+        expect(square(150, 100).overlaps(arm)).toBe(false);
+        expect(square(100, 150).overlaps(arm)).toBe(true);
+    });
+
+    test("a circle overlaps as a circle", function () {
+        const circle = new Circle({ x: 0, y: 0, radius: 10, color: "red" });
+
+        expect(circle.overlaps(square(9, 9, 2))).toBe(false); // in the corner of its bounding square
+        expect(circle.overlaps(square(6, 6, 2))).toBe(true);
+    });
+
+    test("a container overlaps through its children", function () {
+        const container = new Container({
+            children: [square(-50, 0), square(50, 0)],
+        });
+
+        expect(container.overlaps(square(0, 0))).toBe(false); // between the children
+        expect(container.overlaps(square(50, 0))).toBe(true);
+    });
+
+    test("ignores category/collidesWith, and a destroyed element doesn't overlap anything", function () {
+        const one = square(0, 0);
+        const two = square(5, 0);
+
+        one.category = 1;
+        one.collidesWith = 0; // wouldn't collide with anything
+        expect(one.overlaps(two)).toBe(true);
+
+        two.destroy();
+        expect(one.overlaps(two)).toBe(false);
+        expect(two.overlaps(one)).toBe(false);
     });
 });

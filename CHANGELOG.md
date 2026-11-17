@@ -25,6 +25,10 @@ that stop as soon as their element is destroyed, and a few conveniences.
   that was moved to a new place at once right there, and `getFixedTimestep()`
   tells the current one. Custom elements can use `_applyTransform()` in their
   `drawElement()` to be drawn between the steps too.
+- `element.overlaps(other)`, which tells if two elements overlap right now
+  (with their current positions, and of the containers they're in), for a game
+  that checks it in its own logic instead of waiting for the `collision` event.
+  It uses the same shapes as the collision detection, but not the categories.
 - `Game.Keyboard`, for keyboard controls: the game names its actions and binds
   keys to them (`new Game.Keyboard({ left: ["ArrowLeft", "KeyA"] })`), then asks
   `isHeld("left")`, `wasPressed()` or `wasReleased()`. The action names are

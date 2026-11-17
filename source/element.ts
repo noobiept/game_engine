@@ -284,6 +284,61 @@ export abstract class Element extends EventDispatcher {
         return CollisionDetection.polygonPolygonList(vertices, otherVertices);
     }
 
+    /**
+     * Tells if this element overlaps another one right now, for a game that checks it in its own logic (the player
+     * against the cars, after moving them). It uses the current position, scale and rotation of both elements and of
+     * the containers they're in, and the same shapes as the collision detection (a circle is a 16-sided polygon, a
+     * container is the shapes of its children). It doesn't consider `category`/`collidesWith`, and it doesn't dispatch
+     * the `collision` event. A destroyed element doesn't overlap anything.
+     *
+     *     if ( player.overlaps( car ) ) {
+     *         loseLife();
+     *     }
+     */
+    overlaps(other: Element) {
+        if (this._destroyed || other._destroyed) {
+            return false;
+        }
+
+        this._refreshVertices();
+        other._refreshVertices();
+
+        return this.checkCollision(other);
+    }
+
+    /**
+     * Calculate the vertices from the current position/scale/rotation of this element, and of the containers it's in
+     * (the collision detection calculates them once per update, before the logic can move the elements).
+     */
+    _refreshVertices() {
+        const containers: Container[] = [];
+        let parent = this._container;
+
+        while (parent !== null) {
+            containers.push(parent);
+            parent = parent._container;
+        }
+
+        // from the outermost container in, like `Container.updateVertices()` passes them to its children
+        let x = 0;
+        let y = 0;
+        let scaleX = 1;
+        let scaleY = 1;
+        let rotation = 0;
+
+        for (let a = containers.length - 1; a >= 0; a--) {
+            const container = containers[a];
+
+            x += container.x * scaleX;
+            y += container.y * scaleY;
+            scaleX *= container.scaleX;
+            scaleY *= container.scaleY;
+            rotation += container.rotation;
+        }
+
+        this.updateVertices(x, y, scaleX, scaleY, rotation);
+    }
+
     mouseClickEvents(x: number, y: number, event: MouseEvent) {
         if (this.hasListeners(event.type)) {
             const elements = this.intersect(x, y);

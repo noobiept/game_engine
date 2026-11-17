@@ -405,6 +405,14 @@ player.addEventListener("collision", function (data) {
 });
 ```
 
+The `collision` events come once per update, after the logic. To check two elements in the game's own logic instead (right after moving them), use `overlaps()`. It uses their current positions, and the same shapes as the collision detection, but not the categories:
+
+```ts
+if (player.overlaps(enemy)) {
+    loseLife();
+}
+```
+
 For a large number of elements, use the spatial-partition algorithm instead of the default algorithm, which checks every pair:
 
 ```ts
