@@ -10,6 +10,21 @@ see the [migration guide](MIGRATION.md).
 
 ## [Unreleased]
 
+### Added
+
+- `@drk4/game-engine/testing`, with helpers to test a game in jsdom:
+  `stubCanvasContext()`, `stubAnimationFrames()` (the game is updated with
+  `Game.step()`), and `resetGame()`, which leaves the engine as if it was just
+  loaded, so a test doesn't affect the next one (no game loop callbacks, tweens,
+  event listeners, held keys or preloaded files are left). It's a separate
+  entry, so it isn't in a game's bundle.
+
+### Changed
+
+- The package is built in three files: `game_engine.js` (the main entry),
+  `testing.js`, and `engine.js` (the engine's code, which both use, so the
+  testing helpers reset the engine that the game uses).
+
 ### Fixed
 
 - With a fixed timestep, a timer of a whole number of steps took one more step,

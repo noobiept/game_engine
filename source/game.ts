@@ -149,6 +149,40 @@ function teardown() {
 }
 
 /**
+ * Leave the game as if the engine was just loaded: no canvas, game loop, callbacks or loop event listeners, and the
+ * default settings. For tests, see `resetGame()` in `@drk4/game-engine/testing`.
+ */
+export function _reset() {
+    // no `pause` event for this
+    EVENTS.removeEventListener("pause");
+    EVENTS.removeEventListener("resume");
+
+    if (INITIALIZED) {
+        teardown();
+        CollisionDetection.clear();
+        INITIALIZED = false;
+    } else {
+        pauseLoop();
+    }
+
+    document.removeEventListener("visibilitychange", onVisibilityChange);
+    removeAllCallbacks();
+
+    STOPPED_BY_USER = false;
+    FRAME_INTERVAL = 0;
+    MAX_DELTA_TIME = 0.25;
+    LAST_UPDATE_TIME = 0;
+    NEXT_UPDATE_TIME = 0;
+    FIXED_TIMESTEP = null;
+    ACCUMULATOR = 0;
+    RENDER_ALPHA = 1;
+    TO_BE_DESTROYED.length = 0;
+    MOUSE_X = -1;
+    MOUSE_Y = -1;
+    MOUSE_MOVED = false;
+}
+
+/**
  * Starts the game loop. This is called automatically when you initialize the engine (Game.init()).
  * Only useful when you manually stop the loop (with Game.stopGameLoop()) and need to restart it later.
  * Does nothing if the loop is already running, or before `init()` is called. While the page is hidden, the loop only starts once it becomes visible.

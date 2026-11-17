@@ -70,6 +70,13 @@ export function setPauseWhenHidden(pause: boolean) {
 }
 
 /**
+ * Go back to the default settings (for tests, see `resetGame()` in `@drk4/game-engine/testing`).
+ */
+export function _reset() {
+    setPauseWhenHidden(true);
+}
+
+/**
  * Suspend the audio context while the page is hidden, and resume it once it's visible again.
  * Suspending the context also stops its clock, so the sounds continue from where they were.
  */

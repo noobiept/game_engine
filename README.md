@@ -28,6 +28,7 @@ The full API reference is in [docs/README.md](docs/README.md), and runnable exam
 - [Tweens](#tweens)
 - [Game loop](#game-loop)
 - [Collision detection](#collision-detection)
+- [Testing](#testing)
 - [Documentation](#documentation)
 - [Release](#release)
 - [License](#license)
@@ -375,7 +376,7 @@ Game.addEventListener("pause", () => music.pause());
 Game.addEventListener("resume", () => music.resume());
 ```
 
-To test the game's timing, stop the loop and update it by hand with `Game.step(deltaTime)`.
+To test the game's timing, stop the loop and update it by hand with `Game.step(deltaTime)` (see [Testing](#testing)).
 
 ## Collision detection
 
@@ -423,6 +424,47 @@ const collision = new Game.CollisionDetection.SpatialPartition({
 });
 
 Game.init({ container: document.body, width: 400, height: 400, collision });
+```
+
+## Testing
+
+A game can be tested with a test runner like [Vitest](https://vitest.dev/), in a browser-like environment ([jsdom](https://github.com/jsdom/jsdom)), with the helpers of `@drk4/game-engine/testing` (they aren't in the main entry, so they aren't in the game's bundle):
+
+- `stubCanvasContext()` gives the canvas a 2d context that does nothing (jsdom doesn't draw).
+- `stubAnimationFrames()` keeps the game loop from running by itself, so the game is updated with `Game.step(deltaTime)`.
+- `resetGame()` leaves the engine as if it was just loaded, so a test doesn't affect the next one: the game is taken out of the page, and its game loop callbacks, tweens, held keys and preloaded files are removed.
+
+```ts
+import * as Game from "@drk4/game-engine";
+import {
+    resetGame,
+    stubAnimationFrames,
+    stubCanvasContext,
+} from "@drk4/game-engine/testing";
+import { afterEach, beforeEach, expect, test } from "vitest";
+
+beforeEach(function () {
+    stubCanvasContext();
+    stubAnimationFrames();
+
+    Game.init({ container: document.body, width: 400, height: 400 });
+    Game.stopGameLoop();
+});
+
+afterEach(function () {
+    resetGame();
+});
+
+test("a car spawns every 2 seconds", function () {
+    startLevel(1);
+
+    // Two seconds, at 60 updates per second.
+    for (let a = 0; a < 120; a++) {
+        Game.step(1 / 60);
+    }
+
+    expect(countCars()).toBe(1);
+});
 ```
 
 ## Documentation

@@ -248,6 +248,15 @@ function clearKeys() {
 }
 
 /**
+ * Let go of all the keys, and forget the `Keyboard` objects (for tests, see `resetGame()` in
+ * `@drk4/game-engine/testing`).
+ */
+export function _reset() {
+    clearKeys();
+    ALL_KEYBOARDS.clear();
+}
+
+/**
  * Called by the game loop at the end of each update (the presses/releases were seen by that update).
  */
 export function _endUpdate() {

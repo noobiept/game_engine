@@ -22,11 +22,25 @@ export default defineConfig({
     },
     build: {
         lib: {
-            entry: "source/index.ts",
-            name: "Game",
-            fileName: "game_engine",
+            // `testing` is a separate entry (so its helpers aren't in a game's bundle), but it shares the engine's
+            // modules with the main one (its `resetGame()` resets the engine that the game uses)
+            entry: {
+                game_engine: "source/index.ts",
+                testing: "source/testing.ts",
+            },
+            fileName: (_format, entryName) => `${entryName}.js`,
             formats: ["es"],
         },
         outDir: "dist",
+        rollupOptions: {
+            output: {
+                // the engine's modules go in one file, which both entries use
+                manualChunks: (id) =>
+                    /source[\\/](index|testing)\.ts$/.test(id)
+                        ? undefined
+                        : "engine",
+                chunkFileNames: "[name].js",
+            },
+        },
     },
 });
