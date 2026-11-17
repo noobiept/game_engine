@@ -326,11 +326,23 @@ class Tower extends Game.Rectangle {
 
 By default the loop updates on every animation frame, which follows the display's refresh rate (60 times per second on most displays). To limit it, use `Game.setFps()`. The loop pauses while the page is hidden. To keep a long pause (a slow device, the debugger) from moving the elements a big distance at once, `deltaTime` is limited to `0.25` seconds (change it with `Game.setMaxDeltaTime()`). A loop stopped with `Game.stopGameLoop()` stays stopped until `Game.startGameLoop()` is called.
 
-What runs outside of the loop doesn't stop with it: a timer shown in the page, music played through your own `AudioContext`, a `setTimeout()`. To stop those with the game, listen to the loop's `pause` and `resume` events (dispatched for a hidden page and for `stopGameLoop()`/`startGameLoop()`):
+What runs outside of the loop doesn't pause with it, like a `setTimeout()` or a timer shown in the page. For those, use game time: `Game.Timeout` (a timeout) and `Game.Stopwatch` (to measure a time, like how long a level took) run on the loop, so they pause with it.
 
 ```ts
-Game.addEventListener("pause", () => hudTimer.stop());
-Game.addEventListener("resume", () => hudTimer.start());
+const nextLevel = new Game.Timeout();
+nextLevel.start(() => startLevel(2), 2); // After 2 seconds of game time.
+
+const levelTime = new Game.Stopwatch();
+levelTime.start();
+// ...
+showScore(levelTime.getTime()); // In seconds.
+```
+
+For anything else, listen to the loop's `pause` and `resume` events (dispatched for a hidden page and for `stopGameLoop()`/`startGameLoop()`):
+
+```ts
+Game.addEventListener("pause", () => music.pause());
+Game.addEventListener("resume", () => music.resume());
 ```
 
 To test the game's timing, stop the loop and update it by hand with `Game.step(deltaTime)`.

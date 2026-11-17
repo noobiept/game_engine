@@ -173,8 +173,10 @@ export function isGameLoopRunning() {
 }
 
 /**
- * Listen to the game loop stopping and starting again, for what runs outside of it but should stop with the game: a
- * timer shown in the page, music played through your own `AudioContext`, a `setTimeout()`, etc.
+ * Listen to the game loop stopping and starting again, for what runs outside of it but should stop with the game:
+ * music played through your own `AudioContext`, or the engine's sounds when the game is paused with `stopGameLoop()`
+ * (they already pause while the page is hidden). For a timeout or a time measured in the game, `Game.Timeout` and
+ * `Game.Stopwatch` already run on the loop.
  *
  * - `pause` -- the loop stopped: the page was hidden, or `stopGameLoop()` was called.
  * - `resume` -- the loop is running again: the page is visible again, or `startGameLoop()` was called (and when
@@ -183,7 +185,7 @@ export function isGameLoopRunning() {
  * The listeners are called right after the loop stopped/started (`isGameLoopRunning()` already tells the new state),
  * and they're kept when `init()` is called again.
  *
- *     Game.addEventListener( 'pause', () => music.suspend() );
+ *     Game.addEventListener( 'pause', () => music.pause() );
  *     Game.addEventListener( 'resume', () => music.resume() );
  *
  * @return If it was successfully added (`false` when it isn't a function, or was already added).
@@ -510,7 +512,7 @@ export function removeFromGameLoop(callback: (deltaTime: number) => any) {
 }
 
 /**
- * Remove all the callbacks from the game loop.
+ * Remove all the callbacks from the game loop (including the ones of the `Timeout` and `Stopwatch` objects).
  */
 export function removeAllCallbacks() {
     for (const callInfo of CALLBACKS) {

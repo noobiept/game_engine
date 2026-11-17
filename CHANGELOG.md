@@ -12,6 +12,10 @@ see the [migration guide](MIGRATION.md).
 
 ### Added
 
+- `Game.Timeout` and `Game.Stopwatch`, which count game time (they run on the
+  game loop, so they pause with it): a timeout with the methods of the
+  utilities' `Timeout` (in seconds), and a stopwatch to measure a time that is
+  shown or scored.
 - `Preload.loadManifest()` returns a promise, which rejects with a
   `PreloadError` when a file that isn't `optional` fails to load (manifest
   entries take an `optional` flag). An `await` that isn't caught makes a
@@ -39,6 +43,11 @@ see the [migration guide](MIGRATION.md).
   interval that just started (`{ ready: false }`, or `restart()`) as waiting
   in its first update. A timer with a first delay of `0` (then
   `restart(interval)`) was one update late on every use.
+
+### Fixed
+
+- The `Game.addEventListener()` example called `music.suspend()`, which
+  `SoundInstance` doesn't have (it's `pause()`).
 
 ## [4.2.0] - 2026-11-15
 
