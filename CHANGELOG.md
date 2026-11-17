@@ -12,6 +12,13 @@ see the [migration guide](MIGRATION.md).
 
 ### Added
 
+- `Preload.loadManifest()` returns a promise, which rejects with a
+  `PreloadError` when a file that isn't `optional` fails to load (manifest
+  entries take an `optional` flag). An `await` that isn't caught makes a
+  missing file an error, instead of a game that starts without it.
+- `getImage()`, `getAudio()`, `getJson<T>()` and `getText()` on `Preload` (and
+  on `Game.Preload`, for `saveGlobal`), which return `undefined` for a file that
+  wasn't loaded (or is of another type), so TypeScript makes the game check.
 - `Game.Sound.setPauseWhenHidden()`.
 
 ### Changed

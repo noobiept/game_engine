@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
-import { Preload } from "./preload";
+import { Preload, PreloadError } from "./preload";
 
 /**
  * A request that the tests finish (with a response or a failure).
@@ -238,5 +238,125 @@ describe("Preload", function () {
         expect(Preload.getType("notes.txt#top")).toBe("text");
         expect(Preload.getType("/steal?q=.json")).toBe(null);
         expect(Preload.getType("folder.v2/file")).toBe(null);
+    });
+
+    test("loadManifest() resolves with the complete data once all the files loaded", async function () {
+        const preload = new Preload();
+        const promise = preload.loadManifest(
+            [
+                { id: "a", path: "a.json" },
+                { id: "b", path: "b.txt" },
+            ],
+            "data/",
+        );
+
+        request("data/a.json").succeed({ value: 1 });
+        request("data/b.txt").succeed("text");
+
+        await expect(promise).resolves.toEqual({
+            failedIds: [],
+            loadedIds: ["a", "b"],
+        });
+    });
+
+    test("loadManifest() rejects with the required files that failed (not the optional ones)", async function () {
+        const preload = new Preload();
+        const events = record(preload);
+        const promise = preload.loadManifest([
+            { id: "level", path: "level.json" },
+            { id: "map", path: "map.json" },
+            { id: "music", path: "music.txt", optional: true },
+        ]);
+
+        request("level.json").succeed({ value: 1 });
+        request("map.json").succeed("x", 404);
+        request("music.txt").fail("error");
+
+        const error = await promise.catch((error: unknown) => error);
+
+        expect(error).toBeInstanceOf(PreloadError);
+        expect((error as PreloadError).failedIds).toEqual(["map"]);
+        expect((error as PreloadError).data.failedIds).toEqual([
+            "map",
+            "music",
+        ]);
+
+        // the events are dispatched as well
+        expect(
+            events.filter((event) => event.type === "complete"),
+        ).toHaveLength(1);
+    });
+
+    test("loadManifest() resolves when only optional files failed", async function () {
+        const preload = new Preload();
+        const promise = preload.loadManifest([
+            { id: "level", path: "level.json" },
+            { id: "music", path: "music.txt", optional: true },
+        ]);
+
+        request("level.json").succeed({ value: 1 });
+        request("music.txt").fail("timeout");
+
+        await expect(promise).resolves.toEqual({
+            failedIds: ["music"],
+            loadedIds: ["level"],
+        });
+    });
+
+    test("loadManifest() settles even when a complete listener throws", async function () {
+        const preload = new Preload();
+
+        preload.addEventListener("complete", () => {
+            throw new Error("listener error");
+        });
+
+        const promise = preload.loadManifest([{ id: "a", path: "a.txt" }]);
+
+        // calling the internal method directly, since a request's listener error isn't thrown back to the caller
+        expect(() =>
+            (
+                preload as unknown as {
+                    _loaded: (id: string, data: any) => void;
+                }
+            )._loaded("a", "data"),
+        ).toThrow("listener error");
+
+        await expect(promise).resolves.toEqual({
+            failedIds: [],
+            loadedIds: ["a"],
+        });
+    });
+
+    test("loadManifest() with an empty manifest resolves right away, and an invalid file type throws before loading anything", async function () {
+        const preload = new Preload();
+
+        await expect(preload.loadManifest([])).resolves.toEqual({
+            failedIds: [],
+            loadedIds: [],
+        });
+
+        expect(() =>
+            preload.loadManifest([
+                { id: "a", path: "a.json" },
+                { id: "b", path: "b.unknown" },
+            ]),
+        ).toThrow("Invalid file type");
+        expect(FakeRequest.all).toHaveLength(0);
+    });
+
+    test("the typed getters return undefined for a missing file, or one of another type", function () {
+        const preload = new Preload();
+
+        preload.load("text", "a.txt");
+        preload.load("data", "b.json");
+        request("a.txt").succeed("hello");
+        request("b.json").succeed({ value: 1 });
+
+        expect(preload.getText("text")).toBe("hello");
+        expect(preload.getText("data")).toBe(undefined);
+        expect(preload.getJson<{ value: number }>("data")?.value).toBe(1);
+        expect(preload.getJson("missing")).toBe(undefined);
+        expect(preload.getImage("text")).toBe(undefined);
+        expect(preload.getAudio("text")).toBe(undefined);
     });
 });

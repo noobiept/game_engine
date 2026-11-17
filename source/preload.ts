@@ -26,6 +26,54 @@ export interface PreloadCompleteData {
 }
 
 /**
+ * A file to load with `loadManifest()`.
+ */
+export interface PreloadManifestEntry {
+    id: string;
+    path: string;
+    optional?: boolean; // the game can run without it (the music, for example), so it doesn't fail the `loadManifest()` promise
+}
+
+/**
+ * The error `loadManifest()` rejects with, when files that aren't `optional` fail to load.
+ */
+export class PreloadError extends Error {
+    failedIds: string[]; // the files of the manifest that failed and aren't optional
+    data: PreloadCompleteData; // the data of the `complete` event (all the files that loaded/failed)
+
+    constructor(failedIds: string[], data: PreloadCompleteData) {
+        super(`Couldn't load: ${failedIds.join(", ")}.`);
+
+        this.name = "PreloadError";
+        this.failedIds = failedIds;
+        this.data = data;
+    }
+}
+
+interface PendingManifest {
+    required: Set<string>;
+    resolve: (data: PreloadCompleteData) => void;
+    reject: (error: PreloadError) => void;
+}
+
+function asImage(data: unknown) {
+    return typeof HTMLImageElement !== "undefined" &&
+        data instanceof HTMLImageElement
+        ? data
+        : undefined;
+}
+
+function asAudio(data: unknown) {
+    return typeof AudioBuffer !== "undefined" && data instanceof AudioBuffer
+        ? data
+        : undefined;
+}
+
+function asText(data: unknown) {
+    return typeof data === "string" ? data : undefined;
+}
+
+/**
  * The events of `Preload`, and the data their listeners get.
  */
 export interface PreloadEvents {
@@ -46,6 +94,18 @@ function isSuccessStatus(status: number) {
  *
  *     const preload = new Game.Preload({ saveGlobal: true });
  *
+ *     try {
+ *         await preload.loadManifest([
+ *             { id: 'ship', path: 'ship.png' },
+ *             { id: 'music', path: 'music.ogg', optional: true }, // the game can run without it
+ *         ]);
+ *     } catch ( error ) {
+ *         // `error.failedIds` has the files that couldn't be loaded (and aren't optional)
+ *     }
+ *
+ *     const ship = new Game.Bitmap({ image: Game.Preload.getImage( 'ship' ) });
+ *
+ *         // or file by file, with the events
  *     preload.addEventListener( 'complete', function( data ) {
  *         if ( data.failedIds.length > 0 ) {
  *             // show an error, instead of starting the game with missing files
@@ -53,11 +113,9 @@ function isSuccessStatus(status: number) {
  *     });
  *     preload.load( 'id', 'path_to_file.png' );
  *
- *         // or with a manifest
- *     const manifest = [
- *             { id: 'the_id', path: 'path_to_file.png' }
- *         ];
- *     preload.loadManifest( manifest, '' );
+ * Get the files with `getImage()`, `getAudio()`, `getJson()` or `getText()` (on the object, or on `Game.Preload` with
+ * `saveGlobal`). They return `undefined` for a file that wasn't loaded (or is of another type), which TypeScript
+ * makes you check. `get()` returns `any`.
  *
  * Events (the listeners are typed, see `PreloadEvents`):
  *
@@ -83,6 +141,7 @@ export class Preload extends EventDispatcher {
     protected _failed_ids: string[]; // list of the ids that failed to load
     protected _loaded_ids: string[]; // list of the ids that were successfully loaded
     protected _file_progress: Map<string, number>; // progress (0 to 1) of the files that are loading
+    protected _pending_manifests: PendingManifest[]; // the `loadManifest()` promises waiting for the files to load
 
     constructor(args?: PreloadArgs) {
         super(args);
@@ -108,6 +167,7 @@ export class Preload extends EventDispatcher {
         this._failed_ids = [];
         this._loaded_ids = [];
         this._file_progress = new Map();
+        this._pending_manifests = [];
     }
 
     /**
@@ -189,6 +249,19 @@ export class Preload extends EventDispatcher {
         this._loaded_items = 0;
         this._total_items = 0;
         this._file_progress.clear();
+
+        // settle the `loadManifest()` promises first (a `complete` listener that throws would stop the dispatch)
+        for (const pending of this._pending_manifests.splice(0)) {
+            const failed = data.failedIds.filter((id) =>
+                pending.required.has(id),
+            );
+
+            if (failed.length > 0) {
+                pending.reject(new PreloadError(failed, data));
+            } else {
+                pending.resolve(data);
+            }
+        }
 
         this.dispatchEvent("complete", data);
     }
@@ -369,30 +442,91 @@ export class Preload extends EventDispatcher {
     /**
      * Load several files.
      *
-     * @param manifest Has the information about the files.
+     * The returned promise resolves once all the files were dealt with (like the `complete` event, with its data), or
+     * rejects with a `PreloadError` when any file that isn't `optional` fails to load. Awaiting it makes a missing
+     * file an error, instead of a game that starts without it. The events are dispatched as well.
+     *
+     * @param manifest Has the information about the files (`optional` ones don't fail the promise).
      * @param basePath Base path for all the files in the manifest.
      */
-    loadManifest(manifest: { id: string; path: string }[], basePath?: string) {
+    loadManifest(manifest: PreloadManifestEntry[], basePath?: string) {
         const length = manifest.length;
 
         if (typeof basePath === "undefined") {
             basePath = "";
         }
 
+        // check all the files first, so an invalid one doesn't leave the others loading
+        for (const file of manifest) {
+            if (!Preload.getType(basePath + file.path)) {
+                throw new Error(`Invalid file type: ${file.path}`);
+            }
+        }
+
+        // nothing to wait for (an empty manifest, with no other files loading)
+        if (length === 0 && this._total_items === 0) {
+            return Promise.resolve<PreloadCompleteData>({
+                failedIds: [],
+                loadedIds: [],
+            });
+        }
+
+        const promise = new Promise<PreloadCompleteData>((resolve, reject) => {
+            const required = new Set(
+                manifest
+                    .filter((file) => !file.optional)
+                    .map((file) => file.id),
+            );
+
+            this._pending_manifests.push({ required, resolve, reject });
+        });
+
         for (let a = 0; a < length; a++) {
             const file = manifest[a];
 
             this.load(file.id, basePath + file.path);
         }
+
+        return promise;
     }
 
     /**
-     * Get a previously loaded file.
+     * Get a previously loaded file (as `any`). See `getImage()`, `getAudio()`, `getJson()` and `getText()` for typed
+     * versions.
      *
      * @param id The id of the file.
      */
     get(id: string) {
         return this._data[id];
+    }
+
+    /**
+     * Get a loaded image, or `undefined` when there isn't one with that id.
+     */
+    getImage(id: string) {
+        return asImage(this._data[id]);
+    }
+
+    /**
+     * Get a loaded audio file (decoded), or `undefined` when there isn't one with that id.
+     */
+    getAudio(id: string) {
+        return asAudio(this._data[id]);
+    }
+
+    /**
+     * Get a loaded text file, or `undefined` when there isn't one with that id.
+     */
+    getText(id: string) {
+        return asText(this._data[id]);
+    }
+
+    /**
+     * Get a loaded json file (parsed), or `undefined` when there isn't a file with that id. The data isn't checked
+     * against `T`.
+     */
+    getJson<T = unknown>(id: string): T | undefined {
+        return this._data[id] as T | undefined;
     }
 }
 
@@ -436,6 +570,36 @@ export namespace Preload {
      */
     export function get(id: string) {
         return DATA[id];
+    }
+
+    /**
+     * Get a loaded image (saved in the global `DATA` object), or `undefined` when there isn't one with that id.
+     */
+    export function getImage(id: string) {
+        return asImage(DATA[id]);
+    }
+
+    /**
+     * Get a loaded audio file (decoded, saved in the global `DATA` object), or `undefined` when there isn't one with
+     * that id.
+     */
+    export function getAudio(id: string) {
+        return asAudio(DATA[id]);
+    }
+
+    /**
+     * Get a loaded text file (saved in the global `DATA` object), or `undefined` when there isn't one with that id.
+     */
+    export function getText(id: string) {
+        return asText(DATA[id]);
+    }
+
+    /**
+     * Get a loaded json file (parsed, saved in the global `DATA` object), or `undefined` when there isn't a file with
+     * that id. The data isn't checked against `T`.
+     */
+    export function getJson<T = unknown>(id: string): T | undefined {
+        return DATA[id] as T | undefined;
     }
 
     /**

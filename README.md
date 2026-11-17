@@ -165,38 +165,41 @@ function clamp(value: number, min: number, max: number) {
 
 ## Loading assets
 
-Use `Preload` to load images, audio, JSON, and text files. With `saveGlobal: true`, the loaded files are stored globally and retrieved with `Game.Preload.get(id)`.
+Use `Preload` to load images, audio, JSON, and text files. With `saveGlobal: true`, the loaded files are stored globally and retrieved from `Game.Preload`.
 
 ```ts
 const preload = new Game.Preload({ saveGlobal: true });
 
-preload.addEventListener("complete", function (data) {
-    if (data.failedIds.length > 0) {
-        console.error("Couldn't load:", data.failedIds);
-        return;
-    }
+try {
+    await preload.loadManifest(
+        [
+            { id: "ship", path: "ship.png" },
+            { id: "music", path: "music.ogg", optional: true }, // The game can run without it.
+        ],
+        "assets/", // Base path, prepended to every file.
+    );
+} catch (error) {
+    // A `Game.PreloadError`, with the files that couldn't be loaded (and aren't optional) in `failedIds`.
+    console.error(error);
+    return;
+}
 
-    const ship = new Game.Bitmap({
-        x: 200,
-        y: 200,
-        image: Game.Preload.get("ship"),
-    });
-    Game.addElement(ship);
-
-    // Play looping background music at half volume.
-    Game.Sound.play(Game.Preload.get("music"), { loop: true, volume: 0.5 });
+const ship = new Game.Bitmap({
+    x: 200,
+    y: 200,
+    image: Game.Preload.getImage("ship")!,
 });
+Game.addElement(ship);
 
-preload.loadManifest(
-    [
-        { id: "ship", path: "ship.png" },
-        { id: "music", path: "music.ogg" },
-    ],
-    "assets/", // Base path, prepended to every file.
-);
+// Play looping background music at half volume (`undefined` when the music couldn't be loaded).
+const music = Game.Preload.getAudio("music");
+
+if (music) {
+    Game.Sound.play(music, { loop: true, volume: 0.5 });
+}
 ```
 
-The `complete` event is dispatched once every file was dealt with, even when some fail, so check its `failedIds` before starting. Each failed file also gets an `error` event. The listeners are typed (see `PreloadEvents`), so a wrong event name or data property doesn't compile.
+`loadManifest()` returns a promise that resolves once every file was dealt with, or rejects with a `Game.PreloadError` when a file that isn't `optional` fails, so a missing file is an error instead of a game that starts without it. Get the files with `getImage()`, `getAudio()`, `getJson<T>()` or `getText()`, which return `undefined` for a file that wasn't loaded (`get()` returns `any`). There are also events: `complete` once every file was dealt with (with `failedIds` and `loadedIds`), and `error` for each file that fails. Their listeners are typed (see `PreloadEvents`).
 
 The sounds pause while the page is hidden, like the game loop (see `Game.Sound.setPauseWhenHidden()`).
 
