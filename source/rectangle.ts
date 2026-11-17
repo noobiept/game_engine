@@ -44,10 +44,7 @@ export class Rectangle extends Element {
     drawElement(ctx: CanvasRenderingContext2D) {
         ctx.save();
         ctx.beginPath();
-        ctx.globalAlpha *= this.opacity;
-        ctx.translate(this.x, this.y);
-        ctx.scale(this.scaleX, this.scaleY);
-        ctx.rotate(this._rotation);
+        this._applyTransform(ctx);
 
         if (this.fill) {
             ctx.fillStyle = this.color;

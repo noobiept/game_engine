@@ -115,10 +115,7 @@ export class Text extends Element {
      */
     drawElement(ctx: CanvasRenderingContext2D) {
         ctx.save();
-        ctx.globalAlpha *= this.opacity;
-        ctx.translate(this.x, this.y);
-        ctx.scale(this.scaleX, this.scaleY);
-        ctx.rotate(this._rotation);
+        this._applyTransform(ctx);
 
         ctx.font = this._font;
         ctx.textAlign = this.textAlign;

@@ -31,9 +31,9 @@ export class Star extends Game.Circle {
 
     override drawElement(ctx: CanvasRenderingContext2D) {
         ctx.save();
-        ctx.globalAlpha *= this.opacity;
-        ctx.translate(this.x, this.y);
-        ctx.rotate(this.rotation);
+
+        // the opacity, position, scale and rotation (between the last two steps, with `Game.setFixedTimestep()`)
+        this._applyTransform(ctx);
 
         const step = Math.PI / this.spikes;
         let rotation = -Math.PI / 2;

@@ -91,6 +91,7 @@ export class Canvas {
 
             this._children.push(element);
             element._parent_canvas = this;
+            element.resetInterpolation(); // its position is in this canvas' space now
             element._attach();
         }
     }
@@ -225,6 +226,16 @@ export class Canvas {
             ) {
                 element.logic(deltaTime);
             }
+        }
+    }
+
+    /**
+     * Save the current state of the elements, at the start of a step (with a fixed update rate, see
+     * `Game.setFixedTimestep()`), to draw them between the last two steps.
+     */
+    _savePrevious() {
+        for (const element of this._children) {
+            element._savePrevious();
         }
     }
 

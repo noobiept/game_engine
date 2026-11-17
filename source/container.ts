@@ -88,6 +88,7 @@ export class Container extends Element {
 
             this._children.push(element);
             element._container = this;
+            element.resetInterpolation(); // its position is in this container's space now
 
             if (this._attached) {
                 element._attach();
@@ -281,16 +282,24 @@ export class Container extends Element {
     }
 
     /**
+     * Save the current state of the container and its children, at the start of a step (with a fixed update rate).
+     */
+    override _savePrevious() {
+        super._savePrevious();
+
+        for (const child of this._children) {
+            child._savePrevious();
+        }
+    }
+
+    /**
      * Draw all the elements in the container.
      *
      * @param ctx The canvas rendering context.
      */
     override draw(ctx: CanvasRenderingContext2D) {
         ctx.save();
-        ctx.globalAlpha *= this.opacity;
-        ctx.translate(this.x, this.y);
-        ctx.scale(this.scaleX, this.scaleY);
-        ctx.rotate(this._rotation);
+        this._applyTransform(ctx);
 
         const length = this._children.length;
         let child;

@@ -154,10 +154,7 @@ export class ScrollingBitmap extends Bitmap {
     protected _draw_horizontal(ctx: CanvasRenderingContext2D) {
         ctx.save();
         ctx.beginPath();
-        ctx.globalAlpha *= this.opacity;
-        ctx.translate(this.x, this.y);
-        ctx.scale(this.scaleX, this.scaleY);
-        ctx.rotate(this._rotation);
+        this._applyTransform(ctx);
 
         const firstWidth = this._width - this._ref_position;
         const secondWidth = this._ref_position;
@@ -199,10 +196,7 @@ export class ScrollingBitmap extends Bitmap {
     protected _draw_vertical(ctx: CanvasRenderingContext2D) {
         ctx.save();
         ctx.beginPath();
-        ctx.globalAlpha *= this.opacity;
-        ctx.translate(this.x, this.y);
-        ctx.scale(this.scaleX, this.scaleY);
-        ctx.rotate(this._rotation);
+        this._applyTransform(ctx);
 
         const firstHeight = this._height - this._ref_position;
         const secondHeight = this._ref_position;

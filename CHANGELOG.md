@@ -16,6 +16,15 @@ that stop as soon as their element is destroyed, and a few conveniences.
 
 ### Added
 
+- `Game.setFixedTimestep()`, to run the game logic at a fixed rate (the
+  callbacks, tweens, `logic()` and collisions always get the same `deltaTime`,
+  as many times as the time that passed calls for), while drawing on every
+  animation frame. The elements are drawn between the last two steps (their
+  position, rotation, scale and opacity), so they move smoothly on displays
+  that refresh faster than the steps. `resetInterpolation()` draws an element
+  that was moved to a new place at once right there, and `getFixedTimestep()`
+  tells the current one. Custom elements can use `_applyTransform()` in their
+  `drawElement()` to be drawn between the steps too.
 - `Game.Keyboard`, for keyboard controls: the game names its actions and binds
   keys to them (`new Game.Keyboard({ left: ["ArrowLeft", "KeyA"] })`), then asks
   `isHeld("left")`, `wasPressed()` or `wasReleased()`. The action names are

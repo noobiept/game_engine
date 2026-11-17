@@ -89,11 +89,8 @@ export class Circle extends Element {
     drawElement(ctx: CanvasRenderingContext2D) {
         ctx.save();
         ctx.beginPath();
-        ctx.globalAlpha *= this.opacity;
         ctx.fillStyle = this.color;
-        ctx.translate(this.x, this.y);
-        ctx.scale(this.scaleX, this.scaleY);
-        ctx.rotate(this._rotation);
+        this._applyTransform(ctx);
         ctx.arc(0, 0, this._radius, 0, 2 * Math.PI);
         ctx.fill();
         ctx.restore();

@@ -98,6 +98,15 @@ export abstract class Element extends EventDispatcher {
     _has_logic: boolean; // to know if we need to run the .logic() method or not
     _destroyed: boolean; // a reference to this element may be saved in several places, so we need a way to know if its ok to work on the element or not
 
+    // the state at the start of the last step, with a fixed update rate (see `Game.setFixedTimestep()`), to draw between the steps
+    protected _has_previous: boolean;
+    protected _previous_x: number;
+    protected _previous_y: number;
+    protected _previous_rotation: number;
+    protected _previous_scale_x: number;
+    protected _previous_scale_y: number;
+    protected _previous_opacity: number;
+
     constructor(args?: ElementArgs) {
         super(args);
 
@@ -143,6 +152,14 @@ export abstract class Element extends EventDispatcher {
         this._has_logic = false;
         this._destroyed = false;
 
+        this._has_previous = false;
+        this._previous_x = x;
+        this._previous_y = y;
+        this._previous_rotation = 0;
+        this._previous_scale_x = 1;
+        this._previous_scale_y = 1;
+        this._previous_opacity = 1;
+
         this.category = category;
         this.collidesWith = collidesWith;
     }
@@ -161,6 +178,64 @@ export abstract class Element extends EventDispatcher {
      */
     draw(ctx: CanvasRenderingContext2D) {
         this.drawElement(ctx);
+    }
+
+    /**
+     * Apply this element's opacity, position, scale and rotation to the canvas context (used when drawing it).
+     * With a fixed update rate (see `Game.setFixedTimestep()`), they're between the ones of the last two steps, so the
+     * element moves smoothly on displays that refresh faster than the steps.
+     *
+     * @param ctx Canvas context.
+     */
+    protected _applyTransform(ctx: CanvasRenderingContext2D) {
+        const alpha = Game._getRenderAlpha();
+
+        if (alpha >= 1 || !this._has_previous) {
+            ctx.globalAlpha *= this.opacity;
+            ctx.translate(this._x, this._y);
+            ctx.scale(this.scaleX, this.scaleY);
+            ctx.rotate(this._rotation);
+            return;
+        }
+
+        // the rotation goes the short way around (from `3.1` to `-3.1` is a small turn, not almost a whole one)
+        const turn = this._rotation - this._previous_rotation;
+        const shortestTurn =
+            turn - 2 * Math.PI * Math.round(turn / (2 * Math.PI));
+
+        ctx.globalAlpha *= lerp(this._previous_opacity, this.opacity, alpha);
+        ctx.translate(
+            lerp(this._previous_x, this._x, alpha),
+            lerp(this._previous_y, this._y, alpha),
+        );
+        ctx.scale(
+            lerp(this._previous_scale_x, this.scaleX, alpha),
+            lerp(this._previous_scale_y, this.scaleY, alpha),
+        );
+        ctx.rotate(this._previous_rotation + shortestTurn * alpha);
+    }
+
+    /**
+     * Save the current state, at the start of a step (with a fixed update rate, see `Game.setFixedTimestep()`).
+     */
+    _savePrevious() {
+        this._has_previous = true;
+        this._previous_x = this._x;
+        this._previous_y = this._y;
+        this._previous_rotation = this._rotation;
+        this._previous_scale_x = this.scaleX;
+        this._previous_scale_y = this.scaleY;
+        this._previous_opacity = this.opacity;
+    }
+
+    /**
+     * With a fixed update rate (see `Game.setFixedTimestep()`), the elements are drawn between where they were in
+     * the last two steps, so they move smoothly. After moving an element to a new place at once (a respawn, or
+     * starting a level), call this to draw it right there, instead of moving there smoothly during the next step.
+     * Elements are reset when they're added to a container/canvas.
+     */
+    resetInterpolation() {
+        this._has_previous = false;
     }
 
     /**
@@ -629,4 +704,8 @@ export abstract class Element extends EventDispatcher {
             height: this._height,
         };
     }
+}
+
+function lerp(from: number, to: number, alpha: number) {
+    return from + (to - from) * alpha;
 }

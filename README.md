@@ -346,6 +346,16 @@ class Tower extends Game.Rectangle {
 
 By default the loop updates on every animation frame, which follows the display's refresh rate (60 times per second on most displays). To limit it, use `Game.setFps()`. The loop pauses while the page is hidden. To keep a long pause (a slow device, the debugger) from moving the elements a big distance at once, `deltaTime` is limited to `0.25` seconds (change it with `Game.setMaxDeltaTime()`). A loop stopped with `Game.stopGameLoop()` stays stopped until `Game.startGameLoop()` is called.
 
+To make the game behave the same on every display, run its logic at a fixed rate with `Game.setFixedTimestep()`. The logic (the callbacks, tweens, `logic()` and collisions) then always gets the same `deltaTime`, as many times as the time that passed calls for, and the elements are drawn between the last two steps, so they still move smoothly at 120 or 144Hz:
+
+```ts
+Game.setFixedTimestep(1 / 60); // The logic runs 60 times per second, whatever the display.
+
+// After moving an element to a new place at once, draw it there (instead of moving there smoothly).
+player.x = START_X;
+player.resetInterpolation();
+```
+
 What runs outside of the loop doesn't pause with it, like a `setTimeout()` or a timer shown in the page. For those, use game time: `Game.Timeout` (a timeout) and `Game.Stopwatch` (to measure a time, like how long a level took) run on the loop, so they pause with it.
 
 ```ts

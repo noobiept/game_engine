@@ -62,6 +62,10 @@ let NEXT_UPDATE_TIME = 0; // when the next update is due
 let ANIMATION_ID: number | null = null; // the requested animation frame (`null` when the loop isn't running)
 let STOPPED_BY_USER = false; // if the loop was stopped with `stopGameLoop()` (so it isn't restarted when the page becomes visible again)
 const FRAME_TOLERANCE = 2; // how early (in milliseconds) an animation frame can be and still update (the frame times jitter a bit)
+let FIXED_TIMESTEP: number | null = null; // the time (in seconds) of each step of the logic with a fixed update rate (`null` updates once per frame)
+let ACCUMULATOR = 0; // with a fixed update rate, the time that passed but wasn't stepped yet (in seconds)
+let RENDER_ALPHA = 1; // where the drawing is between the last two steps (0 is the previous one, 1 the last one)
+const STEP_TOLERANCE = 1e-6; // a step is due when the time is this close to it (in seconds), so a rounding error doesn't leave it for the next frame
 
 // mouse move variables
 let MOUSE_MOVE_ID: number | null = null;
@@ -218,6 +222,7 @@ function resumeLoop() {
 
     const now = performance.now();
 
+    ACCUMULATOR = 0;
     LAST_UPDATE_TIME = now;
     NEXT_UPDATE_TIME = now + FRAME_INTERVAL;
     ANIMATION_ID = window.requestAnimationFrame(loop);
@@ -310,6 +315,54 @@ export function setFps(fps: number) {
 
     // the new rate applies from the last update
     NEXT_UPDATE_TIME = LAST_UPDATE_TIME + FRAME_INTERVAL;
+}
+
+/**
+ * Run the game logic at a fixed rate: the game loop callbacks, the tweens, the logic of the elements and the collision
+ * detection always get the same `deltaTime` (`seconds`), and run as many times as the time that passed calls for
+ * (none on some animation frames, several on others). The drawing still happens on every animation frame (or at the
+ * rate set with `setFps()`), between the last two steps, so the elements move smoothly on any display.
+ *
+ * It makes the game's behavior the same whatever the display's refresh rate is (a timer, a jump or a step of a
+ * movement is the same at 60Hz and 144Hz), and repeatable (the same input gives the same result). The drawing shows
+ * the game one step late (at most `seconds`).
+ *
+ *     Game.setFixedTimestep( 1 / 60 ); // the logic runs 60 times per second, whatever the display
+ *
+ * - Elements moved to a new place at once (a respawn) should call `resetInterpolation()`, or they move there smoothly
+ *   during the next step.
+ * - Only the elements' position, rotation, scale and opacity are drawn between steps. Elements that draw themselves
+ *   (a custom `drawElement()`) are drawn at their state in the last step, unless they use `_applyTransform()`.
+ * - `Game.Keyboard`'s `wasPressed()` and `wasReleased()` last one step.
+ *
+ * By default (`null`) the logic runs once per animation frame, with the time that passed as `deltaTime`.
+ *
+ * @param seconds The time of each step (a positive number), or `null` for a step per animation frame.
+ */
+export function setFixedTimestep(seconds: number | null) {
+    if (seconds !== null && !(seconds > 0 && seconds !== Infinity)) {
+        throw new RangeError(
+            "The fixed timestep needs to be a positive number (or null).",
+        );
+    }
+
+    FIXED_TIMESTEP = seconds;
+    ACCUMULATOR = 0;
+}
+
+/**
+ * The time of each step of the logic set with `setFixedTimestep()` (`null` when the logic runs once per frame).
+ */
+export function getFixedTimestep() {
+    return FIXED_TIMESTEP;
+}
+
+/**
+ * Where the drawing is between the last two steps of the logic (see `setFixedTimestep()`): `0` is the state of the
+ * previous step, `1` the last one (always `1` outside of the drawing, or without a fixed timestep).
+ */
+export function _getRenderAlpha() {
+    return RENDER_ALPHA;
 }
 
 /**
@@ -622,7 +675,21 @@ function loop(now: number) {
     );
     LAST_UPDATE_TIME = now;
 
-    update(deltaTime);
+    if (FIXED_TIMESTEP === null) {
+        update(deltaTime);
+        return;
+    }
+
+    // run the steps that are due, then draw between the last two
+    ACCUMULATOR += deltaTime;
+
+    while (ACCUMULATOR >= FIXED_TIMESTEP - STEP_TOLERANCE) {
+        ACCUMULATOR = Math.max(ACCUMULATOR - FIXED_TIMESTEP, 0);
+        savePrevious();
+        updateLogic(FIXED_TIMESTEP);
+    }
+
+    draw(ACCUMULATOR / FIXED_TIMESTEP);
 }
 
 /**
@@ -659,6 +726,42 @@ export function step(deltaTime: number) {
  * @param deltaTime Time elapsed since the last update (in seconds).
  */
 function update(deltaTime: number) {
+    updateLogic(deltaTime);
+    draw(1);
+}
+
+/**
+ * The canvas that are updated on the game loop (see `Canvas.updateOnLoop`), from the front to the back.
+ */
+function canvasToUpdate() {
+    const allCanvas: Canvas[] = [];
+
+    for (let a = ALL_CANVAS.length - 1; a >= 0; a--) {
+        const canvas = ALL_CANVAS[a];
+
+        if (canvas.updateOnLoop) {
+            allCanvas.push(canvas);
+        }
+    }
+
+    return allCanvas;
+}
+
+/**
+ * Save the state of the elements at the start of a step (with a fixed update rate), to draw between the steps.
+ */
+function savePrevious() {
+    for (const canvas of canvasToUpdate()) {
+        canvas._savePrevious();
+    }
+}
+
+/**
+ * Updates the game logic: the game loop callbacks, the tweens, the logic of the elements and the collision detection.
+ *
+ * @param deltaTime Time elapsed since the last update (in seconds).
+ */
+function updateLogic(deltaTime: number) {
     // call any function added to the game loop
     callbacks(deltaTime);
 
@@ -666,16 +769,8 @@ function update(deltaTime: number) {
     Tween.update(deltaTime);
 
     // get all the canvas that are to be updated on the game loop
-    const allCanvas: Canvas[] = [];
+    const allCanvas = canvasToUpdate();
     let a;
-
-    for (a = ALL_CANVAS.length - 1; a >= 0; a--) {
-        const canvas = ALL_CANVAS[a];
-
-        if (canvas.updateOnLoop) {
-            allCanvas.push(canvas);
-        }
-    }
 
     // update the global vertices position of all the elements
     const lastPosition = allCanvas.length - 1;
@@ -695,13 +790,28 @@ function update(deltaTime: number) {
     // destroy the deferred elements
     flushDestroyed();
 
-    // draw all the elements to the canvas
-    for (a = lastPosition; a >= 0; a--) {
-        allCanvas[a].draw();
-    }
-
     // the key presses/releases were seen by this update
     Keyboard._endUpdate();
+}
+
+/**
+ * Draw all the canvas that are updated on the game loop.
+ *
+ * @param alpha Where to draw between the last two steps of the logic (`1` is the state of the last one).
+ */
+function draw(alpha: number) {
+    const allCanvas = canvasToUpdate();
+
+    RENDER_ALPHA = alpha;
+
+    try {
+        for (let a = allCanvas.length - 1; a >= 0; a--) {
+            allCanvas[a].draw();
+        }
+    } finally {
+        // a canvas drawn by hand (outside of the loop) shows the current state
+        RENDER_ALPHA = 1;
+    }
 }
 
 /**
