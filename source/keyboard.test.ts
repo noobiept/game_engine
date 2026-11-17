@@ -111,6 +111,21 @@ describe("Keyboard", function () {
         expect(controls.isHeld("left")).toBe(false);
     });
 
+    test("the keys are let go when cmd is released (macOS doesn't send their keyup while it's held)", function () {
+        key("keydown", "ArrowLeft");
+        key("keydown", "MetaLeft");
+        key("keyup", "MetaLeft"); // no keyup for ArrowLeft
+
+        expect(controls.isHeld("left")).toBe(false);
+        expect(controls.wasReleased("left")).toBe(true);
+
+        // a key still held comes back with its auto-repeat, without counting as a new press
+        Game.step(1 / 60);
+        key("keydown", "ArrowLeft", { repeat: true });
+        expect(controls.isHeld("left")).toBe(true);
+        expect(controls.wasPressed("left")).toBe(false);
+    });
+
     test("the keys are let go when the window loses the focus", function () {
         key("keydown", "ArrowRight");
         window.dispatchEvent(new Event("blur"));

@@ -23,8 +23,9 @@ let LISTENING = false;
  *   French keyboard, where players expect it), and they don't change with `Shift` (so a key can't get stuck held).
  * - `wasPressed()`/`wasReleased()` are true for one update of the game loop, even when the key was pressed and released
  *   between two updates (a quick tap isn't lost). A key held down doesn't count as pressed again (no auto-repeat).
- * - The keys are let go when the window loses the focus (their `keyup` goes to another window) and when the game loop
- *   pauses. Keys pressed while it's paused don't count as pressed when it resumes.
+ * - The keys are let go when the window loses the focus (their `keyup` goes to another window), when the game loop
+ *   pauses, and when `Cmd` is released (on macOS, the browsers don't send the other keys' `keyup` while it's held).
+ *   Keys pressed while the loop is paused don't count as pressed when it resumes.
  * - Keys typed in a form field (an `<input>`, `<textarea>`, `<select>` or an editable element) are ignored.
  * - The bound keys don't do their default browser action (the arrows and space scroll the page), see `preventDefault`.
  *   With `Ctrl`, `Cmd` or `Alt` held they do, so the browser's shortcuts keep working (`Cmd + R` reloads the page).
@@ -172,18 +173,32 @@ function onKeyDown(event: KeyboardEvent) {
 
     preventDefault(event);
 
-    if (event.repeat || HELD.has(event.code)) {
+    if (HELD.has(event.code)) {
         return;
     }
 
     HELD.add(event.code);
-    PRESSED.add(event.code);
+
+    // an auto-repeat only brings back a key that was let go while held (see `onKeyUp()`), it isn't a new press
+    if (!event.repeat) {
+        PRESSED.add(event.code);
+    }
 }
 
 function onKeyUp(event: KeyboardEvent) {
     // a key held before the focus went to a form field is still let go
     if (HELD.delete(event.code)) {
         RELEASED.add(event.code);
+    }
+
+    // on macOS, the browsers don't send the `keyup` of the other keys while `cmd` is held, so let go of all of them
+    // (one that is still held comes back with its auto-repeat)
+    if (event.code === "MetaLeft" || event.code === "MetaRight") {
+        for (const code of HELD) {
+            RELEASED.add(code);
+        }
+
+        HELD.clear();
     }
 
     if (!isTyping(event)) {
