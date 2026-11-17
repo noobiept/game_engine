@@ -1,3 +1,5 @@
+import { hasReached, timePast } from "./time";
+
 export interface CooldownOptions {
     ready?: boolean; // if it starts ready to be used (default `true`), or has to wait the interval first
 }
@@ -103,7 +105,7 @@ export class Cooldown {
      * If the interval has passed (it can be used).
      */
     isReady() {
-        return this._elapsed >= this._interval;
+        return hasReached(this._elapsed, this._interval);
     }
 
     /**
@@ -128,11 +130,12 @@ export class Cooldown {
 
         if (!this._waiting && past > 0) {
             // with an interval of `0`, all the time since it started is past the interval
-            kept = this._interval > 0 ? past % this._interval : past;
+            kept = this._interval > 0 ? timePast(past, this._interval) : past;
         }
 
         // less than the next interval as well, so it's ready at most once per update
-        this._elapsed = next > 0 && next !== Infinity ? kept % next : 0;
+        this._elapsed =
+            next > 0 && next !== Infinity ? timePast(kept, next) : 0;
         this._interval = next;
         this._waiting = false;
         this._fresh = true;

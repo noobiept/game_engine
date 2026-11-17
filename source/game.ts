@@ -7,6 +7,7 @@ import * as CollisionDetection from "./collision-detection/collision_detection";
 import * as Sound from "./sound";
 import { Canvas } from "./canvas";
 import { Tween } from "./tween";
+import { hasReached, timePast } from "./time";
 
 /**
  * Basic usage:
@@ -847,15 +848,15 @@ function callbacks(deltaTime: number) {
         if (call.delay > 0) {
             call.count += deltaTime;
 
-            if (call.count < call.delay) {
+            if (!hasReached(call.count, call.delay)) {
                 continue;
             }
 
             // keep the time past the delay (so the calls don't drift), but at most once per update
-            call.count -= call.delay;
+            call.count = Math.max(call.count - call.delay, 0);
 
             if (call.count >= call.delay) {
-                call.count %= call.delay;
+                call.count = timePast(call.count, call.delay);
             }
         }
 

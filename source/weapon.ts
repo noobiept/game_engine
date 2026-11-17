@@ -5,6 +5,7 @@ import { Cooldown } from "./cooldown";
 import { Element } from "./element";
 import { Rectangle } from "./rectangle";
 import * as Utilities from "@drk4/utilities";
+import { hasReached, timePast } from "./time";
 
 export interface WeaponArgs {
     element: Element; // the associated element
@@ -280,7 +281,7 @@ export class Weapon {
 
                 interval.count += deltaTime;
 
-                if (interval.count >= interval.interval) {
+                if (hasReached(interval.count, interval.interval)) {
                     const continueFiring = this.firingPattern(
                         interval.angleOrTarget,
                         interval.bulletId,
@@ -295,10 +296,16 @@ export class Weapon {
                         }
                     } else {
                         // keep the time past the interval (so it doesn't drift), but fire at most once per update
-                        interval.count -= interval.interval;
+                        interval.count = Math.max(
+                            interval.count - interval.interval,
+                            0,
+                        );
 
                         if (interval.count >= interval.interval) {
-                            interval.count %= interval.interval;
+                            interval.count = timePast(
+                                interval.count,
+                                interval.interval,
+                            );
                         }
                     }
                 }

@@ -1,3 +1,5 @@
+import { hasReached } from "./time";
+
 export enum TweenAction {
     properties,
     wait,
@@ -225,8 +227,8 @@ export class Tween {
 
         this._count += deltaTime;
 
-        if (this._count >= step.duration) {
-            this.nextStep(this._count - step.duration);
+        if (hasReached(this._count, step.duration)) {
+            this.nextStep(Math.max(this._count - step.duration, 0));
         }
     }
 
@@ -249,13 +251,13 @@ export class Tween {
 
         this._count += deltaTime;
 
-        if (this._count >= step.duration) {
+        if (hasReached(this._count, step.duration)) {
             // make sure it ends exactly on the end value
             for (const property in step.end_properties) {
                 this._element[property] = step.end_properties[property];
             }
 
-            this.nextStep(this._count - step.duration);
+            this.nextStep(Math.max(this._count - step.duration, 0));
             return;
         }
 

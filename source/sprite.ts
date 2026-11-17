@@ -1,4 +1,5 @@
 import { Bitmap, BitmapArgs } from "./bitmap";
+import { hasReached, TIME_TOLERANCE } from "./time";
 
 export interface SpriteArgs extends BitmapArgs {
     frameWidth: number;
@@ -247,12 +248,15 @@ export class Sprite extends Bitmap {
 
         this._count_interval += deltaTime;
 
-        if (this._count_interval < this.interval) {
+        if (!hasReached(this._count_interval, this.interval)) {
             return;
         }
 
         // keep the time past the interval, so the animation doesn't fall behind
-        let frames = Math.floor(this._count_interval / this.interval);
+        let frames = Math.max(
+            Math.floor((this._count_interval + TIME_TOLERANCE) / this.interval),
+            1,
+        );
         this._count_interval = Math.max(
             this._count_interval - frames * this.interval,
             0,

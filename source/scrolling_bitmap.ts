@@ -1,4 +1,5 @@
 import { Bitmap, BitmapArgs } from "./bitmap";
+import { hasReached, timePast } from "./time";
 
 /**
  * Keep a position within `0` and `size` (going past one end continues from the other, keeping the remainder).
@@ -238,9 +239,12 @@ export class ScrollingBitmap extends Bitmap {
     override logic(deltaTime: number) {
         this._count += deltaTime;
 
-        if (this._count >= this._interval) {
+        if (hasReached(this._count, this._interval)) {
             // keep the time past the interval (so it doesn't drift), but scroll at most once per update
-            this._count = this._interval > 0 ? this._count % this._interval : 0;
+            const past = Math.max(this._count - this._interval, 0);
+
+            this._count =
+                this._interval > 0 ? timePast(past, this._interval) : 0;
             this._scroll();
         }
     }

@@ -8,6 +8,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Releases before `3.0.0` are not tracked here. To update a game from v3 to v4,
 see the [migration guide](MIGRATION.md).
 
+## [Unreleased]
+
+### Fixed
+
+- With a fixed timestep, a timer of a whole number of steps took one more step,
+  for some intervals (adding up steps of `1 / 60` gives a rounding error: a
+  `Cooldown` of 0.5 seconds was ready after 31 steps, and "every 2 seconds"
+  was 121 steps). The timers compare their time with a tiny tolerance now: the
+  `Cooldown`, game loop callbacks with a `delay`, `Game.Timeout`, sprite
+  animations, scrolling bitmaps, weapon fire intervals and tween steps.
+
 ## [4.3.0] - 2026-11-17
 
 Improvements from updating a third game to v4: a fixed update rate (with smooth
@@ -408,6 +419,7 @@ pass of breaking API-consistency cleanups.
 - A suspended `AudioContext` is now resumed automatically when a sound starts,
   so audio becomes audible after the first user interaction.
 
+[Unreleased]: https://github.com/noobiept/game_engine/compare/v4.3.0...HEAD
 [4.3.0]: https://github.com/noobiept/game_engine/releases/tag/v4.3.0
 [4.2.0]: https://github.com/noobiept/game_engine/releases/tag/v4.2.0
 [4.1.0]: https://github.com/noobiept/game_engine/releases/tag/v4.1.0
