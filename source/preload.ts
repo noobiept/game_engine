@@ -64,9 +64,7 @@ function asImage(data: unknown) {
 }
 
 function asAudio(data: unknown) {
-    return typeof AudioBuffer !== "undefined" && data instanceof AudioBuffer
-        ? data
-        : undefined;
+    return Sound.isAudioBuffer(data) ? data : undefined;
 }
 
 function asText(data: unknown) {

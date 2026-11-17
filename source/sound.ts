@@ -153,7 +153,15 @@ export function play(audioBuffer: AudioBuffer, options?: PlayOptions) {
     return new SoundInstance(CTX, GLOBAL_GAIN, audioBuffer, options);
 }
 
-function isAudioBuffer(value: unknown): value is AudioBuffer {
+/**
+ * Tells if a value is a decoded audio file (an `AudioBuffer`), which is what `play()` takes.
+ */
+export function isAudioBuffer(value: unknown): value is AudioBuffer {
+    if (typeof AudioBuffer !== "undefined") {
+        return value instanceof AudioBuffer;
+    }
+
+    // where the web audio api isn't available, anything that looks like one
     return (
         typeof value === "object" &&
         value !== null &&

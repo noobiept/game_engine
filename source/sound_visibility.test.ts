@@ -126,4 +126,26 @@ describe("Sound while the page is hidden", function () {
         expect(Sound.play(undefined as unknown as AudioBuffer)).toBe(null);
         expect(Sound.play(BUFFER)).not.toBe(null);
     });
+
+    test("play() and Preload.getAudio() take the same audio buffers (an AudioBuffer, where the browser has them)", async function () {
+        class FakeAudioBuffer {
+            duration = 10;
+        }
+
+        vi.stubGlobal("AudioBuffer", FakeAudioBuffer);
+
+        const { Sound } = await initSound();
+        const { Preload } = await import("./preload");
+        const buffer = new FakeAudioBuffer() as unknown as AudioBuffer;
+        const lookalike = { duration: 3 } as AudioBuffer;
+
+        Preload.DATA["real"] = buffer;
+        Preload.DATA["lookalike"] = lookalike;
+
+        expect(Sound.play(buffer)).not.toBe(null);
+        expect(Preload.getAudio("real")).toBe(buffer);
+
+        expect(Sound.play(lookalike)).toBe(null);
+        expect(Preload.getAudio("lookalike")).toBe(undefined);
+    });
 });
