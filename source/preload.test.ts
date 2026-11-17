@@ -287,6 +287,24 @@ describe("Preload", function () {
         ).toHaveLength(1);
     });
 
+    test("loadManifest() that isn't awaited doesn't give an unhandled rejection (a game that uses the events)", async function () {
+        const unhandled: unknown[] = [];
+        const onUnhandled = (reason: unknown) => unhandled.push(reason);
+
+        process.on("unhandledRejection", onUnhandled);
+
+        const preload = new Preload();
+
+        preload.loadManifest([{ id: "level", path: "level.json" }]);
+        request("level.json").succeed("x", 404);
+
+        // let the rejection be reported, if it's unhandled
+        await new Promise((resolve) => setTimeout(resolve, 10));
+        process.off("unhandledRejection", onUnhandled);
+
+        expect(unhandled).toEqual([]);
+    });
+
     test("loadManifest() resolves when only optional files failed", async function () {
         const preload = new Preload();
         const promise = preload.loadManifest([

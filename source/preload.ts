@@ -444,7 +444,8 @@ export class Preload extends EventDispatcher {
      *
      * The returned promise resolves once all the files were dealt with (like the `complete` event, with its data), or
      * rejects with a `PreloadError` when any file that isn't `optional` fails to load. Awaiting it makes a missing
-     * file an error, instead of a game that starts without it. The events are dispatched as well.
+     * file an error, instead of a game that starts without it. The events are dispatched as well, and a game that
+     * uses them instead can ignore the promise (its rejection isn't reported as unhandled).
      *
      * @param manifest Has the information about the files (`optional` ones don't fail the promise).
      * @param basePath Base path for all the files in the manifest.
@@ -480,6 +481,10 @@ export class Preload extends EventDispatcher {
 
             this._pending_manifests.push({ required, resolve, reject });
         });
+
+        // a game that uses the events instead (and doesn't await it) doesn't get an unhandled rejection, but an
+        // `await` still throws
+        promise.catch(() => {});
 
         for (let a = 0; a < length; a++) {
             const file = manifest[a];
