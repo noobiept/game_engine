@@ -10,6 +10,10 @@ see the [migration guide](MIGRATION.md).
 
 ## [Unreleased]
 
+Improvements from updating a third game to v4: sounds that pause while the page
+is hidden, game time for timeouts and measured times, safer loading, tweens
+that stop as soon as their element is destroyed, and a few conveniences.
+
 ### Added
 
 - `Game.Keyboard`, for keyboard controls: the game names its actions and binds
@@ -55,6 +59,10 @@ see the [migration guide](MIGRATION.md).
   interval that just started (`{ ready: false }`, or `restart()`) as waiting
   in its first update. A timer with a first delay of `0` (then
   `restart(interval)`) was one update late on every use.
+- The migration guide covers more: games that compile without errors, timeouts
+  and measured times, the sounds, tweens restarted on every update, timers with
+  a first delay, how much faster the repeating timers are than in v3, and the
+  leftover `minimumReleaseAgeExclude` entries.
 
 ### Fixed
 
