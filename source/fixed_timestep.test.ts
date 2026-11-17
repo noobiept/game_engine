@@ -6,17 +6,31 @@ import { Rectangle } from "./rectangle";
 import { createFrameDriver, setDocumentHidden } from "../tests/helpers";
 
 /**
- * A canvas context that does nothing, but records where the elements are drawn (`translate()` and `rotate()`).
+ * A canvas context that does nothing, but records where the elements are drawn (`translate()`, `scale()` and
+ * `rotate()`).
  */
 function recordDrawing() {
-    const drawn: { x: number; y: number; rotation: number }[] = [];
+    const drawn: {
+        x: number;
+        y: number;
+        scaleX: number;
+        scaleY: number;
+        rotation: number;
+    }[] = [];
     const context = new Proxy(
         {},
         {
             get(_target, property) {
                 if (property === "translate") {
                     return (x: number, y: number) =>
-                        drawn.push({ x, y, rotation: 0 });
+                        drawn.push({ x, y, scaleX: 1, scaleY: 1, rotation: 0 });
+                }
+
+                if (property === "scale") {
+                    return (scaleX: number, scaleY: number) => {
+                        drawn[drawn.length - 1].scaleX = scaleX;
+                        drawn[drawn.length - 1].scaleY = scaleY;
+                    };
                 }
 
                 if (property === "rotate") {
@@ -198,6 +212,34 @@ describe("Game.setFixedTimestep()", function () {
         for (const draw of drawn) {
             expect(Math.abs(draw.rotation)).toBeGreaterThan(3);
         }
+    });
+
+    test("a scale that changes sign (a flipped sprite) isn't drawn squashed in between", function () {
+        const rect = new Rectangle({ width: 10, height: 10, color: "red" });
+        let step = 0;
+
+        Game.addElement(rect);
+        Game.setFixedTimestep(1 / 30);
+        Game.addToGameLoop(function () {
+            step++;
+
+            if (step === 2) {
+                rect.scaleX = -1; // turn left
+            }
+
+            if (step === 3) {
+                rect.scaleY = 2; // a scale that doesn't change sign is still drawn in between
+            }
+        });
+
+        driver.run(16, 120);
+
+        expect(
+            drawn.map((draw) => draw.scaleX).every((x) => Math.abs(x) === 1),
+        ).toBe(true);
+        expect(drawn.some((draw) => draw.scaleY > 1 && draw.scaleY < 2)).toBe(
+            true,
+        );
     });
 
     test("without a fixed timestep, the logic runs once per frame, with the time that passed", function () {

@@ -209,8 +209,8 @@ export abstract class Element extends EventDispatcher {
             lerp(this._previous_y, this._y, alpha),
         );
         ctx.scale(
-            lerp(this._previous_scale_x, this.scaleX, alpha),
-            lerp(this._previous_scale_y, this.scaleY, alpha),
+            lerpScale(this._previous_scale_x, this.scaleX, alpha),
+            lerpScale(this._previous_scale_y, this.scaleY, alpha),
         );
         ctx.rotate(this._previous_rotation + shortestTurn * alpha);
     }
@@ -763,4 +763,12 @@ export abstract class Element extends EventDispatcher {
 
 function lerp(from: number, to: number, alpha: number) {
     return from + (to - from) * alpha;
+}
+
+/**
+ * A scale that changes sign (a sprite flipped with `scaleX = -1`) isn't blended, or it would be drawn squashed (going
+ * through `0`) between the two steps.
+ */
+function lerpScale(from: number, to: number, alpha: number) {
+    return from * to < 0 ? to : lerp(from, to, alpha);
 }
