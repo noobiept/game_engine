@@ -10,11 +10,22 @@ see the [migration guide](MIGRATION.md).
 
 ## [Unreleased]
 
+### Added
+
+- `Game.Sound.setPauseWhenHidden()`.
+
 ### Changed
 
+- The sounds pause while the page is hidden (like the game loop): `Sound`
+  suspends its audio context then, and doesn't resume it for a sound that
+  starts while the page is hidden. They kept playing in background tabs.
+  `Game.Sound.setPauseWhenHidden(false)` keeps them playing. They don't pause
+  for `stopGameLoop()` (the `pause`/`resume` events are for that).
 - `destroy()` stops the element's tweens right away, instead of at the end of
   the frame, so a tween's `.call()` no longer runs for an element destroyed
   earlier in that frame.
+- `Sound.play()` returns `null` for something that isn't an audio buffer (like
+  a file that failed to load), instead of a `SoundInstance` that throws later.
 - A `Cooldown` keeps the time past an interval of `0`, and doesn't count an
   interval that just started (`{ ready: false }`, or `restart()`) as waiting
   in its first update. A timer with a first delay of `0` (then

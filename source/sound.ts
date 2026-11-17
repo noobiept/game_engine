@@ -19,11 +19,17 @@
  *         });
  *     preload.load( 'sound', 'path_to_file.ogg' );
  *
+ * The sounds pause while the page is hidden (like the game loop), see `setPauseWhenHidden()`. They keep playing when
+ * the loop is stopped with `Game.stopGameLoop()`. To pause them then too, use the loop's `pause`/`resume` events
+ * (`Game.addEventListener()`).
+ *
  * Examples -- `preload`
  */
 
 let CTX: AudioContext | null = null;
 let GLOBAL_GAIN: GainNode | null = null;
+let PAUSE_WHEN_HIDDEN = true;
+let RESUME_WHEN_VISIBLE = false; // the audio context was suspended (or kept suspended) because the page is hidden
 
 /**
  * Initialize the `Sound` module. Its called in `Game.init()`.
@@ -46,7 +52,64 @@ export function init() {
     GLOBAL_GAIN = CTX.createGain();
     GLOBAL_GAIN.connect(CTX.destination);
 
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    onVisibilityChange();
+
     return true;
+}
+
+/**
+ * Pause all the sounds while the page is hidden (`true` by default), like the game loop. Browsers keep playing audio
+ * in background tabs, so without it the music goes on while the game is frozen. Pass `false` for sounds that should
+ * keep playing.
+ */
+export function setPauseWhenHidden(pause: boolean) {
+    PAUSE_WHEN_HIDDEN = pause;
+
+    onVisibilityChange();
+}
+
+/**
+ * Suspend the audio context while the page is hidden, and resume it once it's visible again.
+ * Suspending the context also stops its clock, so the sounds continue from where they were.
+ */
+function onVisibilityChange() {
+    if (!CTX) {
+        return;
+    }
+
+    if (PAUSE_WHEN_HIDDEN && document.hidden) {
+        if (CTX.state === "running") {
+            RESUME_WHEN_VISIBLE = true;
+            ignoreRejection(CTX.suspend());
+        }
+    } else if (RESUME_WHEN_VISIBLE) {
+        RESUME_WHEN_VISIBLE = false;
+        ignoreRejection(CTX.resume());
+    }
+}
+
+/**
+ * Resume a suspended audio context so the sounds are audible (browsers start it suspended until there's a user
+ * gesture). While the page is hidden (and the sounds pause then), it's only resumed once it's visible again.
+ */
+function resumeContext(ctx: AudioContext) {
+    if (ctx.state !== "suspended") {
+        return;
+    }
+
+    if (PAUSE_WHEN_HIDDEN && document.hidden) {
+        RESUME_WHEN_VISIBLE = true;
+    } else {
+        ignoreRejection(ctx.resume());
+    }
+}
+
+/**
+ * Suspending/resuming fails when the context was closed, which there's nothing to do about.
+ */
+function ignoreRejection(promise: Promise<void> | undefined) {
+    promise?.catch(() => {});
 }
 
 /**
@@ -79,14 +142,23 @@ export interface PlayOptions {
  *
  * @param audioBuffer The audio buffer of the sound we want to play.
  * @param options Optional playback options (loop and per-sound volume).
- * @return A `SoundInstance` you can use to control the playback, or `null` if it wasn't possible to play the sound.
+ * @return A `SoundInstance` you can use to control the playback, or `null` if it wasn't possible to play the sound
+ *         (audio isn't available, or `audioBuffer` isn't an audio buffer, like for a file that failed to load).
  */
 export function play(audioBuffer: AudioBuffer, options?: PlayOptions) {
-    if (!CTX || !GLOBAL_GAIN) {
+    if (!CTX || !GLOBAL_GAIN || !isAudioBuffer(audioBuffer)) {
         return null;
     }
 
     return new SoundInstance(CTX, GLOBAL_GAIN, audioBuffer, options);
+}
+
+function isAudioBuffer(value: unknown): value is AudioBuffer {
+    return (
+        typeof value === "object" &&
+        value !== null &&
+        typeof (value as AudioBuffer).duration === "number"
+    );
 }
 
 /**
@@ -175,9 +247,7 @@ export class SoundInstance {
      */
     protected _startSource(offset: number) {
         // browsers start the audio context suspended until a user gesture, so resume it (if needed) to be audible
-        if (this._ctx.state === "suspended") {
-            this._ctx.resume();
-        }
+        resumeContext(this._ctx);
 
         const source = this._ctx.createBufferSource();
 

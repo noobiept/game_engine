@@ -198,6 +198,8 @@ preload.loadManifest(
 
 The `complete` event is dispatched once every file was dealt with, even when some fail, so check its `failedIds` before starting. Each failed file also gets an `error` event. The listeners are typed (see `PreloadEvents`), so a wrong event name or data property doesn't compile.
 
+The sounds pause while the page is hidden, like the game loop (see `Game.Sound.setPauseWhenHidden()`).
+
 ## Sprites and animation
 
 A `Sprite` animates frames from a sprite sheet. Pass `{ loop: false }` to play an animation once; it emits an `animationend` event when it reaches the last frame.
