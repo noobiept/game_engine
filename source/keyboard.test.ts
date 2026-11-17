@@ -14,12 +14,22 @@ import {
 function key(
     type: "keydown" | "keyup",
     code: string,
-    options?: { key?: string; repeat?: boolean; target?: EventTarget },
+    options?: {
+        key?: string;
+        repeat?: boolean;
+        target?: EventTarget;
+        ctrlKey?: boolean;
+        metaKey?: boolean;
+        altKey?: boolean;
+    },
 ) {
     const event = new KeyboardEvent(type, {
         code,
         key: options?.key ?? code,
         repeat: options?.repeat ?? false,
+        ctrlKey: options?.ctrlKey ?? false,
+        metaKey: options?.metaKey ?? false,
+        altKey: options?.altKey ?? false,
         bubbles: true,
         cancelable: true,
     });
@@ -150,6 +160,21 @@ describe("Keyboard", function () {
         );
         expect(key("keydown", "ArrowDown").defaultPrevented).toBe(false);
         other.destroy();
+    });
+
+    test("the browser's shortcuts keep working (with ctrl, cmd or alt held)", function () {
+        expect(
+            key("keydown", "Space", { ctrlKey: true }).defaultPrevented,
+        ).toBe(false);
+        expect(
+            key("keydown", "ArrowLeft", { altKey: true }).defaultPrevented,
+        ).toBe(false);
+        expect(
+            key("keyup", "ArrowLeft", { metaKey: true }).defaultPrevented,
+        ).toBe(false);
+
+        // the keys still count (a game can use ctrl as an action)
+        expect(controls.isHeld("fire")).toBe(true);
     });
 
     test("setKeys() changes the keys of an action, and getKeys() lists them", function () {

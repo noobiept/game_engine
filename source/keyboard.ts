@@ -27,6 +27,7 @@ let LISTENING = false;
  *   pauses. Keys pressed while it's paused don't count as pressed when it resumes.
  * - Keys typed in a form field (an `<input>`, `<textarea>`, `<select>` or an editable element) are ignored.
  * - The bound keys don't do their default browser action (the arrows and space scroll the page), see `preventDefault`.
+ *   With `Ctrl`, `Cmd` or `Alt` held they do, so the browser's shortcuts keep working (`Cmd + R` reloads the page).
  *
  * The action names are checked by TypeScript (`isHeld( 'lefft' )` doesn't compile). Several objects can be used at
  * the same time (a player on WASD, another one on the arrows).
@@ -191,6 +192,11 @@ function onKeyUp(event: KeyboardEvent) {
 }
 
 function preventDefault(event: KeyboardEvent) {
+    // keep the browser's shortcuts (ctrl/cmd + R to reload, alt + left to go back)
+    if (event.ctrlKey || event.metaKey || event.altKey) {
+        return;
+    }
+
     for (const keyboard of ALL_KEYBOARDS) {
         if (keyboard._preventsDefault(event.code)) {
             event.preventDefault();
