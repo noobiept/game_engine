@@ -12,7 +12,7 @@ export interface BitmapArgs extends ElementArgs {
  *     const bitmap = new Game.Bitmap({
  *             x: 10,
  *             y: 20,
- *             image: Game.Preload.get( 'id' )
+ *             image: Game.Preload.requireImage( 'id' )
  *         });
  *     Game.addElement( image );
  *

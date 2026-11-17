@@ -18,6 +18,10 @@ see the [migration guide](MIGRATION.md).
   loaded, so a test doesn't affect the next one (no game loop callbacks, tweens,
   event listeners, held keys or preloaded files are left). It's a separate
   entry, so it isn't in a game's bundle.
+- `requireImage()`, `requireAudio()`, `requireJson<T>()` and `requireText()` on
+  `Preload` (and on `Game.Preload`, for `saveGlobal`), for the files a game
+  can't run without: they return the file (not `undefined`, so it can be given
+  to a `Bitmap` or `Sprite` as is), or throw an error naming the id.
 
 ### Changed
 
@@ -27,6 +31,10 @@ see the [migration guide](MIGRATION.md).
 
 ### Fixed
 
+- The examples in the documentation of `Preload` and in the README's "Loading
+  assets" didn't compile (an image that can be `undefined` given to a
+  `Bitmap`, and a `return` outside of a function), and the ones of `Bitmap`,
+  `Sprite`, `ScrollingBitmap` and `Sound` used `get()` (`any`).
 - With a fixed timestep, a timer of a whole number of steps took one more step,
   for some intervals (adding up steps of `1 / 60` gives a rounding error: a
   `Cooldown` of 0.5 seconds was ready after 31 steps, and "every 2 seconds"

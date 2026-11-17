@@ -31,7 +31,7 @@ export namespace ScrollingBitmapArgs {
  * Basic Usage:
  *
  *     const image = new Game.ScrollingBitmap({
- *             image: Game.Preload.get( 'imageId' ),
+ *             image: Game.Preload.requireImage( 'imageId' ),
  *             direction: Game.ScrollingBitmapArgs.Direction.left,
  *             step: 1,
  *             interval: 0.2

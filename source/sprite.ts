@@ -32,7 +32,7 @@ export interface SpritePlayOptions {
  *     const sprite = new Game.Sprite({
  *             x: 10,
  *             y: 20,
- *             image: Game.Preload.get( 'id' ),
+ *             image: Game.Preload.requireImage( 'id' ),
  *             frameWidth: 30,
  *             frameHeight: 40,
  *             interval: 1,

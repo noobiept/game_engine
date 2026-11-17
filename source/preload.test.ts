@@ -362,6 +362,27 @@ describe("Preload", function () {
         expect(FakeRequest.all).toHaveLength(0);
     });
 
+    test("the require*() getters return the file, or throw an error naming the id", function () {
+        const preload = new Preload();
+
+        preload.load("text", "a.txt");
+        preload.load("data", "b.json");
+        request("a.txt").succeed("hello");
+        request("b.json").succeed({ value: 1 });
+
+        expect(preload.requireText("text")).toBe("hello");
+        expect(preload.requireJson<{ value: number }>("data").value).toBe(1);
+        expect(() => preload.requireJson("levle")).toThrow(/"levle"/);
+        expect(() => preload.requireImage("text")).toThrow(/image .*"text"/);
+        expect(() => preload.requireAudio("text")).toThrow(/audio/);
+
+        // with `saveGlobal`, on `Preload`
+        Preload.DATA["global"] = "saved";
+        expect(Preload.requireText("global")).toBe("saved");
+        expect(() => Preload.requireJson("nothing")).toThrow(/"nothing"/);
+        delete Preload.DATA["global"];
+    });
+
     test("the typed getters return undefined for a missing file, or one of another type", function () {
         const preload = new Preload();
 

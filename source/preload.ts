@@ -72,6 +72,19 @@ function asText(data: unknown) {
 }
 
 /**
+ * The file, or an error naming the id when there's no such file (for the `require*()` getters).
+ */
+function required<T>(file: T | undefined, id: string, kind: string): T {
+    if (file === undefined) {
+        throw new Error(
+            `There's no ${kind} loaded with the id "${id}" (check the id, and that it's in the manifest).`,
+        );
+    }
+
+    return file;
+}
+
+/**
  * The events of `Preload`, and the data their listeners get.
  */
 export interface PreloadEvents {
@@ -101,7 +114,8 @@ function isSuccessStatus(status: number) {
  *         // `error.failedIds` has the files that couldn't be loaded (and aren't optional)
  *     }
  *
- *     const ship = new Game.Bitmap({ image: Game.Preload.getImage( 'ship' ) });
+ *     const ship = new Game.Bitmap({ image: Game.Preload.requireImage( 'ship' ) });
+ *     const music = Game.Preload.getAudio( 'music' ); // `undefined` when it failed to load
  *
  *         // or file by file, with the events
  *     preload.addEventListener( 'complete', function( data ) {
@@ -111,7 +125,10 @@ function isSuccessStatus(status: number) {
  *     });
  *     preload.load( 'id', 'path_to_file.png' );
  *
- * Get the files with `getImage()`, `getAudio()`, `getJson()` or `getText()` (on the object, or on `Game.Preload` with
+ * Get the files the game can't run without with `requireImage()`, `requireAudio()`, `requireJson()` or `requireText()`,
+ * which throw an error naming the id when there's no such file (after `loadManifest()` resolved, that can only be a
+ * wrong id). Get the optional ones with `getImage()`, `getAudio()`, `getJson()` or `getText()` (on the object, or on
+ * `Game.Preload` with
  * `saveGlobal`). They return `undefined` for a file that wasn't loaded (or is of another type), which TypeScript
  * makes you check. `get()` returns `any`.
  *
@@ -531,6 +548,36 @@ export class Preload extends EventDispatcher {
     getJson<T = unknown>(id: string): T | undefined {
         return this._data[id] as T | undefined;
     }
+
+    /**
+     * Get a loaded image. Throws an error naming the id when there isn't one (for the files the game can't run
+     * without: after `loadManifest()` resolved, that can only be a wrong id).
+     */
+    requireImage(id: string) {
+        return required(this.getImage(id), id, "image");
+    }
+
+    /**
+     * Get a loaded audio file (decoded). Throws an error naming the id when there isn't one (see `requireImage()`).
+     */
+    requireAudio(id: string) {
+        return required(this.getAudio(id), id, "audio file");
+    }
+
+    /**
+     * Get a loaded text file. Throws an error naming the id when there isn't one (see `requireImage()`).
+     */
+    requireText(id: string) {
+        return required(this.getText(id), id, "text file");
+    }
+
+    /**
+     * Get a loaded json file (parsed). Throws an error naming the id when there isn't one (see `requireImage()`). The
+     * data isn't checked against `T`.
+     */
+    requireJson<T = unknown>(id: string): T {
+        return required(this.getJson<T>(id), id, "json file");
+    }
 }
 
 export namespace Preload {
@@ -603,6 +650,37 @@ export namespace Preload {
      */
     export function getJson<T = unknown>(id: string): T | undefined {
         return DATA[id] as T | undefined;
+    }
+
+    /**
+     * Get a loaded image (saved in the global `DATA` object). Throws an error naming the id when there isn't one (for
+     * the files the game can't run without: after `loadManifest()` resolved, that can only be a wrong id).
+     */
+    export function requireImage(id: string) {
+        return required(getImage(id), id, "image");
+    }
+
+    /**
+     * Get a loaded audio file (decoded, saved in the global `DATA` object). Throws an error naming the id when there
+     * isn't one.
+     */
+    export function requireAudio(id: string) {
+        return required(getAudio(id), id, "audio file");
+    }
+
+    /**
+     * Get a loaded text file (saved in the global `DATA` object). Throws an error naming the id when there isn't one.
+     */
+    export function requireText(id: string) {
+        return required(getText(id), id, "text file");
+    }
+
+    /**
+     * Get a loaded json file (parsed, saved in the global `DATA` object). Throws an error naming the id when there
+     * isn't one. The data isn't checked against `T`.
+     */
+    export function requireJson<T = unknown>(id: string): T {
+        return required(getJson<T>(id), id, "json file");
     }
 
     /**
