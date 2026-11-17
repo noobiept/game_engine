@@ -20,6 +20,8 @@ see the [migration guide](MIGRATION.md).
   on `Game.Preload`, for `saveGlobal`), which return `undefined` for a file that
   wasn't loaded (or is of another type), so TypeScript makes the game check.
 - `Game.Sound.setPauseWhenHidden()`.
+- `Game.step(deltaTime)`, to update the game by hand while the loop is stopped
+  (for tests of a game's timing).
 
 ### Changed
 

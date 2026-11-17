@@ -621,6 +621,34 @@ function loop(now: number) {
 }
 
 /**
+ * Update the game once, by hand, while the game loop is stopped (`stopGameLoop()`): the game loop callbacks, the
+ * tweens, the logic of the elements, the collision detection, and the drawing, like one update of the loop. For tests
+ * that check the game's timing ("the lanes spawn at the same times at 30 and 144 updates per second"), or to run a
+ * game step by step. The `deltaTime` isn't limited (unlike the loop's, see `setMaxDeltaTime()`).
+ *
+ *     Game.stopGameLoop();
+ *
+ *     for ( let a = 0; a < 60; a++ ) {
+ *         Game.step( 1 / 60 ); // one second at 60 updates per second
+ *     }
+ *
+ * @param deltaTime The time to update the game by, in seconds (a number `>= 0`).
+ */
+export function step(deltaTime: number) {
+    if (!(deltaTime >= 0)) {
+        throw new RangeError("The delta time needs to be a number >= 0.");
+    }
+
+    if (isGameLoopRunning()) {
+        throw new Error(
+            "The game loop is running. Stop it first (with stopGameLoop()) to update the game by hand.",
+        );
+    }
+
+    update(deltaTime);
+}
+
+/**
  * Updates the game logic, the tweens, the collision detection, and draws the canvas.
  *
  * @param deltaTime Time elapsed since the last update (in seconds).

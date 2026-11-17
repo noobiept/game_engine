@@ -333,6 +333,8 @@ Game.addEventListener("pause", () => hudTimer.stop());
 Game.addEventListener("resume", () => hudTimer.start());
 ```
 
+To test the game's timing, stop the loop and update it by hand with `Game.step(deltaTime)`.
+
 ## Collision detection
 
 Give elements a `category` bit flag and the categories they should collide with through `collidesWith`. Colliding elements receive a `collision` event. Only the elements added to a canvas (directly or through containers) take part in the collision detection.

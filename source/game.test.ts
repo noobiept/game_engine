@@ -2,6 +2,7 @@
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import * as Game from "./game";
 import { Rectangle } from "./rectangle";
+import { Tween } from "./tween";
 import {
     createFrameDriver,
     flushMicrotasks,
@@ -314,6 +315,37 @@ describe("Game loop events (pause/resume)", function () {
         Game.startGameLoop();
 
         expect(events).toEqual([]);
+    });
+});
+
+describe("Game.step()", function () {
+    test("updates the game once by hand (the callbacks, tweens and logic)", function () {
+        Game.stopGameLoop();
+
+        const deltas: number[] = [];
+        const rect = new Rectangle({ width: 10, height: 10, color: "red" });
+
+        Game.addElement(rect);
+        Game.addToGameLoop((deltaTime) => deltas.push(deltaTime));
+        new Tween(rect).to({ x: 100 }, 1).start();
+
+        Game.step(0.25);
+        Game.step(0.25);
+
+        expect(deltas).toEqual([0.25, 0.25]);
+        expect(rect.x).toBeCloseTo(50);
+
+        Tween.removeAll();
+    });
+
+    test("throws while the game loop is running, or for an invalid delta time", function () {
+        Game.stopGameLoop();
+
+        expect(() => Game.step(-1)).toThrow(RangeError);
+        expect(() => Game.step(NaN)).toThrow(RangeError);
+
+        Game.startGameLoop();
+        expect(() => Game.step(0.1)).toThrow("The game loop is running");
     });
 });
 
