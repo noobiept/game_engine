@@ -146,6 +146,10 @@ export function setPauseWhenHidden(pause: boolean) {
  */
 export function _reset() {
     setPauseWhenHidden(true);
+
+    if (GLOBAL_GAIN) {
+        GLOBAL_GAIN.gain.value = 1;
+    }
 }
 
 /**

@@ -150,6 +150,15 @@ describe("Sound while the page is hidden", function () {
         expect(ctx.calls).toEqual(["suspend", "resume", "suspend"]);
     });
 
+    test("_reset() (resetGame() in the testing helpers) sets the volume back", async function () {
+        const { Sound } = await initSound();
+
+        Sound.setGlobalGain(0.2);
+        Sound._reset();
+
+        expect(Sound.getGlobalGain()).toBe(1);
+    });
+
     test("play() returns null for something that isn't an audio buffer (a file that failed to load)", async function () {
         const { Sound } = await initSound();
 

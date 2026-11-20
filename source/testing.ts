@@ -111,8 +111,12 @@ export function stubAnimationFrames() {
  * Leave the engine as if it was just loaded, so a test doesn't affect the next one: the game is taken out of the page
  * (canvas, elements, collision detection), the game loop is stopped, and the game loop callbacks, the loop's
  * event listeners, the tweens, the held keys, the `Keyboard` objects and the files saved in `Game.Preload` are
- * removed. The settings (`setFps()`, `setMaxDeltaTime()`, `setFixedTimestep()`, `Sound.setPauseWhenHidden()`) go
- * back to their defaults. The stubs (`stubCanvasContext()`, `stubAnimationFrames()`) are kept.
+ * removed. The settings (`setFps()`, `setMaxDeltaTime()`, `setFixedTimestep()`, `Sound.setPauseWhenHidden()`,
+ * `Sound.setGlobalGain()`) go back to their defaults. The stubs (`stubCanvasContext()`, `stubAnimationFrames()`) are
+ * kept.
+ *
+ * Files that are still loading aren't cancelled (with `saveGlobal`, they'd be saved in `Game.Preload` once they load),
+ * so a test that loads files should wait for them (`await preload.loadManifest(...)`).
  */
 export function resetGame() {
     Game._reset();
