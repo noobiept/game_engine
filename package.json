@@ -24,6 +24,13 @@
         },
         "./style.css": "./dist/game_engine.css"
     },
+    "typesVersions": {
+        "*": {
+            "testing": [
+                "./dist/testing.d.ts"
+            ]
+        }
+    },
     "files": [
         "dist/",
         "license.txt",
