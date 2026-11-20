@@ -368,6 +368,26 @@ export class Tween {
     }
 
     /**
+     * Stop animating some properties of an element, in all its tweens (they keep animating the rest, and their
+     * `.call()` steps still run). For an element moved somewhere at once while a tween moves it (a teleport):
+     *
+     *     Tween.removeProperties( player, [ 'x', 'y' ] );
+     *     player.setPosition( 50, 50 );
+     *
+     * @param element The element whose tweens animate the properties.
+     * @param properties The names of the properties.
+     */
+    static removeProperties(element: object, properties: readonly string[]) {
+        const names = new Set(properties);
+
+        for (const tween of Tween._tweens) {
+            if (tween._element === element) {
+                tween._removeProperties(names);
+            }
+        }
+    }
+
+    /**
      * Remove all the tweens of an element.
      *
      * @param element The element associated with the tweens we want to remove.

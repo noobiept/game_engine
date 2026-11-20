@@ -174,8 +174,9 @@ export class ElementGrid extends Grid {
         element.grid_data.column = destColumn;
         element.grid_data.line = destLine;
 
-        // move immediately
+        // move immediately (and stop a move that is still running, the element's other tweens keep going)
         if (typeof duration === "undefined" || duration <= 0) {
+            Tween.removeProperties(element, ["x", "y"]);
             element.setPosition(canvasPosition.x, canvasPosition.y);
         }
 

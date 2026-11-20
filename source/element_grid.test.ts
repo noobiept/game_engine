@@ -89,6 +89,24 @@ describe("ElementGrid", function () {
         expect(collisions).toEqual([{ element: second, collidedWith: first }]);
     });
 
+    test("a move right away stops a move with a tween that is still running (and keeps the element's other tweens)", function () {
+        const grid = makeGrid();
+        const rect = makeRect();
+
+        grid.add(rect, 0, 0);
+        rect.opacity = 0;
+        new Tween(rect).to({ opacity: 1 }, 1).start(); // a fade-in
+
+        grid.move(0, 0, 3, 0, 0.5);
+        Tween.update(0.25);
+
+        grid.move(3, 0, 3, 2); // right away
+        Tween.update(0.5);
+
+        expect([rect.x, rect.y]).toEqual([35, 25]);
+        expect(rect.opacity).toBe(0.75);
+    });
+
     test("move() moves the element right away, or with a tween", function () {
         const grid = makeGrid();
         const rect = makeRect();

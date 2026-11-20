@@ -29,7 +29,9 @@ entries of 3.0.0 first.
   run), instead of
   removing them like `override: true`. A move started on each key press takes
   over from the previous move, while a fade-in on the same element keeps going.
-  `ElementGrid.move()` uses it.
+  `ElementGrid.move()` uses it, and `Tween.removeProperties(element,
+properties)` does the same for an element moved somewhere at once (an
+  `ElementGrid.move()` without a duration stops a move that is still running).
 - `Tween.start()` returns the tween, so it can be kept in one statement
   (`const slide = new Tween(block).to({ x: 100 }, 0.1).start()`) and removed
   later.
