@@ -9,6 +9,10 @@ class FakeAudioContext {
     static last: FakeAudioContext;
     static initialState: "running" | "suspended" = "running";
     static autoplayAllowed = true; // if `resume()` works (browsers only allow it after the user interacted with the page)
+    static slowResume = false; // if `resume()` only finishes when the test calls `finishResume()` (like a browser)
+
+    onstatechange: (() => void) | null = null;
+    pendingResume: (() => void) | null = null;
 
     state: "running" | "suspended" = FakeAudioContext.initialState;
     currentTime = 0;
@@ -43,11 +47,29 @@ class FakeAudioContext {
     resume() {
         this.calls.push("resume");
 
-        if (FakeAudioContext.autoplayAllowed) {
-            this.state = "running";
+        const finish = () => {
+            if (FakeAudioContext.autoplayAllowed && this.state !== "running") {
+                this.state = "running";
+                this.onstatechange?.();
+            }
+        };
+
+        if (FakeAudioContext.slowResume) {
+            return new Promise<void>((resolve) => {
+                this.pendingResume = () => {
+                    finish();
+                    resolve();
+                };
+            });
         }
 
+        finish();
         return Promise.resolve();
+    }
+
+    finishResume() {
+        this.pendingResume?.();
+        this.pendingResume = null;
     }
 }
 
@@ -69,6 +91,7 @@ async function initSound(state: "running" | "suspended" = "running") {
 
 beforeEach(function () {
     FakeAudioContext.autoplayAllowed = true;
+    FakeAudioContext.slowResume = false;
     setDocumentHidden(false);
     vi.stubGlobal("AudioContext", FakeAudioContext);
 });
@@ -197,5 +220,24 @@ describe("Sound before the user interacts with the page", function () {
 
         window.dispatchEvent(new KeyboardEvent("keydown", { code: "Space" }));
         expect(ctx.calls).toEqual([]);
+    });
+
+    test("a resume that finishes after the page was hidden (the player switched tabs) is suspended again", async function () {
+        FakeAudioContext.slowResume = true;
+        const { Sound, ctx } = await initSound("suspended");
+
+        Sound.play(BUFFER, { loop: true });
+        window.dispatchEvent(new KeyboardEvent("keydown", { code: "Space" }));
+
+        // the player switches tabs before the resume finishes
+        setDocumentHidden(true);
+        ctx.finishResume();
+
+        expect(ctx.state).toBe("suspended");
+
+        // and it plays again once the page is visible
+        setDocumentHidden(false);
+        ctx.finishResume();
+        expect(ctx.state).toBe("running");
     });
 });

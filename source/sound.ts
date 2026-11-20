@@ -60,11 +60,25 @@ export function init() {
     document.addEventListener("visibilitychange", onVisibilityChange);
     onVisibilityChange();
 
+    // a resume that was asked for while the page was visible can finish after it's hidden
+    CTX.onstatechange = onStateChange;
+
     if (CTX.state === "suspended") {
         waitForGesture();
     }
 
     return true;
+}
+
+/**
+ * When the audio context starts running while the page is hidden (a resume asked for just before, on the first key
+ * press or when a sound started, finishing after the player switched tabs), suspend it again until the page is visible.
+ */
+function onStateChange() {
+    if (CTX?.state === "running" && PAUSE_WHEN_HIDDEN && document.hidden) {
+        RESUME_WHEN_VISIBLE = true;
+        ignoreRejection(CTX.suspend());
+    }
 }
 
 /**
