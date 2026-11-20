@@ -10,8 +10,8 @@ type TweenProperties = Record<string, number>;
 
 export interface TweenArgs {
     // `true` removes the target's other tweens when this one is created. `"properties"` only takes the properties this
-    // tween animates out of the target's other tweens when it starts (they keep animating the rest, and their `.call()`
-    // steps still run).
+    // tween animates out of the target's other tweens, when the step that animates them starts (they keep animating
+    // the rest, and their `.call()` steps still run).
     override?: boolean | "properties";
 }
 
@@ -93,10 +93,6 @@ export class Tween {
      * @return The tween object, to keep it (and `remove()` it later): `const slide = new Tween( block ).to( ... ).start();`
      */
     start() {
-        if (this._override_properties) {
-            this._overrideProperties();
-        }
-
         if (!this._active) {
             this._active = true;
             Tween._tweens.push(this);
@@ -124,9 +120,17 @@ export class Tween {
             ease = Tween.Ease.linear;
         }
 
+        // a copy, since `override: "properties"` can take properties out of it (with the properties the update reads,
+        // the inherited ones as well)
+        const endProperties: TweenProperties = {};
+
+        for (const property in properties) {
+            endProperties[property] = properties[property];
+        }
+
         this._steps.push({
             action: TweenAction.properties,
-            end_properties: { ...properties }, // a copy, since `override: "properties"` can take properties out of it
+            end_properties: endProperties,
             duration: duration,
             ease: ease,
         });
@@ -165,19 +169,10 @@ export class Tween {
     }
 
     /**
-     * Take the properties this tween animates out of the element's other tweens (for `override: "properties"`).
+     * Take some properties out of the element's other tweens (for `override: "properties"`, when the step that animates
+     * them starts).
      */
-    protected _overrideProperties() {
-        const properties = new Set<string>();
-
-        for (const step of this._steps) {
-            if (step.action === TweenAction.properties) {
-                for (const property in step.end_properties) {
-                    properties.add(property);
-                }
-            }
-        }
-
+    protected _takeOverProperties(properties: Set<string>) {
         for (const tween of Tween._tweens) {
             if (tween !== this && tween._element === this._element) {
                 tween._removeProperties(properties);
@@ -271,6 +266,12 @@ export class Tween {
                 this.waitUpdate(leftover);
             }
         } else if (step.action === TweenAction.properties) {
+            if (this._override_properties) {
+                this._takeOverProperties(
+                    new Set(Object.keys(step.end_properties)),
+                );
+            }
+
             const startProperties: TweenProperties = {};
 
             for (const property in step.end_properties) {

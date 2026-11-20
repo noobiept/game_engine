@@ -205,6 +205,38 @@ describe("Tween", function () {
         expect(block.x).toBe(0);
     });
 
+    test('override: "properties" takes a property over when the step that animates it starts', function () {
+        const block = { x: 0 };
+
+        new Tween(block).to({ x: 100 }, 2).start(); // a patrol
+
+        new Tween(block, { override: "properties" })
+            .wait(1)
+            .to({ x: -50 }, 0.5)
+            .start();
+
+        // during the wait, the patrol still moves it
+        Tween.update(0.5);
+        expect(block.x).toBe(25);
+
+        // then the new tween takes x over
+        Tween.update(0.5);
+        Tween.update(0.5);
+        expect(block.x).toBe(-50);
+
+        Tween.update(1);
+        expect(block.x).toBe(-50);
+    });
+
+    test("to() animates the inherited properties of the object it's given too", function () {
+        const block = { x: 0 };
+
+        new Tween(block).to(Object.create({ x: 100 }), 1).start();
+        Tween.update(1);
+
+        expect(block.x).toBe(100);
+    });
+
     test("override only affects tweens on the same target", function () {
         const one = { x: 0 };
         const two = { x: 0 };

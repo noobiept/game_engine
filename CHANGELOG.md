@@ -24,8 +24,9 @@ entries of 3.0.0 first.
   turn-based game): `wasPressed()` can't tell the order of the presses within
   one update, or a key pressed twice.
 - `override: "properties"` for `Tween`, which only takes the properties the
-  tween animates out of the element's other tweens when it starts (they keep
-  animating the rest, and their `.call()` steps still run), instead of
+  tween animates out of the element's other tweens, when the step that animates
+  them starts (they keep animating the rest, and their `.call()` steps still
+  run), instead of
   removing them like `override: true`. A move started on each key press takes
   over from the previous move, while a fade-in on the same element keeps going.
   `ElementGrid.move()` uses it.
