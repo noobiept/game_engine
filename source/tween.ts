@@ -328,9 +328,10 @@ export class Tween {
         // go through a copy, since the tweens can add/remove tweens (from a `.call()` step for example)
         const tweens = Tween._tweens.slice();
 
-        for (let a = tweens.length - 1; a >= 0; a--) {
-            const tween = tweens[a];
-
+        // from the oldest to the newest, so when two tweens set the same property, the newest one's value is the one
+        // that stays (the older one could otherwise take over at its own progress when the newer one is started, and
+        // the element jumps once it ends)
+        for (const tween of tweens) {
             // skip the ones removed in the meantime
             if (tween._active) {
                 tween._update?.(deltaTime);

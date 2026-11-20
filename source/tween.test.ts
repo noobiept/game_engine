@@ -155,6 +155,32 @@ describe("Tween timing and removal", function () {
         Tween.removeAll();
     });
 
+    test("when two tweens set the same property, the newest one's value stays (no jump when the older one ends)", function () {
+        const block = { x: 0 };
+
+        new Tween(block).to({ x: 100 }, 0.1).start();
+        Tween.update(0.05); // halfway, at 50
+
+        // moved back while the first slide runs
+        new Tween(block).to({ x: 0 }, 0.1).start();
+
+        const positions: number[] = [];
+
+        for (let a = 0; a < 8; a++) {
+            Tween.update(0.025);
+            positions.push(block.x);
+        }
+
+        // it goes back smoothly from 50 to 0, without reaching the first target and jumping
+        const moves = positions.map(
+            (x, a) => x - (a === 0 ? 50 : positions[a - 1]),
+        );
+
+        expect(Math.max(...moves)).toBeLessThanOrEqual(0);
+        expect(Math.min(...moves)).toBeGreaterThanOrEqual(-12.5 - 1e-9);
+        expect(block.x).toBe(0);
+    });
+
     test("the time left over from a step is applied to the next one", function () {
         const element = { x: 0, y: 0 };
         const tween = new Tween(element).to({ x: 10 }, 1).to({ y: 10 }, 1);
@@ -212,13 +238,13 @@ describe("Tween timing and removal", function () {
         const first = { n: 0 };
         const second = { n: 0 };
 
-        // updated last to first: the 'second' tween runs first and removes the 'first' tween
-        new Tween(first).to({ n: 1 }, 1).start();
+        // updated from the oldest to the newest: the 'second' tween runs first and removes the 'first' tween
         new Tween(second)
             .wait(0.1)
             .call(() => Tween.removeTweens(first))
             .to({ n: 1 }, 1)
             .start();
+        new Tween(first).to({ n: 1 }, 1).start();
 
         Tween.update(0.1);
 

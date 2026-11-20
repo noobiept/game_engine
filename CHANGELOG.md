@@ -37,6 +37,11 @@ see the [migration guide](MIGRATION.md).
 
 ### Fixed
 
+- When two tweens set the same property at once (a new move started while the
+  previous one runs), the older one's value was the one drawn: the element
+  reached the old target, then jumped back and went on with the newer tween.
+  The tweens are updated from the oldest to the newest now, so the newest one's
+  value stays (this also fixes `ElementGrid.move()` called again mid-move).
 - The examples in the documentation of `Preload` and in the README's "Loading
   assets" didn't compile (an image that can be `undefined` given to a
   `Bitmap`, and a `return` outside of a function), and the ones of `Bitmap`,

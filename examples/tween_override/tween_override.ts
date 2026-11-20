@@ -29,13 +29,13 @@ runOnLoad(function () {
         color: "#3a9d23",
     });
 
-    // red: every click stacks another tween, so the moves fight and lag behind
+    // red: every click adds another tween, and the older ones keep running underneath
     const redLabel = new Game.Text({
         x: 10,
         y: 250,
         fontSize: 13,
         color: "#d64545",
-        text: "override: off  (moves stack up and lag)",
+        text: "override: off  (the older tweens keep running)",
     });
     const redSquare = new Game.Rectangle({
         x: 30,
@@ -61,8 +61,8 @@ runOnLoad(function () {
             .to({ x: pos.x }, 1)
             .start();
 
-        // without override the new tween piles on top of the running ones, which keep
-        // overwriting the position, so the square lags behind your latest click
+        // without override the new tween is added to the running ones: the newest one sets the position, but the
+        // older ones keep running until they end (and their `.call()` steps still run)
         new Game.Tween(redSquare).to({ x: pos.x }, 1).start();
     });
 
