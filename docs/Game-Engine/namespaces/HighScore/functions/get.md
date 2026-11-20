@@ -8,7 +8,7 @@
 
 > **get**(`key`): `number`[] \| `undefined`
 
-Defined in: [source/highscore.ts:115](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/highscore.ts#L115)
+Defined in: [source/highscore.ts:115](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/highscore.ts#L115)
 
 ## Parameters
 

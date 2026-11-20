@@ -6,7 +6,7 @@
 
 # Abstract Class: Element
 
-Defined in: [source/element.ts:72](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L72)
+Defined in: [source/element.ts:72](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L72)
 
 Base class for a canvas element. Don't create an object directly — use one of the
 subclasses (`Rectangle`, `Circle`, `Bitmap`, `Sprite`, `Text`, `Container`, ...).
@@ -73,7 +73,7 @@ Events:
 
 > **new Element**(`args?`): `Element`
 
-Defined in: [source/element.ts:110](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L110)
+Defined in: [source/element.ts:110](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L110)
 
 #### Parameters
 
@@ -95,7 +95,7 @@ Defined in: [source/element.ts:110](https://github.com/noobiept/game_engine/blob
 
 > **\_attached**: `boolean`
 
-Defined in: [source/element.ts:97](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L97)
+Defined in: [source/element.ts:97](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L97)
 
 ---
 
@@ -103,7 +103,7 @@ Defined in: [source/element.ts:97](https://github.com/noobiept/game_engine/blob/
 
 > **\_container**: [`Container`](Container.md) \| `null`
 
-Defined in: [source/element.ts:95](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L95)
+Defined in: [source/element.ts:95](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L95)
 
 ---
 
@@ -111,7 +111,7 @@ Defined in: [source/element.ts:95](https://github.com/noobiept/game_engine/blob/
 
 > **\_destroyed**: `boolean`
 
-Defined in: [source/element.ts:99](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L99)
+Defined in: [source/element.ts:99](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L99)
 
 ---
 
@@ -119,7 +119,7 @@ Defined in: [source/element.ts:99](https://github.com/noobiept/game_engine/blob/
 
 > `protected` **\_half\_height**: `number`
 
-Defined in: [source/element.ts:92](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L92)
+Defined in: [source/element.ts:92](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L92)
 
 ---
 
@@ -127,7 +127,7 @@ Defined in: [source/element.ts:92](https://github.com/noobiept/game_engine/blob/
 
 > `protected` **\_half\_width**: `number`
 
-Defined in: [source/element.ts:91](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L91)
+Defined in: [source/element.ts:91](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L91)
 
 ---
 
@@ -135,7 +135,7 @@ Defined in: [source/element.ts:91](https://github.com/noobiept/game_engine/blob/
 
 > **\_has\_logic**: `boolean`
 
-Defined in: [source/element.ts:98](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L98)
+Defined in: [source/element.ts:98](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L98)
 
 ---
 
@@ -143,7 +143,7 @@ Defined in: [source/element.ts:98](https://github.com/noobiept/game_engine/blob/
 
 > `protected` **\_has\_previous**: `boolean`
 
-Defined in: [source/element.ts:102](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L102)
+Defined in: [source/element.ts:102](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L102)
 
 ---
 
@@ -151,7 +151,7 @@ Defined in: [source/element.ts:102](https://github.com/noobiept/game_engine/blob
 
 > `protected` **\_height**: `number`
 
-Defined in: [source/element.ts:90](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L90)
+Defined in: [source/element.ts:90](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L90)
 
 ---
 
@@ -159,7 +159,7 @@ Defined in: [source/element.ts:90](https://github.com/noobiept/game_engine/blob/
 
 > `protected` **\_listeners**: `Map`\<`string`, `ListenerEntry`[]\>
 
-Defined in: [source/event\_dispatcher.ts:34](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/event_dispatcher.ts#L34)
+Defined in: [source/event\_dispatcher.ts:34](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/event_dispatcher.ts#L34)
 
 #### Inherited from
 
@@ -171,7 +171,7 @@ Defined in: [source/event\_dispatcher.ts:34](https://github.com/noobiept/game_en
 
 > **\_parent\_canvas**: [`Canvas`](Canvas.md) \| `null`
 
-Defined in: [source/element.ts:96](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L96)
+Defined in: [source/element.ts:96](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L96)
 
 ---
 
@@ -179,7 +179,7 @@ Defined in: [source/element.ts:96](https://github.com/noobiept/game_engine/blob/
 
 > `protected` **\_previous\_opacity**: `number`
 
-Defined in: [source/element.ts:108](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L108)
+Defined in: [source/element.ts:108](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L108)
 
 ---
 
@@ -187,7 +187,7 @@ Defined in: [source/element.ts:108](https://github.com/noobiept/game_engine/blob
 
 > `protected` **\_previous\_rotation**: `number`
 
-Defined in: [source/element.ts:105](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L105)
+Defined in: [source/element.ts:105](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L105)
 
 ---
 
@@ -195,7 +195,7 @@ Defined in: [source/element.ts:105](https://github.com/noobiept/game_engine/blob
 
 > `protected` **\_previous\_scale\_x**: `number`
 
-Defined in: [source/element.ts:106](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L106)
+Defined in: [source/element.ts:106](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L106)
 
 ---
 
@@ -203,7 +203,7 @@ Defined in: [source/element.ts:106](https://github.com/noobiept/game_engine/blob
 
 > `protected` **\_previous\_scale\_y**: `number`
 
-Defined in: [source/element.ts:107](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L107)
+Defined in: [source/element.ts:107](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L107)
 
 ---
 
@@ -211,7 +211,7 @@ Defined in: [source/element.ts:107](https://github.com/noobiept/game_engine/blob
 
 > `protected` **\_previous\_x**: `number`
 
-Defined in: [source/element.ts:103](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L103)
+Defined in: [source/element.ts:103](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L103)
 
 ---
 
@@ -219,7 +219,7 @@ Defined in: [source/element.ts:103](https://github.com/noobiept/game_engine/blob
 
 > `protected` **\_previous\_y**: `number`
 
-Defined in: [source/element.ts:104](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L104)
+Defined in: [source/element.ts:104](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L104)
 
 ---
 
@@ -227,7 +227,7 @@ Defined in: [source/element.ts:104](https://github.com/noobiept/game_engine/blob
 
 > `protected` **\_rotation**: `number`
 
-Defined in: [source/element.ts:94](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L94)
+Defined in: [source/element.ts:94](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L94)
 
 ---
 
@@ -235,7 +235,7 @@ Defined in: [source/element.ts:94](https://github.com/noobiept/game_engine/blob/
 
 > `protected` **\_width**: `number`
 
-Defined in: [source/element.ts:89](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L89)
+Defined in: [source/element.ts:89](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L89)
 
 ---
 
@@ -243,7 +243,7 @@ Defined in: [source/element.ts:89](https://github.com/noobiept/game_engine/blob/
 
 > `protected` **\_x**: `number`
 
-Defined in: [source/element.ts:87](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L87)
+Defined in: [source/element.ts:87](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L87)
 
 ---
 
@@ -251,7 +251,7 @@ Defined in: [source/element.ts:87](https://github.com/noobiept/game_engine/blob/
 
 > `protected` **\_y**: `number`
 
-Defined in: [source/element.ts:88](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L88)
+Defined in: [source/element.ts:88](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L88)
 
 ---
 
@@ -259,7 +259,7 @@ Defined in: [source/element.ts:88](https://github.com/noobiept/game_engine/blob/
 
 > **category**: `number`
 
-Defined in: [source/element.ts:81](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L81)
+Defined in: [source/element.ts:81](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L81)
 
 ---
 
@@ -267,7 +267,7 @@ Defined in: [source/element.ts:81](https://github.com/noobiept/game_engine/blob/
 
 > **collidesWith**: `number`
 
-Defined in: [source/element.ts:82](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L82)
+Defined in: [source/element.ts:82](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L82)
 
 ---
 
@@ -275,7 +275,7 @@ Defined in: [source/element.ts:82](https://github.com/noobiept/game_engine/blob/
 
 > **collision\_data**: `any`
 
-Defined in: [source/element.ts:85](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L85)
+Defined in: [source/element.ts:85](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L85)
 
 ---
 
@@ -283,7 +283,7 @@ Defined in: [source/element.ts:85](https://github.com/noobiept/game_engine/blob/
 
 > **grid\_data**: `any`
 
-Defined in: [source/element.ts:84](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L84)
+Defined in: [source/element.ts:84](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L84)
 
 ---
 
@@ -291,7 +291,7 @@ Defined in: [source/element.ts:84](https://github.com/noobiept/game_engine/blob/
 
 > **opacity**: `number`
 
-Defined in: [source/element.ts:75](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L75)
+Defined in: [source/element.ts:75](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L75)
 
 ---
 
@@ -299,7 +299,7 @@ Defined in: [source/element.ts:75](https://github.com/noobiept/game_engine/blob/
 
 > **scaleX**: `number`
 
-Defined in: [source/element.ts:78](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L78)
+Defined in: [source/element.ts:78](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L78)
 
 ---
 
@@ -307,7 +307,7 @@ Defined in: [source/element.ts:78](https://github.com/noobiept/game_engine/blob/
 
 > **scaleY**: `number`
 
-Defined in: [source/element.ts:79](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L79)
+Defined in: [source/element.ts:79](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L79)
 
 ---
 
@@ -315,7 +315,7 @@ Defined in: [source/element.ts:79](https://github.com/noobiept/game_engine/blob/
 
 > **vertices**: [`Vertices`](../Game-Engine/namespaces/CollisionDetection/type-aliases/Vertices.md) \| `null`
 
-Defined in: [source/element.ts:73](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L73)
+Defined in: [source/element.ts:73](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L73)
 
 ---
 
@@ -323,7 +323,7 @@ Defined in: [source/element.ts:73](https://github.com/noobiept/game_engine/blob/
 
 > **visible**: `boolean`
 
-Defined in: [source/element.ts:76](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L76)
+Defined in: [source/element.ts:76](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L76)
 
 ## Accessors
 
@@ -333,7 +333,7 @@ Defined in: [source/element.ts:76](https://github.com/noobiept/game_engine/blob/
 
 > **get** **bottom**(): `number`
 
-Defined in: [source/element.ts:741](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L741)
+Defined in: [source/element.ts:741](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L741)
 
 The `y` of the bottom edge (`y + halfHeight`). See `left`.
 
@@ -345,7 +345,7 @@ The `y` of the bottom edge (`y + halfHeight`). See `left`.
 
 > **set** **bottom**(`bottom`): `void`
 
-Defined in: [source/element.ts:745](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L745)
+Defined in: [source/element.ts:745](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L745)
 
 ##### Parameters
 
@@ -365,7 +365,7 @@ Defined in: [source/element.ts:745](https://github.com/noobiept/game_engine/blob
 
 > **get** **halfHeight**(): `number`
 
-Defined in: [source/element.ts:699](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L699)
+Defined in: [source/element.ts:699](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L699)
 
 ##### Returns
 
@@ -379,7 +379,7 @@ Defined in: [source/element.ts:699](https://github.com/noobiept/game_engine/blob
 
 > **get** **halfWidth**(): `number`
 
-Defined in: [source/element.ts:695](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L695)
+Defined in: [source/element.ts:695](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L695)
 
 ##### Returns
 
@@ -393,7 +393,7 @@ Defined in: [source/element.ts:695](https://github.com/noobiept/game_engine/blob
 
 > **get** **height**(): `number`
 
-Defined in: [source/element.ts:686](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L686)
+Defined in: [source/element.ts:686](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L686)
 
 ##### Returns
 
@@ -403,7 +403,7 @@ Defined in: [source/element.ts:686](https://github.com/noobiept/game_engine/blob
 
 > **set** **height**(`height`): `void`
 
-Defined in: [source/element.ts:690](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L690)
+Defined in: [source/element.ts:690](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L690)
 
 ##### Parameters
 
@@ -423,7 +423,7 @@ Defined in: [source/element.ts:690](https://github.com/noobiept/game_engine/blob
 
 > **get** **left**(): `number`
 
-Defined in: [source/element.ts:708](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L708)
+Defined in: [source/element.ts:708](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L708)
 
 The position model is center-origin (`x`/`y` is the center). `left` is the `x` of the left edge
 (`x - halfWidth`), and setting it moves the element so its left edge is there. With `top`, `right` and
@@ -437,7 +437,7 @@ The position model is center-origin (`x`/`y` is the center). `left` is the `x` o
 
 > **set** **left**(`left`): `void`
 
-Defined in: [source/element.ts:712](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L712)
+Defined in: [source/element.ts:712](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L712)
 
 ##### Parameters
 
@@ -457,7 +457,7 @@ Defined in: [source/element.ts:712](https://github.com/noobiept/game_engine/blob
 
 > **get** **right**(): `number`
 
-Defined in: [source/element.ts:730](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L730)
+Defined in: [source/element.ts:730](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L730)
 
 The `x` of the right edge (`x + halfWidth`). See `left`.
 
@@ -469,7 +469,7 @@ The `x` of the right edge (`x + halfWidth`). See `left`.
 
 > **set** **right**(`right`): `void`
 
-Defined in: [source/element.ts:734](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L734)
+Defined in: [source/element.ts:734](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L734)
 
 ##### Parameters
 
@@ -489,7 +489,7 @@ Defined in: [source/element.ts:734](https://github.com/noobiept/game_engine/blob
 
 > **get** **rotation**(): `number`
 
-Defined in: [source/element.ts:448](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L448)
+Defined in: [source/element.ts:448](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L448)
 
 ##### Returns
 
@@ -501,7 +501,7 @@ Rotation in radians.
 
 > **set** **rotation**(`angle`): `void`
 
-Defined in: [source/element.ts:455](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L455)
+Defined in: [source/element.ts:455](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L455)
 
 ##### Parameters
 
@@ -523,7 +523,7 @@ Rotation in radians.
 
 > **get** **top**(): `number`
 
-Defined in: [source/element.ts:719](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L719)
+Defined in: [source/element.ts:719](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L719)
 
 The `y` of the top edge (`y - halfHeight`). See `left`.
 
@@ -535,7 +535,7 @@ The `y` of the top edge (`y - halfHeight`). See `left`.
 
 > **set** **top**(`top`): `void`
 
-Defined in: [source/element.ts:723](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L723)
+Defined in: [source/element.ts:723](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L723)
 
 ##### Parameters
 
@@ -555,7 +555,7 @@ Defined in: [source/element.ts:723](https://github.com/noobiept/game_engine/blob
 
 > **get** **width**(): `number`
 
-Defined in: [source/element.ts:677](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L677)
+Defined in: [source/element.ts:677](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L677)
 
 ##### Returns
 
@@ -565,7 +565,7 @@ Defined in: [source/element.ts:677](https://github.com/noobiept/game_engine/blob
 
 > **set** **width**(`width`): `void`
 
-Defined in: [source/element.ts:681](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L681)
+Defined in: [source/element.ts:681](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L681)
 
 ##### Parameters
 
@@ -585,7 +585,7 @@ Defined in: [source/element.ts:681](https://github.com/noobiept/game_engine/blob
 
 > **get** **x**(): `number`
 
-Defined in: [source/element.ts:663](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L663)
+Defined in: [source/element.ts:663](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L663)
 
 ##### Returns
 
@@ -595,7 +595,7 @@ Defined in: [source/element.ts:663](https://github.com/noobiept/game_engine/blob
 
 > **set** **x**(`x`): `void`
 
-Defined in: [source/element.ts:657](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L657)
+Defined in: [source/element.ts:657](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L657)
 
 ##### Parameters
 
@@ -615,7 +615,7 @@ Defined in: [source/element.ts:657](https://github.com/noobiept/game_engine/blob
 
 > **get** **y**(): `number`
 
-Defined in: [source/element.ts:673](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L673)
+Defined in: [source/element.ts:673](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L673)
 
 ##### Returns
 
@@ -625,7 +625,7 @@ Defined in: [source/element.ts:673](https://github.com/noobiept/game_engine/blob
 
 > **set** **y**(`y`): `void`
 
-Defined in: [source/element.ts:667](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L667)
+Defined in: [source/element.ts:667](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L667)
 
 ##### Parameters
 
@@ -643,7 +643,7 @@ Defined in: [source/element.ts:667](https://github.com/noobiept/game_engine/blob
 
 > `protected` **\_applyTransform**(`ctx`): `void`
 
-Defined in: [source/element.ts:190](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L190)
+Defined in: [source/element.ts:190](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L190)
 
 Apply this element's opacity, position, scale and rotation to the canvas context (used when drawing it).
 With a fixed update rate (see `Game.setFixedTimestep()`), they're between the ones of the last two steps, so the
@@ -667,7 +667,7 @@ Canvas context.
 
 > **\_attach**(): `void`
 
-Defined in: [source/element.ts:534](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L534)
+Defined in: [source/element.ts:534](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L534)
 
 Called when the element becomes part of a canvas (directly or through containers).
 
@@ -681,7 +681,7 @@ Called when the element becomes part of a canvas (directly or through containers
 
 > **\_checkCanBeAdded**(): `void`
 
-Defined in: [source/element.ts:557](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L557)
+Defined in: [source/element.ts:557](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L557)
 
 Throws if this element can't be added to the given parent (a container or canvas).
 
@@ -695,7 +695,7 @@ Throws if this element can't be added to the given parent (a container or canvas
 
 > `protected` **\_copyPropertiesTo**(`element`): `void`
 
-Defined in: [source/element.ts:568](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L568)
+Defined in: [source/element.ts:568](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L568)
 
 Copy the properties that every element has (opacity, visibility, scale, rotation and collision settings) to a clone.
 
@@ -715,7 +715,7 @@ Copy the properties that every element has (opacity, visibility, scale, rotation
 
 > **\_destroyNow**(): `void`
 
-Defined in: [source/element.ts:498](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L498)
+Defined in: [source/element.ts:498](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L498)
 
 Does the actual destruction (see `destroy()`). Don't call this directly, use the `destroy()` method instead.
 
@@ -729,7 +729,7 @@ Does the actual destruction (see `destroy()`). Don't call this directly, use the
 
 > **\_detach**(): `void`
 
-Defined in: [source/element.ts:545](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L545)
+Defined in: [source/element.ts:545](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L545)
 
 Called when the element stops being part of a canvas.
 
@@ -743,7 +743,7 @@ Called when the element stops being part of a canvas.
 
 > **\_detachFromParent**(): `boolean`
 
-Defined in: [source/element.ts:519](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L519)
+Defined in: [source/element.ts:519](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L519)
 
 Take this element out of its container or canvas, if it's in one.
 
@@ -759,7 +759,7 @@ If it was in a container/canvas.
 
 > `protected` **\_positionChanged**(): `void`
 
-Defined in: [source/element.ts:633](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L633)
+Defined in: [source/element.ts:633](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L633)
 
 Let the collision detection know the position changed (some algorithms keep track of the positions).
 
@@ -773,7 +773,7 @@ Let the collision detection know the position changed (some algorithms keep trac
 
 > **\_refreshVertices**(): `void`
 
-Defined in: [source/element.ts:313](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L313)
+Defined in: [source/element.ts:313](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L313)
 
 Calculate the vertices from the current position/scale/rotation of this element, and of the containers it's in
 (the collision detection calculates them once per update, before the logic can move the elements).
@@ -788,7 +788,7 @@ Calculate the vertices from the current position/scale/rotation of this element,
 
 > **\_savePrevious**(): `void`
 
-Defined in: [source/element.ts:221](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L221)
+Defined in: [source/element.ts:221](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L221)
 
 Save the current state, at the start of a step (with a fixed update rate, see `Game.setFixedTimestep()`).
 
@@ -802,7 +802,7 @@ Save the current state, at the start of a step (with a fixed update rate, see `G
 
 > **addEventListener**(`type`, `listener`): `boolean`
 
-Defined in: [source/event\_dispatcher.ts:48](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/event_dispatcher.ts#L48)
+Defined in: [source/event\_dispatcher.ts:48](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/event_dispatcher.ts#L48)
 
 'listener' will receive a 'data' argument when its called.
 What 'data' is, depends on the event type.
@@ -837,7 +837,7 @@ If it was successfully added (`false` when it isn't a function, or was already a
 
 > **addToPosition**(`x`, `y`): `void`
 
-Defined in: [source/element.ts:650](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L650)
+Defined in: [source/element.ts:650](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L650)
 
 Adds to the current position.
 
@@ -861,7 +861,7 @@ Adds to the current position.
 
 > **checkCollision**(`other`): `boolean`
 
-Defined in: [source/element.ts:276](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L276)
+Defined in: [source/element.ts:276](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L276)
 
 Check collision between two elements.
 
@@ -881,7 +881,7 @@ Check collision between two elements.
 
 > `abstract` **clone**(): `Element`
 
-Defined in: [source/element.ts:581](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L581)
+Defined in: [source/element.ts:581](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L581)
 
 Create a clone of this element.
 
@@ -895,7 +895,7 @@ Create a clone of this element.
 
 > **destroy**(): `void`
 
-Defined in: [source/element.ts:486](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L486)
+Defined in: [source/element.ts:486](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L486)
 
 Destroy this element. Right away, it's marked as destroyed (`isDestroyed()` returns `true`), it stops colliding,
 and its tweens are stopped (so a tween's `.call()` doesn't run for it anymore). At the end of the current frame
@@ -915,7 +915,7 @@ A destroyed element can't be added again. To take an element out of the game and
 
 > **dispatchEvent**(`type`, `data?`): `void`
 
-Defined in: [source/event\_dispatcher.ts:125](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/event_dispatcher.ts#L125)
+Defined in: [source/event\_dispatcher.ts:125](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/event_dispatcher.ts#L125)
 
 Dispatches an event, which will trigger the listeners of that event.
 
@@ -947,7 +947,7 @@ Data to be sent to every listener.
 
 > **dispatchMouseClickEvent**(`event`): `void`
 
-Defined in: [source/element.ts:383](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L383)
+Defined in: [source/element.ts:383](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L383)
 
 #### Parameters
 
@@ -967,7 +967,7 @@ Either a mouse up, mouse down or click event.
 
 > **dispatchMouseMoveEvent**(): `void`
 
-Defined in: [source/element.ts:372](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L372)
+Defined in: [source/element.ts:372](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L372)
 
 #### Returns
 
@@ -979,7 +979,7 @@ Defined in: [source/element.ts:372](https://github.com/noobiept/game_engine/blob
 
 > **dispatchMouseOutEvent**(): `void`
 
-Defined in: [source/element.ts:364](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L364)
+Defined in: [source/element.ts:364](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L364)
 
 #### Returns
 
@@ -991,7 +991,7 @@ Defined in: [source/element.ts:364](https://github.com/noobiept/game_engine/blob
 
 > **dispatchMouseOverEvent**(): `void`
 
-Defined in: [source/element.ts:356](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L356)
+Defined in: [source/element.ts:356](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L356)
 
 #### Returns
 
@@ -1003,7 +1003,7 @@ Defined in: [source/element.ts:356](https://github.com/noobiept/game_engine/blob
 
 > **draw**(`ctx`): `void`
 
-Defined in: [source/element.ts:179](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L179)
+Defined in: [source/element.ts:179](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L179)
 
 Draws this element, and all of its _children.
 
@@ -1025,7 +1025,7 @@ Canvas context.
 
 > `abstract` **drawElement**(`ctx`): `void`
 
-Defined in: [source/element.ts:172](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L172)
+Defined in: [source/element.ts:172](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L172)
 
 Draws just this element.
 
@@ -1047,7 +1047,7 @@ Canvas context.
 
 > **getBoundingBox**(): `object`
 
-Defined in: [source/element.ts:754](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L754)
+Defined in: [source/element.ts:754](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L754)
 
 The element's axis-aligned bounding box in top-left form (does not consider rotation or scale).
 Unlike `toAxisAligned()` (which is rotation-aware and returns min/max), this is the simple
@@ -1079,7 +1079,7 @@ top-left box that top-left/grid based ports usually want.
 
 > **getVertices**(): [`Vertices`](../Game-Engine/namespaces/CollisionDetection/type-aliases/Vertices.md)[] \| `null`
 
-Defined in: [source/element.ts:622](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L622)
+Defined in: [source/element.ts:622](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L622)
 
 Get the element vertices points. Assumes its a rectangle.
 
@@ -1093,7 +1093,7 @@ Get the element vertices points. Assumes its a rectangle.
 
 > **hasListeners**(`type`): `boolean`
 
-Defined in: [source/event\_dispatcher.ts:146](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/event_dispatcher.ts#L146)
+Defined in: [source/event\_dispatcher.ts:146](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/event_dispatcher.ts#L146)
 
 Check if there are listeners to a particular event type.
 
@@ -1121,7 +1121,7 @@ If there are listeners or not.
 
 > **intersect**(`refX`, `refY`): `Element`[]
 
-Defined in: [source/element.ts:254](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L254)
+Defined in: [source/element.ts:254](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L254)
 
 Check if the element is within the given x/y position.
 
@@ -1145,7 +1145,7 @@ Check if the element is within the given x/y position.
 
 > **isDestroyed**(): `boolean`
 
-Defined in: [source/element.ts:510](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L510)
+Defined in: [source/element.ts:510](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L510)
 
 Tells if this element was destroyed (with `destroy()`).
 A detached element (with `removeChild()`) isn't destroyed.
@@ -1160,7 +1160,7 @@ A detached element (with `removeChild()`) isn't destroyed.
 
 > **logic**(`_deltaTime`): `void`
 
-Defined in: [source/element.ts:247](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L247)
+Defined in: [source/element.ts:247](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L247)
 
 Logic code here (runs every update/tick).
 Set the `_has_logic` property to `true` for this to get called.
@@ -1181,7 +1181,7 @@ Set the `_has_logic` property to `true` for this to get called.
 
 > **mouseClickEvents**(`x`, `y`, `event`): `boolean`
 
-Defined in: [source/element.ts:342](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L342)
+Defined in: [source/element.ts:342](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L342)
 
 #### Parameters
 
@@ -1207,7 +1207,7 @@ Defined in: [source/element.ts:342](https://github.com/noobiept/game_engine/blob
 
 > **overlaps**(`other`): `boolean`
 
-Defined in: [source/element.ts:298](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L298)
+Defined in: [source/element.ts:298](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L298)
 
 Tells if this element overlaps another one right now, for a game that checks it in its own logic (the player
 against the cars, after moving them). It uses the current position, scale and rotation of both elements and of
@@ -1235,7 +1235,7 @@ the `collision` event. A destroyed element doesn't overlap anything.
 
 > **removeAllEventListeners**(): `void`
 
-Defined in: [source/event\_dispatcher.ts:109](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/event_dispatcher.ts#L109)
+Defined in: [source/event\_dispatcher.ts:109](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/event_dispatcher.ts#L109)
 
 Remove all the event listeners.
 
@@ -1253,7 +1253,7 @@ Remove all the event listeners.
 
 > **removeEventListener**(`type`, `listener?`): `boolean`
 
-Defined in: [source/event\_dispatcher.ts:74](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/event_dispatcher.ts#L74)
+Defined in: [source/event\_dispatcher.ts:74](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/event_dispatcher.ts#L74)
 
 Removes a specific listener of an event type, or all the listeners for that type (if 'listener' is not provided).
 
@@ -1287,7 +1287,7 @@ If it was successfully removed.
 
 > **resetInterpolation**(): `void`
 
-Defined in: [source/element.ts:237](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L237)
+Defined in: [source/element.ts:237](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L237)
 
 With a fixed update rate (see `Game.setFixedTimestep()`), the elements are drawn between where they were in
 the last two steps, so they move smoothly. After moving an element to a new place at once (a respawn, or
@@ -1304,7 +1304,7 @@ Elements are reset when they're added to a container/canvas.
 
 > **rotate**(`radians`): `void`
 
-Defined in: [source/element.ts:464](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L464)
+Defined in: [source/element.ts:464](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L464)
 
 Rotate the element to a given angle, in radians.
 
@@ -1326,7 +1326,7 @@ Rotation in radians.
 
 > **rotateDegrees**(`degrees`): `void`
 
-Defined in: [source/element.ts:473](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L473)
+Defined in: [source/element.ts:473](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L473)
 
 Rotate the element to a given angle, in degrees.
 
@@ -1348,7 +1348,7 @@ Rotation in degrees.
 
 > **setDimensions**(`width`, `height`): `void`
 
-Defined in: [source/element.ts:394](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L394)
+Defined in: [source/element.ts:394](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L394)
 
 Set the width and height at the same time.
 
@@ -1372,7 +1372,7 @@ Set the width and height at the same time.
 
 > **setPosition**(`x`, `y`): `void`
 
-Defined in: [source/element.ts:640](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L640)
+Defined in: [source/element.ts:640](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L640)
 
 Move the unit to the given x/y position.
 
@@ -1396,7 +1396,7 @@ Move the unit to the given x/y position.
 
 > **toAxisAligned**(): \{ `maxX`: `number`; `maxY`: `number`; `minX`: `number`; `minY`: `number`; \} \| `null`
 
-Defined in: [source/element.ts:404](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L404)
+Defined in: [source/element.ts:404](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L404)
 
 Calculates an axis-aligned rectangle from the rotated shape.
 
@@ -1410,7 +1410,7 @@ Calculates an axis-aligned rectangle from the rotated shape.
 
 > **updateVertices**(`x`, `y`, `scaleX`, `scaleY`, `rotation`): `void`
 
-Defined in: [source/element.ts:587](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/element.ts#L587)
+Defined in: [source/element.ts:587](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/element.ts#L587)
 
 Get the global vertices points of this element.
 The arguments are the compound values from the parent containers.

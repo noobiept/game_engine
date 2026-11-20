@@ -90,6 +90,7 @@
 
 - [\_getRenderAlpha](functions/getRenderAlpha.md)
 - [\_hasCallback](functions/hasCallback.md)
+- [\_reset](functions/reset.md)
 - [\_safeDestroy](functions/safeDestroy.md)
 - [activateMouseMoveEvents](functions/activateMouseMoveEvents.md)
 - [addCanvas](functions/addCanvas.md)

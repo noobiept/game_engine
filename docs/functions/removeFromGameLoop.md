@@ -8,7 +8,7 @@
 
 > **removeFromGameLoop**(`callback`): `boolean`
 
-Defined in: [source/game.ts:557](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/game.ts#L557)
+Defined in: [source/game.ts:592](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/game.ts#L592)
 
 Remove a callback from the game loop (every time it was added).
 

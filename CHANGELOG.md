@@ -9,7 +9,14 @@ Releases before `3.0.0` are not tracked here. To update a game from v3 to v4,
 see the [migration guide](MIGRATION.md). From v2, go through the **Breaking**
 entries of 3.0.0 first.
 
-## [Unreleased]
+## [4.4.0] - 2026-11-21
+
+Improvements from updating two more games (`cross_roads` on v4.3, and
+`2048_game` from v2): tweens that don't jump when a new one starts on the same
+property (and `override: "properties"`), timers that fire on the exact step
+with a fixed timestep, helpers to test a game (`@drk4/game-engine/testing`),
+the keyboard presses in order, getters for the files a game can't run without,
+and sounds that start on the first interaction with the page.
 
 ### Added
 
@@ -474,7 +481,7 @@ pass of breaking API-consistency cleanups.
 - A suspended `AudioContext` is now resumed automatically when a sound starts,
   so audio becomes audible after the first user interaction.
 
-[Unreleased]: https://github.com/noobiept/game_engine/compare/v4.3.0...HEAD
+[4.4.0]: https://github.com/noobiept/game_engine/releases/tag/v4.4.0
 [4.3.0]: https://github.com/noobiept/game_engine/releases/tag/v4.3.0
 [4.2.0]: https://github.com/noobiept/game_engine/releases/tag/v4.2.0
 [4.1.0]: https://github.com/noobiept/game_engine/releases/tag/v4.1.0

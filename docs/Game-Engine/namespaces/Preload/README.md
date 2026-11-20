@@ -28,3 +28,7 @@
 - [getJson](functions/getJson.md)
 - [getText](functions/getText.md)
 - [getType](functions/getType.md)
+- [requireAudio](functions/requireAudio.md)
+- [requireImage](functions/requireImage.md)
+- [requireJson](functions/requireJson.md)
+- [requireText](functions/requireText.md)

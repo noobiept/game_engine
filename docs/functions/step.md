@@ -8,7 +8,7 @@
 
 > **step**(`deltaTime`): `void`
 
-Defined in: [source/game.ts:721](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/game.ts#L721)
+Defined in: [source/game.ts:756](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/game.ts#L756)
 
 Update the game once, by hand, while the game loop is stopped (`stopGameLoop()`): the game loop callbacks, the
 tweens, the logic of the elements, the collision detection, and the drawing, like one update of the loop. For tests

@@ -8,7 +8,7 @@
 
 > **activateMouseMoveEvents**(`interval`): `void`
 
-Defined in: [source/game.ts:261](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/game.ts#L261)
+Defined in: [source/game.ts:296](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/game.ts#L296)
 
 Activate the mouse move events: `mouseout` and `mouseover`.
 Calling it again while active only changes the interval.

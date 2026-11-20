@@ -29,10 +29,10 @@ TypeScript's [`noImplicitOverride`](https://www.typescriptlang.org/tsconfig/#noI
 
 ## 2. Install
 
-`Game.Utilities` is gone, so `@drk4/utilities` becomes a direct dependency, and the engine requires v8 of it. Update both together, to the latest 4.x (this guide uses what was added up to v4.3, like `Cooldown`, the game loop events, `Game.Timeout` and `Game.Stopwatch`):
+`Game.Utilities` is gone, so `@drk4/utilities` becomes a direct dependency, and the engine requires v8 of it. Update both together, to the latest 4.x (this guide uses what was added up to v4.4, like `Cooldown`, the game loop events, `Game.Timeout`, `Game.Stopwatch` and `override: "properties"`):
 
 ```sh
-pnpm add @drk4/game-engine@^4.3.0 @drk4/utilities@^8.0.0
+pnpm add @drk4/game-engine@^4.4.0 @drk4/utilities@^8.0.0
 ```
 
 Then check the version that was installed (`pnpm list @drk4/game-engine`). With pnpm's `minimumReleaseAge` setting, releases newer than that age aren't installed right away:

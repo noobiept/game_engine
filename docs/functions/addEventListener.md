@@ -8,7 +8,7 @@
 
 > **addEventListener**\<`K`\>(`type`, `listener`): `boolean`
 
-Defined in: [source/game.ts:198](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/game.ts#L198)
+Defined in: [source/game.ts:233](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/game.ts#L233)
 
 Listen to the game loop stopping and starting again, for what runs outside of it but should stop with the game:
 music played through your own `AudioContext`, or the engine's sounds when the game is paused with `stopGameLoop()`

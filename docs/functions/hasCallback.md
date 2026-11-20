@@ -8,7 +8,7 @@
 
 > **\_hasCallback**(`callback`): `boolean`
 
-Defined in: [source/game.ts:576](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/game.ts#L576)
+Defined in: [source/game.ts:611](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/game.ts#L611)
 
 Tells if a callback is in the game loop (it was added, and wasn't removed or called as a timeout).
 

@@ -6,7 +6,7 @@
 
 # Interface: PlayOptions
 
-Defined in: [source/sound.ts:135](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/sound.ts#L135)
+Defined in: [source/sound.ts:218](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/sound.ts#L218)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [source/sound.ts:135](https://github.com/noobiept/game_engine/blob/2
 
 > `optional` **loop?**: `boolean`
 
-Defined in: [source/sound.ts:136](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/sound.ts#L136)
+Defined in: [source/sound.ts:219](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/sound.ts#L219)
 
 ---
 
@@ -22,4 +22,4 @@ Defined in: [source/sound.ts:136](https://github.com/noobiept/game_engine/blob/2
 
 > `optional` **volume?**: `number`
 
-Defined in: [source/sound.ts:137](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/sound.ts#L137)
+Defined in: [source/sound.ts:220](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/sound.ts#L220)

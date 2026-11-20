@@ -6,7 +6,7 @@
 
 # Class: Keyboard\<Action\>
 
-Defined in: [source/keyboard.ts:56](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/keyboard.ts#L56)
+Defined in: [source/keyboard.ts:57](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/keyboard.ts#L57)
 
 Keyboard controls: name the game's actions and bind keys to them when the game starts, then the game code only asks
 about the actions (`isHeld( 'left' )`), not about the keys.
@@ -58,7 +58,7 @@ Basic Usage:
 
 > **new Keyboard**\<`Action`\>(`actions`, `options?`): `Keyboard`\<`Action`\>
 
-Defined in: [source/keyboard.ts:64](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/keyboard.ts#L64)
+Defined in: [source/keyboard.ts:65](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/keyboard.ts#L65)
 
 #### Parameters
 
@@ -84,7 +84,7 @@ The keys of each action (`KeyboardEvent.code` values).
 
 > `protected` **\_bindings**: `Map`\<`Action`, `string`[]\>
 
-Defined in: [source/keyboard.ts:57](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/keyboard.ts#L57)
+Defined in: [source/keyboard.ts:58](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/keyboard.ts#L58)
 
 ---
 
@@ -92,7 +92,7 @@ Defined in: [source/keyboard.ts:57](https://github.com/noobiept/game_engine/blob
 
 > `protected` **\_prevent\_default**: `boolean`
 
-Defined in: [source/keyboard.ts:58](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/keyboard.ts#L58)
+Defined in: [source/keyboard.ts:59](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/keyboard.ts#L59)
 
 ## Methods
 
@@ -100,7 +100,7 @@ Defined in: [source/keyboard.ts:58](https://github.com/noobiept/game_engine/blob
 
 > **\_preventsDefault**(`code`): `boolean`
 
-Defined in: [source/keyboard.ts:148](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/keyboard.ts#L148)
+Defined in: [source/keyboard.ts:172](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/keyboard.ts#L172)
 
 If the default browser action of a key should be prevented (when it's bound to an action of this object).
 
@@ -120,7 +120,7 @@ If the default browser action of a key should be prevented (when it's bound to a
 
 > `protected` **\_some**(`action`, `keys`): `boolean`
 
-Defined in: [source/keyboard.ts:139](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/keyboard.ts#L139)
+Defined in: [source/keyboard.ts:163](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/keyboard.ts#L163)
 
 #### Parameters
 
@@ -142,7 +142,7 @@ Defined in: [source/keyboard.ts:139](https://github.com/noobiept/game_engine/blo
 
 > **destroy**(): `void`
 
-Defined in: [source/keyboard.ts:135](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/keyboard.ts#L135)
+Defined in: [source/keyboard.ts:159](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/keyboard.ts#L159)
 
 Stop using this object: its keys aren't kept from their default browser action anymore.
 
@@ -156,7 +156,7 @@ Stop using this object: its keys aren't kept from their default browser action a
 
 > **getKeys**(`action`): `string`[]
 
-Defined in: [source/keyboard.ts:115](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/keyboard.ts#L115)
+Defined in: [source/keyboard.ts:139](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/keyboard.ts#L139)
 
 The keys of an action (to show them in the game's help, for example).
 
@@ -172,11 +172,31 @@ The keys of an action (to show them in the game's help, for example).
 
 ---
 
+### getPresses()
+
+> **getPresses**(): `Action`[]
+
+Defined in: [source/keyboard.ts:110](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/keyboard.ts#L110)
+
+The actions pressed since the last update, in the order of the presses, once per press (a key pressed twice is
+there twice). For games where every press is an action (a move in a turn-based game), so the presses within one
+update (a slow device, a stalled frame) aren't lost or reordered, which `wasPressed()` can't tell.
+
+    for ( const action of controls.getPresses() ) {
+        move( action );
+    }
+
+#### Returns
+
+`Action`[]
+
+---
+
 ### hasKey()
 
 > **hasKey**(`code`): `boolean`
 
-Defined in: [source/keyboard.ts:122](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/keyboard.ts#L122)
+Defined in: [source/keyboard.ts:146](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/keyboard.ts#L146)
 
 Tells if a key is bound to any of the actions.
 
@@ -196,7 +216,7 @@ Tells if a key is bound to any of the actions.
 
 > **isHeld**(`action`): `boolean`
 
-Defined in: [source/keyboard.ts:82](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/keyboard.ts#L82)
+Defined in: [source/keyboard.ts:83](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/keyboard.ts#L83)
 
 If any of the keys of the action is held down.
 
@@ -216,7 +236,7 @@ If any of the keys of the action is held down.
 
 > **setKeys**(`action`, `keys`): `void`
 
-Defined in: [source/keyboard.ts:105](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/keyboard.ts#L105)
+Defined in: [source/keyboard.ts:129](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/keyboard.ts#L129)
 
 Change the keys of an action.
 
@@ -242,7 +262,7 @@ One key, or several (`KeyboardEvent.code` values).
 
 > **wasPressed**(`action`): `boolean`
 
-Defined in: [source/keyboard.ts:89](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/keyboard.ts#L89)
+Defined in: [source/keyboard.ts:90](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/keyboard.ts#L90)
 
 If any of the keys of the action was pressed since the last update (it can be released already).
 
@@ -262,7 +282,7 @@ If any of the keys of the action was pressed since the last update (it can be re
 
 > **wasReleased**(`action`): `boolean`
 
-Defined in: [source/keyboard.ts:96](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/keyboard.ts#L96)
+Defined in: [source/keyboard.ts:97](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/keyboard.ts#L97)
 
 If any of the keys of the action was released since the last update.
 

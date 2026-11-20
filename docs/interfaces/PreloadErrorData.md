@@ -6,7 +6,7 @@
 
 # Interface: PreloadErrorData
 
-Defined in: [source/preload.ts:13](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/preload.ts#L13)
+Defined in: [source/preload.ts:13](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/preload.ts#L13)
 
 Data of the `error` event (only the properties that apply to the failure are set).
 
@@ -16,7 +16,7 @@ Data of the `error` event (only the properties that apply to the failure are set
 
 > `optional` **error?**: `unknown`
 
-Defined in: [source/preload.ts:17](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/preload.ts#L17)
+Defined in: [source/preload.ts:17](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/preload.ts#L17)
 
 ---
 
@@ -24,7 +24,7 @@ Defined in: [source/preload.ts:17](https://github.com/noobiept/game_engine/blob/
 
 > `optional` **event?**: `ProgressEvent`\<`EventTarget`\>
 
-Defined in: [source/preload.ts:15](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/preload.ts#L15)
+Defined in: [source/preload.ts:15](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/preload.ts#L15)
 
 ---
 
@@ -32,7 +32,7 @@ Defined in: [source/preload.ts:15](https://github.com/noobiept/game_engine/blob/
 
 > **id**: `string`
 
-Defined in: [source/preload.ts:14](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/preload.ts#L14)
+Defined in: [source/preload.ts:14](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/preload.ts#L14)
 
 ---
 
@@ -40,4 +40,4 @@ Defined in: [source/preload.ts:14](https://github.com/noobiept/game_engine/blob/
 
 > `optional` **status?**: `number`
 
-Defined in: [source/preload.ts:16](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/preload.ts#L16)
+Defined in: [source/preload.ts:16](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/preload.ts#L16)

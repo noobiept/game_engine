@@ -8,7 +8,7 @@
 
 > **isAudioBuffer**(`value`): `value is AudioBuffer`
 
-Defined in: [source/sound.ts:159](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/sound.ts#L159)
+Defined in: [source/sound.ts:242](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/sound.ts#L242)
 
 Tells if a value is a decoded audio file (an `AudioBuffer`), which is what `play()` takes.
 

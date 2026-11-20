@@ -8,4 +8,4 @@
 
 > `const` **RESPONSE\_TYPE**: `Record`\<[`FileType`](../type-aliases/FileType.md), `XMLHttpRequestResponseType`\>
 
-Defined in: [source/preload.ts:556](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/preload.ts#L556)
+Defined in: [source/preload.ts:603](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/preload.ts#L603)

@@ -8,7 +8,7 @@
 
 > **setPauseWhenHidden**(`pause`): `void`
 
-Defined in: [source/sound.ts:66](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/sound.ts#L66)
+Defined in: [source/sound.ts:138](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/sound.ts#L138)
 
 Pause all the sounds while the page is hidden (`true` by default), like the game loop. Browsers keep playing audio
 in background tabs, so without it the music goes on while the game is frozen. Pass `false` for sounds that should

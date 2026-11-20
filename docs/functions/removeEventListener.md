@@ -8,7 +8,7 @@
 
 > **removeEventListener**\<`K`\>(`type`, `listener?`): `boolean`
 
-Defined in: [source/game.ts:210](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/game.ts#L210)
+Defined in: [source/game.ts:245](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/game.ts#L245)
 
 Remove a listener of a game loop event (see `addEventListener()`), or all its listeners (when `listener` isn't given).
 

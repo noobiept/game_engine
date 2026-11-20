@@ -8,7 +8,7 @@
 
 > **setFixedTimestep**(`seconds`): `void`
 
-Defined in: [source/game.ts:342](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/game.ts#L342)
+Defined in: [source/game.ts:377](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/game.ts#L377)
 
 Run the game logic at a fixed rate: the game loop callbacks, the tweens, the logic of the elements and the collision
 detection always get the same `deltaTime` (`seconds`), and run as many times as the time that passed calls for

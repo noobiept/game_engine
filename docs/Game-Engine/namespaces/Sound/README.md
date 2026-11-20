@@ -16,6 +16,7 @@
 
 ## Functions
 
+- [\_reset](functions/reset.md)
 - [decodeAudio](functions/decodeAudio.md)
 - [getGlobalGain](functions/getGlobalGain.md)
 - [init](functions/init.md)

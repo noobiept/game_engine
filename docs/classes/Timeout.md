@@ -6,7 +6,7 @@
 
 # Class: Timeout
 
-Defined in: [source/game\_time.ts:16](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/game_time.ts#L16)
+Defined in: [source/game\_time.ts:16](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/game_time.ts#L16)
 
 A timeout that counts game time: it runs on the game loop, so it pauses with it (while the page is hidden, or after
 `Game.stopGameLoop()`), and what it calls never runs while the game is paused. Use it instead of `setTimeout()` for
@@ -36,7 +36,7 @@ Basic Usage:
 
 > `protected` **\_call**: (() => `void`) \| `null` = `null`
 
-Defined in: [source/game\_time.ts:17](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/game_time.ts#L17)
+Defined in: [source/game\_time.ts:17](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/game_time.ts#L17)
 
 ## Methods
 
@@ -44,7 +44,7 @@ Defined in: [source/game\_time.ts:17](https://github.com/noobiept/game_engine/bl
 
 > **clear**(): `void`
 
-Defined in: [source/game\_time.ts:44](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/game_time.ts#L44)
+Defined in: [source/game\_time.ts:44](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/game_time.ts#L44)
 
 Cancel the timeout (if it's active).
 
@@ -58,7 +58,7 @@ Cancel the timeout (if it's active).
 
 > **isActive**(): `boolean`
 
-Defined in: [source/game\_time.ts:54](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/game_time.ts#L54)
+Defined in: [source/game\_time.ts:54](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/game_time.ts#L54)
 
 If it was started and wasn't called (or canceled) yet.
 
@@ -72,7 +72,7 @@ If it was started and wasn't called (or canceled) yet.
 
 > **start**(`callback`, `seconds`): `void`
 
-Defined in: [source/game\_time.ts:25](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/game_time.ts#L25)
+Defined in: [source/game\_time.ts:25](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/game_time.ts#L25)
 
 Start the timeout. If it was already active, the previous one is canceled.
 

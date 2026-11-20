@@ -8,7 +8,7 @@
 
 > **getImage**(`id`): `HTMLImageElement` \| `undefined`
 
-Defined in: [source/preload.ts:581](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/preload.ts#L581)
+Defined in: [source/preload.ts:628](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/preload.ts#L628)
 
 Get a loaded image (saved in the global `DATA` object), or `undefined` when there isn't one with that id.
 

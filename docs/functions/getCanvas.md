@@ -8,7 +8,7 @@
 
 > **getCanvas**(`id?`): [`Canvas`](../classes/Canvas.md)
 
-Defined in: [source/game.ts:400](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/game.ts#L400)
+Defined in: [source/game.ts:435](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/game.ts#L435)
 
 Get a canvas object (Game.Canvas). When called without an argument it returns the first one.
 

@@ -6,7 +6,7 @@
 
 # Enumeration: TYPES
 
-Defined in: [source/preload.ts:538](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/preload.ts#L538)
+Defined in: [source/preload.ts:585](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/preload.ts#L585)
 
 ## Enumeration Members
 
@@ -14,7 +14,7 @@ Defined in: [source/preload.ts:538](https://github.com/noobiept/game_engine/blob
 
 > **audio**: `3`
 
-Defined in: [source/preload.ts:542](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/preload.ts#L542)
+Defined in: [source/preload.ts:589](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/preload.ts#L589)
 
 ---
 
@@ -22,7 +22,7 @@ Defined in: [source/preload.ts:542](https://github.com/noobiept/game_engine/blob
 
 > **image**: `0`
 
-Defined in: [source/preload.ts:539](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/preload.ts#L539)
+Defined in: [source/preload.ts:586](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/preload.ts#L586)
 
 ---
 
@@ -30,7 +30,7 @@ Defined in: [source/preload.ts:539](https://github.com/noobiept/game_engine/blob
 
 > **json**: `1`
 
-Defined in: [source/preload.ts:540](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/preload.ts#L540)
+Defined in: [source/preload.ts:587](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/preload.ts#L587)
 
 ---
 
@@ -38,4 +38,4 @@ Defined in: [source/preload.ts:540](https://github.com/noobiept/game_engine/blob
 
 > **text**: `2`
 
-Defined in: [source/preload.ts:541](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/preload.ts#L541)
+Defined in: [source/preload.ts:588](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/preload.ts#L588)

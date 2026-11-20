@@ -6,7 +6,7 @@
 
 # Class: SoundInstance
 
-Defined in: [source/sound.ts:220](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/sound.ts#L220)
+Defined in: [source/sound.ts:303](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/sound.ts#L303)
 
 Represents a single playing sound. Returned by `Game.Sound.play()`.
 
@@ -21,7 +21,7 @@ can be controlled independently from the other sounds.
 
 > **new SoundInstance**(`ctx`, `master`, `buffer`, `options?`): `SoundInstance`
 
-Defined in: [source/sound.ts:231](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/sound.ts#L231)
+Defined in: [source/sound.ts:314](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/sound.ts#L314)
 
 #### Parameters
 
@@ -51,7 +51,7 @@ Defined in: [source/sound.ts:231](https://github.com/noobiept/game_engine/blob/2
 
 > `protected` **\_buffer**: `AudioBuffer`
 
-Defined in: [source/sound.ts:222](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/sound.ts#L222)
+Defined in: [source/sound.ts:305](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/sound.ts#L305)
 
 ---
 
@@ -59,7 +59,7 @@ Defined in: [source/sound.ts:222](https://github.com/noobiept/game_engine/blob/2
 
 > `protected` **\_ctx**: `AudioContext`
 
-Defined in: [source/sound.ts:221](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/sound.ts#L221)
+Defined in: [source/sound.ts:304](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/sound.ts#L304)
 
 ---
 
@@ -67,7 +67,7 @@ Defined in: [source/sound.ts:221](https://github.com/noobiept/game_engine/blob/2
 
 > `protected` **\_gain**: `GainNode`
 
-Defined in: [source/sound.ts:223](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/sound.ts#L223)
+Defined in: [source/sound.ts:306](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/sound.ts#L306)
 
 ---
 
@@ -75,7 +75,7 @@ Defined in: [source/sound.ts:223](https://github.com/noobiept/game_engine/blob/2
 
 > `protected` **\_loop**: `boolean`
 
-Defined in: [source/sound.ts:226](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/sound.ts#L226)
+Defined in: [source/sound.ts:309](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/sound.ts#L309)
 
 ---
 
@@ -83,7 +83,7 @@ Defined in: [source/sound.ts:226](https://github.com/noobiept/game_engine/blob/2
 
 > `protected` **\_offset**: `number`
 
-Defined in: [source/sound.ts:228](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/sound.ts#L228)
+Defined in: [source/sound.ts:311](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/sound.ts#L311)
 
 ---
 
@@ -91,7 +91,7 @@ Defined in: [source/sound.ts:228](https://github.com/noobiept/game_engine/blob/2
 
 > `protected` **\_playing**: `boolean`
 
-Defined in: [source/sound.ts:227](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/sound.ts#L227)
+Defined in: [source/sound.ts:310](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/sound.ts#L310)
 
 ---
 
@@ -99,7 +99,7 @@ Defined in: [source/sound.ts:227](https://github.com/noobiept/game_engine/blob/2
 
 > `protected` **\_source**: `AudioBufferSourceNode` \| `null`
 
-Defined in: [source/sound.ts:224](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/sound.ts#L224)
+Defined in: [source/sound.ts:307](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/sound.ts#L307)
 
 ---
 
@@ -107,7 +107,7 @@ Defined in: [source/sound.ts:224](https://github.com/noobiept/game_engine/blob/2
 
 > `protected` **\_startedAt**: `number`
 
-Defined in: [source/sound.ts:229](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/sound.ts#L229)
+Defined in: [source/sound.ts:312](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/sound.ts#L312)
 
 ## Accessors
 
@@ -117,7 +117,7 @@ Defined in: [source/sound.ts:229](https://github.com/noobiept/game_engine/blob/2
 
 > **get** **loop**(): `boolean`
 
-Defined in: [source/sound.ts:338](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/sound.ts#L338)
+Defined in: [source/sound.ts:421](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/sound.ts#L421)
 
 ##### Returns
 
@@ -127,7 +127,7 @@ Defined in: [source/sound.ts:338](https://github.com/noobiept/game_engine/blob/2
 
 > **set** **loop**(`loop`): `void`
 
-Defined in: [source/sound.ts:330](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/sound.ts#L330)
+Defined in: [source/sound.ts:413](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/sound.ts#L413)
 
 ##### Parameters
 
@@ -147,7 +147,7 @@ Defined in: [source/sound.ts:330](https://github.com/noobiept/game_engine/blob/2
 
 > **get** **playing**(): `boolean`
 
-Defined in: [source/sound.ts:353](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/sound.ts#L353)
+Defined in: [source/sound.ts:436](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/sound.ts#L436)
 
 Whether the sound is currently playing (`false` while paused/stopped/finished).
 
@@ -163,7 +163,7 @@ Whether the sound is currently playing (`false` while paused/stopped/finished).
 
 > **get** **volume**(): `number`
 
-Defined in: [source/sound.ts:346](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/sound.ts#L346)
+Defined in: [source/sound.ts:429](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/sound.ts#L429)
 
 ##### Returns
 
@@ -173,7 +173,7 @@ Defined in: [source/sound.ts:346](https://github.com/noobiept/game_engine/blob/2
 
 > **set** **volume**(`volume`): `void`
 
-Defined in: [source/sound.ts:342](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/sound.ts#L342)
+Defined in: [source/sound.ts:425](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/sound.ts#L425)
 
 ##### Parameters
 
@@ -191,7 +191,7 @@ Defined in: [source/sound.ts:342](https://github.com/noobiept/game_engine/blob/2
 
 > `protected` **\_startSource**(`offset`): `void`
 
-Defined in: [source/sound.ts:256](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/sound.ts#L256)
+Defined in: [source/sound.ts:339](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/sound.ts#L339)
 
 Create and start a new source node at the given buffer offset.
 
@@ -211,7 +211,7 @@ Create and start a new source node at the given buffer offset.
 
 > `protected` **\_stopSource**(): `void`
 
-Defined in: [source/sound.ts:286](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/sound.ts#L286)
+Defined in: [source/sound.ts:369](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/sound.ts#L369)
 
 Stop the current source node without triggering the `onended` handling.
 
@@ -225,7 +225,7 @@ Stop the current source node without triggering the `onended` handling.
 
 > **pause**(): `void`
 
-Defined in: [source/sound.ts:298](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/sound.ts#L298)
+Defined in: [source/sound.ts:381](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/sound.ts#L381)
 
 Suspend the playback, remembering the current offset so it can be resumed later.
 
@@ -239,7 +239,7 @@ Suspend the playback, remembering the current offset so it can be resumed later.
 
 > **resume**(): `void`
 
-Defined in: [source/sound.ts:313](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/sound.ts#L313)
+Defined in: [source/sound.ts:396](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/sound.ts#L396)
 
 Resume the playback from where it was paused.
 
@@ -253,7 +253,7 @@ Resume the playback from where it was paused.
 
 > **stop**(): `void`
 
-Defined in: [source/sound.ts:324](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/sound.ts#L324)
+Defined in: [source/sound.ts:407](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/sound.ts#L407)
 
 Stop the playback and discard the saved offset.
 

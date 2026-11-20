@@ -6,7 +6,7 @@
 
 # Interface: PreloadManifestEntry
 
-Defined in: [source/preload.ts:31](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/preload.ts#L31)
+Defined in: [source/preload.ts:31](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/preload.ts#L31)
 
 A file to load with `loadManifest()`.
 
@@ -16,7 +16,7 @@ A file to load with `loadManifest()`.
 
 > **id**: `string`
 
-Defined in: [source/preload.ts:32](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/preload.ts#L32)
+Defined in: [source/preload.ts:32](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/preload.ts#L32)
 
 ---
 
@@ -24,7 +24,7 @@ Defined in: [source/preload.ts:32](https://github.com/noobiept/game_engine/blob/
 
 > `optional` **optional?**: `boolean`
 
-Defined in: [source/preload.ts:34](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/preload.ts#L34)
+Defined in: [source/preload.ts:34](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/preload.ts#L34)
 
 ---
 
@@ -32,4 +32,4 @@ Defined in: [source/preload.ts:34](https://github.com/noobiept/game_engine/blob/
 
 > **path**: `string`
 
-Defined in: [source/preload.ts:33](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/preload.ts#L33)
+Defined in: [source/preload.ts:33](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/preload.ts#L33)

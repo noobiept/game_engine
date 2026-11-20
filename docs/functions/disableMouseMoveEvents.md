@@ -8,7 +8,7 @@
 
 > **disableMouseMoveEvents**(): `void`
 
-Defined in: [source/game.ts:276](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/game.ts#L276)
+Defined in: [source/game.ts:311](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/game.ts#L311)
 
 Disable the mouse move events: `mouseout` and `mouseover`.
 The elements that are under the mouse get a `mouseout` event.

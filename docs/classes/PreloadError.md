@@ -6,7 +6,7 @@
 
 # Class: PreloadError
 
-Defined in: [source/preload.ts:40](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/preload.ts#L40)
+Defined in: [source/preload.ts:40](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/preload.ts#L40)
 
 The error `loadManifest()` rejects with, when files that aren't `optional` fail to load.
 
@@ -20,7 +20,7 @@ The error `loadManifest()` rejects with, when files that aren't `optional` fail 
 
 > **new PreloadError**(`failedIds`, `data`): `PreloadError`
 
-Defined in: [source/preload.ts:44](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/preload.ts#L44)
+Defined in: [source/preload.ts:44](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/preload.ts#L44)
 
 #### Parameters
 
@@ -46,7 +46,7 @@ Defined in: [source/preload.ts:44](https://github.com/noobiept/game_engine/blob/
 
 > **data**: [`PreloadCompleteData`](../interfaces/PreloadCompleteData.md)
 
-Defined in: [source/preload.ts:42](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/preload.ts#L42)
+Defined in: [source/preload.ts:42](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/preload.ts#L42)
 
 ---
 
@@ -54,7 +54,7 @@ Defined in: [source/preload.ts:42](https://github.com/noobiept/game_engine/blob/
 
 > **failedIds**: `string`[]
 
-Defined in: [source/preload.ts:41](https://github.com/noobiept/game_engine/blob/296ae0b2ba439fb352330de988181a092a13ccd1/source/preload.ts#L41)
+Defined in: [source/preload.ts:41](https://github.com/noobiept/game_engine/blob/b8c8fe900b1340a274a9159c6f865702e6210cb0/source/preload.ts#L41)
 
 ---
 
