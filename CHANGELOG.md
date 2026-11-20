@@ -18,6 +18,10 @@ see the [migration guide](MIGRATION.md).
   loaded, so a test doesn't affect the next one (no game loop callbacks, tweens,
   event listeners, held keys or preloaded files are left). It's a separate
   entry, so it isn't in a game's bundle.
+- `Keyboard.getPresses()`, the actions pressed since the last update, in order
+  and once per press, for games where every press is an action (a move in a
+  turn-based game): `wasPressed()` can't tell the order of the presses within
+  one update, or a key pressed twice.
 - `override: "properties"` for `Tween`, which only takes the properties the
   tween animates out of the element's other tweens when it starts (they keep
   animating the rest, and their `.call()` steps still run), instead of

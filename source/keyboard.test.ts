@@ -95,6 +95,29 @@ describe("Keyboard", function () {
         expect(controls.wasReleased("fire")).toBe(false);
     });
 
+    test("getPresses() gives the presses since the last update in order, once per press", function () {
+        const moves = new Keyboard({
+            up: ["ArrowUp", "KeyW"],
+            left: "ArrowLeft",
+        });
+
+        // up, left, up within one update (a slow device)
+        key("keydown", "ArrowUp");
+        key("keyup", "ArrowUp");
+        key("keydown", "ArrowLeft");
+        key("keydown", "KeyW");
+        key("keydown", "KeyW", { repeat: true }); // auto-repeat isn't a press
+        key("keydown", "KeyZ"); // not bound
+
+        expect(moves.getPresses()).toEqual(["up", "left", "up"]);
+        expect(moves.wasPressed("up")).toBe(true);
+
+        Game.step(1 / 60);
+        expect(moves.getPresses()).toEqual([]);
+
+        moves.destroy();
+    });
+
     test("a key held down doesn't count as pressed again (auto-repeat)", function () {
         key("keydown", "Space");
         Game.step(1 / 60);

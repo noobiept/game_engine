@@ -268,7 +268,7 @@ Game.addToGameLoop(function (deltaTime) {
 });
 ```
 
-The keys are `KeyboardEvent.code` values, which name a key by its position on the keyboard (`KeyW` is where W is on a US keyboard, and where Z is on a French one), so the controls stay in place with any layout. The action names are checked by TypeScript. The keys are let go when the window loses the focus or the game loop pauses, keys typed in form fields are ignored, and the bound keys don't scroll the page (with Ctrl, Cmd or Alt held they do their default action, so the browser's shortcuts keep working). Change the keys with `controls.setKeys()` (for an options screen).
+The keys are `KeyboardEvent.code` values, which name a key by its position on the keyboard (`KeyW` is where W is on a US keyboard, and where Z is on a French one), so the controls stay in place with any layout. The action names are checked by TypeScript. The keys are let go when the window loses the focus or the game loop pauses, keys typed in form fields are ignored, and the bound keys don't scroll the page (with Ctrl, Cmd or Alt held they do their default action, so the browser's shortcuts keep working). Change the keys with `controls.setKeys()` (for an options screen). For a game where every press is an action (a move in a turn-based game), `controls.getPresses()` gives the actions pressed since the last update, in order and once per press.
 
 ## Removing elements
 

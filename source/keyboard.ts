@@ -11,6 +11,7 @@ export interface KeyboardOptions {
 const HELD = new Set<string>();
 const PRESSED = new Set<string>(); // pressed since the last update
 const RELEASED = new Set<string>(); // released since the last update
+const PRESS_ORDER: string[] = []; // every press since the last update, in order (a key pressed twice is there twice)
 const ALL_KEYBOARDS = new Set<Keyboard<string>>();
 let LISTENING = false;
 
@@ -98,6 +99,29 @@ export class Keyboard<Action extends string> {
     }
 
     /**
+     * The actions pressed since the last update, in the order of the presses, once per press (a key pressed twice is
+     * there twice). For games where every press is an action (a move in a turn-based game), so the presses within one
+     * update (a slow device, a stalled frame) aren't lost or reordered, which `wasPressed()` can't tell.
+     *
+     *     for ( const action of controls.getPresses() ) {
+     *         move( action );
+     *     }
+     */
+    getPresses(): Action[] {
+        const actions: Action[] = [];
+
+        for (const code of PRESS_ORDER) {
+            for (const [action, keys] of this._bindings) {
+                if (keys.includes(code)) {
+                    actions.push(action);
+                }
+            }
+        }
+
+        return actions;
+    }
+
+    /**
      * Change the keys of an action.
      *
      * @param keys One key, or several (`KeyboardEvent.code` values).
@@ -182,6 +206,7 @@ function onKeyDown(event: KeyboardEvent) {
     // an auto-repeat only brings back a key that was let go while held (see `onKeyUp()`), it isn't a new press
     if (!event.repeat) {
         PRESSED.add(event.code);
+        PRESS_ORDER.push(event.code);
     }
 }
 
@@ -245,6 +270,7 @@ function clearKeys() {
     HELD.clear();
     PRESSED.clear();
     RELEASED.clear();
+    PRESS_ORDER.length = 0;
 }
 
 /**
@@ -262,6 +288,7 @@ export function _reset() {
 export function _endUpdate() {
     PRESSED.clear();
     RELEASED.clear();
+    PRESS_ORDER.length = 0;
 }
 
 /**
@@ -277,4 +304,5 @@ export function _onLoopPause() {
 export function _onLoopResume() {
     PRESSED.clear();
     RELEASED.clear();
+    PRESS_ORDER.length = 0;
 }
