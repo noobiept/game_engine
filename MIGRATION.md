@@ -6,6 +6,10 @@ Games use the engine in two ways, and some steps only apply to one of them: clas
 
 A game that only wraps the engine's elements may compile against v4 without a single error. Steps 1 and 3 then find nothing, and the whole update is in sections 4, 6, 7 and 8, which the compiler can't check.
 
+**From v2**: first go through the **Breaking** entries of 3.0.0 in the [changelog](CHANGELOG.md). They change signatures and names (`Game.init()` takes an options object, for example), so the compiler reports most of them. A game on v2 also comes with `@drk4/utilities` v6 (through `Game.Utilities`), so section 8 applies to it as well.
+
+Once the game runs on v4, see [Updating from an earlier v4](#updating-from-an-earlier-v4) at the end for what it can use instead of its own code (keyboard controls, game time, tests).
+
 ## 1. Before updating: enable `noImplicitOverride`
 
 For classes that extend the engine's elements, most of the renamed methods are ones that games override (`remove()` on their own elements), and the compiler doesn't report those: after the update, a game's `remove()` is a new method that happens to have the old name. The engine never calls it, so when the engine destroys the element itself (destroying a container destroys its children, for example) the game's cleanup is skipped.
@@ -115,6 +119,7 @@ v3 aimed for 35 updates per second, which ran at 30 on a 60Hz display. v4 update
 If the game called `setFps(n)` in v3, it ran **below** `n`: v3 skipped every animation frame that came less than `1000 / n` milliseconds (in whole milliseconds) after the last update. On a 60Hz display, `setFps(60)` ran at about 40 updates per second, and `setFps(30)` at 20. v4 keeps to the set rate, so check the game's balance against the rate it really ran at, not against `n`.
 
 - Continuous movement should be scaled by `deltaTime` (it probably already is). But a step that happens once per timer (a beat, a turn, a move to the next tile) should be a fixed distance, not scaled by the `deltaTime` of the frame the timer happens to fire on. Otherwise the step's size depends on the frame rate (and in v3 it also varied from one step to the next).
+- A tween started on each input (a move per key press), while the previous one may still be running: since v4.4.0, the newest tween's value is the one drawn, and `new Tween(element, { override: "properties" })` stops the previous move without stopping the element's other tweens (a fade-in). Before v4.4.0, the older tween's value was drawn until it ended, then the element jumped. `override: true` stops all the element's tweens.
 - A tween started again on every update (to move an element while a key is held, for example) also depends on the frame rate: what's left of the tween when it stops being restarted (when the key is released) is a different distance at each rate. Tween to a target based on the time instead (`speed * deltaTime` ahead, plus a fixed glide, at the same speed), or move the element by `speed * deltaTime` in its logic.
 - Repeating timers that reset their counter lose part of a frame every time, so their rate depends on the display. For a tower that attacks 5 times per second:
 
@@ -158,7 +163,7 @@ If the game called `setFps(n)` in v3, it ran **below** `n`: v3 skipped every ani
 - Setting the rate the game really ran at in v3 with `setFps()` gets close to its old timing too: `Game.setFps(30)` for a game that didn't call `setFps()`, or `Game.setFps(40)` for one that called `setFps(60)`. It's a stopgap while updating a game whose balance depends on it.
 - What runs outside of the loop doesn't pause with it. The loop pauses while the page is hidden and for `stopGameLoop()`, so the game freezes, but:
     - **Timeouts** (`setTimeout()`, or the utilities' `Timeout`) keep counting, and what they call runs while the game is frozen (the next level starts on a hidden page). Use `Game.Timeout` (added in v4.3.0), which has the same methods as the utilities' one but counts game time.
-    - **A measured time** (a time shown in the page, or a score that is a time) keeps counting. Use `Game.Stopwatch` (added in v4.3.0), which adds up the game time. Stopping a utilities `Timer` on `pause` loses up to an interval (a second) every time (see section 8).
+    - **A measured time** (a time shown in the page, or a score that is a time) keeps counting. When the time should stop with the game (a game played in real time, which freezes while the page is hidden), use `Game.Stopwatch` (added in v4.3.0), which adds up the game time. Stopping a utilities `Timer` on `pause` loses up to an interval (a second) every time (see section 8). When the score is the time the player took (a turn-based puzzle, where nothing happens while they think), keep a utilities `Timer`, which counts real time: a clock that stops on a hidden page lets the player think with it stopped.
     - **The engine's sounds** (`Game.Sound`) pause while the page is hidden since v4.3.0. They kept playing in v4.0 to v4.2. They don't pause for `stopGameLoop()`.
     - For anything else (music played through your own `AudioContext`, or sounds that should pause for `stopGameLoop()` too), use the `pause` and `resume` events (`Game.addEventListener("pause", ...)`, added in v4.2.0).
 
@@ -181,8 +186,9 @@ Most games don't need to do anything for these, but check the ones a game uses:
 The utilities have breaking changes of their own (see [its changelog](https://github.com/noobiept/utilities/blob/master/CHANGELOG.md)). The ones games are most likely to notice:
 
 - The utilities' own `Preload` (not `Game.Preload`) dispatches `error` for HTTP error statuses and for files that can't be parsed or decoded. A game that uses it and only listens to `complete` should check its `failed_ids` (with an underscore, unlike `Game.Preload`'s `failedIds`) before starting, or a missing file only shows up later as a crash when it's used.
-- `Timer` counts real elapsed time. Its `onTick` is still called once per interval callback, but the browser slows those down in a background tab, and then the time jumps several seconds at once. Read `getTimeMilliseconds()` instead of counting `onTick` calls. A `Timer` also keeps running while the game loop is paused (a hidden page). Stopping it on the loop's `pause` event loses up to an interval each time, and a timer started while the loop is paused gets no `pause` event. When the time is a score, measure it with `Game.Stopwatch` instead (section 6).
+- `Timer` counts real elapsed time. Its `onTick` is still called once per interval callback, but the browser slows those down in a background tab, and then the time jumps several seconds at once. Read `getTimeMilliseconds()` instead of counting `onTick` calls. A `Timer` also keeps running while the game loop is paused (a hidden page). Stopping it on the loop's `pause` event loses up to an interval each time, and a timer started while the loop is paused gets no `pause` event. Before v8, a `Timer` added its interval on each callback, which browsers run about once a second in a background tab, so a timer with an interval under a second nearly stopped while the page was hidden. Either way, what a hidden page does to a time is a decision to make (see "A measured time" in section 6).
 - `Dialog` titles and bodies given as strings are set as plain text. Pass an `HTMLElement` for markup.
+- A modal `Dialog` takes the focus when it opens, and makes the page behind it inert. A game that styles the dialog itself (instead of importing the utilities' `dialog.css`) should add `.dialog:focus { outline: none; }`, or the browser draws its focus ring around the whole dialog when it's opened from a key press.
 - `getObject()` returns `null` for invalid JSON instead of throwing (with v7, corrupted saved data could stop a game from starting).
 - `EventDispatcher` calls the listeners in the order they were added.
 
@@ -195,7 +201,7 @@ The utilities have breaking changes of their own (see [its changelog](https://gi
 
 ## Updating from an earlier v4
 
-The steps above are for a game on v3. A game already on v4 can skip them, and check what the later versions make unnecessary in it (every change is in the [changelog](CHANGELOG.md)):
+The steps above are for a game on v3 (or v2). A game already on v4 can skip them, and check what the later versions make unnecessary in it (every change is in the [changelog](CHANGELOG.md)):
 
 - **v4.1**: `Game.Cooldown` replaces hand-written timers (section 6), and `destroyAllChildren()` a loop that destroys a container's children.
 - **v4.2**: the game loop's `pause`/`resume` events, `Cooldown.restart(nextInterval)` for intervals that change each time, and typed `Preload` listeners.
@@ -210,3 +216,5 @@ The steps above are for a game on v3. A game already on v4 can skip them, and ch
     - `requireImage()` and the other `require*()` getters replace a game's own helper that checks what `getImage()` returns (or the `!` after it).
     - `@drk4/game-engine/testing` replaces a copy of the canvas stub, and resetting the engine by hand between tests.
     - With a fixed timestep, the timers of a whole number of steps fire on that step. Tests that allowed for an extra step can be exact.
+    - When two tweens set the same property, the newest one's value is drawn, and `override: "properties"` stops the previous move only. Keeping each tween to `remove()` it before the next one isn't needed anymore (and `Tween.start()` returns the tween, for when it's kept).
+    - `Keyboard.getPresses()` gives the presses in order, for a game where every press is an action.

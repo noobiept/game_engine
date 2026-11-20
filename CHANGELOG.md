@@ -6,7 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 Releases before `3.0.0` are not tracked here. To update a game from v3 to v4,
-see the [migration guide](MIGRATION.md).
+see the [migration guide](MIGRATION.md). From v2, go through the **Breaking**
+entries of 3.0.0 first.
 
 ## [Unreleased]
 
@@ -43,7 +44,10 @@ see the [migration guide](MIGRATION.md).
   touch, so a game doesn't need a listener of its own to start its music.
 - The migration guide covers games already on an earlier v4 (what each version
   makes unnecessary), pnpm 12 adding the `minimumReleaseAgeExclude` entries by
-  itself, and a release that can't be downloaded for a minute.
+  itself, and a release that can't be downloaded for a minute. From updating a
+  game from v2: where a game on v2 starts, a modal `Dialog` taking the focus,
+  when to keep the utilities' `Timer` for a time score (a turn-based puzzle),
+  and a tween started on each input.
 - The package is built in three files: `game_engine.js` (the main entry),
   `testing.js`, and `engine.js` (the engine's code, which both use, so the
   testing helpers reset the engine that the game uses).
