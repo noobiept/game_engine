@@ -173,6 +173,26 @@ describe("Timers of a whole number of steps (1/60 of a second)", function () {
         expect(steps).toEqual([30, 60]);
     });
 
+    test("after a long update, a timer isn't ready again in the next one (a leftover of a whole interval but for a rounding error)", function () {
+        // 0.19999999999999998 is two intervals of 0.1 but for a rounding error, which leaves 0.09999999999999998
+        const long = 0.19999999999999998;
+        let calls = 0;
+
+        Game.addToGameLoop(() => calls++, { delay: 0.1 });
+        Game.step(long);
+        Game.step(STEP);
+        expect(calls).toBe(1);
+
+        const owner = new Rectangle({ width: 10, height: 10, color: "red" });
+        const bullets = new Container();
+        const weapon = new Weapon({ element: owner, bulletContainer: bullets });
+
+        weapon.forceFire(0, 0, 0.1); // the first bullet right away
+        weapon.logic(long);
+        weapon.logic(STEP);
+        expect(bullets.getAllChildren()).toHaveLength(2);
+    });
+
     test("with Game.setFixedTimestep( 1 / 60 ), at 144Hz", function () {
         const cooldown = new Cooldown(2, { ready: false });
         let steps = 0;

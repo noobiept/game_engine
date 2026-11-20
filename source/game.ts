@@ -887,11 +887,12 @@ function callbacks(deltaTime: number) {
             }
 
             // keep the time past the delay (so the calls don't drift), but at most once per update
-            call.count = Math.max(call.count - call.delay, 0);
-
-            if (call.count >= call.delay) {
-                call.count = timePast(call.count, call.delay);
-            }
+            // (less than a delay, and not one that is a whole delay but for a rounding error, or it would be called
+            // again in the next update)
+            call.count = timePast(
+                Math.max(call.count - call.delay, 0),
+                call.delay,
+            );
         }
 
         // a timeout is only called once

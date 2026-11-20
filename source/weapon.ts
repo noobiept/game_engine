@@ -296,17 +296,11 @@ export class Weapon {
                         }
                     } else {
                         // keep the time past the interval (so it doesn't drift), but fire at most once per update
-                        interval.count = Math.max(
-                            interval.count - interval.interval,
-                            0,
+                        // (less than an interval, and not one that is a whole interval but for a rounding error)
+                        interval.count = timePast(
+                            Math.max(interval.count - interval.interval, 0),
+                            interval.interval,
                         );
-
-                        if (interval.count >= interval.interval) {
-                            interval.count = timePast(
-                                interval.count,
-                                interval.interval,
-                            );
-                        }
                     }
                 }
             }
