@@ -24,6 +24,9 @@ see the [migration guide](MIGRATION.md).
   removing them like `override: true`. A move started on each key press takes
   over from the previous move, while a fade-in on the same element keeps going.
   `ElementGrid.move()` uses it.
+- `Tween.start()` returns the tween, so it can be kept in one statement
+  (`const slide = new Tween(block).to({ x: 100 }, 0.1).start()`) and removed
+  later.
 - `requireImage()`, `requireAudio()`, `requireJson<T>()` and `requireText()` on
   `Preload` (and on `Game.Preload`, for `saveGlobal`), for the files a game
   can't run without: they return the file (not `undefined`, so it can be given

@@ -89,6 +89,8 @@ export class Tween {
 
     /**
      * Start the tween animation.
+     *
+     * @return The tween object, to keep it (and `remove()` it later): `const slide = new Tween( block ).to( ... ).start();`
      */
     start() {
         if (this._override_properties) {
@@ -101,6 +103,8 @@ export class Tween {
         }
 
         this.nextStep();
+
+        return this;
     }
 
     /**

@@ -104,6 +104,19 @@ describe("Tween", function () {
         expect(Tween.getTween(inactiveElement)).toEqual(null);
     });
 
+    test("start() returns the tween, so it can be kept and removed later", function () {
+        const block = { x: 0 };
+        const slide = new Tween(block).to({ x: 100 }, 1).start();
+
+        expect(slide).toBeInstanceOf(Tween);
+
+        Tween.update(0.5);
+        slide.remove();
+        Tween.update(0.5);
+
+        expect(block.x).toBe(50);
+    });
+
     test("start() does not register a tween with no steps", function () {
         const emptyElement = { x: 0 };
         const activeElement = { x: 0 };
