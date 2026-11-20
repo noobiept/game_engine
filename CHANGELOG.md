@@ -18,6 +18,12 @@ see the [migration guide](MIGRATION.md).
   loaded, so a test doesn't affect the next one (no game loop callbacks, tweens,
   event listeners, held keys or preloaded files are left). It's a separate
   entry, so it isn't in a game's bundle.
+- `override: "properties"` for `Tween`, which only takes the properties the
+  tween animates out of the element's other tweens when it starts (they keep
+  animating the rest, and their `.call()` steps still run), instead of
+  removing them like `override: true`. A move started on each key press takes
+  over from the previous move, while a fade-in on the same element keeps going.
+  `ElementGrid.move()` uses it.
 - `requireImage()`, `requireAudio()`, `requireJson<T>()` and `requireText()` on
   `Preload` (and on `Game.Preload`, for `saveGlobal`), for the files a game
   can't run without: they return the file (not `undefined`, so it can be given

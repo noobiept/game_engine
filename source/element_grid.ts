@@ -181,7 +181,8 @@ export class ElementGrid extends Grid {
 
         // use a tween for the animation
         else {
-            const tween = new Tween(element);
+            // a move takes over from a move that is still running, the element's other tweens (a fade) keep going
+            const tween = new Tween(element, { override: "properties" });
 
             tween.to(
                 {

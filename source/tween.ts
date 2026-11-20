@@ -9,8 +9,10 @@ export enum TweenAction {
 type TweenProperties = Record<string, number>;
 
 export interface TweenArgs {
-    // remove any existing tweens on the target before this one is created
-    override?: boolean;
+    // `true` removes the target's other tweens when this one is created. `"properties"` only takes the properties this
+    // tween animates out of the target's other tweens when it starts (they keep animating the rest, and their `.call()`
+    // steps still run).
+    override?: boolean | "properties";
 }
 
 export type TweenStep =
@@ -48,6 +50,12 @@ export type TweenStep =
  *         console.log( 'Finished!' );
  *         }).start();
  *
+ * When two tweens set the same property at once, the newest one's value is the one that stays, but the older one
+ * keeps running until it ends. To start a move from where the element is (a new move per key press), while its other
+ * tweens keep going (a fade-in), use `override: "properties"`:
+ *
+ *     new Game.Tween( block, { override: 'properties' } ).to( { x: 200, y: 100 }, 0.1 ).start();
+ *
  * Examples -- `2048`, `basic_example`, `clone`, `multiple_canvas`, `tween`
  */
 export class Tween {
@@ -60,12 +68,15 @@ export class Tween {
     protected _count: number;
     protected _update: ((delta: number) => any) | null;
     protected _active: boolean; // if it's in the list of tweens being updated
+    protected _override_properties: boolean; // take this tween's properties out of the element's other tweens when it starts
 
     constructor(element: object, options?: TweenArgs) {
         // remove any existing tweens on the target (`this` isn't registered yet, so it won't remove itself)
-        if (options?.override) {
+        if (options?.override === true) {
             Tween.removeTweens(element);
         }
+
+        this._override_properties = options?.override === "properties";
 
         this._element = element as Record<string, any>;
         this._steps = [];
@@ -80,6 +91,10 @@ export class Tween {
      * Start the tween animation.
      */
     start() {
+        if (this._override_properties) {
+            this._overrideProperties();
+        }
+
         if (!this._active) {
             this._active = true;
             Tween._tweens.push(this);
@@ -107,7 +122,7 @@ export class Tween {
 
         this._steps.push({
             action: TweenAction.properties,
-            end_properties: properties,
+            end_properties: { ...properties }, // a copy, since `override: "properties"` can take properties out of it
             duration: duration,
             ease: ease,
         });
@@ -143,6 +158,61 @@ export class Tween {
         });
 
         return this;
+    }
+
+    /**
+     * Take the properties this tween animates out of the element's other tweens (for `override: "properties"`).
+     */
+    protected _overrideProperties() {
+        const properties = new Set<string>();
+
+        for (const step of this._steps) {
+            if (step.action === TweenAction.properties) {
+                for (const property in step.end_properties) {
+                    properties.add(property);
+                }
+            }
+        }
+
+        for (const tween of Tween._tweens) {
+            if (tween !== this && tween._element === this._element) {
+                tween._removeProperties(properties);
+            }
+        }
+    }
+
+    /**
+     * Stop animating some properties. A step left with nothing to animate still takes its time, so the steps after it
+     * (a `.call()`) keep their timing.
+     */
+    protected _removeProperties(properties: Set<string>) {
+        const current = this._current_step;
+
+        if (current?.action === TweenAction.properties) {
+            for (const property of properties) {
+                delete current.end_properties[property];
+                delete this._start_properties?.[property];
+            }
+        }
+
+        for (let a = 0; a < this._steps.length; a++) {
+            const step = this._steps[a];
+
+            if (step.action !== TweenAction.properties) {
+                continue;
+            }
+
+            for (const property of properties) {
+                delete step.end_properties[property];
+            }
+
+            if (Object.keys(step.end_properties).length === 0) {
+                this._steps[a] = {
+                    action: TweenAction.wait,
+                    duration: step.duration,
+                };
+            }
+        }
     }
 
     /**

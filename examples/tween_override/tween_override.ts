@@ -10,40 +10,62 @@ runOnLoad(function () {
         y: 20,
         textAlign: "center",
         fontSize: 14,
-        text: "click to send both squares to that x\ngreen uses override, red does not",
+        text: "click to send the squares to that x\n(each one pulses with a tween of its own)",
     });
 
-    // green: every click cancels the running tween and redirects immediately
-    const greenLabel = new Game.Text({
-        x: 10,
-        y: 120,
-        fontSize: 13,
-        color: "#3a9d23",
-        text: "override: on  (cancels the in-progress move)",
-    });
-    const greenSquare = new Game.Rectangle({
-        x: 30,
-        y: 150,
-        width: 26,
-        height: 26,
-        color: "#3a9d23",
-    });
+    /**
+     * A square with a label, that pulses (a tween on its opacity, started again when it ends).
+     */
+    function makeSquare(y: number, color: string, label: string) {
+        const text = new Game.Text({
+            x: 10,
+            y: y - 30,
+            fontSize: 13,
+            color: color,
+            text: label,
+        });
+        const square = new Game.Rectangle({
+            x: 30,
+            y: y,
+            width: 26,
+            height: 26,
+            color: color,
+        });
 
-    // red: every click adds another tween, and the older ones keep running underneath
-    const redLabel = new Game.Text({
-        x: 10,
-        y: 250,
-        fontSize: 13,
-        color: "#d64545",
-        text: "override: off  (the older tweens keep running)",
-    });
-    const redSquare = new Game.Rectangle({
-        x: 30,
-        y: 280,
-        width: 26,
-        height: 26,
-        color: "#d64545",
-    });
+        const pulse = () => {
+            new Game.Tween(square)
+                .to({ opacity: 0.3 }, 0.6)
+                .to({ opacity: 1 }, 0.6)
+                .call(pulse)
+                .start();
+        };
+        pulse();
+
+        Game.addElement([text, square]);
+
+        return square;
+    }
+
+    // green: `override: true` stops every tween of the square, the pulse as well
+    const green = makeSquare(
+        120,
+        "#3a9d23",
+        "override: true  (moves right away, but stops the pulse)",
+    );
+
+    // blue: `override: "properties"` only takes `x` out of the square's other tweens
+    const blue = makeSquare(
+        220,
+        "#2f6fd6",
+        'override: "properties"  (moves right away, keeps pulsing)',
+    );
+
+    // red: without override, the newest tween sets `x`, and the older ones keep running underneath
+    const red = makeSquare(
+        320,
+        "#d64545",
+        "no override  (keeps pulsing, the older moves still run)",
+    );
 
     // a transparent, full-canvas rectangle to catch clicks anywhere
     const catcher = new Game.Rectangle({
@@ -56,18 +78,14 @@ runOnLoad(function () {
     catcher.addEventListener("click", function (data) {
         const pos = eventPosition(data.event);
 
-        // override removes the running tween first, so it heads to the new target right away
-        new Game.Tween(greenSquare, { override: true })
+        new Game.Tween(green, { override: true }).to({ x: pos.x }, 1).start();
+        new Game.Tween(blue, { override: "properties" })
             .to({ x: pos.x }, 1)
             .start();
-
-        // without override the new tween is added to the running ones: the newest one sets the position, but the
-        // older ones keep running until they end (and their `.call()` steps still run)
-        new Game.Tween(redSquare).to({ x: pos.x }, 1).start();
+        new Game.Tween(red).to({ x: pos.x }, 1).start();
     });
 
-    canvas.addChild(catcher, greenSquare, redSquare);
+    canvas.addChild(catcher);
+    canvas.sendToBack(catcher);
     Game.addElement(info);
-    Game.addElement(greenLabel);
-    Game.addElement(redLabel);
 });

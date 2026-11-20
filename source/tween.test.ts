@@ -135,6 +135,63 @@ describe("Tween", function () {
         expect(Tween.getTween(element)).toBe(second);
     });
 
+    test('override: "properties" takes only its properties out of the other tweens', function () {
+        const block = { x: 0, opacity: 0 };
+        const calls: string[] = [];
+
+        // a fade-in and a slide, then another slide while both run
+        new Tween(block)
+            .to({ opacity: 1, x: 100 }, 0.5)
+            .to({ x: 200 }, 0.5) // only x: becomes a wait, so the call keeps its time
+            .call(() => calls.push("first done"))
+            .start();
+        Tween.update(0.25);
+
+        new Tween(block, { override: "properties" })
+            .to({ x: -50 }, 0.25)
+            .start();
+
+        Tween.update(0.25);
+        expect(block.x).toBe(-50);
+        expect(block.opacity).toBe(1); // the fade kept going
+
+        // the first tween doesn't move it anymore, but its call still runs on time
+        Tween.update(0.4);
+        expect(block.x).toBe(-50);
+        expect(calls).toEqual([]);
+
+        Tween.update(0.1);
+        expect(calls).toEqual(["first done"]);
+    });
+
+    test('override: "properties" leaves the object given to to() as it was', function () {
+        const target = { x: 100, y: 100 };
+        const block = { x: 0, y: 0 };
+
+        new Tween(block).to(target, 1).start();
+        new Tween(block, { override: "properties" }).to({ x: 0 }, 1).start();
+
+        expect(target).toEqual({ x: 100, y: 100 });
+
+        Tween.update(1);
+        expect(block).toEqual({ x: 0, y: 100 });
+    });
+
+    test('a longer older tween doesn\'t take over when a newer one ends (with override: "properties")', function () {
+        const block = { x: 0 };
+
+        new Tween(block).to({ x: 1000 }, 10).start();
+        Tween.update(1);
+
+        new Tween(block, { override: "properties" }).to({ x: 0 }, 0.5).start();
+
+        for (let a = 0; a < 20; a++) {
+            Tween.update(0.1);
+        }
+
+        expect(block.x).toBe(0);
+    });
+
     test("override only affects tweens on the same target", function () {
         const one = { x: 0 };
         const two = { x: 0 };

@@ -295,7 +295,7 @@ The elements are positioned by their center (`x`/`y`). To position them by an ed
 
 ## Tweens
 
-A `Tween` animates an element's properties over time. Durations are in seconds. Pass `{ override: true }` to cancel any tween already running on the target.
+A `Tween` animates an element's properties over time. Durations are in seconds. Pass `{ override: true }` to cancel any tween already running on the target, or `{ override: "properties" }` to only take the properties this tween animates out of the target's other tweens (a move that takes over from the previous move, while a fade-in keeps going).
 
 ```ts
 const tween = new Game.Tween(player, { override: true });
